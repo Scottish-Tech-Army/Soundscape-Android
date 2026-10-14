@@ -1,13 +1,14 @@
 ---
-title: Soundscape कैसे काम करता है
+title: Soundscape के पीछे की तकनीक
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
+nav_order: 200
 lang: hi
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Soundscape कैसे काम करता है
+# Soundscape के पीछे की तकनीक
 इस पृष्ठ का उद्देश्य इस बात की एक सामान्य समझ देना है कि Soundscape ऐप पर्दे के पीछे कैसे काम करता है। ऐप का उपयोग करने के लिए आपको इसे पढ़ने की ज़रूरत नहीं है, लेकिन इसे लिखे जाने के कुछ कारण हैं:
 
 1. ऐप में रुचि रखने वाले किसी भी नए व्यक्ति को यह समझने में मदद करना कि इसकी सीमाएँ कहाँ हैं

@@ -42,7 +42,7 @@ class CrossingTest {
 
         // We can reuse the intersection code as crossings are GeoJSON Points just like Intersections
         //  but there will be more complex crossings so I'll need to check some other tiles
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovCrossingFeatureCollection = crossingsTree.getAllWithinTriangle(triangle)
         Assert.assertEquals(1, fovCrossingFeatureCollection.features.size)
 

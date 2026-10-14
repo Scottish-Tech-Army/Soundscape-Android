@@ -1,0 +1,76 @@
+# Hausa (ha) — translation decisions
+
+| | |
+|---|---|
+| Weblate component | `androidkmp` |
+| Corpus at last sweep | 1522 units (2026-09-24) |
+| Last native-speaker input | **none yet** |
+| Register | Plural/respectful «Kun…» («Kun shirya!»), `unconfirmed` |
+
+Read with [`_common.md`](_common.md).
+
+## Status of this file
+
+**No native speaker has reviewed Hausa.** It has been AI-only since
+2026-08-21. This sweep can check structure and consistency but not
+idiomaticity, because Hausa is the language here where machine translation
+is least reliable. **Treat every term as a guess until a speaker has seen
+it.** The template «Danna sau biyu don %1$s» composes with the hints. There
+is no `ha.lproj`, so the Siri phrases stay in English. Questions:
+`docs/translation-questions/questions-ha.md` (Q1…Q9).
+
+## Glossary
+
+| English | Hausa | Status | Note |
+|---|---|---|---|
+| Callout | sanarwa | `unconfirmed` | |
+| Audio Beacon | Siginar Sauti | `unconfirmed` | |
+| Marker | alamomi | `unconfirmed` | |
+| Waypoint | matsayi | `unconfirmed` | Means "position/status", so it may not convey a route stop. See Q2 |
+| Landmarks | shahararrun wurare | `unconfirmed` | "Famous places" |
+| Intersection | mahaɗar hanya | `unconfirmed` | |
+| Sleep / Snooze | Barci ; Hutawa | `unconfirmed` | |
+| dead end | titin da babu fita | `unconfirmed` | |
+
+## Rules
+
+### HA-S1 — «ta juya hagu» (`unconfirmed`)
+
+`directions_name_goes_left` «%1$s, ta juya hagu» ("…, it turned/turns left").
+Check that it reads as a description, not an instruction (C11).
+
+## Rejected
+
+Nothing yet.
+
+## Open questions
+
+1. Is the Hausa generally understandable, or does it read as machine translation?
+2. Waypoint «matsayi»: does it mean a stop on a route?
+3. Callout «sanarwa» and Beacon «Siginar Sauti»: natural?
+4. «Titin X, ta juya hagu»: a description, or an instruction? (HA-S1)
+5. Register: respectful plural «ku» or singular «ka»? The app mixes them («Kun shirya!» vs «Yanzu kana iya jin…»).
+6. The four home-screen buttons have three names each (label «Matsayi Na» / help «Inda Nake» / directions «Wurina», and so on); which? Also Snooze «Hutawa» (UI) vs «Jinkirtawa» (FAQ).
+7. **The four detail levels** (Cikakke / Sauƙaƙe / Muhimmi / Shiru), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. `faq_how_to_use_beacon_answer`: the higher-pitched *ring* is «*ƙara* mai ƙarar sauti» (a loud noise; «ƙara» also means add). How to say a thin, high sound? (all-language review 2026-09-30)
+9. Anything else.
+
+## Provenance
+
+**2026-08-21 → 2026-09-24 — AI passes only.** **2026-09-24 — corpus sweep.**
+Nothing uploaded.
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
+
+**2026-09-28 — Weblate checks pass.** `osm_parking_space` → «Gurbin Ajiye Mota», `osm_clinic` → «Karamin Asibiti» (each had been a copy of a sibling). Uploaded live.
+
+**2026-09-29 — full review.** 56 fixes, all consistency, wording `unconfirmed` like everything in Hausa. Beacon «alamar sauti» (27 strings; «alama» is the Marker word) → «siginar sauti», the UI term; plural «alamomin sauti» avoided with «nau'o'in siginar sauti». Route «hanya/hanyoyi» (road/way) → «tafarki/tafarkuna» in menus, voice commands and the routes help (15). English "beacon" («beacon na murya») left in 4 strings → «siginar sauti». Help button names now match the labels («Tsayar da Tafarki», «Kashe/Kunna Siginar Sauti», «Wurin da Kake Yanzu», «Wurare na Kusa», «An Gama»). `faq_tip_beacon_quiet` «zai yi shiru» → «zai ragu». Two hints lower-cased. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** the four home-button names (Q6); Waypoint «matsayi»/«tasha» (Q2); Snooze «Hutawa»/«Jinkirtawa» (Q6).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 68 flagged, 59 applied in `7596de275`. Findings: `translations/review/2026-09-30-all-languages/ha-findings.json`.
+Most serious fixed:
+- `help_text_markers_content_3`: «sanarwar sararin samaniya» says 'outer-space/sky callout' for 'spatial callout' (sararin samaniya = sky, outer space).
+- `faq_holding_phone_flat_answer`: The beacon gets quieter, but «za ku lura ta yi shiru» says it goes silent (the same error was fixed in faq_tip_beacon_quiet on 2026-09-29, «zai yi shiru» → «zai ragu»).
+- `faq_road_names_answer`: 'spatial audio' rendered «sautin sararin samaniya» (outer space;
+Held for a person: `faq_how_to_use_beacon_answer` (reviewer: NEEDS A HUMAN).
+
+**2026-10-01 — home-button names.** Home buttons and help unified on the Siri names: «Wurina», «Kewaye da Ni», «Gaba da Ni», «Alamomi na Kusa». The buttons, tour and help had used three different sets (C27).

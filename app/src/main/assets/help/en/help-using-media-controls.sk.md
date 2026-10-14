@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Používanie ovládacích prvkov médií
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 110
 lang: sk
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Používanie ovládacích prvkov médií
 
-## What is it?
+Soundscape môžete ovládať tlačidlami médií na slúchadlách: *prehrať/pozastaviť*, *ďalej* a *predchádzajúce*. Funguje to s káblovými slúchadlami aj so slúchadlami Bluetooth. Funguje to aj vtedy, keď je Soundscape na pozadí alebo je telefón zamknutý.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Nie všetky slúchadlá majú všetky tri tlačidlá.
 
-## When would I use it?
+Tlačidlá ovládajú Soundscape len vtedy, keď zvuk neprehráva žiadna iná aplikácia. Ak počúvate hudbu alebo podcast, tlačidlá ovládajú túto aplikáciu.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Tlačidlá môžu fungovať dvoma spôsobmi: *Pôvodný režim* alebo *Zvukové menu*. Spôsob vyberiete tak, že otvoríte menu a vyberiete *Nastavenia* a potom *Ovládanie médií*.
 
-## How does it work?
+## Pôvodný režim
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Prehrať/pozastaviť* stlmí maják. Ďalším stlačením maják znova začujete.
 
- Original mode. 
+*Ďalej* presunie maják na ďalší bod trasy, keď idete po trase. Inak ohlási *Okolo mňa*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Predchádzajúce* presunie maják na predchádzajúci bod trasy, keď idete po trase. Inak zmení *Podrobnosť hlásení*. Každé stlačenie prejde o jednu úroveň tichšie: *Podrobný*, *Zjednodušený*, *Základný* a potom *Bez zvuku*. Ďalšie stlačenie sa vráti na *Podrobný*. Soundscape povie názov novej úrovne.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Zvukové menu
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Zvukové menu vám dáva viac akcií s rovnakými tromi tlačidlami. Soundscape každú možnosť prečíta nahlas.
 
+*Ďalej* prejde na ďalšiu možnosť. Po poslednej možnosti sa vráti na prvú.
 
+*Prehrať/pozastaviť* vyberie možnosť, ktorá práve zaznela.
 
-Audio menu. 
+*Predchádzajúce* zmení *Podrobnosť hlásení*, rovnako ako *Pôvodný režim*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu sa začína štyrmi skupinami: *Počúvať svoje okolie*, *Ovládanie trasy*, *Spustiť trasu* a *Spustiť zvukový maják*. Vyberte skupinu a začujete jej akcie. *Počúvať svoje okolie* a *Ovládanie trasy* sa končia položkou *Hlavné menu*, ktorá vás vráti k štyrom skupinám.
 

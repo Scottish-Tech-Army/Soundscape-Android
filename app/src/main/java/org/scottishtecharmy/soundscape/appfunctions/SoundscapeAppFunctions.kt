@@ -72,6 +72,20 @@ abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
     suspend fun nearbyMarkers(): SoundscapeResult = run(SoundscapeAction.NearbyMarkers)
 
     /**
+     * Says how far away the audio beacon is, from the beacon's direction. Says "No beacon
+     * active" when there is no beacon or route playing.
+     */
+    @AppFunction(isDescribedByKDoc = true)
+    suspend fun calloutBeacon(): SoundscapeResult = run(SoundscapeAction.CalloutBeacon)
+
+    /**
+     * Says the audio beacon's name, distance, direction and street address. Says "No beacon
+     * active" when there is no beacon or route playing.
+     */
+    @AppFunction(isDescribedByKDoc = true)
+    suspend fun beaconInfo(): SoundscapeResult = run(SoundscapeAction.BeaconInfo)
+
+    /**
      * Starts one of the user's saved routes, matched by name.
      */
     @AppFunction(isDescribedByKDoc = true)
@@ -119,6 +133,19 @@ abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
      */
     @AppFunction(isDescribedByKDoc = true)
     suspend fun stopBeacon(): SoundscapeResult = run(SoundscapeAction.StopBeacon)
+
+    /**
+     * Sets how much Soundscape says automatically as the user walks: Silent turns automatic
+     * callouts off altogether, leaving beacons, routes and on-demand callouts; Essential calls out only
+     * streets, junctions and landmarks; Simplified skips minor paths and repeats itself less;
+     * Detailed calls out everything nearby. Useful when a busy street is too noisy, or a quiet
+     * one too sparse. The change is saved, the same as choosing it in Settings.
+     */
+    @AppFunction(isDescribedByKDoc = true)
+    suspend fun setCalloutDetail(
+        /** One of Silent, Essential, Simplified or Detailed. */
+        level: String,
+    ): SoundscapeResult = run(SoundscapeAction.SetCalloutDetailNamed(level))
 
     /**
      * Lists the names of the user's saved routes. Works whether or not Soundscape is

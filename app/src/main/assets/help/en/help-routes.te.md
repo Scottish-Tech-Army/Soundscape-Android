@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: రూట్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 90
 lang: te
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# రూట్‌లు
 
-## What is it?
+రూట్ అనేది వేపాయింట్‌లు అని పిలిచే స్థానాల జాబితా, వాటిని మీరు క్రమంలో సందర్శిస్తారు. Soundscape మొదటి వేపాయింట్‌పై బీకాన్‌ను సెట్ చేస్తుంది. మీరు చేరుకున్నప్పుడు, అది మీకు చెప్పి బీకాన్‌ను తర్వాతి వేపాయింట్‌కు తరలిస్తుంది.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+కొత్త ప్రయాణాన్ని నేర్చుకోవడానికి, లేదా తెలిసిన ప్రయాణంలో దారి తప్పకుండా ఉండటానికి రూట్‌ను ఉపయోగించండి.
 
-## When would I use it?
+## రూట్‌ను సృష్టించడం
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. హోమ్ స్క్రీన్‌లో *రూట్‌లు* ఎంచుకుని, తర్వాత *కొత్తది* ఎంచుకోండి.
 
-## How does it work?
+2. రూట్‌కు ఒక పేరు ఇవ్వండి. మీరు వివరణ కూడా జోడించవచ్చు.
 
-**Creating a route :**
+3. *వేపాయింట్‌లను జోడించు* ఎంచుకుని మార్కర్‌లను ఎంచుకోండి. మీ ప్రస్తుత స్థానాన్ని లేదా దగ్గరలోని ఒక స్థలాన్ని కూడా జోడించవచ్చు.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *పూర్తయింది* ఎంచుకోండి.
 
-**Editing a route :**
+## రూట్‌ను అనుసరించడం
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+*రూట్‌లు* స్క్రీన్‌లో రూట్‌ను ఎంచుకుని, తర్వాత *రూట్‌ను ప్రారంభించు* ఎంచుకోండి. దాన్ని వ్యతిరేక దిశలో అనుసరించడానికి *రూట్‌ను వెనుకవైపు ప్రారంభించు* ఎంచుకోండి. హోమ్ స్క్రీన్‌లో *తదుపరి వేపాయింట్* మరియు *మునుపటి వేపాయింట్* బీకాన్‌ను రూట్ వెంట తరలిస్తాయి. *రూట్‌ను ఆపివేయి* దాన్ని ముగిస్తుంది.
 
-**Sharing a route :**
+## రూట్‌ను మార్చడం
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+*రూట్‌లు* స్క్రీన్‌లో రూట్‌ను ఎంచుకుని, తర్వాత *రూట్‌ను సవరించు* ఎంచుకోండి. మీరు వేపాయింట్‌లను జోడించవచ్చు, తీసివేయవచ్చు, వాటి క్రమాన్ని మార్చవచ్చు, పేరు మరియు వివరణను మార్చవచ్చు, లేదా రూట్‌ను తొలగించవచ్చు.
+
+## రూట్‌ను షేర్ చేయడం
+
+*రూట్‌లు* స్క్రీన్‌లో రూట్‌ను ఎంచుకుని, తర్వాత *షేర్ చేయండి* ఎంచుకోండి.
 

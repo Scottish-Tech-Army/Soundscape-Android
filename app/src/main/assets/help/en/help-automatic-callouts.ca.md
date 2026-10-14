@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Avisos de veu automàtics
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 70
 lang: ca
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Avisos de veu automàtics
 
-## What is it?
+Mentre camines, Soundscape anuncia el que tens a prop. Sents cada nom des de la direcció del lloc. Els avisos de veu inclouen carrers, cruïlles, botigues, parades d'autobús, punts de referència i els teus marcadors.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Cruïlles
 
-## When would I use it?
+Quan t'acostes a una cruïlla, Soundscape anomena cada carrer que en surt. Sents quin carrer va a l'esquerra, quin continua recte i quin va a la dreta.
 
-**Exploring a new area :**
+## Quant sents
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Obre el menú i selecciona *Configuració* i després *Gestiona els avisos de veu*. *Detall dels avisos de veu* té quatre nivells.
 
-**Walking to a specific location :**
+*Detallat* anuncia tot el que hi ha a prop.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Simplificat* deixa de banda els camins menors i les vies de servei, i es repeteix menys.
 
-**When you need silence :**
+*Essencial* anuncia només carrers, cruïlles i punts de referència.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Silenciós* no fa cap avís de veu automàtic. Les balises, les rutes i els botons de la pantalla principal continuen funcionant.
 
-## How does it work?
+## Què sents
 
-**Turning callouts on or off :**
+*Gestiona els avisos de veu* té dos paràmetres més. *Carrers i cruïlles* activa o desactiva els avisos de carrers i cruïlles. *Llocs per anunciar* tria quins tipus de lloc sents, com ara *Transport públic* o *Menjar i begudes*. Els teus marcadors s'anuncien sempre.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Fer que Soundscape parli menys
 
-**Managing which callouts you hear :**
+Prem *anterior* als controls dels auriculars. Cada pulsació baixa un nivell: *Detallat*, *Simplificat*, *Essencial* i després *Silenciós*. Una pulsació més torna a *Detallat*. Consulta la pàgina d'ajuda *Utilitzar els controls multimèdia*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Aturar Soundscape una estona
+
+Selecciona el botó *Repòs* a la part superior de la pantalla principal. Soundscape deixa de fer servir la teva ubicació i no fa cap so fins que selecciones *Desperta ara*. O selecciona *Desperta en sortir*, i Soundscape es desperta quan surts del lloc on ets.
+
+## En un vehicle o en tren
+
+Soundscape detecta quan et desplaces a la velocitat d'un vehicle. Llavors deixa d'anunciar les cruïlles i les botigues properes, perquè passen massa de pressa. En canvi, anuncia la via per on vas, els punts de referència, les parades i estacions, els rius i els túnels.
 

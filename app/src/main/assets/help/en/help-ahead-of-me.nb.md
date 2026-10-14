@@ -1,23 +1,16 @@
 ---
-title: Ahead of Me
+title: Foran meg
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 40
 lang: nb
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Foran meg
 
-## What is it?
+*Foran meg* leser opp inntil fem steder foran deg. Du hører hvert av dem fra sin egen retning, med avstanden. Bruk den i en gate du ikke kjenner, for å få vite hva som kommer.
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
-
-## When would I use it?
-
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Hvis du står stille, peker du først toppen av telefonen i den retningen du er vendt. Hvis telefonen er låst, eller Soundscape ikke er på skjermen, holder du også telefonen flatt.
 

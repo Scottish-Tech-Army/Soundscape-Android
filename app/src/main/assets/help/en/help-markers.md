@@ -3,13 +3,28 @@ title: Markers
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 80
 ---
 
 # Markers
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+A marker is a place you have saved. It can be any place that matters to you: your home, a bus stop, a building entrance or a crossing.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape calls out your markers as you pass them. You can set an audio beacon on a marker, add it to a route, or hear the closest ones with the *Nearby Markers* button.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Creating Markers
+
+1. Select *Markers* on the home screen, then select *New*.
+
+2. Choose *Current Location*, or a place from *Places Nearby*.
+
+3. Change the name if you want, and add notes. Soundscape reads the notes out with the marker.
+
+4. Select *Done*.
+
+You can also save any place you find. Open its *Location Details* and select *Save as Marker*.
+
+## Customizing Markers
+
+Select the marker on the *Markers* screen, then select *Edit Marker*. You can change its name, notes and position, or select *Delete Marker*. Deleting a marker also removes it from your routes.
 

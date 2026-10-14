@@ -42,6 +42,21 @@ enum class AlongWayKind {
      * without guessing from distance.
      */
     RAILWAY_STOP,
+
+    /**
+     * A numbered or named road junction - a motorway exit or an interchange - recorded on the
+     * carriageway and slip road it sits on. [AlongWayFeature.feature] is the junction itself,
+     * carrying its number as ref and the interchange as its name.
+     *
+     * OSM puts a junction node on each carriageway, where that carriageway's exit leaves it, so
+     * the road being driven knows its own junctions. They can be a long way apart - M9 junction 5
+     * is asymmetric, and its two nodes are kilometres from each other - and the other
+     * carriageway's is no use to anybody on this one. Found by searching around the vehicle
+     * instead, a junction was announced on every road within reach of it: Cowcaddens Road and
+     * West Graham Street both got "at Junction 17, St George's Cross" from an M8 junction they
+     * don't touch.
+     */
+    HIGHWAY_JUNCTION,
 }
 
 /**
@@ -56,10 +71,10 @@ enum class AlongWayPosition {
 }
 
 /**
- * A feature positioned at a known distance along a [Way] - today a river/canal or railway
- * crossing, in future a bus stop, station or highway junction. Held in [Way.alongWayFeatures],
- * sorted by [distanceFromStart], so that "what's next along this road?" is a lookup rather than a
- * geographic search.
+ * A feature positioned at a known distance along a [Way] - a river/canal, railway or road
+ * crossing, a bus stop or station, or a highway junction - see [AlongWayKind]. Held in
+ * [Way.alongWayFeatures], sorted by [distanceFromStart], so that "what's next along this road?" is
+ * a lookup rather than a geographic search.
  *
  * @param distanceFromStart metres from the owning Way's START intersection, measured along that
  * Way's own geometry. See [Way.distanceAlongWay] for the caveat about points which don't actually

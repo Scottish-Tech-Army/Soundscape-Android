@@ -10,7 +10,9 @@ machine-translated: true
 
 # Notes de version
 
-Soundscape 2.0 est une version importante, actuellement en bêta fermée. Le changement principal est
+Soundscape 2.0 est une version importante, désormais en bêta ouverte sur Android.
+Cela signifie que tout le monde peut accéder à la version bêta simplement en se rendant dans la boutique Play Store [ici](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Le changement principal est
 que Soundscape a désormais quelque chose d'utile à dire lorsque vous voyagez en voiture, en bus ou
 en train, et plus seulement lorsque vous marchez. S'y ajoutent de nombreux travaux plus modestes sur
 la description des lieux, vingt nouvelles langues et une longue liste de corrections.
@@ -24,13 +26,33 @@ Les notes des versions précédentes se trouvent sur la page
   déplacez à vitesse élevée et décrit votre trajet plutôt que votre environnement immédiat.
 * **Annonce des cours d'eau et des voies ferrées franchis.** Rivières, canaux, estuaires et lignes
   de chemin de fer sont annoncés lorsque vous les traversez, à pied comme en déplacement.
+* **Choisir ce que Soundscape vous dit.** Le nouveau réglage *Détail des annonces* rend
+  Soundscape plus discret dans les endroits animés, et *Lieux à annoncer* vous permet de choisir les
+  types de lieux dont vous entendez parler. Vous pouvez changer le niveau de détail avec les boutons
+  de vos écouteurs en marchant.
+* **Savoir à quelle distance se trouve le prochain croisement.** Les croisements sont annoncés
+  à une distance régulière quand vous approchez, et l’annonce indique maintenant la distance
+  jusqu’au bord du trottoir.
+* **Rechercher un type de lieu, ou des coordonnées.** Cherchez « pharmacie » ou « arrêt de bus » pour
+  trouver les plus proches, quel que soit leur nom, ou collez des coordonnées, un lien de carte ou un
+  Plus Code.
+* **Des boutons distincts pour les Marqueurs et les Itinéraires.** L’écran *Marqueurs et
+  Itinéraires* et ses deux onglets ont été séparés en un écran *Marqueurs* et un écran
+  *Itinéraires*, chacun avec son propre bouton sur l’écran d’accueil. L’écran Marqueurs dispose d’un
+  bouton *Nouveau* pour enregistrer votre emplacement actuel ou un lieu à proximité.
+* **Ouvrir un lieu dans une autre appli de cartes**, comme Google Maps, depuis les détails de
+  l’emplacement ou depuis les listes.
+* **Plus d’informations sur la balise sonore à l’écran d’accueil.** Elle affiche maintenant la distance et
+  la direction, et propose des actions de lecteur d’écran pour annoncer la balise, en savoir plus ou
+  l’enregistrer comme marqueur.
 * **De meilleures adresses et de meilleurs noms de lieux.** Les lieux sans adresse propre reçoivent
   désormais la rue et le quartier où ils se trouvent, les numéros de rue sont rattachés au bon côté
-  de la chaussée, et les arrêts d'autobus en Grande-Bretagne utilisent leur nom officiel.
+  de la chaussée, et les arrêts d’autobus en Grande-Bretagne utilisent leur nom officiel.
 * **Vingt nouvelles langues**, portant le total à 46. Ce site de documentation est également
   traduit.
-* **Réveil au départ.** Le mode veille peut désormais réveiller Soundscape lorsque vous quittez
-  l'endroit où vous l'avez mis en veille.
+* **Sortir de veille quand je m’éloigne.** Lorsque vous mettez Soundscape en veille, le nouveau
+  bouton *Sortir de veille quand je m’éloigne* le désactive temporairement, et il sort de veille de
+  lui-même dès que vous quittez les lieux.
 * **Des distances plus courtes et plus naturelles**, avec des unités plus grandes lorsque vous vous
   déplacez rapidement.
 * **Une sortie plus rapide.** *Quitter Soundscape* figure désormais en haut du menu principal.
@@ -41,7 +63,7 @@ Les notes des versions précédentes se trouvent sur la page
 * **Un très grand nombre de corrections de plantages et de stabilité.**
 
 Deux éléments ont été **supprimés** dans la version 2.0 : la commande vocale et le menu de langue
-dans l'application. Voyez [Éléments supprimés](#things-that-have-been-removed) ci-dessous pour
+dans l'appli. Voyez [Éléments supprimés](#things-that-have-been-removed) ci-dessous pour
 savoir quoi faire à la place.
 
 ---
@@ -50,7 +72,7 @@ savoir quoi faire à la place.
 
 ### Voyager en voiture, en autobus ou en train
 
-Il s'agit de la principale nouveauté pour les personnes qui utilisent déjà l'application. Auparavant,
+Il s'agit de la principale nouveauté pour les personnes qui utilisent déjà l'appli. Auparavant,
 Soundscape n'avait presque rien à dire une fois que vous montiez dans un véhicule : il continuait à
 décrire votre environnement immédiat, ce qui, à vitesse élevée, se traduisait par un flot de choses
 déjà dépassées.
@@ -63,13 +85,13 @@ Pendant le trajet, vous entendrez :
 
 * **Où vous êtes**, de temps à autre : la route sur laquelle vous circulez et votre direction, par
   exemple « En direction du nord sur la M8 ». Les routes numérotées sont annoncées par leur numéro,
-  et Soundscape ne réannonce pas la même route à chaque changement de nom de rue.
+  et Soundscape ne réannonce pas la même route à chaque changement de nom de rue. Une route n'est annoncée qu'après que vous l'avez suivie sur une courte distance, si bien qu'une série de virages dans un quartier résidentiel ne déclenche pas une annonce à chaque coin de rue.
 * **Les villes et les villages** vers lesquels vous vous dirigez, avec la distance, ainsi que ceux
   dont vous vous éloignez ou devant lesquels vous passez simplement.
-* **Les échangeurs et les sorties d'autoroute** au moment où vous les atteignez.
+* **Les échangeurs et les sorties d'autoroute** au moment où vous les atteignez. Seulement ceux de la chaussée sur laquelle vous roulez, et non ceux d'une route voisine ou de l'autre sens de l'autoroute.
 * **Les grands points de repère** devant lesquels vous passez : parcs, hôpitaux, stades et centres
   commerciaux.
-* **Les arrêts d'autobus, de tramway et les gares** devant lesquels vous passez. Soundscape ne mentionne
+* **Les arrêts d’autobus, de tramway et les gares** devant lesquels vous passez. Soundscape ne mentionne
   que les arrêts situés de votre côté de la route, ceux d'en face desservant le sens inverse.
 * **Les rivières, canaux et voies ferrées que vous franchissez.**
 * **Les tunnels**, ce qui explique surtout pourquoi Soundscape va se taire : il n'y a pas de signal
@@ -78,12 +100,23 @@ Pendant le trajet, vous entendrez :
 Dans un **train**, Soundscape comprend que vous êtes sur une voie ferrée et non sur une route, et
 vous indique les localités devant lesquelles vous passez ainsi que la distance parcourue depuis la
 dernière gare. C'est plus difficile qu'il n'y paraît, car autoroutes et voies ferrées sont souvent
-construites côte à côte sur des kilomètres ; une bonne part du travail de cette version a donc
+construites côte à côte sur des kilomètres; une bonne part du travail de cette version a donc
 consisté à ne pas confondre l'une avec l'autre.
 
 Les annonces habituelles pour la marche – commerces à proximité, traversées de rues, etc. – sont
 volontairement mises en retrait pendant le trajet, et les distances auxquelles les éléments sont
 annoncés sont nettement allongées afin que vous en soyez informé avant de les avoir dépassés.
+
+### Croisements
+
+La question la plus fréquente sur les annonces de croisement était de savoir à quelle distance
+se trouve vraiment le croisement. Soundscape vous le dit maintenant : « Croisement à 30 mètres ».
+La distance est mesurée jusqu’au bord du trottoir de la rue que vous allez traverser, et non
+jusqu’au milieu du croisement, car c’est là que vous vous arrêtez réellement.
+
+L’annonce arrive aussi à un moment plus régulier. Auparavant, elle pouvait venir à 45 mètres
+ou à 10 mètres, sans rien pour les distinguer. Elle attend maintenant que le croisement soit à
+environ 30 mètres, pour que la distance veuille dire à peu près la même chose à chaque fois.
 
 ### Franchissement des cours d'eau et des voies ferrées
 
@@ -91,6 +124,88 @@ Soundscape vous indique désormais lorsque vous franchissez une rivière, un can
 baie ou une ligne de chemin de fer. Cela fonctionne à pied comme en déplacement, et couvre aussi
 bien le passage en dessous qu'au-dessus : une passerelle et un passage souterrain sont donc tous
 deux décrits.
+
+### Choisir ce que Soundscape vous dit
+
+Ce que l’on nous dit le plus souvent au sujet de Soundscape, c’est qu’il parle trop dans les endroits
+animés comme un centre-ville. La section *Gérer les annonces* des *Réglages* propose maintenant
+trois réglages à la place de l’ancienne liste d’interrupteurs :
+
+* **Détail des annonces** vaut Silencieux, Minimal, Simplifié ou Détaillé. *Détaillé* est ce que
+  Soundscape a toujours fait, et c’est la valeur de départ. *Simplifié* laisse de côté les petits
+  chemins et les voies de service et se répète moins souvent. *Minimal* n’annonce que les rues, les
+  croisements et les repères. *Silencieux* ne fait plus aucune annonce automatique, tandis que
+  les balises sonores, les itinéraires et les boutons de l’écran d’accueil continuent de fonctionner. Il
+  remplace l’ancien interrupteur *Autoriser les annonces* : si vous l’aviez désactivé, vous
+  trouverez le Détail des annonces réglé sur Silencieux. Les niveaux s'appliquent aussi pendant vos déplacements : *Simplifié* annonce moins souvent la route sur laquelle vous êtes, et *Minimal* ne nomme que les routes principales et numérotées, sans les arrêts de bus.
+* **Rues et croisements** active ou désactive les annonces sur les croisements et sur la
+  rue où vous êtes.
+* **Lieux à annoncer** est une liste à cocher : Tout, Repères, Transport public, Alimentation et
+  boissons, Épiceries et dépanneurs, Banques et guichets automatiques bancaires, ou Aucun lieu. Cochez-en
+  autant que vous voulez, par exemple les repères et les arrêts de bus. Vos marqueurs sont toujours
+  annoncés.
+
+Le bon niveau de détail change au fil de la marche, et vous n’avez donc pas à passer par les
+Réglages pour le modifier. Appuyer sur *précédent* sur vos écouteurs baisse le Détail des
+annonces d’un niveau à la fois, de Détaillé à Simplifié, Minimal puis Silencieux, avant de
+revenir à Détaillé. Le nouveau niveau est annoncé à chaque fois. Cela fonctionne dans les deux modes
+des contrôles multimédias, ce qui change un peu les boutons des écouteurs :
+
+* En *Mode original*, *suivant* annonce maintenant *Autour de moi* quand aucun itinéraire n’est en
+  cours, et *Mon emplacement* n’est plus sur les boutons. Pendant un itinéraire, *suivant* et
+  *précédent* passent toujours d’une étape à l’autre.
+* En mode *Menu audio*, *précédent* ne recule plus dans le menu. *Suivant* le parcourt toujours et
+  *lecture/pause* sélectionne toujours. Les marqueurs et les itinéraires du menu sont maintenant
+  classés par nom, et après en avoir lancé un, le menu revient au début au lieu de vous laisser au
+  fond de la liste.
+
+### Recherche
+
+La barre de recherche comprend maintenant plus que des noms de lieux :
+
+* **Types de lieux.** Cherchez « pharmacie », « toilettes », « guichet automatique bancaire » et ainsi de
+  suite, dans votre langue, et Soundscape affiche les lieux de ce type les plus proches, quel que soit
+  leur nom. Les lieux sans nom, comme la plupart des toilettes et des bancs, sont présentés selon ce
+  qu’ils sont, avec leur adresse.
+* **Coordonnées, liens de carte et Plus Codes.** Collez une paire de nombres, des degrés et minutes,
+  un lien Google Maps, Apple Plans ou OpenStreetMap, ou un Plus Code, et Soundscape vous donne cet
+  endroit précis. Une simple paire de nombres peut se lire dans les deux sens : quand les deux ont un
+  sens, les deux vous sont proposés, le plus proche en premier.
+* **Recherche hors ligne.** La recherche regarde maintenant toujours dans vos cartes téléchargées en
+  plus d’Internet, ce qui trouve beaucoup plus de lieux sans nom. Si vous cherchez sans connexion
+  Internet et sans carte hors ligne de l’endroit où vous êtes, Soundscape vous le dit au lieu de ne
+  rien trouver.
+
+### Ouvrir un lieu dans une autre appli
+
+Les détails de l’emplacement ont un nouveau bouton **Ouvrir dans une appli de cartes**, qui
+liste les applis de cartes et de navigation de votre téléphone. Cochez *Toujours utiliser
+cette appli* et le bouton devient, par exemple, *Ouvrir dans Google Maps*, qui l’ouvre tout de
+suite; un appui long fait revenir la liste. Les listes *Emplacements à proximité* et *Marqueurs* ont
+aussi les actions de lecteur d’écran *Ouvrir dans…* et *Partager*.
+
+### Marqueurs et Itinéraires
+
+Les Marqueurs et les Itinéraires partageaient un seul écran, *Marqueurs et Itinéraires*, avec un
+onglet pour chacun, et il était facile d’oublier dans quel onglet on se trouvait. Ce sont désormais
+deux écrans distincts, chacun avec son propre bouton sur l’écran d’accueil : *Marqueurs* et
+*Itinéraires*, juste sous *Emplacements à proximité*.
+
+Chaque écran dispose d’un bouton *Nouveau* dans le coin supérieur droit. Sur l’écran Itinéraires, il
+crée un Itinéraire, comme avant. Sur l’écran Marqueurs, il est nouveau : il propose *Emplacement
+actuel* et les catégories des *Emplacements à proximité*, pour que vous puissiez enregistrer un
+marqueur sans revenir d’abord à l’écran d’accueil pour trouver le lieu. Les lecteurs d’écran
+annoncent ces boutons comme *Nouveau marqueur* et *Nouvel Itinéraire*.
+
+### La balise sonore et les marqueurs
+
+* La balise de l’écran d’accueil affiche maintenant sa **distance et sa direction**, et un lecteur
+  d’écran la lit par exemple ainsi : « Balise sonore sur Milngavie Library, 390 mètres, sud-est ». Les
+  itinéraires affichent de la même façon la distance jusqu’à l’étape en cours.
+* La balise a trois **actions de lecteur d’écran** : *Annoncer la balise* dit où elle se trouve,
+  *Renseignements supplémentaires* ajoute l’adresse, et *Ajouter aux marqueurs* l’enregistre.
+* Vous pouvez de nouveau **déplacer un marqueur** en faisant glisser la carte depuis l’écran
+  *Modifier le marqueur*.
 
 ### De meilleures adresses et de meilleurs noms de lieux
 
@@ -102,7 +217,7 @@ personne :
 * Les numéros de rue sont rattachés au bon côté de la chaussée. Auparavant, une adresse pouvait être
   annoncée depuis le trottoir d'en face.
 * L'adresse d'un lieu ne répète plus le nom du lieu lui-même.
-* Les arrêts d'autobus en Grande-Bretagne utilisent leur nom officiel de transport public, en général
+* Les arrêts d’autobus en Grande-Bretagne utilisent leur nom officiel de transport public, en général
   celui qui figure sur les horaires et sur le panneau de l'arrêt.
 * Les sentiers sans nom qui longent une rivière ou un canal portent désormais le nom du cours d'eau
   qu'ils suivent.
@@ -122,13 +237,14 @@ disposait d'assez de texte traduit pour être utile.
 
 Les traductions sont un travail collectif et nous accueillons volontiers votre aide, ou vos
 corrections lorsqu'une formulation se lit mal. Chaque chaîne peut être améliorée sur
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Mode veille
 
-Le mode veille dispose désormais du **réveil au départ**. Lorsque vous mettez Soundscape en veille,
-vous pouvez lui demander de se réveiller dès que vous quittez les lieux, ce qui est utile quand vous
-arrivez quelque part et souhaitez le silence jusqu'à votre prochain départ.
+Le mode veille a un nouveau bouton, ***Sortir de veille quand je m’éloigne***. Si vous le
+choisissez, Soundscape est désactivé temporairement : il reste silencieux jusqu’à ce que vous
+quittiez les lieux, puis sort de veille de lui-même, ce qui est utile quand vous arrivez quelque
+part et souhaitez le silence jusqu’à votre prochain départ.
 
 ### Distances et parole
 
@@ -168,17 +284,17 @@ phrase, et des indications pertinentes là où il n'y en avait aucune.
 * Le geste de retour du système ne saute plus un niveau lorsque vous parcourez les catégories dans
   Lieux à proximité.
 * Le *tutoriel audio* a été renommé **tutoriel guidé**.
-* Les réglages ont été réorganisés, et *Réinitialiser les valeurs par défaut* efface désormais
+* Les réglages ont été réorganisés, et *Réinitialiser les réglages par défaut* efface désormais
   correctement tout.
 
 ### Stabilité
 
 La version 2.0 comprend une longue liste de corrections de plantages et de blocages : blocage de
-l'application sur l'écran de démarrage, blocages lors de la réinitialisation des réglages, plantages
+l'appli sur l'écran de démarrage, blocages lors de la réinitialisation des réglages, plantages
 en cas de carte téléchargée endommagée, plantages à l'ouverture des détails d'un itinéraire depuis
 l'écran d'accueil, plantages lors du changement de langue, ainsi que plusieurs problèmes signalés
 automatiquement via le Play Store. Le comportement au démarrage et vis-à-vis de la batterie a aussi
-été rendu plus robuste sur les téléphones qui ferment agressivement les applications en arrière-plan.
+été rendu plus robuste sur les téléphones qui ferment agressivement les applis en arrière-plan.
 
 ### Éléments supprimés
 {: #things-that-have-been-removed }
@@ -187,14 +303,17 @@ automatiquement via le Play Store. Le comportement au démarrage et vis-à-vis d
   conservée, et les boutons de contrôle multimédia des écouteurs couvrent l'essentiel du même
   besoin – voyez
   [Aide sur l'utilisation des commandes multimédias]({{ "/users/help-using-media-controls.html" | relative_url }}).
-* **Le menu de langue dans l'application** a disparu. Soundscape suit désormais la langue définie
+  Soundscape est aussi prêt pour les commandes vocales avec Gemini sur Android 16 et versions
+  ultérieures, mais elles ne fonctionneront pas tant que Google n’aura pas publié leur prise en charge
+  dans Gemini.
+* **Le menu de langue dans l'appli** a disparu. Soundscape suit désormais la langue définie
   sur votre téléphone, ce que la plupart des gens attendaient. Pour la changer, modifiez la langue
-  de votre téléphone ou définissez une langue par application dans ses réglages, si cette option est
+  de votre téléphone ou définissez une langue par appli dans ses réglages, si cette option est
   proposée.
 
 ## Nous signaler un problème
 
-Si quelque chose ne va pas, nous aimerions le savoir. Écrivez par courriel au Help Desk à l'adresse
+Si quelque chose ne va pas, nous aimerions le savoir. Écrivez au Help Desk à l'adresse
 <soundscapeAndroid@scottishtecharmy.support>, ou demandez sur Slack si vous êtes membre de la STA.
 
 Si une annonce était erronée ou n'a pas eu lieu, un enregistrement de votre trajet nous aide
@@ -204,12 +323,12 @@ instructions figurent sous
 
 ## Une note à propos de l'iPhone
 
-Tout ce qui précède concerne l'application Android, mais il est utile de savoir où est passé le
+Tout ce qui précède concerne l'appli Android, mais il est utile de savoir où est passé le
 reste du travail de cette version. Soundscape fonctionne désormais aussi sur iPhone, et les deux
-applications sont construites à partir du même code partagé : mêmes écrans, mêmes formulations et
+applis sont construites à partir du même code partagé : mêmes écrans, mêmes formulations et
 mêmes annonces. Une nouveauté comme les annonces de trajet décrites plus haut arrive donc sur les
 deux à la fois, au lieu d'être écrite deux fois. C'est cette base commune qui explique la durée de
 développement de la version 2.0, et c'est elle qui devrait permettre aux prochaines versions
-d'arriver plus vite sur les deux plateformes. L'application iPhone est actuellement disponible via
+d'arriver plus vite sur les deux plateformes. L'appli iPhone est actuellement disponible via
 TestFlight sur invitation : demandez sur Slack si vous êtes membre de la STA, ou écrivez au Help
 Desk.

@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Notkun fjölmiðlastýringa
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 110
 lang: is
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Notkun fjölmiðlastýringa
 
-## What is it?
+Þú getur stjórnað Soundscape með fjölmiðlahnöppunum á heyrnartólunum þínum: *spila/hlé*, *næsta* og *fyrri*. Þetta virkar með snúrutengdum heyrnartólum og Bluetooth-heyrnartólum. Það virkar líka þegar Soundscape er í bakgrunni eða síminn er læstur.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Ekki eru öll heyrnartól með alla þrjá hnappana.
 
-## When would I use it?
+Hnapparnir stjórna Soundscape aðeins þegar ekkert annað forrit er að spila hljóð. Ef þú ert að spila tónlist eða hlaðvarp stjórna hnapparnir því forriti í staðinn.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Hnapparnir geta virkað á tvo vegu: *Upprunalegur hamur* eða *Hljóðvalmynd*. Til að velja skaltu opna valmyndina og velja *Stillingar* og síðan *Fjölmiðlastýringar*.
 
-## How does it work?
+## Upprunalegur hamur
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Spila/hlé* slekkur á hljóði hljóðvitans. Ýttu aftur til að heyra hljóðvitann.
 
- Original mode. 
+*Næsta* færir hljóðvitann á næsta leiðarpunkt þegar þú fylgir leið. Annars tilkynnir það *Í kringum mig*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Fyrri* færir hljóðvitann á fyrri leiðarpunkt þegar þú fylgir leið. Annars breytir það stillingunni *Nákvæmni tilkynninga*. Hver ýting fer einu stigi neðar: *Ítarlegt*, *Einfaldað*, *Nauðsynlegt* og síðan *Þögult*. Ein ýting í viðbót fer aftur í *Ítarlegt*. Soundscape segir heiti nýja stigsins.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Hljóðvalmynd
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Hljóðvalmyndin gefur þér fleiri aðgerðir með sömu þremur hnöppunum. Soundscape les hvern valkost upphátt.
 
+*Næsta* fer á næsta valkost. Eftir síðasta valkostinn fer það aftur á þann fyrsta.
 
+*Spila/hlé* velur valkostinn sem þú heyrðir síðast.
 
-Audio menu. 
+*Fyrri* breytir stillingunni *Nákvæmni tilkynninga*, eins og í *Upprunalegur hamur*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Valmyndin byrjar á fjórum flokkum: *Lýsing á umhverfi*, *Stjórnun leiða*, *Hefja leið* og *Kveikja á hljóðvita*. Veldu flokk til að heyra aðgerðir hans. *Lýsing á umhverfi* og *Stjórnun leiða* enda á *Aðalvalmynd*, sem fer með þig aftur í flokkana fjóra.
 

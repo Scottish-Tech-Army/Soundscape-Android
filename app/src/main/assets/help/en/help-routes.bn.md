@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: রুট
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
+nav_order: 90
 lang: bn
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# রুট
 
-## What is it?
+রুট হলো অবস্থানের একটি তালিকা, যেগুলোকে ওয়েপয়েন্ট বলা হয় এবং যেখানে আপনি ক্রম অনুযায়ী যান। Soundscape প্রথম ওয়েপয়েন্টে একটি বীকন সেট করে। আপনি পৌঁছালে এটি আপনাকে জানায় এবং বীকনটি পরেরটিতে নিয়ে যায়।
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+নতুন কোনো পথ শিখতে, বা চেনা পথে ঠিক দিকে থাকতে রুট ব্যবহার করুন।
 
-## When would I use it?
+## রুট তৈরি করা
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. হোম স্ক্রিনে *রুট* নির্বাচন করুন, তারপর *নতুন* নির্বাচন করুন।
 
-## How does it work?
+2. রুটটির একটি নাম দিন। আপনি একটি বিবরণও যোগ করতে পারেন।
 
-**Creating a route :**
+3. *ওয়েপয়েন্ট যোগ করুন* নির্বাচন করুন এবং মার্কার বেছে নিন। আপনি আপনার বর্তমান অবস্থান বা কাছের কোনো স্থানও যোগ করতে পারেন।
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *সম্পন্ন* নির্বাচন করুন।
 
-**Editing a route :**
+## রুট অনুসরণ করা
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+*রুট* স্ক্রিনে রুটটি নির্বাচন করুন, তারপর *রুট শুরু করুন* নির্বাচন করুন। উল্টো দিকে অনুসরণ করতে *রুট বিপরীত ক্রমে শুরু করুন* নির্বাচন করুন। হোম স্ক্রিনে *পরবর্তী ওয়েপয়েন্ট* ও *আগের ওয়েপয়েন্ট* বীকনকে রুট বরাবর সরায়। *রুট বন্ধ করুন* রুটটি শেষ করে।
 
-**Sharing a route :**
+## রুট বদলানো
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+*রুট* স্ক্রিনে রুটটি নির্বাচন করুন, তারপর *রুট সম্পাদনা করুন* নির্বাচন করুন। আপনি ওয়েপয়েন্ট যোগ করতে, সরাতে ও নতুন করে সাজাতে পারেন, নাম ও বিবরণ বদলাতে পারেন, অথবা রুটটি মুছে ফেলতে পারেন।
+
+## রুট শেয়ার করা
+
+*রুট* স্ক্রিনে রুটটি নির্বাচন করুন, তারপর *শেয়ার করুন* নির্বাচন করুন।
 

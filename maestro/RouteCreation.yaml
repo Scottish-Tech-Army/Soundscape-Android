@@ -1,5 +1,5 @@
 appId: org.scottishtecharmy.soundscape
-# Creates a new route from the Routes tab, adds two existing markers as
+# Creates a new route from the Routes screen, adds two existing markers as
 # waypoints, saves it, and verifies it appears in the routes list.
 #
 # Depends on markers "A" and "B" having been created by LocationDetails.yaml, so
@@ -13,10 +13,12 @@ appId: org.scottishtecharmy.soundscape
         env:
               screen: Home
 
-- tapOn:
-    id: homeMarkersAndRoutes
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: homeRoutes
 
-# The screen opens on the Routes tab, where the "+" create-route button lives.
+# The New button at the top right creates a route.
 - tapOn:
     id: appBarRight
 

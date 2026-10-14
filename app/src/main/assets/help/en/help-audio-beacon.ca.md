@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Balisa sonora
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 60
 lang: ca
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Balisa sonora
 
-## What is it?
+Una balisa sonora és un so que ve de la direcció d'un lloc que tries tu. Et diu on és el lloc en línia recta. No dona indicacions pas a pas, així que tu tries el teu camí.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Posar una balisa
 
-## When would I use it?
+1. Busca el lloc. Fes servir la barra de cerca, *Llocs propers*, *Marcadors* o *Ubicació actual* a la pantalla principal.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Selecciona el lloc per obrir *Detalls de la ubicació*.
 
-## How does it work?
+3. Selecciona *Inicia la balisa sonora*.
 
-**To set a beacon :**
+Soundscape torna a la pantalla principal i la balisa comença. La pantalla principal mostra el nom del lloc i a quina distància és.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Trobar la direcció
 
-**To remove the current beacon :**
+La balisa canvia de so quan mires cap al lloc o camines directament cap a ell. Per trobar aquest so, aguanta el telèfon pla i gira a poc a poc. Pots triar un altre so per a la balisa a *Configuració*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Silenciar la balisa
 
-**To mute the audible beacon :**
+Selecciona *Silencia la balisa* a la pantalla principal. Soundscape et continua dient a quina distància és el lloc mentre et mous. Selecciona *Activa el so de la balisa* per tornar a sentir la balisa.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Treure la balisa
+
+Selecciona *Atura la ruta* a la pantalla principal. El botó té aquest nom encara que la balisa no formi part d'una ruta.
+
+## Quan arribes
+
+Quan ets a uns 12 metres del lloc, Soundscape t'ho diu i treu la balisa. El telèfon no pot determinar la teva posició amb més exactitud. Per tornar a sentir la balisa, torna-la a posar.
+
+Una balisa posada en un lloc a menys de 30 metres continua activa fins que la treus.
 

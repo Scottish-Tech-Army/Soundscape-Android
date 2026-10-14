@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Jelölők
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 80
 lang: hu
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Jelölők
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+A jelölő egy Ön által elmentett hely. Bármilyen hely lehet, amely fontos Önnek: az otthona, egy buszmegálló, egy épület bejárata vagy egy gyalogátkelő.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+A Soundscape bemondja a jelölőit, amikor elhalad mellettük. Beállíthat irányjelző hangot egy jelölőre, hozzáadhatja egy útvonalhoz, vagy a *Közeli jelölők* gombbal meghallgathatja a legközelebbieket.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Jelölők létrehozása
+
+1. A kezdőképernyőn válassza a *Jelölők*, majd az *Új* lehetőséget.
+
+2. Válassza a *Jelenlegi hely* lehetőséget, vagy egy helyet a *Közeli helyek* közül.
+
+3. Ha szeretné, módosítsa a nevet, és adjon hozzá jegyzeteket. A Soundscape a jelölővel együtt felolvassa a jegyzeteket.
+
+4. Válassza a *Kész* lehetőséget.
+
+Bármelyik megtalált helyet is elmentheti. Nyissa meg a *Helyszín adatai* képernyőt, és válassza a *Mentés jelölőként* lehetőséget.
+
+## Jelölők testreszabása
+
+Válassza ki a jelölőt a *Jelölők* képernyőn, majd válassza a *Jelölő szerkesztése* lehetőséget. Módosíthatja a nevét, a jegyzeteit és a helyzetét, vagy választhatja a *Jelölő törlése* lehetőséget. A jelölő törlése az útvonalaiból is eltávolítja azt.
 

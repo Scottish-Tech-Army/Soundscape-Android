@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: 我的位置
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 20
 lang: zh-CN
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# 我的位置
 
-## What is it?
+*我的位置*告诉您现在在哪里。它会说出您面朝或行进的方向，然后是您所在的街道或地址。当您下公交车、走出建筑物或迷失方向时，请使用它。
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+如果您站着不动，请先把手机顶端指向您面朝的方向。如果手机已锁定，或者 Soundscape 不在屏幕上，还要把手机平放着拿。
 

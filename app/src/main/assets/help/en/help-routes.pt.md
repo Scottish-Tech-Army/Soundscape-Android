@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Rotas
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
+nav_order: 90
 lang: pt
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Rotas
 
-## What is it?
+Uma rota é uma lista de locais, chamados pontos de passagem, que visita por ordem. O Soundscape define um sinal no primeiro ponto de passagem. Quando chega, avisa e move o sinal para o seguinte.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Use uma rota para aprender um percurso novo, ou para não se desviar num que já conhece.
 
-## When would I use it?
+## Criar uma Rota
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Selecione *Rotas* no ecrã principal e depois selecione *Novo*.
 
-## How does it work?
+2. Dê um nome à rota. Pode adicionar uma descrição.
 
-**Creating a route :**
+3. Selecione *Adicionar Pontos de Passagem* e escolha marcos. Também pode adicionar a sua localização atual ou um local nas proximidades.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Selecione *OK*.
 
-**Editing a route :**
+## Seguir uma Rota
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Selecione a rota no ecrã *Rotas* e depois selecione *Iniciar Rota*. Para a seguir no sentido contrário, selecione *Iniciar Rota em Sentido Inverso*. No ecrã principal, *Ponto de Passagem Seguinte* e *Ponto de Passagem Anterior* movem o sinal ao longo da rota. *Parar Rota* termina-a.
 
-**Sharing a route :**
+## Alterar uma Rota
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Selecione a rota no ecrã *Rotas* e depois selecione *Editar Rota*. Pode adicionar, remover e reordenar pontos de passagem, alterar o nome e a descrição, ou eliminar a rota.
+
+## Partilhar uma Rota
+
+Selecione a rota no ecrã *Rotas* e depois selecione *Partilhar*.
 

@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: माझे स्थान
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
+nav_order: 20
 lang: mr
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# माझे स्थान
 
-## What is it?
+*माझे स्थान* तुम्ही कुठे आहात हे सांगते. तुमचे तोंड किंवा तुमचा प्रवास कोणत्या दिशेला आहे हे ते सांगते, नंतर तुम्ही ज्या रस्त्यावर किंवा पत्त्यावर आहात ते सांगते. बसमधून उतरल्यावर, इमारतीतून बाहेर पडल्यावर किंवा दिशा हरवल्यावर ते वापरा.
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+तुम्ही एका जागी उभे असाल, तर आधी फोनचे वरचे टोक तुमचे तोंड ज्या दिशेला आहे तिकडे करा. फोन लॉक असेल, किंवा Soundscape स्क्रीनवर नसेल, तर फोन सपाटही धरा.
 

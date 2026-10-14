@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Meedianuppude kasutamine
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 110
 lang: et
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Meedianuppude kasutamine
 
-## What is it?
+Soundscape’i saad juhtida kõrvaklappide meedianuppudega: *esita/paus*, *järgmine* ja *eelmine*. See töötab juhtmega ja Bluetooth-kõrvaklappidega. See töötab ka siis, kui Soundscape on taustal või telefon on lukus.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Kõigil kõrvaklappidel ei ole kõiki kolme nuppu.
 
-## When would I use it?
+Nupud juhivad Soundscape’i ainult siis, kui ükski teine rakendus heli ei esita. Kui kuulad muusikat või taskuhäälingut, juhivad nupud hoopis seda rakendust.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Nupud võivad töötada kahel viisil: *Algne režiim* või *Helimenüü*. Valimiseks ava menüü ja vali *Seadistused*, seejärel *Meediumijuhtnupud*.
 
-## How does it work?
+## Algne režiim
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Esita/paus* summutab helimajaka. Helimajaka kuulmiseks vajuta uuesti.
 
- Original mode. 
+*Järgmine* viib helimajaka järgmisele teekonnapunktile, kui järgid marsruuti. Muul juhul teatab see *Minu ümber*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Eelmine* viib helimajaka eelmisele teekonnapunktile, kui järgid marsruuti. Muul juhul muudab see seadet *Häälteadete detailsus*. Iga vajutus liigub ühe taseme võrra vaiksemaks: *Üksikasjalik*, *Lihtsustatud*, *Põhiline* ja seejärel *Hääletu*. Veel üks vajutus viib tagasi tasemele *Üksikasjalik*. Soundscape ütleb uue taseme nime.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Helimenüü
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Helimenüü annab samade kolme nupuga rohkem toiminguid. Soundscape loeb iga valiku ette.
 
+*Järgmine* liigub järgmisele valikule. Pärast viimast valikut naaseb see esimesele.
 
+*Esita/paus* valib valiku, mida just kuulsid.
 
-Audio menu. 
+*Eelmine* muudab seadet *Häälteadete detailsus*, täpselt nagu *Algne režiim*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menüü algab nelja rühmaga: *Kuula oma ümbrust*, *Marsruudi juhtimine*, *Alusta marsruuti* ja *Käivita helimajakas*. Vali rühm, et kuulda selle toiminguid. *Kuula oma ümbrust* ja *Marsruudi juhtimine* lõpevad valikuga *Peamenüü*, mis viib sind tagasi nelja rühma juurde.
 

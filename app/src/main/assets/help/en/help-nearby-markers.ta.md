@@ -1,23 +1,16 @@
 ---
-title: Nearby Markers
+title: அருகிலுள்ள குறிப்பான்கள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 50
 lang: ta
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# அருகிலுள்ள குறிப்பான்கள்
 
-## What is it?
+*அருகிலுள்ள குறிப்பான்கள்* உங்கள் குறிப்பான்களில் உங்களுக்கு மிக அருகிலுள்ள நான்கு வரை அறிவிக்கிறது. ஒவ்வொன்றையும் அதன் சொந்தத் திசையிலிருந்து, அதன் தொலைவுடன் கேட்கிறீர்கள். நீங்கள் ஏற்கனவே அறிந்த இடங்களைக் கொண்டு உங்கள் நிலையைப் புரிந்துகொள்ள இதைப் பயன்படுத்தவும். சுமார் 2 கிலோமீட்டருக்கு மேல் தொலைவில் உள்ள குறிப்பான்கள் விடப்படும்.
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+நீங்கள் ஓரிடத்தில் நின்றிருந்தால், முதலில் தொலைபேசியின் மேல் முனையை நீங்கள் நோக்கியிருக்கும் திசையில் காட்டவும். தொலைபேசி பூட்டப்பட்டிருந்தால், அல்லது Soundscape திரையில் இல்லாவிட்டால், தொலைபேசியைத் தட்டையாகவும் பிடிக்கவும்.
 

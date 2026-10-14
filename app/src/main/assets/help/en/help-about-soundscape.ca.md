@@ -1,25 +1,30 @@
 ---
-title: About Soundscape
+title: Quant a Soundscape
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 170
 lang: ca
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Quant a Soundscape
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape utilitza tecnologia innovadora basada en l'àudio per ajudar les persones a desenvolupar una consciència més rica del seu entorn. Això fa que les persones tinguin més confiança i puguin moure's de manera autònoma.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape depèn d'aquestes excel·lents biblioteques i dades de tercers. Feu clic als enllaços per veure'n les llicències:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©Col·laboradors d'OpenStreetMap](https://www.openstreetmap.org/copyright) proporcionen totes les dades geogràfiques per a la cartografia i l'àudio utilitzats a Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) s'utilitza per generar les tessel·les de mapa que fem servir.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Biblioteca Steam Audio ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) s'utilitza per generar l'àudio 3D, i es posa a disposició per al seu ús sota la [llicència Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Biblioteca Oboe ©The Android Open Source Project](https://github.com/google/oboe) s'utilitza per reproduir l'àudio amb baixa latència, i es posa a disposició per al seu ús sota la [llicència Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+[L'aplicació original Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) va proporcionar els sons de la balisa sonora i moltes de les traduccions, i es posa a disposició per al seu ús sota la [llicència MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Els voluntaris de [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) van millorar diverses de les traduccions, que es posen a disposició per al seu ús sota la [llicència MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
+Tots els noms de productes, empreses i logotips de tercers són marques comercials o marques registrades i continuen sent propietat dels seus respectius titulars.
 

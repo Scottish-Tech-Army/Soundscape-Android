@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Automatiske lydbeskeder
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 70
 lang: da
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automatiske lydbeskeder
 
-## What is it?
+Mens du går, annoncerer Soundscape, hvad der er i nærheden. Du hører hvert navn fra stedets retning. Lydbeskederne dækker gader, vejkryds, butikker, busstoppesteder, landemærker og dine egne mærker.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Vejkryds
 
-## When would I use it?
+Når du nærmer dig et vejkryds, nævner Soundscape hver vej, der fører væk fra det. Du hører, hvilken vej der går til venstre, hvilken der fortsætter ligeud, og hvilken der går til højre.
 
-**Exploring a new area :**
+## Hvor meget du hører
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Åbn menuen, og vælg *Indstillinger* og derefter *Administrer lydbeskeder*. *Detaljeniveau for lydbeskeder* har fire niveauer.
 
-**Walking to a specific location :**
+*Detaljeret* annoncerer alt i nærheden.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Forenklet* udelader mindre stier og serviceveje og gentager sig mindre.
 
-**When you need silence :**
+*Essentiel* annoncerer kun gader, vejkryds og landemærker.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Lydløs* giver ingen automatiske lydbeskeder. Lydfyr, ruter og knapperne på startskærmen virker stadig.
 
-## How does it work?
+## Hvad du hører
 
-**Turning callouts on or off :**
+*Administrer lydbeskeder* har to indstillinger mere. *Gader og vejkryds* slår lydbeskeder om gader og vejkryds til eller fra. *Steder der skal annonceres* vælger, hvilke slags steder du hører, for eksempel *Offentlig transport* eller *Mad og drikke*. Dine mærker bliver altid annonceret.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Gør Soundscape mere stille
 
-**Managing which callouts you hear :**
+Tryk på *forrige* på betjeningen på dine hovedtelefoner. Hvert tryk går ét niveau mere stille: *Detaljeret*, *Forenklet*, *Essentiel* og så *Lydløs*. Et tryk mere går tilbage til *Detaljeret*. Se hjælpesiden *Brug af mediebetjeningsknapper*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Stop Soundscape i et stykke tid
+
+Vælg knappen *Dvale* øverst på startskærmen. Soundscape holder op med at bruge din placering og siger ingenting, før du vælger *Aktivér nu*. Eller vælg *Væk, når jeg forlader stedet*, så vågner Soundscape, når du forlader det sted, du er på.
+
+## I et køretøj eller i et tog
+
+Soundscape opdager, når du bevæger dig med et køretøjs fart. Så holder den op med at annoncere vejkryds og butikker i nærheden, fordi de passerer for hurtigt. I stedet annoncerer den vejen, du er på, landemærker, stoppesteder og stationer, floder og tunneler.
 

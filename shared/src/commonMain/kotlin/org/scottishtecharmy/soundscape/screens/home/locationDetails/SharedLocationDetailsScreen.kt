@@ -59,7 +59,7 @@ import org.scottishtecharmy.soundscape.resources.share_title
 import org.scottishtecharmy.soundscape.resources.universal_links_alert_action_marker
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
-import org.scottishtecharmy.soundscape.screens.home.home.PlatformMapContainer
+import org.scottishtecharmy.soundscape.screens.home.home.rememberFullScreenableMap
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -81,6 +81,9 @@ fun SharedLocationDetailsScreen(
     onDeleteMarker: ((Long) -> Unit)? = null,
     onEnableStreetPreview: ((LngLatAlt) -> Unit)? = null,
     onShareLocation: ((LocationDescription) -> Unit)? = null,
+    /** Installed apps the location can be opened in; the button is hidden when empty. */
+    mapApps: List<MapApp> = emptyList(),
+    onOpenInMapApp: ((MapApp, LocationDescription) -> Unit)? = null,
     onOfflineMaps: ((LocationDescription) -> Unit)? = null,
     /**
      * Offline-geocodes the location to a full address, used to fill in an address for a place
@@ -94,7 +97,14 @@ fun SharedLocationDetailsScreen(
         PreferenceKeys.SHOW_MAP,
         PreferenceDefaults.SHOW_MAP,
     )
-    val fullscreenMap = remember { mutableStateOf(false) }
+    val map = rememberFullScreenableMap(
+        mapCenter = locationDescription.location,
+        userLocation = userLocation,
+        userSymbolRotation = heading,
+        beaconLocation = locationDescription.location,
+        routeData = null,
+    )
+    val fullscreenMap = map.fullscreen
     var mapInteracting by remember { mutableStateOf(false) }
     val contentScrollState = rememberScrollState()
 
@@ -112,24 +122,22 @@ fun SharedLocationDetailsScreen(
             )
         },
     ) { padding ->
-        if (fullscreenMap.value && showMap) {
-            PlatformMapContainer(
-                beaconLocation = locationDescription.location,
-                allowScrolling = true,
-                mapCenter = locationDescription.location,
-                userLocation = userLocation,
-                userSymbolRotation = heading,
-                routeData = null,
-                modifier = Modifier.fillMaxSize(),
-            )
-        } else {
-            Column(
-                modifier = Modifier
+        // Full screen is the same content with everything but the map left out - see
+        // FullScreenableMap for why the map has to stay where it is.
+        val fullscreen = fullscreenMap.value && showMap
+        Column(
+            modifier = if (fullscreen) {
+                // Nothing to scroll, and the map needs the height to be bounded to fill it
+                Modifier.padding(padding).fillMaxSize()
+            } else {
+                Modifier
                     .padding(padding)
                     .verticalScroll(contentScrollState, enabled = !mapInteracting)
-                    .background(MaterialTheme.colorScheme.surface),
-                verticalArrangement = Arrangement.spacedBy(spacing.small),
-            ) {
+                    .background(MaterialTheme.colorScheme.surface)
+            },
+            verticalArrangement = Arrangement.spacedBy(spacing.small),
+        ) {
+            if (!fullscreen) {
                 // Location info section
                 LocationDescriptionTextsSection(
                     locationDescription = locationDescription,
@@ -147,24 +155,25 @@ fun SharedLocationDetailsScreen(
                     onEditMarker = onEditMarker,
                     onEnableStreetPreview = onEnableStreetPreview,
                     onShareLocation = onShareLocation,
+                    mapApps = mapApps,
+                    preferencesProvider = preferencesProvider,
+                    onOpenInMapApp = onOpenInMapApp,
                     onOfflineMaps = onOfflineMaps,
                 )
+            }
 
-                // Map showing the location
-                if (showMap) {
-                    PlatformMapContainer(
-                        mapCenter = locationDescription.location,
-                        allowScrolling = false,
-                        userLocation = userLocation,
-                        userSymbolRotation = heading,
-                        beaconLocation = locationDescription.location,
-                        routeData = null,
-                        modifier = Modifier
+            // Map showing the location
+            if (showMap) {
+                map.Content(
+                    modifier = if (fullscreen) {
+                        Modifier.fillMaxSize()
+                    } else {
+                        Modifier
                             .fillMaxWidth()
-                            .aspectRatio(1.0f),
-                        onInteractionChanged = { mapInteracting = it },
-                    )
-                }
+                            .aspectRatio(1.0f)
+                    },
+                    onInteractionChanged = { mapInteracting = it },
+                )
             }
         }
     }
@@ -275,6 +284,9 @@ private fun LocationDescriptionButtonsSection(
     onEditMarker: ((LocationDescription) -> Unit)?,
     onEnableStreetPreview: ((LngLatAlt) -> Unit)?,
     onShareLocation: ((LocationDescription) -> Unit)?,
+    mapApps: List<MapApp>,
+    preferencesProvider: PreferencesProvider?,
+    onOpenInMapApp: ((MapApp, LocationDescription) -> Unit)?,
     onOfflineMaps: ((LocationDescription) -> Unit)?,
 ) {
     Column(
@@ -360,6 +372,11 @@ private fun LocationDescriptionButtonsSection(
             ) {
                 onShareLocation(locationDescription)
             }
+        }
+
+        // Open in another map app
+        rememberMapAppLauncher(mapApps, preferencesProvider, onOpenInMapApp)?.let { launcher ->
+            OpenInMapAppButton(locationDescription = locationDescription, launcher = launcher)
         }
 
         // Offline maps

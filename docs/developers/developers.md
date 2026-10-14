@@ -54,7 +54,7 @@ If you would like access to the main Soundscape tile provider for development, g
 * [Search]({% link developers/search.md %}) — online and offline search, the Photon server and Android system geocoder.
 
 ## Translations
-* [Language support]({% link developers/translations.md %}) — required reading for anyone adding new strings. Covers the Weblate integration.
+* [Language support]({% link developers/translations.md %}) — required reading for anyone adding new strings. Covers how translations are kept up to date.
 * [Translation terminology]({% link developers/translation-terminology.md %}) — preferred terms (beacon, marker, route, …) for translators and contributors.
 
 ## Servers and infrastructure

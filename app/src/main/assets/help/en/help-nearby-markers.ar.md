@@ -1,23 +1,16 @@
 ---
-title: Nearby Markers
+title: العلامات القريبة
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 50
 lang: ar
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# العلامات القريبة
 
-## What is it?
+*العلامات القريبة* ينادي بما يصل إلى أربع من علاماتك، وهي الأقرب إليك. تسمع كل واحدة من اتجاهها مع مسافتها. استخدمه لتحديد موقعك بالاستعانة بأماكن تعرفها. العلامات التي تبعد أكثر من نحو كيلومترين لا تُذكر.
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+إذا كنت تقف في مكانك، فوجّه أولًا أعلى الهاتف نحو الاتجاه الذي تواجهه. إذا كان هاتفك مقفلًا، أو لم يكن Soundscape ظاهرًا على الشاشة، فأمسك الهاتف بشكل أفقي أيضًا.
 

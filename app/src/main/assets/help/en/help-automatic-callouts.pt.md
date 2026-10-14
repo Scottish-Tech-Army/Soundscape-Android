@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Avisos Automáticos
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
+nav_order: 70
 lang: pt
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Avisos Automáticos
 
-## What is it?
+Enquanto caminha, o Soundscape anuncia o que está perto de si. Ouve cada nome a partir da direção do local. Os avisos abrangem ruas, cruzamentos, lojas, paragens de autocarro, pontos de referência e os seus próprios marcos.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Cruzamentos
 
-## When would I use it?
+Quando se aproxima de um cruzamento, o Soundscape diz o nome de cada rua que sai dele. Ouve qual a rua que vai para a esquerda, qual continua em frente e qual vai para a direita.
 
-**Exploring a new area :**
+## Quanto Ouve
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Abra o menu e selecione *Definições* e depois *Gerir Avisos*. *Detalhe dos Avisos* tem quatro níveis.
 
-**Walking to a specific location :**
+*Detalhado* anuncia tudo o que está nas proximidades.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Simplificado* deixa de fora os caminhos menores e as vias de serviço, e repete-se menos.
 
-**When you need silence :**
+*Essencial* anuncia apenas ruas, cruzamentos e pontos de referência.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Silencioso* não faz avisos automáticos. Os sinais, as rotas e os botões do ecrã principal continuam a funcionar.
 
-## How does it work?
+## O Que Ouve
 
-**Turning callouts on or off :**
+*Gerir Avisos* tem mais duas definições. *Ruas e Cruzamentos* ativa ou desativa os avisos de ruas e cruzamentos. *Locais a Anunciar* escolhe os tipos de local que ouve, como *Transportes Públicos* ou *Gastronomia*. Os seus marcos são sempre anunciados.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Tornar o Soundscape Mais Discreto
 
-**Managing which callouts you hear :**
+Prima *anterior* nos controlos dos seus auscultadores. Cada toque desce um nível: *Detalhado*, *Simplificado*, *Essencial* e depois *Silencioso*. Mais um toque regressa a *Detalhado*. Consulte a página de ajuda *Utilizar Controlos Multimédia*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Parar o Soundscape Durante Algum Tempo
+
+Selecione o botão *Suspender* na parte superior do ecrã principal. O Soundscape deixa de usar a sua localização e não emite qualquer som até selecionar *Reativar Agora*. Ou selecione *Reativar ao sair*, e o Soundscape reativa-se quando sair do local onde está.
+
+## Num Veículo ou num Comboio
+
+O Soundscape repara quando se desloca à velocidade de um veículo. Deixa então de anunciar cruzamentos e lojas próximas, porque passam depressa demais. Em vez disso, anuncia a estrada em que segue, pontos de referência, paragens e estações, rios e túneis.
 

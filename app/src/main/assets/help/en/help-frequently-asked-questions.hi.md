@@ -1,129 +1,85 @@
 ---
-title: Frequently Asked Questions
+title: अक्सर पूछे जाने वाले प्रश्न
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
+nav_order: 160
 lang: hi
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# Frequently Asked Questions
+# अक्सर पूछे जाने वाले प्रश्न
 
-## What is Soundscape and how should I use it?
+## Soundscape के बारे में
 
-### When should I use Soundscape?
-Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
+### मुझे Soundscape का उपयोग कब करना चाहिए?
+जब भी आप बाहर हों, Soundscape का उपयोग करें। यह बैकग्राउंड में चलता है और बताता है कि आप किन सड़कों पर हैं और किन स्थानों के पास से गुज़र रहे हैं। यह किसी एक काम में भी मदद कर सकता है, जैसे उस स्थान पर नज़र रखना जहाँ आप पैदल जा रहे हैं।
 
-"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
+### Soundscape अन्य नक्शा ऐप्स से कैसे अलग है?
+ज़्यादातर नक्शा ऐप मोड़-दर-मोड़ दिशानिर्देश देते हैं। Soundscape बताता है कि आपके आसपास क्या है और आपके गंतव्य की दिशा से बीकन बजाता है। रास्ता आप चुनते हैं।
 
-"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
+आप दोनों को साथ में इस्तेमाल कर सकते हैं। अपने नक्शा ऐप में दिशानिर्देश शुरू करें, फिर उसी स्थान पर Soundscape का बीकन सेट करें।
 
-"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
+### क्या हर समय फ़ोन हाथ में रखना ज़रूरी है?
+नहीं। चलते समय Soundscape आपकी यात्रा की दिशा का उपयोग करता है। इसलिए फ़ोन जेब या बैग में रह सकता है। जब आप एक जगह खड़े हों और दिशाएँ सही चाहते हों, तो उसे निकाल लें। फ़ोन का ऊपरी सिरा उस ओर करें जिधर आपका मुख है। अगर फ़ोन लॉक है, या Soundscape स्क्रीन पर नहीं है, तो फ़ोन को सपाट भी पकड़ें।
 
-"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
+## बीकन और कॉलआउट
 
-"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
+### क्या किसी पते पर, जैसे मेरे घर पर, बीकन सेट किया जा सकता है?
+हाँ। होम स्क्रीन के खोज बार में पता लिखें और परिणामों में से उसे चुनें। फिर *ऑडियो बीकन शुरू करें* चुनें। अगली बार के लिए पता रखने को *मार्कर के रूप में सहेजें* चुनें।
 
-### What are Markers and how do I get the most out of them?
-Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
+### मैं बीकन का अधिकतम लाभ कैसे उठाऊँ?
+बीकन को अपने कानों के लिए एक प्रकाश स्तंभ समझें। यह बताता है कि स्थान सीधी रेखा में कहाँ है, वहाँ तक का रास्ता नहीं बताता। इमारतों के चारों ओर से निकलने और सड़कें पार करने का रास्ता अब भी आप खुद चुनते हैं।
 
-## How do I get the best out of Soundscape?
+जब आपका मुख स्थान की ओर हो, तो बीकन की ध्वनि बदल जाती है। वह ध्वनि खोजने के लिए फ़ोन को सपाट पकड़ें और धीरे-धीरे घूमें।
 
-### What can I set as a beacon?
-You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+अगर आपको ज़्यादातर रास्ता मालूम है, तो बीकन म्यूट करें और पास पहुँचने पर अनम्यूट करें।
 
-### How do I get the most out of a beacon?
-You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
+### गंतव्य पर पहुँचने पर क्या होता है?
+जब आप लगभग 12 मीटर दूर होते हैं, तो Soundscape आपको बताता है और बीकन हटा देता है। आपका फ़ोन इससे ज़्यादा सटीक स्थिति नहीं जान सकता, इसलिए आखिरी कुछ कदमों के लिए अपने दूसरे कौशल इस्तेमाल करें। बीकन फिर से सुनने के लिए उसे दोबारा सेट करें।
 
-This design has a few natural results:
+### चलना बंद करने पर बीकन की ध्वनि अलग क्यों हो जाती है?
+जब फ़ोन जेब या बैग में हो, तो Soundscape आपकी यात्रा की दिशा से अंदाज़ा लगाता है कि आपका मुख किस ओर है। जब आप रुकते हैं, तो यह आगे नहीं जान सकता, इसलिए बीकन ऐसे बजता है जैसे आपकी पीठ स्थान की ओर हो। फिर से चलना शुरू करें, या फ़ोन का ऊपरी सिरा उस ओर करें जिधर आपका मुख है। अगर फ़ोन लॉक है, या Soundscape स्क्रीन पर नहीं है, तो फ़ोन को सपाट भी पकड़ें।
 
-1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
+### चौराहे पर किसी सड़क का नाम दो बार क्यों सुनाई देता है?
+Soundscape चौराहे से निकलने वाली हर सड़क का नाम उसी दिशा से बताता है जिधर वह जाती है। जो सड़क आपकी सड़क को काटती है, वह बाईं ओर भी जाती है और दाईं ओर भी, इसलिए उसका नाम दो बार सुनाई देता है। अगर आपको सिर्फ़ बायाँ और दायाँ सुनाई दे, तो आपकी सड़क आगे खत्म हो जाती है।
 
-2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
+### Soundscape मेरे पास से गुज़रने वाले हर व्यवसाय की घोषणा क्यों नहीं करता?
+Soundscape अपने स्थान OpenStreetMap से लेता है, जो स्वयंसेवकों का बनाया हुआ मानचित्र है। अगर कोई व्यवसाय उस मानचित्र में नहीं है, तो Soundscape उसका कॉलआउट नहीं कर सकता। Soundscape कॉलआउट को सीमित भी रखता है ताकि आपको बहुत ज़्यादा न सुनने पड़ें। ज़्यादा सुनने के लिए *कॉलआउट विवरण* को *विस्तृत* पर रखें और *कॉलआउट किए जाने वाले स्थान* जाँचें।
 
-3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
+### वाहन में होने पर क्या बदलता है?
+Soundscape चौराहों और पास की दुकानों का कॉलआउट बंद कर देता है, क्योंकि वे बहुत तेज़ी से गुज़र जाती हैं। इसके बजाय यह उस सड़क का कॉलआउट करता है जिस पर आप हैं, और लैंडमार्क, स्टॉप और स्टेशन, नदियों और सुरंगों का।
 
-### Why does the audible beacon disappear sometimes?
-Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
+### अगर कोई कॉलआउट छूट जाए तो क्या करें?
+Soundscape पिछले कॉलआउट की सूची नहीं रखता। होम स्क्रीन के नीचे के बटनों से फिर पूछें: *मेरा स्थान*, *मेरे आसपास* या *मेरे आगे*।
 
-### Can I set a beacon on an address?
-Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
+### Soundscape को कम बोलने वाला कैसे बनाएँ?
+1. कम कॉलआउट सुनने के लिए *सेटिंग्स* खोलें, *कॉलआउट प्रबंधित करें* चुनें और *कॉलआउट विवरण* कम करें। *मौन* सभी स्वचालित कॉलआउट रोक देता है।
 
-### How do I set a beacon on my home?
-Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
+2. बीकन को चुप कराने के लिए होम स्क्रीन पर *बीकन म्यूट करें* चुनें।
 
-### When I set a beacon on a destination, how close will Soundscape get me to the destination?
-Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
+3. Soundscape को कुछ देर के लिए रोकने को होम स्क्रीन के ऊपर *स्लीप* चुनें।
 
-### Can I turn the beacon back on when I am close to my destination?
-Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
+## फ़ोन, बैटरी और मानचित्र
 
-### Why does Soundscape call out road names twice when I approach an intersection?
-To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
+### Soundscape किस फ़ोन पर चलता है?
+Soundscape उन iPhone पर चलता है जिनमें iOS 16 या उसके बाद का संस्करण है, और उन Android फ़ोन पर जिनमें Android 11 या उसके बाद का संस्करण है।
 
-### Why doesn’t Soundscape announce every business that I pass?
-Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
+### क्या हेडफ़ोन ज़रूरी हैं?
+नहीं। Soundscape आपके फ़ोन के स्पीकर से काम करता है। स्टीरियो हेडफ़ोन दिशा का कहीं ज़्यादा साफ़ एहसास देते हैं, और कोई भी तार वाला या Bluetooth हेडफ़ोन चलेगा।
 
-### Why do some callouts stop when I'm in a vehicle?
-In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
+### बैटरी कैसे बचाएँ?
+Soundscape हर समय आपके स्थान का उपयोग करता है, और इससे बैटरी खर्च होती है। कम खर्च करने के लिए:
 
-### What if I don't understand a callout or miss it because of ambient noise?
-Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
+1. जब स्क्रीन का उपयोग न हो रहा हो, तो उसे बंद रखें।
 
-## How does Soundscape work?
+2. जब आप कुछ देर के लिए रुकें, तो होम स्क्रीन के ऊपर *स्लीप* चुनें। अगर आप चाहते हैं कि आगे बढ़ने पर Soundscape जाग जाए, तो *जब मैं निकलूँ तब जगाएँ* चुनें।
 
-### What phone does Soundscape run on?
-Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
+3. काम खत्म होने पर Soundscape बंद कर दें।
 
-### What headphones should I use with Soundscape?
-Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
+### Soundscape कितना मोबाइल डेटा उपयोग करता है?
+Soundscape आपके चलने के साथ-साथ थोड़ा सा मानचित्र डेटा डाउनलोड करता है। बहुत कम डेटा खर्च करने के लिए यात्रा से पहले Wi-Fi पर एक ऑफ़लाइन मानचित्र डाउनलोड करें। मेनू खोलें और *ऑफ़लाइन मानचित्र* चुनें।
 
-### How does Soundscape impact my phone’s battery?
-Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
-
-### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
-
-### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
-
-### How does my choice of headphones affect the battery life of my phone?
-In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
-
-### How does running Soundscape in the background impact battery life of my phone?
-Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
-
-1. Turn the screen display off as much as possible when you are not interacting with the app.
-
-2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
-
-3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
-
-### How much mobile data does Soundscape use?
-The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
-
-### How is Soundscape different from other map apps?
-Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
-
-Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
-
-### How do I use Soundscape with a wayfinding app?
-Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
-
-### How do I control what I hear and when I hear it in Soundscape?
-Soundscape provides several ways to control what you hear and when:
-
-1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
-
-2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
-
-3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
-
-If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
-
-### Do I need to hold the phone in my hand all the time?
-No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
-
-### What is OpenStreetMap and why do we use it for Soundscape?
-Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
+### OpenStreetMap क्या है?
+OpenStreetMap दुनिया का एक मुक्त मानचित्र है, जिसे स्वयंसेवक बनाते हैं। Soundscape इसे सड़कों और स्थानों के लिए इस्तेमाल करता है। कोई भी www.openstreetmap.org पर स्थान जोड़ या ठीक कर सकता है, और यह बदलाव मानचित्र के किसी बाद के अपडेट में Soundscape तक पहुँचता है।
 

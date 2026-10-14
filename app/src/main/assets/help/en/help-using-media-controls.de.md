@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Mediensteuerungen verwenden
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 110
 lang: de
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Mediensteuerungen verwenden
 
-## What is it?
+Sie können Soundscape mit den Medientasten Ihrer Kopfhörer steuern: *Wiedergabe/Pause*, *Weiter* und *Zurück*. Das funktioniert mit kabelgebundenen und Bluetooth-Kopfhörern. Es funktioniert auch, wenn Soundscape im Hintergrund läuft oder Ihr Telefon gesperrt ist.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Nicht alle Kopfhörer haben alle drei Tasten.
 
-## When would I use it?
+Die Tasten steuern Soundscape nur, wenn keine andere App Audio abspielt. Wenn Sie Musik oder einen Podcast hören, steuern die Tasten stattdessen diese App.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Die Tasten können auf zwei Arten arbeiten: *Originalmodus* oder *Audio‑Menü*. Zur Auswahl öffnen Sie das Menü und wählen Sie *Einstellungen*, dann *Mediensteuerungen*.
 
-## How does it work?
+## Originalmodus
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Wiedergabe/Pause* schaltet das Beacon stumm. Drücken Sie die Taste erneut, um das Beacon wieder zu hören.
 
- Original mode. 
+*Weiter* verschiebt das Beacon zum nächsten Wegpunkt, wenn Sie einer Route folgen. Sonst wird *Um mich herum* angesagt.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Zurück* verschiebt das Beacon zum vorherigen Wegpunkt, wenn Sie einer Route folgen. Sonst ändert die Taste den *Detailgrad der Hinweise*. Jeder Druck geht eine Stufe leiser: *Ausführlich*, *Vereinfacht*, *Wesentlich*, dann *Stumm*. Ein weiterer Druck kehrt zu *Ausführlich* zurück. Soundscape sagt den Namen der neuen Stufe.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Audio‑Menü
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Das Audio-Menü bietet Ihnen mit denselben drei Tasten mehr Aktionen. Soundscape liest jede Option vor.
 
+*Weiter* geht zur nächsten Option. Nach der letzten Option beginnt das Menü wieder bei der ersten.
 
+*Wiedergabe/Pause* wählt die Option aus, die Sie gerade gehört haben.
 
-Audio menu. 
+*Zurück* ändert den *Detailgrad der Hinweise*, genau wie im *Originalmodus*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Das Menü beginnt mit vier Gruppen: *Meine Umgebung*, *Routensteuerung*, *Route starten* und *Audiobeacon starten*. Wählen Sie eine Gruppe aus, um ihre Aktionen zu hören. *Meine Umgebung* und *Routensteuerung* enden mit *Hauptmenü*. Damit kommen Sie zurück zu den vier Gruppen.
 

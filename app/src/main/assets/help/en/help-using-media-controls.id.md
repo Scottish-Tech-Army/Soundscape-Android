@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Menggunakan Kontrol Media
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 110
 lang: id
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Menggunakan Kontrol Media
 
-## What is it?
+Anda dapat mengontrol Soundscape dengan tombol media di headphone: *putar/jeda*, *berikutnya*, dan *sebelumnya*. Ini berfungsi dengan headphone berkabel dan Bluetooth. Ini juga berfungsi saat Soundscape berada di latar belakang atau ponsel terkunci.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Tidak semua headphone memiliki ketiga tombol tersebut.
 
-## When would I use it?
+Tombol hanya mengontrol Soundscape saat tidak ada aplikasi lain yang memutar audio. Jika Anda memutar musik atau podcast, tombol mengontrol aplikasi itu.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Tombol dapat bekerja dengan dua cara: *Mode asli* atau *Menu audio*. Untuk memilih, buka menu dan pilih *Pengaturan*, lalu *Kontrol Media*.
 
-## How does it work?
+## Mode asli
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Putar/jeda* menonaktifkan suara suar. Tekan lagi untuk mendengar suar.
 
- Original mode. 
+*Berikutnya* memindahkan suar ke titik rute berikutnya saat Anda mengikuti rute. Jika tidak, tombol ini membacakan *Di Sekitar Saya*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Sebelumnya* memindahkan suar ke titik rute sebelumnya saat Anda mengikuti rute. Jika tidak, tombol ini mengubah *Tingkat Detail Pemberitahuan*. Setiap tekanan turun satu tingkat: *Rinci*, *Sederhana*, *Esensial*, lalu *Senyap*. Satu tekanan lagi kembali ke *Rinci*. Soundscape menyebutkan nama tingkat yang baru.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Menu audio
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Menu audio memberi Anda lebih banyak tindakan dengan tiga tombol yang sama. Soundscape membacakan setiap pilihan.
 
+*Berikutnya* pindah ke pilihan berikutnya. Setelah pilihan terakhir, menu kembali ke yang pertama.
 
+*Putar/jeda* memilih pilihan yang baru saja Anda dengar.
 
-Audio menu. 
+*Sebelumnya* mengubah *Tingkat Detail Pemberitahuan*, sama seperti di *Mode asli*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu dimulai dengan empat grup: *Dengar Sekitar Saya*, *Kontrol rute*, *Mulai Rute*, dan *Mulai Suar Audio*. Pilih sebuah grup untuk mendengar tindakannya. *Dengar Sekitar Saya* dan *Kontrol rute* diakhiri dengan *Menu utama*, yang membawa Anda kembali ke empat grup itu.
 

@@ -1,23 +1,16 @@
 ---
-title: Around Me
+title: Al meu voltant
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 30
 lang: ca
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Al meu voltant
 
-## What is it?
+*Al meu voltant* anuncia fins a quatre llocs propers: un al davant, un a la dreta, un al darrere i un a l'esquerra. Sents cadascun des de la seva direcció, amb la distància. Fes-lo servir per orientar-te quan arribis a algun lloc.
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Si no t'estàs movent, apunta primer la part superior del telèfon cap on mires. Si el telèfon està bloquejat, o Soundscape no és a la pantalla, aguanta també el telèfon pla.
 

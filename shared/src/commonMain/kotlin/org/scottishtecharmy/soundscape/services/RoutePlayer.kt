@@ -272,6 +272,15 @@ class RoutePlayer(
         return (currentRouteData != null)
     }
 
+    /**
+     * The name of the waypoint the beacon is currently on - for a beacon rather than a route,
+     * the name it was started with. Null when nothing is playing.
+     */
+    fun currentWaypointName(): String? {
+        val route = currentRouteData ?: return null
+        return route.markers.getOrNull(currentMarker)?.name ?: route.route.name
+    }
+
     override fun toString(): String {
         currentRouteData?.let { route ->
             var state = ""

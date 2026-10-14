@@ -1,0 +1,133 @@
+# Finnish (fi) — translation decisions
+
+| | |
+|---|---|
+| Weblate component | `androidkmp` |
+| Corpus at last sweep | 1522 units (2026-09-24) |
+| Baseline | Microsoft's professional fi-FI localisation (C14). 212 of 359 shared keys still verbatim, 24 drifted |
+| Last native-speaker input | **none recorded** since Microsoft |
+| Register | «sinä» (2sg), `confirmed` (baseline) |
+
+Read with [`_common.md`](_common.md).
+
+## Status of this file
+
+A Microsoft baseline in good condition. The VoiceOver template is **fine**.
+An earlier note (FR-B1 in `fr.md`) worried that «Kaksoisnapauta %1$s» lacked
+a connective, but the hints are translative infinitives («hiljentääksesi
+äänimajakan», "in order to mute the beacon"), which carry the "to" meaning
+themselves. The Siri phrases (`fi.lproj`) match the help text. Questions:
+`docs/translation-questions/questions-fi.md` (Q1…Q7).
+
+## Glossary
+
+| English | Finnish | Status | Note |
+|---|---|---|---|
+| Callout | ilmoitus | `confirmed` | Microsoft. Also Android's word for notifications |
+| Audio Beacon | äänimajakka | `confirmed` | Microsoft |
+| Marker | merkitsin | `agreed` (Dave, 2026-09-25) | Ricky Tigg's term in the Soundscape Community (2025), now used everywhere. It replaced Microsoft's «merkintä» in 83 Weblate strings and 5 `Localizable.xcstrings` Siri strings. See FI-T1 |
+| Waypoint | reittipiste | `confirmed` | Microsoft |
+| Intersection | risteys | `confirmed` | Microsoft |
+| Sleep / Snooze | lepotila ; odotustila | `confirmed` | Microsoft |
+| Detailed / Simplified / Essential / Silent | Yksityiskohtainen / Yksinkertaistettu / Olennainen / Äänetön | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Yksityiskohtainen / Tasapainoinen / Hiljainen / Äänetön |
+| dead end | umpikuja | `unconfirmed` | AI. See FI-G1 |
+
+## Rules
+
+### FI-G1 — «kohteeseen umpikuja» (`unconfirmed`)
+
+`confect_name_to` «%1$s kohteeseen %2$s» ("… to the destination X") is a
+clever dodge. «kohteeseen» carries the illative, so the substituted name can
+stay nominative, which suits OSM street names (compare IS-G2). But for the
+dead-end case it gives «Polku kohteeseen umpikuja» where a speaker would say
+«Polku umpikujaan». Ask whether it's acceptable, or whether dead end should
+get its own phrasing.
+
+### FI-C1 — Siri phrases are Finnish and live outside Weblate (`agreed`)
+
+The same coupling as FR-C1.
+
+### FI-T1 — Soundscape Community is the Finnish reference for Ricky Tigg's edits (`agreed`, Dave 2026-09-25)
+
+Ricky Tigg edited 108 Finnish strings in the Soundscape Community app
+(2025-01 → 2025-02, `sc/fi-FI.lproj`). Only 7 of them apply to our app with
+the same English. All 7 were adopted, including his «käännösohjeita» in
+`help_text_destination_beacons_when`. That overturns this file's earlier
+"ambiguous" objection to the word, because a native speaker chose it.
+
+He also began switching Marker from «merkintä» to «merkitsin» but reached
+only 22 strings. The Community file uses both (32/38). **Dave's decision:
+apply «merkitsin» everywhere.** The case forms follow Ricky's own usage:
+merkinnät→merkitsimet, merkintöjä→merkitsimiä, merkinnän→merkitsimen,
+merkinnäksi→merkitsimeksi, merkinnöistäsi→merkitsimistäsi, and so on.
+**«merkinnyt» is the verb "has marked", not the noun (C3), and stays.**
+The Siri strings in `iosApp/iosApp/Localizable.xcstrings` ("Marker",
+"Markers", "Nearby Markers" and two descriptions) switched in the same step,
+so the help text still names choices Siri recognises (FI-C1).
+
+### FI-B1 — Hints use the translative infinitive (`agreed`, fixed 2026-09-29)
+
+«Kaksoisnapauta %1$s» needs «avataksesi», «kuullaksesi», «muokataksesi» ('in order to…'), as Microsoft wrote them, never «avaa», «kuule», «muokkaa». Check any new hint.
+
+### FI-T2 — Button and screen names (`agreed`, 2026-09-29)
+
+Nearby Markers is «Lähiympäristön merkitsimet» (button, help, tutorial). Places Nearby is «Lähiympäristön paikat». Location Details is Microsoft's «Sijainnin tiedot». The Siri phrase «Lähellä olevat merkitsimet» is separate (FI-C1).
+
+## Rejected
+
+Nothing yet.
+
+### FI-G2 — Road templates named the road type twice (`fixed` in code, 2026-09-25)
+
+34 templates wrote «Tiellä %1$s» / «Kadulla %1$s» ("on the road X"), a label that
+avoids inflecting the name but doubles it: «Tiellä Mannerheimintie», «Kadulla
+Aleksanterinkatu». They now write «{Tiellä %1$s}» and `resolveGrammarMarkers()`
+(C18) inflects the name itself: «Mannerheimintiellä», «Aleksanterinkadulla»,
+«Vanhalla Vihdintiellä». Measured on the Helsinki extract: 94% of Finnish street
+names are covered; the rest (Swedish names, «E18») keep the label. **New road
+templates must use the wrapped form.**
+
+## Open questions
+
+1. «Polku kohteeseen umpikuja» or «Polku umpikujaan»? (FI-G1)
+2. Callout «ilmoitus»: confused with phone notifications?
+3. The four detail levels (Yksityiskohtainen / Yksinkertaistettu / Olennainen / Äänetön), renamed 2026-09-30 (C22): clear by ear? Better names for the middle two?
+4. Siri phrases «Soundscape ympäristö / reitti / majakka / pysäytä majakka…»: natural?
+5. Street names are now inflected («Mannerheimintiellä», «Vanhalla Vihdintiellä») instead of «Tiellä X». Right? Any names it gets wrong? (FI-G2)
+6. Clock-face directions «kello %1$s»: heard as a time? «kello kolmessa» / «kello kolmen suunnassa»?
+7. Anything else.
+
+## Provenance
+
+**2024-07 → 2024-09 — Microsoft baseline** (`fi-FI.lproj`). **2025 → 2026 —
+AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «Odotustilassa» → Microsoft's «Odotustila».
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 15 were restored to Microsoft's wording, 90 fixed or term-changed and 4 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 105 uploaded and verified live.
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 27 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
+
+**2026-09-28 — Weblate checks pass.** `osm_platform` → «Asemalaituri», `osm_dock` → «Satama-allas» (both had been «Laituri»), `osm_college` → «Opisto». Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 38 fixes uploaded.** The Weblate log shows no human Finnish edits. Fixed:
+- **17 hints** had drifted from the translative infinitive to imperatives (FI-B1).
+- **Unified names (FI-T2):**
+  - Nearby Markers (button + 5 help/tour strings).
+  - Places Nearby in 3 tour strings.
+  - Location Details: title and 5 help strings back to Microsoft's «Sijainnin tiedot».
+- **`help_text_nearby_markers_how`:** the last sentence had been copied from Ahead of Me (Microsoft's error), now "up to four markers near you".
+- **`faq_miss_a_callout_answer`:** «jättämäsi» → «huomaamatta jäänyt».
+- **`help_creating_markers_page_title`:** «Merkitsimien luominen».
+- **Capitals:** «Merkitsimet ja reitit», and three named-place templates lower-cased.
+
+Left for a native speaker: `relative_clock_direction` «kello %1$s» can read as a time of day. Uploaded with `--skip-validate`; all 38 re-fetched and matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 31 flagged, 28 applied in `09c4a4e03`. Findings: `translations/review/2026-09-30-all-languages/fi-findings.json`.
+Most serious fixed:
+- `faq_how_close_to_destination_answer`: "to within several meters, but not less" is about precision;
+- `osm_beauty`: OSM shop=beauty is a beauty salon (services), not a cosmetics shop.
+- `osm_adult_gaming_centre`: Same word as osm_amusement_arcade «Pelihalli», so the two can't be told apart.
+Held for a person: `terms_of_use_message` (legal text); `terms_of_use_service_agreement` (legal text).
+
+**2026-10-01 — home-button names.** `help_text_assistant_commands_ios` said *Lähellä olevat merkitsimet*; Siri and the button say «Lähiympäristön merkitsimet» (C27).

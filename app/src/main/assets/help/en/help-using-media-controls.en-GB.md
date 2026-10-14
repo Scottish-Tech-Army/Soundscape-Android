@@ -3,37 +3,38 @@ title: Using Media Controls
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 110
 lang: en-GB
 permalink: /users/help-using-media-controls.html
 ---
 
 # Using Media Controls
 
-## What is it?
+You can control Soundscape with the media buttons on your headphones: *play/pause*, *next* and *previous*. This works with wired and Bluetooth headphones. It also works when Soundscape is in the background or your phone is locked.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Not all headphones have all three buttons.
 
-## When would I use it?
+The buttons only control Soundscape when no other app is playing audio. If you are playing music or a podcast, the buttons control that app instead.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+The buttons can work in two ways: *Original mode* or *Audio menu*. To choose, open the menu and select *Settings*, then *Media Controls*.
 
-## How does it work?
+## Original mode
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Play/pause* mutes the beacon. Press it again to hear the beacon.
 
- Original mode. 
+*Next* moves the beacon to the next waypoint when you are following a route. Otherwise it calls out *Around Me*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Previous* moves the beacon to the previous waypoint when you are following a route. Otherwise it changes the *Callout Detail*. Each press moves one level quieter: *Detailed*, *Simplified*, *Essential*, then *Silent*. One more press returns to *Detailed*. Soundscape says the name of the new level.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Audio menu
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+The audio menu gives you more actions from the same three buttons. Soundscape reads each option aloud.
 
+*Next* moves to the next option. After the last option it returns to the first.
 
+*Play/pause* selects the option you just heard.
 
-Audio menu. 
+*Previous* changes the *Callout Detail*, the same as in *Original mode*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+The menu starts with four groups: *Hear My Surroundings*, *Route control*, *Start Route* and *Start Audio Beacon*. Select a group to hear its actions. *Hear My Surroundings* and *Route control* end with *Top menu*, which takes you back to the four groups.
 

@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Upotreba upravljanja medijima
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 110
 lang: hr
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Upotreba upravljanja medijima
 
-## What is it?
+Soundscapeom možete upravljati medijskim gumbima na slušalicama: *play/pause*, *next* i *previous*. To radi sa žičnim i Bluetooth slušalicama. Radi i kad je Soundscape u pozadini ili je telefon zaključan.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Nemaju sve slušalice sva tri gumba.
 
-## When would I use it?
+Gumbi upravljaju Soundscapeom samo kad nijedna druga aplikacija ne reproducira zvuk. Ako slušate glazbu ili podcast, gumbi upravljaju tom aplikacijom.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Gumbi mogu raditi na dva načina: *Izvorni način* ili *Zvučni izbornik*. Da biste odabrali, otvorite izbornik i odaberite *Postavke*, zatim *Upravljanje medijima*.
 
-## How does it work?
+## Izvorni način
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Play/pause* utišava svjetionik. Pritisnite ponovno da biste čuli svjetionik.
 
- Original mode. 
+*Next* pomiče svjetionik na sljedeću putnu točku kad pratite rutu. Inače najavljuje *Oko mene*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Previous* pomiče svjetionik na prethodnu putnu točku kad pratite rutu. Inače mijenja postavku *Razina detalja najava*. Svaki pritisak prelazi jednu razinu tiše: *Detaljno*, *Pojednostavljeno*, *Osnovno*, zatim *Bez zvuka*. Još jedan pritisak vraća na *Detaljno*. Soundscape izgovara naziv nove razine.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Zvučni izbornik
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Zvučni izbornik daje vam više radnji s ista tri gumba. Soundscape naglas čita svaku opciju.
 
+*Next* prelazi na sljedeću opciju. Nakon posljednje opcije vraća se na prvu.
 
+*Play/pause* odabire opciju koju ste upravo čuli.
 
-Audio menu. 
+*Previous* mijenja postavku *Razina detalja najava*, isto kao *Izvorni način*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Izbornik počinje s četiri skupine: *Poslušajte svoju okolinu*, *Upravljanje rutom*, *Pokreni rutu* i *Postavi zvučni svjetionik*. Odaberite skupinu da biste čuli njezine radnje. *Poslušajte svoju okolinu* i *Upravljanje rutom* završavaju stavkom *Glavni izbornik*, koja vas vraća na četiri skupine.
 

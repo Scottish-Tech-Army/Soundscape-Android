@@ -57,4 +57,25 @@ object PhotonSearchProvider : PhotonSearch {
         ) ?: return null
         return adapter.fromJson(json)
     }
+
+    override suspend fun getNearbyByTag(
+        latitude: Double,
+        longitude: Double,
+        osmTags: List<String>,
+        radius: Double?,
+        limit: UInt?,
+        nameFilter: String?,
+        language: String?,
+    ): FeatureCollection? {
+        val json = client.nearbyByTagJson(
+            latitude = latitude,
+            longitude = longitude,
+            osmTags = osmTags,
+            radius = radius,
+            limit = limit,
+            nameFilter = nameFilter,
+            language = language,
+        ) ?: return null
+        return adapter.fromJson(json)
+    }
 }

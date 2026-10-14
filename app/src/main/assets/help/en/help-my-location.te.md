@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: నా స్థానం
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 20
 lang: te
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# నా స్థానం
 
-## What is it?
+*నా స్థానం* మీరు ఎక్కడ ఉన్నారో చెబుతుంది. మీరు ఏ వైపు ముఖం పెట్టి ఉన్నారో లేదా ప్రయాణిస్తున్నారో, తర్వాత మీరు ఉన్న వీధి లేదా చిరునామాను అది చెబుతుంది. బస్సు దిగినప్పుడు, భవనం నుండి బయటకు వచ్చినప్పుడు లేదా దిశ తెలియనప్పుడు దీన్ని ఉపయోగించండి.
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+మీరు ఒకేచోట నిలబడి ఉంటే, ముందుగా ఫోన్ పై అంచును మీరు ముఖం పెట్టి ఉన్న వైపు చూపించండి. ఫోన్ లాక్ అయి ఉంటే, లేదా Soundscape స్క్రీన్‌పై లేకపోతే, ఫోన్‌ను చదునుగా కూడా పట్టుకోండి.
 

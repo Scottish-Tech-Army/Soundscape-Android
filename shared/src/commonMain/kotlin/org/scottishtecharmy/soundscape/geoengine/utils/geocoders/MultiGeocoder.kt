@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
@@ -19,13 +21,18 @@ class MultiGeocoder(
     val gridState: GridState,
     settlementState: GridState,
     tileSearch: TileSearcher?,
-    photonGeocoder: PhotonGeocoder,
+    private val photonGeocoder: PhotonGeocoder,
     platformGeocoder: SoundscapeGeocoder? = null,
     analyticsLogger: (String) -> Unit = {},
     private val processor: (LocationDescription) -> Unit = {},
     private val hasNetwork: () -> Boolean = { false },
     private val geocoderMode: () -> String? = { null },
     poiStrategy: () -> PoiRankStrategy = { PoiRankStrategy.default },
+    /**
+     * Recognises a search for a type of place - "pharmacy" - rather than for a name. Null when
+     * there's nothing to recognise it with, and every search is then for a name.
+     */
+    private val categoryMatcher: suspend () -> SearchCategoryMatcher? = { null },
 ) : SoundscapeGeocoder() {
 
     private val fusedGeocoder = FusedGeocoder(gridState, photonGeocoder, platformGeocoder)
@@ -54,6 +61,9 @@ class MultiGeocoder(
             offlineGeocoder
     }
 
+    /** Whether a search would be made offline - with no network, or the setting says so */
+    fun searchesOffline(): Boolean = pickGeocoder() == offlineGeocoder
+
     override suspend fun getAddressFromLocationName(
         locationName: String,
         nearbyLocation: LngLatAlt,
@@ -80,18 +90,83 @@ class MultiGeocoder(
             }
         }
 
-        val geocoderResults = pickGeocoder()?.getAddressFromLocationName(
-            locationName,
-            nearbyLocation,
-            localizedStrings
-        )
-        if (geocoderResults != null) {
-            for (result in geocoderResults) {
-                results.add(result)
+        // A search for a type of place is also searched for as a name, as there may be a place
+        // called that - a bar called "The Pharmacy" - but the places of that type come first
+        val categoryMatch = try {
+            categoryMatcher()?.match(locationName)
+        } catch (e: Exception) {
+            null
+        }
+        val geocoder = pickGeocoder()
+        val (categoryResults, geocoderResults) = coroutineScope {
+            val categorySearch = categoryMatch?.let { match ->
+                async {
+                    searchByCategory(match.category, match.remainder, nearbyLocation, localizedStrings)
+                }
             }
+            val nameSearch = async {
+                geocoder?.getAddressFromLocationName(
+                    locationName,
+                    nearbyLocation,
+                    localizedStrings
+                )
+            }
+            Pair(categorySearch?.await().orEmpty(), nameSearch.await().orEmpty())
+        }
+
+        results.addAll(categoryResults)
+        for (result in geocoderResults) {
+            val isDuplicate = categoryResults.any {
+                (it.name == result.name) &&
+                    (gridState.ruler.distance(it.location, result.location) < 100.0)
+            }
+            if (!isDuplicate) results.add(result)
         }
 
         return results
+    }
+
+    /**
+     * The offline maps are always searched, and Photon too whenever it would be for a name. Photon
+     * reaches further, but only has places with a name - it has almost no toilets, benches or
+     * post boxes - so the two are merged, nearest first.
+     */
+    override suspend fun searchByCategory(
+        category: SearchCategory,
+        name: String?,
+        nearbyLocation: LngLatAlt,
+        localizedStrings: LocalizedStrings?
+    ): List<LocationDescription> = coroutineScope {
+        val photonSearch = if (pickGeocoder() == fusedGeocoder) {
+            async { photonGeocoder.searchByCategory(category, name, nearbyLocation, localizedStrings) }
+        } else null
+        val offlineResults =
+            offlineGeocoder.searchByCategory(category, name, nearbyLocation, localizedStrings)
+        val photonResults = photonSearch?.await().orEmpty()
+
+        val ruler = gridState.ruler
+        val merged = offlineResults.toMutableList()
+        for (result in photonResults) {
+            val isDuplicate = offlineResults.any {
+                (it.name == result.name) && (ruler.distance(it.location, result.location) < 100.0)
+            }
+            if (!isDuplicate) merged.add(result)
+        }
+        merged.sortedBy { ruler.distance(nearbyLocation, it.location) }
+    }
+
+    /**
+     * The network geocoders' answer on its own, with no falling back to the offline one, or null
+     * straight away when [searchesOffline]. For a caller which asks [offlineGeocoder] itself, so
+     * that it can decide how long the network is worth waiting for.
+     */
+    suspend fun getOnlineAddressFromLngLat(
+        userGeometry: UserGeometry,
+        localizedStrings: LocalizedStrings?,
+        ignoreHouseNumbers: Boolean
+    ): LocationDescription? {
+        if (searchesOffline()) return null
+        return fusedGeocoder.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
     }
 
     override suspend fun getAddressFromLngLat(

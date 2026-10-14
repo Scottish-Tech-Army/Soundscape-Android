@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: روٹس
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 90
 lang: ur
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# روٹس
 
-## What is it?
+روٹ مقامات کی ایک فہرست ہے، جنہیں ویپوائنٹ کہتے ہیں، اور آپ ان پر ترتیب سے جاتے ہیں۔ Soundscape پہلے ویپوائنٹ پر بیکن سیٹ کرتا ہے۔ جب آپ پہنچتے ہیں تو یہ آپ کو بتاتا ہے اور بیکن کو اگلے ویپوائنٹ پر لے جاتا ہے۔
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+کوئی نیا راستہ سیکھنے کے لیے، یا کسی جانے پہچانے راستے پر صحیح سمت میں رہنے کے لیے روٹ استعمال کریں۔
 
-## When would I use it?
+## روٹ بنانا
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. ہوم اسکرین پر *روٹس* منتخب کریں، پھر *نیا* منتخب کریں۔
 
-## How does it work?
+2. روٹ کو ایک نام دیں۔ آپ تفصیل بھی شامل کر سکتے ہیں۔
 
-**Creating a route :**
+3. *ویپوائنٹس شامل کریں* منتخب کریں اور مارکرز چنیں۔ آپ اپنا موجودہ مقام یا کوئی قریبی جگہ بھی شامل کر سکتے ہیں۔
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *ہو گیا* منتخب کریں۔
 
-**Editing a route :**
+## روٹ پر چلنا
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+*روٹس* اسکرین پر روٹ منتخب کریں، پھر *روٹ شروع کریں* منتخب کریں۔ اسے الٹی سمت میں طے کرنے کے لیے *روٹ کو الٹی ترتیب میں شروع کریں* منتخب کریں۔ ہوم اسکرین پر *اگلا ویپوائنٹ* اور *پچھلا ویپوائنٹ* بیکن کو روٹ کے ساتھ ساتھ آگے پیچھے کرتے ہیں۔ *روٹ روکیں* اسے ختم کر دیتا ہے۔
 
-**Sharing a route :**
+## روٹ بدلنا
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+*روٹس* اسکرین پر روٹ منتخب کریں، پھر *روٹ میں ترمیم کریں* منتخب کریں۔ آپ ویپوائنٹس شامل کر سکتے ہیں، ہٹا سکتے ہیں اور ان کی ترتیب بدل سکتے ہیں، نام اور تفصیل بدل سکتے ہیں، یا روٹ حذف کر سکتے ہیں۔
+
+## روٹ شیئر کرنا
+
+*روٹس* اسکرین پر روٹ منتخب کریں، پھر *شیئر کریں* منتخب کریں۔
 

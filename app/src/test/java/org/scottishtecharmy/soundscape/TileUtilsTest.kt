@@ -436,7 +436,7 @@ class TileUtilsTest {
 
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovIntersectionsFeatureCollection =
             intersectionTree.getAllWithinTriangle(triangle)
 
@@ -458,7 +458,7 @@ class TileUtilsTest {
 
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovRoadsFeatureCollection =
             roadsTree.getAllWithinTriangle(triangle)
 
@@ -480,7 +480,7 @@ class TileUtilsTest {
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
 
         // Create a FOV triangle to pick up the Points of interest in the FoV
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovPoiFeatureCollection =
             poiTree.getAllWithinTriangle(triangle)
 
@@ -507,7 +507,7 @@ class TileUtilsTest {
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersections
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val nearestIntersection =
             intersectionTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
@@ -553,7 +553,7 @@ class TileUtilsTest {
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersections
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovIntersectionsFeatureCollection =
             intersectionTree.getAllWithinTriangle(triangle)
 
@@ -589,7 +589,7 @@ class TileUtilsTest {
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
 
         // Create a FOV triangle to pick up the roads
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovRoadsFeatureCollection =
             roadTree.getAllWithinTriangle(triangle)
 
@@ -616,7 +616,7 @@ class TileUtilsTest {
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
 
         // Create a FOV triangle to pick up the poi
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val nearestPoiFeature =
             poiTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
@@ -783,7 +783,7 @@ class TileUtilsTest {
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // create a FOV triangle to pick up the roads
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovRoadsFeatureCollection = roadTree.getAllWithinTriangle(triangle)
 
         // Create a FOV triangle to pick up the intersections

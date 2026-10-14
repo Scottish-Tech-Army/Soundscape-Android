@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Αυτόματες επεξηγήσεις
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 70
 lang: el
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Αυτόματες επεξηγήσεις
 
-## What is it?
+Καθώς περπατάτε, το Soundscape ανακοινώνει ό,τι βρίσκεται κοντά σας. Ακούτε κάθε όνομα από την κατεύθυνση του μέρους. Οι επεξηγήσεις καλύπτουν δρόμους, διασταυρώσεις, καταστήματα, στάσεις λεωφορείων, ορόσημα και τους δικούς σας δείκτες.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Διασταυρώσεις
 
-## When would I use it?
+Καθώς πλησιάζετε σε μια διασταύρωση, το Soundscape ονομάζει κάθε δρόμο που φεύγει από αυτήν. Ακούτε ποιος δρόμος πηγαίνει αριστερά, ποιος συνεχίζει ευθεία και ποιος πηγαίνει δεξιά.
 
-**Exploring a new area :**
+## Πόσα ακούτε
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Ανοίξτε το μενού και επιλέξτε *Ρυθμίσεις* και μετά *Διαχείριση επεξηγήσεων*. Η ρύθμιση *Λεπτομέρεια επεξηγήσεων* έχει τέσσερα επίπεδα.
 
-**Walking to a specific location :**
+Το *Λεπτομερές* ανακοινώνει τα πάντα σε κοντινή απόσταση.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+Το *Απλοποιημένο* παραλείπει τα μικρά μονοπάτια και τους βοηθητικούς δρόμους, και επαναλαμβάνεται λιγότερο.
 
-**When you need silence :**
+Το *Βασικό* ανακοινώνει μόνο δρόμους, διασταυρώσεις και ορόσημα.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+Το *Σιωπηλό* δεν κάνει αυτόματες επεξηγήσεις. Τα ηχητικά σήματα, οι διαδρομές και τα κουμπιά της αρχικής οθόνης εξακολουθούν να λειτουργούν.
 
-## How does it work?
+## Τι ακούτε
 
-**Turning callouts on or off :**
+Η *Διαχείριση επεξηγήσεων* έχει δύο ακόμη ρυθμίσεις. Το *Δρόμοι και διασταυρώσεις* ενεργοποιεί ή απενεργοποιεί τις επεξηγήσεις για δρόμους και διασταυρώσεις. Το *Τοποθεσίες προς ανακοίνωση* επιλέγει ποια είδη μερών ακούτε, όπως *Δημόσια συγκοινωνία* ή *Φαγητό και ποτό*. Οι δείκτες σας ανακοινώνονται πάντα.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Πώς να κάνετε το Soundscape πιο ήσυχο
 
-**Managing which callouts you hear :**
+Πατήστε *προηγούμενο* στα χειριστήρια των ακουστικών σας. Κάθε πάτημα κατεβαίνει ένα επίπεδο: *Λεπτομερές*, *Απλοποιημένο*, *Βασικό* και μετά *Σιωπηλό*. Ένα ακόμη πάτημα επιστρέφει στο *Λεπτομερές*. Δείτε τη σελίδα βοήθειας *Χρήση στοιχείων ελέγχου πολυμέσων*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Διακοπή του Soundscape για λίγο
+
+Επιλέξτε το κουμπί *Αναστολή λειτουργίας* στο πάνω μέρος της αρχικής οθόνης. Το Soundscape σταματά να χρησιμοποιεί την τοποθεσία σας και δεν βγάζει ήχο μέχρι να επιλέξετε *Ενεργοποίηση τώρα*. Ή επιλέξτε *Ενεργοποίηση όταν φύγω*, και το Soundscape ενεργοποιείται όταν φύγετε από το μέρος όπου βρίσκεστε.
+
+## Σε όχημα ή σε τρένο
+
+Το Soundscape αντιλαμβάνεται πότε κινείστε με ταχύτητα οχήματος. Τότε σταματά να ανακοινώνει διασταυρώσεις και κοντινά καταστήματα, επειδή περνούν πολύ γρήγορα. Αντί γι’ αυτά ανακοινώνει τον δρόμο στον οποίο βρίσκεστε, ορόσημα, στάσεις και σταθμούς, ποτάμια και σήραγγες.
 

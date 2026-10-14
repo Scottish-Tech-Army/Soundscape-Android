@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Ruter
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 90
 lang: da
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Ruter
 
-## What is it?
+En rute er en liste over steder, kaldet vejpunkter, som du besøger i rækkefølge. Soundscape sætter et lydfyr på det første vejpunkt. Når du ankommer, fortæller den dig det og flytter lydfyret til det næste.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Brug en rute til at lære en ny tur, eller til at holde kursen på en tur, du kender.
 
-## When would I use it?
+## Opret en rute
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Vælg *Ruter* på startskærmen, og vælg derefter *Ny*.
 
-## How does it work?
+2. Giv ruten et navn. Du kan tilføje en beskrivelse.
 
-**Creating a route :**
+3. Vælg *Tilføj vejpunkter*, og vælg mærker. Du kan også tilføje din aktuelle placering eller et sted i nærheden.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Vælg *Udført*.
 
-**Editing a route :**
+## Følg en rute
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Vælg ruten på skærmen *Ruter*, og vælg derefter *Start rute*. Hvis du vil følge den baglæns, skal du vælge *Start rute i omvendt rækkefølge*. På startskærmen flytter *Næste vejpunkt* og *Forrige vejpunkt* lydfyret langs ruten. *Stop rute* afslutter den.
 
-**Sharing a route :**
+## Ret en rute
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Vælg ruten på skærmen *Ruter*, og vælg derefter *Rediger rute*. Du kan tilføje, fjerne og flytte rundt på vejpunkter, ændre navn og beskrivelse eller slette ruten.
+
+## Del en rute
+
+Vælg ruten på skærmen *Ruter*, og vælg derefter *Del*.
 

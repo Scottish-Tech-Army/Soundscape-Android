@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: 使用媒体控制
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 110
 lang: zh-CN
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# 使用媒体控制
 
-## What is it?
+您可以用耳机上的媒体按钮控制 Soundscape：*播放/暂停*、*下一曲*和*上一曲*。有线耳机和蓝牙耳机都可以。Soundscape 在后台运行或手机已锁定时也可以。
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+并非所有耳机都有这三个按钮。
 
-## When would I use it?
+只有在没有其他应用播放音频时，这些按钮才会控制 Soundscape。如果您正在播放音乐或播客，按钮控制的是那个应用。
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+这些按钮有两种工作方式：*经典模式*或*音频菜单*。要进行选择，请打开菜单，依次选择*设置*、*媒体控制*。
 
-## How does it work?
+## 经典模式
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*播放/暂停*会将信标静音。再按一次即可听到信标。
 
- Original mode. 
+*下一曲*在您沿路线行走时，会把信标移到下一个航点。否则它会播报*周围*。
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*上一曲*在您沿路线行走时，会把信标移到上一个航点。否则它会更改*提示详细程度*。每按一次就安静一级：*详细*、*简化*、*基本*，然后是*静音*。再按一次回到*详细*。Soundscape 会说出新级别的名称。
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## 音频菜单
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+音频菜单让您用同样的三个按钮完成更多操作。Soundscape 会把每个选项读出来。
 
+*下一曲*会移到下一个选项。最后一个选项之后会回到第一个。
 
+*播放/暂停*会选择您刚听到的选项。
 
-Audio menu. 
+*上一曲*会更改*提示详细程度*，与*经典模式*中相同。
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+菜单以四个分组开始：*聆听周围环境*、*路线控制*、*开始路线*和*启动音频信标*。选择一个分组即可听到其中的操作。*聆听周围环境*和*路线控制*以*顶层菜单*结尾，它会带您回到这四个分组。
 

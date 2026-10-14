@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Routen
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 90
 lang: de
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Routen
 
-## What is it?
+Eine Route ist eine Liste von Orten, den Wegpunkten, die Sie der Reihe nach aufsuchen. Soundscape setzt ein Beacon auf den ersten Wegpunkt. Wenn Sie ankommen, sagt Soundscape Ihnen das und verschiebt das Beacon zum nächsten Wegpunkt.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Nutzen Sie eine Route, um einen neuen Weg zu lernen oder auf einem bekannten Weg nicht vom Kurs abzukommen.
 
-## When would I use it?
+## Route erstellen
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Wählen Sie auf dem Startbildschirm *Routen* und dann *Neu*.
 
-## How does it work?
+2. Geben Sie der Route einen Namen. Sie können eine Beschreibung hinzufügen.
 
-**Creating a route :**
+3. Wählen Sie *Wegpunkte hinzufügen* und wählen Sie Markierungen aus. Sie können auch Ihren aktuellen Standort oder einen Ort in der Nähe hinzufügen.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Wählen Sie *Fertig*.
 
-**Editing a route :**
+## Einer Route folgen
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Wählen Sie die Route auf dem Bildschirm *Routen* aus und dann *Route starten*. Um ihr in umgekehrter Richtung zu folgen, wählen Sie *Route rückwärts starten*. Auf dem Startbildschirm verschieben *Nächster Wegpunkt* und *Vorheriger Wegpunkt* das Beacon entlang der Route. *Route anhalten* beendet sie.
 
-**Sharing a route :**
+## Route ändern
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Wählen Sie die Route auf dem Bildschirm *Routen* aus und dann *Route bearbeiten*. Sie können Wegpunkte hinzufügen, entfernen und neu anordnen, Namen und Beschreibung ändern oder die Route löschen.
+
+## Route teilen
+
+Wählen Sie die Route auf dem Bildschirm *Routen* aus und dann *Teilen*.
 

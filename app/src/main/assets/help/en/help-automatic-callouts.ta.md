@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: தானியங்கி அறிவிப்புகள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 70
 lang: ta
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# தானியங்கி அறிவிப்புகள்
 
-## What is it?
+நீங்கள் நடக்கும்போது, Soundscape உங்களுக்கு அருகில் உள்ளவற்றை அறிவிக்கிறது. ஒவ்வொரு பெயரையும் அந்த இடத்தின் திசையிலிருந்து கேட்கிறீர்கள். தெருக்கள், சந்திப்புகள், கடைகள், பேருந்து நிறுத்தங்கள், அடையாளக் குறிகள் மற்றும் உங்கள் சொந்தக் குறிப்பான்கள் ஆகியவை அறிவிப்புகளில் அடங்கும்.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## சந்திப்புகள்
 
-## When would I use it?
+நீங்கள் ஒரு சந்திப்பை நெருங்கும்போது, அதிலிருந்து பிரியும் ஒவ்வொரு சாலையின் பெயரையும் Soundscape சொல்கிறது. எந்தச் சாலை இடப்புறம் செல்கிறது, எது நேராகத் தொடர்கிறது, எது வலப்புறம் செல்கிறது என்பதைக் கேட்கிறீர்கள்.
 
-**Exploring a new area :**
+## நீங்கள் எவ்வளவு கேட்கிறீர்கள்
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+மெனுவைத் திறந்து *அமைப்புகள்*, பின்னர் *அறிவிப்புகளை நிர்வகி* என்பதைத் தேர்ந்தெடுக்கவும். *அறிவிப்பு விவரம்* என்பதில் நான்கு நிலைகள் உள்ளன.
 
-**Walking to a specific location :**
+*விரிவு* அருகிலுள்ள அனைத்தையும் அறிவிக்கிறது.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*எளிமை* சிறிய பாதைகளையும் சேவைச் சாலைகளையும் விட்டுவிடுகிறது, குறைவாகவே திரும்பச் சொல்கிறது.
 
-**When you need silence :**
+*அத்தியாவசியம்* தெருக்கள், சந்திப்புகள் மற்றும் அடையாளக் குறிகளை மட்டும் அறிவிக்கிறது.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*மௌனம்* தானியங்கி அறிவிப்புகள் எதையும் தருவதில்லை. பீக்கன்கள், பாதைகள் மற்றும் முகப்புத் திரைப் பொத்தான்கள் தொடர்ந்து செயல்படும்.
 
-## How does it work?
+## நீங்கள் என்ன கேட்கிறீர்கள்
 
-**Turning callouts on or off :**
+*அறிவிப்புகளை நிர்வகி* என்பதில் மேலும் இரண்டு அமைப்புகள் உள்ளன. *தெருக்கள் மற்றும் சந்திப்புகள்* என்பது தெரு மற்றும் சந்திப்பு அறிவிப்புகளை இயக்குகிறது அல்லது அணைக்கிறது. *அறிவிக்கப்பட வேண்டிய இடங்கள்* என்பது *பொது போக்குவரத்து* அல்லது *உணவு மற்றும் பானம்* போன்ற எந்த வகை இடங்களை நீங்கள் கேட்பீர்கள் என்பதைத் தேர்வுசெய்கிறது. உங்கள் குறிப்பான்கள் எப்போதும் அறிவிக்கப்படும்.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Soundscape-ஐக் குறைவாகப் பேச வைத்தல்
 
-**Managing which callouts you hear :**
+உங்கள் ஹெட்போன் கட்டுப்பாடுகளில் *previous* என்பதை அழுத்தவும். ஒவ்வொரு அழுத்தமும் ஒரு நிலை குறைக்கும்: *விரிவு*, *எளிமை*, *அத்தியாவசியம்*, பின்னர் *மௌனம்*. இன்னொரு அழுத்தம் *விரிவு* என்பதற்குத் திரும்பும். *மீடியா கட்டுப்பாடுகளைப் பயன்படுத்துதல்* உதவிப் பக்கத்தைப் பார்க்கவும்.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Soundscape-ஐச் சிறிது நேரம் நிறுத்துதல்
+
+முகப்புத் திரையின் மேலே உள்ள *உறக்கம்* பொத்தானைத் தேர்ந்தெடுக்கவும். நீங்கள் *இப்போது எழுப்பு* என்பதைத் தேர்ந்தெடுக்கும் வரை, Soundscape உங்கள் இருப்பிடத்தைப் பயன்படுத்துவதை நிறுத்தி எந்த ஒலியும் எழுப்பாது. அல்லது *வெளியேறும்போது எழுப்பு* என்பதைத் தேர்ந்தெடுக்கவும்; நீங்கள் இருக்கும் இடத்தை விட்டுச் செல்லும்போது Soundscape விழித்துக்கொள்ளும்.
+
+## வாகனத்தில் அல்லது ரயிலில்
+
+நீங்கள் வாகன வேகத்தில் பயணிப்பதை Soundscape கவனிக்கிறது. அப்போது அது சந்திப்புகளையும் அருகிலுள்ள கடைகளையும் அறிவிப்பதை நிறுத்துகிறது, ஏனெனில் அவை மிக வேகமாகக் கடந்துவிடுகின்றன. அதற்குப் பதிலாக, நீங்கள் இருக்கும் சாலை, அடையாளக் குறிகள், நிறுத்தங்கள் மற்றும் நிலையங்கள், ஆறுகள் மற்றும் சுரங்கப்பாதைகளை அறிவிக்கிறது.
 

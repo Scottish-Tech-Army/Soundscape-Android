@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: الأصوات
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 100
 lang: ar
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# الأصوات
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+يستطيع Soundscape استخدام أي صوت مثبّت على هاتفك. لإضافة أصوات، افتح إعدادات هاتفك وابحث عن *تحويل النص إلى كلام*. لاختيار صوت في Soundscape، افتح القائمة واختر *الإعدادات*، ثم *الصوت*، ثم *الأصوات*.
 

@@ -1,0 +1,108 @@
+# Portuguese, European (pt) — translation decisions
+
+| | |
+|---|---|
+| Weblate component | `androidkmp` |
+| Corpus at last sweep | 1522 units (2026-09-24) |
+| Baseline | Microsoft's professional pt-PT localisation (C14). 233 of 359 shared keys still verbatim, only 7 drifted |
+| Last native-speaker input | **none recorded** since Microsoft |
+| Register | Formal third person («Está…»), consistent with Microsoft, `confirmed` (baseline) |
+
+Read with [`_common.md`](_common.md).
+
+## Status of this file
+
+A well-preserved Microsoft baseline. Microsoft's Title Case style («Sinal de
+Áudio», «Ponto de Passagem») is carried through, which is a house style and
+not an error. The hints compose correctly («Toque duas vezes para desativar
+o Sinal de Áudio»), and the Siri phrases (`pt.lproj`) match the help text.
+Questions: `docs/translation-questions/questions-pt.md` (Q1…Q7).
+
+## Glossary
+
+| English | Portuguese | Status | Note |
+|---|---|---|---|
+| Callout | aviso | `confirmed` | Microsoft |
+| Audio Beacon | Sinal de Áudio | `confirmed` | Microsoft |
+| Marker | marco | `confirmed` | Microsoft |
+| Waypoint | ponto de passagem | `confirmed` | Microsoft |
+| Intersection | cruzamento | `confirmed` | Microsoft |
+| Sleep / Snooze | Suspensão ; Pausa | `confirmed` | Microsoft |
+| Traveling / Heading | A viajar / A caminhar | `confirmed` | Microsoft. The vehicle/walking split |
+| Detailed / Simplified / Essential / Silent | Detalhado / Simplificado / Essencial / Silencioso | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Detalhado / Equilibrado / Discreto / Silencioso |
+| dead end | beco sem saída | `unconfirmed` | AI. See PT-G1 |
+
+## Rules
+
+### PT-G1 — «para beco sem saída» (`agreed` defect, `unconfirmed` wording)
+
+`confect_name_to` «%1$s para %2$s» gives «Caminho para beco sem saída», with
+no article. Candidate: dead end → «um beco sem saída».
+
+### PT-R1 — Drift introduced a gender (`agreed` defect, `unconfirmed` wording)
+
+Microsoft's «Está tudo pronto!» was neutral. It is now «Está pronto!»
+(masculine), following our English change (C15). Reverting to «Está tudo
+pronto!» is the obvious fix.
+
+### PT-G1 — Article chosen from the name, not fixed feminine (`fixed` in code, 2026-09-25)
+
+Templates wrote «na %1$s» / «da %1$s», right for «Rua», wrong for every masculine
+type («na Largo do Carmo»). 51 templates now wrap the preposition, «{pt:na %1$s}»,
+and `resolveGrammarMarkers()` (C18) picks no/na, do/da, ao/à, pelo/pela from the
+name's first word («no Largo do Carmo», «da Praça do Comércio», «ao Mercado da
+Ribeira»); «Em %1$s» gains its article too («Na Rua Augusta»). A name it doesn't
+recognise keeps the template's wording. Measured on the Lisbon extract: the type words open 98% of 27,946 street names; place names are about 38% (the rest are business names and keep the template wording). Plural types («Escadinhas», «Escadas») take «nas» / «das». **New templates must wrap map-name
+prepositions.**
+
+## Rejected
+
+Nothing yet.
+
+## Open questions
+
+1. «Caminho para um beco sem saída»? (PT-G1)
+2. «Está tudo pronto!» (title and the message under it): applied 2026-09-30 by the all-language review. Natural? (PT-R1)
+3. The four detail levels (Detalhado / Simplificado / Essencial / Silencioso), renamed 2026-09-30 (C22): clear by ear? Better names for the middle two?
+4. Siri phrases «Soundscape arredores / rota / sinal / parar sinal…»: natural?
+5. Articles are now chosen from the name («no Largo do Carmo», «na Rua Augusta»). Right? (PT-G1)
+6. Landmark vs Marker: «marco» is the Marker term, but Microsoft also used it for
+   "landmark" in `callouts_places_and_landmarks` («Locais e Marcos», which reads as
+   "Places and Markers") and `help_text_destination_beacons_when` («um marco
+   familiar»). Elsewhere landmark is «Ponto de Referência». Should both become
+   «Pontos de Referência» / «ponto de referência»? Both are held unchanged under
+   C14 (iOS users have heard Microsoft's wording) until Dave or a reviewer decides.
+7. Anything else.
+
+## Provenance
+
+**2024-07 → 2024-09 — Microsoft baseline** (`pt-PT.lproj`). **2025 → 2026 —
+AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 4 were restored to Microsoft's wording and 2 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 4 uploaded and verified live.
+
+**2026-09-25 — truncation repaired (C16).** `terms_of_use_medical_safety_disclaimer`, `faq_mobile_data_use_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
+
+**2026-09-28 — Weblate checks pass.** `settings_theme_contrast_regular` → «Normal». Uploaded live.
+
+**2026-09-29 — full review (1586 units).** 29 flagged, and 27 were uploaded and verified live.
+Checked against Microsoft's pt-PT first. Four Microsoft errors were fixed: `help_text_around_me_how`
+(Microsoft copied Ahead of Me's "several points roughly ahead"), "Bluetooth com ou sem fios" → "com fios
+ou Bluetooth", typo «utiliza», agreement «anunciadas». Two drifted strings were restored to Microsoft's
+wording. Also fixed: the button names «Desativar Sinal» and «OK», the lost `*…*` in
+`help_text_routes_content_how_1`, and the {pt:…} markers in 4 templates (railway, tunnel, both
+entrance strings; the entrances had a fixed «do»). Brazilian and pre-reform forms were replaced:
+«balsas»/«Barcas» → «Terminal de ferry» (4 strings), «Chaveiro» → «Serralheiro»,
+«Rinha» → «Luta de galos», «Boliche» → «Bowling», «afastando-se» → «a afastar-se»,
+«Eléctrico» → «elétrico», «arquitectura» → «arquitetura». Held: Q6 (Landmark as «marco»).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 37 flagged, 31 applied in `656611873`. Findings: `translations/review/2026-09-30-all-languages/pt-findings.json`.
+Most serious fixed:
+- `faq_when_to_use_soundscape_answer`: "situational awareness" is rendered «deteção situacional» ("situational detection");
+- `settings_voice_command_listening_prompt_description`: "Speak a listening prompt" became «Reproduzir um aviso sonoro» ("play a sound");
+- `osm_biergarten`: «Jardim de cerveja» is a word-for-word calque with no meaning in Portuguese;
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+- `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).

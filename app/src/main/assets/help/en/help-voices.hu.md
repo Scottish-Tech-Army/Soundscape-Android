@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Hangok
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 100
 lang: hu
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Hangok
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+A Soundscape a telefonjára telepített bármelyik hangot használhatja. Hangok hozzáadásához nyissa meg a telefon beállításait, és keresse meg a *Szövegfelolvasó kimenete* elemet. Ha a Soundscape-ben szeretne hangot választani, nyissa meg a menüt, és válassza a *Beállítások*, majd a *Hang*, majd a *Hangok* lehetőséget.
 

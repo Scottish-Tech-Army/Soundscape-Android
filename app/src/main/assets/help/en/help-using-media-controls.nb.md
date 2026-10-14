@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Bruk mediekontroller
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 110
 lang: nb
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Bruk mediekontroller
 
-## What is it?
+Du kan styre Soundscape med medieknappene på hodetelefonene dine: *spill av/pause*, *neste* og *forrige*. Dette fungerer med kablede hodetelefoner og Bluetooth-hodetelefoner. Det fungerer også når Soundscape er i bakgrunnen eller telefonen er låst.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Ikke alle hodetelefoner har alle tre knappene.
 
-## When would I use it?
+Knappene styrer bare Soundscape når ingen annen app spiller av lyd. Hvis du spiller musikk eller en podkast, styrer knappene den appen i stedet.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Knappene kan fungere på to måter: *Originalmodus* eller *Lydmeny*. For å velge åpner du menyen og velger *Innstillinger* og deretter *Mediekontroller*.
 
-## How does it work?
+## Originalmodus
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Spill av/pause* slår av lyden på lydsignalet. Trykk igjen for å høre lydsignalet.
 
- Original mode. 
+*Neste* flytter lydsignalet til neste veipunkt når du følger en rute. Ellers leser den opp *Rundt meg*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Forrige* flytter lydsignalet til forrige veipunkt når du følger en rute. Ellers endrer den *Detaljnivå for meldinger*. Hvert trykk går ett nivå stillere: *Detaljert*, *Forenklet*, *Grunnleggende* og så *Lydløs*. Ett trykk til går tilbake til *Detaljert*. Soundscape sier navnet på det nye nivået.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Lydmeny
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Lydmenyen gir deg flere handlinger med de samme tre knappene. Soundscape leser hvert alternativ høyt.
 
+*Neste* går til neste alternativ. Etter det siste alternativet går den tilbake til det første.
 
+*Spill av/pause* velger alternativet du nettopp hørte.
 
-Audio menu. 
+*Forrige* endrer *Detaljnivå for meldinger*, akkurat som i *Originalmodus*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menyen starter med fire grupper: *Hør omgivelsene mine*, *Rutekontroll*, *Start rute* og *Start lydsignal*. Velg en gruppe for å høre handlingene i den. *Hør omgivelsene mine* og *Rutekontroll* slutter med *Toppmeny*, som tar deg tilbake til de fire gruppene.
 

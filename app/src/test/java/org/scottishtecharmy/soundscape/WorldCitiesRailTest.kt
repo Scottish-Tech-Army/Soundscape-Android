@@ -1,12 +1,11 @@
 package org.scottishtecharmy.soundscape
 
 import kotlinx.coroutines.runBlocking
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
@@ -22,7 +21,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
-private val enabledCategories = setOf(PLACES_AND_LANDMARKS_KEY, MOBILITY_KEY)
 
 private val Way.brunnel get() = properties?.get("brunnel")
 private val Way.service get() = properties?.get("service")
@@ -86,8 +84,8 @@ class WorldCitiesRailTest {
             val autoCallout = AutoCallout(null, null)
             for ((index, sample) in samples.withIndex()) {
                 runBlocking {
-                    gridState.locationUpdate(sample.location, enabledCategories, null)
-                    settlementGrid.locationUpdate(sample.location, enabledCategories, null)
+                    gridState.locationUpdate(sample.location, CalloutPoiSelection.EVERYTHING, null)
+                    settlementGrid.locationUpdate(sample.location, CalloutPoiSelection.EVERYTHING, null)
                 }
                 roadMatcher.filter(sample.location, gridState, FeatureCollection(), false, null, true)
                 railMatcher.filter(sample.location, gridState, FeatureCollection(), false, null)

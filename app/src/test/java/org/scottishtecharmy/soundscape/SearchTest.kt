@@ -12,6 +12,8 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OfflineGeocoder
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OsmTag
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SearchCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.StreetDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
@@ -20,6 +22,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.utils.process
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class SearchTest {
 
@@ -614,5 +617,74 @@ class SearchTest {
             val result = streetDescription.getLocationFromStreetNumber("21")
             assertEquals("21", result?.second)
         }
+    }
+
+    @Test
+    fun categorySearch() {
+        runBlocking {
+            // Milngavie town centre, with several pharmacies within a few hundred metres, none of
+            // which would be found by searching for "pharmacy" as a name
+            val currentLocation = LngLatAlt(-4.3159285, 55.9420645)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
+            val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
+            val pharmacy = SearchCategory("pharmacy", listOf(OsmTag(null, "pharmacy"), OsmTag("shop", "chemist")))
+
+            val results = offlineGeocoder.searchByCategory(pharmacy, null, currentLocation, null)
+            for (result in results)
+                println("${result.name} ${gridState.ruler.distance(currentLocation, result.location)}")
+            assertEquals(10, results.size)
+            assertTrue(results.any { it.name == "Boots" })
+            val distances = results.map { gridState.ruler.distance(currentLocation, it.location) }
+            assertEquals(distances.sorted(), distances)
+            assertTrue(distances[0] < 100.0)
+
+            val boots = offlineGeocoder.searchByCategory(pharmacy, "boots", currentLocation, null)
+            assertTrue(boots.isNotEmpty())
+            assertTrue(boots.all { it.name == "Boots" })
+        }
+    }
+
+    @Test
+    fun categorySearchNamesAnUnnamedPlaceByItsType() {
+        runBlocking {
+            // The toilets near the James Gale Memorial in Milngavie (OSM way 218224201) are an
+            // unnamed building. They used to be listed as "Milngavie" - their address - with
+            // nothing to say they were toilets, and twice, because the building crosses a tile
+            // boundary.
+            val currentLocation = LngLatAlt(-4.3092376, 55.9497288)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val toilets = SearchCategory("toilets", listOf(OsmTag(null, "toilets")))
+
+            val offlineGeocoder = OfflineGeocoder(
+                gridState,
+                settlementState,
+                TileSearch(offlineExtractPath, gridState, settlementState),
+                processor = { it.process() })
+
+            val results = offlineGeocoder.searchByCategory(toilets, null, currentLocation, null)
+            for (result in results)
+                println("toilets: '${result.name}' ${result.description} ${result.location}")
+            val nearest = results.first()
+            assertTrue(gridState.ruler.distance(currentLocation, nearest.location) < 20.0)
+            assertEquals(nearest.typeDescription?.text, nearest.name)
+            assertTrue(results.none { it.name == "Milngavie" })
+            assertTrue(
+                results.drop(1).none { gridState.ruler.distance(nearest.location, it.location) < 20.0 }
+            )
+        }
+    }
+
+    @Test
+    fun offlineMapCoverage() {
+        // Having offline maps downloaded is no use to a search somewhere none of them cover
+        val milngavie = LngLatAlt(-4.3159285, 55.9420645)
+        val gridState = getGridStateForLocation(milngavie, MAX_ZOOM_LEVEL, GRID_SIZE)
+        val tileSearch = TileSearch(offlineExtractPath, gridState, gridState)
+        assertTrue(tileSearch.hasOfflineMapAt(milngavie))
+        assertTrue(!tileSearch.hasOfflineMapAt(LngLatAlt(19.0402, 47.4979)))   // Budapest
+        assertTrue(!TileSearch("/nonexistent", gridState, gridState).hasOfflineMapAt(milngavie))
     }
 }

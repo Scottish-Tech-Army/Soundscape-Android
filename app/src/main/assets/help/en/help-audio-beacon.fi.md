@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Äänimajakka
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 60
 lang: fi
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Äänimajakka
 
-## What is it?
+Äänimajakka on ääni, joka kuuluu valitsemasi paikan suunnasta. Se kertoo, missä paikka on linnuntietä. Se ei anna käännös käännökseltä -ohjeita, joten valitset itse reittisi perille.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Majakan asettaminen
 
-## When would I use it?
+1. Etsi paikka. Käytä aloitusnäytön hakupalkkia tai kohtia *Lähiympäristön paikat*, *Merkitsimet* tai *Nykyinen sijainti*.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Valitse paikka, niin *Sijainnin tiedot* avautuu.
 
-## How does it work?
+3. Valitse *Käynnistä äänimajakka*.
 
-**To set a beacon :**
+Soundscape palaa aloitusnäyttöön ja majakka käynnistyy. Aloitusnäytössä näkyy paikan nimi ja etäisyys sinne.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Suunnan löytäminen
 
-**To remove the current beacon :**
+Majakan ääni muuttuu, kun olet kääntynyt paikkaa kohti tai kävelet suoraan sitä kohti. Löydät tämän äänen, kun pidät puhelinta vaakatasossa ja käännyt hitaasti. Voit valita majakalle toisen äänen kohdassa *Asetukset*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Majakan hiljentäminen
 
-**To mute the audible beacon :**
+Valitse aloitusnäytöstä *Hiljennä majakka*. Soundscape kertoo edelleen liikkuessasi, kuinka kaukana paikka on. Valitse *Poista majakan hiljennys*, niin kuulet majakan taas.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Majakan poistaminen
+
+Valitse aloitusnäytöstä *Pysäytä reitti*. Painikkeella on tämä nimi silloinkin, kun majakka ei ole osa reittiä.
+
+## Kun saavut perille
+
+Kun olet noin 12 metrin päässä paikasta, Soundscape kertoo siitä ja poistaa majakan. Puhelin ei pysty määrittämään sijaintiasi sitä tarkemmin. Jos haluat kuulla majakan uudelleen, aseta se uudelleen.
+
+Majakka, joka asetetaan alle 30 metrin päässä olevaan paikkaan, pysyy päällä, kunnes poistat sen.
 

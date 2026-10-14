@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: La meva ubicació
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 20
 lang: ca
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# La meva ubicació
 
-## What is it?
+*La meva ubicació* et diu on ets. Diu cap on mires o et desplaces, i després el carrer o l'adreça on ets. Fes-lo servir quan baixis d'un autobús, surtis d'un edifici o et desorientis.
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Si no t'estàs movent, apunta primer la part superior del telèfon cap on mires. Si el telèfon està bloquejat, o Soundscape no és a la pantalla, aguanta també el telèfon pla.
 

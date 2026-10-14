@@ -1,0 +1,666 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "To poważna aktualizacja aplikacji Soundscape. Tryb podróży został znacznie ulepszony. Podczas podróży samochodem lub autobusem Soundscape powiadamia teraz o numerach dróg, kierunku jazdy i pobliskich miejscowościach. Informuje też, gdy przekraczasz rzeki, kanały, estuaria i zatoki. Zaktualizuj swoje mapy offline, aby korzystać z tych nowych funkcji. Opisy przystanków autobusowych są teraz znacznie lepsze dla użytkowników w Wielkiej Brytanii. Tryb uśpienia może teraz budzić się automatycznie, gdy wykryje, że znów jesteś w ruchu. Nie musisz już pamiętać, aby wybudzić go samodzielnie. Zreorganizowaliśmy kod źródłowy aplikacji, dzięki czemu możemy zbudować aplikację iOS z tego samego kodu. Oznacza to, że w przyszłości będziemy mogli wydać aplikację iOS ze wszystkimi funkcjami, które stworzyliśmy dla Androida. Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomocą opcji Kontakt z pomocą techniczną w menu głównym.",
+  "suggested": "\nTo poważna aktualizacja aplikacji Soundscape.\n\nTryb podróży został znacznie ulepszony. Podczas podróży samochodem lub autobusem Soundscape powiadamia teraz o numerach dróg, kierunku jazdy i pobliskich miejscowościach. Informuje też, gdy przekraczasz rzeki, kanały, estuaria i zatoki. Zaktualizuj swoje mapy offline, aby korzystać z tych nowych funkcji. Opisy przystanków autobusowych są teraz znacznie lepsze dla użytkowników w Wielkiej Brytanii.\n\nTryb uśpienia może teraz budzić się automatycznie, gdy wykryje, że znów jesteś w ruchu. Nie musisz już pamiętać, aby wybudzić go samodzielnie.\n\nZreorganizowaliśmy kod źródłowy aplikacji, dzięki czemu możemy zbudować aplikację iOS z tego samego kodu. Oznacza to, że w przyszłości będziemy mogli wydać aplikację iOS ze wszystkimi funkcjami, które stworzyliśmy dla Androida.\n\nProsimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomocą opcji Kontakt z pomocą techniczną w menu głównym.\n",
+  "reason": "Formatting: the English paragraph breaks (real newlines, rendered as separate sentences/paragraphs) are all missing; the Polish is one run-on block.",
+  "category": "formatting"
+ },
+ {
+  "context": "directions_generic_train",
+  "source": "train",
+  "current": "pociąg",
+  "suggested": "linii kolejowej",
+  "reason": "Meaning/case: substituted into «Na %1$s…» templates, giving «Na pociąg» (\"for the train\"). «Na linii kolejowej» is grammatical and matches named lines («Na Argyle Line»).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_generic_tram",
+  "source": "tram",
+  "current": "tramwaj",
+  "suggested": "linii tramwajowej",
+  "reason": "Same as directions_generic_train: «Na tramwaj» → «Na linii tramwajowej».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape oferuje kilka sposobów kontrolowania tego, co i kiedy słyszysz:\\n\\n1. Natychmiastowe wyłączenie wszystkich dźwięków: stuknij dwoma palcami ekran, aby natychmiast wyłączyć wszystkie dźwięki, w tym aktualnie odtwarzane powiadomienia i dźwięk naprowadzający, jeśli jest włączony. Powiadomienia wznowią się automatycznie, gdy zbliżysz się do następnego skrzyżowania lub punktu zainteresowania, natomiast dźwięk naprowadzający nie. Aby ponownie usłyszeć naprowadzanie, wybierz na ekranie głównym przycisk *„Włącz dźwięk naprowadzający”*.\\n\\n2. Wyłączenie automatycznych powiadomień: gdy nie podróżujesz lub dotarłeś na miejsce, prawdopodobnie nie chcesz, aby Soundscape nadal informował Cię o otoczeniu. Zamiast zamykać aplikację, możesz przełączyć Soundscape w Tryb drzemki — obudzi się on ponownie, gdy opuścisz miejsce — albo w Tryb uśpienia — pozostanie wtedy wyłączony do momentu ręcznego ponownego uruchomienia. Alternatywnie, w menu wybierz *„Ustawienia”* i w sekcji *„Zarządzaj powiadomieniami”* ustaw *„Szczegółowość powiadomień”* na *„Wyciszony”*.\\n\\n3. Wyłączenie naprowadzania: zdarzają się sytuacje, gdy ustawisz cel, ale nie potrzebujesz włączonego dźwięku naprowadzającego. Na przykład możesz dokładnie wiedzieć, jak dotrzeć do celu, ale nadal chcieć otrzymywać automatyczne informacje o odległości, albo potrzebować naprowadzania jedynie w miarę zbliżania się do celu. W każdej z tych sytuacji możesz zdecydować, kiedy słyszeć naprowadzanie, przełączając na ekranie głównym przycisk *„Wycisz dźwięk naprowadzający”*/*„Włącz dźwięk naprowadzający”*.\\n\\nJeśli chcesz nadal korzystać z Soundscape, ale nie chcesz słyszeć automatycznych powiadomień, ustaw *„Szczegółowość powiadomień”* na *„Wyciszony”* w sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”* w menu. Jeśli natomiast nie zamierzasz używać Soundscape, możesz przełączyć aplikację w Tryb uśpienia lub Tryb drzemki, korzystając z przycisku *„Tryb uśpienia”* na ekranie głównym.",
+  "suggested": "Soundscape oferuje kilka sposobów kontrolowania tego, co i kiedy słyszysz:\\n\\n1. Natychmiastowe wyłączenie wszystkich dźwięków: stuknij dwukrotnie ekran dwoma palcami, aby natychmiast wyłączyć wszystkie dźwięki, w tym aktualnie odtwarzane powiadomienia i dźwięk naprowadzający, jeśli jest włączony. Powiadomienia wznowią się automatycznie, gdy zbliżysz się do następnego skrzyżowania lub punktu zainteresowania, natomiast dźwięk naprowadzający nie. Aby ponownie usłyszeć naprowadzanie, wybierz na ekranie głównym przycisk *„Włącz dźwięk naprowadzający”*.\\n\\n2. Wyłączenie automatycznych powiadomień: gdy nie podróżujesz lub jesteś już u celu, prawdopodobnie nie chcesz, aby Soundscape nadal informował Cię o otoczeniu. Zamiast zamykać aplikację, możesz przełączyć Soundscape w Tryb drzemki — obudzi się on ponownie, gdy opuścisz miejsce — albo w Tryb uśpienia — pozostanie wtedy wyłączony do momentu ręcznego ponownego uruchomienia. Alternatywnie, w menu wybierz *„Ustawienia”* i w sekcji *„Zarządzaj powiadomieniami”* ustaw *„Szczegółowość powiadomień”* na *„Wyciszony”*.\\n\\n3. Wyłączenie naprowadzania: zdarzają się sytuacje, gdy ustawisz cel, ale nie potrzebujesz włączonego dźwięku naprowadzającego. Na przykład możesz dokładnie wiedzieć, jak dotrzeć do celu, ale nadal chcieć otrzymywać automatyczne informacje o odległości, albo potrzebować naprowadzania jedynie w miarę zbliżania się do celu. W każdej z tych sytuacji możesz zdecydować, kiedy słyszeć naprowadzanie, przełączając na ekranie głównym przycisk *„Wycisz dźwięk naprowadzający”*/*„Włącz dźwięk naprowadzający”*.\\n\\nJeśli chcesz nadal korzystać z Soundscape, ale nie chcesz słyszeć automatycznych powiadomień, ustaw *„Szczegółowość powiadomień”* na *„Wyciszony”* w sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”* w menu. Jeśli natomiast nie zamierzasz używać Soundscape, możesz przełączyć aplikację w Tryb uśpienia lub Tryb drzemki, korzystając z przycisku *„Tryb uśpienia”* na ekranie głównym.",
+  "reason": "Meaning: the gesture is a two-finger DOUBLE tap; «stuknij dwoma palcami» drops \"double\", so the instruction is wrong. Also «dotarłeś» is masculine only (C15).",
+  "category": "meaning"
+ },
+ {
+  "context": "terms_of_use_medical_safety_disclaimer",
+  "source": "You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\\n\\nSafety Notice\\n\\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.",
+  "current": "Przyjmujesz do wiadomości, że Soundscape (1) nie jest zaprojektowany, przeznaczony ani udostępniony jako urządzenie medyczne oraz (2) nie jest zaprojektowany ani przeznaczony do zastąpienia profesjonalnej porady medycznej, diagnozy, leczenia ani oceny i nie powinien być używany jako zamiennik profesjonalnej porady medycznej, diagnozy, leczenia ani oceny.\\n\\nOstrzeżenie dotyczące bezpieczeństwa\\n\\nSoundscape jest narzędziem nawigacyjnym i nie powinien być używany zamiast umiejętności poruszania się, świadomości otoczenia oraz zdrowego rozsądku. Zachowaj ostrożność podczas poruszania się w swoim otoczeniu, ponieważ dane mapowe użyte programie Soundscape pochodzą od podmiotu trzeciego i mogą mieć ograniczoną dokładność.",
+  "suggested": "Przyjmujesz do wiadomości, że Soundscape (1) nie jest zaprojektowany, przeznaczony ani udostępniony jako urządzenie medyczne oraz (2) nie jest zaprojektowany ani przeznaczony do zastąpienia profesjonalnej porady medycznej, diagnozy, leczenia ani oceny i nie powinien być używany jako zamiennik profesjonalnej porady medycznej, diagnozy, leczenia ani oceny.\\n\\nOstrzeżenie dotyczące bezpieczeństwa\\n\\nSoundscape jest narzędziem nawigacyjnym i nie powinien być używany zamiast umiejętności poruszania się, świadomości otoczenia oraz zdrowego rozsądku. Zachowaj ostrożność podczas poruszania się w swoim otoczeniu, ponieważ dane mapowe użyte w programie Soundscape pochodzą od podmiotu trzeciego i mogą mieć ograniczoną dokładność.",
+  "reason": "Missing preposition: «użyte programie» → «użyte w programie».",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_2",
+  "source": "**Managing which callouts you hear :**\\n\\n To choose the types of things Soundscape will automatically call out, go to the *Settings* screen using the menu on the *Home* screen. The *Manage Callouts* section of the *Settings* screen is where you choose how much the app says with *Callout Detail*, whether it calls out *Streets and Junctions*, and which *Places to Call Out*. If you wish to turn off all callouts, set *Callout Detail* to *Silent*.",
+  "current": "**Zarządzanie powiadomieniami, które słyszysz :**\\n\\n Aby wybrać rodzaje obiektów, o których Soundscape będzie automatycznie powiadamiać, przejdź do ekranu *„Ustawienia”* z menu na ekranie *„Głównym”*. W sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”* wybierasz, jak dużo aplikacja mówi, za pomocą *„Szczegółowość powiadomień”*, czy włączone są *„Ulice i skrzyżowania”* oraz jakie są *„Powiadamiaj o miejscach”*. Jeśli chcesz wyłączyć wszystkie powiadomienia, ustaw *„Szczegółowość powiadomień”* na *„Wyciszony”*.",
+  "suggested": "**Zarządzanie powiadomieniami, które słyszysz :**\\n\\n Aby wybrać rodzaje obiektów, o których Soundscape będzie automatycznie powiadamiać, przejdź do ekranu *„Ustawienia”* z menu na ekranie głównym. W sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”* wybierasz, jak dużo aplikacja mówi (*„Szczegółowość powiadomień”*), czy powiadamia o ulicach i skrzyżowaniach (*„Ulice i skrzyżowania”*) oraz o jakich miejscach powiadamia (*„Powiadamiaj o miejscach”*). Jeśli chcesz wyłączyć wszystkie powiadomienia, ustaw *„Szczegółowość powiadomień”* na *„Wyciszony”*.",
+  "reason": "Grammar broke when the setting was renamed to the imperative «Powiadamiaj o miejscach»: «jakie są „Powiadamiaj o miejscach”» (\"what are Notify about places\"). Also «ekranie „Głównym”» declines a label that is not a UI name.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_road_names_answer",
+  "source": "To accommodate a variety of intersection layouts, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the names of the roads that go to the left, straight ahead, and to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection forms a sideways T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.",
+  "current": "Aby uwzględnić różne układy skrzyżowań, Soundscape opisuje skrzyżowania jako odcinki dróg wychodzące z jednego punktu. Aplikacja używa dźwięku przestrzennego, aby podać nazwy dróg prowadzących w lewo, prosto i w prawo — w tej właśnie kolejności. Jeśli opis skrzyżowania zaczyna się od drogi, po której jedziesz, zamiast od drogi po lewej, oznacza to, że mamy do czynienia ze skrzyżowaniem w kształcie leżącej litery T, gdzie droga, na której się znajdujesz, ciągnie się dalej, a inna droga przecina ją od prawej. Podobnie, jeśli opis zawiera tylko drogę po lewej i po prawej, oznacza to, że droga, którą jedziesz, kończy się skrzyżowaniem w kształcie litery T przed Tobą. Ten sposób opisu działa również wtedy, gdy nazwa drogi zmienia się na skrzyżowaniu.",
+  "suggested": "Aby uwzględnić różne układy skrzyżowań, Soundscape opisuje skrzyżowania jako odcinki dróg wychodzące z jednego punktu. Aplikacja używa dźwięku przestrzennego, aby podać nazwy dróg prowadzących w lewo, prosto i w prawo — w tej właśnie kolejności. Jeśli opis skrzyżowania zaczyna się od drogi, na której jesteś, zamiast od drogi po lewej, oznacza to, że mamy do czynienia ze skrzyżowaniem w kształcie leżącej litery T, gdzie droga, na której się znajdujesz, ciągnie się dalej, a inna droga przecina ją od prawej. Podobnie, jeśli opis zawiera tylko drogę po lewej i po prawej, oznacza to, że droga, na której jesteś, kończy się skrzyżowaniem w kształcie litery T przed Tobą. Ten sposób opisu działa również wtedy, gdy nazwa drogi zmienia się na skrzyżowaniu.",
+  "reason": "Meaning: «jedziesz» means driving/riding; this is a walking FAQ. English is neutral (\"the road you are on\").",
+  "category": "meaning"
+ },
+ {
+  "context": "search_synonyms_pharmacy",
+  "source": "pharmacy, chemist, drugstore",
+  "current": "apteka, apteki, drogeria",
+  "suggested": "apteka, apteki",
+  "reason": "Meaning: «drogeria» is a cosmetics/household shop (Rossmann-type), not a pharmacy; a user typing it would be sent to pharmacies.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_chemist",
+  "source": "Chemist Shop",
+  "current": "Apteka",
+  "suggested": "Drogeria",
+  "reason": "Meaning: OSM shop=chemist is a drugstore without a dispensary (Rossmann/Hebe in Poland), not a pharmacy. Announcing it as «Apteka» misleads a user looking for medicine.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_supported_headsets_question",
+  "source": "What headphones should I use with Soundscape?",
+  "current": "Jakie słuchawki powinienem używać z Soundscape?",
+  "suggested": "Jakich słuchawek używać z Soundscape?",
+  "reason": "Grammar and gender: «używać» takes the genitive («jakich słuchawek»), and «powinienem» is masculine only.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape ma funkcje i zalety przydatne w różnych sytuacjach i w różnym czasie. Użyteczność aplikacji dla Ciebie może też zmieniać się z czasem — sposób, w jaki korzystasz z niej dziś, może różnić się od tego za trzy miesiące. Często myślimy o aplikacjach z perspektywy: *jaki problem ta aplikacja pomaga rozwiązać?* Soundscape można z pewnością wykorzystać do konkretnych potrzeb — na przykład aby utrzymać właściwy kierunek do celu w drodze do niego, zorientować się w terenie po wyjściu ze stacji metra, odnaleźć się po wysiadce z auta czy sprawdzić nazwę ulicy lub odległość do najbliższego skrzyżowania. Filozofia Soundscape to jednak *oświetlanie świata dźwiękiem* — aplikacja ma działać zawsze, gdy jesteś poza domem, dostarczając świadomości otoczenia: nazw mijanych ulic, kierunku, w którym zmierzasz, czy nazw firm, które mijasz. W tym trybie nasi użytkownicy nazywają Soundscape *miłym towarzyszem*, który sprzyja *przypadkowym odkryciom*, pomaga *uzupełniać braki w mapie mentalnej* i daje większą *pewność podczas chodzenia*. Oto kilka przykładów, jak użytkownicy korzystają z Soundscape w codziennym życiu:\\n\\n„Soundscape pomogło mi wrócić na właściwą trasę po tym, jak wysiadłem z autobusu i poszedłem w złą stronę.”\\n\\n„Nawet w mieście, w którym mieszkam od 3 lat, dzięki Soundscape lepiej poznałem otoczenie.”\\n\\n„Dźwięk 3D wzbogaca moją wędrówkę — czuję większe połączenie z otoczeniem… teraz chętniej spróbuję nowej trasy, mając tą aplikację.”\\n\\n„Brakuje mi przypadkowych odkryć podczas spacerów. Soundscape to fajny dodatek — nie trzeba się starać, żeby usłyszeć, co jest wokół. Informacje relacyjne są przydatne i to świetna aplikacja do orientacji oraz eksploracji pasa handlowego.”\\n\\n„Użyłem Soundscape, żeby zlokalizować pub w centrum Yorku. Wykorzystałem różne opcje, najpierw, żeby go namierzyć, a potem faktycznie znaleźć. Doprowadziło mnie do drzwi na odległość około 3 metrów — rewelacja!”",
+  "suggested": "Soundscape ma funkcje i zalety przydatne w różnych sytuacjach i w różnym czasie. Użyteczność aplikacji dla Ciebie może też zmieniać się z czasem — sposób, w jaki korzystasz z niej dziś, może różnić się od tego za trzy miesiące. Często myślimy o aplikacjach z perspektywy: *jaki problem ta aplikacja pomaga rozwiązać?* Soundscape można z pewnością wykorzystać do konkretnych potrzeb — na przykład aby utrzymać właściwy kierunek do celu w drodze do niego, zorientować się w terenie po wyjściu ze stacji metra, odnaleźć się po wysiadce z auta czy sprawdzić nazwę ulicy lub odległość do najbliższego skrzyżowania. Filozofia Soundscape to jednak *oświetlanie świata dźwiękiem* — aplikacja ma działać zawsze, gdy jesteś poza domem, dostarczając świadomości otoczenia: nazw mijanych ulic, kierunku, w którym zmierzasz, czy nazw firm, które mijasz. W tym trybie nasi użytkownicy nazywają Soundscape *miłym towarzyszem*, który sprzyja *przypadkowym odkryciom*, pomaga *uzupełniać braki w mapie mentalnej* i daje większą *pewność podczas chodzenia*. Oto kilka przykładów, jak użytkownicy korzystają z Soundscape w codziennym życiu:\\n\\n„Soundscape pomogło mi wrócić na właściwą trasę po tym, jak wysiadłem z autobusu i poszedłem w złą stronę.”\\n\\n„Nawet w mieście, w którym mieszkam od 3 lat, dzięki Soundscape lepiej poznałem otoczenie.”\\n\\n„Dźwięk 3D wzbogaca moją wędrówkę — czuję większe połączenie z otoczeniem… teraz chętniej spróbuję nowej trasy, mając tę aplikację.”\\n\\n„Brakuje mi przypadkowych odkryć podczas spacerów. Soundscape to fajny dodatek — nie trzeba się starać, żeby usłyszeć, co jest wokół. Informacje relacyjne są przydatne i to świetna aplikacja do orientacji oraz eksploracji pasa handlowego.”\\n\\n„Użyłem Soundscape, żeby zlokalizować pub w centrum Yorku. Wykorzystałem różne opcje, najpierw, żeby go namierzyć, a potem faktycznie znaleźć. Doprowadziło mnie do drzwi na odległość około 3 metrów — rewelacja!”",
+  "reason": "Grammar: accusative of «ta» is «tę» («mając tę aplikację»). The masculine forms in the quoted testimonials are the speakers’ own and are fine.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_voice_command_listening_prompt_description",
+  "source": "Speak a listening prompt before voice recognition starts.",
+  "current": "Wypowiedz komunikat informujący o nasłuchiwaniu przed rozpoczęciem rozpoznawania mowy.",
+  "suggested": "Odtwarzaj komunikat o nasłuchiwaniu przed rozpoczęciem rozpoznawania mowy.",
+  "reason": "Meaning: imperative «Wypowiedz» tells the USER to speak a prompt; it is the app that speaks one.",
+  "category": "meaning"
+ },
+ {
+  "context": "number_decimal_separator_a11y",
+  "source": " point ",
+  "current": "przecinek",
+  "suggested": "przecinek",
+  "reason": "CROSS-LANGUAGE, not a Polish fix: English is \" point \" with surrounding spaces, and formatDecimal() concatenates it straight between digits. Every checked language (pl, de, fr, ru, uk… ~30) has lost the spaces, so VoiceOver gets «1przecinek5». Better fixed in code (pad the a11y separator with spaces) than in 45 files.",
+  "category": "formatting"
+ },
+ {
+  "context": "directions_away_from_settlement",
+  "source": "away from %1$s, %2$s behind you",
+  "current": "z dala od %1$s, %2$s za Tobą",
+  "suggested": "oddalając się od %1$s, %2$s za tobą",
+  "reason": "Meaning: «z dala od» means \"far away from\"/\"keep away from\", not \"moving away from\". Appended after «Poruszasz się na południe wzdłuż A81», the participle reads naturally. Also «Tobą» capital, unlike every other callout.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_towards_settlement",
+  "source": "towards %1$s, %2$s away",
+  "current": "w kierunku %1$s, %2$s dalej",
+  "suggested": "w kierunku %1$s, za %2$s",
+  "reason": "Meaning: «5 km dalej» reads \"5 km further on\". «za %2$s» is the navigation idiom the corpus already uses («Skrzyżowanie za %1$s») and takes all plural forms (za 2 kilometry, za 5 kilometrów).",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_destination_beacons_how_1",
+  "source": "**To set a beacon :**\\n\\n First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "**Aby ustawić dźwięk naprowadzający:**\\n\\n Najpierw wyświetl szczegóły lokalizacji, wyszukując miejsce w pasku wyszukiwania lub stukając w jeden z przycisków *„Miejsca w pobliżu”*, *„Znaczniki i trasy”* lub *„Bieżąca lokalizacja”* i wybierając lokalizację. Następnie na ekranie *„Szczegóły lokalizacji”* wybierz przycisk *„Uruchom dźwięk naprowadzający”*. Stuknięcie tego przycisku spowoduje powrót do ekranu głównego i włączenie słyszalnego naprowadzania dochodzącego z kierunku wybranej lokalizacji. Nazwa miejsca wraz z jego odległością oraz fizycznym adresem (jeśli dostępny) zostaną teraz wyświetlone na ekranie głównym.",
+  "suggested": "**Aby ustawić dźwięk naprowadzający:**\\n\\n Najpierw wyświetl szczegóły lokalizacji, wyszukując miejsce w pasku wyszukiwania lub stukając w jeden z przycisków *„Miejsca w pobliżu”*, *„Znaczniki i trasy”* lub *„Bieżąca lokalizacja”* i wybierając lokalizację. Następnie na ekranie *„Szczegóły lokalizacji”* wybierz przycisk *„Uruchom dźwięk naprowadzający”*. Stuknięcie tego przycisku spowoduje powrót do ekranu głównego i włączenie dźwięku naprowadzającego dochodzącego z kierunku wybranej lokalizacji. Nazwa miejsca wraz z jego odległością oraz fizycznym adresem (jeśli dostępny) zostaną teraz wyświetlone na ekranie głównym.",
+  "reason": "Beacon meaning (C19): the thing \"coming from the direction\" is the SOUND, so «dźwięk naprowadzający», as in the parallel faq_what_can_I_set_answer.",
+  "category": "meaning"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "Udostępniłem Ci znacznik Soundscape: \"%1$s\".\\n\\nAby otworzyć w Soundscape użyj %2$s.\\n\\n Aby otworzyć w Mapach Google użyj %3$s.",
+  "suggested": "Udostępniam Ci znacznik Soundscape: \"%1$s\".\\n\\nAby otworzyć w Soundscape, użyj %2$s.\\n\\n Aby otworzyć w Mapach Google, użyj %3$s.",
+  "reason": "Gender: «Udostępniłem» forces a male sender (C15); present tense «Udostępniam» is neutral. Plus two missing commas before «użyj».",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_assistant_commands",
+  "source": "You can ask Soundscape to:\\n\\nDescribe *My Location*, what is *Around Me*, or what is *Ahead of Me*.\\n\\nCall out the saved markers near you.\\n\\nStart one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.\\n\\nSet an audio beacon on one of your saved markers by name, or switch the beacon off.\\n\\nSet the callout detail to *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\nRead back the names of your saved routes or your saved markers.",
+  "current": "Możesz poprosić Soundscape, aby:\\n\\nOpisał *Moja lokalizacja*, co jest *Wokół mnie* albo co jest *Przede mną*.\\n\\nPowiadomił o zapisanych znacznikach w twoim pobliżu.\\n\\nUruchomił jedną z twoich zapisanych tras po nazwie, przeszedł do następnego punktu trasy, wrócił do poprzedniego, wyciszył dźwięk naprowadzający albo zatrzymał trasę.\\n\\nUstawił dźwięk naprowadzający na jednym z twoich zapisanych znaczników po nazwie albo go wyłączył.\\n\\nUstawił szczegółowość powiadomień na *Wyciszony*, *Podstawowy*, *Uproszczony* albo *Szczegółowy*, aby zmienić, jak dużo Soundscape mówi podczas chodzenia. *Wyciszony* wyłącza automatyczne powiadomienia.\\n\\nOdczytał nazwy twoich zapisanych tras albo twoich zapisanych znaczników.",
+  "suggested": "Możesz poprosić Soundscape, aby:\\n\\nOpisał twoją lokalizację (*Moja lokalizacja*), to, co jest *Wokół mnie*, albo to, co jest *Przede mną*.\\n\\nPowiadomił o zapisanych znacznikach w twoim pobliżu.\\n\\nUruchomił jedną z twoich zapisanych tras po nazwie, przeszedł do następnego punktu trasy, wrócił do poprzedniego, wyciszył dźwięk naprowadzający albo zatrzymał trasę.\\n\\nUstawił dźwięk naprowadzający na jednym z twoich zapisanych znaczników po nazwie albo go wyłączył.\\n\\nUstawił szczegółowość powiadomień na *Wyciszony*, *Podstawowy*, *Uproszczony* albo *Szczegółowy*, aby zmienić, jak dużo Soundscape mówi podczas chodzenia. *Wyciszony* wyłącza automatyczne powiadomienia.\\n\\nOdczytał nazwy twoich zapisanych tras albo twoich zapisanych znaczników.",
+  "reason": "Grammar: «Opisał *Moja lokalizacja*» uses the button name as a nominative object of «opisać».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_difference_from_map_apps_answer",
+  "source": "Soundscape provides an ambient description of your surroundings in aid of exploration and wayfinding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.\\n\\nInstead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.",
+  "current": "Soundscape zapewnia dźwiękowy opis otoczenia, pomagający w eksploracji i orientacji w terenie. Dzięki dźwiękowi przestrzennemu Soundscape powiadamia o punktach zainteresowania, parkach, ulicach i skrzyżowaniach z kierunku, w którym faktycznie się one znajdują w Twoim bezpośrednim otoczeniu podczas spaceru. Na przykład, jeśli miniesz sklep po prawej, jego nazwa zostanie odtworzona dochodząc z prawej strony. Gdy zbliżysz się do skrzyżowania, usłyszysz nazwy poszczególnych ulic odtwarzane z kierunku, w którym biegną — zaczynając od lewej, dalej prosto, a na końcu z prawej.\\n\\nZamiast wskazówek krok po kroku, które często oferują inne aplikacje mapowe, Soundscape odtwarza dźwięk naprowadzający z kierunku Twojego celu, co pozwala Ci dotrzeć tam w sposób, który najbardziej Ci odpowiada, korzystając ze zwiększonej świadomości otoczenia i położenia celu. Soundscape został zaprojektowany tak, by działać w tle — możesz dzięki temu korzystać z aplikacji oferującej nawigację krok po kroku, podczas gdy Soundscape nadal dostarcza informacji o otoczeniu w trakcie drogi do celu.",
+  "suggested": "Soundscape zapewnia dźwiękowy opis otoczenia, pomagający w eksploracji i orientacji w terenie. Dzięki dźwiękowi przestrzennemu Soundscape powiadamia o punktach zainteresowania, parkach, ulicach i skrzyżowaniach z kierunku, w którym faktycznie się one znajdują w Twoim bezpośrednim otoczeniu podczas spaceru. Na przykład, jeśli miniesz sklep po prawej, usłyszysz jego nazwę z prawej strony. Gdy zbliżysz się do skrzyżowania, usłyszysz nazwy poszczególnych ulic odtwarzane z kierunku, w którym biegną — zaczynając od lewej, dalej prosto, a na końcu z prawej.\\n\\nZamiast wskazówek krok po kroku, które często oferują inne aplikacje mapowe, Soundscape odtwarza dźwięk naprowadzający z kierunku Twojego celu, co pozwala Ci dotrzeć tam w sposób, który najbardziej Ci odpowiada, korzystając ze zwiększonej świadomości otoczenia i położenia celu. Soundscape został zaprojektowany tak, by działać w tle — możesz dzięki temu korzystać z aplikacji oferującej nawigację krok po kroku, podczas gdy Soundscape nadal dostarcza informacji o otoczeniu w trakcie drogi do celu.",
+  "reason": "Grammar: dangling participle «zostanie odtworzona dochodząc» (the participle has no matching subject).",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_prompt_message",
+  "source": "You are ready for your first walk with Soundscape. To get started, choose a nearby destination and start the audio beacon — you’ll hear it playing in the direction of your destination.",
+  "current": "Jesteś gotowy na pierwszy spacer z Soundscape. Na początek wybierz pobliskie miejsce docelowe i uruchom dźwięk naprowadzający — usłyszysz go dochodzącego z kierunku Twojego celu.",
+  "suggested": "Wszystko gotowe na pierwszy spacer z Soundscape. Na początek wybierz pobliskie miejsce docelowe i uruchom dźwięk naprowadzający — usłyszysz go dochodzącego z kierunku Twojego celu.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint). Same shape as first_launch_prompt_title «Wszystko gotowe!».",
+  "category": "gender"
+ },
+ {
+  "context": "help_config_voices_content",
+  "source": "Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *Settings* from the main menu, expand the *Audio* section, and then select *Voices*.",
+  "current": "Soundscape może korzystać z dowolnych głosów, które pobrałeś na telefon z Androidem w ustawieniach syntezy mowy (TTS). W aplikacji Soundscape, aby wybrać głos inny niż domyślny głos Androida, przejdź z menu głównego do *„Ustawienia”*, rozwiń sekcję *„Dźwięk”*, a następnie wybierz *„Wybór głosu TTS”*.",
+  "suggested": "Soundscape może korzystać z dowolnych głosów pobranych na telefon z Androidem w ustawieniach syntezy mowy (TTS). W aplikacji Soundscape, aby wybrać głos inny niż domyślny głos Androida, przejdź z menu głównego do *„Ustawienia”*, rozwiń sekcję *„Dźwięk”*, a następnie wybierz *„Wybór głosu TTS”*.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_offline_limitations_description",
+  "source": "Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.",
+  "current": "Powiadomienia nadal działają w miejscach, przez które wcześniej przechodziłeś, ponieważ Soundscape zapisuje je w Twojej historii powiadomień. Możesz też ustawić naprowadzanie lub utworzyć znacznik dla miejsc już zapisanych w historii powiadomień.",
+  "suggested": "Powiadomienia nadal działają w okolicach odwiedzonych już wcześniej, ponieważ Soundscape zapisuje je w Twojej historii powiadomień. Możesz też ustawić naprowadzanie lub utworzyć znacznik dla miejsc już zapisanych w historii powiadomień.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_destination_beacons_when",
+  "source": "Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.",
+  "current": "Ustawienie naprowadzania dźwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.",
+  "suggested": "Ustawienie naprowadzania dźwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz otrzymywać informacje o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint). The «(-a)» bracket is read aloud by the screen reader.",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_markers_content_3",
+  "source": "To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *Nearby markers* button at the bottom of the home screen to hear a spatial callout of marked places around you. You can even set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.",
+  "current": "Aby doświadczyć działania oznaczonych miejsc, Soundscape będzie automatycznie powiadamiał o oznaczonych miejscach, gdy je mijasz lub się do nich zbliżasz, możesz też użyć przycisku *„Bliskie znaczniki”* na dole ekranu głównego, aby usłyszeć przestrzenne komunikaty o oznaczonych miejscach wokół Ciebie. Możesz nawet ustawić dźwięk naprowadzający na dowolny oznaczony punkt. Wtedy usłyszysz znany dźwięk naprowadzający Soundscape i będziesz mógł nim sterować jak zwykle.",
+  "suggested": "Aby doświadczyć działania oznaczonych miejsc, Soundscape będzie automatycznie powiadamiał o oznaczonych miejscach, gdy je mijasz lub się do nich zbliżasz, możesz też użyć przycisku *„Bliskie znaczniki”* na dole ekranu głównego, aby usłyszeć przestrzenne komunikaty o oznaczonych miejscach wokół Ciebie. Możesz nawet ustawić dźwięk naprowadzający na dowolny oznaczony punkt. Wtedy usłyszysz znany dźwięk naprowadzający Soundscape i możesz nim sterować jak zwykle.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_routes_content_what",
+  "source": "Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.",
+  "current": "Trasy to ciąg punktów trasy. Po dotarciu do każdego punktu zostaniesz poinformowany, a dźwięk naprowadzający automatycznie przełączy się na następny punkt.",
+  "suggested": "Trasy to ciąg punktów trasy. Soundscape poinformuje cię o dotarciu do każdego punktu, a dźwięk naprowadzający automatycznie przełączy się na następny punkt.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "faq_markers_function_answer",
+  "source": "Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *Current Location* button on the home screen and then selecting *Save as Marker*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *Places Nearby* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *Location Details* screen. On this screen, select the button called *Save as Marker*.",
+  "current": "Znaczniki to miejsca, które zapisałeś. Mogą to być miejsca dostępne w aplikacji lub całkowicie nowe lokalizacje, które dodałeś samodzielnie. Możesz zapisać swoją bieżącą lokalizację jako znacznik, wybierając na ekranie głównym przycisk *„Bieżąca lokalizacja”*, a następnie *„Zapisz jako znacznik”*. Inne lokalizacje możesz zapisać, wyszukując je w pasku wyszukiwania lub znajdując je za pomocą przycisku *„Miejsca w pobliżu”*, które również znajdują się na ekranie głównym Soundscape. Po znalezieniu miejsca wybierz je, aby przejść do ekranu *„Szczegóły lokalizacji”*. Na tym ekranie naciśnij przycisk *„Zapisz jako znacznik”*.",
+  "suggested": "Znaczniki to zapisane przez ciebie miejsca. Mogą to być miejsca dostępne w aplikacji lub całkowicie nowe lokalizacje dodane przez ciebie. Możesz zapisać swoją bieżącą lokalizację jako znacznik, wybierając na ekranie głównym przycisk *„Bieżąca lokalizacja”*, a następnie *„Zapisz jako znacznik”*. Inne lokalizacje możesz zapisać, wyszukując je w pasku wyszukiwania lub znajdując je za pomocą przycisku *„Miejsca w pobliżu”*, które również znajdują się na ekranie głównym Soundscape. Po znalezieniu miejsca wybierz je, aby przejść do ekranu *„Szczegóły lokalizacji”*. Na tym ekranie naciśnij przycisk *„Zapisz jako znacznik”*.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "faq_miss_a_callout_answer",
+  "source": "Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the home screen. At the bottom of this screen, there is a section for *Recent Callouts* where the callout you missed will be listed.",
+  "current": "Soundscape posiada listę Twoich ostatnich powiadomień, dzięki czemu możesz odsłuchać powiadomienia, które mogłeś przegapić. Aby ją znaleźć, stuknij pasek wyszukiwania na ekranie głównym. Na dole tego ekranu znajduje się sekcja *Ostatnie powiadomienia*, w której będzie wymienione powiadomienie, które przegapiłeś.",
+  "suggested": "Soundscape posiada listę Twoich ostatnich powiadomień, dzięki czemu możesz odsłuchać powiadomienia, które mogły ci umknąć. Aby ją znaleźć, stuknij pasek wyszukiwania na ekranie głównym. Na dole tego ekranu znajduje się sekcja *Ostatnie powiadomienia*, w której będzie wymienione pominięte powiadomienie.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "faq_why_does_beacon_disappear_answer",
+  "source": "Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.",
+  "current": "Dźwięk naprowadzający w Soundscape jest zasadniczo wskazówką kierunkową, informującą, gdzie znajduje się Twój cel względem kierunku, w którym jesteś zwrócony. Gdy Soundscape nie jest pewny, w którą stronę jesteś zwrócony, zmniejsza głośność naprowadzania. Najczęściej dzieje się tak, gdy cały czas chodziłeś z telefonem schowanym w kieszeni lub torbie i nagle przestaniesz się poruszać, na przykład by przejść przez ulicę. Dźwięk naprowadzający stanie się głośniejszy, gdy znów zaczniesz iść lub jeśli przytrzymasz telefon płasko i skierujesz go w kierunku, w którym jesteś zwrócony.",
+  "suggested": "Dźwięk naprowadzający w Soundscape jest zasadniczo wskazówką kierunkową, informującą, gdzie znajduje się Twój cel względem kierunku, w którym patrzysz. Gdy Soundscape nie jest pewny, w którą stronę patrzysz, zmniejsza głośność naprowadzania. Najczęściej dzieje się tak, gdy idziesz z telefonem schowanym w kieszeni lub torbie i nagle przestajesz się poruszać, na przykład by przejść przez ulicę. Dźwięk naprowadzający stanie się głośniejszy, gdy znów zaczniesz iść lub jeśli przytrzymasz telefon płasko i skierujesz go w kierunku, w którym patrzysz.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint). «patrzysz» is what the same help texts already use («w kierunku, w którym patrzysz»).",
+  "category": "gender"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "Nie — nie musisz. Podczas chodzenia możesz schować telefon do torby lub kieszeni albo umieścić go tam, gdzie jest wygodnie. Soundscape wykorzysta kierunek Twojego ruchu, aby określić, które powiadomienia odtwarzać po lewej, a które po prawej stronie. Gdy przestaniesz się poruszać, Soundscape nie będzie wiedział, w którą stronę jesteś zwrócony. Jeśli dźwięk naprowadzający jest włączony, zauważysz, że przycisza się, dopóki nie zaczniesz znowu iść. W każdej chwili możesz wyciągnąć telefon, aby nacisnąć przyciski lokalizacji i eksploracji na dole ekranu głównego, ale pamiętaj, aby trzymać telefon płasko — ekranem do góry i górną krawędzią skierowaną w kierunku, w którym patrzysz. W tej „płaskiej” pozycji Soundscape użyje kompasu telefonu, aby ustalić, w którą stronę jesteś zwrócony, i zapewnić dokładne, przestrzenne komunikaty. Jeśli naprowadzanie jest włączone, zauważysz także, że jego głośność wraca do pełnej skali.",
+  "suggested": "Nie — nie musisz. Podczas chodzenia możesz schować telefon do torby lub kieszeni albo umieścić go tam, gdzie jest wygodnie. Soundscape wykorzysta kierunek Twojego ruchu, aby określić, które powiadomienia odtwarzać po lewej, a które po prawej stronie. Gdy przestaniesz się poruszać, Soundscape nie będzie wiedział, w którą stronę patrzysz. Jeśli dźwięk naprowadzający jest włączony, zauważysz, że przycisza się, dopóki nie zaczniesz znowu iść. W każdej chwili możesz wyciągnąć telefon, aby nacisnąć przyciski lokalizacji i eksploracji na dole ekranu głównego, ale pamiętaj, aby trzymać telefon płasko — ekranem do góry i górną krawędzią skierowaną w kierunku, w którym patrzysz. W tej „płaskiej” pozycji Soundscape użyje kompasu telefonu, aby ustalić, w którą stronę patrzysz, i zapewnić dokładne, przestrzenne komunikaty. Jeśli naprowadzanie jest włączone, zauważysz także, że jego głośność wraca do pełnej skali.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "faq_tip_beacon_quiet",
+  "source": "If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.",
+  "current": "Jeśli włożysz telefon do kieszeni i się zatrzymasz, dźwięk naprowadzający przycicha, ponieważ Soundscape nie wie, w którą stronę jesteś zwrócony. Aby to naprawić, zacznij znów iść albo wyjmij telefon i trzymaj go płasko.",
+  "suggested": "Jeśli włożysz telefon do kieszeni i się zatrzymasz, dźwięk naprowadzający przycicha, ponieważ Soundscape nie wie, w którą stronę patrzysz. Aby to naprawić, zacznij znów iść albo wyjmij telefon i trzymaj go płasko.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_my_location_what",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "Przycisk *„Moja lokalizacja”* szybko podaje informacje, które pomogą ustalić, gdzie się aktualnie znajdujesz. *„Moja lokalizacja”* informuje o Twojej bieżącej pozycji, w tym o kierunku, w którym jesteś zwrócony, o pobliskich drogach i skrzyżowaniach oraz o pobliskich punktach zainteresowania.",
+  "suggested": "Przycisk *„Moja lokalizacja”* szybko podaje informacje, które pomogą ustalić, gdzie się aktualnie znajdujesz. *„Moja lokalizacja”* informuje o Twojej bieżącej pozycji, w tym o kierunku, w którym patrzysz, o pobliskich drogach i skrzyżowaniach oraz o pobliskich punktach zainteresowania.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_my_location_when",
+  "source": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "current": "„Moja lokalizacja” jest przydatna, gdy musisz ustalić, gdzie jesteś lub w którą stronę świata jesteś zwrócony.",
+  "suggested": "„Moja lokalizacja” jest przydatna, gdy musisz ustalić, gdzie jesteś lub w którą stronę świata patrzysz.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Moja lokalizacja”. To działa jak kompas, informując aplikację, w którym kierunku jesteś zwrócony. Po prostu naciśnij przycisk „Moja lokalizacja” i słuchaj.",
+  "suggested": "Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Moja lokalizacja”. To działa jak kompas, informując aplikację, w którym kierunku patrzysz. Po prostu naciśnij przycisk „Moja lokalizacja” i słuchaj.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Bliskie znaczniki”. To działa jak kompas, informując aplikację o kierunku, w którym jesteś zwrócony. Po prostu naciśnij przycisk „Bliskie znaczniki” i usłyszysz do czterech znaczników w swojej okolicy.",
+  "suggested": "Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Bliskie znaczniki”. To działa jak kompas, informując aplikację o kierunku, w którym patrzysz. Po prostu naciśnij przycisk „Bliskie znaczniki” i usłyszysz do czterech znaczników w swojej okolicy.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk *„Wokół mnie”*. To działa jak kompas, informując aplikację, w którą stronę jesteś zwrócony. Po prostu stuknij przycisk *„Wokół mnie”* i usłyszysz cztery punkty zainteresowania rozmieszczone wokół Ciebie.",
+  "suggested": "Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk *„Wokół mnie”*. To działa jak kompas, informując aplikację, w którą stronę patrzysz. Po prostu stuknij przycisk *„Wokół mnie”* i usłyszysz cztery punkty zainteresowania rozmieszczone wokół Ciebie.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Przede mną”. To działa jak kompas, informując aplikację o kierunku, w którym jesteś zwrócony. Po prostu naciśnij przycisk „Przede mną” i usłyszysz kilka punktów zainteresowania rozmieszczonych mniej więcej przed Tobą.",
+  "suggested": "Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Przede mną”. To działa jak kompas, informując aplikację o kierunku, w którym patrzysz. Po prostu naciśnij przycisk „Przede mną” i usłyszysz kilka punktów zainteresowania rozmieszczonych mniej więcej przed Tobą.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "ios_permission_motion",
+  "source": "Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings.",
+  "current": "Soundscape wykorzystuje dane ruchu, aby wykryć kierunek, w którym jesteś zwrócony, i dopasować powiadomienia głosowe do Twojego otoczenia.",
+  "suggested": "Soundscape wykorzystuje dane ruchu, aby wykryć kierunek, w którym patrzysz, i dopasować powiadomienia głosowe do Twojego otoczenia.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "tour_create_marker_done",
+  "source": "Great! When creating a marker, you can edit its name and add notes. Try that now, and when you're ready, tap Done.",
+  "current": "Świetnie! Podczas tworzenia znacznika możesz edytować jego nazwę i dodać notatki. Zrób to teraz, a gdy będziesz gotowy, stuknij „Gotowe”.",
+  "suggested": "Świetnie! Podczas tworzenia znacznika możesz edytować jego nazwę i dodać notatki. Zrób to teraz, a na koniec stuknij „Gotowe”.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "tour_stop_beacon",
+  "source": "When you're ready to stop the beacon, tap the Stop Route button.",
+  "current": "Gdy będziesz gotowy, aby zatrzymać naprowadzanie, stuknij przycisk „Zatrzymaj trasę”.",
+  "suggested": "Gdy zechcesz zatrzymać naprowadzanie, stuknij przycisk „Zatrzymaj trasę”.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "tour_markers_and_routes",
+  "source": "You have now successfully created a marker. Let's play an audio beacon to guide us to that location. Tap Markers and Routes, just below Places Nearby.",
+  "current": "Utworzyłeś teraz znacznik. Uruchomimy dźwięk naprowadzający, który poprowadzi nas do tej lokalizacji. Stuknij „Znaczniki i trasy”, tuż pod „Miejsca w pobliżu”.",
+  "suggested": "Znacznik został utworzony. Uruchomimy dźwięk naprowadzający, który poprowadzi nas do tej lokalizacji. Stuknij „Znaczniki i trasy”, tuż pod „Miejsca w pobliżu”.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "tour_markers",
+  "source": "The Markers and Routes screen has two tabs. One tab lists routes, which are playlists of markers. The other tab lists individual markers. Tap Markers to switch to that tab and find the marker you created.",
+  "current": "Ekran „Znaczniki i trasy” ma dwie karty. Jedna wyświetla trasy, czyli listy odtwarzania znaczników. Druga wyświetla pojedyncze znaczniki. Stuknij „Znaczniki”, aby przejść na tę kartę i znaleźć znacznik, który utworzyłeś.",
+  "suggested": "Ekran „Znaczniki i trasy” ma dwie karty. Jedna wyświetla trasy, czyli listy odtwarzania znaczników. Druga wyświetla pojedyncze znaczniki. Stuknij „Znaczniki”, aby przejść na tę kartę i znaleźć utworzony przed chwilą znacznik.",
+  "reason": "Gender (C15): masculine-only form addressed to the user; the corpus has already been made neutral elsewhere (ui_action_button_nearby_markers_acc_hint).",
+  "category": "gender"
+ },
+ {
+  "context": "directions_facing_n",
+  "source": "Facing north",
+  "current": "Jesteś zwrócony na północ",
+  "suggested": "Jesteś zwrócony na północ",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_facing_ne",
+  "source": "Facing northeast",
+  "current": "Jesteś zwrócony na północny wschód",
+  "suggested": "Jesteś zwrócony na północny wschód",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_facing_e",
+  "source": "Facing east",
+  "current": "Jesteś zwrócony na wschód",
+  "suggested": "Jesteś zwrócony na wschód",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_facing_se",
+  "source": "Facing southeast",
+  "current": "Jesteś zwrócony na południowy wschód",
+  "suggested": "Jesteś zwrócony na południowy wschód",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_facing_s",
+  "source": "Facing south",
+  "current": "Jesteś zwrócony na południe",
+  "suggested": "Jesteś zwrócony na południe",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_facing_sw",
+  "source": "Facing southwest",
+  "current": "Jesteś zwrócony na południowy zachód",
+  "suggested": "Jesteś zwrócony na południowy zachód",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_facing_w",
+  "source": "Facing west",
+  "current": "Jesteś zwrócony na zachód",
+  "suggested": "Jesteś zwrócony na zachód",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_facing_nw",
+  "source": "Facing northwest",
+  "current": "Jesteś zwrócony na północny zachód",
+  "suggested": "Jesteś zwrócony na północny zachód",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_facing_n",
+  "source": "Facing north along %1$s",
+  "current": "Stoisz zwrócony na północ wzdłuż %1$s",
+  "suggested": "Stoisz zwrócony na północ wzdłuż %1$s",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_facing_ne",
+  "source": "Facing northeast along %1$s",
+  "current": "Stoisz zwrócony na północny wschód wzdłuż %1$s",
+  "suggested": "Stoisz zwrócony na północny wschód wzdłuż %1$s",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_facing_e",
+  "source": "Facing east along %1$s",
+  "current": "Stoisz zwrócony na wschód wzdłuż %1$s",
+  "suggested": "Stoisz zwrócony na wschód wzdłuż %1$s",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_facing_se",
+  "source": "Facing southeast along %1$s",
+  "current": "Stoisz zwrócony na południowy wschód wzdłuż %1$s",
+  "suggested": "Stoisz zwrócony na południowy wschód wzdłuż %1$s",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_facing_s",
+  "source": "Facing south along %1$s",
+  "current": "Stoisz zwrócony na południe wzdłuż %1$s",
+  "suggested": "Stoisz zwrócony na południe wzdłuż %1$s",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_facing_sw",
+  "source": "Facing southwest along %1$s",
+  "current": "Stoisz zwrócony na południowy zachód wzdłuż %1$s",
+  "suggested": "Stoisz zwrócony na południowy zachód wzdłuż %1$s",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_facing_w",
+  "source": "Facing west along %1$s",
+  "current": "Stoisz zwrócony na zachód wzdłuż %1$s",
+  "suggested": "Stoisz zwrócony na zachód wzdłuż %1$s",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_facing_nw",
+  "source": "Facing northwest along %1$s",
+  "current": "Stoisz zwrócony na północny zachód wzdłuż %1$s",
+  "suggested": "Stoisz zwrócony na północny zachód wzdłuż %1$s",
+  "reason": "Gender (C15), needs a reviewer: «(Jesteś/Stoisz) zwrócony» is masculine only, in 16 frequently spoken callouts. Neutral candidates: «Patrzysz na północ (wzdłuż %1$s)» or «Stoisz twarzą na północ». Ask on questions-pl.md rather than apply, since it changes how a core callout sounds.",
+  "category": "gender"
+ },
+ {
+  "context": "ui_action_button_my_location",
+  "source": "My\\nLocation",
+  "current": "Moja\\npozycja",
+  "suggested": "Moja\\nlokalizacja",
+  "reason": "Terminology: the button says «Moja pozycja» but directions_my_location, the tutorial and every help text tell the user to press «Moja lokalizacja». Same fix PL-I1 made for Nearby Markers. Check that «lokalizacja» fits the square button.",
+  "category": "terminology"
+ },
+ {
+  "context": "siri_short_detail",
+  "source": "Detail",
+  "current": "Szczegóły",
+  "suggested": "Szczegółowość",
+  "reason": "Terminology: this shortcut sets the Callout Detail level, which is «Szczegółowość powiadomień» everywhere else. «Szczegóły» means \"Details\".",
+  "category": "terminology"
+ },
+ {
+  "context": "beacon_styles_signal_slow",
+  "source": "Signal (Slow)",
+  "current": "Pulsujący (wolny)",
+  "suggested": "Sygnał (wolny)",
+  "reason": "Terminology: the note says \"Signal\" is used as in beacon_styles_signal («Sygnał»), so the slow variants should say «Sygnał (wolny)», like the «Pałeczka» family.",
+  "category": "terminology"
+ },
+ {
+  "context": "beacon_styles_signal_very_slow",
+  "source": "Signal (Very Slow)",
+  "current": "Pulsujący (bardzo wolny)",
+  "suggested": "Sygnał (bardzo wolny)",
+  "reason": "Same as beacon_styles_signal_slow.",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_name_continues_ahead",
+  "source": "%1$s, continues ahead",
+  "current": "%1$s prowadzi prosto",
+  "suggested": "%1$s, biegnie prosto",
+  "reason": "Consistency: its siblings are «%1$s, biegnie w lewo/prawo» (comma + «biegnie»); this one drops the comma and switches verb.",
+  "category": "terminology"
+ },
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s łącząca %2$s i %3$s",
+  "suggested": "%1$s, łączy %2$s i %3$s",
+  "reason": "Grammar: feminine «łącząca» fails when %1$s is masculine («Chodnik łącząca…») or plural («Schody łącząca…»). C21: don’t make %1$s agree. A finite verb has no gender.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_atm",
+  "source": "ATM",
+  "current": "ATM",
+  "suggested": "Bankomat",
+  "reason": "Terminology: Polish says «bankomat» (the search synonyms, filter_banks and banks_places_nearby_description all do). TTS reads «ATM» as letters or as a word.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_block",
+  "source": "Block",
+  "current": "Blok",
+  "suggested": "Blok betonowy",
+  "reason": "Meaning: barrier=block is a concrete block on the path. On its own, «Blok» means a block of flats in Polish.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_milestone",
+  "source": "Milestone",
+  "current": "Kamień milowy",
+  "suggested": "Słup milowy",
+  "reason": "Meaning: «kamień milowy» is almost only used figuratively (\"a milestone\"). The roadside object is «słup milowy» (or «kamień kilometrowy»).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_pedestrian_street",
+  "source": "Pedestrian Street",
+  "current": "Droga dla pieszych",
+  "suggested": "Deptak",
+  "reason": "Meaning: in Polish road law «droga dla pieszych» is a footway. A pedestrianised street is «deptak».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_rc_car",
+  "source": "Remote-Control Car",
+  "current": "Samochód zdalnie sterowany",
+  "suggested": "Tor dla samochodów RC",
+  "reason": "Meaning: sport=rc_car tags a track or venue, not a toy car. Siblings use the venue form («Tor kartingowy», «Tor BMX»).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_winery",
+  "source": "Winery",
+  "current": "Winiarnia",
+  "suggested": "Winnica",
+  "reason": "Meaning: «winiarnia» is a wine bar. craft=winery is a winery/wine producer.",
+  "category": "meaning"
+ },
+ {
+  "context": "search_synonyms_cafe",
+  "source": "cafe, coffee shop, coffee",
+  "current": "kawiarnia, kawa, cukiernia",
+  "suggested": "kawiarnia, kawa, kawiarenka",
+  "reason": "Meaning: «cukiernia» is a cake shop (shop=pastry/confectionery), so it makes cafe search return the wrong places.",
+  "category": "meaning"
+ },
+ {
+  "context": "search_button_current_location_accessibility_hint",
+  "source": "preview, mark, or share your current location with a friend",
+  "current": "wyświetlić podgląd, oznaczyć lub udostępnić swoją bieżącą lokalizację ze znajomym",
+  "suggested": "wyświetlić podgląd, oznaczyć lub udostępnić znajomemu swoją bieżącą lokalizację",
+  "reason": "Calque: «udostępnić … ze znajomym» copies English \"share with\"; Polish takes the dative («udostępnić znajomemu»).",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_beacon_message_1",
+  "source": "When navigating with Soundscape, you will hear the audio beacon in the direction of your destination. By following its sound, you will always know which way to go.",
+  "current": "Podczas nawigacji z Soundscape usłyszysz dźwięk naprowadzający dochodzący z kierunku Twojego miejsca docelowego. Podążając za tym dźwiękiem zawsze będziesz wiedzieć, w którą stronę iść.",
+  "suggested": "Podczas nawigacji z Soundscape usłyszysz dźwięk naprowadzający dochodzący z kierunku Twojego miejsca docelowego. Podążając za tym dźwiękiem, zawsze będziesz wiedzieć, w którą stronę iść.",
+  "reason": "Punctuation: a participle clause needs a comma («Podążając za tym dźwiękiem, zawsze…»).",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_cardinal_north_abb",
+  "source": "N",
+  "current": "Płn",
+  "suggested": "Płn.",
+  "reason": "Consistency: every other abbreviation ends in a dot («Płd.», «Wsch.»).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_2",
+  "source": "**Walking to a specific location :**\\n\\n When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.",
+  "current": "**Idąc do określonego miejsca :**\\n\\nGdy zmierzasz do konkretnego punktu, automatyczne powiadomienia o skrzyżowaniach mogą być szczególnie przydatne. Powiadomienia o skrzyżowaniach informują o układzie skrzyżowań podczas zbliżania się do nich i potwierdzają, którą ulicą się poruszasz, gdy je opuszczasz.",
+  "suggested": "**W drodze do określonego miejsca :**\\n\\nGdy zmierzasz do konkretnego punktu, automatyczne powiadomienia o skrzyżowaniach mogą być szczególnie przydatne. Powiadomienia o skrzyżowaniach informują o układzie skrzyżowań podczas zbliżania się do nich i potwierdzają, którą ulicą się poruszasz, gdy je opuszczasz.",
+  "reason": "Style: the sibling headings are nouns («Odkrywanie nowej okolicy»). A dangling «Idąc…» participle doesn’t work as a heading.",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Tworzenie trasy :**\\n\\nNajpierw przejdź do *Znaczniki i trasy*, wybierz kartę *Trasy*, a następnie naciśnij przycisk *Nowa trasa*. Nadaj trasie nazwę i opcjonalny opis, a następnie dodawaj punkty trasy w trakcie tworzenia lub wybierz je ze swojej listy Znaczników. Kolejność punktów trasy możesz zmienić w dowolnym momencie, edytując trasę.",
+  "suggested": "**Tworzenie trasy :**\\n\\nNajpierw przejdź do *Znaczniki i trasy*, wybierz kartę *Trasy*, a następnie naciśnij przycisk *Nowa trasa*. Nadaj trasie nazwę i opcjonalny opis, a następnie dodawaj punkty trasy w trakcie tworzenia lub wybierz je ze swojej listy znaczników. Kolejność punktów trasy możesz zmienić w dowolnym momencie, edytując trasę.",
+  "reason": "Capital mid-sentence, copied from English \"Markers\"; the rest of the corpus writes «znaczniki» in lower case.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_what",
+  "source": "You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.",
+  "current": "Do niektórych funkcji Soundscape możesz uzyskać dostęp za pomocą przycisków sterowania mediami w słuchawkach. Funkcjonalność działa z dowolnymi słuchawkami przewodowymi lub Bluetooth, które mają przyciski sterowania mediami, takie jak Odtwarzaj, Pauza, Dalej, Wstecz i inne. Różne modele słuchawek mogą mieć różny zestaw przycisków — zapoznaj się z poniższą listą akcji, aby sprawdzić, które z nich są dostępne dla Ciebie.",
+  "suggested": "Do niektórych funkcji Soundscape możesz uzyskać dostęp za pomocą przycisków sterowania mediami w słuchawkach. Funkcjonalność działa z dowolnymi słuchawkami przewodowymi lub Bluetooth, które mają przyciski sterowania mediami, takie jak Odtwórz, Pauza, Następny, Poprzedni i inne. Różne modele słuchawek mogą mieć różny zestaw przycisków — zapoznaj się z poniższą listą akcji, aby sprawdzić, które z nich są dostępne dla Ciebie.",
+  "reason": "Consistency: help_text_remote_control_how names the same buttons «Odtwórz/Pauza», «Następny», «Poprzedni».",
+  "category": "terminology"
+ },
+ {
+  "context": "settings_theme_contrast_regular",
+  "source": "Regular",
+  "current": "Niski",
+  "suggested": "Standardowy",
+  "reason": "Meaning: \"Regular\" is the default contrast, not a \"low\" one. «Standardowy / Średni / Wysoki» keeps the ladder.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_head_tracking_description",
+  "source": "Position spatial audio relative to where your head is facing, using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.",
+  "current": "Ustawiaj dźwięk przestrzenny względem kierunku, w którym zwrócona jest Twoja głowa, korzystając z danych ruchu pochodzących z obsługiwanych słuchawek AirPods, okularów Bose Frames lub zewnętrznego modułu IMU przez Bluetooth. Kalibruje się automatycznie podczas marszu.",
+  "suggested": "Ustawia dźwięk przestrzenny względem kierunku, w którym zwrócona jest Twoja głowa, korzystając z danych ruchu pochodzących z obsługiwanych słuchawek AirPods, okularów Bose Frames lub zewnętrznego modułu IMU przez Bluetooth. Kalibruje się automatycznie podczas marszu.",
+  "reason": "Register: the imperative «Ustawiaj» tells the user to do it. A setting description in Polish uses the 3rd person («Ustawia…», which is how «Kalibruje się…» continues).",
+  "category": "tone"
+ },
+ {
+  "context": "tour_my_location",
+  "source": "Now that you know how to use Markers, let's look at some of the other features. At the bottom of the screen are four buttons. We'll try each one. The button on the left is My Location. It describes your current location. Try tapping it now.",
+  "current": "Skoro wiesz już, jak korzystać ze znaczników, przyjrzyjmy się innym funkcjom. Na dole ekranu znajdują się cztery przyciski. Wypróbujemy każdy z nich. Przyciskiem po lewej jest „Moja lokalizacja”. Opisuje on Twoje bieżące położenie. Stuknij go teraz.",
+  "suggested": "Skoro wiesz już, jak korzystać ze znaczników, przyjrzyjmy się innym funkcjom. Na dole ekranu znajdują się cztery przyciski. Wypróbujemy każdy z nich. Przycisk po lewej to „Moja lokalizacja”. Opisuje on Twoje bieżące położenie. Stuknij go teraz.",
+  "reason": "Style: the instrumental «Przyciskiem po lewej jest…» is stilted; the siblings say «Kolejny przycisk to…».",
+  "category": "tone"
+ },
+ {
+  "context": "directions_entering_tunnel",
+  "source": "Entering a tunnel",
+  "current": "Wejście do tunelu",
+  "suggested": "Wejście do tunelu",
+  "reason": "Human look: «Wejście do tunelu» reads as a noun (a sign: \"tunnel entrance\"). Mostly heard in a vehicle, where «Wjazd do tunelu» is natural, but the note says it also covers footpath tunnels. Ask which to use, or whether «Tunel» alone is enough.",
+  "category": "tone"
+ },
+ {
+  "context": "directions_entering_tunnel_named",
+  "source": "Entering %1$s",
+  "current": "Wejście do %1$s",
+  "suggested": "Wejście do %1$s",
+  "reason": "Human look: same question as directions_entering_tunnel («Wejście do %1$s»).",
+  "category": "tone"
+ },
+ {
+  "context": "beacon_styles_drop",
+  "source": "Drop",
+  "current": "Upadek",
+  "suggested": "Upadek",
+  "reason": "Human look: «Upadek» (\"a fall\") is an odd name for a sound, and next to a blind user’s safety concerns it may evoke falling over. The sound is an object dropped on a hard floor. «Stuknięcie» or «Kropla»? Ask.",
+  "category": "tone"
+ },
+ {
+  "context": "osm_trunk",
+  "source": "Trunk Road",
+  "current": "Droga główna",
+  "suggested": "Droga główna",
+  "reason": "Human look: OSM Poland uses highway=trunk for expressways («droga ekspresowa», S-roads), and osm_highway is also «Droga główna», so two different road classes sound the same. Ask whether trunk should be «Droga ekspresowa».",
+  "category": "terminology"
+ }
+]

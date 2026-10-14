@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Marcos
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
+nav_order: 80
 lang: pt
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Marcos
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Um marco é um local que guardou. Pode ser qualquer local que seja importante para si: a sua casa, uma paragem de autocarro, a entrada de um edifício ou uma passadeira.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+O Soundscape anuncia os seus marcos quando passa por eles. Pode definir um sinal de áudio num marco, adicioná-lo a uma rota ou ouvir os mais próximos com o botão *Marcos nas Proximidades*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Criar Marcos
+
+1. Selecione *Marcos* no ecrã principal e depois selecione *Novo*.
+
+2. Escolha *Localização Atual*, ou um local em *Locais nas Proximidades*.
+
+3. Altere o nome, se quiser, e adicione notas. O Soundscape lê as notas juntamente com o marco.
+
+4. Selecione *OK*.
+
+Também pode guardar qualquer local que encontre. Abra os respetivos *Detalhes da Localização* e selecione *Guardar como Marco*.
+
+## Personalizar Marcos
+
+Selecione o marco no ecrã *Marcos* e depois selecione *Editar Marco*. Pode alterar o nome, as notas e a posição, ou selecionar *Eliminar Marco*. Eliminar um marco também o remove das suas rotas.
 

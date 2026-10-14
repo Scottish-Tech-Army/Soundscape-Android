@@ -10,7 +10,9 @@ machine-translated: true
 
 # Opombe ob izdaji
 
-Soundscape 2.0 je velika izdaja in je trenutno v zaprti beta različici. Glavna sprememba je, da ima
+Soundscape 2.0 je velika izdaja in je zdaj v odprti beta različici za Android.
+To pomeni, da lahko do beta različice dostopa kdor koli, preprosto tako, da obišče Trgovino Play [tukaj](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Glavna sprememba je, da ima
 Soundscape zdaj kaj koristnega povedati tudi, ko potujete z avtomobilom, avtobusom ali vlakom, in ne
 le, ko hodite peš. Poleg tega je bilo opravljenega veliko manjšega dela pri tem, kako so opisani
 kraji, dodanih je dvajset novih jezikov in dolg je seznam popravkov.
@@ -24,14 +26,28 @@ Opombe za starejše različice so na strani
   premikate s hitrostjo, in opisuje vaše potovanje namesto neposredne okolice.
 * **Obvestilo, ko prečkate vode in železniške proge.** Reke, kanali, zalivi in železniške proge se
   najavijo, ko jih prečkate — peš in med vožnjo.
+* **Izberite, koliko Soundscape govori.** Nova nastavitev *Raven podrobnosti obvestil* naredi
+  Soundscape tišji na prometnih krajih, v *Krajih za oznanjanje* pa izberete, o katerih vrstah krajev
+  želite slišati. Raven podrobnosti lahko med hojo spreminjate z gumbi na slušalkah.
+* **Vedite, kako daleč je naslednje križišče.** Križišča so najavljena na enakomerni razdalji, ko se
+  jim približujete, obvestilo pa zdaj pove, kako daleč je robnik.
+* **Iščite vrsto kraja ali koordinate.** Poiščite »lekarna« ali »avtobusno postajališče« in našli
+  boste najbližje, ne glede na ime, ali pa prilepite koordinate, povezavo do zemljevida ali Plus Code.
+* **Ločena gumba za Oznake in Poti.** Zaslon *Oznake in poti* z dvema zavihkoma je razdeljen na
+  zaslon *Oznake* in zaslon *Poti*, vsak z lastnim gumbom na domačem zaslonu. Zaslon Oznake ima gumb
+  *Nova* za shranjevanje vaše trenutne lokacije ali kraja v bližini.
+* **Odprite kraj v drugi aplikaciji za zemljevide**, na primer v Google Zemljevidih, iz podrobnosti
+  lokacije ali iz seznamov.
+* **Več o svetilniku na domačem zaslonu.** Zdaj prikazuje razdaljo in smer ter ima dejanja za
+  bralnik zaslona, s katerimi svetilnik oznanite, izveste več o njem ali ga shranite kot oznako.
 * **Boljši naslovi in imena krajev.** Kraji brez lastnega naslova zdaj dobijo ulico in območje, na
   katerem so, hišne številke se pripišejo pravi strani ulice, avtobusna postajališča v Veliki
   Britaniji pa uporabljajo svoja uradna imena.
 * **Dvajset novih jezikov**, skupaj torej 46. Prevedeno je tudi to dokumentacijsko spletno mesto.
-* **Bujenje ob odhodu.** Način spanja lahko zdaj znova zbudi Soundscape, ko zapustite kraj, kjer ste
-  ga uspavali.
+* **Prebudi ob odhodu.** Ko Soundscape preklopite v način spanja, ga novi gumb *Prebudi ob odhodu*
+  namesto tega preklopi v način dremeža, in aplikacija se sama prebudi, ko odidete.
 * **Krajše, bolj naravne razdalje**, z večjimi enotami, ko se premikate hitro.
-* **Hitrejši izhod.** *Izhod iz Soundscapea* je zdaj na vrhu glavnega menija.
+* **Hitrejši izhod.** *Zapri Soundscape* je zdaj na vrhu glavnega menija.
 * **Izboljšave zemljevidov brez povezave**, vključno s posodobitvijo že prenesenega zemljevida in
   zemljevidom razpoložljivih regij na tem spletnem mestu.
 * **Veliko dela na dostopnosti** s TalkBackom, zlasti pri uvodnih zaslonih.
@@ -58,10 +74,10 @@ Med potovanjem boste slišali:
 
 * **Kje ste**, občasno — cesto, po kateri vozite, in svojo smer, na primer »Vožnja proti severu po
   M8«. Ceste s številko se najavijo s svojo številko, Soundscape pa iste ceste ne ponavlja vsakič, ko
-  se spremeni ime ulice.
+  se spremeni ime ulice. Cesta je imenovana šele, ko se po njej peljete kratek odsek, tako da niz zavojev skozi stanovanjsko sosesko ne prinese obvestila na vsakem vogalu.
 * **Mesta in vasi**, proti katerim se peljete, z razdaljo, pa tudi tiste, od katerih se oddaljujete
   ali jih zgolj mimoidete.
-* **Avtocestna vozlišča in izvoze**, ko jih dosežete.
+* **Avtocestna vozlišča in izvoze**, ko jih dosežete. Samo tista na smernem vozišču, po katerem vozite – ne na bližnji cesti ali na nasprotni strani avtoceste.
 * **Velike orientirje**, mimo katerih peljete, kot so parki, bolnišnice, stadioni in nakupovalna
   središča.
 * **Avtobusna, tramvajska in železniška postajališča**, mimo katerih peljete. Soundscape omenja le
@@ -78,10 +94,93 @@ Običajna obvestila za pešce — bližnje trgovine, prehodi za pešce in tako n
 namenoma zadržana, razdalje, na katerih se stvari najavijo, pa so precej povečane, da za nekaj izveste,
 preden ste že peljali mimo.
 
+### Križišča
+
+Najpogostejše vprašanje o obvestilih o križiščih je bilo, kako daleč je križišče v resnici. Soundscape
+vam zdaj to pove: »Križišče oddaljeno 30 metrov«. Razdalja se meri do robnika ulice, ki jo boste
+prečkali, in ne do sredine križišča, saj se tam dejansko ustavite.
+
+Obvestilo tudi pride na bolj stalnem mestu. Prej je lahko prišlo 45 metrov ali 10 metrov pred
+križiščem, ne da bi ju bilo mogoče ločiti. Zdaj počaka, da je križišče oddaljeno približno 30 metrov,
+tako da razdalja vsakič pomeni približno isto.
+
 ### Prečkanje voda in železniških prog
 
 Soundscape vam zdaj pove, ko prečkate reko, kanal, zaliv, zatok ali železniško progo. To deluje peš in
 med vožnjo ter zajema tako prehod pod kot nad, zato sta opisana tako brv kot podhod.
+
+### Izberite, koliko Soundscape govori
+
+Najpogosteje slišimo, da Soundscape na prometnih krajih, kot je mestno središče, govori preveč.
+Razdelek *Upravljanje zvočnih obvestil* v *Nastavitvah* ima zdaj namesto starega seznama stikal tri
+nastavitve:
+
+* **Raven podrobnosti obvestil** je Brez zvoka, Osnovno, Poenostavljeno ali Podrobno. *Podrobno* je tisto,
+  kar je Soundscape počel vedno, in je izhodišče. *Poenostavljeno* izpusti manjše poti in servisne ceste
+  ter se redkeje ponavlja. *Osnovno* najavi samo ulice, križišča in znamenitosti. *Brez zvoka* ne daje
+  nobenih samodejnih obvestil, svetilniki, poti in gumbi na domačem zaslonu pa še naprej delujejo.
+  Nadomešča staro stikalo *Omogoči zvočna obvestila*; če ste ga imeli izklopljenega, je raven
+  podrobnosti zdaj nastavljena na Brez zvoka. Ravni veljajo tudi med potovanjem: *Poenostavljeno* redkeje navaja cesto, po kateri vozite, *Osnovno* pa navaja samo glavne in oštevilčene ceste in izpusti avtobusna postajališča.
+* **Ulice in križišča** vklopi ali izklopi obvestila o križiščih in o ulici, na kateri ste.
+* **Kraji za oznanjanje** je seznam za označevanje: Vse, Znamenitosti, Javni prevoz, Hrana in pijača,
+  Trgovine z živili in mešanim blagom, Banke in bankomati ali Brez krajev. Označite jih, kolikor
+  želite, na primer znamenitosti in avtobusna postajališča. Vaše oznake so vedno najavljene.
+
+Primerna raven podrobnosti se med hojo spreminja, zato vam je ni treba spreminjati v Nastavitvah. S
+pritiskom na *Nazaj* na slušalkah znižate raven podrobnosti za eno stopnjo naenkrat, od Podrobno prek
+Poenostavljeno in Osnovno do Brez zvoka ter nato spet na Podrobno. Nova raven se vsakič izgovori. To deluje
+v obeh načinih upravljanja predstavnosti, zato so se gumbi na slušalkah malo spremenili:
+
+* V *Izvirnem načinu* *Naprej* zdaj najavi *Okoli mene*, ko se ne predvaja nobena pot, *Moja
+  lokacija* pa ni več na gumbih. Med predvajanjem poti se z *Naprej* in *Nazaj* še vedno premikate
+  med točkami poti.
+* V načinu *Zvočni meni* se *Nazaj* ne premika več nazaj po meniju. *Naprej* se po njem še vedno
+  pomika, *Predvajaj/Premor* pa še vedno izbira. Oznake in poti so v meniju zdaj razvrščene po imenu,
+  in ko eno od njih zaženete, se meni vrne na začetek, namesto da bi vas pustil globoko v seznamu.
+
+### Iskanje
+
+Iskalna vrstica zdaj razume več kot le imena krajev:
+
+* **Vrste krajev.** V svojem jeziku poiščite »lekarna«, »stranišče«, »bankomat« in podobno, Soundscape
+  pa bo navedel najbližje kraje te vrste, ne glede na ime. Kraji brez imena, kot je večina stranišč
+  in klopi, so navedeni po tem, kaj so, skupaj z naslovom.
+* **Koordinate, povezave do zemljevidov in Plus Codes.** Prilepite par števil, stopinje in minute,
+  povezavo iz Google Zemljevidov, Apple Zemljevidov ali OpenStreetMap ali Plus Code, in Soundscape vam
+  da natanko ta kraj. Sam par števil je mogoče brati v obe smeri, zato vam, kadar sta smiselni obe,
+  ponudi obe, bližjo najprej.
+* **Iskanje brez povezave.** Iskanje zdaj vedno pogleda tudi v prenesene zemljevide, ne le na
+  spletu, in tako najde veliko več krajev brez imena. Če iščete brez internetne povezave in nimate
+  zemljevida brez povezave za kraj, kjer ste, vam Soundscape to pove, namesto da preprosto ne bi našel
+  ničesar.
+
+### Odpiranje kraja v drugi aplikaciji
+
+Podrobnosti lokacije imajo nov gumb **Odpri v aplikaciji za zemljevide**, ki navede aplikacije za
+zemljevide in navigacijo v vašem telefonu. Označite *Vedno uporabi to aplikacijo* in gumb se spremeni,
+na primer v *Odpri v aplikaciji Google Zemljevidi*, in jo takoj odpre; dolg pritisk znova prikaže
+seznam. Seznama *Kraji v bližini* in *Oznake* imata tudi dejanji za bralnik zaslona *Odpri v
+aplikaciji…* in *Deli*.
+
+### Oznake in poti
+
+Oznake in poti so si prej delile en zaslon, *Oznake in poti*, z zavihkom za vsako, in zlahka ste
+izgubili pregled, na katerem zavihku ste. Zdaj sta to dva ločena zaslona, vsak z lastnim gumbom na
+domačem zaslonu: *Oznake* in *Poti*, tik pod *Kraji v bližini*.
+
+Vsak zaslon ima gumb *Nova* v zgornjem desnem kotu. Na zaslonu Poti ustvari pot, kot doslej. Na
+zaslonu Oznake je nov: ponudi *Trenutna lokacija* in kategorije *Kraji v bližini*, tako da lahko
+oznako shranite, ne da bi se najprej vrnili na domači zaslon in poiskali kraj. Bralniki zaslona
+gumba napovedo kot *Nova oznaka* in *Nova pot*.
+
+### Svetilnik in oznake
+
+* Svetilnik na domačem zaslonu zdaj prikazuje svojo **razdaljo in smer**, bralnik zaslona pa ga
+  prebere na primer kot »Svetilnik pri Milngavie Library, 390 metrov, jugovzhod«. Poti na enak način
+  prikazujejo razdaljo do trenutne točke poti.
+* Svetilnik ima tri **dejanja za bralnik zaslona**: *Oznani svetilnik* pove, kje je, *Več
+  informacij* doda naslov, *Dodaj med oznake* pa ga shrani.
+* **Oznako lahko znova premaknete** tako, da na zaslonu *Uredi oznako* povlečete zemljevid.
 
 ### Boljši naslovi in imena krajev
 
@@ -111,12 +210,13 @@ prevedenega besedila, da bi bila uporabna.
 
 Prevodi so delo skupnosti in veseli bomo vaše pomoči ali popravkov tam, kjer se kaj slabo bere. Vsako
 besedilo je mogoče izboljšati na
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Način spanja
 
-Način spanja je dobil **bujenje ob odhodu**. Ko Soundscape uspavate, ga lahko prosite, naj se zbudi,
-takoj ko zapustite območje. To je koristno, ko nekam prispete in želite mir, dokler znova ne krenete.
+Način spanja ima nov gumb, ***Prebudi ob odhodu***. Ko ga izberete, Soundscape preide v način
+dremeža: ostane tiho, dokler ne zapustite območja, nato pa se sam prebudi. To je koristno, ko nekam
+prispete in želite mir, dokler znova ne krenete.
 
 ### Razdalje in govor
 
@@ -148,12 +248,12 @@ postavljajo na konec, in smiselne namige tam, kjer jih sploh ni bilo.
 
 ### Meniji in navigacija
 
-* **Izhod iz Soundscapea** je zdaj prva postavka glavnega menija, namesto da bi bila niže.
+* **Zapri Soundscape** je zdaj prva postavka glavnega menija, namesto da bi bila niže.
 * Glavni meni ob strani ne pušča več vidnega pasu zaslona, kar je uporabnikom bralnikov zaslona dajalo
   zmedeno dodatno območje za dotik.
 * Sistemska poteza za nazaj ne preskoči več ravni, ko brskate po kategorijah v Kraji v bližini.
-* *Zvočni vodnik* se zdaj imenuje **vodeni vodnik**.
-* Nastavitve so pospravljene, *Ponastavi na privzeto* pa zdaj pravilno počisti vse.
+* *Zvočni vodnik* ima novo ime: **Vodena vadnica**.
+* Nastavitve so pospravljene, *Ponastavi nastavitve na privzete vrednosti* pa zdaj pravilno počisti vse.
 
 ### Stabilnost
 
@@ -169,6 +269,8 @@ utrjeno na telefonih, ki agresivno zapirajo aplikacije v ozadju.
 * **Glasovno upravljanje** je bilo odstranjeno. Nikoli ni delovalo dovolj zanesljivo, da bi ga bilo
   vredno obdržati, predstavnostne tipke na slušalkah pa pokrivajo večinoma isto — glejte
   [Pomoč pri uporabi predstavnostnih tipk]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape je pripravljen tudi na glasovne ukaze prek Gemini v Androidu 16 in novejših, vendar ne
+  bodo delovali, dokler Google njihove podpore v Gemini ne izda.
 * **Meni jezika v aplikaciji** je izginil. Soundscape zdaj sledi jeziku, nastavljenemu na vašem
   telefonu, kar je večina ljudi tako ali tako pričakovala. Če ga želite spremeniti, spremenite jezik
   telefona ali v njegovih nastavitvah določite jezik za posamezno aplikacijo, če to omogoča.

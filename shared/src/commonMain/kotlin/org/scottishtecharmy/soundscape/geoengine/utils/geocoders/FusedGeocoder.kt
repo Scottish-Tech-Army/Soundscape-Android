@@ -46,8 +46,10 @@ class FusedGeocoder(
             ).orEmpty()
         }
 
-        val deferredResults = geocoderList.map { geocoder ->
-            coroutineScope {
+        // One scope around all of the searches, so that they run at the same time: a scope each
+        // would wait for the first geocoder to finish before starting the next
+        val geocoderResults = coroutineScope {
+            geocoderList.map { geocoder ->
                 async {
                     geocoder.getAddressFromLocationName(
                         locationName,
@@ -55,10 +57,8 @@ class FusedGeocoder(
                         localizedStrings
                     )
                 }
-            }
+            }.awaitAll()
         }
-
-        val geocoderResults = deferredResults.awaitAll()
 
         val results: MutableList<LocationDescription> = mutableListOf()
         val platformResults = if (geocoderList.size > 1) geocoderResults[0] else null
@@ -119,8 +119,10 @@ class FusedGeocoder(
         localizedStrings: LocalizedStrings?,
         ignoreHouseNumbers: Boolean
     ): LocationDescription? {
-        val deferredResults = geocoderList.map { geocoder ->
-            coroutineScope {
+        // One scope around all of the lookups, so that they run at the same time: a scope each
+        // would wait for the first geocoder to finish before starting the next
+        val geocoderResults = coroutineScope {
+            geocoderList.map { geocoder ->
                 async {
                     geocoder.getAddressFromLngLat(
                         userGeometry,
@@ -128,10 +130,8 @@ class FusedGeocoder(
                         ignoreHouseNumbers
                     )
                 }
-            }
+            }.awaitAll()
         }
-
-        val geocoderResults = deferredResults.awaitAll()
 
         val platformResult = if (geocoderList.size > 1) geocoderResults[0] else null
         if (platformResult != null) {

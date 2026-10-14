@@ -11,4 +11,16 @@ interface TileSearcher {
         localizedStrings: LocalizedStrings?,
         settlementNames: Set<String>
     ): List<LocationDescription>
+
+    /**
+     * The places with a class or subclass in [values] nearest to [location], nearest first. When
+     * [name] isn't null, only those which it matches the name of.
+     */
+    fun searchByCategory(
+        location: LngLatAlt,
+        values: Set<String>,
+        name: String?,
+        localizedStrings: LocalizedStrings?,
+        limit: Int
+    ): List<LocationDescription> = emptyList()
 }

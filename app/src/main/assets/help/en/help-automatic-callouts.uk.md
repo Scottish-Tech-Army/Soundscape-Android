@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Автоматичні оголошення
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 70
 lang: uk
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Автоматичні оголошення
 
-## What is it?
+Поки ви йдете, Soundscape оголошує те, що є поблизу. Кожну назву ви чуєте з боку самого місця. Оголошення охоплюють вулиці, перехрестя, магазини, автобусні зупинки, орієнтири та ваші власні мітки.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Перехрестя
 
-## When would I use it?
+Коли ви наближаєтеся до перехрестя, Soundscape називає кожну дорогу, яка від нього відходить. Ви чуєте, яка дорога веде ліворуч, яка продовжується прямо, а яка веде праворуч.
 
-**Exploring a new area :**
+## Скільки ви чуєте
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Відкрийте меню й виберіть *Налаштування*, потім *Керування оголошеннями*. Параметр *Деталізація оголошень* має чотири рівні.
 
-**Walking to a specific location :**
+*Докладний* оголошує все, що є поблизу.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Спрощений* пропускає невеликі стежки та службові проїзди й рідше повторюється.
 
-**When you need silence :**
+*Основний* оголошує лише вулиці, перехрестя та орієнтири.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Беззвучний* не дає автоматичних оголошень. Маячки, маршрути та кнопки головного екрана працюють і далі.
 
-## How does it work?
+## Що ви чуєте
 
-**Turning callouts on or off :**
+У розділі *Керування оголошеннями* є ще два параметри. *Вулиці та перехрестя* вмикає або вимикає оголошення вулиць і перехресть. *Місця для оголошення* визначає, які види місць ви чуєте, наприклад *Громадський транспорт* або *Їжа та напої*. Ваші мітки оголошуються завжди.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Як зробити Soundscape тихішим
 
-**Managing which callouts you hear :**
+Натисніть *назад* на пульті навушників. Кожне натискання переходить на один рівень тихіше: *Докладний*, *Спрощений*, *Основний*, потім *Беззвучний*. Ще одне натискання повертає рівень *Докладний*. Див. сторінку довідки *Використання елементів керування медіа*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Зупинка Soundscape на деякий час
+
+Виберіть кнопку *Сон* угорі головного екрана. Soundscape перестає використовувати ваше місцезнаходження й мовчить, доки ви не виберете *Розбудити зараз*. Або виберіть *Розбудити при виході*, і Soundscape прокинеться, коли ви залишите місце, де перебуваєте.
+
+## У транспорті або в потязі
+
+Soundscape помічає, коли ви рухаєтеся зі швидкістю транспорту. Тоді він перестає оголошувати перехрестя та магазини поблизу, бо вони минають надто швидко. Натомість він оголошує дорогу, якою ви їдете, орієнтири, зупинки транспорту та станції, річки й тунелі.
 

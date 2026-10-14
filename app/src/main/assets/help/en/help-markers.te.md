@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: మార్కర్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 80
 lang: te
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# మార్కర్‌లు
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+మార్కర్ అనేది మీరు సేవ్ చేసిన స్థలం. అది మీకు ముఖ్యమైన ఏ స్థలమైనా కావచ్చు: మీ ఇల్లు, బస్ స్టాప్, భవన ప్రవేశ ద్వారం లేదా రోడ్డు దాటే చోటు.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+మీరు మీ మార్కర్‌లను దాటుతున్నప్పుడు Soundscape వాటిని కాలౌట్ చేస్తుంది. మీరు ఒక మార్కర్‌పై ఆడియో బీకాన్‌ను సెట్ చేయవచ్చు, దాన్ని ఒక రూట్‌కు జోడించవచ్చు, లేదా *సమీప మార్కర్‌లు* బటన్‌తో అత్యంత దగ్గరగా ఉన్నవాటిని వినవచ్చు.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## మార్కర్‌లను సృష్టించడం
+
+1. హోమ్ స్క్రీన్‌లో *మార్కర్‌లు* ఎంచుకుని, తర్వాత *కొత్తది* ఎంచుకోండి.
+
+2. *ప్రస్తుత స్థానం* ను, లేదా *సమీప స్థలాలు* నుండి ఒక స్థలాన్ని ఎంచుకోండి.
+
+3. కావాలంటే పేరు మార్చి, గమనికలు జోడించండి. Soundscape మార్కర్‌తో పాటు గమనికలను చదివి వినిపిస్తుంది.
+
+4. *పూర్తయింది* ఎంచుకోండి.
+
+మీరు కనుగొన్న ఏ స్థలాన్నైనా సేవ్ చేయవచ్చు. దాని *స్థాన వివరాలు* తెరిచి *మార్కర్‌గా సేవ్ చేయి* ఎంచుకోండి.
+
+## మార్కర్‌లను అనుకూలీకరించడం
+
+*మార్కర్‌లు* స్క్రీన్‌లో మార్కర్‌ను ఎంచుకుని, తర్వాత *మార్కర్‌ను సవరించు* ఎంచుకోండి. మీరు దాని పేరు, గమనికలు మరియు స్థానాన్ని మార్చవచ్చు, లేదా *మార్కర్‌ను తొలగించు* ఎంచుకోవచ్చు. మార్కర్‌ను తొలగిస్తే అది మీ రూట్‌ల నుండి కూడా తీసివేయబడుతుంది.
 

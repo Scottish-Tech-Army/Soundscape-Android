@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: العلامات
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 80
 lang: ar
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# العلامات
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+العلامة مكان حفظته. يمكن أن تكون أي مكان يهمّك: بيتك، أو محطة حافلات، أو مدخل مبنى، أو معبر مشاة.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+ينادي Soundscape بعلاماتك عندما تمرّ بها. يمكنك ضبط منارة صوتية على علامة، أو إضافتها إلى مسار، أو سماع الأقرب منها بزر *العلامات القريبة*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## إنشاء العلامات
+
+1. اختر *العلامات* في الشاشة الرئيسية، ثم اختر *جديد*.
+
+2. اختر *الموقع الحالي*، أو مكانًا من *الأماكن القريبة*.
+
+3. غيّر الاسم إن أردت، وأضف ملاحظات. يقرأ Soundscape الملاحظات مع العلامة.
+
+4. اختر *تم*.
+
+يمكنك أيضًا حفظ أي مكان تعثر عليه. افتح *تفاصيل الموقع* الخاصة به واختر *حفظ كعلامة*.
+
+## تخصيص العلامات
+
+اختر العلامة في شاشة *العلامات*، ثم اختر *تعديل العلامة*. يمكنك تغيير اسمها وملاحظاتها وموضعها، أو اختيار *حذف العلامة*. حذف العلامة يزيلها أيضًا من مساراتك.
 

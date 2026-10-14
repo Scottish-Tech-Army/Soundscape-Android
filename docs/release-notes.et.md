@@ -10,7 +10,9 @@ machine-translated: true
 
 # Väljalaskemärkmed
 
-Soundscape 2.0 on suur väljalase ja on praegu suletud beetajärgus. Kõige olulisem muudatus on see, et
+Soundscape 2.0 on suur väljalase ja on nüüd Androidis avatud beetajärgus.
+See tähendab, et beetaversiooni saab igaüks lihtsalt Play poest [siit](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Kõige olulisem muudatus on see, et
 nüüd on Soundscape'il midagi kasulikku öelda ka siis, kui sõidad autoga, bussiga või rongiga, mitte
 üksnes jalgsi liikudes. Lisaks on tehtud palju väiksemat tööd kohtade kirjeldamise osas, lisandunud on
 kakskümmend uut keelt ja pikk paranduste loend.
@@ -24,12 +26,26 @@ Vanemate versioonide märkmed on lehel
   sinu teekonda vahetu ümbruse asemel.
 * **Teade veekogude ja raudteede ületamisel.** Jõgesid, kanaleid, lahtesid ja raudteeliine
   teavitatakse nende ületamisel, nii jalgsi kui ka sõites.
+* **Valige, kui palju Soundscape räägib.** Uus seadistus *Häälteadete detailsus* muudab Soundscape'i
+  rahvarohketes kohtades vaiksemaks ning *Teatatavad kohad* laseb valida, milliseid kohti te kuulete.
+  Detailsust saab kõndimise ajal muuta kõrvaklappide nuppudega.
+* **Teadke, kui kaugel on järgmine ristmik.** Ristmikest teatatakse lähenedes ühtlasel kaugusel ning
+  häälteade ütleb nüüd, kui kaugel on äärekivi.
+* **Otsige kohatüüpi või koordinaate.** Otsige „apteek“ või „bussipeatus“, et leida lähimad, olgu
+  nende nimi mis tahes, või kleepige koordinaadid, kaardilink või Plus Code.
+* **Eraldi nupud markerite ja marsruutide jaoks.** Ekraan *Markerid ja marsruudid* ning selle kaks
+  vahekaarti on jagatud ekraaniks *Markerid* ja ekraaniks *Marsruudid*, kummalgi oma nupp avakuval.
+  Ekraanil Markerid on nupp *Uus*, millega saad salvestada oma praeguse asukoha või lähedal asuva
+  koha.
+* **Avage koht teises kaardirakenduses**, näiteks Google Mapsis, asukoha üksikasjadest või loenditest.
+* **Rohkem avakuva helimajakalt.** See näitab nüüd kaugust ja suunda ning sellel on ekraanilugeja
+  toimingud helimajakast teatamiseks, selle kohta rohkem kuulmiseks või markerina salvestamiseks.
 * **Paremad aadressid ja kohanimed.** Ilma oma aadressita kohad saavad nüüd tänava ja piirkonna, kus
   nad asuvad, majanumbrid seotakse tänava õige poolega ning Suurbritannia bussipeatused kasutavad oma
   ametlikke nimesid.
 * **Kakskümmend uut keelt**, kokku on neid nüüd 46. Ka see dokumentatsioonisait on tõlgitud.
-* **Ärkamine lahkumisel.** Unerežiim suudab nüüd Soundscape'i uuesti äratada, kui lahkud kohast, kus
-  ta magama panid.
+* **Ärka lahkumisel.** Kui lülitad Soundscape'i unerežiimi, paneb uus nupp *Ärka lahkumisel* selle
+  hoopis uinakurežiimi ja see ärkab ise, kui sa lahkud.
 * **Lühemad, loomulikumad vahemaad**, suuremate ühikutega, kui liigud kiiresti.
 * **Kiirem väljumine.** *Välju Soundscape'ist* on nüüd peamenüü ülaosas.
 * **Võrguühenduseta kaartide parandused**, sealhulgas juba alla laaditud kaardi kohapealne uuendamine
@@ -58,10 +74,10 @@ Sõidu ajal kuuled:
 
 * **Kus sa oled**, aeg-ajalt — tee, millel sõidad, ja sinu suund, näiteks „Sõit põhja suunas mööda
   M8-t”. Numbriga teed teatatakse nende numbriga ning Soundscape ei korda sama teed iga kord, kui
-  tänava nimi muutub.
+  tänava nimi muutub. Teed nimetatakse alles siis, kui oled sellel natuke maad sõitnud, nii et pöörete jada läbi elurajooni ei too kaasa teadet igal nurgal.
 * **Linnad ja külad**, mille poole liigud, koos vahemaaga, samuti need, millest eemaldud või millest
   lihtsalt möödud.
-* **Maanteesõlmed ja mahasõidud**, kui nendeni jõuad.
+* **Maanteesõlmed ja mahasõidud**, kui nendeni jõuad. Ainult need, mis on sinu sõidusuunas – mitte lähedal asuval teel ega kiirtee vastassuunas.
 * **Suured maamärgid**, millest möödud, näiteks pargid, haiglad, staadionid ja kaubanduskeskused.
 * **Bussi-, trammi- ja rongipeatused**, millest möödud. Soundscape mainib ainult sinupoolseid
   peatusi, sest teisel pool teed asuvad teenindavad vastassuunda.
@@ -77,11 +93,94 @@ Tavalised jalakäija teated — lähedal asuvad poed, ülekäigurajad ja nii eda
 meelega kinni, ning vahemaad, mille pealt asju teatatakse, on tublisti pikendatud, et saaksid millestki
 teada enne, kui oled sellest möödunud.
 
+### Ristmikud
+
+Kõige sagedasem küsimus ristmike häälteadete kohta oli, kui kaugel ristmik tegelikult on. Nüüd ütleb
+Soundscape selle teile: „Ristmik 30 meetri kaugusel“. Kaugust mõõdetakse selle tänava äärekivini,
+mida hakkate ületama, mitte ristmiku keskele, sest just seal te tegelikult peatute.
+
+Häälteade tuleb ka ühtlasemas kohas. Varem võis see tulla 45 või 10 meetri kaugusel, ilma et neid oleks
+saanud eristada. Nüüd ootab see, kuni ristmik on umbes 30 meetri kaugusel, nii et kaugus tähendab iga
+kord enam-vähem sama.
+
 ### Veekogude ja raudteede ületamine
 
 Soundscape ütleb nüüd, kui ületad jõe, kanali, lahe, abaja või raudteeliini. See toimib nii jalgsi kui
 sõites ning hõlmab niisama hästi alt läbi kui ka pealt üle minemist, nii et kirjeldatakse nii
 jalakäijate silda kui ka tunnelit.
+
+### Valige, kui palju Soundscape räägib
+
+Kõige sagedamini kuuleme Soundscape'i kohta, et see räägib rahvarohketes kohtades, näiteks kesklinnas,
+liiga palju. *Seadistuste* jaotises *Halda häälteateid* on nüüd vana lülitite loendi asemel kolm
+seadistust:
+
+* **Häälteadete detailsus** on Hääletu, Põhiline, Lihtsustatud või Üksikasjalik. *Üksikasjalik* on
+  see, mida Soundscape on alati teinud, ja sellest alustate. *Lihtsustatud* jätab välja väiksemad
+  rajad ja teenindusteed ning kordab ennast harvem. *Põhiline* teatab ainult tänavatest, ristmikest ja
+  maamärkidest. *Hääletu* ei tee üldse automaatseid häälteateid, kuid helimajakad, marsruudid ja
+  avakuva nupud töötavad edasi. See asendab vana lüliti *Luba häälteated*; kui see oli välja lülitatud,
+  on detailsus nüüd seatud olekusse Hääletu. Tasemed kehtivad ka sõites: *Lihtsustatud* nimetab teed, millel oled, harvemini ja *Põhiline* nimetab ainult põhi- ja numbriga teid ning jätab bussipeatused välja.
+* **Tänavad ja ristmikud** lülitab sisse või välja häälteated ristmike ja tänava kohta, millel olete.
+* **Teatatavad kohad** on märgitav loend: Kõik, Maamärgid, Ühistransport, Toit ja jook, Toidupoed ja
+  väikepoed, Pangad ja sularahaautomaadid või Ühtegi kohta. Märkige nii palju, kui soovite, näiteks
+  maamärgid ja bussipeatused. Teie markeritest teatatakse alati.
+
+Sobiv detailsus muutub kõndimise ajal, nii et selle muutmiseks ei pea seadistustesse minema.
+Kõrvaklappide nupp *Eelmine* vähendab häälteadete detailsust korraga ühe astme võrra, Üksikasjalikust
+Lihtsustatu ja Põhilise kaudu Hääletuni ning siis uuesti Üksikasjalikuks. Uus tase öeldakse iga kord.
+See töötab meedianuppude mõlemas režiimis, mistõttu kõrvaklappide nupud on veidi muutunud:
+
+* *Algses režiimis* teatab *Järgmine* nüüd *Minu ümber*, kui ühtegi marsruuti ei esitata, ja *Minu
+  asukoht* pole enam nuppudel. Marsruudi esitamise ajal liiguvad *Järgmine* ja *Eelmine* endiselt
+  teekonnapunktide vahel.
+* *Helimenüü* režiimis ei liigu *Eelmine* enam menüüs tagasi. *Järgmine* liigub endiselt menüüs edasi
+  ja *Esita/Paus* valib endiselt. Menüüs on markerid ja marsruudid nüüd nime järgi sorditud ning pärast
+  ühe käivitamist naaseb menüü algusesse, selle asemel et jätta teid sügavale loendisse.
+
+### Otsing
+
+Otsinguriba mõistab nüüd enamat kui kohanimesid:
+
+* **Kohatüübid.** Otsige oma keeles „apteek“, „tualett“, „sularahaautomaat“ ja nii edasi ning
+  Soundscape loetleb lähimad seda tüüpi kohad, olgu nende nimi mis tahes. Nimeta kohad, nagu enamik
+  tualette ja pinke, kuvatakse selle järgi, mis nad on, koos aadressiga.
+* **Koordinaadid, kaardilingid ja Plus Code'id.** Kleepige arvupaar, kraadid ja minutid, link Google
+  Mapsist, Apple Mapsist või OpenStreetMapist või Plus Code ning Soundscape annab teile täpselt selle
+  koha. Paljast arvupaari saab lugeda mõlemat pidi, nii et kui mõlemal on mõte, pakutakse teile
+  mõlemat, lähim esimesena.
+* **Võrguühenduseta otsing.** Otsing vaatab nüüd alati ka teie allalaaditud kaarte, mitte ainult
+  võrgus, ja leiab nii palju rohkem nimeta kohti. Kui otsite ilma internetiühenduseta ja teil pole
+  asukohast võrguühenduseta kaarti, ütleb Soundscape selle, selle asemel et lihtsalt mitte midagi
+  leida.
+
+### Koha avamine teises rakenduses
+
+Asukoha üksikasjades on uus nupp **Ava kaardirakenduses**, mis loetleb teie telefoni kaardi- ja
+navigeerimisrakendused. Märkige *Kasuta alati seda rakendust* ja nupp muutub näiteks *Ava rakenduses
+Google Maps* ning avab selle kohe; pikk vajutus toob loendi tagasi. Loenditel *Lähedal asuvad kohad*
+ja *Markerid* on ka ekraanilugeja toimingud *Ava rakenduses…* ja *Jaga*.
+
+### Markerid ja marsruudid
+
+Markeritel ja marsruutidel oli varem üks ühine ekraan, *Markerid ja marsruudid*, kummagi jaoks oma
+vahekaardiga, ja kergesti ununes, millisel vahekaardil parasjagu oldi. Nüüd on need kaks eraldi
+ekraani, kummalgi oma nupp avakuval: *Markerid* ja *Marsruudid*, kohe nupu *Lähedal asuvad kohad*
+all.
+
+Kummalgi ekraanil on paremas ülanurgas nupp *Uus*. Ekraanil Marsruudid loob see marsruudi, nagu
+varemgi. Ekraanil Markerid on see uus: see näitab valikut *Praegune asukoht* ja jaotise *Lähedal
+asuvad kohad* kategooriaid, nii et saad markeri salvestada, ilma et peaksid koha leidmiseks
+avakuvale tagasi minema. Ekraanilugejad teatavad nupud nimedega *Uus marker* ja *Uus marsruut*.
+
+### Helimajakas ja markerid
+
+* Avakuva helimajakas näitab nüüd oma **kaugust ja suunda** ning ekraanilugeja loeb seda näiteks nii:
+  „Helimajakas asukohas Milngavie Library, 390 meetrit, kagu“. Marsruudid näitavad samamoodi kaugust
+  praeguse teekonnapunktini.
+* Helimajakal on kolm **ekraanilugeja toimingut**: *Teata helimajakast* ütleb, kus see on,
+  *Lisateave* lisab aadressi ja *Lisa markeritesse* salvestab selle.
+* **Markerit saab taas liigutada**, lohistades kaarti kuval *Muuda markerit*.
 
 ### Paremad aadressid ja kohanimed
 
@@ -111,12 +210,13 @@ tõlgitud teksti, et kasulik olla.
 
 Tõlked on kogukonna töö ja oleme tänulikud sinu abi või paranduste eest seal, kus miski loeb halvasti.
 Iga teksti saab parandada aadressil
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Unerežiim
 
-Unerežiim sai **ärkamise lahkumisel**. Kui paned Soundscape'i magama, võid paluda tal ärgata niipea,
-kui piirkonnast lahkud. See on kasulik, kui kuhugi jõuad ja tahad vaikust kuni järgmise väljumiseni.
+Unerežiimil on uus nupp ***Ärka lahkumisel***. Kui selle valid, läheb Soundscape uinakurežiimi: see
+vaikib, kuni piirkonnast lahkud, ja ärkab siis ise. See on kasulik, kui kuhugi jõuad ja tahad
+vaikust kuni järgmise väljumiseni.
 
 ### Vahemaad ja kõne
 
@@ -154,7 +254,7 @@ kus neid polnud üldse määratud.
 * Süsteemi tagasiliigutus ei jäta enam taset vahele, kui sirvid kategooriaid jaotises Lähedal asuvad
   kohad.
 * *Heliõpetus* on ümber nimetatud **juhendatud õpetuseks**.
-* Sätted on korrastatud ja *Lähtesta vaikeväärtustele* tühjendab nüüd kõik korralikult.
+* Sätted on korrastatud ja *Lähtesta seadistused vaikeväärtustele* tühjendab nüüd kõik korralikult.
 
 ### Stabiilsus
 
@@ -170,6 +270,8 @@ muudetud töökindlamaks telefonides, mis sulgevad taustarakendusi agressiivselt
 * **Hääljuhtimine** on eemaldatud. See ei töötanud kunagi piisavalt usaldusväärselt, et seda alles
   hoida, ja kõrvaklappide meedianupud katavad suures osas sama — vaata
   [Abi meedianuppude kasutamise kohta]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape on valmis ka Gemini kaudu antavateks häälkäsklusteks Android 16-s ja uuemates, kuid need
+  hakkavad tööle alles siis, kui Google avaldab nende toe Geminis.
 * **Rakendusesisene keelemenüü** on kadunud. Soundscape järgib nüüd telefonis määratud keelt, mida
   enamik inimesi niikuinii ootas. Selle muutmiseks vaheta telefoni keelt või määra telefoni sätetes
   rakendusepõhine keel, kui see on võimalik.

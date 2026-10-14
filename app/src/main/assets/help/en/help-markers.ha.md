@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Alamomi
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 80
 lang: ha
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Alamomi
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Alama wuri ne da kuka ajiye. Tana iya zama kowane wuri da yake da muhimmanci a gare ku: gidanku, tashar bas, ƙofar shiga gini ko wurin ƙetare hanya.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape yana sanar da alamominku idan kuna wucewa kusa da su. Kuna iya saita siginar sauti a kan alama, ku ƙara ta cikin tafarki, ko ku ji waɗanda suka fi kusa da maɓallin *Alamomi na Kusa*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Ƙirƙirar Alamomi
+
+1. Ku zaɓi *Alamomi* a babban allo, sannan ku zaɓi *Sabo*.
+
+2. Ku zaɓi *Wurin da Kake Yanzu*, ko wani wuri daga *Wurare na Kusa*.
+
+3. Ku canja sunan idan kuna so, kuma ku ƙara bayanai. Soundscape yana karanta bayanan tare da alamar.
+
+4. Ku zaɓi *An Gama*.
+
+Kuna iya kuma ajiye kowane wuri da kuka samu. Ku buɗe *Cikakkun Bayanan Wuri* nasa sannan ku zaɓi *Ajiye a Matsayin Alama*.
+
+## Gyara Alamomi
+
+Ku zaɓi alamar a allon *Alamomi*, sannan ku zaɓi *Gyara Alama*. Kuna iya canja sunanta, bayananta da wurinta, ko ku zaɓi *Share Alama*. Share alama yana cire ta daga tafarkunanku ma.
 

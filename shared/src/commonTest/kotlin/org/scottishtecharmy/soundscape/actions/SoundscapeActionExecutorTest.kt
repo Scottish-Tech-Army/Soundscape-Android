@@ -1,3 +1,5 @@
+@file:OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+
 package org.scottishtecharmy.soundscape.actions
 
 import kotlinx.coroutines.flow.Flow
@@ -28,6 +30,7 @@ import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertNull
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import kotlin.test.assertTrue
 
 /**
@@ -106,6 +109,8 @@ private class FakeService : MediaControllableService {
     override fun whatsAroundMe() { calls.add("whatsAroundMe") }
     override fun aheadOfMe() { calls.add("aheadOfMe") }
     override fun nearbyMarkers() { calls.add("nearbyMarkers") }
+    override fun calloutBeacon() { calls.add("calloutBeacon") }
+    override fun beaconMoreInfo() { calls.add("beaconMoreInfo") }
     override fun cancelCallout() { calls.add("cancelCallout") }
 
     override fun routeMute(): Boolean {
@@ -141,6 +146,10 @@ private class FakeService : MediaControllableService {
     }
 
     override fun destroyBeacon() { calls.add("destroyBeacon") }
+
+    override fun setCalloutVerbosity(verbosity: CalloutVerbosity) {
+        calls.add("setCalloutVerbosity($verbosity)")
+    }
 
     /**
      * What the route player says is loaded. Separate from [routeCommandsSucceed], which is
@@ -200,6 +209,55 @@ private fun executor(
 
 class SoundscapeActionExecutorTest {
 
+    // ── Settings ──────────────────────────────────────────────────────────────
+
+    /** A setting makes no sound of its own, so unlike a callout it is confirmed in words. */
+    @Test
+    fun settingTheAmountOfDetailSavesItAndSaysSo() = runTest {
+        val service = FakeService()
+        val result =
+            executor(service).execute(SoundscapeAction.SetCalloutDetail(CalloutVerbosity.QUIET))
+        assertIs<ActionResult.Ok>(result)
+        assertEquals("CalloutDetailSet(CalloutDetailQuiet())", result.speech)
+        assertContentEquals(listOf("setCalloutVerbosity(QUIET)"), service.calls)
+    }
+
+    /** Gemini passes a word, in whatever case: the stored value or the name as displayed. */
+    @Test
+    fun settingTheAmountOfDetailByName() = runTest {
+        for (name in listOf("Quiet", "quiet", " QUIET ", "CalloutDetailQuiet()")) {
+            val service = FakeService()
+            val result = executor(service).execute(SoundscapeAction.SetCalloutDetailNamed(name))
+            assertIs<ActionResult.Ok>(result, name)
+            assertContentEquals(listOf("setCalloutVerbosity(QUIET)"), service.calls, name)
+        }
+    }
+
+    @Test
+    fun silentIsAnAmountOfDetailToo() = runTest {
+        val service = FakeService()
+        val result = executor(service).execute(SoundscapeAction.SetCalloutDetailNamed("silent"))
+        assertIs<ActionResult.Ok>(result)
+        assertEquals("CalloutDetailSet(CalloutDetailSilent())", result.speech)
+        assertContentEquals(listOf("setCalloutVerbosity(SILENT)"), service.calls)
+    }
+
+    @Test
+    fun anUnknownAmountOfDetailIsReportedAndChangesNothing() = runTest {
+        val service = FakeService()
+        val result = executor(service).execute(SoundscapeAction.SetCalloutDetailNamed("Loud"))
+        assertIs<ActionResult.NotFound>(result)
+        assertEquals("ActionNoSuchCalloutDetail(Loud)", result.speech)
+        assertTrue(service.calls.isEmpty())
+    }
+
+    @Test
+    fun settingTheAmountOfDetailNeedsTheService() = runTest {
+        val result = executor(service = null)
+            .execute(SoundscapeAction.SetCalloutDetail(CalloutVerbosity.BALANCED))
+        assertIs<ActionResult.NotReady>(result)
+    }
+
     // ── Callouts ──────────────────────────────────────────────────────────────
 
     @Test
@@ -209,6 +267,8 @@ class SoundscapeActionExecutorTest {
             SoundscapeAction.AroundMe to "whatsAroundMe",
             SoundscapeAction.AheadOfMe to "aheadOfMe",
             SoundscapeAction.NearbyMarkers to "nearbyMarkers",
+            SoundscapeAction.CalloutBeacon to "calloutBeacon",
+            SoundscapeAction.BeaconInfo to "beaconMoreInfo",
         )
         for ((action, expected) in cases) {
             val service = FakeService()
@@ -458,6 +518,8 @@ class SoundscapeActionExecutorTest {
             SoundscapeAction.AroundMe,
             SoundscapeAction.AheadOfMe,
             SoundscapeAction.NearbyMarkers,
+            SoundscapeAction.CalloutBeacon,
+            SoundscapeAction.BeaconInfo,
             SoundscapeAction.StartRouteById(1, reverse = false),
             SoundscapeAction.StartRouteNamed("Commute"),
             SoundscapeAction.StopRoute,

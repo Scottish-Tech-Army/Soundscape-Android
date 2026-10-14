@@ -69,7 +69,11 @@ open class HomeViewModel(
             service.locationFlow.collectLatest { value ->
                 if (value != null) {
                     _state.update {
-                        it.copy(location = LngLatAlt(value.longitude, value.latitude))
+                        it.copy(
+                            location = LngLatAlt(value.longitude, value.latitude),
+                            locationAccuracy =
+                                if (value.hasAccuracy) value.accuracy else null,
+                        )
                     }
                 }
             }
@@ -185,6 +189,14 @@ open class HomeViewModel(
         viewModelScope.launch(Dispatchers.Default) { connection.service?.routeMute() }
     }
 
+    fun calloutBeacon() {
+        viewModelScope.launch(Dispatchers.Default) { connection.service?.calloutBeacon() }
+    }
+
+    fun beaconMoreInfo() {
+        viewModelScope.launch(Dispatchers.Default) { connection.service?.beaconMoreInfo() }
+    }
+
     fun routeStop() {
         viewModelScope.launch(Dispatchers.Default) {
             connection.service?.routeStop()
@@ -203,14 +215,19 @@ open class HomeViewModel(
     fun onTriggerSearch(text: String) {
         viewModelScope.launch {
             _state.update { it.copy(searchInProgress = true) }
-            val result = withContext(Dispatchers.Default) {
-                connection.service?.searchResult(text)
+            val service = connection.service
+            // Whether there's an offline map of where the user is takes reading the extracts,
+            // so it's found off the main thread along with the results
+            val (result, withoutOfflineMaps) = withContext(Dispatchers.Default) {
+                Pair(service?.searchResult(text), service?.searchIsOfflineWithoutMaps() == true)
             }
-            _state.update { it.copy(searchItems = result, searchInProgress = false) }
+            _state.update {
+                it.copy(
+                    searchItems = result,
+                    searchWithoutOfflineMaps = withoutOfflineMaps,
+                    searchInProgress = false
+                )
+            }
         }
-    }
-
-    fun setRoutesAndMarkersTab(pickRoutes: Boolean) {
-        _state.update { it.copy(routesTabSelected = pickRoutes) }
     }
 }

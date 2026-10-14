@@ -27,7 +27,6 @@ import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
 import java.io.File
-import java.io.FileOutputStream
 
 private fun DownloadState.toCommon(): DownloadStateCommon = when (this) {
     is DownloadState.Idle -> DownloadStateCommon.Idle
@@ -109,6 +108,7 @@ class AndroidOfflineMapsManager(
 
     private fun refreshDownloaded() {
         val dir = extractsDir()
+        deleteOrphanedSidecars(dir)
         _downloadedExtractsFc.value = findExtracts(dir.path) ?: FeatureCollection()
     }
 
@@ -153,16 +153,16 @@ class AndroidOfflineMapsManager(
         // version's files once this one is published (see logicalBaseName below).
         val versionedFilename = "$logicalBase.v${System.currentTimeMillis()}.pmtiles"
         val path = "${extractsDir().path}/$versionedFilename"
-        try {
-            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-            val adapter = moshi.adapter(Feature::class.java)
-            FileOutputStream("$path.geojson").use {
-                it.write(
-                    adapter.toJson(current).toByteArray()
-                )
-            }
+        // The metadata sidecar is written by the downloader once the extract is saved, not here
+        // before it starts: a download that failed or was cancelled used to leave its sidecar
+        // behind, for an extract that was never there.
+        val metadataJson = try {
+            GeoMoshi.registerAdapters(Moshi.Builder()).build()
+                .adapter(Feature::class.java)
+                .toJson(current)
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to write extract metadata", e)
+            Log.e(TAG, "Failed to encode extract metadata", e)
+            null
         }
         val extractSize = (current.properties?.get("extract-size") as? Number)?.toDouble()
         downloader.startDownload(
@@ -170,6 +170,7 @@ class AndroidOfflineMapsManager(
             path,
             extractSize,
             logicalBaseName = logicalBase,
+            metadataJson = metadataJson,
         )
     }
 

@@ -1,13 +1,14 @@
 ---
-title: Cum funcționează Soundscape
+title: Tehnologia din spatele Soundscape
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 200
 lang: ro
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Cum funcționează Soundscape
+# Tehnologia din spatele Soundscape
 Scopul acestei pagini este de a oferi o înțelegere generală a modului în care funcționează aplicația Soundscape în spatele scenei. Nu trebuie să citești acest text pentru a folosi aplicația, dar există câteva motive pentru care a fost scris:
 
 1. Pentru a ajuta orice nou-venit interesat de aplicație să înțeleagă unde se află limitările acesteia

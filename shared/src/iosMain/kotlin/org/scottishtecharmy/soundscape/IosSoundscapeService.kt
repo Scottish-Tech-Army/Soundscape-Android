@@ -12,6 +12,7 @@ import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.actions.ActionResult
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.actions.SoundscapeActionExecutor
+import org.scottishtecharmy.soundscape.actions.executeForDeepLink
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.backup.IosCloudBackup
 import org.scottishtecharmy.soundscape.migration.hasPendingLegacyMigration
@@ -30,6 +31,8 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
+import org.scottishtecharmy.soundscape.geoengine.callouts.cycleCalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.IosGeocoder
@@ -245,6 +248,13 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             if (result !is ActionResult.Ok) {
                 println("IosSoundscapeService: $action -> $result")
             }
+        }
+    }
+
+    /** An audio menu action from a soundscape:// link - see IncomingIntent.PerformAction. */
+    fun performDeepLinkAction(action: SoundscapeAction) {
+        scope.launch {
+            actions.executeForDeepLink(action, this@IosSoundscapeService)
         }
     }
 
@@ -615,22 +625,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     fun saveMarker(locationDescription: LocationDescription) {
         scope.launch {
             try {
-                var name = locationDescription.name
-                if (name.isEmpty()) {
-                    name = locationDescription.description ?: "Unknown"
-                }
-                val marker = org.scottishtecharmy.soundscape.database.local.model.MarkerEntity(
-                    markerId = locationDescription.databaseId,
-                    name = name,
-                    fullAddress = locationDescription.description ?: "",
-                    longitude = locationDescription.location.longitude,
-                    latitude = locationDescription.location.latitude
-                )
-                if (locationDescription.databaseId != 0L) {
-                    routeDao.updateMarker(marker)
-                } else {
-                    routeDao.insertMarker(marker)
-                }
+                org.scottishtecharmy.soundscape.database.saveMarker(locationDescription, routeDao)
                 markersOrRoutesChanged()
                 audioEngine.createEarcon(
                     "file:///android_asset/Sounds/sense_poi.wav",
@@ -666,7 +661,18 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     override fun nearbyMarkers() = calloutController.nearbyMarkers()
 
+    override fun calloutBeacon() = calloutController.calloutBeacon()
+
+    override fun beaconMoreInfo() =
+        calloutController.beaconMoreInfo(routePlayer.currentWaypointName())
+
     override fun cancelCallout() = calloutController.cancel()
+
+    override fun setCalloutVerbosity(verbosity: CalloutVerbosity) {
+        preferencesProvider.putString(PreferenceKeys.CALLOUT_VERBOSITY, verbosity.preferenceValue)
+    }
+
+    override fun cycleCalloutDetail() = cycleCalloutVerbosity(preferencesProvider)
 
     // --- Beacon Control ---
 
@@ -824,6 +830,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     override suspend fun searchResult(query: String): List<LocationDescription>? {
         return geoEngine.searchResult(query)
     }
+
+    override fun searchIsOfflineWithoutMaps(): Boolean = geoEngine.searchIsOfflineWithoutMaps()
 
     // --- Recording ---
 

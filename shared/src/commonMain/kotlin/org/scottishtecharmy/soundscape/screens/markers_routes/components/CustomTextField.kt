@@ -23,8 +23,15 @@ import org.scottishtecharmy.soundscape.resources.text_field_clear_text
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
+/**
+ * A labelled, outlined text field with a button to clear it.
+ *
+ * This is per platform because of VoiceOver, which only offers its text editing rotors for a
+ * native text field: while it is running iOS swaps one in. Everything else uses
+ * [ComposeCustomTextField].
+ */
 @Composable
-fun CustomTextField(
+expect fun CustomTextField(
     fieldName: String,
     fieldHint: String,
     value: String,
@@ -34,6 +41,19 @@ fun CustomTextField(
     shape: Shape = RoundedCornerShape(spacing.extraSmall),
     testTagPreFix: String,
     isSingleLine: Boolean = true  // Optional single-line behavior
+)
+
+@Composable
+internal fun ComposeCustomTextField(
+    fieldName: String,
+    fieldHint: String,
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier,
+    textStyle: TextStyle,
+    shape: Shape,
+    testTagPreFix: String,
+    isSingleLine: Boolean,
 ) {
     OutlinedTextField(
         value = value,
@@ -52,16 +72,7 @@ fun CustomTextField(
         },
         trailingIcon = {
             if (value.isNotEmpty()) {
-                IconButton(
-                    onClick = { onValueChange("") },
-                    modifier = Modifier.testTag("$testTagPreFix-clearTextField")
-                ) {
-                    Icon(
-                        Icons.Filled.Clear,
-                        contentDescription = stringResource(Res.string.text_field_clear_text),
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
-                }
+                ClearTextFieldButton(onClear = { onValueChange("") }, testTagPreFix)
             }
         },
         keyboardOptions = KeyboardOptions(
@@ -70,4 +81,18 @@ fun CustomTextField(
         ),
         modifier = modifier
     )
+}
+
+@Composable
+internal fun ClearTextFieldButton(onClear: () -> Unit, testTagPreFix: String) {
+    IconButton(
+        onClick = onClear,
+        modifier = Modifier.testTag("$testTagPreFix-clearTextField")
+    ) {
+        Icon(
+            Icons.Filled.Clear,
+            contentDescription = stringResource(Res.string.text_field_clear_text),
+            tint = MaterialTheme.colorScheme.onSurface
+        )
+    }
 }

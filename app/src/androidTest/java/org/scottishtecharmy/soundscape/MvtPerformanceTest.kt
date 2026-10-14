@@ -9,6 +9,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import okio.Path.Companion.toPath
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
@@ -172,7 +173,7 @@ class MvtPerformanceTest {
         runBlocking {
             gridState.locationUpdate(
                 LngLatAlt(location.longitude, location.latitude),
-                emptySet(),
+                CalloutPoiSelection.EVERYTHING,
                 null
             )
         }
@@ -262,7 +263,7 @@ class MvtPerformanceTest {
                             // Update the grid state
                             gridState.locationUpdate(
                                 LngLatAlt(location.longitude, location.latitude),
-                                emptySet(),
+                                CalloutPoiSelection.EVERYTHING,
                                 null
                             )
                         }
@@ -305,7 +306,7 @@ class MvtPerformanceTest {
             // Update the grid state
             gridState.locationUpdate(
                 LngLatAlt(location.longitude, location.latitude),
-                emptySet(),
+                CalloutPoiSelection.EVERYTHING,
                 null
             )
         }

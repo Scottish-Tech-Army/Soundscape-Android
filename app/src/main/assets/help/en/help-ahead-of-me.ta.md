@@ -1,23 +1,16 @@
 ---
-title: Ahead of Me
+title: எனக்கு முன்னால்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 40
 lang: ta
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# எனக்கு முன்னால்
 
-## What is it?
+*எனக்கு முன்னால்* உங்கள் முன்னால் உள்ள ஐந்து இடங்கள் வரை அறிவிக்கிறது. ஒவ்வொன்றையும் அதன் சொந்தத் திசையிலிருந்து, அதன் தொலைவுடன் கேட்கிறீர்கள். உங்களுக்குத் தெரியாத தெருவில், முன்னால் என்ன இருக்கிறது என்பதை அறிய இதைப் பயன்படுத்தவும்.
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
-
-## When would I use it?
-
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+நீங்கள் ஓரிடத்தில் நின்றிருந்தால், முதலில் தொலைபேசியின் மேல் முனையை நீங்கள் நோக்கியிருக்கும் திசையில் காட்டவும். தொலைபேசி பூட்டப்பட்டிருந்தால், அல்லது Soundscape திரையில் இல்லாவிட்டால், தொலைபேசியைத் தட்டையாகவும் பிடிக்கவும்.
 

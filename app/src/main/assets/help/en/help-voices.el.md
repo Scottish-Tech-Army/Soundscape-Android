@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Φωνές
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 100
 lang: el
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Φωνές
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Το Soundscape μπορεί να χρησιμοποιήσει οποιαδήποτε φωνή είναι εγκατεστημένη στο τηλέφωνό σας. Για να προσθέσετε φωνές, ανοίξτε τις ρυθμίσεις του τηλεφώνου και βρείτε την επιλογή *Έξοδος μετατροπής κειμένου σε ομιλία*. Για να επιλέξετε φωνή στο Soundscape, ανοίξτε το μενού και επιλέξτε *Ρυθμίσεις*, μετά *Ήχος* και μετά *Φωνές*.
 

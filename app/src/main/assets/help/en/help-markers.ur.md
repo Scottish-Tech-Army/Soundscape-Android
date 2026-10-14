@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: مارکرز
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 80
 lang: ur
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# مارکرز
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+مارکر وہ جگہ ہے جو آپ نے محفوظ کی ہے۔ یہ کوئی بھی ایسی جگہ ہو سکتی ہے جو آپ کے لیے اہم ہو: آپ کا گھر، بس اسٹاپ، کسی عمارت کا دروازہ یا سڑک پار کرنے کی جگہ۔
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+جب آپ اپنے مارکرز کے پاس سے گزرتے ہیں تو Soundscape ان کے بارے میں بتاتا ہے۔ آپ کسی مارکر پر آڈیو بیکن سیٹ کر سکتے ہیں، اسے کسی روٹ میں شامل کر سکتے ہیں، یا *قریبی مارکرز* بٹن سے سب سے قریب والے سن سکتے ہیں۔
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## مارکرز بنانا
+
+1. ہوم اسکرین پر *مارکرز* منتخب کریں، پھر *نیا* منتخب کریں۔
+
+2. *موجودہ مقام* چنیں، یا *قریبی مقامات* میں سے کوئی جگہ چنیں۔
+
+3. چاہیں تو نام بدلیں اور نوٹس شامل کریں۔ Soundscape مارکر کے ساتھ نوٹس پڑھ کر سناتا ہے۔
+
+4. *ہو گیا* منتخب کریں۔
+
+آپ کوئی بھی ملنے والی جگہ محفوظ کر سکتے ہیں۔ اس کی *مقام کی تفصیلات* کھولیں اور *بطور مارکر محفوظ کریں* منتخب کریں۔
+
+## مارکرز کو حسب ضرورت بنانا
+
+*مارکرز* اسکرین پر مارکر منتخب کریں، پھر *مارکر میں ترمیم کریں* منتخب کریں۔ آپ اس کا نام، نوٹس اور مقام بدل سکتے ہیں، یا *مارکر حذف کریں* منتخب کر سکتے ہیں۔ مارکر حذف کرنے سے وہ آپ کے روٹس سے بھی ہٹ جاتا ہے۔
 

@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Automaattiset ilmoitukset
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 70
 lang: fi
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automaattiset ilmoitukset
 
-## What is it?
+Kun kävelet, Soundscape ilmoittaa, mitä lähelläsi on. Kuulet jokaisen nimen paikan suunnasta. Ilmoitukset kattavat kadut, risteykset, kaupat, linja-autopysäkit, maamerkit ja omat merkitsimesi.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Risteykset
 
-## When would I use it?
+Kun lähestyt risteystä, Soundscape nimeää jokaisen tien, joka lähtee siitä. Kuulet, mikä tie lähtee vasemmalle, mikä jatkuu suoraan ja mikä lähtee oikealle.
 
-**Exploring a new area :**
+## Kuinka paljon kuulet
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Avaa valikko ja valitse *Asetukset* ja sitten *Ilmoitusten hallinta*. Asetuksessa *Ilmoitusten tarkkuus* on neljä tasoa.
 
-**Walking to a specific location :**
+*Yksityiskohtainen* ilmoittaa kaiken lähellä olevan.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Yksinkertaistettu* jättää pois pienet polut ja huoltotiet ja toistaa itseään vähemmän.
 
-**When you need silence :**
+*Olennainen* ilmoittaa vain kadut, risteykset ja maamerkit.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Äänetön* ei anna automaattisia ilmoituksia. Majakat, reitit ja aloitusnäytön painikkeet toimivat edelleen.
 
-## How does it work?
+## Mitä kuulet
 
-**Turning callouts on or off :**
+Kohdassa *Ilmoitusten hallinta* on kaksi muuta asetusta. *Kadut ja risteykset* kytkee katujen ja risteysten ilmoitukset päälle tai pois. *Ilmoitettavat paikat* valitsee, minkä tyyppisiä paikkoja kuulet, esimerkiksi *Julkinen liikenne* tai *Ruoka ja juoma*. Merkitsimesi ilmoitetaan aina.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Soundscapen hiljentäminen
 
-**Managing which callouts you hear :**
+Paina kuulokkeidesi säätimistä *edellinen*. Jokainen painallus siirtyy yhden tason hiljaisemmaksi: *Yksityiskohtainen*, *Yksinkertaistettu*, *Olennainen* ja sitten *Äänetön*. Vielä yksi painallus palaa tasolle *Yksityiskohtainen*. Katso ohjesivu *Mediasäädinten käyttö*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Soundscapen pysäyttäminen hetkeksi
+
+Valitse aloitusnäytön yläreunasta painike *Siirry lepotilaan*. Soundscape lakkaa käyttämästä sijaintiasi ja on hiljaa, kunnes valitset *Herää nyt*. Tai valitse *Herää kun poistut*, niin Soundscape herää, kun lähdet paikasta, jossa olet.
+
+## Ajoneuvossa tai junassa
+
+Soundscape huomaa, kun liikut ajoneuvon nopeudella. Silloin se lakkaa ilmoittamasta risteyksiä ja lähellä olevia kauppoja, koska ne menevät ohi liian nopeasti. Sen sijaan se ilmoittaa tien, jolla olet, maamerkit, pysäkit ja asemat, joet ja tunnelit.
 

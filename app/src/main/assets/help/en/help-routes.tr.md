@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Rotalar
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 90
 lang: tr
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Rotalar
 
-## What is it?
+Rota, sırayla ziyaret ettiğiniz ve ara nokta denen konumların listesidir. Soundscape ilk ara noktaya bir işaret ayarlar. Oraya vardığınızda bunu size söyler ve işareti bir sonrakine taşır.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Yeni bir güzergâhı öğrenmek veya bildiğiniz bir güzergâhta yoldan çıkmamak için rota kullanın.
 
-## When would I use it?
+## Rota Oluşturma
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Ana ekranda *Rotalar* seçeneğini, sonra *Yeni* seçeneğini seçin.
 
-## How does it work?
+2. Rotaya bir ad verin. Bir açıklama ekleyebilirsiniz.
 
-**Creating a route :**
+3. *Ara Nokta Ekle* seçeneğini seçin ve kayıtlı noktaları seçin. Mevcut konumunuzu veya yakındaki bir yeri de ekleyebilirsiniz.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *Tamam* seçeneğini seçin.
 
-**Editing a route :**
+## Rotayı İzleme
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+*Rotalar* ekranında rotayı seçin, sonra *Rotayı Başlat* seçeneğini seçin. Rotayı ters yönde izlemek için *Rotayı Tersine Başlat* seçeneğini seçin. Ana ekranda *Sonraki Ara Nokta* ve *Önceki Ara Nokta* işareti rota boyunca taşır. *Rotayı Durdur* rotayı sonlandırır.
 
-**Sharing a route :**
+## Rotayı Değiştirme
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+*Rotalar* ekranında rotayı seçin, sonra *Rotayı Düzenle* seçeneğini seçin. Ara nokta ekleyebilir, kaldırabilir ve sırasını değiştirebilir, adı ve açıklamayı değiştirebilir veya rotayı silebilirsiniz.
+
+## Rotayı Paylaşma
+
+*Rotalar* ekranında rotayı seçin, sonra *Paylaş* seçeneğini seçin.
 

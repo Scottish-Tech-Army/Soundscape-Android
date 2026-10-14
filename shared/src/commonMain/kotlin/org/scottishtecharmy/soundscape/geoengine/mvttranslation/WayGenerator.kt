@@ -98,6 +98,18 @@ enum class WayEnd(
 private val DirectionLookup = Direction.entries.toTypedArray()
 
 class Way : MvtFeature() {
+    /**
+     * True for a slip road - OpenMapTiles classes a motorway_link as "motorway" and marks it with
+     * `ramp`, rather than giving it a class of its own. A slip road often carries its motorway's
+     * ref too, so ref alone can't tell it from the carriageway.
+     */
+    val isRamp: Boolean
+        get() = when (val ramp = properties?.get("ramp")) {
+            is Boolean -> ramp
+            is Number -> ramp.toLong() != 0L
+            is String -> (ramp == "1") || (ramp == "yes")
+            else -> false
+        }
     var length = 0.0                            // We could easily calculate this from the segments.
 
     var intersections = arrayOf<Intersection?>(null, null)  // Intersections at either end
@@ -105,8 +117,8 @@ class Way : MvtFeature() {
     var wayType = WayType.REGULAR
 
     /**
-     * Features positioned along this Way - crossings today, transit stops and junctions in future
-     * - kept sorted ascending by [AlongWayFeature.distanceFromStart] so that "what's next along
+     * Features positioned along this Way - crossings, transit and railway stops, and highway
+     * junctions - kept sorted ascending by [AlongWayFeature.distanceFromStart] so that "what's next along
      * this road?" is a lookup rather than a geographic search. Add via [addAlongWayFeature] to
      * maintain that ordering.
      *
@@ -243,7 +255,7 @@ class Way : MvtFeature() {
                         if (destinationModifier == "dead-end") {
                             if (noGenericDeadEnds)
                                 return ""
-                            destinationModifier = strings?.getOrNull(StringKey.ConfectNameDeadEnd) ?: "dead end"
+                            return deadEndName(result, passesString, strings)
                         }
 
                         return if (passesString.isNotEmpty()) {
@@ -278,7 +290,7 @@ class Way : MvtFeature() {
         }
         if (destinationModifier != null) {
             if (destinationModifier == "dead-end") {
-                destinationModifier = strings?.getOrNull(StringKey.ConfectNameDeadEnd) ?: "dead end"
+                return deadEndName(result, passesString, strings)
             }
             return if (passesString.isNotEmpty()) {
                 strings?.getOrNull(
@@ -408,7 +420,7 @@ class Way : MvtFeature() {
         getOtherIntersection(intersection)?.let { otherIntersection ->
             for (way in otherIntersection.members) {
                 if (way == this) continue
-                if (isSidewalkOrCrossing()) {
+                if (!way.isSidewalkOrCrossing()) {
                     // This does connect to something that isn't a sidewalk, so it's not a simple
                     // connector i.e. it may connect to a sidewalk, but it goes further.
                     return false
@@ -624,6 +636,19 @@ class Way : MvtFeature() {
         intersection.members.clear()
     }
 }
+
+/**
+ * "Path to dead end", with what the way passes if anything. A template of its own rather than
+ * confect_name_to with "dead end" as the destination, because some languages describe the way
+ * itself as ending ("Pad, doodlopend") instead of as leading somewhere.
+ */
+private fun deadEndName(way: String, passes: String, strings: LocalizedStrings?): String =
+    if (passes.isNotEmpty()) {
+        strings?.getOrNull(StringKey.ConfectNameToDeadEndVia, way, passes)
+            ?: "$way to dead end via $passes"
+    } else {
+        strings?.getOrNull(StringKey.ConfectNameToDeadEnd, way) ?: "$way to dead end"
+    }
 
 fun convertBackToTileCoordinates(
     location: LngLatAlt,

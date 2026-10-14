@@ -1,25 +1,22 @@
 ---
-title: Tips
+title: 팁
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 130
 lang: ko
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# 팁
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+가까운 버스 정류장을 찾으려면 *주변 장소*를 선택하고 *대중교통*을 고르세요.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+같은 버스를 자주 탄다면 이용하는 정류장을 마커로 저장하세요. 내리는 정류장에 비콘을 설정하면, 타고 가는 동안 Soundscape가 정류장까지의 거리를 알려 줍니다.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+비콘을 음소거해도 장소까지의 거리는 계속 들을 수 있습니다. 이동하는 동안 Soundscape가 가끔 거리를 말해 줍니다.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+가기 전에 장소를 살펴보려면 그 장소의 *위치 세부 정보*를 열고 *위치 시뮬레이션*을 선택하세요. 그러면 Soundscape는 마치 그곳에 있는 것처럼 작동합니다.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
-
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
-
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+턴바이턴 길 안내가 필요하면 장소의 *위치 세부 정보*를 열고 *지도 앱에서 열기*를 선택하세요. 다른 앱이 길을 안내하는 동안에도 Soundscape는 계속 실행됩니다.
 

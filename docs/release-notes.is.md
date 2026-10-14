@@ -10,7 +10,9 @@ machine-translated: true
 
 # Útgáfunótur
 
-Soundscape 2.0 er stór útgáfa og er sem stendur í lokaðri beta-prófun. Stærsta breytingin er sú að nú
+Soundscape 2.0 er stór útgáfa og er nú í opinni beta-prófun á Android.
+Það þýðir að hver sem er getur nálgast beta-útgáfuna einfaldlega með því að fara í Play Store [hér](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Stærsta breytingin er sú að nú
 hefur Soundscape eitthvað gagnlegt að segja þegar þú ferðast með bíl, strætó eða lest, ekki bara þegar
 þú gengur. Að auki hefur verið unnið mikið af smærri verkum um það hvernig staðir eru lýstir, tuttugu
 ný tungumál hafa bæst við og langur listi af lagfæringum.
@@ -24,12 +26,26 @@ Nótur fyrir eldri útgáfur eru á síðunni
   ferðalaginu í stað næsta umhverfis.
 * **Látið vita þegar þú ferð yfir vatn og járnbrautir.** Ár, skurðir, firðir og járnbrautarlínur eru
   tilkynntar þegar farið er yfir þær, hvort sem þú gengur eða ert á ferð.
+* **Veldu hversu mikið Soundscape segir.** Ný stilling, *Nákvæmni tilkynninga*, gerir Soundscape
+  hljóðlátara á fjölförnum stöðum, og með *Staðir til að tilkynna* velur þú hvers konar stöðum þú
+  heyrir um. Þú getur breytt nákvæmninni með hnöppunum á heyrnartólunum á göngu.
+* **Vita hve langt er í næstu gatnamót.** Gatnamót eru tilkynnt í jafnri fjarlægð þegar þú nálgast
+  þau, og tilkynningin segir nú hve langt er í gangstéttarbrúnina.
+* **Leita að tegund staðar, eða að hnitum.** Leitaðu að „apótek“ eða „strætóskýli“ til að finna þau
+  næstu, hvað sem þau heita, eða límdu inn hnit, kortatengil eða Plus Code.
+* **Aðskildir hnappar fyrir Merki og Leiðir.** Skjánum *Merki og leiðir* og flipunum tveimur hefur
+  verið skipt í skjáinn *Merki* og skjáinn *Leiðir*, hvorn með sinn eigin hnapp á heimaskjánum. Á
+  skjánum Merki er hnappurinn *Nýtt* til að vista núverandi staðsetningu eða nálægan stað.
+* **Opna stað í öðru kortaforriti**, til dæmis Google Maps, úr upplýsingum um staðsetningu eða úr
+  listunum.
+* **Meira frá hljóðvitanum á heimaskjánum.** Hann sýnir nú fjarlægð og stefnu og hefur aðgerðir fyrir
+  skjálesara til að tilkynna hljóðvitann, heyra meira um hann eða vista hann sem merki.
 * **Betri heimilisföng og staðarheiti.** Staðir sem hafa ekkert eigið heimilisfang fá nú götuna og
   hverfið sem þeir eru í, húsnúmer eru tengd réttri hlið götunnar og strætóstoppistöðvar í Bretlandi
   nota opinber heiti sín.
 * **Tuttugu ný tungumál**, samtals eru þau nú 46. Þessi skjölunarvefur hefur einnig verið þýddur.
-* **Vakning við brottför.** Svefnstilling getur nú vakið Soundscape aftur þegar þú yfirgefur staðinn
-  þar sem þú svæfðir hana.
+* **Vakna við brottför.** Þegar þú setur Soundscape í dvala setur nýi hnappurinn *Vakna við
+  brottför* forritið í staðinn í lúra-ham, og það vaknar sjálft þegar þú ferð.
 * **Styttri og eðlilegri vegalengdir**, með stærri einingum þegar þú ferð hratt yfir.
 * **Fljótlegri leið út.** *Loka Soundscape* er nú efst í aðalvalmyndinni.
 * **Endurbætur á ónettengdum kortum**, meðal annars uppfærsla á þegar sóttu korti á staðnum og kort
@@ -58,10 +74,10 @@ eða ferð út og gengur.
 
 * **Hvar þú ert**, öðru hverju — veginn sem þú ert á og stefnuna, til dæmis „Á leið norður eftir M8“.
   Vegir með númeri eru tilkynntir með númerinu og Soundscape endurtekur ekki sama veginn í hvert sinn
-  sem götuheitið breytist.
+  sem götuheitið breytist. Vegur er aðeins nefndur þegar þú hefur farið stuttan spöl eftir honum, svo að röð beygja í gegnum íbúðahverfi kallar ekki á tilkynningu við hvert horn.
 * **Bæi og þorp** sem þú stefnir að, ásamt fjarlægð, sem og þau sem þú fjarlægist eða ferð einfaldlega
   fram hjá.
-* **Vegamót og afreinar** þegar þú kemur að þeim.
+* **Vegamót og afreinar** þegar þú kemur að þeim. Aðeins þau sem eru á akbrautinni sem þú ert á – ekki á vegi sem þú ferð fram hjá eða hinum megin á hraðbrautinni.
 * **Stór kennileiti** sem þú ferð fram hjá, svo sem garða, sjúkrahús, leikvanga og verslunarmiðstöðvar.
 * **Strætó-, sporvagna- og lestarstöðvar** sem þú ferð fram hjá. Soundscape nefnir aðeins stöðvarnar
   þín megin við veginn, því þær hinum megin þjóna gagnstæðri átt.
@@ -78,10 +94,92 @@ Venjulegar tilkynningar fyrir gangandi — verslanir í nágrenninu, gangbrautir
 vísvitandi haldið eftir á ferðinni, og vegalengdirnar sem hlutir eru tilkynntir á hafa verið lengdar
 töluvert svo þú fáir að vita af einhverju áður en þú ert komin/n fram hjá því.
 
+### Gatnamót
+
+Algengasta spurningin um tilkynningar við gatnamót var hve langt gatnamótin væru í raun. Nú segir
+Soundscape þér það: „Gatnamót í 30 metra fjarlægð“. Fjarlægðin er mæld að gangstéttarbrún götunnar
+sem þú ert að fara yfir, en ekki að miðju gatnamótanna, því þar stoppar þú í raun.
+
+Tilkynningin kemur líka á jafnari stað. Áður gat hún komið í 45 metra eða 10 metra fjarlægð, án þess
+að hægt væri að greina á milli. Nú bíður hún þar til gatnamótin eru í um 30 metra fjarlægð, svo
+fjarlægðin þýðir nokkurn veginn það sama í hvert skipti.
+
 ### Að fara yfir vatn og járnbrautir
 
 Soundscape segir þér nú þegar þú ferð yfir á, skurð, fjörð, vík eða járnbrautarlínu. Þetta virkar bæði
 gangandi og á ferð og nær jafnt yfir að fara undir sem yfir, svo bæði göngubrú og undirgöngum er lýst.
+
+### Veldu hversu mikið Soundscape segir
+
+Það sem við heyrum oftast um Soundscape er að það tali of mikið á fjölförnum stöðum eins og í
+miðbænum. Hlutinn *Stjórna tilkynningum* í *Stillingum* hefur nú þrjár stillingar í stað gamla
+rofalistans:
+
+* **Nákvæmni tilkynninga** er Þögult, Nauðsynlegt, Einfaldað eða Ítarlegt. *Ítarlegt* er það sem
+  Soundscape hefur alltaf gert og þar byrjar þú. *Einfaldað* sleppir minni stígum og þjónustuvegum og
+  endurtekur sig sjaldnar. *Nauðsynlegt* tilkynnir aðeins götur, gatnamót og kennileiti. *Þögult* gefur
+  engar sjálfvirkar tilkynningar, en hljóðvitar, leiðir og hnapparnir á heimaskjánum virka áfram.
+  Stillingin kemur í stað gamla rofans *Heimila tilkynningar*, og ef slökkt var á honum er
+  nákvæmnin nú stillt á Þögult. Stigin gilda líka þegar þú ert á ferð: *Einfaldað* nefnir veginn sem þú ert á sjaldnar og *Nauðsynlegt* nefnir aðeins aðalvegi og númeraða vegi og sleppir stoppistöðvum.
+* **Götur og gatnamót** kveikir eða slekkur á tilkynningum um gatnamót og götuna sem þú ert á.
+* **Staðir til að tilkynna** er listi til að haka við: Allt, Kennileiti, Almenningssamgöngur, Matur og
+  drykkur, Matvara og búðir, Bankar og hraðbankar eða Engir staðir. Hakaðu við eins marga og þú vilt,
+  til dæmis kennileiti og strætóskýli. Merkin þín eru alltaf tilkynnt.
+
+Hæfileg nákvæmni breytist á göngunni, svo þú þarft ekki að fara í Stillingar til að breyta henni.
+Þegar þú ýtir á *Fyrri* á heyrnartólunum lækkar nákvæmni tilkynninga um eitt stig í einu, frá
+Ítarlegt um Einfaldað og Nauðsynlegt niður í Þögult og síðan aftur í Ítarlegt. Nýja stigið er sagt í
+hvert skipti. Þetta virkar í báðum stillingum miðlastýringanna og því hafa hnapparnir á
+heyrnartólunum breyst aðeins:
+
+* Í *Upprunalegum ham* tilkynnir *Næsta* nú *Í kringum mig* þegar engin leið er í spilun, og *Mín
+  staðsetning* er ekki lengur á hnöppunum. Á meðan leið er í spilun færa *Næsta* og *Fyrri* áfram á
+  milli leiðarpunkta.
+* Í *Hljóðvalmynd* fer *Fyrri* ekki lengur aftur á bak í valmyndinni. *Næsta* fer áfram í gegnum
+  hana og *Spila/Hlé* velur áfram. Merki og leiðir í valmyndinni eru nú í stafrófsröð, og eftir að þú
+  ræsir eitt þeirra fer valmyndin aftur efst í stað þess að skilja þig eftir djúpt inni í listanum.
+
+### Leit
+
+Leitarstikan skilur nú meira en staðanöfn:
+
+* **Tegundir staða.** Leitaðu að „apótek“, „salerni“, „hraðbanki“ og svo framvegis á þínu eigin máli,
+  og Soundscape birtir næstu staði af þeirri tegund, hvað sem þeir heita. Staðir án nafns, eins og
+  flest salerni og bekkir, eru birtir sem það sem þeir eru, með heimilisfangi.
+* **Hnit, kortatenglar og Plus Codes.** Límdu inn talnapar, gráður og mínútur, tengil úr Google Maps,
+  Apple Maps eða OpenStreetMap, eða Plus Code, og Soundscape gefur þér nákvæmlega þann stað. Talnapar
+  eitt og sér má lesa á báða vegu, svo þar sem hvort tveggja gengur upp færðu bæði, það næsta fyrst.
+* **Leit án nettengingar.** Leitin skoðar nú alltaf líka niðurhöluðu kortin þín, ekki aðeins á netinu,
+  og finnur því miklu fleiri nafnlausa staði. Ef þú leitar án nettengingar og átt ekkert
+  ónettengt kort af staðnum þar sem þú ert, segir Soundscape það í stað þess að finna einfaldlega
+  ekkert.
+
+### Að opna stað í öðru forriti
+
+Upplýsingar um staðsetningu hafa nýjan hnapp, **Opna í kortaforriti**, sem sýnir korta- og
+leiðsöguforritin í símanum. Hakaðu við *Nota alltaf þetta forrit* og þá heitir hnappurinn til dæmis
+*Opna í Google Maps* og opnar það strax; langt ýtt kallar listann aftur fram. Listarnir *Nálægir
+staðir* og *Merki* hafa líka skjálesaraaðgerðirnar *Opna í…* og *Deila*.
+
+### Merki og leiðir
+
+Merki og leiðir deildu áður einum skjá, *Merki og leiðir*, með flipa fyrir hvort, og auðvelt var að
+gleyma á hvaða flipa maður var. Nú eru þetta tveir aðskildir skjáir, hvor með sinn eigin hnapp á
+heimaskjánum: *Merki* og *Leiðir*, beint fyrir neðan *Nálægir staðir*.
+
+Á hvorum skjá er hnappurinn *Nýtt* efst til hægri. Á skjánum Leiðir býr hann til leið, eins og áður.
+Á skjánum Merki er hann nýr: hann býður upp á *Núverandi staðsetning* og flokkana undir *Nálægir
+staðir*, svo hægt er að vista merki án þess að fara fyrst aftur á heimaskjáinn til að finna staðinn.
+Skjálesarar lesa hnappana sem *Nýtt merki* og *Ný leið*.
+
+### Hljóðvitinn og merki
+
+* Hljóðvitinn á heimaskjánum sýnir nú **fjarlægð og stefnu**, og skjálesari les hann til dæmis sem
+  „Hljóðviti á Milngavie Library, 390 metrar, suðaustur“. Leiðir sýna á sama hátt fjarlægðina að
+  núverandi leiðarpunkti.
+* Hljóðvitinn hefur þrjár **aðgerðir fyrir skjálesara**: *Tilkynna hljóðvita* segir hvar hann er,
+  *Nánari upplýsingar* bætir við heimilisfanginu og *Bæta við merki* vistar hann.
+* Þú getur aftur **fært merki** með því að draga kortið á skjánum *Uppfæra Merki*.
 
 ### Betri heimilisföng og staðarheiti
 
@@ -111,13 +209,13 @@ Egypsk arabíska var sameinuð arabísku og lúganda var dregin til baka, þar s
 
 Þýðingar eru samfélagsverk og við fögnum aðstoð þinni, eða leiðréttingum þar sem eitthvað les illa.
 Hvaða texta sem er má bæta á
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Svefnstilling
+### Dvalahamur
 
-Svefnstillingin hefur fengið **vakningu við brottför**. Þegar þú svæfir Soundscape geturðu beðið hana
-um að vakna um leið og þú yfirgefur svæðið, sem er gagnlegt þegar þú kemur eitthvað og vilt ró þar til
-þú leggur af stað næst.
+Dvalahamurinn hefur fengið nýjan hnapp, ***Vakna við brottför***. Ef þú velur hann fer Soundscape í
+lúra-ham: forritið þegir þar til þú yfirgefur svæðið og vaknar svo sjálft, sem er gagnlegt þegar þú
+kemur eitthvert og vilt ró þar til þú leggur af stað næst.
 
 ### Vegalengdir og tal
 
@@ -151,8 +249,8 @@ Afar mikil vinna hefur farið í hegðun skjálesara, einkum á kynningarskjánu
 * Aðalvalmyndin skilur ekki lengur eftir ræmu af skjánum öðrum megin, sem gaf notendum skjálesara
   ruglingslegt aukasvæði til að snerta.
 * Til baka-bending kerfisins sleppir ekki lengur þrepi þegar þú flettir flokkum í Staðir í nágrenninu.
-* *Hljóðleiðsögnin* heitir nú **leidd kennsla**.
-* Stillingar hafa verið teknar til og *Endurstilla á sjálfgefið* hreinsar nú allt rétt.
+* *Hljóðleiðsögnin* hefur fengið nýtt nafn: **Leiðsögunámskeið**.
+* Stillingar hafa verið teknar til og *Endurstilla stillingar í sjálfgefið ástand* hreinsar nú allt rétt.
 
 ### Stöðugleiki
 
@@ -168,6 +266,8 @@ símum sem loka bakgrunnsforritum af hörku.
 * **Raddstýringin** hefur verið fjarlægð. Hún virkaði aldrei nógu áreiðanlega til að halda henni, og
   margmiðlunartakkarnir á heyrnartólum ná að mestu yfir það sama — sjá
   [Hjálp við notkun margmiðlunartakka]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape er líka tilbúið fyrir raddskipanir í gegnum Gemini á Android 16 og nýrri, en þær virka
+  ekki fyrr en Google gefur út stuðning við þær í Gemini.
 * **Tungumálavalmyndin inni í forritinu** er farin. Soundscape fylgir nú tungumálinu sem þú hefur stillt
   í símanum, sem er það sem flestir bjuggust við. Til að breyta því skaltu breyta tungumáli símans eða
   velja tungumál fyrir hvert forrit í stillingum símans ef hann býður upp á það.

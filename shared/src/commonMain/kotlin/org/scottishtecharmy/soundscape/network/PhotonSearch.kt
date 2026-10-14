@@ -17,4 +17,18 @@ interface PhotonSearch {
         longitude: Double? = null,
         language: String? = null,
     ): FeatureCollection?
+
+    /**
+     * The places nearest to [latitude], [longitude] which have any of [osmTags], nearest first -
+     * see [PhotonSearchClient.nearbyByTagJson].
+     */
+    suspend fun getNearbyByTag(
+        latitude: Double,
+        longitude: Double,
+        osmTags: List<String>,
+        radius: Double? = null,
+        limit: UInt? = null,
+        nameFilter: String? = null,
+        language: String? = null,
+    ): FeatureCollection? = null
 }

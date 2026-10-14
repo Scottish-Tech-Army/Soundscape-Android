@@ -134,6 +134,7 @@ class SoundscapeIntents(
      * - geo:/soundscape: URLs with lat,lon → geocoded then OpenLocation (best-effort)
      * - soundscape://feature/... → OpenFeature
      * - soundscape://route/{name|stop} → StartRouteByName / StopRoute
+     * - soundscape://action/{name} and soundscape://beacon/{name} → PerformAction
      * - https://links.soundscape.scottishtecharmy.org/v1/sharemarker?... → OpenLocation
      * - text/plain ACTION_SEND containing maps.app.goo.gl → follow + geocode
      * - content:// JSON or GPX route file → ImportRoute
@@ -165,6 +166,20 @@ class SoundscapeIntents(
                 // Try the shared parser first for geo:, soundscape:, and our share marker https URL.
                 val parsed = IntentParser.parseUrl(uri.toString())
                 if (parsed != null) {
+                    // The action links control the app - stop the beacon, speak the user's
+                    // location - with nothing to say who is asking. Another app or an
+                    // automation is fine, but a web page shouldn't be able to. A browser marks
+                    // the intents it sends as BROWSABLE, so those are ignored. This can't be
+                    // done in the manifest: an intent filter can't exclude hosts, and the
+                    // browsable soundscape:// filter has to accept any host for the legacy
+                    // soundscape://lat,lon links.
+                    if (parsed is IncomingIntent.PerformAction &&
+                        intent.hasCategory(Intent.CATEGORY_BROWSABLE)
+                    ) {
+                        Log.w(TAG, "Ignoring action link from a browser: $uri")
+                        AnalyticsProvider.getInstance().logEvent("intentActionFromBrowser", null)
+                        return
+                    }
                     handleParsed(parsed, mainActivity)
                     return
                 }
@@ -216,6 +231,11 @@ class SoundscapeIntents(
 
             is IncomingIntent.StartRouteByName -> {
                 AnalyticsProvider.getInstance().logEvent("intentStartRoute", null)
+                bus.publish(intent)
+            }
+
+            is IncomingIntent.PerformAction -> {
+                AnalyticsProvider.getInstance().logEvent("intentAction", null)
                 bus.publish(intent)
             }
 

@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Automatische aankondigingen
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 70
 lang: nl
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automatische aankondigingen
 
-## What is it?
+Terwijl u loopt, kondigt Soundscape aan wat er bij u in de buurt is. U hoort elke naam uit de richting van de plaats. Aangekondigd worden straten, kruispunten, winkels, bushaltes, herkenningspunten en uw eigen markeringen.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Kruispunten
 
-## When would I use it?
+Wanneer u een kruispunt nadert, noemt Soundscape elke weg die ervan weggaat. U hoort welke weg naar links gaat, welke rechtdoor loopt en welke naar rechts gaat.
 
-**Exploring a new area :**
+## Hoeveel u hoort
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Open het menu en selecteer *Instellingen* en dan *Aankondigingen beheren*. *Detailniveau aankondigingen* heeft vier niveaus.
 
-**Walking to a specific location :**
+*Uitgebreid* kondigt alles in de buurt aan.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Vereenvoudigd* laat kleine paden en ventwegen weg en herhaalt zich minder.
 
-**When you need silence :**
+*Essentieel* kondigt alleen straten, kruispunten en herkenningspunten aan.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Stil* geeft geen automatische aankondigingen. Bakens, routes en de knoppen op het startscherm blijven werken.
 
-## How does it work?
+## Wat u hoort
 
-**Turning callouts on or off :**
+*Aankondigingen beheren* heeft nog twee instellingen. *Straten en kruispunten* zet aankondigingen van straten en kruispunten aan of uit. Met *Aan te kondigen plaatsen* kiest u welke soorten plaatsen u hoort, zoals *Openbaar vervoer* of *Eten en drinken*. Uw markeringen worden altijd aangekondigd.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Soundscape stiller maken
 
-**Managing which callouts you hear :**
+Druk op *vorige* op de bediening van uw koptelefoon. Elke druk gaat één niveau stiller: *Uitgebreid*, *Vereenvoudigd*, *Essentieel* en dan *Stil*. Nog een druk gaat terug naar *Uitgebreid*. Zie de helppagina *Mediaregelaars gebruiken*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Soundscape een tijdje stoppen
+
+Selecteer de knop *Slapen* boven aan het startscherm. Soundscape gebruikt uw locatie dan niet meer en maakt geen geluid totdat u *Nu activeren* selecteert. Of selecteer *Wek bij vertrek*. Soundscape wordt dan wakker wanneer u de plek verlaat waar u bent.
+
+## In een voertuig of in de trein
+
+Soundscape merkt wanneer u zich met de snelheid van een voertuig verplaatst. Het kondigt dan geen kruispunten en winkels in de buurt meer aan, omdat die te snel voorbijgaan. In plaats daarvan kondigt het de weg aan waarop u zich bevindt, herkenningspunten, haltes en stations, rivieren en tunnels.
 

@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Itinéraires
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 90
 lang: fr-CA
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Itinéraires
 
-## What is it?
+Un itinéraire est une liste de lieux, appelés étapes, que vous parcourez dans l’ordre. Soundscape place une balise sur la première étape. Quand vous arrivez, il vous le dit et déplace la balise vers l’étape suivante.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Utilisez un itinéraire pour apprendre un nouveau trajet, ou pour ne pas vous écarter d’un trajet que vous connaissez.
 
-## When would I use it?
+## Créer un itinéraire
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Sélectionnez *Itinéraires* sur l’écran d’accueil, puis *Nouveau*.
 
-## How does it work?
+2. Donnez un nom à l’itinéraire. Vous pouvez ajouter une description.
 
-**Creating a route :**
+3. Sélectionnez *Ajouter des étapes* et choisissez des marqueurs. Vous pouvez aussi ajouter votre emplacement actuel ou un lieu à proximité.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Sélectionnez *Terminé*.
 
-**Editing a route :**
+## Suivre un itinéraire
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Sélectionnez l’itinéraire sur l’écran *Itinéraires*, puis sélectionnez *Démarrer un Itinéraire*. Pour le suivre dans l’autre sens, sélectionnez *Démarrer l’itinéraire en sens inverse*. Sur l’écran d’accueil, *Étape suivante* et *Étape précédente* déplacent la balise le long de l’itinéraire. *Arrêter l’Itinéraire* y met fin.
 
-**Sharing a route :**
+## Modifier un itinéraire
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Sélectionnez l’itinéraire sur l’écran *Itinéraires*, puis sélectionnez *Modifier l’itinéraire*. Vous pouvez ajouter, retirer et réordonner des étapes, changer le nom et la description, ou supprimer l’itinéraire.
+
+## Partager un itinéraire
+
+Sélectionnez l’itinéraire sur l’écran *Itinéraires*, puis sélectionnez *Partager*.
 

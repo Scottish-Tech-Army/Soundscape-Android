@@ -1,0 +1,126 @@
+# Russian (ru) — translation decisions
+
+| | |
+|---|---|
+| Weblate component | `androidkmp` |
+| Corpus at last sweep | 1522 units (2026-09-24) |
+| Last native-speaker input | 2025-11-11 (Yurt Page, Weblate). There is also a one-line edit by A Berezutskyi, 2026-02-17 |
+| Register | Formal «вы» (no «ты»). `unconfirmed` |
+
+Read with [`_common.md`](_common.md).
+
+## Status of this file
+
+Russian has real native input. **Yurt Page** translated about 380 lines in the
+legacy `android-app` component (commits `65792745f`, `474bdfd39`,
+`4f6ea2a58`, `da79e566e`, 2025-08-22 → 2025-11-11) and chose the core
+terminology. **A Berezutskyi** reworded `settings_explanation` (`92f1756ef`).
+Yurt Page's terms still ship and are marked `confirmed` in the Spanish-file
+sense: "confirmed then, not re-checked since." Everything newer is AI.
+
+The authored Siri phrases (`ru.lproj`) match the help text. Questions:
+`docs/translation-questions/questions-ru.md` (Q1…Q9).
+
+## Glossary
+
+| English | Russian | Status | Note |
+|---|---|---|---|
+| Callout | уточнение | `confirmed` | Yurt Page's choice («Разрешить уточнения»). Now consistent (66). His early help text also used «выноски»/«сноски» (the Office "text bubble" sense) and «подсказки». Those are gone except 3 «подсказ-». See RU-T1 |
+| Audio Beacon | звуковой маяк | `confirmed` | Yurt Page |
+| Marker | отметка | `confirmed` | Yurt Page («Отметки») |
+| Waypoint | путевая точка | `confirmed` | Yurt Page |
+| Landmarks | достопримечательности | `confirmed` | Yurt Page. Note it means *tourist sights*, which is narrower than "landmark". See Q3 |
+| Intersection | перекрёсток | `confirmed` | Yurt Page |
+| Sleep / Snooze | Сон / Спящий режим ; Отложенный режим | `unconfirmed` | Yurt Page wrote «Спание» for sleeping, which has since been replaced. «Отложенный режим» is AI. See Q4 |
+| Detailed / Simplified / Essential / Silent | Подробный / Упрощённый / Основной / Беззвучный | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Подробный / Сбалансированный / Тихий / Беззвучный |
+| dead end | тупик | `confirmed` word; case fixed 2026-09-24 («тупику»). See RU-G1 |
+
+## Rules
+
+### RU-G1 — «к тупик» must be dative «к тупику» (`confirmed` fixed 2026-09-24)
+
+**Fixed 2026-09-24:** `confect_name_dead_end` is now «тупику», uploaded to Weblate and verified live.
+
+This is rule C9, and Russian is already on its list. `confect_name_to` is
+«%1$s к %2$s», and «к» governs the dative. One string, pure grammar.
+
+### RU-T1 — Callout: «уточнение» (`confirmed`, but ask once)
+
+«Уточнение» means "clarification/refinement", an unusual choice for a
+spontaneous spoken description. It was a native speaker's choice, so it is
+defended, but it's worth one question. The 3 remaining «подсказ-» uses should
+follow whichever word wins.
+
+### RU-S1 — «Движется на север» has no subject (`unconfirmed`)
+
+`directions_traveling_*` «Движется на север» ("is moving north", third
+person, no subject) vs `directions_heading_*` «На север». Traveling is
+vehicle-only (see `bg.md` BG-T4). «Вы едете на север» or «Едем на север»
+may be what a speaker expects.
+
+### RU-S2 — «Вы» vs «вы» (`unconfirmed`, cosmetic)
+
+The corpus mixes both (Вы 29, вы 38; «ваш» almost always lowercase). It is
+invisible to speech. Ask which convention to use.
+
+### RU-C1 — Siri phrases are Russian and live outside Weblate (`agreed`)
+
+The same coupling as FR-C1.
+
+## Rejected
+
+«выноска» / «сноска» for Callout. These appear in Yurt Page's early help
+text, but they are Microsoft Office's term for a text-bubble annotation, a
+visual thing with no connection to speech. They have been replaced by
+«уточнение» and must not come back.
+
+## Open questions
+
+1. Callout «уточнение»: still the best word? (RU-T1)
+2. «Движется на север»: how should it be said? (RU-S1)
+3. Landmarks «достопримечательности»: too "tourist" for a park or a church?
+4. Snooze «Отложенный режим»: clear?
+5. «Вы» or «вы»? (RU-S2)
+6. Siri phrases «Soundscape окружение / маршрут / маяк / выключи маяк…»: natural?
+7. Two home-screen buttons are named differently from the help and the tutorial. Yurt Page wrote
+   both versions of each: «Впереди меня» (button) vs «Передо мной» (help page title, help text,
+   tutorial, Siri help, about 8 strings), and «Ближайшие отметки» (button) vs «Отметки рядом» (help and
+   tutorial, 6 strings). The tutorial says «Нажмите «Передо мной»», which no button is labelled.
+   Change the 2 buttons («Передо⏎мной», «Отметки⏎рядом»), or the ~14 help strings? Unchanged until
+   decided (2026-09-29). The third button, «Моя позиция» (an AI pass, 2026-08-20), was
+   aligned to «Моё местоположение».
+8. **The four detail levels** (Подробный / Упрощённый / Основной / Беззвучный), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+9. Anything else.
+
+## Provenance
+
+**2025-08-22 → 2025-11-11 — native speaker (Yurt Page)**, legacy component.
+**2026-02-17 — A Berezutskyi**, one-line edit.
+**2026 — AI passes.**
+**2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-24 — dead-end case fix applied.** `confect_name_dead_end` → «тупику» (the C9 batch fix across ru, cs, sk, hr, sr, sl, pl and is).
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
+
+**2026-09-28 — Weblate checks pass.** Byte `*_a11y` plurals: the «few» form had no number; `%1$s` restored. `osm_nutrition_supplements` → «Магазин пищевых добавок», loading indicator → «Загрузка» (no «…»). «ЗАГС» kept. Uploaded live.
+
+**2026-09-29 — full review (1586 units).** 40 flagged, and 38 were uploaded and verified live. Button
+`ui_action_button_my_location` «Моя позиция» → «Моё местоположение», matching the help and tutorial.
+Meaning fixes: «приобретите» ("buy") → «возьмите», the non-word «разбудится» → «проснётся» (2), a missing «на»,
+«об окружении», «он» for Soundscape, the generic help heading «Когда это использовать?»,
+`confect_name_joins` «между» (gender-neutral), «вы увидите» → «вы заметите», «кардинальное направление» →
+«сторона света», «называет названия». Terminology: 9 strings used «пути» for Routes → «маршруты», the Terms
+title → «Условия использования», «маркеры» → «отметки», plus 2 OSM names with brackets/slashes read aloud.
+Markup: 12 help/FAQ strings had replaced `*…*` with plain «…», now `*«…»*`. Held: Q7 (two button names).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 41 flagged, 22 applied in `fecc2e43e`. Findings: `translations/review/2026-09-30-all-languages/ru-findings.json`.
+Most serious fixed:
+- `directions_away_from_settlement`: «в стороне от» means 'off to one side of', not 'moving away from';
+- `relative_left_right_direction_left`: «Налево» is a direction of motion ('turn/go to the left');
+- `relative_left_right_direction_right`: «Направо» is a direction of motion ('go to the right');
+Held for a person: `terms_of_use_message` (legal text); `terms_of_use_service_agreement` (legal text); `help_text_ahead_of_me_what` (reviewer: open question).
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+
+**2026-10-01 — home-button names.** Ahead of Me button «Впереди\nменя» → «Передо\nмной»; help and tour «Отметки рядом» → «Ближайшие отметки» (5 strings) (C27).

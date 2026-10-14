@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: 标记点
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 80
 lang: zh-CN
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# 标记点
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+标记点是您保存的一个地点。它可以是任何对您重要的地方：您的家、公交站、建筑物入口或人行横道。
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+您经过标记点时，Soundscape 会播报它们。您可以在标记点上设置音频信标，把它添加到路线中，或者用*附近标记点*按钮听最近的几个。
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## 创建标记点
+
+1. 在主屏幕上选择*标记点*，然后选择*新建*。
+
+2. 选择*当前位置*，或者从*附近地点*中选择一个地点。
+
+3. 如果需要，可以更改名称并添加备注。Soundscape 会连同标记点一起读出备注。
+
+4. 选择*完成*。
+
+您也可以保存找到的任何地点。打开它的*位置详情*并选择*保存为标记点*。
+
+## 自定义标记点
+
+在*标记点*屏幕上选择标记点，然后选择*编辑标记点*。您可以更改它的名称、备注和位置，或者选择*删除标记点*。删除标记点也会把它从您的路线中移除。
 

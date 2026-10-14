@@ -40,6 +40,7 @@ val supportedLanguages: List<Language> = listOf(
     Language("मराठी", "mr", "IN"),
     Language("Norsk", "nb", "NO"),
     Language("Nederlands", "nl", "NL"),
+    Language("ਪੰਜਾਬੀ", "pa", "IN"),
     Language("Polski", "pl", "PL"),
     Language("Português (Portugal)", "pt", "PT"),
     Language("Português (Brasil)", "pt", "BR"),

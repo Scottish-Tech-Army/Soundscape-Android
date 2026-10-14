@@ -1,23 +1,16 @@
 ---
-title: Around Me
+title: Um mich herum
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 30
 lang: de
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Um mich herum
 
-## What is it?
+*Um mich herum* sagt bis zu vier Orte in Ihrer Nähe an: einen vor Ihnen, einen rechts, einen hinter Ihnen und einen links. Sie hören jeden aus seiner eigenen Richtung, mit seiner Entfernung. So orientieren Sie sich, wenn Sie irgendwo ankommen.
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Wenn Sie stehen, richten Sie zuerst die Oberkante Ihres Telefons in Ihre Blickrichtung. Ist Ihr Telefon gesperrt oder Soundscape nicht auf dem Bildschirm, halten Sie das Telefon außerdem flach.
 

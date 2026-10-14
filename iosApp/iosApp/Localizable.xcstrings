@@ -126,7 +126,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "fyrir framan mig"
+            "value": "Fyrir framan mig"
           }
         },
         "it": {
@@ -163,6 +163,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vóór me"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੇਰੇ ਅੱਗੇ"
           }
         },
         "pl": {
@@ -252,7 +258,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Попереду Мене"
+            "value": "Попереду мене"
           }
         },
         "ur": {
@@ -400,7 +406,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "í kringum mig"
+            "value": "Í kringum mig"
           }
         },
         "it": {
@@ -437,6 +443,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Om me heen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੇਰੇ ਆਲੇ-ਦੁਆਲੇ"
           }
         },
         "pl": {
@@ -526,7 +538,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Навколо Мене"
+            "value": "Навколо мене"
           }
         },
         "ur": {
@@ -632,13 +644,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balise"
+            "value": "Balise sonore"
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balise"
+            "value": "Balise sonore"
           }
         },
         "ha": {
@@ -662,7 +674,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző"
+            "value": "Irányjelző hang"
           }
         },
         "id": {
@@ -711,6 +723,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Baken"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ"
           }
         },
         "pl": {
@@ -823,6 +841,566 @@
         }
       }
     },
+    "Beacon Info": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "معلومات المنارة"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Информация за маяка"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বীকনের তথ্য"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informació de la balisa"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informace o majáku"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oplysninger om lydfyr"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beacon-Informationen"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πληροφορίες ηχητικού σήματος"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beacon Info"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Información de la señal"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Helimajaka teave"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اطلاعات جهت‌نما"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Majakan tiedot"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informations sur la balise sonore"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renseignements sur la balise sonore"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bayanin Siginar Sauti"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बीकन की जानकारी"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informacije o svjetioniku"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irányjelző hang adatai"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Info Suar"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upplýsingar um hljóðvita"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informazioni audiofaro"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ビーコン情報"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "비콘 정보"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बीकनची माहिती"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informasjon om lydsignal"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bakeninformatie"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਦੀ ਜਾਣਕਾਰੀ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informacje o celu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informações do Sinal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informações do Sinalizador"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informații despre baliză"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Информация о маяке"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informácie o majáku"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podatki o svetilniku"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Информације о бакену"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Information om ljudfyr"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maelezo ya Beacon"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பீக்கன் தகவல்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "బీకాన్ సమాచారం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ข้อมูลบีคอน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İşaret Bilgisi"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Інформація про маячок"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بیکن کی معلومات"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thông tin đèn hiệu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "信标信息"
+          }
+        }
+      }
+    },
+    "Call out Beacon": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نداء المنارة"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Съобщи за маяка"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বীকন কলআউট করুন"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anuncia la balisa"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohlásit maják"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lydbesked om lydfyr"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf Beacon hinweisen"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επεξήγηση ηχητικού σήματος"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Call out Beacon"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisar de señal"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teata helimajakast"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اعلام جهت‌نما"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ilmoita majakasta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annoncer la balise"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annoncer la balise"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sanar da Siginar Sauti"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बीकन का कॉलआउट करें"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Najavi svjetionik"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Irányjelző hang bemondása"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beritahukan Suar"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilkynna hljóðvita"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuncia audiofaro"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ビーコンを読み上げる"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "비콘 안내"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बीकनची ध्वनी सूचना द्या"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les opp lydsignal"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baken aankondigen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਦੀ ਘੋਸ਼ਣਾ ਕਰੋ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Powiadom o celu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anunciar Sinal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anunciar Sinalizador"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anunță baliza"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сообщить о маяке"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohlásiť maják"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oznani svetilnik"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Најави бакен"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Läs upp ljudfyr"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tangaza Beacon"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பீக்கனை அறிவி"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "బీకాన్ కాలౌట్ చేయి"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แจ้งเตือนบีคอน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İşareti Anons Et"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оголосити маячок"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بیکن کا کالآؤٹ کریں"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thông báo đèn hiệu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "播报信标"
+          }
+        }
+      }
+    },
     "Callout": {
       "localizations": {
         "ar": {
@@ -906,7 +1484,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notification"
+            "value": "Annonce"
           }
         },
         "fr-CA": {
@@ -936,7 +1514,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bejelentés"
+            "value": "Bemondás"
           }
         },
         "id": {
@@ -985,6 +1563,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aankondiging"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੋਸ਼ਣਾ"
           }
         },
         "pl": {
@@ -1093,6 +1677,286 @@
           "stringUnit": {
             "state": "translated",
             "value": "提示"
+          }
+        }
+      }
+    },
+    "Callout Detail": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تفاصيل النداءات الصوتية"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Детайлност на съобщенията"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কলআউট বিবরণ"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detall dels avisos de veu"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podrobnost hlášení"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljeniveau for lydbeskeder"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailgrad der Hinweise"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Λεπτομέρεια επεξηγήσεων"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Callout Detail"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalle de los avisos"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Häälteadete detailsus"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جزئیات اعلان‌ها"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ilmoitusten tarkkuus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détail des annonces"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détail des annonces"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matakin Sanarwa"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कॉलआउट विवरण"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Razina detalja najava"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bemondások részletessége"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tingkat Detail Pemberitahuan"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nákvæmni tilkynninga"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dettaglio delle notifiche"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コールアウトの詳細度"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "안내 상세도"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ध्वनी सूचना तपशील"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljnivå for meldinger"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailniveau aankondigingen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੋਸ਼ਣਾ ਦਾ ਵੇਰਵਾ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szczegółowość powiadomień"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalhe dos Avisos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalhe das Notificações"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaliul anunțurilor"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подробность уточнений"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podrobnosť hlásení"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raven podrobnosti obvestil"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ниво детаља најава"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljnivå för informationsljud"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kiwango cha Matangazo"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அறிவிப்பு விவரம்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కాలౌట్ వివరాలు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระดับรายละเอียดการแจ้งเตือน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anons Ayrıntısı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Деталізація оголошень"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کالآؤٹ تفصیل"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mức chi tiết thông báo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提示详细程度"
           }
         }
       }
@@ -1259,6 +2123,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Opdracht"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੁਕਮ"
           }
         },
         "pl": {
@@ -1535,6 +2405,12 @@
             "value": "Opdrachten"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੁਕਮ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -1807,6 +2683,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Route bedienen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ ਕੰਟਰੋਲ ਕਰੋ"
           }
         },
         "pl": {
@@ -2083,6 +2965,12 @@
             "value": "Beschrijft waar u bent en wat er om u heen is."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਦੱਸਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਿੱਥੇ ਹੋ ਅਤੇ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਕੀ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -2189,6 +3077,566 @@
           "stringUnit": {
             "state": "translated",
             "value": "描述你在哪里，以及你周围有什么。"
+          }
+        }
+      }
+    },
+    "Detail": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التفاصيل"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Детайлност"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বিবরণ"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detall"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podrobnost"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailgrad"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Λεπτομέρεια"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detail"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalle"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailsus"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جزئیات"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yksityiskohdat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détails"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détails"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matakin Sanarwa"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विवरण"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalji"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Részletesség"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detail"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nákvæmni"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dettagli"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "詳細"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "상세"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तपशील"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detail"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਵੇਰਵਾ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szczegółowość"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalhe"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalhe"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaliu"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Детали"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podrobnosť"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podrobnost"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Детаљи"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljer"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kina"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "விவரம்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వివరాలు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "รายละเอียด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayrıntı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Деталі"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تفصیل"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chi tiết"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "详细"
+          }
+        }
+      }
+    },
+    "Detailed": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفصّل"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подробно"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বিস্তারিত"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detallat"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podrobný"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljeret"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ausführlich"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Λεπτομερές"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detallado"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Üksikasjalik"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفصل"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yksityiskohtainen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détaillé"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détaillé"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cikakke"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विस्तृत"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljno"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Részletes"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rinci"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ítarlegt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dettagliato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "詳細"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "상세"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तपशीलवार"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljert"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uitgebreid"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਵਿਸਤ੍ਰਿਤ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szczegółowy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalhado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalhado"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaliat"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подробный"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podrobný"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podrobno"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Детаљно"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaljerad"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kwa Kina"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "விரிவு"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వివరణాత్మకం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ละเอียด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayrıntılı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Докладний"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تفصیلی"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chi tiết"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "详细"
           }
         }
       }
@@ -2318,7 +3766,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "lokið"
+            "value": "Lokið"
           }
         },
         "it": {
@@ -2355,6 +3803,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gereed"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੋ ਗਿਆ"
           }
         },
         "pl": {
@@ -2467,6 +3921,286 @@
         }
       }
     },
+    "Essential": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أساسي"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Основно"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রয়োজনীয়"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essencial"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Základní"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essentiel"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wesentlich"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Βασικό"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essential"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esencial"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Põhiline"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ضروری"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olennainen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimal"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimal"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muhimmi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आवश्यक"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osnovno"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alapvető"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esensial"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nauðsynlegt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essenziale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基本"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "핵심"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आवश्यक"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grunnleggende"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essentieel"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜ਼ਰੂਰੀ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podstawowy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essencial"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essencial"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esențial"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Основной"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Základný"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osnovno"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Основно"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grundläggande"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muhimu"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அத்தியாவசியம்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ముఖ్యం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เฉพาะที่สำคัญ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temel"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Основний"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ضروری"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiết yếu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基本"
+          }
+        }
+      }
+    },
     "Hear My Surroundings": {
       "localizations": {
         "ar": {
@@ -2508,7 +4242,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meine Umgebung hören"
+            "value": "Meine Umgebung"
           }
         },
         "el": {
@@ -2550,7 +4284,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Écoutez mon environnement"
+            "value": "Écouter mon environnement"
           }
         },
         "fr-CA": {
@@ -2580,7 +4314,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Halld a környezetedet"
+            "value": "A környezetem meghallgatása"
           }
         },
         "id": {
@@ -2592,7 +4326,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "lýsing á umhverfi"
+            "value": "Lýsing á umhverfi"
           }
         },
         "it": {
@@ -2629,6 +4363,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Luisteren naar mijn omgeving"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੇਰਾ ਆਲਾ-ਦੁਆਲਾ ਸੁਣੋ"
           }
         },
         "pl": {
@@ -2737,6 +4477,286 @@
           "stringUnit": {
             "state": "translated",
             "value": "聆听周围环境"
+          }
+        }
+      }
+    },
+    "Level": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المستوى"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ниво"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "স্তর"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivell"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Úroveň"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niveau"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stufe"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επίπεδο"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivel"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tase"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سطح"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niveau"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niveau"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mataki"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्तर"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Razina"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szint"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tingkat"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stig"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Livello"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "レベル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "수준"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्तर"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivå"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niveau"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪੱਧਰ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poziom"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivel"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уровень"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Úroveň"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raven"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ниво"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivå"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kiwango"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "நிலை"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "స్థాయి"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ระดับ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düzey"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рівень"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سطح"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mức"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "级别"
           }
         }
       }
@@ -2903,6 +4923,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lijst"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੂਚੀ"
           }
         },
         "pl": {
@@ -3092,7 +5118,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Merkintä"
+            "value": "Merkitsin"
           }
         },
         "fr": {
@@ -3177,6 +5203,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Markering"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮਾਰਕਰ"
           }
         },
         "pl": {
@@ -3366,7 +5398,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Merkinnät"
+            "value": "Merkitsimet"
           }
         },
         "fr": {
@@ -3453,10 +5485,16 @@
             "value": "Markeringen"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮਾਰਕਰ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Znaczniki (pinezki)"
+            "value": "Znaczniki"
           }
         },
         "pt": {
@@ -3676,7 +5714,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző némítása"
+            "value": "Irányjelző hang némítása"
           }
         },
         "id": {
@@ -3688,7 +5726,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "slökkva á hljóðvita"
+            "value": "Slökkva á hljóðvita"
           }
         },
         "it": {
@@ -3725,6 +5763,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Baken dempen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਮਿਊਟ ਕਰੋ"
           }
         },
         "pl": {
@@ -3962,7 +6006,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "mín staðsetning"
+            "value": "Mín staðsetning"
           }
         },
         "it": {
@@ -3999,6 +6043,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mijn locatie"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੇਰਾ ਟਿਕਾਣਾ"
           }
         },
         "pl": {
@@ -4094,7 +6144,7 @@
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "میری لوکیشن"
+            "value": "میرا مقام"
           }
         },
         "vi": {
@@ -4188,7 +6238,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lähellä olevat merkinnät"
+            "value": "Lähiympäristön merkitsimet"
           }
         },
         "fr": {
@@ -4230,13 +6280,13 @@
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Penanda di Sekitar"
+            "value": "Penanda Terdekat"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "nálæg merki"
+            "value": "Nálæg merki"
           }
         },
         "it": {
@@ -4273,6 +6323,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Markeringen in de buurt"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨੇੜਲੇ ਮਾਰਕਰ"
           }
         },
         "pl": {
@@ -4468,13 +6524,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prochain point de repère"
+            "value": "Étape suivante"
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prochain point de cheminement"
+            "value": "Étape suivante"
           }
         },
         "ha": {
@@ -4504,7 +6560,7 @@
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Titik jalan berikutnya"
+            "value": "Titik rute berikutnya"
           }
         },
         "is": {
@@ -4547,6 +6603,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Volgende routepunt"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਗਲਾ ਮਾਰਗ ਬਿੰਦੂ"
           }
         },
         "pl": {
@@ -4636,7 +6698,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Наступна маршрутна точка"
+            "value": "Наступна зупинка"
           }
         },
         "ur": {
@@ -4648,7 +6710,7 @@
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Điểm mốc tiếp theo"
+            "value": "Điểm dừng tiếp theo"
           }
         },
         "zh-Hans": {
@@ -4730,7 +6792,7 @@
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "برای تکمیل آن Soundscape را باز کنید."
+            "value": "برای تکمیل آن ساند‌اسکیپ را باز کنید."
           }
         },
         "fi": {
@@ -4821,6 +6883,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open Soundscape om dat af te ronden."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਹ ਪੂਰਾ ਕਰਨ ਲਈ Soundscape ਖੋਲ੍ਹੋ।"
           }
         },
         "pl": {
@@ -5016,13 +7084,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Point de repère précédent"
+            "value": "Étape précédente"
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Point de cheminement précédent"
+            "value": "Étape précédente"
           }
         },
         "ha": {
@@ -5052,7 +7120,7 @@
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Titik jalan sebelumnya"
+            "value": "Titik rute sebelumnya"
           }
         },
         "is": {
@@ -5095,6 +7163,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vorige routepunt"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਿਛਲਾ ਮਾਰਗ ਬਿੰਦੂ"
           }
         },
         "pl": {
@@ -5184,7 +7258,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Попередня маршрутна точка"
+            "value": "Попередня зупинка"
           }
         },
         "ur": {
@@ -5196,7 +7270,7 @@
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Điểm mốc trước đó"
+            "value": "Điểm dừng trước"
           }
         },
         "zh-Hans": {
@@ -5284,7 +7358,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lukee tallennetut reittisi, tallennetut merkintäsi tai komennot, jotka voit sanoa."
+            "value": "Lukee tallennetut reittisi, tallennetut merkitsimesi tai komennot, jotka voit sanoa."
           }
         },
         "fr": {
@@ -5369,6 +7443,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Leest uw opgeslagen routes, uw opgeslagen markeringen of de opdrachten die u kunt zeggen voor."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੇ ਸੇਵ ਕੀਤੇ ਰੂਟ, ਸੇਵ ਕੀਤੇ ਮਾਰਕਰ, ਜਾਂ ਉਹ ਹੁਕਮ ਪੜ੍ਹ ਕੇ ਸੁਣਾਉਂਦਾ ਹੈ ਜੋ ਤੁਸੀਂ ਬੋਲ ਸਕਦੇ ਹੋ।"
           }
         },
         "pl": {
@@ -5645,6 +7725,12 @@
             "value": "Route"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -5919,6 +8005,12 @@
             "value": "Route-opdracht"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ ਹੁਕਮ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -6154,7 +8246,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "leiðir"
+            "value": "Leiðir"
           }
         },
         "it": {
@@ -6191,6 +8283,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Routes"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ"
           }
         },
         "pl": {
@@ -6380,7 +8478,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Asettaa äänimajakan johonkin tallennetuista merkinnöistäsi."
+            "value": "Asettaa äänimajakan johonkin tallennetuista merkitsimistäsi."
           }
         },
         "fr": {
@@ -6392,7 +8490,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Place une balise audio sur l’un de vos marqueurs enregistrés."
+            "value": "Place une balise sonore sur l’un de vos marqueurs enregistrés."
           }
         },
         "ha": {
@@ -6416,7 +8514,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelzőt állít be valamelyik mentett jelölőjén."
+            "value": "Irányjelző hangot állít be valamelyik mentett jelölőjén."
           }
         },
         "id": {
@@ -6465,6 +8563,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stelt een audiobaken in op een van uw opgeslagen markeringen."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੇ ਸੇਵ ਕੀਤੇ ਮਾਰਕਰਾਂ ਵਿੱਚੋਂ ਇੱਕ 'ਤੇ ਆਡੀਓ ਬੀਕਨ ਲਗਾਉਂਦਾ ਹੈ।"
           }
         },
         "pl": {
@@ -6518,7 +8622,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ställer in ett ljudfyr på en av dina sparade platsmarkörer."
+            "value": "Ställer in en ljudfyr på en av dina sparade platsmarkörer."
           }
         },
         "sw": {
@@ -6573,6 +8677,846 @@
           "stringUnit": {
             "state": "translated",
             "value": "在你已保存的某个标记点上设置音频信标。"
+          }
+        }
+      }
+    },
+    "Sets how much Soundscape says as you walk.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يحدد مقدار ما يقوله Soundscape أثناء سيرك."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задава колко говори Soundscape, докато вървите."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপনি হাঁটার সময় Soundscape কতটা বলবে তা নির্ধারণ করে।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estableix quant diu Soundscape mentre camines."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nastaví, kolik toho Soundscape říká, když jdete."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Angiver, hvor meget Soundscape siger, mens du går."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legt fest, wie viel Soundscape beim Gehen sagt."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ορίζει πόσα λέει το Soundscape καθώς περπατάτε."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sets how much Soundscape says as you walk."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajusta cuánto dice Soundscape mientras caminas."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Määrab, kui palju Soundscape kõndides räägib."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعیین می‌کند ساند‌اسکیپ هنگام راه رفتن چقدر بگوید."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Määrittää, kuinka paljon Soundscape puhuu kävellessäsi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Définit la quantité d’informations que Soundscape annonce pendant que vous marchez."
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Définit la quantité d’informations que Soundscape annonce pendant que vous marchez."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yana saita yawan abin da Soundscape ke faɗa yayin tafiyarka."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह सेट करता है कि चलते समय Soundscape कितना बोलेगा।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Postavlja koliko Soundscape govori dok hodate."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beállítja, mennyit mond a Soundscape séta közben."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mengatur seberapa banyak yang dikatakan Soundscape saat Anda berjalan."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stillir hversu mikið Soundscape segir á meðan þú gengur."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imposta quanto Soundscape dice mentre cammini."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "歩行中に Soundscape がどれだけ話すかを設定します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "걷는 동안 Soundscape가 얼마나 말할지 설정합니다."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्ही चालत असताना Soundscape किती सांगेल हे ठरवते."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Angir hvor mye Soundscape sier mens du går."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stelt in hoeveel Soundscape zegt terwijl u loopt."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੈਅ ਕਰਦਾ ਹੈ ਕਿ ਤੁਰਦੇ ਸਮੇਂ Soundscape ਕਿੰਨਾ ਬੋਲੇ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ustawia, jak dużo Soundscape mówi podczas chodzenia."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Define quanto o Soundscape diz enquanto caminha."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Define quanto o Soundscape fala enquanto você caminha."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabilește cât de mult vorbește Soundscape în timp ce mergi."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задаёт, сколько Soundscape говорит во время ходьбы."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nastaví, koľko toho Soundscape hovorí, keď kráčate."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nastavi, koliko Soundscape pove med hojo."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подешава колико Soundscape говори док ходате."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ställer in hur mycket Soundscape säger medan du går."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huweka kiasi cha maneno ambacho Soundscape husema unapotembea."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "நீங்கள் நடக்கும்போது Soundscape எவ்வளவு சொல்லும் என்பதை அமைக்கும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీరు నడుస్తున్నప్పుడు Soundscape ఎంత చెబుతుందో సెట్ చేస్తుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตั้งค่าว่า Soundscape จะพูดมากแค่ไหนขณะคุณเดิน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yürürken Soundscape'in ne kadar konuşacağını ayarlar."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Визначає, скільки Soundscape говорить під час ходьби."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طے کرتا ہے کہ چلتے ہوئے Soundscape کتنا بولے گا۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đặt mức độ Soundscape nói khi bạn đi bộ."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置 Soundscape 在你行走时说多少内容。"
+          }
+        }
+      }
+    },
+    "Silent": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صامت"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Без звук"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নীরব"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silenciós"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bez zvuku"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lydløs"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stumm"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σιωπηλό"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silent"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silencioso"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hääletu"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بی‌صدا"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Äänetön"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silencieux"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silencieux"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shiru"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मौन"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bez zvuka"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Néma"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senyap"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Þögult"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silenzioso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無音"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "무음"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निःशब्द"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lydløs"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stil"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਚੁੱਪ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wyciszony"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silencioso"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silencioso"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silențios"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Беззвучный"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bez zvuku"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brez zvoka"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Без звука"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tyst"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kimya"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "மௌனம்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిశ్శబ్దం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เงียบสนิท"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessiz"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Беззвучний"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خاموش"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im lặng"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "静音"
+          }
+        }
+      }
+    },
+    "Simplified": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مبسّط"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Опростено"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সরলীকৃত"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simplificat"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zjednodušený"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forenklet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vereinfacht"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Απλοποιημένο"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simplified"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simplificado"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lihtsustatud"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساده‌شده"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yksinkertaistettu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simplifié"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simplifié"
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauƙaƙe"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सरलीकृत"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pojednostavljeno"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egyszerűsített"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sederhana"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einfaldað"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semplificato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "簡略"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "간소화"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सरलीकृत"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forenklet"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vereenvoudigd"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਰਲ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uproszczony"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simplificado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simplificado"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simplificat"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Упрощённый"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zjednodušený"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poenostavljeno"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поједностављено"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förenklad"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rahisi"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "எளிமை"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సరళీకృతం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แบบง่าย"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sadeleştirilmiş"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Спрощений"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سادہ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đơn giản"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "简化"
           }
         }
       }
@@ -6660,13 +9604,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passe des points de repère, coupe le son de la balise ou arrête l’itinéraire."
+            "value": "Passe des étapes, coupe le son de la balise ou arrête l’itinéraire."
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passe des points de cheminement, coupe le son de la balise ou arrête l’itinéraire."
+            "value": "Passe des étapes, coupe le son de la balise ou arrête l’itinéraire."
           }
         },
         "ha": {
@@ -6690,7 +9634,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Útvonalpontokat ugrik át, elnémítja a hangjelzőt, vagy leállítja az útvonalat."
+            "value": "Útvonalpontokat ugrik át, elnémítja az irányjelző hangot, vagy leállítja az útvonalat."
           }
         },
         "id": {
@@ -6739,6 +9683,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Slaat routepunten over, dempt het baken of stopt de route."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮਾਰਗ ਬਿੰਦੂ ਛੱਡਦਾ ਹੈ, ਬੀਕਨ ਮਿਊਟ ਕਰਦਾ ਹੈ, ਜਾਂ ਰੂਟ ਰੋਕਦਾ ਹੈ।"
           }
         },
         "pl": {
@@ -6792,7 +9742,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hoppar över brytpunkter, stänger av ljudfyret eller stoppar rutten."
+            "value": "Hoppar över brytpunkter, stänger av ljudfyren eller stoppar rutten."
           }
         },
         "sw": {
@@ -6828,7 +9778,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Пропускає маршрутні точки, вимикає звук маячка або зупиняє маршрут."
+            "value": "Пропускає зупинки, вимикає звук маячка або зупиняє маршрут."
           }
         },
         "ur": {
@@ -6922,7 +9872,7 @@
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape نتوانست آن را انجام دهد."
+            "value": "ساند‌اسکیپ نتوانست آن را انجام دهد."
           }
         },
         "fi": {
@@ -7013,6 +9963,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape kon dat niet doen."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ਇਹ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
           }
         },
         "pl": {
@@ -7238,7 +10194,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző indítása"
+            "value": "Irányjelző hang indítása"
           }
         },
         "id": {
@@ -7287,6 +10243,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Baken starten"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਸ਼ੁਰੂ ਕਰੋ"
           }
         },
         "pl": {
@@ -7482,7 +10444,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarrer l’Itinéraire"
+            "value": "Démarrer l’itinéraire"
           }
         },
         "fr-CA": {
@@ -7524,7 +10486,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "upphaf leiðar"
+            "value": "Hefja leið"
           }
         },
         "it": {
@@ -7561,6 +10523,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Route starten"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ ਸ਼ੁਰੂ ਕਰੋ"
           }
         },
         "pl": {
@@ -7837,6 +10805,12 @@
             "value": "Start een van uw opgeslagen routes."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੇ ਸੇਵ ਕੀਤੇ ਰੂਟਾਂ ਵਿੱਚੋਂ ਇੱਕ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -8111,6 +11085,12 @@
             "value": "Stoppen"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੋਕੋ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -8334,7 +11314,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző leállítása"
+            "value": "Irányjelző hang leállítása"
           }
         },
         "id": {
@@ -8383,6 +11363,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Baken stoppen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਰੋਕੋ"
           }
         },
         "pl": {
@@ -8506,7 +11492,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Обкръжение"
+            "value": "Околност"
           }
         },
         "bn": {
@@ -8659,6 +11645,12 @@
             "value": "Omgeving"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਲਾ-ਦੁਆਲਾ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -8668,7 +11660,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Redor"
+            "value": "Arredores"
           }
         },
         "pt-BR": {
@@ -8852,13 +11844,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactive la balise sonore."
+            "value": "Désactive la balise."
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactive la balise audio."
+            "value": "Désactive la balise."
           }
         },
         "ha": {
@@ -8882,7 +11874,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kikapcsolja a hangjelzőt."
+            "value": "Kikapcsolja az irányjelző hangot."
           }
         },
         "id": {
@@ -8931,6 +11923,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Zet het audiobaken uit."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਡੀਓ ਬੀਕਨ ਬੰਦ ਕਰਦਾ ਹੈ।"
           }
         },
         "pl": {
@@ -8984,7 +11982,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stänger av ljudfyret."
+            "value": "Stänger av ljudfyren."
           }
         },
         "sw": {
@@ -9043,115 +12041,115 @@
         }
       }
     },
-    "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, Soundscape beacon, Soundscape stop beacon, or Soundscape list.": {
+    "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, Soundscape beacon, Soundscape stop beacon, Soundscape detail, or Soundscape list.": {
       "comment": "Recites the spoken phrases. Translate only alongside that language's phrases in <locale>.lproj/AppShortcuts.strings.",
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يمكنك أن تقول: Soundscape المحيط، Soundscape المسار، Soundscape ابدأ المسار، Soundscape المنارة، Soundscape أوقف المنارة، أو Soundscape قائمة."
+            "value": "يمكنك أن تقول: Soundscape المحيط، Soundscape المسار، Soundscape ابدأ المسار، Soundscape المنارة، Soundscape أوقف المنارة، Soundscape التفاصيل، أو Soundscape قائمة."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du kan sige: Soundscape omgivelser, Soundscape rute, Soundscape start rute, Soundscape lydfyr, Soundscape stop lydfyr eller Soundscape liste."
+            "value": "Du kan sige: Soundscape omgivelser, Soundscape rute, Soundscape start rute, Soundscape lydfyr, Soundscape stop lydfyr, Soundscape detaljer eller Soundscape liste."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sie können sagen: Soundscape Umgebung, Soundscape Route, Soundscape starte Route, Soundscape Beacon, Soundscape stoppe Beacon oder Soundscape Liste."
+            "value": "Sie können sagen: Soundscape Umgebung, Soundscape Route, Soundscape starte Route, Soundscape Beacon, Soundscape stoppe Beacon, Soundscape Details oder Soundscape Liste."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Puedes decir: Soundscape entorno, Soundscape ruta, Soundscape iniciar ruta, Soundscape señal, Soundscape detener señal o Soundscape lista."
+            "value": "Puedes decir: Soundscape entorno, Soundscape ruta, Soundscape iniciar ruta, Soundscape señal, Soundscape detener señal, Soundscape detalle o Soundscape lista."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voit sanoa: Soundscape ympäristö, Soundscape reitti, Soundscape aloita reitti, Soundscape majakka, Soundscape pysäytä majakka tai Soundscape luettelo."
+            "value": "Voit sanoa: Soundscape ympäristö, Soundscape reitti, Soundscape aloita reitti, Soundscape majakka, Soundscape pysäytä majakka, Soundscape yksityiskohdat tai Soundscape luettelo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, Soundscape démarre l'itinéraire, Soundscape balise, Soundscape arrête la balise ou Soundscape liste."
+            "value": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, Soundscape démarre l'itinéraire, Soundscape balise, Soundscape arrête la balise sonore, Soundscape détails ou Soundscape liste."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Puoi dire: Soundscape dintorni, Soundscape percorso, Soundscape avvia percorso, Soundscape audiofaro, Soundscape ferma audiofaro o Soundscape elenco."
+            "value": "Puoi dire: Soundscape dintorni, Soundscape percorso, Soundscape avvia percorso, Soundscape audiofaro, Soundscape ferma audiofaro, Soundscape dettagli o Soundscape elenco."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "「Soundscape 周辺」「Soundscape ルート」「Soundscape ルート開始」「Soundscape ビーコン」「Soundscape ビーコン停止」「Soundscape リスト」と言えます。"
+            "value": "「Soundscape 周辺」「Soundscape ルート」「Soundscape ルート開始」「Soundscape ビーコン」「Soundscape ビーコン停止」「Soundscape 詳細」「Soundscape リスト」と言えます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "다음과 같이 말할 수 있습니다: Soundscape 주변, Soundscape 경로, Soundscape 경로 시작, Soundscape 비콘, Soundscape 비콘 중지, Soundscape 목록."
+            "value": "다음과 같이 말할 수 있습니다: Soundscape 주변, Soundscape 경로, Soundscape 경로 시작, Soundscape 비콘, Soundscape 비콘 중지, Soundscape 상세, Soundscape 목록."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du kan si: Soundscape omgivelser, Soundscape rute, Soundscape start rute, Soundscape lydsignal, Soundscape stopp lydsignal eller Soundscape liste."
+            "value": "Du kan si: Soundscape omgivelser, Soundscape rute, Soundscape start rute, Soundscape lydsignal, Soundscape stopp lydsignal, Soundscape detaljer eller Soundscape liste."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "U kunt zeggen: Soundscape omgeving, Soundscape route, Soundscape start route, Soundscape baken, Soundscape stop baken of Soundscape lijst."
+            "value": "U kunt zeggen: Soundscape omgeving, Soundscape route, Soundscape start de route, Soundscape baken, Soundscape stop het baken, Soundscape detail of Soundscape lijst."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pode dizer: Soundscape arredores, Soundscape rota, Soundscape iniciar rota, Soundscape sinal, Soundscape parar sinal ou Soundscape lista."
+            "value": "Pode dizer: Soundscape arredores, Soundscape rota, Soundscape iniciar rota, Soundscape sinal, Soundscape parar sinal, Soundscape detalhe ou Soundscape lista."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Você pode dizer: Soundscape arredores, Soundscape rota, Soundscape iniciar rota, Soundscape sinalizador, Soundscape parar sinalizador ou Soundscape lista."
+            "value": "Você pode dizer: Soundscape arredores, Soundscape rota, Soundscape iniciar rota, Soundscape sinalizador, Soundscape parar sinalizador, Soundscape detalhe ou Soundscape lista."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Можно сказать: Soundscape окружение, Soundscape маршрут, Soundscape запусти маршрут, Soundscape маяк, Soundscape выключи маяк или Soundscape список."
+            "value": "Можно сказать: Soundscape окружение, Soundscape маршрут, Soundscape запусти маршрут, Soundscape маяк, Soundscape выключи маяк, Soundscape детали или Soundscape список."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du kan säga: Soundscape omgivning, Soundscape rutt, Soundscape starta rutt, Soundscape ljudfyr, Soundscape stoppa ljudfyr eller Soundscape lista."
+            "value": "Du kan säga: Soundscape omgivning, Soundscape rutt, Soundscape starta rutt, Soundscape ljudfyr, Soundscape stoppa ljudfyr, Soundscape detaljer eller Soundscape lista."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "คุณสามารถพูดว่า: Soundscape รอบตัว, Soundscape เส้นทาง, Soundscape เริ่มเส้นทาง, Soundscape บีคอน, Soundscape หยุดบีคอน หรือ Soundscape รายการ"
+            "value": "คุณสามารถพูดว่า: Soundscape รอบตัว, Soundscape เส้นทาง, Soundscape เริ่มเส้นทาง, Soundscape บีคอน, Soundscape หยุดบีคอน, Soundscape รายละเอียด หรือ Soundscape รายการ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Şunları diyebilirsiniz: Soundscape çevre, Soundscape rota, Soundscape rota başlat, Soundscape işaret, Soundscape işareti durdur veya Soundscape liste."
+            "value": "Şunları diyebilirsiniz: Soundscape çevre, Soundscape rota, Soundscape rota başlat, Soundscape işaret, Soundscape işareti durdur, Soundscape ayrıntı veya Soundscape liste."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你可以说：Soundscape 周围、Soundscape 路线、Soundscape 开始路线、Soundscape 信标、Soundscape 停止信标，或 Soundscape 列表。"
+            "value": "你可以说：Soundscape 周围、Soundscape 路线、Soundscape 开始路线、Soundscape 信标、Soundscape 停止信标、Soundscape 详细，或 Soundscape 列表。"
           }
         }
       }

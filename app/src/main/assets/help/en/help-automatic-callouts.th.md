@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: การแจ้งเตือนด้วยเสียงอัตโนมัติ
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 70
 lang: th
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# การแจ้งเตือนด้วยเสียงอัตโนมัติ
 
-## What is it?
+ขณะคุณเดิน Soundscape จะแจ้งเตือนสิ่งที่อยู่ใกล้ตัวคุณ คุณได้ยินแต่ละชื่อจากทิศทางของสถานที่นั้น การแจ้งเตือนครอบคลุมถนน ทางแยก ร้านค้า ป้ายรถประจำทาง จุดสังเกต และหมุดของคุณเอง
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## ทางแยก
 
-## When would I use it?
+เมื่อคุณเข้าใกล้ทางแยก Soundscape จะบอกชื่อถนนแต่ละสายที่ออกจากทางแยกนั้น คุณจะได้ยินว่าถนนสายใดไปทางซ้าย สายใดตรงต่อไปข้างหน้า และสายใดไปทางขวา
 
-**Exploring a new area :**
+## คุณได้ยินมากแค่ไหน
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+เปิดเมนูแล้วเลือก *การตั้งค่า* จากนั้นเลือก *จัดการการแจ้งเตือนด้วยเสียง* *ระดับรายละเอียดการแจ้งเตือน* มีสี่ระดับ
 
-**Walking to a specific location :**
+*ละเอียด* แจ้งเตือนทุกอย่างที่อยู่ใกล้เคียง
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*แบบง่าย* ข้ามทางเดินเล็ก ๆ และถนนบริการ และพูดซ้ำน้อยลง
 
-**When you need silence :**
+*เฉพาะที่สำคัญ* แจ้งเตือนเฉพาะถนน ทางแยก และจุดสังเกต
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*เงียบสนิท* ไม่มีการแจ้งเตือนอัตโนมัติ บีคอน เส้นทาง และปุ่มบนหน้าจอหลักยังใช้งานได้
 
-## How does it work?
+## คุณได้ยินอะไรบ้าง
 
-**Turning callouts on or off :**
+*จัดการการแจ้งเตือนด้วยเสียง* มีการตั้งค่าอีกสองรายการ *ถนนและทางแยก* ใช้เปิดหรือปิดการแจ้งเตือนถนนและทางแยก *สถานที่ที่จะแจ้งเตือน* ใช้เลือกประเภทสถานที่ที่คุณจะได้ยิน เช่น *ขนส่งสาธารณะ* หรือ *อาหารและเครื่องดื่ม* หมุดของคุณจะได้รับการแจ้งเตือนเสมอ
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## การทำให้ Soundscape เงียบลง
 
-**Managing which callouts you hear :**
+กด *ก่อนหน้า* บนปุ่มควบคุมของหูฟัง การกดแต่ละครั้งจะเงียบลงหนึ่งระดับ คือ *ละเอียด* *แบบง่าย* *เฉพาะที่สำคัญ* แล้วจึงเป็น *เงียบสนิท* กดอีกหนึ่งครั้งจะกลับไปที่ *ละเอียด* ดูหน้าความช่วยเหลือ *การใช้ปุ่มควบคุมสื่อ*
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## การหยุด Soundscape ชั่วคราว
+
+เลือกปุ่ม *โหมดสลีป* ที่ด้านบนของหน้าจอหลัก Soundscape จะหยุดใช้ตำแหน่งของคุณและไม่ส่งเสียงจนกว่าคุณจะเลือก *ปลุกทันที* หรือเลือก *ปลุกเมื่อออกจากพื้นที่* แล้ว Soundscape จะตื่นเมื่อคุณออกจากที่ที่คุณอยู่
+
+## บนยานพาหนะหรือบนรถไฟ
+
+Soundscape รับรู้ได้เมื่อคุณเดินทางด้วยความเร็วของยานพาหนะ จากนั้นจะหยุดแจ้งเตือนทางแยกและร้านค้าใกล้เคียง เพราะผ่านไปเร็วเกินไป และจะแจ้งเตือนถนนที่คุณอยู่ จุดสังเกต ป้ายหยุดรถและสถานี แม่น้ำ และอุโมงค์แทน
 

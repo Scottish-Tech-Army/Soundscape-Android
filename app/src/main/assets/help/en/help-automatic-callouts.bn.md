@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: স্বয়ংক্রিয় ঘোষণা
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
+nav_order: 70
 lang: bn
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# স্বয়ংক্রিয় ঘোষণা
 
-## What is it?
+আপনি হাঁটার সময় Soundscape আপনার কাছাকাছি যা আছে তা কলআউট করে। প্রতিটি নাম আপনি সেই স্থানের দিক থেকে শোনেন। কলআউটের মধ্যে থাকে রাস্তা, মোড়, দোকান, বাস স্টপ, ল্যান্ডমার্ক এবং আপনার নিজের মার্কার।
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## মোড়
 
-## When would I use it?
+আপনি কোনো মোড়ের কাছে এলে Soundscape সেখান থেকে বেরিয়ে যাওয়া প্রতিটি রাস্তার নাম বলে। আপনি শোনেন কোন রাস্তা বাঁ দিকে যায়, কোনটি সোজা সামনে চলে এবং কোনটি ডান দিকে যায়।
 
-**Exploring a new area :**
+## আপনি কতটা শোনেন
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+মেনু খুলুন এবং *সেটিংস*, তারপর *কলআউট পরিচালনা করুন* নির্বাচন করুন। *কলআউট বিবরণ*-এর চারটি স্তর আছে।
 
-**Walking to a specific location :**
+*বিস্তারিত* কাছাকাছি সবকিছু কলআউট করে।
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*সরলীকৃত* ছোট পথ ও সার্ভিস রোড বাদ দেয়, এবং কম পুনরাবৃত্তি করে।
 
-**When you need silence :**
+*প্রয়োজনীয়* শুধু রাস্তা, মোড় ও ল্যান্ডমার্ক কলআউট করে।
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*নীরব* কোনো স্বয়ংক্রিয় কলআউট দেয় না। বীকন, রুট এবং হোম স্ক্রিনের বোতামগুলো তখনও কাজ করে।
 
-## How does it work?
+## আপনি কী শোনেন
 
-**Turning callouts on or off :**
+*কলআউট পরিচালনা করুন*-এ আরও দুটি সেটিং আছে। *রাস্তা ও মোড়* রাস্তা ও মোড়ের কলআউট চালু বা বন্ধ করে। *যেসব স্থান কলআউট হবে* ঠিক করে আপনি কোন ধরনের স্থান শুনবেন, যেমন *পাবলিক ট্রানজিট* বা *খাবার ও পানীয়*। আপনার মার্কারগুলো সবসময় কলআউট হয়।
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Soundscape-কে কম কথা বলানো
 
-**Managing which callouts you hear :**
+আপনার হেডফোনের কন্ট্রোলে *previous* চাপুন। প্রতিবার চাপলে এক স্তর কমে: *বিস্তারিত*, *সরলীকৃত*, *প্রয়োজনীয়*, তারপর *নীরব*। আরও একবার চাপলে *বিস্তারিত*-এ ফিরে যায়। *মিডিয়া কন্ট্রোল ব্যবহার করা* সহায়তা পাতাটি দেখুন।
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Soundscape কিছুক্ষণের জন্য থামানো
+
+হোম স্ক্রিনের উপরে *ঘুম* বোতামটি নির্বাচন করুন। Soundscape আপনার অবস্থান ব্যবহার করা বন্ধ করে এবং আপনি *এখনই জাগান* নির্বাচন না করা পর্যন্ত কোনো শব্দ করে না। অথবা *চলে গেলে জাগান* নির্বাচন করুন, তাহলে আপনি যে জায়গায় আছেন সেখান থেকে চলে গেলে Soundscape জেগে ওঠে।
+
+## যানবাহনে বা ট্রেনে
+
+আপনি যানবাহনের গতিতে চললে Soundscape তা বুঝতে পারে। তখন এটি মোড় ও কাছের দোকান কলআউট করা বন্ধ করে, কারণ সেগুলো খুব দ্রুত পেরিয়ে যায়। এর বদলে এটি আপনি যে রাস্তায় আছেন সেটি, ল্যান্ডমার্ক, স্টপ ও স্টেশন, নদী এবং সুড়ঙ্গ কলআউট করে।
 

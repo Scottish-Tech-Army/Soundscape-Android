@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Merkitsimet
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 80
 lang: fi
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Merkitsimet
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Merkitsin on paikka, jonka olet tallentanut. Se voi olla mikä tahansa sinulle tärkeä paikka: kotisi, linja-autopysäkki, rakennuksen sisäänkäynti tai suojatie.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape ilmoittaa merkitsimesi, kun kuljet niiden ohi. Voit asettaa merkitsimeen äänimajakan, lisätä sen reittiin tai kuunnella lähimmät painikkeella *Lähiympäristön merkitsimet*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Merkitsimien luominen
+
+1. Valitse aloitusnäytöstä *Merkitsimet* ja valitse sitten *Uusi*.
+
+2. Valitse *Nykyinen sijainti* tai paikka kohdasta *Lähiympäristön paikat*.
+
+3. Muuta nimeä, jos haluat, ja lisää muistiinpanoja. Soundscape lukee muistiinpanot merkitsimen yhteydessä.
+
+4. Valitse *Valmis*.
+
+Voit myös tallentaa minkä tahansa löytämäsi paikan. Avaa sen *Sijainnin tiedot* ja valitse *Tallenna merkitsimenä*.
+
+## Merkitsimien mukauttaminen
+
+Valitse merkitsin näytöstä *Merkitsimet* ja valitse sitten *Muokkaa merkitsintä*. Voit muuttaa sen nimeä, muistiinpanoja ja sijaintia tai valita *Poista merkitsin*. Kun poistat merkitsimen, se poistuu myös reiteistäsi.
 

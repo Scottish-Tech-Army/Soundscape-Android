@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Markerid
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 80
 lang: et
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Markerid
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Marker on koht, mille oled salvestanud. See võib olla mis tahes koht, mis on sulle oluline: sinu kodu, bussipeatus, hoone sissepääs või ülekäigurada.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape teatab sinu markeritest, kui neist möödud. Saad markerile määrata helimajaka, lisada selle marsruudile või kuulata lähimaid nupuga *Lähedal asuvad markerid*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Markerite loomine
+
+1. Vali avakuval *Markerid* ja seejärel *Uus*.
+
+2. Vali *Praegune asukoht* või koht jaotisest *Lähedal asuvad kohad*.
+
+3. Soovi korral muuda nime ja lisa märkmeid. Soundscape loeb märkmed koos markeriga ette.
+
+4. Vali *Valmis*.
+
+Saad salvestada ka mis tahes leitud koha. Ava selle *Asukoha üksikasjad* ja vali *Salvesta markerina*.
+
+## Markerite kohandamine
+
+Vali marker kuval *Markerid* ja seejärel vali *Muuda markerit*. Saad muuta selle nime, märkmeid ja asukohta või valida *Kustuta marker*. Markeri kustutamine eemaldab selle ka sinu marsruutidelt.
 

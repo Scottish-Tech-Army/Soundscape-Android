@@ -10,13 +10,17 @@ import org.scottishtecharmy.soundscape.services.RoutePlayerState
 data class HomeState(
     val heading: Float = 0f,
     val location: LngLatAlt? = null,
+    /** Horizontal accuracy of [location] in metres, or null when the fix doesn't report one.
+     *  Shown by the "GPS accuracy" help page so a user who suspects bad positioning can check. */
+    val locationAccuracy: Float? = null,
     val beaconState: BeaconState? = null,
     val streetPreviewState: StreetPreviewState = StreetPreviewState(),
     val currentRouteData: RoutePlayerState = RoutePlayerState(),
     val isSearching: Boolean = false,
     val searchInProgress: Boolean = false,
     val searchItems: List<LocationDescription>? = null,
-    val routesTabSelected: Boolean = true,
+    // The last search was made offline with no offline maps to search
+    val searchWithoutOfflineMaps: Boolean = false,
     val permissionsRequired: Boolean = false,
     /** Which "hear my surroundings" button has an in-flight callout, or null
      *  when no callout is playing. Drives the pulse animation on the active

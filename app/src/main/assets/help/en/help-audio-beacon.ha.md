@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Siginar Sauti
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 60
 lang: ha
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Siginar Sauti
 
-## What is it?
+Siginar sauti sauti ce da ke fitowa daga ɓangaren wurin da kuka zaɓa. Tana gaya muku inda wurin yake a miƙaƙƙen layi. Ba ta ba da umarnin hanya mataki-mataki, don haka ku ne kuke zaɓar hanyarku zuwa can.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Saita Sigina
 
-## When would I use it?
+1. Ku nemo wurin. Ku yi amfani da sandar bincike, *Wurare na Kusa*, *Alamomi* ko *Wurin da Kake Yanzu* a babban allo.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Ku zaɓi wurin don buɗe *Cikakkun Bayanan Wuri*.
 
-## How does it work?
+3. Ku zaɓi *Fara Siginar Sauti*.
 
-**To set a beacon :**
+Soundscape yana komawa babban allo, siginar kuma ta fara. Babban allo yana nuna sunan wurin da nisansa.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Nemo Alkibla
 
-**To remove the current beacon :**
+Siginar tana canja sauti idan kuna fuskantar wurin ko kuna tafiya kai tsaye zuwa gare shi. Don samun wannan sautin, ku riƙe wayarku a kwance sannan ku juya a hankali. Kuna iya zaɓar wani sautin sigina a *Saitunan*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Kashe Sautin Sigina
 
-**To mute the audible beacon :**
+Ku zaɓi *Kashe Siginar Sauti* a babban allo. Soundscape yana ci gaba da gaya muku nisan wurin yayin da kuke motsawa. Ku zaɓi *Kunna Siginar Sauti* don sake jin siginar.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Cire Sigina
+
+Ku zaɓi *Tsayar da Tafarki* a babban allo. Maɓallin yana da wannan sunan ko da siginar ba ta cikin wani tafarki.
+
+## Idan Kun Isa
+
+Idan kuna kusan mita 12 daga wurin, Soundscape yana gaya muku sannan ya cire siginar. Wayarku ba za ta iya gano inda kuke daidai fiye da haka ba. Don sake jin siginar, ku sake saita ta.
+
+Siginar da aka saita a wurin da bai kai mita 30 ba tana ci gaba da aiki har sai kun cire ta.
 

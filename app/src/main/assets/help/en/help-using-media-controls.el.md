@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Χρήση στοιχείων ελέγχου πολυμέσων
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 110
 lang: el
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Χρήση στοιχείων ελέγχου πολυμέσων
 
-## What is it?
+Μπορείτε να ελέγχετε το Soundscape με τα κουμπιά πολυμέσων των ακουστικών σας: *αναπαραγωγή/παύση*, *επόμενο* και *προηγούμενο*. Αυτό λειτουργεί με ενσύρματα ακουστικά και ακουστικά Bluetooth. Λειτουργεί επίσης όταν το Soundscape είναι στο παρασκήνιο ή το τηλέφωνο είναι κλειδωμένο.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Δεν έχουν όλα τα ακουστικά και τα τρία κουμπιά.
 
-## When would I use it?
+Τα κουμπιά ελέγχουν το Soundscape μόνο όταν καμία άλλη εφαρμογή δεν αναπαράγει ήχο. Αν ακούτε μουσική ή podcast, τα κουμπιά ελέγχουν εκείνη την εφαρμογή.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Τα κουμπιά μπορούν να λειτουργούν με δύο τρόπους: *Αρχική λειτουργία* ή *Ηχητικό μενού*. Για να επιλέξετε, ανοίξτε το μενού και επιλέξτε *Ρυθμίσεις* και μετά *Στοιχεία ελέγχου πολυμέσων*.
 
-## How does it work?
+## Αρχική λειτουργία
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Το *αναπαραγωγή/παύση* κάνει σίγαση του ηχητικού σήματος. Πατήστε το ξανά για να ακούσετε το ηχητικό σήμα.
 
- Original mode. 
+Το *επόμενο* μετακινεί το ηχητικό σήμα στο επόμενο σημείο πορείας όταν ακολουθείτε μια διαδρομή. Διαφορετικά ανακοινώνει το *Γύρω μου*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+Το *προηγούμενο* μετακινεί το ηχητικό σήμα στο προηγούμενο σημείο πορείας όταν ακολουθείτε μια διαδρομή. Διαφορετικά αλλάζει τη ρύθμιση *Λεπτομέρεια επεξηγήσεων*. Κάθε πάτημα κατεβαίνει ένα επίπεδο: *Λεπτομερές*, *Απλοποιημένο*, *Βασικό* και μετά *Σιωπηλό*. Ένα ακόμη πάτημα επιστρέφει στο *Λεπτομερές*. Το Soundscape λέει το όνομα του νέου επιπέδου.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Ηχητικό μενού
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Το ηχητικό μενού σάς δίνει περισσότερες ενέργειες με τα ίδια τρία κουμπιά. Το Soundscape διαβάζει δυνατά κάθε επιλογή.
 
+Το *επόμενο* πηγαίνει στην επόμενη επιλογή. Μετά την τελευταία επιλογή επιστρέφει στην πρώτη.
 
+Το *αναπαραγωγή/παύση* επιλέγει την επιλογή που μόλις ακούσατε.
 
-Audio menu. 
+Το *προηγούμενο* αλλάζει τη ρύθμιση *Λεπτομέρεια επεξηγήσεων*, όπως και στην *Αρχική λειτουργία*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Το μενού ξεκινά με τέσσερις ομάδες: *Ακρόαση του περιβάλλοντός μου*, *Έλεγχος διαδρομής*, *Έναρξη διαδρομής* και *Έναρξη ηχητικού σήματος*. Επιλέξτε μια ομάδα για να ακούσετε τις ενέργειές της. Οι ομάδες *Ακρόαση του περιβάλλοντός μου* και *Έλεγχος διαδρομής* τελειώνουν με το *Κύριο μενού*, που σας επιστρέφει στις τέσσερις ομάδες.
 

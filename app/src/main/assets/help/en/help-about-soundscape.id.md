@@ -1,25 +1,30 @@
 ---
-title: About Soundscape
+title: Tentang Soundscape
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 170
 lang: id
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Tentang Soundscape
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape menggunakan teknologi berbasis audio yang inovatif untuk membantu orang membangun kesadaran yang lebih kaya akan lingkungan sekitar mereka. Hal ini membuat orang lebih percaya diri dan mampu bepergian secara mandiri.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape bergantung pada pustaka dan data pihak ketiga yang luar biasa ini. Klik tautan untuk melihat lisensinya:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©Kontributor OpenStreetMap](https://www.openstreetmap.org/copyright) menyediakan semua data geo untuk pemetaan dan audio yang digunakan dalam Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) digunakan untuk menghasilkan ubin peta yang kami gunakan.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Pustaka Steam Audio ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) digunakan untuk menghasilkan audio 3D, dan disediakan untuk digunakan di bawah [lisensi Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Pustaka Oboe ©The Android Open Source Project](https://github.com/google/oboe) digunakan untuk memutar audio dengan latensi rendah, dan disediakan untuk digunakan di bawah [lisensi Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+[Aplikasi Soundscape asli ©Microsoft Corporation](https://github.com/microsoft/soundscape) menyediakan suara Suar Audio dan banyak terjemahan, dan disediakan untuk digunakan di bawah [lisensi MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Para sukarelawan [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) menyempurnakan beberapa terjemahan, yang disediakan untuk digunakan di bawah [lisensi MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
+Semua nama produk, nama perusahaan, dan logo pihak ketiga merupakan merek dagang atau merek dagang terdaftar dan tetap menjadi milik masing-masing pemiliknya.
 

@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: میڈیا کنٹرولز کا استعمال
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 110
 lang: ur
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# میڈیا کنٹرولز کا استعمال
 
-## What is it?
+آپ اپنے ہیڈفون کے میڈیا بٹنوں سے Soundscape کو کنٹرول کر سکتے ہیں: *پلے/پاز*، *نیکسٹ* اور *پریوئس*۔ یہ تار والے اور Bluetooth ہیڈفون دونوں کے ساتھ کام کرتا ہے۔ یہ اس وقت بھی کام کرتا ہے جب Soundscape پس منظر میں ہو یا فون لاک ہو۔
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+ہر ہیڈفون میں تینوں بٹن نہیں ہوتے۔
 
-## When would I use it?
+بٹن صرف اس وقت Soundscape کو کنٹرول کرتے ہیں جب کوئی اور ایپ آڈیو نہ چلا رہی ہو۔ اگر آپ موسیقی یا پوڈکاسٹ چلا رہے ہیں تو بٹن اسی ایپ کو کنٹرول کرتے ہیں۔
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+بٹن دو طریقوں سے کام کر سکتے ہیں: *اوریجنل موڈ* یا *آڈیو مینو*۔ چننے کے لیے مینو کھولیں اور *ترتیبات*، پھر *میڈیا کنٹرولز* منتخب کریں۔
 
-## How does it work?
+## اوریجنل موڈ
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*پلے/پاز* بیکن کو خاموش کرتا ہے۔ بیکن سننے کے لیے اسے دوبارہ دبائیں۔
 
- Original mode. 
+*نیکسٹ* کسی روٹ پر چلتے وقت بیکن کو اگلے ویپوائنٹ پر لے جاتا ہے۔ ورنہ یہ *میرے اردگرد* کے بارے میں بتاتا ہے۔
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*پریوئس* کسی روٹ پر چلتے وقت بیکن کو پچھلے ویپوائنٹ پر لے جاتا ہے۔ ورنہ یہ *کالآؤٹ تفصیل* بدلتا ہے۔ ہر بار دبانے سے ایک سطح کم ہوتی ہے: *تفصیلی*، *سادہ*، *ضروری*، پھر *خاموش*۔ ایک بار اور دبانے سے *تفصیلی* پر واپسی ہوتی ہے۔ Soundscape نئی سطح کا نام بولتا ہے۔
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## آڈیو مینو
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+آڈیو مینو انہی تین بٹنوں سے آپ کو مزید کام دیتا ہے۔ Soundscape ہر آپشن بلند آواز میں پڑھتا ہے۔
 
+*نیکسٹ* اگلے آپشن پر جاتا ہے۔ آخری آپشن کے بعد یہ پہلے پر واپس آ جاتا ہے۔
 
+*پلے/پاز* وہ آپشن منتخب کرتا ہے جو آپ نے ابھی سنا۔
 
-Audio menu. 
+*پریوئس* *اوریجنل موڈ* کی طرح *کالآؤٹ تفصیل* بدلتا ہے۔
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+مینو چار گروپوں سے شروع ہوتا ہے: *میرے ارد گرد کے بارے میں سنیں*، *روٹ کنٹرول*، *روٹ شروع کریں* اور *آڈیو بیکن شروع کریں*۔ کسی گروپ کے کام سننے کے لیے اسے منتخب کریں۔ *میرے ارد گرد کے بارے میں سنیں* اور *روٹ کنٹرول* کے آخر میں *مرکزی مینو* ہے، جو آپ کو چار گروپوں پر واپس لے جاتا ہے۔
 

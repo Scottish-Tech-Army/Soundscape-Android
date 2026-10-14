@@ -11,7 +11,9 @@ import org.scottishtecharmy.soundscape.audio.EARCON_MODE_ENTER
 import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.platform.appNameCollator
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.beacon_action_callout_beacon
 import org.scottishtecharmy.soundscape.resources.beacon_action_mute_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_nearby_markers
 import org.scottishtecharmy.soundscape.resources.callouts_panel_title
@@ -19,6 +21,7 @@ import org.scottishtecharmy.soundscape.resources.directions_my_location
 import org.scottishtecharmy.soundscape.resources.help_explore_page_title
 import org.scottishtecharmy.soundscape.resources.help_orient_page_title
 import org.scottishtecharmy.soundscape.resources.location_detail_action_beacon
+import org.scottishtecharmy.soundscape.resources.menu_beacon_info
 import org.scottishtecharmy.soundscape.resources.menu_main_menu
 import org.scottishtecharmy.soundscape.resources.menu_no_routes
 import org.scottishtecharmy.soundscape.resources.menu_route
@@ -31,8 +34,10 @@ import org.scottishtecharmy.soundscape.resources.route_detail_action_stop_route
  * AudioMenu provides a hierarchical, navigable audio menu controlled by media buttons.
  *
  * - NEXT    : advance to next item at the current level (wraps at end)
- * - PREVIOUS: go back one item (wraps at end)
  * - SELECT  : enter a sub-menu, or execute a leaf action
+ *
+ * PREVIOUS is not menu navigation - AudioMenuMediaControls gives it to [cycleCalloutDetail],
+ * which is wanted more often than stepping backwards through a menu that wraps anyway.
  *
  * There is no inactivity timeout — the current position is remembered until changed.
  */
@@ -89,17 +94,6 @@ class AudioMenu(
         service.speak2dText(level.items[level.currentIndex].label, true)
     }
 
-    fun previous() {
-        service.callbackHoldOff()
-        val level = menuStack.last()
-        level.currentIndex =
-            if (level.currentIndex == 0)
-                level.items.size - 1
-            else
-                level.currentIndex - 1
-        service.speak2dText(level.items[level.currentIndex].label, true)
-    }
-
     fun select() {
         service.callbackHoldOff()
         val item = menuStack.last().let { it.items[it.currentIndex] }
@@ -116,6 +110,9 @@ class AudioMenu(
             is MenuItem.DynamicSubmenu -> loadAndEnter(item)
         }
     }
+
+    /** See [cycleCalloutDetailAndSay]. */
+    fun cycleCalloutDetail() = service.cycleCalloutDetailAndSay()
 
     // ── Main-menu escape ──────────────────────────────────────────────────────
 
@@ -137,6 +134,15 @@ class AudioMenu(
             return
         }
         service.speak2dText(firstRootLabel, true, EARCON_MODE_EXIT)
+    }
+
+    /**
+     * Silently pops back to the root menu, leaving its cursor on the item that led here.
+     * Used after starting a route or beacon so the user doesn't have to step through the
+     * rest of the list to reach "Main Menu", and without talking over the start announcement.
+     */
+    private fun popToRoot() {
+        while (menuStack.size > 1) menuStack.removeLast()
     }
 
     // ── Audio helpers ─────────────────────────────────────────────────────────
@@ -170,6 +176,12 @@ class AudioMenu(
                 },
                 MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.callouts_nearby_markers) }) {
                     service.nearbyMarkers()
+                },
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.beacon_action_callout_beacon) }) {
+                    service.calloutBeacon()
+                },
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.menu_beacon_info) }) {
+                    service.beaconMoreInfo()
                 },
                 mainMenuAction(),
             )
@@ -207,19 +219,24 @@ class AudioMenu(
 
     // ── Feature implementations ───────────────────────────────────────────────
 
+    // Both lists are in the same order as the Markers & Routes screens when sorted by name, A to Z.
     private suspend fun loadRouteMenuItems(): List<MenuItem> =
         withContext(Dispatchers.Default) {
-            routeDao.getAllRoutes().map { route ->
-                MenuItem.Action(route.name) { service.routeStartById(route.routeId) }
+            routeDao.getAllRoutes().sortedWith(compareBy(appNameCollator()) { it.name }).map { route ->
+                MenuItem.Action(route.name) {
+                    service.routeStartById(route.routeId)
+                    popToRoot()
+                }
             } + mainMenuAction()
         }
 
     private suspend fun loadMarkerMenuItems(): List<MenuItem> =
         withContext(Dispatchers.Default) {
-            routeDao.getAllMarkers().map { marker ->
+            routeDao.getAllMarkers().sortedWith(compareBy(appNameCollator()) { it.name }).map { marker ->
                 MenuItem.Action(marker.name) {
                     val location = LngLatAlt(marker.longitude, marker.latitude)
                     service.startBeacon(location, marker.name)
+                    popToRoot()
                 }
             } + mainMenuAction()
         }

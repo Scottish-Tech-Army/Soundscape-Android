@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Audiobeacon
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 60
 lang: de
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Audiobeacon
 
-## What is it?
+Ein Audiobeacon ist ein Ton, der aus der Richtung eines Ortes kommt, den Sie auswählen. Er sagt Ihnen, wo der Ort in gerader Linie liegt. Er gibt keine Schritt-für-Schritt-Wegbeschreibung. Sie wählen Ihren Weg dorthin selbst.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Beacon setzen
 
-## When would I use it?
+1. Suchen Sie den Ort. Nutzen Sie dazu auf dem Startbildschirm die Suchleiste, *Orte in der Nähe*, *Markierungen* oder *Aktueller Standort*.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Wählen Sie den Ort aus, um die *Standortdetails* zu öffnen.
 
-## How does it work?
+3. Wählen Sie *Audiobeacon starten*.
 
-**To set a beacon :**
+Soundscape kehrt zum Startbildschirm zurück und das Beacon startet. Der Startbildschirm zeigt den Namen des Ortes und die Entfernung dorthin.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Die Richtung finden
 
-**To remove the current beacon :**
+Das Beacon ändert seinen Ton, wenn Sie in Richtung des Ortes schauen oder direkt darauf zugehen. Um diesen Ton zu finden, halten Sie Ihr Telefon flach und drehen Sie sich langsam. In den *Einstellungen* können Sie einen anderen Beacon-Ton wählen.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Beacon stummschalten
 
-**To mute the audible beacon :**
+Wählen Sie auf dem Startbildschirm *Beacon stummschalten*. Soundscape sagt Ihnen unterwegs weiterhin, wie weit der Ort entfernt ist. Wählen Sie *Stummschaltung des Beacons aufheben*, um das Beacon wieder zu hören.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Beacon entfernen
+
+Wählen Sie auf dem Startbildschirm *Route anhalten*. Die Schaltfläche heißt auch dann so, wenn das Beacon nicht zu einer Route gehört.
+
+## Wenn Sie ankommen
+
+Wenn Sie etwa 12 Meter vom Ort entfernt sind, sagt Soundscape Ihnen das und entfernt das Beacon. Genauer kann Ihr Telefon Ihre Position nicht bestimmen. Um das Beacon wieder zu hören, setzen Sie es erneut.
+
+Ein Beacon auf einem Ort, der weniger als 30 Meter entfernt ist, bleibt an, bis Sie es entfernen.
 

@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Hlasy
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 100
 lang: cs
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Hlasy
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape může používat jakýkoli hlas nainstalovaný v telefonu. Chcete-li přidat hlasy, otevřete nastavení telefonu a najděte *Výstup převodu textu na řeč*. Chcete-li vybrat hlas v Soundscape, otevřete nabídku a vyberte *Nastavení*, pak *Zvuk* a pak *Hlasy*.
 

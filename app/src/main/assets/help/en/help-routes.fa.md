@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: مسیرها
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 90
 lang: fa
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# مسیرها
 
-## What is it?
+مسیر فهرستی از موقعیت‌های مکانی است که نقطه‌ی بین‌راهی نام دارند و به‌ترتیب به آن‌ها می‌روید. ساند‌اسکیپ روی اولین نقطه‌ی بین‌راهی یک جهت‌نما تنظیم می‌کند. وقتی می‌رسید، به شما خبر می‌دهد و جهت‌نما را به نقطه‌ی بعدی می‌برد.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+از مسیر برای یاد گرفتن یک راه تازه استفاده کنید، یا برای اینکه در راهی که می‌شناسید از مسیر خارج نشوید.
 
-## When would I use it?
+## ساختن مسیر
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. در صفحه‌ی اصلی *مسیرها* و سپس *جدید* را انتخاب کنید.
 
-## How does it work?
+2. برای مسیر یک نام بگذارید. می‌توانید توضیحات هم اضافه کنید.
 
-**Creating a route :**
+3. *افزودن نقاط بین‌راهی* را انتخاب کنید و نشانه‌ها را برگزینید. می‌توانید موقعیت مکانی فعلی خود یا مکانی نزدیک را هم اضافه کنید.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *تمام* را انتخاب کنید.
 
-**Editing a route :**
+## دنبال کردن مسیر
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+مسیر را در صفحه‌ی *مسیرها* انتخاب کنید و سپس *شروع مسیر* را انتخاب کنید. برای پیمودن آن در جهت برعکس، *شروع مسیر به‌صورت معکوس* را انتخاب کنید. در صفحه‌ی اصلی، *نقطه‌ی بین‌راهی بعدی* و *نقطه‌ی بین‌راهی قبلی* جهت‌نما را در طول مسیر جابه‌جا می‌کنند. *توقف مسیر* آن را پایان می‌دهد.
 
-**Sharing a route :**
+## تغییر دادن مسیر
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+مسیر را در صفحه‌ی *مسیرها* انتخاب کنید و سپس *ویرایش مسیر* را انتخاب کنید. می‌توانید نقاط بین‌راهی را اضافه، حذف و جابه‌جا کنید، نام و توضیحات را تغییر دهید یا مسیر را حذف کنید.
+
+## اشتراک‌گذاری مسیر
+
+مسیر را در صفحه‌ی *مسیرها* انتخاب کنید و سپس *اشتراک‌گذاری* را انتخاب کنید.
 

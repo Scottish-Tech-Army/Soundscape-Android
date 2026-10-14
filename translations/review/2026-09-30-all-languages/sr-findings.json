@@ -1,0 +1,426 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Ово је велико ажурирање Soundscape-а. Режим путовања је знатно бољи. Када путујете аутомобилом или аутобусом, Soundscape сада најављује бројеве путева, ваш правац кретања и оближња насеља. Такође најављује када прелазите реке, канале, заливе и мореузе. Ажурирајте своје офлајн мапе да бисте добили ове нове функције. Описи аутобуских стајалишта су сада много бољи за кориснике у Уједињеном Краљевству. Режим спавања сада може аутоматски да се пробуди када открије да сте се поново покренули. Више не морате да памтите да га сами пробудите. Реорганизовали смо основни код како бисмо могли да направимо iOS апликацију на основу истог кода. Ово значи да у будућности можемо издати iOS апликацију са свим функцијама које смо направили за Android. Молимо вас да нам и даље пријављујете сваки проблем на који наиђете, ма колико мали био, преко опције Контактирајте подршку у главном менију.",
+  "suggested": "\nОво је велико ажурирање Soundscape-а.\n\nРежим путовања је знатно бољи. Када путујете аутомобилом или аутобусом, Soundscape сада најављује бројеве путева, ваш правац кретања и оближња насеља. Такође најављује када прелазите реке, канале, заливе и мореузе. Ажурирајте своје офлајн мапе да бисте добили ове нове функције. Описи аутобуских стајалишта су сада много бољи за кориснике у Уједињеном Краљевству.\n\nРежим спавања сада може аутоматски да се пробуди када открије да сте се поново покренули. Више не морате да памтите да га сами пробудите.\n\nРеорганизовали смо основни код како бисмо могли да направимо iOS апликацију на основу истог кода. Ово значи да у будућности можемо издати iOS апликацију са свим функцијама које смо направили за Android.\n\nМолимо вас да нам и даље пријављујете сваки проблем на који наиђете, ма колико мали био, преко опције Контактирајте подршку у главном менију.\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) of the English were dropped; the release-notes dialog now splits on paragraph breaks (7ca86e582), so the five paragraphs run together as one block.",
+  "category": "formatting"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "Поделио/ла сам са вама Soundscape маркер: %1$s.\\n\\nДа бисте га отворили у Soundscape-у користите %2$s.\\n\\n Да бисте га отворили у Google Maps-у користите %3$s.",
+  "suggested": "Са вама је подељен Soundscape маркер: „%1$s“.\\n\\nДа бисте га отворили у Soundscape-у користите %2$s.\\n\\n Да бисте га отворили у Google Maps-у користите %3$s.",
+  "reason": "«Поделио/ла» puts a slash in the text (C15) and the quotes around the marker name were dropped. An impersonal passive avoids the sender's gender and restores the quotes typographically.",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_section_title_when",
+  "source": "When would I use it?",
+  "current": "Када бих то користио/ла?",
+  "suggested": "Када се ово користи?",
+  "reason": "«користио/ла» — slash read aloud by screen readers, forces a gender the English doesn't have (C15, SR-G2). Impersonal form avoids it.",
+  "category": "gender"
+ },
+ {
+  "context": "faq_sleep_mode_battery_question",
+  "source": "How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "Како да користим Режим спавања да бих смањио утицај Soundscape-а на батерију мог телефона?",
+  "suggested": "Како да користим Режим спавања да смањим утицај Soundscape-а на батерију мог телефона?",
+  "reason": "SR-G2: «да бих смањио» is masculine-only. «да смањим» keeps the first person and is gender-free.",
+  "category": "gender"
+ },
+ {
+  "context": "faq_snooze_mode_battery_question",
+  "source": "How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "Како да користим Режим дремања да бих смањио утицај Soundscape-а на батерију мог телефона?",
+  "suggested": "Како да користим Режим дремања да смањим утицај Soundscape-а на батерију мог телефона?",
+  "reason": "SR-G2: «да бих смањио» is masculine-only. «да смањим» keeps the first person and is gender-free.",
+  "category": "gender"
+ },
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s који спаја %2$s и %3$s",
+  "suggested": "%1$s што спаја %2$s и %3$s",
+  "reason": "«који» is masculine, but %1$s is often feminine (Стаза, Пешачка стаза) → «Стаза који спаја». Indeclinable «што» agrees with any way type.",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_destination_beacons_when",
+  "source": "Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.",
+  "current": "Постављање бакена је корисно када желите да пратите познату оријентацију док истражујете нову област, или када идете некуда и желите да будете обавештени о својој околини успут. Функција бакена не даје вам навигацију корак по корак, али вам даје непрекидан звук који вам говори у ком је правцу бакен у односу на то где се тренутно налазите. Уз звучни бакен, ваше постојеће вештине сналажења, па чак и вашу омиљену навигациону апликацију, можете сами да одлучите како желите да стигнете до оближњих локација.",
+  "suggested": "Постављање бакена је корисно када желите да пратите познати оријентир док истражујете нову област, или када идете некуда и желите да будете обавештени о својој околини успут. Функција бакена не даје вам навигацију корак по корак, али вам даје непрекидан звук који вам говори у ком је правцу бакен у односу на то где се тренутно налазите. Уз звучни бакен, ваше постојеће вештине сналажења, па чак и вашу омиљену навигациону апликацију, можете сами да одлучите како желите да стигнете до оближњих локација.",
+  "reason": "«пратите познату оријентацију» means 'follow a familiar orientation'; a landmark is «оријентир».",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_away_from_settlement",
+  "source": "away from %1$s, %2$s behind you",
+  "current": "од %1$s, %2$s иза вас",
+  "suggested": "удаљавајући се од %1$s, %2$s иза вас",
+  "reason": "Appended to «Путовање ка југу дуж A81 …»; bare «од %1$s» reads as 'from Strathblane' (origin), losing 'away from'. Participle keeps the sense.",
+  "category": "meaning"
+ },
+ {
+  "context": "terms_of_use_message",
+  "source": "Your use of Soundscape is subject to the terms of the %1$s and the terms set out below (together, the *\"Terms of Use\"*).",
+  "current": "Ваше коришћење апликације Soundscape подлеже условима %1$s и условима наведеним у наставку (заједно, *Услови коришћења*).",
+  "suggested": "Ваше коришћење апликације Soundscape подлеже условима документа %1$s и условима наведеним у наставку (заједно, *Услови коришћења*).",
+  "reason": "%1$s is the nominative title «Уговор о услугама Scottish Tech Army»; «условима Уговор о услугама…» is ungrammatical. A head noun in the genitive lets the title stay nominative.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_direction",
+  "source": "at %1$s o'clock",
+  "current": "на %1$s сати",
+  "suggested": "на %1$s",
+  "reason": "«на 1 сати», «на 2/3/4 сати» are ungrammatical (1 сат, 2–4 сата, 5+ сати). Since C20 the hour words are translatable: move the noun into relative_clock_hour_N and drop it from the template. Must be applied together with the 12 hour strings.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_1",
+  "source": "1",
+  "current": "1",
+  "suggested": "1 сат",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_2",
+  "source": "2",
+  "current": "2",
+  "suggested": "2 сата",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_3",
+  "source": "3",
+  "current": "3",
+  "suggested": "3 сата",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_4",
+  "source": "4",
+  "current": "4",
+  "suggested": "4 сата",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_5",
+  "source": "5",
+  "current": "5",
+  "suggested": "5 сати",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_6",
+  "source": "6",
+  "current": "6",
+  "suggested": "6 сати",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_7",
+  "source": "7",
+  "current": "7",
+  "suggested": "7 сати",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_8",
+  "source": "8",
+  "current": "8",
+  "suggested": "8 сати",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_9",
+  "source": "9",
+  "current": "9",
+  "suggested": "9 сати",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_10",
+  "source": "10",
+  "current": "10",
+  "suggested": "10 сати",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_11",
+  "source": "11",
+  "current": "11",
+  "suggested": "11 сати",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_12",
+  "source": "12",
+  "current": "12",
+  "suggested": "12 сати",
+  "reason": "Goes with the relative_clock_direction change to «на %1$s» (C20): the hour word carries its own correctly declined noun. Apply together or not at all.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "Као и код свих четири дугмади на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Моја локација*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Моја локација* и слушајте.",
+  "suggested": "Као и код сва четири дугмета на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Моја локација*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Моја локација* и слушајте.",
+  "reason": "«свих четири дугмади» is ungrammatical; should be «сва четири дугмета».",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "Као и код свих четири дугмади на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Оближњи маркери*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Оближњи маркери* и чућете до четири маркера у близини.",
+  "suggested": "Као и код сва четири дугмета на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Оближњи маркери*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Оближњи маркери* и чућете до четири маркера у близини.",
+  "reason": "«свих четири дугмади» is ungrammatical; should be «сва четири дугмета».",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "Као и код свих четири дугмади на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Око мене*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Око мене* и чућете четири тачке од интереса распоређене око вас.",
+  "suggested": "Као и код сва четири дугмета на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Око мене*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Око мене* и чућете четири тачке од интереса распоређене око вас.",
+  "reason": "«свих четири дугмади» is ungrammatical; should be «сва четири дугмета».",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Као и код свих четири дугмади на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Испред мене*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Испред мене* и чућете неколико тачака од интереса које се налазе отприлике испред вас.",
+  "suggested": "Као и код сва четири дугмета на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Испред мене*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Испред мене* и чућете неколико тачака од интереса које се налазе отприлике испред вас.",
+  "reason": "«свих четири дугмади» is ungrammatical; should be «сва четири дугмета».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_tip_create_marker_at_bus_stop",
+  "source": "If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.",
+  "current": "Ако редовно користите неку аутобуску линију, сачувајте своја стајалишта за укрцавање и излазак као маркере. На тај начин ће бити сачувани и лако ћете их поново пронаћи. Идите на *Маркери и руте* са почетног екрана, а затим их пронађите на страници *Маркери*. На њих можете поставити бакен да бисте добијали повремена ажурирања о томе колико сте близу стајалишту на коме излазите. Напомена: звук можете искључити, а и даље ћете добијати ажурирања о удаљености успут.",
+  "suggested": "Ако редовно користите неку аутобуску линију, сачувајте своја стајалишта за укрцавање и излазак као маркере. На тај начин ће бити сачувани и лако ћете их поново пронаћи. Идите на *Маркери и руте* са почетног екрана, а затим их пронађите на страници *Маркери*. На њих можете поставити бакен да бисте добијали повремена ажурирања о томе колико сте близу стајалишта на коме излазите. Напомена: звук можете искључити, а и даље ћете добијати ажурирања о удаљености успут.",
+  "reason": "«близу стајалишту» — «близу» takes the genitive: «близу стајалишта».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "Не! Док ходате, можете одложити телефон у торбу, џеп или било где вам одговара. Soundscape ће користити правац у коме ходате да би утврдио које најаве да вам најави са леве, а које са десне стране. Када престанете да се крећете, Soundscape не зна у ком сте правцу окренути. Ако је звучни бакен укључен, приметићете да постаје тиши док поново не кренете. Телефон можете извадити да бисте у сваком тренутку притиснули дугмад за локацију и истраживање на дну почетног екрана, али водите рачуна да телефон држите тако да врх телефона буде усмерен у правцу у коме сте окренути, а екран ка небу. У овом *равном* положају, Soundscape ће користити компас телефона да одреди у ком сте правцу окренути и пружи тачне просторне најаве. Ако је бакен укључен, приметићете и да се врати на пуну јачину звука.",
+  "suggested": "Не! Док ходате, можете одложити телефон у торбу, џеп или било где вам одговара. Soundscape ће користити правац у коме ходате да би утврдио које најаве да пусти са леве, а које са десне стране. Када престанете да се крећете, Soundscape не зна у ком сте правцу окренути. Ако је звучни бакен укључен, приметићете да постаје тиши док поново не кренете. Телефон можете извадити да бисте у сваком тренутку притиснули дугмад за локацију и истраживање на дну почетног екрана, али водите рачуна да телефон држите тако да врх телефона буде усмерен у правцу у коме сте окренути, а екран ка небу. У овом *равном* положају, Soundscape ће користити компас телефона да одреди у ком сте правцу окренути и пружи тачне просторне најаве. Ако је бакен укључен, приметићете и да се врати на пуну јачину звука.",
+  "reason": "«које најаве да вам најави» is a clumsy tautology ('which callouts to call out'); «да пусти» reads naturally.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_voice_command_listening_prompt_description",
+  "source": "Speak a listening prompt before voice recognition starts.",
+  "current": "Изговори звучни сигнал пре него што почне препознавање гласа.",
+  "suggested": "Пре почетка препознавања гласа изговори да апликација слуша.",
+  "reason": "«Изговори звучни сигнал» ('speak a sound signal') — the prompt is spoken words, not a tone.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_services",
+  "source": "Service Area",
+  "current": "Одморише",
+  "suggested": "Одмориште",
+  "reason": "Typo: «Одморише» → «Одмориште». A TTS will mispronounce it.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_rune_stone",
+  "source": "Rune Stone",
+  "current": "Руни камен",
+  "suggested": "Рунски камен",
+  "reason": "«Руни камен» is not a Serbian form; the adjective is «рунски».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_baby_hatch",
+  "source": "Baby Hatch",
+  "current": "Беби мрежица",
+  "suggested": "Прозор за бебе",
+  "reason": "«Беби мрежица» ('baby net') doesn't name a baby hatch (a place to leave a newborn safely). Suggested wording is descriptive; worth a native check.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_skating",
+  "source": "Skating Rink",
+  "current": "Клизалиште за ролере",
+  "suggested": "Клизалиште",
+  "reason": "The note says ice or roller skating; «Клизалиште за ролере» restricts it to roller skating.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_tip_setting_beacon_on_address",
+  "source": "You can set a beacon on any address. From the main screen, search for the address using the search bar. Then select the address in the search results to open the *Location Details* screen. This screen has an option to *Start Audio Beacon* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.",
+  "current": "Бакен можете поставити на било коју адресу. На главном екрану потражите адресу помоћу траке за претрагу. Затим изаберите адресу из резултата претраге да бисте отворили екран *Детаљи локације*. Овај екран нуди опцију *Покрени звучни бакен* на тој адреси. На овај начин можете поставити бакен на продавнице, места, тачке од интереса и станове који се не налазе у OpenStreetMap-у.",
+  "suggested": "Бакен можете поставити на било коју адресу. На главном екрану потражите адресу помоћу траке за претрагу. Затим изаберите адресу из резултата претраге да бисте отворили екран *Детаљи локације*. Овај екран нуди опцију *Покрени звучни бакен* на тој адреси. На овај начин можете поставити бакен на продавнице, места, тачке од интереса и домове који се не налазе у OpenStreetMap-у.",
+  "reason": "«станове» means apartments; 'homes' is «домове».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape има функције и предности које обухватају разне ситуације и временске оквире. Вредност коју вам Soundscape пружа такође се може временом мењати, тако да начин на који га користите данас може бити другачији од начина на који ћете га користити за три месеца. Људи често размишљају о апликацијама у смислу *који проблем ова апликација добро решава?* Soundscape свакако можете користити за одређене потребе – на пример, праћење одредишта док идете ка њему, помоћ у оријентацији када изађете из станице метроа, сналажење када изађете из аутомобила, или проналажење назива улица за следећу раскрсницу или удаљености до ње. Међутим, филозофија на којој почива Soundscape јесте *осветљавање вашег света звуком* – осмишљена је да се користи кад год сте напољу, како би вам пружила свест о околини, попут назива улица којима се крећете, правца у коме идете и назива продавница поред којих пролазите. У овом начину коришћења, наши корисници су Soundscape описивали као *пријатну апликацију-пратиоца*, која подржава *срећне случајности*, помаже да *попуните празнине у својој менталној мапи* и пружа већу *сигурност приликом ходања*. Ево неколико других примера како наши корисници користе Soundscape у свом животу:\\n\\nSoundscape ми је помогао да се вратим на прави пут пошто сам изашао из аутобуса и кренуо у погрешном правцу.\\n\\nЧак и у граду у коме живим већ 3 године, изградио сам бољу представу о томе шта ме окружује [уз помоћ Soundscape-а].\\n\\n3D звук унапређује мој доживљај шетње, јер се осећам повезаније са својом околином… Спремнији сам да испробам нову руту сада када имам ову апликацију.\\n\\nНедостаје ми та срећна случајност шетње и запажања ствари. Лепо је имати Soundscape – не захтева никакав труд да чујем шта ме окружује. Информације о међусобним односима су корисне, а апликација је одлична за ситуациону свест и истраживање пословних четврти.\\n\\n[Користио сам Soundscape] да пронађем паб у центру Јорка. Користио сам низ његових опција да га прво лоцирам, а потом и заиста пронађем. Довео ме је на само 3 метра од врата – одлично!",
+  "suggested": "Soundscape има функције и предности које обухватају разне ситуације и временске оквире. Вредност коју вам Soundscape пружа такође се може временом мењати, тако да начин на који га користите данас може бити другачији од начина на који ћете га користити за три месеца. Људи често размишљају о апликацијама у смислу *који проблем ова апликација добро решава?* Soundscape свакако можете користити за одређене потребе – на пример, праћење одредишта док идете ка њему, помоћ у оријентацији када изађете из станице метроа, сналажење када изађете из аутомобила, или проналажење назива улица за следећу раскрсницу или удаљености до ње. Међутим, филозофија на којој почива Soundscape јесте *осветљавање вашег света звуком* – осмишљена је да се користи кад год сте напољу, како би вам пружила свест о околини, попут назива улица којима се крећете, правца у коме идете и назива продавница поред којих пролазите. У овом начину коришћења, наши корисници су Soundscape описивали као *пријатну апликацију-пратиоца*, која подржава *срећне случајности*, помаже да *попуните празнине у својој менталној мапи* и пружа већу *сигурност приликом ходања*. Ево неколико других примера како наши корисници користе Soundscape у свом животу:\\n\\n„Soundscape ми је помогао да се вратим на прави пут пошто сам изашао из аутобуса и кренуо у погрешном правцу.“\\n\\n„Чак и у граду у коме живим већ 3 године, изградио сам бољу представу о томе шта ме окружује [уз помоћ Soundscape-а].“\\n\\n„3D звук унапређује мој доживљај шетње, јер се осећам повезаније са својом околином… Спремнији сам да испробам нову руту сада када имам ову апликацију.“\\n\\n„Недостаје ми та срећна случајност шетње и запажања ствари. Лепо је имати Soundscape – не захтева никакав труд да чујем шта ме окружује. Информације о међусобним односима су корисне, а апликација је одлична за ситуациону свест и истраживање пословних четврти.“\\n\\n„[Користио сам Soundscape] да пронађем паб у центру Јорка. Користио сам низ његових опција да га прво лоцирам, а потом и заиста пронађем. Довео ме је на само 3 метра од врата – одлично!“",
+  "reason": "The quotation marks around the five user testimonials were dropped, so the first-person quotes («Soundscape ми је помогао…») read as the app speaking. Restore them with typographic „…“.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_config_voices_content",
+  "source": "Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *Settings* from the main menu, expand the *Audio* section, and then select *Voices*.",
+  "current": "Soundscape може да користи било који глас који сте преузели на свој Android телефон у подешавањима система за претварање текста у говор. У оквиру Soundscape апликације, да бисте изабрали други глас уместо подразумеваног Android гласа, идите на *„Подешавања“* из главног менија, проширите одељак *„Звук“*, а затим изаберите *„Гласови“*.",
+  "suggested": "Soundscape може да користи било који глас који сте преузели на свој Android телефон у подешавањима система за претварање текста у говор. У оквиру Soundscape апликације, да бисте изабрали други глас уместо подразумеваног Android гласа, идите на *Подешавања* из главног менија, проширите одељак *Звук*, а затим изаберите *Гласови*.",
+  "reason": "Adds „…“ inside the *…* UI names, unlike the English and every other help string (e.g. the iOS variant uses plain *Подешавања*).",
+  "category": "formatting"
+ },
+ {
+  "context": "directions_name_goes_left",
+  "source": "%1$s, goes left",
+  "current": "%1$s, скреће лево",
+  "suggested": "%1$s, иде лево",
+  "reason": "The onboarding example of this very callout (first_launch_callouts_example_3) says «Главна улица иде лево»; «скреће» ('turns') leans towards a turn (C11). Use the same verb in both.",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_name_goes_right",
+  "source": "%1$s, goes right",
+  "current": "%1$s, скреће десно",
+  "suggested": "%1$s, иде десно",
+  "reason": "Same as goes_left: match first_launch_callouts_example_4 «иде десно» and avoid the turn reading (C11).",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_markers",
+  "source": "The Markers and Routes screen has two tabs. One tab lists routes, which are playlists of markers. The other tab lists individual markers. Tap Markers to switch to that tab and find the marker you created.",
+  "current": "Екран Маркери и руте има два таба. Један таб приказује руте, које су плејлисте маркера. Други приказује појединачне маркере. Додирните Маркери да бисте прешли на тај таб и пронашли маркер који сте креирали.",
+  "suggested": "Екран Маркери и руте има две картице. Једна картица приказује руте, које су плејлисте маркера. Друга приказује појединачне маркере. Додирните Маркери да бисте прешли на ту картицу и пронашли маркер који сте креирали.",
+  "reason": "«таб» — the help pages call the same tabs «картица» (help_text_customizing_markers_content_1, help_text_routes_content_how_1).",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_start_beacon",
+  "source": "You're now on the Markers tab which lists all your saved markers. Select a marker, and when the Location Details screen appears, tap Start Audio Beacon.",
+  "current": "Сада сте на табу Маркери, који приказује све ваше сачуване маркере. Изаберите маркер, и када се појави екран Детаљи локације, додирните Покрени звучни бакен.",
+  "suggested": "Сада сте на картици Маркери, која приказује све ваше сачуване маркере. Изаберите маркер, и када се појави екран Детаљи локације, додирните Покрени звучни бакен.",
+  "reason": "«табу» — elsewhere the tab is «картица».",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_mobile_data_use_answer",
+  "source": "The amount of mobile data used depends on how you use Soundscape. We have designed the app to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to redownload them every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *Sleep* button to put Soundscape to sleep or force close the app.",
+  "current": "Количина искоришћених мобилних података зависи од тога како користите Soundscape. Осмислили смо апликацију тако да користи само малу количину података док сте напољу, на пример чувањем тачака док шетате, тако да их не морате поново преузимати сваки пут када се вратите на место на коме сте већ били. Да бисте смањили количину мобилних података које користите, повежите се на Wi-Fi кад год је то могуће, посебно приликом преузимања апликације. Када не користите Soundscape, требало би да користите дугме *Спавање* да пребаците Soundscape у стање мировања или да принудно затворите апликацију.",
+  "suggested": "Количина искоришћених мобилних података зависи од тога како користите Soundscape. Осмислили смо апликацију тако да користи само малу количину података док сте напољу, на пример чувањем тачака док шетате, тако да их не морате поново преузимати сваки пут када се вратите на место на коме сте већ били. Да бисте смањили количину мобилних података које користите, повежите се на Wi-Fi кад год је то могуће, посебно приликом преузимања апликације. Када не користите Soundscape, требало би да користите дугме *Спавање* да успавате Soundscape или да принудно затворите апликацију.",
+  "reason": "'put Soundscape to sleep' became «пребаците… у стање мировања», a different term from Sleep mode «Режим спавања» / «успавате» (sleep_sleep_acc_hint).",
+  "category": "terminology"
+ },
+ {
+  "context": "callouts_bus_and_tram_stops_description",
+  "source": "Announce bus stops and tram stops as you pass them",
+  "current": "Најављуј аутобуска и трамвајска стајалишта док пролазиш поред њих",
+  "suggested": "Најављује аутобуска и трамвајска стајалишта док пролазите поред њих",
+  "reason": "Informal «ти» («Најављуј… пролазиш») in an app that uses «Ви» throughout. Describe what the setting does, like the other descriptions.",
+  "category": "tone"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_language_not_supported",
+  "source": "The current language is not supported by Android for speech recognition.",
+  "current": "Андроид не подржава тренутни језик за препознавање говора.",
+  "suggested": "Android не подржава тренутни језик за препознавање говора.",
+  "reason": "«Андроид» in Cyrillic; every other string keeps the Latin «Android».",
+  "category": "terminology"
+ },
+ {
+  "context": "menu_exit_app",
+  "source": "Exit Soundscape",
+  "current": "Изађи из Soundscape",
+  "suggested": "Изађи из Soundscape-а",
+  "reason": "Every other string declines the app name («из Soundscape-а», «Soundscape-у»); here it's left undeclined.",
+  "category": "tone"
+ },
+ {
+  "context": "faq_use_with_wayfinding_apps_answer",
+  "source": "Soundscape is designed to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.",
+  "current": "Soundscape је осмишљен да вам помогне да сазнате детаље о својој околини за које можда иначе не бисте знали. Иако није осмишљена као апликација за навигацију корак по корак, може се користити заједно са таквим апликацијама да пружи допунске информације. Да бисте користили Soundscape уз ове апликације, прво покрените своју навигациону апликацију. Затим пређите на Soundscape и поставите бакен на исто одредиште као у навигационој апликацији. У том тренутку, обе апликације ће радити истовремено и чућете упутства за ходање из ваше навигационе апликације, док ћете од Soundscape-а добијати ажурирања о тачкама од интереса, раскрсницама и удаљености до одредишта.",
+  "suggested": "Soundscape је осмишљен да вам помогне да сазнате детаље о својој околини за које можда иначе не бисте знали. Иако није осмишљен као апликација за навигацију корак по корак, може се користити заједно са таквим апликацијама да пружи допунске информације. Да бисте користили Soundscape уз ове апликације, прво покрените своју навигациону апликацију. Затим пређите на Soundscape и поставите бакен на исто одредиште као у навигационој апликацији. У том тренутку, обе апликације ће радити истовремено и чућете упутства за ходање из ваше навигационе апликације, док ћете од Soundscape-а добијати ажурирања о тачкама од интереса, раскрсницама и удаљености до одредишта.",
+  "reason": "«Иако није осмишљена» is feminine while its subject Soundscape is masculine in the same sentence pair («Soundscape је осмишљен»).",
+  "category": "tone"
+ },
+ {
+  "context": "tour_welcome",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "Добродошли у вођени водич кроз апликацију. Овај водич ће вас провести кроз главне функције апликације. Водич можете зауставити у сваком тренутку додиром на Откажи вођени водич у главном менију. Почнимо са Места у близини. Омогућава вам да пронађете тачке од интереса. Дугме Места у близини се налази на почетном екрану, одмах испод траке за претрагу. Додирните га сада да бисте пробали.",
+  "suggested": "Добродошли у вођени водич кроз апликацију. Овај водич ће вас провести кроз главне функције апликације. Водич можете зауставити у сваком тренутку додиром на Откажи вођени водич у главном менију. Почнимо са функцијом Места у близини. Омогућава вам да пронађете тачке од интереса. Дугме Места у близини се налази на почетном екрану, одмах испод траке за претрагу. Додирните га сада да бисте пробали.",
+  "reason": "«Почнимо са Места у близини» puts a plural nominative UI name after «са»; a head noun makes it grammatical.",
+  "category": "tone"
+ },
+ {
+  "context": "osm_bmx",
+  "source": "BMX",
+  "current": "БМХ",
+  "suggested": "BMX",
+  "reason": "«БМХ» spelled in Cyrillic reads 'бе-ем-ха'; the acronym stays Latin like GPS and Wi-Fi elsewhere.",
+  "category": "tone"
+ },
+ {
+  "context": "osm_handicraft",
+  "source": "Handicraft Shop",
+  "current": "Продавница ручних рукотворина",
+  "suggested": "Продавница ручних радова",
+  "reason": "«ручних рукотворина» is a tautology (рукотворина already means handmade).",
+  "category": "tone"
+ },
+ {
+  "context": "osm_glaziery",
+  "source": "Glazier Shop",
+  "current": "Стаклорезачка радња",
+  "suggested": "Стакларска радња",
+  "reason": "«Стаклорезачка» is unusual; the trade is «стаклар».",
+  "category": "tone"
+ },
+ {
+  "context": "osm_climbing_adventure",
+  "source": "Climbing Adventure",
+  "current": "Авантура пењања",
+  "suggested": "Авантуристички парк за пењање",
+  "reason": "«Авантура пењања» is a calque; this is a rope/adventure park.",
+  "category": "tone"
+ },
+ {
+  "context": "sleep_sleeping",
+  "source": "Sleeping",
+  "current": "Спавање",
+  "suggested": "Спавање",
+  "reason": "SR-T1 (agreed defect, wording unconfirmed): the status and the button (sleep_sleep) are both «Спавање». Waiting on questionnaire Q3; «На спавању» is the candidate.",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_at_poi",
+  "source": "At %1$s",
+  "current": "Код %1$s",
+  "suggested": "Код %1$s",
+  "reason": "C17: map names arrive in the nominative, so «Код %1$s», «Близу %1$s», «На %1$s», «Прилазите %1$s», «према %1$s», «до %2$s» (directions_*, street_description_*, confect_name_*) are always wrong for some names. The label form is the candidate to put to a reviewer, not to apply unasked.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_degrees_direction",
+  "source": "at %1$s degrees",
+  "current": "на %1$s степени",
+  "suggested": "на %1$s степени",
+  "reason": "CROSS-LANGUAGE: «на %1$s степени» can't agree with the number (1 степен, 2–4 степена, 5+ степени) because the angle arrives as a plain %1$s. Needs a plural resource in code; the same problem hits every Slavic language.",
+  "category": "meaning"
+ }
+]

@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.bestPoiForSpeech
 import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
+import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -24,6 +25,13 @@ import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.addressCountryCode
 import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
+
+/**
+ * How far along a street its only junction or landmark can be and still have a place described as
+ * "near" it. Where there's something either side, or a heading, 10 metres is the limit and
+ * anything further is "between" or "until" - this is for an address with neither to fall back on.
+ */
+private const val NEAR_SINGLE_LANDMARK_METRES = 100.0
 
 /**
  * The OfflineGeocoder class abstracts away the use of map tile data on the phone for geocoding and
@@ -116,6 +124,26 @@ class OfflineGeocoder(
         return tileSearch?.search(nearbyLocation, locationName, localizedStrings, settlementNames)
     }
 
+    override suspend fun searchByCategory(
+        category: SearchCategory,
+        name: String?,
+        nearbyLocation: LngLatAlt,
+        localizedStrings: LocalizedStrings?
+    ): List<LocationDescription> {
+        analyticsLogger("offlineCategorySearch")
+
+        // Only the offline maps are searched. Without them, the search bar says there are none,
+        // rather than giving an answer from the small area loaded around the user which looks
+        // like a complete one.
+        return tileSearch?.searchByCategory(
+            nearbyLocation,
+            category.values,
+            name,
+            localizedStrings,
+            CATEGORY_SEARCH_LIMIT
+        ).orEmpty()
+    }
+
     private fun getNearestPointOnFeature(
         feature: Feature,
         location: LngLatAlt
@@ -194,6 +222,11 @@ class OfflineGeocoder(
             }
         }
         if (nearbyWay != null) {
+            // A pavement is described as the street it runs beside, which is only known once its
+            // name has been confected. Nothing guarantees that has happened by now, and without
+            // it the first answer was "On Pavement next to Filton Road".
+            if (nearbyWay.isSidewalkOrCrossing() && (nearbyWay.properties?.get("pavement") == null))
+                confectNamesForRoad(nearbyWay, gridState, localizedStrings)
             val pavement = (nearbyWay.properties?.get("pavement") as String?)
                 .takeUnless { it.isNullOrEmpty() }
             val nearbyName = pavement
@@ -313,6 +346,24 @@ class OfflineGeocoder(
                 if (text.isNotEmpty()) {
                     return LocationDescription(text, userGeometry.location)
                 }
+                if (!nameNearbyFeatures) {
+                    // There's a named street here but not enough along it to place the location
+                    // by - only one junction or landmark, and no heading to say which side of it
+                    // this is. "Near" reads the same from either side, so it can still be said of
+                    // something a little way along; further off than that, the street on its own
+                    // is still the address. Without this the answer came from the nearest way of
+                    // any kind further down, which can be a path that's closer than the street
+                    // the place is on.
+                    if (!directional && (closest != null) &&
+                        (closest.distance < NEAR_SINGLE_LANDMARK_METRES)
+                    ) {
+                        text = localizedStrings?.get(
+                            StringKey.StreetDescriptionRelativeNear, nearbyName, closest.name
+                        ) ?: "On $nearbyName near ${closest.name}"
+                        return LocationDescription(text, userGeometry.location)
+                    }
+                    return LocationDescription(nearbyName, userGeometry.location)
+                }
             }
         }
 
@@ -380,7 +431,14 @@ class OfflineGeocoder(
         ) as Way?
         if (nearestRoad != null) {
             // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
-            val roadName = nearestRoad.getName(null, gridState, null, true)
+            val confectedName = nearestRoad.getName(null, gridState, localizedStrings, true)
+            // A pavement is the nearest way to anywhere just off a street, and its address is the
+            // street rather than "Pavement next to" it
+            val pavement = (nearestRoad.properties?.get("pavement") as String?)
+                .takeUnless { it.isNullOrEmpty() }
+            val roadName = pavement
+                ?.let { (nearestRoad.properties?.get("pavementTranslated") as String?) ?: it }
+                ?: confectedName
             if (roadName.isNotEmpty()) {
                 return if (nearestSettlementName != null) {
                     LocationDescription(
@@ -471,5 +529,7 @@ class OfflineGeocoder(
 
     companion object {
         const val TAG = "OfflineGeocoder"
+
+        private const val CATEGORY_SEARCH_LIMIT = 10
     }
 }

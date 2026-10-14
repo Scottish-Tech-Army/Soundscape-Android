@@ -73,7 +73,11 @@ class TrackedCallout(
 }
 
 class CalloutHistory(
-    expiryPeriodMilliseconds: Long = 60000,
+    /**
+     * How long a recorded callout suppresses a repeat of itself. A var so that the callout
+     * verbosity setting can lengthen it while running - see CalloutVerbosity.
+     */
+    var expiryPeriodMilliseconds: Long = 60000,
     /**
      * How far from a recorded callout's own location the user has to get before it is forgotten,
      * and so could be announced again.
@@ -84,17 +88,11 @@ class CalloutHistory(
      * immediately and re-armed on the next fix, announcing it over and over for the whole
      * approach.
      */
-    private val trimRadiusMetres: Double = 50.0
+    var trimRadiusMetres: Double = 50.0
 ) {
 
     // List of recent history
     private val history = mutableListOf<TrackedCallout>()
-
-    private var expiryPeriod: Long = 0
-
-    init {
-        expiryPeriod = expiryPeriodMilliseconds
-    }
 
     fun add(callout: TrackedCallout) {
         history.add(callout)
@@ -119,7 +117,7 @@ class CalloutHistory(
         // TODO : Remove hardcoded expiry time and distance should be based on category
         history.removeAll {
             val result =
-                ((now - it.time) > expiryPeriod) || (it.isPoint && userGeometry.ruler.distance(
+                ((now - it.time) > expiryPeriodMilliseconds) || (it.isPoint && userGeometry.ruler.distance(
                     userGeometry.location,
                     it.location
                 ) > trimRadiusMetres)

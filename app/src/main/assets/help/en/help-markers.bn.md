@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: মার্কার
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
+nav_order: 80
 lang: bn
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# মার্কার
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+মার্কার হলো আপনার সংরক্ষণ করা একটি স্থান। এটি আপনার কাছে গুরুত্বপূর্ণ যেকোনো স্থান হতে পারে: আপনার বাড়ি, একটি বাস স্টপ, কোনো ভবনের প্রবেশপথ বা রাস্তা পারাপারের জায়গা।
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+আপনি মার্কারের পাশ দিয়ে গেলে Soundscape সেগুলো কলআউট করে। আপনি কোনো মার্কারে অডিও বীকন সেট করতে পারেন, সেটি কোনো রুটে যোগ করতে পারেন, বা *কাছাকাছি মার্কার* বোতাম দিয়ে সবচেয়ে কাছেরগুলো শুনতে পারেন।
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## মার্কার তৈরি করা
+
+1. হোম স্ক্রিনে *মার্কার* নির্বাচন করুন, তারপর *নতুন* নির্বাচন করুন।
+
+2. *বর্তমান অবস্থান* বেছে নিন, অথবা *কাছাকাছি স্থান* থেকে একটি স্থান বেছে নিন।
+
+3. চাইলে নাম বদলান এবং নোট যোগ করুন। Soundscape মার্কারের সঙ্গে নোটগুলো পড়ে শোনায়।
+
+4. *সম্পন্ন* নির্বাচন করুন।
+
+আপনি খুঁজে পাওয়া যেকোনো স্থানও সংরক্ষণ করতে পারেন। সেটির *অবস্থানের বিবরণ* খুলুন এবং *মার্কার হিসেবে সংরক্ষণ করুন* নির্বাচন করুন।
+
+## মার্কার কাস্টমাইজ করা
+
+*মার্কার* স্ক্রিনে মার্কারটি নির্বাচন করুন, তারপর *মার্কার সম্পাদনা করুন* নির্বাচন করুন। আপনি এর নাম, নোট ও অবস্থান বদলাতে পারেন, অথবা *মার্কার মুছুন* নির্বাচন করতে পারেন। কোনো মার্কার মুছলে সেটি আপনার রুটগুলো থেকেও সরে যায়।
 

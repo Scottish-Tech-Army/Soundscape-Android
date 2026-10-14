@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Hääled
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 100
 lang: et
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Hääled
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape saab kasutada mis tahes häält, mis on sinu telefoni installitud. Häälte lisamiseks ava telefoni seaded ja otsi üles *Kõnesünteesi väljund*. Hääle valimiseks Soundscape’is ava menüü ja vali *Seadistused*, seejärel *Heli* ja seejärel *Hääled*.
 

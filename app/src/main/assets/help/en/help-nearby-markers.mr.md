@@ -1,23 +1,16 @@
 ---
-title: Nearby Markers
+title: जवळचे मार्कर
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
+nav_order: 50
 lang: mr
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# जवळचे मार्कर
 
-## What is it?
+*जवळचे मार्कर* तुमचे जास्तीत जास्त चार मार्कर सांगते, जे तुमच्या सर्वात जवळ आहेत. प्रत्येक मार्कर त्याच्या स्वतःच्या दिशेने, अंतरासह ऐकू येतो. तुम्हाला आधीच माहीत असलेल्या ठिकाणांवरून आपण कुठे आहोत हे समजण्यासाठी ते वापरा. सुमारे 2 किलोमीटरपेक्षा दूर असलेले मार्कर वगळले जातात.
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+तुम्ही एका जागी उभे असाल, तर आधी फोनचे वरचे टोक तुमचे तोंड ज्या दिशेला आहे तिकडे करा. फोन लॉक असेल, किंवा Soundscape स्क्रीनवर नसेल, तर फोन सपाटही धरा.
 

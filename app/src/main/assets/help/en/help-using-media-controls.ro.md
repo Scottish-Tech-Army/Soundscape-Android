@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Utilizarea comenzilor media
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 110
 lang: ro
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Utilizarea comenzilor media
 
-## What is it?
+Poți controla Soundscape cu butoanele media de pe căști: *redare/pauză*, *următorul* și *anterior*. Funcționează cu căști cu fir și cu căști Bluetooth. Funcționează și când Soundscape este în fundal sau telefonul este blocat.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Nu toate căștile au toate cele trei butoane.
 
-## When would I use it?
+Butoanele controlează Soundscape doar când nicio altă aplicație nu redă sunet. Dacă asculți muzică sau un podcast, butoanele controlează acea aplicație.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Butoanele pot funcționa în două feluri: *Mod original* sau *Meniu audio*. Pentru a alege, deschide meniul și selectează *Setări*, apoi *Controale media*.
 
-## How does it work?
+## Mod original
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Redare/pauză* dezactivează sunetul balizei. Apasă din nou pentru a auzi baliza.
 
- Original mode. 
+*Următorul* mută baliza la punctul de traseu următor când urmezi o rută. Altfel, anunță *În jurul meu*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Anterior* mută baliza la punctul de traseu anterior când urmezi o rută. Altfel, schimbă *Detaliul anunțurilor*. Fiecare apăsare coboară un nivel: *Detaliat*, *Simplificat*, *Esențial*, apoi *Silențios*. Încă o apăsare revine la *Detaliat*. Soundscape spune numele noului nivel.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Meniu audio
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Meniul audio îți oferă mai multe acțiuni cu aceleași trei butoane. Soundscape citește cu voce tare fiecare opțiune.
 
+*Următorul* trece la opțiunea următoare. După ultima opțiune revine la prima.
 
+*Redare/pauză* selectează opțiunea pe care tocmai ai auzit-o.
 
-Audio menu. 
+*Anterior* schimbă *Detaliul anunțurilor*, la fel ca în *Mod original*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Meniul începe cu patru grupuri: *Ascultă împrejurimile*, *Control rută*, *Pornește ruta* și *Pornește baliza audio*. Selectează un grup pentru a-i auzi acțiunile. *Ascultă împrejurimile* și *Control rută* se termină cu *Meniu principal*, care te duce înapoi la cele patru grupuri.
 

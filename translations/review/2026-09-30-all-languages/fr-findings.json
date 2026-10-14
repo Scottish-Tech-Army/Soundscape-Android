@@ -1,0 +1,626 @@
+[
+ {
+  "context": "faq_mobile_data_use_answer",
+  "category": "meaning",
+  "source": "The amount of mobile data used depends on how you use Soundscape. We have designed the app to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to redownload them every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *Sleep* button to put Soundscape to sleep or force close the app.",
+  "current": "La quantité de données mobiles utilisées dépend de la façon dont vous utilisez Soundscape. Nous avons conçu l’application de manière à n’utiliser qu’une petite quantité de données lorsque vous êtes en déplacement, par exemple en enregistrant des points lorsque vous marchez afin de ne pas avoir à les retélécharger chaque fois que vous retournez à un endroit auquel vous êtes déjà allé. Pour réduire la quantité de données mobiles que vous utilisez, assurez-vous d’être connecté au Wi-Fi dès que possible, en particulier pour télécharger l’application. Si vous n’utilisez pas Soundscape, vous devez appuyer sur le bouton *Mettre en pause* pour mettre Soundscape en pause ou pour forcer la fermeture de l’application.",
+  "suggested": "La quantité de données mobiles utilisées dépend de la façon dont vous utilisez Soundscape. Nous avons conçu l’application de manière à n’utiliser qu’une petite quantité de données lorsque vous êtes en déplacement, par exemple en enregistrant des points lorsque vous marchez afin de ne pas avoir à les retélécharger chaque fois que vous retournez à un endroit auquel vous êtes déjà allé. Pour réduire la quantité de données mobiles que vous utilisez, assurez-vous d’être connecté au Wi-Fi autant que possible, en particulier pour télécharger l’application. Si vous n’utilisez pas Soundscape, vous devez appuyer sur le bouton *Mettre en pause* pour mettre Soundscape en pause, ou forcer la fermeture de l’application.",
+  "reason": "Says the Sleep button force-closes the app («pour mettre Soundscape en pause ou pour forcer la fermeture»); English offers force-closing as a separate alternative. Also «dès que possible» (as soon as) for 'whenever possible' («autant que possible»)."
+ },
+ {
+  "context": "help_text_destination_beacons_when",
+  "category": "terminology",
+  "source": "Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.",
+  "current": "La définition d’une balise sonore est utile pour effectuer le suivi d’un repère familier quand vous explorez un nouvel environnement ou lorsque vous allez quelque part et que vous souhaitez rester informé de ce qui vous entoure sur votre trajet. La fonctionnalité de balise sonore ne vous fournit pas un itinéraire détaillé, mais émet un son audible continu vous indiquant la direction de la balise sonore, en fonction de votre emplacement actuel. Grâce à la balise sonore, vos compétences d’orientation et même votre application de navigation préférée, vous pouvez choisir comment accéder à des emplacements situés à proximité par vous-même.",
+  "suggested": "La définition d’une balise sonore est utile pour effectuer le suivi d’un repère familier quand vous explorez un nouvel environnement ou lorsque vous allez quelque part et que vous souhaitez rester informé de ce qui vous entoure sur votre trajet. La fonctionnalité de balise sonore ne vous fournit pas d’indications pas à pas, mais émet un son audible continu vous indiquant la direction de la balise sonore, en fonction de votre emplacement actuel. Grâce à la balise sonore, vos compétences d’orientation et même votre application de navigation préférée, vous pouvez choisir comment accéder à des emplacements situés à proximité par vous-même.",
+  "reason": "'turn-by-turn directions' rendered «un itinéraire détaillé», but «itinéraire» is the app's term for Route, so this says the beacon feature doesn't give you a detailed Route. Use the «pas à pas» wording already used in faq_difference_from_map_apps_answer."
+ },
+ {
+  "context": "help_text_ahead_of_me_when",
+  "category": "meaning",
+  "source": "When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.",
+  "current": "Lorsque vous marchez dans la rue, essayez d’utiliser *\"Devant moi\"* pour découvrir les lieux et les repères situés de part et d’autre.",
+  "suggested": "Lorsque vous marchez dans la rue, essayez d’utiliser *Devant moi* pour découvrir les lieux et les éléments qui se présentent plus loin, de part et d’autre de la rue.",
+  "reason": "Drops 'ahead' ('coming up on either side of the street ahead'), and 'things' became «repères», the app's Landmarks term. Also straight quotes inside the *…* UI name, which the English doesn't have."
+ },
+ {
+  "context": "faq_headset_battery_impact_answer",
+  "category": "meaning",
+  "source": "In our tests, the battery consumption of Bluetooth headphones is comparable to that of wired headphones and should not be a significant factor to consider when selecting headphones.",
+  "current": "Dans nos tests, la consommation d’énergie des casques Bluetooth est comparable à celle d’un casque filaire et ne doit pas être un facteur important à prendre en compte lors de la sélection d’un casque.",
+  "suggested": "Dans nos tests, la consommation d’énergie des casques Bluetooth est comparable à celle d’un casque filaire et ne devrait pas être un facteur important à prendre en compte lors de la sélection d’un casque.",
+  "reason": "«ne doit pas être un facteur important» reads as 'must not be'; English 'should not be a significant factor' is a prediction («ne devrait pas»)."
+ },
+ {
+  "context": "faq_callouts_stopping_in_vehicle_answer",
+  "category": "meaning",
+  "source": "In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.",
+  "current": "Pour éviter un trop grand nombre d’annonces, certaines catégories, comme les croisements, ne sont pas automatiquement annoncées lorsque vous les passez dans un véhicule.",
+  "suggested": "Pour éviter un trop grand nombre d’annonces, certaines catégories, comme les croisements, ne sont pas automatiquement annoncées lorsque vous vous déplacez en véhicule.",
+  "reason": "«lorsque vous les passez dans un véhicule» ('when you pass them in a vehicle') narrows the English 'when you're traveling in a vehicle'."
+ },
+ {
+  "context": "markers_annotation",
+  "category": "meaning",
+  "source": "Additional notes",
+  "current": "Annotation",
+  "suggested": "Notes supplémentaires",
+  "reason": "English is now 'Additional notes' (the field label); «Annotation» is the old term and doesn't match the edit hint «ajouter des notes supplémentaires» (location_detail_action_edit_hint) or the tutorial's «ajouter des notes»."
+ },
+ {
+  "context": "first_launch_welcome_description",
+  "category": "meaning",
+  "source": "Navigate with confidence using Soundscape spatial audio",
+  "current": "Promenez-vous en toute confiance grâce à l’audio spatial de Soundscape",
+  "suggested": "Déplacez-vous en toute confiance grâce à l’audio spatial de Soundscape",
+  "reason": "«Promenez-vous» means 'go for a stroll'; 'Navigate with confidence' is about getting around. «Déplacez-vous» keeps the sense."
+ },
+ {
+  "context": "osm_spikes",
+  "category": "meaning",
+  "source": "Spikes",
+  "current": "Dispositifs anti-crevaison",
+  "suggested": "Herse anti-véhicules",
+  "reason": "«Dispositifs anti-crevaison» means puncture-prevention devices, the opposite of the tag (tyre-damaging spike strips placed to stop vehicles)."
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_speech_timeout",
+  "category": "tone",
+  "source": "Listening for speech timed out. Listening has stopped. Please try again.",
+  "current": "Le délai d’écoute est expiré. L’écoute a été arrêtée. Veuillez réessayer.",
+  "suggested": "Le délai d’écoute a expiré. L’écoute a été arrêtée. Veuillez réessayer.",
+  "reason": "«Le délai d’écoute est expiré» is ungrammatical as a timed-out event; «a expiré»."
+ },
+ {
+  "context": "first_launch_prompt_title",
+  "category": "gender",
+  "source": "You're ready!",
+  "current": "Vous êtes prêt !",
+  "suggested": "Tout est prêt !",
+  "reason": "C15: masculine «Vous êtes prêt !» agrees with the user; the translator comment asks for a gender-free phrasing ('All set!'). «Tout est prêt !» needs no agreement."
+ },
+ {
+  "context": "first_launch_prompt_message",
+  "category": "gender",
+  "source": "You are ready for your first walk with Soundscape. To get started, choose a nearby destination and start the audio beacon — you’ll hear it playing in the direction of your destination.",
+  "current": "Vous êtes prêt pour votre première promenade avec Soundscape. Pour commencer, choisissez une destination proche et démarrez la balise sonore : vous l’entendrez retentir dans la direction de votre destination.",
+  "suggested": "Tout est prêt pour votre première promenade avec Soundscape. Pour commencer, choisissez une destination proche et démarrez la balise sonore : vous l’entendrez retentir dans la direction de votre destination.",
+  "reason": "Same C15 problem as first_launch_prompt_title: «Vous êtes prêt pour…» is masculine. An impersonal opening avoids it."
+ },
+ {
+  "context": "directions_going_under_railway",
+  "category": "placeholders",
+  "source": "Passing under %1$s",
+  "current": "Passage sous %1$s",
+  "suggested": "Passage {fr:sous %1$s}",
+  "reason": "FR-G2: map-name placeholder after a preposition isn't wrapped, so the app says «Passage sous Rue de Rivoli» / «sous Canal de l’Ourcq» with no article. Its sibling directions_crossing_waterway is wrapped. The marker code accepts any preposition."
+ },
+ {
+  "context": "directions_entering_tunnel_named",
+  "category": "placeholders",
+  "source": "Entering %1$s",
+  "current": "Entrée dans %1$s",
+  "suggested": "Entrée {fr:dans %1$s}",
+  "reason": "FR-G2: «Entrée dans Tunnel de Fourvière» lacks the article; «tunnel» is in the French type list, so wrapping gives «Entrée dans le tunnel de Fourvière»."
+ },
+ {
+  "context": "street_description_until",
+  "category": "placeholders",
+  "source": "On %1$s, %2$s until %3$s",
+  "current": "{fr:Sur %1$s}, %2$s jusqu’à %3$s",
+  "suggested": "{fr:Sur %1$s}, %2$s jusqu’{fr:à %3$s}",
+  "reason": "FR-G2: %3$s is a street or place name after «jusqu’à» but isn't wrapped («125 m jusqu’à Rue X»). Wrapping «à» (not «jusqu’à», which the code wouldn't contract) gives «jusqu’au boulevard…», «jusqu’à la rue…»."
+ },
+ {
+  "context": "osm_train_station_named",
+  "category": "placeholders",
+  "source": "%1$s Train Station",
+  "current": "Gare de %1$s",
+  "suggested": "Gare {fr:de %1$s}",
+  "reason": "Hard-coded «de» before a map name: no elision («Gare de Orléans») or contraction («Gare de Le Havre»). The marker handles both (as done for osm_entrance_* on 2026-09-29)."
+ },
+ {
+  "context": "osm_ferry_terminal_named",
+  "category": "placeholders",
+  "source": "%1$s Ferry Terminal",
+  "current": "Terminal de ferry de %1$s",
+  "suggested": "Terminal de ferry {fr:de %1$s}",
+  "reason": "Same as osm_train_station_named: hard-coded «de» gives «Terminal de ferry de Le Havre». Note osm_tag_ferry_terminal_named uses a different pattern («Terminal de ferry %1$s»)."
+ },
+ {
+  "context": "directions_generic_train",
+  "category": "meaning",
+  "source": "train",
+  "current": "le train",
+  "suggested": "le train",
+  "reason": "Substituted into «{fr:Sur %1$s}» templates, so the unnamed-line case is spoken «Sur le train» (on top of the train); French says «dans le train» / «en train». No value of this string alone fixes it, since the same template also takes named lines. Needs a template decision."
+ },
+ {
+  "context": "directions_generic_tram",
+  "category": "meaning",
+  "source": "tram",
+  "current": "le tram",
+  "suggested": "le tram",
+  "reason": "Same as directions_generic_train: spoken «Sur le tram»; French rides «dans le tram»."
+ },
+ {
+  "context": "relative_clock_direction",
+  "category": "placeholders",
+  "source": "at %1$s o'clock",
+  "current": "à %1$s heures",
+  "suggested": "à %1$s",
+  "reason": "«à %1$s heures» gives «à 1 heures» at one o'clock. Since C20 the hour arrives as relative_clock_hour_*, so move the unit into those strings («1 heure», «2 heures»…) and make the template «à %1$s». Template and the 12 hour strings must change together."
+ },
+ {
+  "context": "relative_clock_hour_1",
+  "category": "placeholders",
+  "source": "1",
+  "current": "1",
+  "suggested": "1 heure",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_2",
+  "category": "placeholders",
+  "source": "2",
+  "current": "2",
+  "suggested": "2 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_3",
+  "category": "placeholders",
+  "source": "3",
+  "current": "3",
+  "suggested": "3 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_4",
+  "category": "placeholders",
+  "source": "4",
+  "current": "4",
+  "suggested": "4 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_5",
+  "category": "placeholders",
+  "source": "5",
+  "current": "5",
+  "suggested": "5 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_6",
+  "category": "placeholders",
+  "source": "6",
+  "current": "6",
+  "suggested": "6 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_7",
+  "category": "placeholders",
+  "source": "7",
+  "current": "7",
+  "suggested": "7 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_8",
+  "category": "placeholders",
+  "source": "8",
+  "current": "8",
+  "suggested": "8 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_9",
+  "category": "placeholders",
+  "source": "9",
+  "current": "9",
+  "suggested": "9 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_10",
+  "category": "placeholders",
+  "source": "10",
+  "current": "10",
+  "suggested": "10 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_11",
+  "category": "placeholders",
+  "source": "11",
+  "current": "11",
+  "suggested": "11 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "relative_clock_hour_12",
+  "category": "placeholders",
+  "source": "12",
+  "current": "12",
+  "suggested": "12 heures",
+  "reason": "Goes with the relative_clock_direction fix (template becomes «à %1$s»), so each hour carries its own unit; only this one set can make 1 singular."
+ },
+ {
+  "context": "help_text_my_location_when",
+  "category": "formatting",
+  "source": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "current": "*\"Mon emplacement\"* est utile pour vous aider à vous situer ou à connaître le point cardinal face à vous.",
+  "suggested": "*Mon emplacement* est utile pour vous aider à vous situer ou à connaître le point cardinal face à vous.",
+  "reason": "Straight quotes inside the *…* UI name («*\"Mon emplacement\"*»); English has none and the other help strings don't use them."
+ },
+ {
+  "context": "help_text_nearby_markers_what",
+  "category": "formatting",
+  "source": "The *Nearby Markers* button tells you about up to four markers that are closest to you. *Nearby Markers* is intended to help you orient yourself using places you already know about.",
+  "current": "Le bouton *\"Marqueurs à proximité\"* vous indique jusqu’à quatre marqueurs les plus proches de vous. *\"Marqueurs à proximité\"* est conçu pour vous aider à vous orienter à l’aide d’emplacements que vous connaissez déjà.",
+  "suggested": "Le bouton *Marqueurs à proximité* vous indique jusqu’à quatre marqueurs les plus proches de vous. *Marqueurs à proximité* est conçu pour vous aider à vous orienter à l’aide d’emplacements que vous connaissez déjà.",
+  "reason": "Straight quotes inside the *…* UI name, twice; English has none."
+ },
+ {
+  "context": "help_text_around_me_when",
+  "category": "formatting",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "current": "Lorsque vous essayez de trouver vos repères et de vous orienter dans votre environnement, utilisez *\"Autour de moi\"* pour entendre ce qui vous entoure.",
+  "suggested": "Lorsque vous essayez de trouver vos repères et de vous orienter dans votre environnement, utilisez *Autour de moi* pour entendre ce qui vous entoure.",
+  "reason": "Straight quotes inside the *…* UI name; English has none."
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "category": "formatting",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Sur cet écran *\"Modifier\"*, vous pouvez également supprimer un marqueur si vous n’en avez plus besoin.",
+  "suggested": "Sur cet écran *Modifier le marqueur*, vous pouvez également supprimer un marqueur si vous n’en avez plus besoin.",
+  "reason": "Straight quotes inside the *…* UI name, and the screen is actually titled «Modifier le marqueur» (markers_edit_screen_title_edit, which the translator comment names)."
+ },
+ {
+  "context": "faq_miss_a_callout_answer",
+  "category": "formatting",
+  "source": "Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the home screen. At the bottom of this screen, there is a section for *Recent Callouts* where the callout you missed will be listed.",
+  "current": "Soundscape dispose d’une liste de vos annonces récentes afin que vous puissiez consulter celles que vous pourriez avoir manquées. Pour cela, appuyez sur la barre de recherche de l’écran d’accueil. Au bas de cette page, vous trouverez une section intitulée *« Annonces récentes »*, présentant la liste des annonces manquées.",
+  "suggested": "Soundscape dispose d’une liste de vos annonces récentes afin que vous puissiez consulter celles que vous pourriez avoir manquées. Pour cela, appuyez sur la barre de recherche de l’écran d’accueil. Au bas de cette page, vous trouverez une section intitulée *Annonces récentes*, présentant la liste des annonces manquées.",
+  "reason": "Guillemets inside the *…* UI name («*« Annonces récentes »*»); English has none."
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "category": "formatting",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Création d’un Itinéraire** :\\n\\n tout d’abord, allez dans *Marqueurs et Itinéraires*, sélectionnez l’onglet *Itinéraires*, puis cliquez sur le bouton *Nouvel Itinéraire*. Donnez à l’Itinéraire un nom et une description facultative, puis ajoutez des étapes à mesure que vous vous déplacez ou choisissez-les dans votre liste de Marqueurs. Vous pouvez réorganiser l’ordre des étapes sur un Itinéraire à tout moment en modifiant l’Itinéraire.",
+  "suggested": "**Création d’un itinéraire :**\\n\\n Tout d’abord, allez dans *Marqueurs et itinéraires*, sélectionnez l’onglet *Itinéraires*, puis sélectionnez le bouton *Nouvel itinéraire*. Donnez à l’itinéraire un nom et une description facultative, puis ajoutez des étapes à mesure que vous vous déplacez ou choisissez-les dans votre liste de marqueurs. Vous pouvez réorganiser l’ordre des étapes sur un itinéraire à tout moment en modifiant l’itinéraire.",
+  "reason": "The colon is outside the bold heading and the body starts lowercase (siblings: «**Modification d’un itinéraire :**»); «cliquez» is a mouse word for 'select'; FR-S1 mid-sentence capitals."
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "category": "formatting",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**Partage d’un Itinéraire** :\\n\\n sélectionnez votre Itinéraire sur l’écran *Marqueurs et Itinéraires* puis sélectionnez l’option *Partager* en utilisant les options de partage habituelles à votre disposition.",
+  "suggested": "**Partage d’un itinéraire :**\\n\\n Sélectionnez votre itinéraire sur l’écran *Marqueurs et itinéraires* puis sélectionnez l’option *Partager* en utilisant les options de partage habituelles à votre disposition.",
+  "reason": "Colon outside the bold heading and lowercase body start, as in help_text_routes_content_how_1; FR-S1 capitals."
+ },
+ {
+  "context": "location_detail_exit_full_screen_hint",
+  "category": "formatting",
+  "source": "Exit the full-screen map",
+  "current": "quitter la carte en plein écran",
+  "suggested": "Quitter la carte en plein écran",
+  "reason": "Lowercase «quitter» while the English and its sibling location_detail_full_screen_hint («Afficher…») are capitalised; this is a standalone label, not a 'Double tap to' fragment."
+ },
+ {
+  "context": "callout_settings_position_text",
+  "category": "formatting",
+  "source": "Include the distance and direction when calling out points of interest",
+  "current": "Inclure la distance et la direction lors de l'annonce des points d’intérêt",
+  "suggested": "Inclure la distance et la direction lors de l’annonce des points d’intérêt",
+  "reason": "Straight apostrophe «l'annonce» next to typographic ones in the same string."
+ },
+ {
+  "context": "menu_share_recorded_route",
+  "category": "formatting",
+  "source": "Share recording of travel",
+  "current": "Partager l'enregistrement du voyage",
+  "suggested": "Partager l’enregistrement du voyage",
+  "reason": "Straight apostrophe; the corpus uses typographic ’."
+ },
+ {
+  "context": "route_name_description_hint",
+  "category": "formatting",
+  "source": "edit the route name",
+  "current": "modifier le nom de l'itinéraire",
+  "suggested": "modifier le nom de l’itinéraire",
+  "reason": "Straight apostrophe; the corpus uses typographic ’."
+ },
+ {
+  "context": "location_detail_action_beacon",
+  "category": "formatting",
+  "source": "Start Audio Beacon",
+  "current": "Démarrer la Balise sonore",
+  "suggested": "Démarrer la balise sonore",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "route_detail_action_start_route",
+  "category": "formatting",
+  "source": "Start Route",
+  "current": "Démarrer l’Itinéraire",
+  "suggested": "Démarrer l’itinéraire",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "route_detail_action_stop_route",
+  "category": "formatting",
+  "source": "Stop Route",
+  "current": "Arrêter l’Itinéraire",
+  "suggested": "Arrêter l’itinéraire",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "route_detail_action_create",
+  "category": "formatting",
+  "source": "New Route",
+  "current": "Nouvel Itinéraire",
+  "suggested": "Nouvel itinéraire",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "route_detail_edit_delete",
+  "category": "formatting",
+  "source": "Delete Route",
+  "current": "Supprimer l’Itinéraire",
+  "suggested": "Supprimer l’itinéraire",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "search_view_markers",
+  "category": "formatting",
+  "source": "Markers and Routes",
+  "current": "Marqueurs et Itinéraires",
+  "suggested": "Marqueurs et itinéraires",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "routes_no_routes_hint_1",
+  "category": "formatting",
+  "source": "Create a route for yourself or for someone else. Add a set of markers as waypoints to build the route.",
+  "current": "Créez un Itinéraire pour vous-même ou pour une autre personne. Ajoutez un ensemble de Marqueurs comme étapes pour composer l’Itinéraire.",
+  "suggested": "Créez un itinéraire pour vous-même ou pour une autre personne. Ajoutez un ensemble de marqueurs comme étapes pour composer l’itinéraire.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "routes_no_routes_hint_2",
+  "category": "formatting",
+  "source": "As you walk your route, Soundscape will announce each waypoint when you arrive. The Audio Beacon will then automatically move to the next waypoint.",
+  "current": "Pendant que vous parcourez votre Itinéraire, Soundscape annonce chaque étape lorsque vous y arrivez. La balise sonore passe ensuite automatiquement à l’étape suivante.",
+  "suggested": "Pendant que vous parcourez votre itinéraire, Soundscape annonce chaque étape lorsque vous y arrivez. La balise sonore passe ensuite automatiquement à l’étape suivante.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "markers_no_markers_hint_1",
+  "category": "formatting",
+  "source": "Create markers for your favorite destinations, waypoints on a route, or any locations you want called out. Choose a location, or your current location, from the home screen and select *Save as Marker*.",
+  "current": "Créez des Marqueurs pour vos destinations préférées, les étapes d’un Itinéraire ou tout emplacement que vous voulez entendre annoncer. Choisissez un emplacement, ou votre emplacement actuel, sur l’écran d’accueil et sélectionnez *Enregistrer en tant que marqueur*.",
+  "suggested": "Créez des marqueurs pour vos destinations préférées, les étapes d’un itinéraire ou tout emplacement que vous voulez entendre annoncer. Choisissez un emplacement, ou votre emplacement actuel, sur l’écran d’accueil et sélectionnez *Enregistrer en tant que marqueur*.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "help_text_destination_beacons_how_1",
+  "category": "formatting",
+  "source": "**To set a beacon :**\\n\\n First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "**Pour définir une balise sonore :**\\n\\nTout d’abord, consultez les détails d’un emplacement en utilisant la barre de recherche pour rechercher un lieu, ou en appuyant sur l’un des boutons *Emplacements à proximité*, *Marqueurs et Itinéraires* ou *Emplacement actuel* et en sélectionnant un emplacement. Ensuite, depuis l’écran *Détails de l’emplacement*, sélectionnez le bouton *Démarrer la Balise sonore*. En appuyant dessus, vous revenez à l’écran d’accueil et activez une balise sonore émise depuis la direction du lieu sélectionné. Le nom du lieu ainsi que sa distance et son adresse physique, si disponibles, seront désormais affichés sur l’écran principal.",
+  "suggested": "**Pour définir une balise sonore :**\\n\\nTout d’abord, consultez les détails d’un emplacement en utilisant la barre de recherche pour rechercher un lieu, ou en appuyant sur l’un des boutons *Emplacements à proximité*, *Marqueurs et itinéraires* ou *Emplacement actuel* et en sélectionnant un emplacement. Ensuite, depuis l’écran *Détails de l’emplacement*, sélectionnez le bouton *Démarrer la balise sonore*. En appuyant dessus, vous revenez à l’écran d’accueil et activez une balise sonore émise depuis la direction du lieu sélectionné. Le nom du lieu ainsi que sa distance et son adresse physique, si disponibles, seront désormais affichés sur l’écran principal.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "help_text_destination_beacons_how_2",
+  "category": "formatting",
+  "source": "**To remove the current beacon :**\\n\\n Simply press the *Stop Route* button on the home screen.",
+  "current": "**Pour supprimer la balise sonore actuelle :**\\n\\nAppuyez simplement sur le bouton *Arrêter l’Itinéraire* sur l’écran d’accueil.",
+  "suggested": "**Pour supprimer la balise sonore actuelle :**\\n\\nAppuyez simplement sur le bouton *Arrêter l’itinéraire* sur l’écran d’accueil.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "help_text_destination_beacons_how_3",
+  "category": "formatting",
+  "source": "**To mute the audible beacon :**\\n\\n Tap the *Mute Beacon* button next to the *Stop Route* button on the home screen.",
+  "current": "**Pour couper le son de la balise sonore :**\\n\\nAppuyez sur le bouton *Désactiver le son de la balise sonore* à côté du bouton *Arrêter l’Itinéraire* sur l’écran d’accueil.",
+  "suggested": "**Pour couper le son de la balise sonore :**\\n\\nAppuyez sur le bouton *Désactiver le son de la balise sonore* à côté du bouton *Arrêter l’itinéraire* sur l’écran d’accueil.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "help_text_customizing_markers_content_1",
+  "category": "formatting",
+  "source": "If you want to rename a marker you previously created, or add an annotation to it, select the marker from the *Markers* tab of the *Markers and Routes* page, and then select the *Edit Marker* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.",
+  "current": "Si vous souhaitez renommer un marqueur créé précédemment ou lui ajouter une annotation, sélectionnez le marqueur dans l’onglet *Marqueurs* de la page *Marqueurs et Itinéraires*, puis appuyez sur le bouton *Modifier le marqueur*. Vous pouvez ainsi donner aux marqueurs des surnoms descriptifs ou utiles, et leur ajouter une description plus longue dans le champ d’annotation.",
+  "suggested": "Si vous souhaitez renommer un marqueur créé précédemment ou lui ajouter une annotation, sélectionnez le marqueur dans l’onglet *Marqueurs* de la page *Marqueurs et itinéraires*, puis appuyez sur le bouton *Modifier le marqueur*. Vous pouvez ainsi donner aux marqueurs des surnoms descriptifs ou utiles, et leur ajouter une description plus longue dans le champ d’annotation.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "help_text_routes_content_what",
+  "category": "formatting",
+  "source": "Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.",
+  "current": "Un Itinéraire correspond à une série d’étapes. Vous êtes informé quand vous arrivez à chaque étape, et la balise sonore avance automatiquement jusqu’à l’étape suivante.",
+  "suggested": "Un itinéraire correspond à une série d’étapes. Vous êtes informé quand vous arrivez à chaque étape, et la balise sonore avance automatiquement jusqu’à l’étape suivante.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "help_text_routes_content_when",
+  "category": "formatting",
+  "source": "You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.",
+  "current": "Vous pouvez créer et utiliser un Itinéraire dans un endroit que vous connaissez déjà, pour vous aider à rester sur la bonne voie. Ou vous pouvez utiliser un Itinéraire pour vous aider à apprendre un nouveau trajet.",
+  "suggested": "Vous pouvez créer et utiliser un itinéraire dans un endroit que vous connaissez déjà, pour vous aider à rester sur la bonne voie. Ou vous pouvez utiliser un itinéraire pour vous aider à apprendre un nouveau trajet.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "help_text_routes_content_how_2",
+  "category": "formatting",
+  "source": "**Editing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select *Edit Route*. From here you can add and remove waypoints, as well as edit the name and description of the route.",
+  "current": "**Modification d’un Itinéraire :**\\n\\nSélectionnez votre Itinéraire sur l’écran *Marqueurs et Itinéraires* puis choisissez *Modifier l’itinéraire*. À partir d’ici, vous pouvez ajouter ou supprimer des étapes, ainsi que modifier le nom et la description de l’itinéraire.",
+  "suggested": "**Modification d’un itinéraire :**\\n\\nSélectionnez votre itinéraire sur l’écran *Marqueurs et itinéraires* puis choisissez *Modifier l’itinéraire*. À partir d’ici, vous pouvez ajouter ou supprimer des étapes, ainsi que modifier le nom et la description de l’itinéraire.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "faq_what_can_I_set_answer",
+  "category": "formatting",
+  "source": "You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "Vous pouvez définir une balise sonore sur n’importe quelle entreprise, lieu, point d’intérêt, adresse ou croisement. Il existe plusieurs façons d’ajouter une balise sonore à un emplacement. Tout d’abord, consultez les détails d’un emplacement en utilisant la barre de recherche pour rechercher un lieu, ou en appuyant sur l’un des boutons *Emplacements à proximité*, *Marqueurs et Itinéraires* ou *Emplacement actuel* et en sélectionnant un emplacement. Ensuite, depuis l’écran *Détails de l’emplacement*, sélectionnez le bouton *Démarrer la Balise sonore*. En appuyant dessus, vous revenez à l’écran d’accueil et activez une balise sonore émise depuis la direction du lieu sélectionné. Le nom du lieu ainsi que sa distance et son adresse physique, si disponibles, seront désormais affichés sur l’écran principal.",
+  "suggested": "Vous pouvez définir une balise sonore sur n’importe quelle entreprise, lieu, point d’intérêt, adresse ou croisement. Il existe plusieurs façons d’ajouter une balise sonore à un emplacement. Tout d’abord, consultez les détails d’un emplacement en utilisant la barre de recherche pour rechercher un lieu, ou en appuyant sur l’un des boutons *Emplacements à proximité*, *Marqueurs et itinéraires* ou *Emplacement actuel* et en sélectionnant un emplacement. Ensuite, depuis l’écran *Détails de l’emplacement*, sélectionnez le bouton *Démarrer la balise sonore*. En appuyant dessus, vous revenez à l’écran d’accueil et activez une balise sonore émise depuis la direction du lieu sélectionné. Le nom du lieu ainsi que sa distance et son adresse physique, si disponibles, seront désormais affichés sur l’écran principal.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "faq_beacon_on_home_answer",
+  "category": "formatting",
+  "source": "Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location using the search bar on the main screen. Then on the *Location Details* screen, tap the *Start Audio Beacon* button.",
+  "current": "Soundscape prend en charge la définition de balises sonores sur des adresses. Pour définir une balise sonore sur votre domicile ou sur toute autre adresse, recherchez un emplacement à l’aide de la barre de recherche de l’écran principal. Ensuite, dans l’écran *Détails de l’emplacement*, appuyez sur le bouton *Démarrer la Balise sonore*.",
+  "suggested": "Soundscape prend en charge la définition de balises sonores sur des adresses. Pour définir une balise sonore sur votre domicile ou sur toute autre adresse, recherchez un emplacement à l’aide de la barre de recherche de l’écran principal. Ensuite, dans l’écran *Détails de l’emplacement*, appuyez sur le bouton *Démarrer la balise sonore*.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "faq_tip_setting_beacon_on_address",
+  "category": "formatting",
+  "source": "You can set a beacon on any address. From the main screen, search for the address using the search bar. Then select the address in the search results to open the *Location Details* screen. This screen has an option to *Start Audio Beacon* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.",
+  "current": "Vous pouvez définir une balise sonore sur n’importe quelle adresse. Depuis l’écran principal, recherchez l’adresse à l’aide de la barre de recherche. Sélectionnez ensuite l’adresse dans les résultats de recherche pour ouvrir l’écran *Détails de l’emplacement*. Cet écran comporte une option *Démarrer la Balise sonore* pour cette adresse. De cette façon, vous pouvez définir une balise sonore sur des commerces, lieux, points d’intérêt et habitations qui ne figurent pas dans OpenStreetMap.",
+  "suggested": "Vous pouvez définir une balise sonore sur n’importe quelle adresse. Depuis l’écran principal, recherchez l’adresse à l’aide de la barre de recherche. Sélectionnez ensuite l’adresse dans les résultats de recherche pour ouvrir l’écran *Détails de l’emplacement*. Cet écran comporte une option *Démarrer la balise sonore* pour cette adresse. De cette façon, vous pouvez définir une balise sonore sur des commerces, lieux, points d’intérêt et habitations qui ne figurent pas dans OpenStreetMap.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "faq_tip_create_marker_at_bus_stop",
+  "category": "formatting",
+  "source": "If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.",
+  "current": "Si vous empruntez régulièrement une ligne de bus, enregistrez vos arrêts d’embarquement et de descente comme Marqueurs. Ils seront ainsi sauvegardés et faciles à retrouver. Allez sur *Marqueurs et Itinéraires* depuis l’écran d’accueil, puis trouvez‑les dans la page *Marqueurs*. Vous pouvez y définir une balise sonore pour recevoir des mises à jour périodiques sur la distance qui vous sépare de votre arrêt de sortie. Remarque : vous pouvez couper le son rythmique et continuer à recevoir des mises à jour de distance en cours de route.",
+  "suggested": "Si vous empruntez régulièrement une ligne de bus, enregistrez vos arrêts d’embarquement et de descente comme marqueurs. Ils seront ainsi sauvegardés et faciles à retrouver. Allez sur *Marqueurs et itinéraires* depuis l’écran d’accueil, puis trouvez‑les dans la page *Marqueurs*. Vous pouvez y définir une balise sonore pour recevoir des mises à jour périodiques sur la distance qui vous sépare de votre arrêt de sortie. Remarque : vous pouvez couper le son rythmique et continuer à recevoir des mises à jour de distance en cours de route.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "tour_create_marker_started",
+  "category": "formatting",
+  "source": "Great! You're now on the Location Details screen. From here you can save this location as a Marker, along with other actions. With Soundscape, you can mark any place that matters to you, such as your home, your bus stop, or even the spot where you are standing. Try it now. Save this location as a marker by tapping Save as Marker.",
+  "current": "Super ! Vous êtes maintenant sur l’écran Détails de l’emplacement. Depuis cet écran, vous pouvez enregistrer cet emplacement comme Marqueur, ainsi qu’effectuer d’autres actions. Avec Soundscape, vous pouvez marquer tout lieu qui compte pour vous, comme votre domicile, votre arrêt de bus, ou même l’endroit où vous vous tenez. Essayez maintenant. Enregistrez cet emplacement comme marqueur en appuyant sur Enregistrer en tant que marqueur.",
+  "suggested": "Super ! Vous êtes maintenant sur l’écran Détails de l’emplacement. Depuis cet écran, vous pouvez enregistrer cet emplacement comme marqueur, ainsi qu’effectuer d’autres actions. Avec Soundscape, vous pouvez marquer tout lieu qui compte pour vous, comme votre domicile, votre arrêt de bus, ou même l’endroit où vous vous tenez. Essayez maintenant. Enregistrez cet emplacement comme marqueur en appuyant sur Enregistrer en tant que marqueur.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "tour_my_location",
+  "category": "formatting",
+  "source": "Now that you know how to use Markers, let's look at some of the other features. At the bottom of the screen are four buttons. We'll try each one. The button on the left is My Location. It describes your current location. Try tapping it now.",
+  "current": "Maintenant que vous savez comment utiliser les Marqueurs, voyons d’autres fonctionnalités. En bas de l’écran se trouvent quatre boutons. Nous allons les essayer un par un. Le bouton de gauche est Mon emplacement. Il décrit votre position actuelle. Appuyez dessus maintenant.",
+  "suggested": "Maintenant que vous savez comment utiliser les marqueurs, voyons d’autres fonctionnalités. En bas de l’écran se trouvent quatre boutons. Nous allons les essayer un par un. Le bouton de gauche est Mon emplacement. Il décrit votre position actuelle. Appuyez dessus maintenant.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "tour_markers_and_routes",
+  "category": "formatting",
+  "source": "You have now successfully created a marker. Let's play an audio beacon to guide us to that location. Tap Markers and Routes, just below Places Nearby.",
+  "current": "Vous avez maintenant créé un marqueur avec succès. Activons une balise sonore pour nous guider jusqu’à cet emplacement. Appuyez sur Marqueurs et Itinéraires, juste sous Emplacements à proximité.",
+  "suggested": "Vous avez maintenant créé un marqueur avec succès. Activons une balise sonore pour nous guider jusqu’à cet emplacement. Appuyez sur Marqueurs et itinéraires, juste sous Emplacements à proximité.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "tour_markers",
+  "category": "formatting",
+  "source": "The Markers and Routes screen has two tabs. One tab lists routes, which are playlists of markers. The other tab lists individual markers. Tap Markers to switch to that tab and find the marker you created.",
+  "current": "L’écran Marqueurs et Itinéraires comporte deux onglets. Un onglet liste les Itinéraires, qui sont des listes de lecture de marqueurs. L’autre onglet répertorie les marqueurs individuels. Appuyez sur Marqueurs pour passer à cet onglet et trouver le marqueur que vous avez créé.",
+  "suggested": "L’écran Marqueurs et itinéraires comporte deux onglets. Un onglet liste les itinéraires, qui sont des listes de lecture de marqueurs. L’autre onglet répertorie les marqueurs individuels. Appuyez sur Marqueurs pour passer à cet onglet et trouver le marqueur que vous avez créé.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "tour_start_beacon",
+  "category": "formatting",
+  "source": "You're now on the Markers tab which lists all your saved markers. Select a marker, and when the Location Details screen appears, tap Start Audio Beacon.",
+  "current": "Vous êtes maintenant dans l’onglet Marqueurs qui liste tous vos marqueurs enregistrés. Sélectionnez un marqueur, puis, lorsque l’écran Détails de l’emplacement s’affiche, appuyez sur Démarrer la Balise sonore.",
+  "suggested": "Vous êtes maintenant dans l’onglet Marqueurs qui liste tous vos marqueurs enregistrés. Sélectionnez un marqueur, puis, lorsque l’écran Détails de l’emplacement s’affiche, appuyez sur Démarrer la balise sonore.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "tour_stop_beacon",
+  "category": "formatting",
+  "source": "When you're ready to stop the beacon, tap the Stop Route button.",
+  "current": "Lorsque vous êtes prêt à arrêter la balise sonore, appuyez sur le bouton Arrêter l’Itinéraire.",
+  "suggested": "Lorsque vous êtes prêt à arrêter la balise sonore, appuyez sur le bouton Arrêter l’itinéraire.",
+  "reason": "FR-S1 (cosmetic, invisible to TTS): English title case leaking mid-sentence; FR-T2 has now settled, which the FR-S1 entry was waiting for. Labels and the help/FAQ/tour strings that quote them are fixed together so they keep matching."
+ },
+ {
+  "context": "filter_transit",
+  "category": "terminology",
+  "source": "Public Transit",
+  "current": "Transport public",
+  "suggested": "Transports en commun",
+  "reason": "«Transport public» (singular) isn't the everyday French term; «Transports en commun» is, and this language's own hints already say «transport en commun» (public_transit_places_nearby_description). faq_tip_finding_bus_stops quotes this label and moves with it."
+ },
+ {
+  "context": "faq_tip_finding_bus_stops",
+  "category": "terminology",
+  "source": "You can find nearby bus stops by selecting the *Public Transit* filter in the *Places Nearby* list.",
+  "current": "Vous pouvez trouver les arrêts de bus à proximité en sélectionnant le filtre *Transport public* dans la liste *Emplacements à proximité*.",
+  "suggested": "Vous pouvez trouver les arrêts de bus à proximité en sélectionnant le filtre *Transports en commun* dans la liste *Emplacements à proximité*.",
+  "reason": "Quotes the filter_transit label; moves with that fix."
+ },
+ {
+  "context": "help_text_markers_content_2",
+  "category": "terminology",
+  "source": "You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.",
+  "current": "Vous pouvez marquer des lieux qui sont personnels et importants pour vous, comme votre domicile, votre lieu de travail ou votre épicerie préférée. Vous pouvez marquer n’importe quel lieu ou adresse, ainsi que des éléments qui ne figurent habituellement pas sur les cartes, par exemple : les entrées de bâtiments ou de parcs, les boutons d’appel des passages piétons, les passages piétons, les ponts, les arrêts de bus ou même l’arbre préféré de votre chien. Utilisez ces repères comme références sur votre trajet.",
+  "suggested": "Vous pouvez marquer des lieux qui sont personnels et importants pour vous, comme votre domicile, votre lieu de travail ou votre épicerie préférée. Vous pouvez marquer n’importe quel lieu ou adresse, ainsi que des éléments qui ne figurent habituellement pas sur les cartes, par exemple : les entrées de bâtiments ou de parcs, les boutons d’appel des passages piétons, les passages piétons, les ponts, les arrêts de bus ou même l’arbre préféré de votre chien. Utilisez ces marqueurs comme points de référence sur votre trajet.",
+  "reason": "'Use these marks as references' became «Utilisez ces repères», and «repères» is the app's Landmarks term (FR-T2 removed the Waypoint collision; this reintroduces a Marker one)."
+ },
+ {
+  "context": "search_nearby_screen_title",
+  "category": "terminology",
+  "source": "Places Nearby",
+  "current": "Emplacements à proximité",
+  "suggested": "Emplacements à proximité",
+  "reason": "«Emplacements à proximité» for Places Nearby, while the callout settings call places «Lieux» («Lieux et repères», «Lieux à annoncer», «Aucun lieu»). «emplacement» reads as 'location/spot'. Changing it would touch ~10 strings that quote the label (tour_welcome, tour_select_place, help and FAQ), so worth a native speaker's call rather than a sweep."
+ },
+ {
+  "context": "directions_near_road_and_settlement",
+  "category": "tone",
+  "source": "Near %1$s and close to %2$s",
+  "current": "Près {fr:de %1$s} et près {fr:de %2$s}",
+  "suggested": "Près {fr:de %1$s}, non loin {fr:de %2$s}",
+  "reason": "«Près de X et près de Y» repeats «près»; English varies it ('Near … and close to …'). «non loin de» keeps the two apart by ear."
+ },
+ {
+  "context": "confect_name_joins",
+  "category": "tone",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s qui rejoint %2$s et %3$s",
+  "suggested": "%1$s qui relie %2$s et %3$s",
+  "reason": "«qui rejoint %2$s et %3$s» reads as 'which rejoins'; 'joins A and B' means connects them («qui relie»). The two map names still get no article (there's no preposition for the marker to wrap), which remains a FR-G2 gap."
+ },
+ {
+  "context": "settings_theme_contrast_regular",
+  "category": "tone",
+  "source": "Regular",
+  "current": "Ordinaire",
+  "suggested": "Normal",
+  "reason": "«Ordinaire» sounds 'mediocre' as a setting value; the usual label for the default contrast level is «Normal»."
+ },
+ {
+  "context": "filter_food_drink",
+  "category": "tone",
+  "source": "Food and Drink",
+  "current": "Alimentation et boissons",
+  "suggested": "Alimentation et boissons",
+  "reason": "«Alimentation et boissons» suggests food shops (groceries have their own filter); the filter is restaurants and cafés. A human call: «Restaurants et cafés» or «Restauration» are candidates, but callouts_places_to_call_out's list shares these names."
+ },
+ {
+  "context": "osm_bird_hide",
+  "category": "meaning",
+  "source": "Bird Hide",
+  "current": "Cache à oiseaux",
+  "suggested": "Observatoire ornithologique",
+  "reason": "«Cache à oiseaux» reads as a hiding place for birds; a bird hide is an observation shelter for people."
+ },
+ {
+  "context": "new_version_info_details",
+  "category": "formatting",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Ceci est une mise à jour majeure de Soundscape. Le mode Voyage a été nettement amélioré. Lorsque vous voyagez en voiture ou en bus, Soundscape annonce désormais les numéros de route, votre sens de déplacement et les localités à proximité. Il annonce également lorsque vous traversez des rivières, des canaux, des estuaires et des baies. Veuillez mettre à jour vos cartes hors ligne pour bénéficier de ces nouvelles fonctionnalités. Les descriptions des arrêts de bus sont désormais bien meilleures pour les utilisateurs au Royaume-Uni. Le mode pause peut désormais se réactiver automatiquement lorsqu’il détecte que vous vous remettez en mouvement. Vous n’avez plus besoin de penser à le réactiver vous-même. Nous avons réorganisé le code sous-jacent afin de pouvoir créer une application iOS à partir du même code. Cela signifie qu’à l’avenir, nous pourrons publier une application iOS avec toutes les fonctionnalités que nous avons créées pour Android. Merci de continuer à nous signaler tout problème, aussi minime soit-il, via l’option Contacter le support dans le menu principal.",
+  "suggested": "Ceci est une mise à jour majeure de Soundscape. Le mode Voyage a été nettement amélioré. Lorsque vous voyagez en voiture ou en bus, Soundscape annonce désormais les numéros de route, votre sens de déplacement et les localités à proximité. Il annonce également lorsque vous traversez des rivières, des canaux, des estuaires et des baies. Veuillez mettre à jour vos cartes hors ligne pour bénéficier de ces nouvelles fonctionnalités. Les descriptions des arrêts de bus sont désormais bien meilleures pour les utilisateurs au Royaume-Uni. Le mode pause peut désormais se réactiver automatiquement lorsqu’il détecte que vous vous remettez en mouvement. Vous n’avez plus besoin de penser à le réactiver vous-même. Nous avons réorganisé le code sous-jacent afin de pouvoir créer une application iOS à partir du même code. Cela signifie qu’à l’avenir, nous pourrons publier une application iOS avec toutes les fonctionnalités que nous avons créées pour Android. Merci de continuer à nous signaler tout problème, aussi minime soit-il, via l’option Contacter le support dans le menu principal.",
+  "reason": "CROSS-LANGUAGE: the English has paragraph breaks (the release-notes splitter now uses them) but the French, like de and others, is one paragraph. Expected in every language that translated the raw-newline source; worth a sweep rather than a per-language patch."
+ }
+]

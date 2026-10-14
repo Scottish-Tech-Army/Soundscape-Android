@@ -1,23 +1,16 @@
 ---
-title: Around Me
+title: எனைச் சுற்றி
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 30
 lang: ta
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# எனைச் சுற்றி
 
-## What is it?
+*எனைச் சுற்றி* உங்களுக்கு அருகிலுள்ள நான்கு இடங்கள் வரை அறிவிக்கிறது: ஒன்று முன்னால், ஒன்று வலப்புறம், ஒன்று பின்னால், ஒன்று இடப்புறம். ஒவ்வொன்றையும் அதன் சொந்தத் திசையிலிருந்து, அதன் தொலைவுடன் கேட்கிறீர்கள். ஓரிடத்துக்கு வந்து சேரும்போது உங்கள் நிலையைப் புரிந்துகொள்ள இதைப் பயன்படுத்தவும்.
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+நீங்கள் ஓரிடத்தில் நின்றிருந்தால், முதலில் தொலைபேசியின் மேல் முனையை நீங்கள் நோக்கியிருக்கும் திசையில் காட்டவும். தொலைபேசி பூட்டப்பட்டிருந்தால், அல்லது Soundscape திரையில் இல்லாவிட்டால், தொலைபேசியைத் தட்டையாகவும் பிடிக்கவும்.
 

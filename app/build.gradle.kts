@@ -51,6 +51,8 @@ android {
             // Let JVM unit tests touch android.util.Log (etc.) without mocking - they
             // return default values instead of throwing "not mocked".
             isReturnDefaultValues = true
+            // Robolectric tests (e.g. HomeScreenTextFitTest) render real app resources.
+            isIncludeAndroidResources = true
         }
     }
 
@@ -67,8 +69,8 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
         targetSdk = 37
-        versionCode = 1065
-        versionName = "2.0.65"
+        versionCode = 1081
+        versionName = "2.0.81"
 
 
         // Retrieve the tile provider URL and API key from local.properties. This is not under
@@ -128,6 +130,13 @@ android {
 
         debug {
             buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
+            // -PdebugAppIdSuffix=.something installs a debug build alongside the Play release
+            // instead of over it, so testing on a phone doesn't mean wiping its data. Firebase
+            // needs a matching client for the new package name: add one to a local
+            // app/src/debug/google-services.json (app/src/debug/ is gitignored).
+            (project.findProperty("debugAppIdSuffix") as String?)?.let {
+                applicationIdSuffix = it
+            }
         }
 
         release {
@@ -207,6 +216,7 @@ android {
             "mr",
             "nb",
             "nl",
+            "pa",
             "pl",
             "pt",
             "pt-rBR",
@@ -318,7 +328,10 @@ abstract class GenerateShortcutStringsTask @javax.inject.Inject constructor(
                 sb.append("    <string name=\"app_name\" translatable=\"false\">Soundscape</string>\n")
             }
             for ((key, value) in extracted) {
-                sb.append("    <string name=\"$key\">$value</string>\n")
+                // composeResources strings are never quote-escaped, but aapt rejects a bare
+                // apostrophe and drops bare double quotes, so escape them for Android here.
+                val escaped = value.replace("'", "\\'").replace("\"", "\\\"")
+                sb.append("    <string name=\"$key\">$escaped</string>\n")
             }
             sb.append("</resources>\n")
 
@@ -405,6 +418,9 @@ dependencies {
     testImplementation(libs.ktor.client.mock)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.robolectric)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.ui.test.junit4)
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)
@@ -514,6 +530,13 @@ tasks.withType<Test>().configureEach {
     // classes share one JVM. Since Osaka's, the densest of them, that's more than Gradle's default
     // 512 MB test heap holds.
     maxHeapSize = "2g"
+
+    // Robolectric (HomeScreenTextFitTest) reaches into FileDescriptor internals, which newer
+    // JDKs only allow when the package is explicitly opened to it.
+    jvmArgs(
+        "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
+        "--add-opens=java.base/java.io=ALL-UNNAMED",
+    )
 
     // Matches the AGP-generated testDebugUnitTest/testReleaseUnitTest/testReleaseTestUnitTest
     // tasks, but not nightlyUnitTest below (that one includes the category instead).

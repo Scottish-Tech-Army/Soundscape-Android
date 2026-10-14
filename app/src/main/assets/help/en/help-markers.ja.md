@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: マーカー
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 80
 lang: ja
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# マーカー
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+マーカーは、自分で保存した場所です。自宅、バス停、建物の入口、横断歩道など、自分にとって大切な場所ならどこでもかまいません。
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape は、マーカーのそばを通るとそれをコールアウトします。マーカーには音声ビーコンを設定したり、ルートに追加したりできます。*近くのマーカー* ボタンで、最も近いマーカーを聞くこともできます。
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## マーカーの作成
+
+1. ホーム画面で *マーカー* を選択し、次に *新規* を選択します。
+
+2. *現在地* を選ぶか、*近くの場所* から場所を選びます。
+
+3. 必要なら名前を変え、メモを追加します。Soundscape はマーカーと一緒にメモを読み上げます。
+
+4. *完了* を選択します。
+
+見つけた場所は、どれでも保存できます。その場所の *場所の詳細* を開き、*マーカーを保存* を選択します。
+
+## マーカーのカスタマイズ
+
+*マーカー* 画面でマーカーを選択し、次に *マーカーを編集* を選択します。名前、メモ、位置を変更するか、*マーカーを削除* を選択できます。マーカーを削除すると、ルートからも取り除かれます。
 

@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: جهت‌نمای صوتی
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 60
 lang: fa
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# جهت‌نمای صوتی
 
-## What is it?
+جهت‌نمای صوتی صدایی است که از جهت مکانی که انتخاب می‌کنید پخش می‌شود. این صدا می‌گوید آن مکان در خط مستقیم کجاست. مسیریابی قدم‌به‌قدم نمی‌دهد، پس راه رسیدن به آنجا را خودتان انتخاب می‌کنید.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## تنظیم جهت‌نما
 
-## When would I use it?
+1. مکان را پیدا کنید. از نوار جستجو، *مکان‌های نزدیک*، *نشانه‌ها* یا *موقعیت مکانی فعلی* در صفحه‌ی اصلی استفاده کنید.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. مکان را انتخاب کنید تا *جزئیات موقعیت مکانی* باز شود.
 
-## How does it work?
+3. *فعال‌سازی جهت‌نمای صوتی* را انتخاب کنید.
 
-**To set a beacon :**
+ساند‌اسکیپ به صفحه‌ی اصلی برمی‌گردد و جهت‌نما شروع می‌شود. صفحه‌ی اصلی نام مکان و فاصله‌ی آن را نشان می‌دهد.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## پیدا کردن جهت
 
-**To remove the current beacon :**
+وقتی رو به مکان هستید یا مستقیم به سمت آن می‌روید، صدای جهت‌نما تغییر می‌کند. برای پیدا کردن آن صدا، گوشی را افقی نگه دارید و آرام بچرخید. می‌توانید در *تنظیمات* صدای دیگری برای جهت‌نما انتخاب کنید.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## بستن صدای جهت‌نما
 
-**To mute the audible beacon :**
+در صفحه‌ی اصلی *بستن صدای جهت‌نما* را انتخاب کنید. ساند‌اسکیپ هنگام حرکت همچنان به شما می‌گوید مکان چقدر فاصله دارد. برای شنیدن دوباره‌ی جهت‌نما، *باز کردن صدای جهت‌نما* را انتخاب کنید.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## برداشتن جهت‌نما
+
+در صفحه‌ی اصلی *توقف مسیر* را انتخاب کنید. این دکمه حتی وقتی جهت‌نما بخشی از یک مسیر نیست همین نام را دارد.
+
+## وقتی می‌رسید
+
+وقتی حدود 12 متر با مکان فاصله دارید، ساند‌اسکیپ به شما خبر می‌دهد و جهت‌نما را برمی‌دارد. گوشی نمی‌تواند موقعیت شما را دقیق‌تر از این پیدا کند. برای شنیدن دوباره‌ی جهت‌نما، آن را دوباره تنظیم کنید.
+
+جهت‌نمایی که روی مکانی با فاصله‌ی کمتر از 30 متر تنظیم شود روشن می‌ماند تا خودتان آن را بردارید.
 

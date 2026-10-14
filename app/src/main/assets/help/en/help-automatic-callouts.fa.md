@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: اعلان‌های خودکار
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 70
 lang: fa
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# اعلان‌های خودکار
 
-## What is it?
+هنگام راه رفتن، ساند‌اسکیپ آنچه را نزدیک شماست اعلام می‌کند. هر نام را از جهت همان مکان می‌شنوید. اعلان‌ها شامل خیابان‌ها، تقاطع‌ها، فروشگاه‌ها، ایستگاه‌های اتوبوس، نقاط شاخص و نشانه‌های خودتان است.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## تقاطع‌ها
 
-## When would I use it?
+وقتی به تقاطعی نزدیک می‌شوید، ساند‌اسکیپ نام هر راهی را که از آن جدا می‌شود می‌گوید. می‌شنوید کدام راه به چپ می‌رود، کدام مستقیم ادامه دارد و کدام به راست می‌رود.
 
-**Exploring a new area :**
+## چه مقدار می‌شنوید
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+منو را باز کنید و *تنظیمات* و سپس *مدیریت اعلان‌ها* را انتخاب کنید. *جزئیات اعلان‌ها* چهار سطح دارد.
 
-**Walking to a specific location :**
+*مفصل* هر چیزی را که نزدیک است اعلام می‌کند.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*ساده‌شده* گذرهای کوچک و راه‌های خدماتی را کنار می‌گذارد و کمتر تکرار می‌کند.
 
-**When you need silence :**
+*ضروری* فقط خیابان‌ها، تقاطع‌ها و نقاط شاخص را اعلام می‌کند.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*بی‌صدا* هیچ اعلان خودکاری نمی‌دهد. جهت‌نماها، مسیرها و دکمه‌های صفحه‌ی اصلی همچنان کار می‌کنند.
 
-## How does it work?
+## چه چیزهایی می‌شنوید
 
-**Turning callouts on or off :**
+*مدیریت اعلان‌ها* دو تنظیم دیگر هم دارد. *خیابان‌ها و تقاطع‌ها* اعلان خیابان‌ها و تقاطع‌ها را روشن یا خاموش می‌کند. *مکان‌هایی که اعلام می‌شوند* مشخص می‌کند چه نوع مکان‌هایی را بشنوید، مثل *حمل‌و‌نقل عمومی* یا *غذا و نوشیدنی*. نشانه‌های شما همیشه اعلام می‌شوند.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## آرام‌تر کردن ساند‌اسکیپ
 
-**Managing which callouts you hear :**
+دکمه‌ی *قبلی* را روی کنترل هندزفری فشار دهید. هر فشار یک سطح آرام‌تر می‌شود: *مفصل*، *ساده‌شده*، *ضروری* و سپس *بی‌صدا*. یک فشار دیگر به *مفصل* برمی‌گردد. صفحه‌ی راهنمای *استفاده از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری* را ببینید.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## متوقف کردن ساند‌اسکیپ برای مدتی
+
+دکمه‌ی *حالت خواب* را در بالای صفحه‌ی اصلی انتخاب کنید. ساند‌اسکیپ استفاده از موقعیت مکانی شما را متوقف می‌کند و تا وقتی *خروج از حالت خواب* را انتخاب نکنید صدایی ندارد. یا *بیدار شدن هنگام ترک محل* را انتخاب کنید تا ساند‌اسکیپ وقتی از جایی که هستید می‌روید بیدار شود.
+
+## در وسیله‌ی نقلیه یا قطار
+
+ساند‌اسکیپ متوجه می‌شود که با سرعت وسیله‌ی نقلیه حرکت می‌کنید. آن‌وقت اعلام تقاطع‌ها و فروشگاه‌های نزدیک را متوقف می‌کند، چون خیلی سریع می‌گذرند. به‌جای آن، راهی را که در آن هستید، نقاط شاخص، توقفگاه‌ها و ایستگاه‌ها، رودخانه‌ها و تونل‌ها را اعلام می‌کند.
 

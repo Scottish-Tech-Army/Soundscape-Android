@@ -54,6 +54,17 @@ const val MAXIMUM_USABLE_ACCURACY_METRES = 50.0f
 fun isAccuracyUsable(location: SoundscapeLocation): Boolean =
     !location.hasAccuracy || (location.accuracy <= MAXIMUM_USABLE_ACCURACY_METRES)
 
+/**
+ * The worst course accuracy a fix can report and still have its course taken as the user's
+ * direction of travel - by GeoEngine.createUserGeometry for the travel heading, and by
+ * StationaryDetector as evidence of movement.
+ *
+ * The figure is on Android's scale, where bearingAccuracyDegrees is a 68% confidence bound. A
+ * provider whose platform reports on a different scale converts to this one before publishing a
+ * fix - see IosLocationProvider's COURSE_ACCURACY_SCALE.
+ */
+const val MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES = 45.0f
+
 abstract class LocationProvider {
     abstract fun start(accuracy: Accuracy = Accuracy.High)
     abstract fun destroy()

@@ -4,7 +4,6 @@ package org.scottishtecharmy.soundscape.geoengine.callouts
 
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
@@ -16,6 +15,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import kotlin.test.Test
@@ -27,15 +27,16 @@ import kotlin.test.assertTrue
 /** In-memory [PreferencesProvider] holding only what a test sets on it. */
 private class FakePreferences : PreferencesProvider {
     private val booleans = mutableMapOf<String, Boolean>()
+    private val strings = mutableMapOf<String, String>()
 
     override fun getBoolean(key: String, default: Boolean): Boolean = booleans[key] ?: default
-    override fun getString(key: String, default: String): String = default
+    override fun getString(key: String, default: String): String = strings[key] ?: default
     override fun getFloat(key: String, default: Float): Float = default
 
     override fun putBoolean(key: String, value: Boolean) { booleans[key] = value }
-    override fun putString(key: String, value: String) {}
+    override fun putString(key: String, value: String) { strings[key] = value }
 
-    override fun clearAll() { booleans.clear() }
+    override fun clearAll() { booleans.clear(); strings.clear() }
 
     override fun addListener(listener: PreferencesListener) {}
     override fun removeListener(listener: PreferencesListener) {}
@@ -103,66 +104,95 @@ class CalloutCategorySettingsTest {
     }
 
     /**
-     * A guidepost or a notice board is an information POI, and on iOS the Places and Landmarks
-     * switch turns those on along with places and landmarks (placeSense, landmarkSense *and*
-     * informationSense - see CalloutSettingsCellView.swift). Without this they were classified at
-     * tile load time and then never reached a callout: TreeId.INFORMATION_POIS had no reader.
+     * A guidepost or a notice board is an information POI: not a kind of place anybody ticks in
+     * Places to Call Out, but part of how you get about, so it is selected while the level says
+     * anything at all. Without this they were classified at tile load time and then never
+     * reached a callout - TreeId.INFORMATION_POIS had no reader.
      */
     @Test
-    fun informationPoisAreSelectedWithPlacesAndLandmarks() {
-        val collections = classify(setOf(PLACES_AND_LANDMARKS_KEY))
-        val selected = collections[TreeId.SELECTED_SUPER_CATEGORIES.id].features
+    fun informationPoisAreSelectedAlongWithPlacesAndLandmarks() {
+        val selected = classify(CalloutPoiSelection.EVERYTHING)
 
         assertTrue(
-            selected.any { (it as MvtFeature).name == "Guidepost" },
-            "Expected the information POI to be selected, got ${selected.map { (it as MvtFeature).name }}"
+            selected.any { it.name == "Guidepost" },
+            "Expected the information POI to be selected, got ${selected.map { it.name }}"
         )
-        assertTrue(selected.any { (it as MvtFeature).name == "Post Office" })
-    }
-
-    @Test
-    fun informationPoisAreNotSelectedWithPlacesAndLandmarksOff() {
-        val collections = classify(setOf(MOBILITY_KEY))
-        val selected = collections[TreeId.SELECTED_SUPER_CATEGORIES.id].features
-
-        assertTrue(selected.none { (it as MvtFeature).name == "Guidepost" })
-        // ...and the mobility POI it was sorted alongside is still there, so this is the setting
-        // choosing rather than the classification dropping everything.
-        assertTrue(selected.any { (it as MvtFeature).name == "Lift" })
+        assertTrue(selected.any { it.name == "Post Office" })
+        assertTrue(selected.any { it.name == "Kelvingrove Park" })
+        assertTrue(selected.any { it.name == "Lift" })
     }
 
     /**
-     * Walking mode gets Places and Landmarks for free: the setting chooses what goes into
-     * TreeId.SELECTED_SUPER_CATEGORIES at grid load time, and buildCalloutForNearbyPOI reads only
-     * that tree - so the switch is tested where it acts, on the classification.
+     * A kind ticked in Places to Call Out narrows the tree to it, and to the getting-about POIs
+     * which aren't on that list.
      */
     @Test
-    fun placesAndLandmarksAreNotSelectedWhenTheSettingIsOff() {
-        val selected = classify(setOf(MOBILITY_KEY))[TreeId.SELECTED_SUPER_CATEGORIES.id].features
+    fun onlyTheChosenKindsAreSelected() {
+        val selected = classify(
+            CalloutPoiSelection(CalloutVerbosity.DETAILED, setOf(PlacesToCallOut.LANDMARKS))
+        )
 
-        assertTrue(selected.none { (it as MvtFeature).name == "Post Office" })
-        assertTrue(selected.none { (it as MvtFeature).name == "Kelvingrove Park" })
+        assertTrue(selected.any { it.name == "Kelvingrove Park" })
+        assertTrue(selected.any { it.name == "Lift" })
+        assertTrue(selected.none { it.name == "Post Office" })
+    }
+
+    /** Quiet has its own answer - landmarks - and the ticked kinds have no say in it. */
+    @Test
+    fun quietSelectsLandmarksWhateverIsTicked() {
+        val selected = classify(
+            CalloutPoiSelection(CalloutVerbosity.QUIET, setOf(PlacesToCallOut.EVERYTHING))
+        )
+
+        assertEquals(listOf("Kelvingrove Park"), selected.map { it.name })
+    }
+
+    /**
+     * Changing a setting rebuilds this one tree from the POIs the grid already holds, rather
+     * than the grid - no tiles are read, no ways or intersections rebuilt.
+     */
+    @Test
+    fun theSelectionCanBeRebuiltWithoutTheGrid() {
+        val grid = GridState().apply { validateContext = false }
+        grid.featureTrees[TreeId.POIS.id] = FeatureTree(
+            FeatureCollection().apply {
+                addFeature(poi("Post Office", SuperCategoryId.PLACE))
+                addFeature(poi("Kelvingrove Park", SuperCategoryId.LANDMARK))
+            }
+        )
+
+        grid.updatePoiSelection(CalloutPoiSelection.EVERYTHING)
+        assertEquals(2, grid.featureTrees[TreeId.SELECTED_SUPER_CATEGORIES.id].getAllCollection().features.size)
+
+        grid.updatePoiSelection(
+            CalloutPoiSelection(CalloutVerbosity.QUIET, setOf(PlacesToCallOut.EVERYTHING))
+        )
+        val selected = grid.featureTrees[TreeId.SELECTED_SUPER_CATEGORIES.id]
+            .getAllCollection().features.map { (it as MvtFeature).name }
+        assertEquals(listOf("Kelvingrove Park"), selected)
     }
 
     @Test
-    fun placesAndLandmarksAreSelectedWhenTheSettingIsOn() {
-        val selected =
-            classify(setOf(PLACES_AND_LANDMARKS_KEY))[TreeId.SELECTED_SUPER_CATEGORIES.id].features
-
-        assertTrue(selected.any { (it as MvtFeature).name == "Post Office" })
-        assertTrue(selected.any { (it as MvtFeature).name == "Kelvingrove Park" })
+    fun silentSelectsNothing() {
+        assertTrue(
+            classify(
+                CalloutPoiSelection(CalloutVerbosity.SILENT, setOf(PlacesToCallOut.EVERYTHING))
+            ).isEmpty()
+        )
     }
 
     /**
      * Travel mode does not get it for free. buildCalloutForVehicleLandmark reads
      * TreeId.LANDMARK_POIS directly rather than the tree the setting selects into, so until it
-     * checked the preference itself a user with Places and Landmarks off was still told about
-     * every park and hospital they drove past. iOS runs its in-vehicle landmarks through the same
-     * sense check as the walking ones - see filterAnnounceablePOIs in AutoCalloutGenerator.swift.
+     * checked the preference itself a user with places turned off was still told about every park
+     * and hospital they drove past. iOS runs its in-vehicle landmarks through the same sense check
+     * as the walking ones - see filterAnnounceablePOIs in AutoCalloutGenerator.swift.
      */
     @Test
-    fun vehicleLandmarkIsAnnouncedWhenPlacesAndLandmarksIsOn() {
-        val preferences = FakePreferences().apply { putBoolean(PLACES_AND_LANDMARKS_KEY, true) }
+    fun vehicleLandmarkIsAnnouncedWithLandmarksOnly() {
+        val preferences = FakePreferences().apply {
+            putString(PreferenceKeys.PLACES_TO_CALL_OUT, setOf(PlacesToCallOut.LANDMARKS).toPreference())
+        }
 
         val callout = AutoCallout(null, preferences).updateLocation(
             vehicleFix(1000L), landmarkGrid(), GridState()
@@ -176,8 +206,10 @@ class CalloutCategorySettingsTest {
     }
 
     @Test
-    fun vehicleLandmarkIsSilencedWhenPlacesAndLandmarksIsOff() {
-        val preferences = FakePreferences().apply { putBoolean(PLACES_AND_LANDMARKS_KEY, false) }
+    fun vehicleLandmarkIsSilencedWithNoPlaces() {
+        val preferences = FakePreferences().apply {
+            putString(PreferenceKeys.PLACES_TO_CALL_OUT, setOf(PlacesToCallOut.NOTHING).toPreference())
+        }
 
         assertNull(
             AutoCallout(null, preferences).updateLocation(
@@ -257,8 +289,11 @@ class CalloutCategorySettingsTest {
         return grid
     }
 
-    /** Runs [GridState.classifyPois] over one POI of each category under test. */
-    private fun classify(enabledCategories: Set<String>): Array<FeatureCollection> {
+    /**
+     * Runs [GridState.classifyPois] over one POI of each category under test, returning what it
+     * put in the tree the walking callouts read.
+     */
+    private fun classify(selection: CalloutPoiSelection): List<MvtFeature> {
         val collections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
         collections[TreeId.POIS.id] = FeatureCollection().apply {
             addFeature(poi("Post Office", SuperCategoryId.PLACE))
@@ -266,8 +301,8 @@ class CalloutCategorySettingsTest {
             addFeature(poi("Guidepost", SuperCategoryId.INFORMATION))
             addFeature(poi("Lift", SuperCategoryId.MOBILITY))
         }
-        GridState().classifyPois(collections, enabledCategories)
-        return collections
+        GridState().classifyPois(collections, selection)
+        return collections[TreeId.SELECTED_SUPER_CATEGORIES.id].features.map { it as MvtFeature }
     }
 
     private fun poi(poiName: String, category: SuperCategoryId) = MvtFeature().apply {

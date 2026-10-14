@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: 경로
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 90
 lang: ko
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# 경로
 
-## What is it?
+경로는 차례대로 방문하는 위치의 목록이며, 각 위치를 경유지라고 합니다. Soundscape는 첫 번째 경유지에 비콘을 설정합니다. 도착하면 이를 알리고 비콘을 다음 경유지로 옮깁니다.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+새로운 이동 구간을 익히거나, 아는 구간에서 길을 벗어나지 않으려면 경로를 사용하세요.
 
-## When would I use it?
+## 경로 만들기
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. 홈 화면에서 *경로*를 선택한 다음 *새로 만들기*를 선택합니다.
 
-## How does it work?
+2. 경로에 이름을 붙입니다. 설명을 추가할 수도 있습니다.
 
-**Creating a route :**
+3. *경유지 추가*를 선택하고 마커를 고릅니다. 현재 위치나 주변 장소도 추가할 수 있습니다.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *완료*를 선택합니다.
 
-**Editing a route :**
+## 경로 따라가기
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+*경로* 화면에서 경로를 선택한 다음 *경로 시작*을 선택합니다. 거꾸로 따라가려면 *경로 역순으로 시작*을 선택하세요. 홈 화면에서 *다음 경유지*와 *이전 경유지*는 비콘을 경로를 따라 옮깁니다. *경로 중지*는 경로를 끝냅니다.
 
-**Sharing a route :**
+## 경로 변경하기
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+*경로* 화면에서 경로를 선택한 다음 *경로 편집*을 선택합니다. 경유지를 추가, 삭제하거나 순서를 바꾸고, 이름과 설명을 바꾸거나, 경로를 삭제할 수 있습니다.
+
+## 경로 공유하기
+
+*경로* 화면에서 경로를 선택한 다음 *공유*를 선택합니다.
 

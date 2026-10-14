@@ -70,6 +70,47 @@ class FormatDistanceTest {
         )
     }
 
+    /**
+     * The clock position reaches the template as a localized word, not a digit, so a language can
+     * give the speech synthesiser the ordinal it needs ("na godzinie dziewiątej", not "dziewięciu").
+     */
+    @Test
+    fun clockPositionIsLocalizedWord() {
+        assertEquals(
+            "DistanceMeters[20](20), RelativeClockDirection(RelativeClockHour9())",
+            formatDistanceAndDirection(20.0, 270.0, localized, userHeading = 0.0, relativeDirectionMode = "ClockFace"),
+        )
+        assertEquals(
+            "DistanceMeters[20](20), RelativeClockDirection(RelativeClockHour12())",
+            formatDistanceAndDirection(20.0, 5.0, localized, userHeading = 0.0, relativeDirectionMode = "ClockFace"),
+        )
+    }
+
+    /**
+     * The angle chooses its own plural form, so a language whose noun changes with the number
+     * (Arabic «درجات» for 5 and 10, Romanian «de grade» from 20) can say it correctly.
+     */
+    @Test
+    fun degreesSelectPluralOnTheAngle() {
+        assertEquals(
+            "DistanceMeters[20](20), RelativeDegreesDirection[45](45)",
+            formatDistanceAndDirection(20.0, 45.0, localized, userHeading = 0.0, relativeDirectionMode = "Degrees"),
+        )
+        assertEquals(
+            "DistanceMeters[20](20), RelativeDegreesDirection[0](0)",
+            formatDistanceAndDirection(20.0, 2.0, localized, userHeading = 0.0, relativeDirectionMode = "Degrees"),
+        )
+    }
+
+    /** With no Relative Direction chosen, a callout says left/right rather than a clock position. */
+    @Test
+    fun defaultRelativeDirectionIsLeftRight() {
+        assertEquals(
+            "DistanceMeters[20](20), RelativeLeftRightDirectionLeft()",
+            formatDistanceAndDirection(20.0, 270.0, localized, userHeading = 0.0),
+        )
+    }
+
     @AfterTest
     fun restoreUnits() {
         metric = true
@@ -213,6 +254,34 @@ class FormatDistanceTest {
         assertEquals("DistanceKm[2](2)", format(2000.0))
         metric = false
         assertEquals("DistanceMiles[1](1)", format(1609.0))
+    }
+
+    /**
+     * The beacon panel on the home screen has room for "390 m, SE" but not for the word, while
+     * the screen reader gets the word - a screen reader saying "SE" is worse than one saying
+     * "south east". Both come from the same call, differing only in these two flags.
+     */
+    @Test
+    fun abbreviatedDirectionIsForTheScreenOnly() {
+        assertEquals(
+            "DistanceMeters[390](390), DirectionsCardinalSouthEastAbb()",
+            formatDistanceAndDirection(390.0, 135.0, localized, abbreviatedDirection = true),
+        )
+        assertEquals(
+            "DistanceMeters[390](390), DirectionsCardinalSouthEast()",
+            formatDistanceAndDirection(390.0, 135.0, localized, forAccessibility = true),
+        )
+    }
+
+    /** A relative direction is a phrase either way, so there is nothing to abbreviate. */
+    @Test
+    fun abbreviationDoesNotApplyToRelativeDirections() {
+        assertEquals(
+            formatDistanceAndDirection(390.0, 135.0, localized, userHeading = 90.0),
+            formatDistanceAndDirection(
+                390.0, 135.0, localized, userHeading = 90.0, abbreviatedDirection = true,
+            ),
+        )
     }
 
     @Test

@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: मार्ग
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
+nav_order: 90
 lang: mr
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# मार्ग
 
-## What is it?
+मार्ग म्हणजे स्थानांची यादी, ज्यांना मार्ग बिंदू म्हणतात आणि जिथे तुम्ही क्रमाने जाता. Soundscape पहिल्या मार्ग बिंदूवर बीकन सेट करते. तुम्ही पोहोचल्यावर ते तुम्हाला सांगते आणि बीकन पुढच्या मार्ग बिंदूवर नेते.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+नवीन प्रवास शिकण्यासाठी, किंवा माहीत असलेल्या प्रवासात रस्ता चुकू नये म्हणून मार्ग वापरा.
 
-## When would I use it?
+## मार्ग तयार करणे
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. मुख्य स्क्रीनवर *मार्ग* निवडा, नंतर *नवीन* निवडा.
 
-## How does it work?
+2. मार्गाला नाव द्या. तुम्ही वर्णनही जोडू शकता.
 
-**Creating a route :**
+3. *मार्ग बिंदू जोडा* निवडा आणि मार्कर निवडा. तुम्ही तुमचे सध्याचे स्थान किंवा जवळचे एखादे ठिकाणही जोडू शकता.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *पूर्ण झाले* निवडा.
 
-**Editing a route :**
+## मार्गावर चालणे
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+*मार्ग* स्क्रीनवर मार्ग निवडा, नंतर *मार्ग सुरू करा* निवडा. तो उलट दिशेने चालण्यासाठी *मार्ग उलट क्रमाने सुरू करा* निवडा. मुख्य स्क्रीनवर *पुढील मार्ग बिंदू* आणि *मागील मार्ग बिंदू* बीकन मार्गावर पुढे-मागे नेतात. *मार्ग थांबवा* तो संपवते.
 
-**Sharing a route :**
+## मार्ग बदलणे
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+*मार्ग* स्क्रीनवर मार्ग निवडा, नंतर *मार्ग संपादित करा* निवडा. तुम्ही मार्ग बिंदू जोडू शकता, काढू शकता आणि त्यांचा क्रम बदलू शकता, नाव आणि वर्णन बदलू शकता, किंवा मार्ग हटवू शकता.
+
+## मार्ग शेअर करणे
+
+*मार्ग* स्क्रीनवर मार्ग निवडा, नंतर *शेअर करा* निवडा.
 

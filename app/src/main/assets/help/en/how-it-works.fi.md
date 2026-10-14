@@ -1,13 +1,14 @@
 ---
-title: Kuinka Soundscape toimii
+title: Soundscapen taustalla oleva tekniikka
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 200
 lang: fi
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Kuinka Soundscape toimii
+# Soundscapen taustalla oleva tekniikka
 Tämän sivun tarkoituksena on antaa yleiskäsitys siitä, kuinka Soundscape-sovellus toimii konepellin alla. Sinun ei tarvitse lukea tätä käyttääksesi sovellusta, mutta sen kirjoittamiselle on muutama syy:
 
 1. Auttaa kiinnostuneita sovelluksen uusia käyttäjiä ymmärtämään, missä sen rajoitukset ovat

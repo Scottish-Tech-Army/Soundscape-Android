@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Δείκτες
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 80
 lang: el
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Δείκτες
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Ο δείκτης είναι ένα μέρος που έχετε αποθηκεύσει. Μπορεί να είναι οποιοδήποτε μέρος έχει σημασία για εσάς: το σπίτι σας, μια στάση λεωφορείου, η είσοδος ενός κτιρίου ή μια διάβαση.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Το Soundscape ανακοινώνει τους δείκτες σας καθώς περνάτε από αυτούς. Μπορείτε να ορίσετε ηχητικό σήμα σε έναν δείκτη, να τον προσθέσετε σε μια διαδρομή ή να ακούσετε τους πιο κοντινούς με το κουμπί *Κοντινοί δείκτες*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Δημιουργία δεικτών
+
+1. Επιλέξτε *Δείκτες* στην αρχική οθόνη και μετά επιλέξτε *Νέο*.
+
+2. Επιλέξτε *Τρέχουσα τοποθεσία* ή ένα μέρος από τις *Κοντινές τοποθεσίες*.
+
+3. Αλλάξτε το όνομα αν θέλετε, και προσθέστε σημειώσεις. Το Soundscape διαβάζει τις σημειώσεις μαζί με τον δείκτη.
+
+4. Επιλέξτε *Έτοιμο*.
+
+Μπορείτε επίσης να αποθηκεύσετε οποιοδήποτε μέρος βρείτε. Ανοίξτε τις *Λεπτομέρειες τοποθεσίας* του και επιλέξτε *Αποθήκευση ως δείκτη*.
+
+## Εξατομίκευση δεικτών
+
+Επιλέξτε τον δείκτη στην οθόνη *Δείκτες* και μετά επιλέξτε *Επεξεργασία δείκτη*. Μπορείτε να αλλάξετε το όνομα, τις σημειώσεις και τη θέση του, ή να επιλέξετε *Διαγραφή δείκτη*. Η διαγραφή ενός δείκτη τον αφαιρεί και από τις διαδρομές σας.
 

@@ -85,6 +85,19 @@ private fun isCombiningMark(ch: Char) = when (ch.category) {
     else -> false
 }
 
+/**
+ * Whether [codePoint] is in a script which doesn't put spaces between its words, or doesn't
+ * always: Chinese and Japanese kanji/hanzi, hiragana and katakana, Korean hangul, and Thai.
+ */
+internal fun isUnspacedScript(codePoint: Int): Boolean =
+    (codePoint in 0x0E00..0x0E7F) ||     // Thai
+        (codePoint in 0x3040..0x30FF) ||  // Hiragana and Katakana, including the voicing marks
+        (codePoint in 0x3400..0x4DBF) ||  // CJK Unified Ideographs Extension A
+        (codePoint in 0x4E00..0x9FFF) ||  // CJK Unified Ideographs
+        (codePoint in 0xAC00..0xD7A3) ||  // Hangul syllables
+        (codePoint in 0xF900..0xFAFF) ||  // CJK Compatibility Ideographs
+        (codePoint in 0x20000..0x3FFFF)   // CJK Unified Ideographs Extensions B onwards
+
 fun normalizeForSearch(input: String): String {
     // NFKD leaves ASCII as it is, and seeing that a string is all ASCII costs less than asking the
     // platform to normalize it

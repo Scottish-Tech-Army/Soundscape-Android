@@ -626,7 +626,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape necesita su ubicación para proporcionar navegación por audio incluso cuando la aplicación está en segundo plano."
+            "value": "Soundscape necesita tu ubicación para proporcionar navegación por audio incluso cuando la aplicación está en segundo plano."
           }
         },
         "et": {
@@ -906,7 +906,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape necesita su ubicación para proporcionar navegación por audio y describir su entorno."
+            "value": "Soundscape necesita tu ubicación para proporcionar navegación por audio y describir tu entorno."
           }
         },
         "et": {
@@ -1186,7 +1186,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape usa datos de movimiento para detectar la dirección hacia la que mira y orientar los avisos de audio respecto a su entorno."
+            "value": "Soundscape usa datos de movimiento para detectar la dirección hacia la que miras y orientar los avisos de audio respecto a tu entorno."
           }
         },
         "et": {

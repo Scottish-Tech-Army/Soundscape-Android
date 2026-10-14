@@ -1,23 +1,16 @@
 ---
-title: Ahead of Me
+title: Davanti a me
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 40
 lang: it
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Davanti a me
 
-## What is it?
+*Davanti a me* annuncia fino a cinque luoghi di fronte a te. Senti ognuno dalla propria direzione, con la sua distanza. Usalo in una strada che non conosci, per sapere che cosa ti aspetta.
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
-
-## When would I use it?
-
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Se non ti muovi, punta prima la parte superiore del telefono nella direzione in cui guardi. Se il telefono è bloccato, o Soundscape non è sullo schermo, tieni anche il telefono in piano.
 

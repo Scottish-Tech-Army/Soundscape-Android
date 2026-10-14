@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: 路线
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 90
 lang: zh-CN
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# 路线
 
-## What is it?
+路线是一份由若干位置组成的列表，这些位置称为航点，您按顺序依次前往。Soundscape 会在第一个航点上设置信标。您到达后，它会告诉您，并把信标移到下一个航点。
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+用路线来熟悉一段新的行程，或者在熟悉的行程中保持不偏离。
 
-## When would I use it?
+## 创建路线
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. 在主屏幕上选择*路线*，然后选择*新建*。
 
-## How does it work?
+2. 给路线起一个名称。您可以添加描述。
 
-**Creating a route :**
+3. 选择*添加航点*并选择标记点。您也可以添加当前位置或附近的地点。
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. 选择*完成*。
 
-**Editing a route :**
+## 沿路线行走
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+在*路线*屏幕上选择路线，然后选择*开始路线*。要反方向走，请选择*反向开始路线*。在主屏幕上，*下一个航点*和*上一个航点*会沿路线移动信标。*停止路线*会结束路线。
 
-**Sharing a route :**
+## 更改路线
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+在*路线*屏幕上选择路线，然后选择*编辑路线*。您可以添加、移除航点和调整航点顺序，更改名称和描述，或者删除路线。
+
+## 分享路线
+
+在*路线*屏幕上选择路线，然后选择*分享*。
 

@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: 마커
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 80
 lang: ko
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# 마커
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+마커는 직접 저장한 장소입니다. 집, 버스 정류장, 건물 입구, 횡단보도처럼 나에게 중요한 곳이면 어디든 될 수 있습니다.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape는 마커 옆을 지날 때 그 마커를 안내합니다. 마커에 오디오 비콘을 설정하거나 마커를 경로에 추가할 수 있습니다. *주변 마커* 버튼으로 가장 가까운 마커를 들을 수도 있습니다.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## 마커 만들기
+
+1. 홈 화면에서 *마커*를 선택한 다음 *새로 만들기*를 선택합니다.
+
+2. *현재 위치*를 고르거나 *주변 장소*에서 장소를 고릅니다.
+
+3. 원하면 이름을 바꾸고 메모를 추가합니다. Soundscape는 마커와 함께 메모를 읽어 줍니다.
+
+4. *완료*를 선택합니다.
+
+찾은 장소는 어느 곳이든 저장할 수 있습니다. 그 장소의 *위치 세부 정보*를 열고 *마커로 저장*을 선택하세요.
+
+## 마커 사용자 지정
+
+*마커* 화면에서 마커를 선택한 다음 *마커 편집*을 선택합니다. 이름, 메모, 위치를 바꾸거나 *마커 삭제*를 선택할 수 있습니다. 마커를 삭제하면 내 경로에서도 빠집니다.
 

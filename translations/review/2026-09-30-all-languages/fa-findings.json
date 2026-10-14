@@ -1,0 +1,122 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "این یک به‌روزرسانی بزرگ برای ساند‌اسکیپ است. حالت سفر بسیار بهتر شده است. وقتی با خودرو یا اتوبوس سفر می‌کنید، ساند‌اسکیپ اکنون شماره‌ی جاده‌ها، جهت حرکت شما و شهرک‌های نزدیک را اعلام می‌کند. همچنین هنگام عبور از رودخانه‌ها، کانال‌ها، خورها و خلیج‌ها به شما اطلاع می‌دهد. لطفاً نقشه‌های آفلاین خود را به‌روزرسانی کنید تا این ویژگی‌های تازه را دریافت نمایید. برای کاربران بریتانیا، توضیحات ایستگاه‌های اتوبوس اکنون بسیار بهتر شده است. حالت خواب اکنون می‌تواند به‌طور خودکار بیدار شود وقتی تشخیص دهد که دوباره در حال حرکت هستید. دیگر نیازی نیست خودتان به یاد داشته باشید که آن را بیدار کنید. ما کد زیرین را بازآرایی کردیم تا بتوانیم از همان کد یک برنامه برای iOS بسازیم. این یعنی در آینده می‌توانیم برنامه‌ای برای iOS با تمام ویژگی‌هایی که برای اندروید ساخته‌ایم منتشر کنیم. لطفاً همچنان هرگونه مشکلی را، هر چقدر هم کوچک، از طریق گزینه‌ی تماس با پشتیبانی در منوی اصلی گزارش دهید.",
+  "suggested": "\nاین یک به‌روزرسانی بزرگ برای ساند‌اسکیپ است.\n\nحالت سفر بسیار بهتر شده است. وقتی با خودرو یا اتوبوس سفر می‌کنید، ساند‌اسکیپ اکنون شماره‌ی جاده‌ها، جهت حرکت شما و شهرک‌های نزدیک را اعلام می‌کند. همچنین هنگام عبور از رودخانه‌ها، کانال‌ها، خورها و خلیج‌ها به شما اطلاع می‌دهد. لطفاً نقشه‌های آفلاین خود را به‌روزرسانی کنید تا این ویژگی‌های تازه را دریافت نمایید. برای کاربران بریتانیا، توضیحات ایستگاه‌های اتوبوس اکنون بسیار بهتر شده است.\n\nحالت خواب اکنون می‌تواند به‌طور خودکار بیدار شود وقتی تشخیص دهد که دوباره در حال حرکت هستید. دیگر نیازی نیست خودتان به یاد داشته باشید که آن را بیدار کنید.\n\nما کد زیرین را بازآرایی کردیم تا بتوانیم از همان کد یک برنامه برای iOS بسازیم. این یعنی در آینده می‌توانیم برنامه‌ای برای iOS با تمام ویژگی‌هایی که برای اندروید ساخته‌ایم منتشر کنیم.\n\nلطفاً همچنان هرگونه مشکلی را، هر چقدر هم کوچک، از طریق گزینه‌ی تماس با پشتیبانی در منوی اصلی گزارش دهید.\n",
+  "reason": "The English has five paragraphs separated by blank lines (and a leading/trailing line break), which the release-notes dialog now splits on; the Persian is one run-on paragraph. Same text, paragraph breaks restored.",
+  "category": "formatting"
+ },
+ {
+  "context": "tour_my_location",
+  "source": "Now that you know how to use Markers, let's look at some of the other features. At the bottom of the screen are four buttons. We'll try each one. The button on the left is My Location. It describes your current location. Try tapping it now.",
+  "current": "حالا که نحوه‌ی استفاده از نشانه‌ها را یاد گرفتید، بیایید چند قابلیت دیگر را بررسی کنیم. در پایین صفحه چهار دکمه وجود دارد. هر یک از آنها را امتحان خواهیم کرد. دکمه‌ی سمت چپ «موقعیت مکانی من» است. این دکمه موقعیت فعلی شما را توصیف می‌کند. هم‌اکنون روی آن ضربه بزنید.",
+  "suggested": "حالا که نحوه‌ی استفاده از نشانه‌ها را یاد گرفتید، بیایید چند قابلیت دیگر را بررسی کنیم. در پایین صفحه چهار دکمه وجود دارد. هر یک از آنها را امتحان خواهیم کرد. دکمه‌ی سمت راست «موقعیت مکانی من» است. این دکمه موقعیت فعلی شما را توصیف می‌کند. هم‌اکنون روی آن ضربه بزنید.",
+  "reason": "The app mirrors its layout for RTL (supportsRtl=true, Compose rows mirror), so in Persian My Location is the right-most of the four bottom buttons, not the left. faq_sleep_mode_battery_answer already mirrors «top-right» to «بالای سمت چپ» the same way.",
+  "category": "meaning"
+ },
+ {
+  "context": "location_detail_action_beacon_hint",
+  "source": "guide you towards this location with sound",
+  "current": "شما را با صدا به این مکان هدایت کنید",
+  "suggested": "با صدا به این مکان هدایت شوید",
+  "reason": "Accessibility hint lands in «دو بار ضربه بزنید تا %1$s»; «شما را … هدایت کنید» makes the user the one doing the guiding ('double-tap so that you guide you'). Passive 2pl «هدایت شوید» fits the template like the other hints.",
+  "category": "meaning"
+ },
+ {
+  "context": "number_decimal_separator_a11y",
+  "source": " point ",
+  "current": "نقطه",
+  "suggested": "ممیز",
+  "reason": "Spoken decimal separator: Persian reads 2.5 as «دو ممیز پنج». «نقطه» is the name of the dot character, so screen readers would say 'two dot five'. (Spacing is now added in code, 8bc004bdd.)",
+  "category": "meaning"
+ },
+ {
+  "context": "voice_engine",
+  "source": "Text-to-Speech Engine",
+  "current": "موتور صوتی",
+  "suggested": "موتور تبدیل متن به گفتار",
+  "reason": "«موتور صوتی» means 'audio/sound engine', not text-to-speech engine; the help text (help_config_voices_content) already uses «تبدیل متن به گفتار». voice_voices «صدای موتور صوتی» is quoted as a UI name in two help strings, so leave it unless those are changed together.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "خیر! هنگام راه رفتن می‌توانید گوشی را در کیف یا جیبتان یا هرجای مناسب قرار دهید. ساند‌اسکیپ جهت حرکت شما را مبنای تعیین اینکه چه اعلان‌هایی از سمت چپ و راست پخش شود قرار می‌دهد. وقتی حرکت نمی‌کنید، ساند‌اسکیپ نمی‌داند به کدام جهت نگاه می‌کنید. اگر جهت‌نمای صوتی روشن باشد، متوجه خواهید شد که صدا کاهش می‌یابد تا زمانی که دوباره شروع به حرکت کنید. هر زمان می‌توانید گوشی را بیرون آورده و دکمه‌های موقعیت و کاوش در پایین صفحهٔ اصلی را فشار دهید، اما مطمئن شوید گوشی را طوری نگه داشته‌اید که جلوی گوشی (بالای آن) به سمت جهتی باشد که شما رو به آن ایستاده‌اید و صفحهٔ نمایش رو به آسمان باشد. در این وضعیت *افقی*، ساند‌اسکیپ از قطب‌نما (کامپاس) گوشی برای تعیین جهت دقیق شما استفاده می‌کند و اعلان‌های فضایی دقیقی ارائه دهد. اگر جهت‌نما روشن باشد، همچنین متوجه خواهید شد که صدا به حجم کامل برمی‌گردد.",
+  "suggested": "خیر! هنگام راه رفتن می‌توانید گوشی را در کیف یا جیبتان یا هرجای مناسب قرار دهید. ساند‌اسکیپ جهت حرکت شما را مبنای تعیین اینکه چه اعلان‌هایی از سمت چپ و راست پخش شود قرار می‌دهد. وقتی حرکت نمی‌کنید، ساند‌اسکیپ نمی‌داند به کدام جهت نگاه می‌کنید. اگر جهت‌نمای صوتی روشن باشد، متوجه خواهید شد که صدا کاهش می‌یابد تا زمانی که دوباره شروع به حرکت کنید. هر زمان می‌توانید گوشی را بیرون آورده و دکمه‌های موقعیت و کاوش در پایین صفحهٔ اصلی را فشار دهید، اما مطمئن شوید گوشی را طوری نگه داشته‌اید که جلوی گوشی (بالای آن) به سمت جهتی باشد که شما رو به آن ایستاده‌اید و صفحهٔ نمایش رو به آسمان باشد. در این وضعیت *افقی*، ساند‌اسکیپ از قطب‌نما (کامپاس) گوشی برای تعیین جهت دقیق شما استفاده می‌کند تا اعلان‌های فضایی دقیقی ارائه دهد. اگر جهت‌نما روشن باشد، همچنین متوجه خواهید شد که صدای آن دوباره کاملاً بلند می‌شود.",
+  "reason": "Two slips: «…استفاده می‌کند و … ارائه دهد» mixes indicative and subjunctive (should be «تا … ارائه دهد»), and «حجم کامل» is physical volume, not loudness, for 'returns to full volume'.",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_remote_control_what",
+  "source": "You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.",
+  "current": "شما می‌توانید به‌کمک دکمه‌های کنترل پخش صوت و تصویر روی هندزفری خود به برخی از قابلیت‌های ساند‌اسکیپ دسترسی داشته باشید. این ویژگی با هندزفری‌های سیمی و بلوتوثی که دارای دکمه‌های پلی، پاز، ترک بعد، ترک قبل و غیره می‌باشند کار می‌کند. توجه داشته باشید که دکمه‌هایی که روی هندزفری‌های مختلف قرار دارند، با هم متفاوت هستند؛ پس لطفاً برای اطلاع از اینکه چه قابلیت‌هایی در دسترس شما قرار دارد، به فهرست زیر مراجعه نمایید.",
+  "suggested": "شما می‌توانید به‌کمک دکمه‌های کنترل پخش صوت و تصویر روی هندزفری خود به برخی از قابلیت‌های ساند‌اسکیپ دسترسی داشته باشید. این ویژگی با هندزفری‌های سیمی و بلوتوثی که دارای دکمه‌های پخش، مکث، بعدی، قبلی و غیره می‌باشند کار می‌کند. توجه داشته باشید که دکمه‌هایی که روی هندزفری‌های مختلف قرار دارند، با هم متفاوت هستند؛ پس لطفاً برای اطلاع از اینکه چه قابلیت‌هایی در دسترس شما قرار دارد، به فهرست زیر مراجعه نمایید.",
+  "reason": "Button names are colloquial transliterations («پلی، پاز، ترک بعد، ترک قبل») while the very next help page (help_text_remote_control_how) calls the same buttons «پخش/مکث», «بعدی», «قبلی». Use one set.",
+  "category": "terminology"
+ },
+ {
+  "context": "preview_go_nearest_intersection",
+  "source": "Go to nearest intersection",
+  "current": "برو به نزدیک‌ترین تقاطع",
+  "suggested": "رفتن به نزدیک‌ترین تقاطع",
+  "reason": "Informal singular imperative «برو» breaks the formal-plural register used everywhere else (fa.md); a button label reads better as a verbal noun, like «شروع مسیر», «توقف مسیر».",
+  "category": "tone"
+ },
+ {
+  "context": "osm_service_road",
+  "source": "Service Road",
+  "current": "کنار‌گذر",
+  "suggested": "راه سرویس",
+  "reason": "«کنار‌گذر» means a bypass/frontage road, not an access road to a property. callouts_verbosity_description already calls service roads «راه‌های سرویس», so the level description and the callout disagree.",
+  "category": "terminology"
+ },
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%1$s به %2$s",
+  "suggested": "%1$s منتهی به %2$s",
+  "reason": "C10: %1$s is a way type (Path, Service road…) described as leading to %2$s. Bare «به» reads as motion ('path, to Moor Road') or a range; «منتهی به» ('leading to') is the relative-clause form C10 recommends and keeps both nominative.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_via",
+  "source": "%1$s to %2$s via %3$s",
+  "current": "%1$s به %2$s از مسیر %3$s",
+  "suggested": "%1$s منتهی به %2$s از مسیر %3$s",
+  "reason": "C10: %1$s is a way type (Path, Service road…) described as leading to %2$s. Bare «به» reads as motion ('path, to Moor Road') or a range; «منتهی به» ('leading to') is the relative-clause form C10 recommends and keeps both nominative.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s به بن‌بست",
+  "suggested": "%1$s منتهی به بن‌بست",
+  "reason": "C10: %1$s is a way type (Path, Service road…) described as leading to %2$s. Bare «به» reads as motion ('path, to Moor Road') or a range; «منتهی به» ('leading to') is the relative-clause form C10 recommends and keeps both nominative.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%1$s به بن‌بست از مسیر %2$s",
+  "suggested": "%1$s منتهی به بن‌بست از مسیر %2$s",
+  "reason": "C10: %1$s is a way type (Path, Service road…) described as leading to %2$s. Bare «به» reads as motion ('path, to Moor Road') or a range; «منتهی به» ('leading to') is the relative-clause form C10 recommends and keeps both nominative.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_path",
+  "source": "Path",
+  "current": "مسیر",
+  "suggested": "مسیر",
+  "reason": "«مسیر» is also the app's term for Route (مسیرها, شروع مسیر), so a confected 'Path to X' («مسیر به …») sounds like a route. An unpaved-path word such as «کوره‌راه» or «راه باریکه» would separate them, but pick with a native speaker since osm_walking_path/osm_bicycle_path also build on «مسیر».",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_permissions_notification",
+  "source": "Notifications",
+  "current": "اعلان‌ها",
+  "suggested": "اعلان‌ها",
+  "reason": "Android's Notifications permission and Soundscape's Callouts are both «اعلان‌ها» (e.g. «مدیریت اعلان‌ها»), so on the permissions screen the user can't tell them apart. This is the concrete case behind open question Q1; no change until it is answered.",
+  "category": "terminology"
+ }
+]

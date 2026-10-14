@@ -10,6 +10,7 @@ import okio.Path
 import okio.Path.Companion.toPath
 import okio.buffer
 import okio.openZip
+import org.scottishtecharmy.soundscape.presentTopViewController
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
 import platform.Foundation.NSFileCoordinator
@@ -22,12 +23,9 @@ import platform.Foundation.NSUTF8StringEncoding
 import platform.Foundation.create
 import platform.Foundation.writeToFile
 import platform.UIKit.UIActivityViewController
-import platform.UIKit.UIApplication
 import platform.UIKit.UIDocumentPickerDelegateProtocol
 import platform.UIKit.UIDocumentPickerMode
 import platform.UIKit.UIDocumentPickerViewController
-import platform.UIKit.UIViewController
-import platform.UIKit.UIWindow
 import platform.darwin.NSObject
 
 /**
@@ -197,17 +195,6 @@ class IosMarkersAndRoutesIo : MarkersAndRoutesIo {
             applicationActivities = null,
         )
         presentTopViewController(controller)
-    }
-
-    private fun presentTopViewController(viewController: UIViewController) {
-        val keyWindow = UIApplication.sharedApplication.windows
-            .mapNotNull { it as? UIWindow }
-            .firstOrNull { it.isKeyWindow() }
-            ?: UIApplication.sharedApplication.windows.firstOrNull() as? UIWindow
-            ?: return
-        var top: UIViewController? = keyWindow.rootViewController
-        while (top?.presentedViewController != null) top = top.presentedViewController
-        top?.presentViewController(viewController, animated = true, completion = null)
     }
 
     private fun currentTimestamp(): String {

@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Đèn hiệu âm thanh
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 60
 lang: vi
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Đèn hiệu âm thanh
 
-## What is it?
+Đèn hiệu âm thanh là một âm thanh phát ra từ hướng của địa điểm bạn chọn. Nó cho bạn biết địa điểm ở đâu theo đường thẳng. Nó không chỉ đường từng chặng, vì vậy bạn tự chọn đường đi đến đó.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Đặt đèn hiệu
 
-## When would I use it?
+1. Tìm địa điểm. Dùng thanh tìm kiếm, *Địa điểm gần đây*, *Điểm đánh dấu* hoặc *Vị trí hiện tại* trên màn hình chính.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Chọn địa điểm để mở *Chi tiết vị trí*.
 
-## How does it work?
+3. Chọn *Bắt đầu đèn hiệu âm thanh*.
 
-**To set a beacon :**
+Soundscape quay lại màn hình chính và đèn hiệu bắt đầu. Màn hình chính hiển thị tên địa điểm và khoảng cách đến đó.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Tìm hướng
 
-**To remove the current beacon :**
+Đèn hiệu đổi âm thanh khi bạn quay mặt về phía địa điểm hoặc đi thẳng về phía đó. Để tìm âm thanh đó, hãy giữ điện thoại nằm ngang và xoay người chậm. Bạn có thể chọn âm thanh đèn hiệu khác trong *Cài đặt*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Tắt tiếng đèn hiệu
 
-**To mute the audible beacon :**
+Chọn *Tắt tiếng đèn hiệu* trên màn hình chính. Soundscape vẫn cho bạn biết địa điểm còn cách bao xa khi bạn di chuyển. Chọn *Bật tiếng đèn hiệu* để nghe lại đèn hiệu.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Gỡ đèn hiệu
+
+Chọn *Dừng lộ trình* trên màn hình chính. Nút vẫn mang tên này ngay cả khi đèn hiệu không thuộc lộ trình nào.
+
+## Khi bạn đến nơi
+
+Khi bạn cách địa điểm khoảng 12 mét, Soundscape báo cho bạn và gỡ đèn hiệu. Điện thoại không thể xác định vị trí của bạn chính xác hơn thế. Để nghe lại đèn hiệu, hãy đặt lại đèn hiệu.
+
+Đèn hiệu đặt tại địa điểm cách chưa đến 30 mét sẽ tiếp tục bật cho đến khi bạn gỡ nó.
 

@@ -37,7 +37,6 @@ import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.onboarding.language.getLanguageMismatch
-import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import kotlin.system.exitProcess
 
@@ -124,16 +123,6 @@ fun HomeScreen(
     val navStateHolder = remember { NavigationStateHolder() }
     val callbackScope = androidx.compose.runtime.rememberCoroutineScope()
 
-    val onMapLongClickListener: (LngLatAlt) -> Boolean = remember(viewModel, navStateHolder) {
-        { lngLatAlt: LngLatAlt ->
-            val ld =
-                viewModel.getLocationDescription(lngLatAlt) ?: LocationDescription("", lngLatAlt)
-            navStateHolder.navigateWithLocation(navController, SharedRoutes.LOCATION_DETAILS, ld)
-            AnalyticsProvider.getInstance().logEvent("longPressOnMap", null)
-            true
-        }
-    }
-
     val flows = remember(
         audioTour,
         audioTourRunningFlow,
@@ -170,13 +159,19 @@ fun HomeScreen(
                 // populates currentRouteFlow and lets SharedHomeContent render
                 // the playback card with stop/mute controls.
                 serviceConnection.soundscapeService?.startBeacon(LngLatAlt(lng, lat), name)
+                // Moves the guided tutorial on from "start the beacon", as on iOS
+                audioTour.onBeaconStarted()
             },
-            onStopBeacon = { serviceConnection.soundscapeService?.destroyBeacon() },
+            onStopBeacon = {
+                serviceConnection.soundscapeService?.destroyBeacon()
+                audioTour.onBeaconStopped()
+            },
             onStartRoute = { routeId -> serviceConnection.routeStart(routeId) },
             onStartRouteInReverse = { routeId ->
                 serviceConnection.soundscapeService?.routeStartReverse(routeId)
             },
             onStartRouteByName = { name -> activity.startRouteByName(name) },
+            onPerformAction = { action -> activity.performAction(action) },
             onMyLocation = { viewModel.myLocation(); audioTour.onButtonPressed(TourButton.MY_LOCATION) },
             onWhatsAroundMe = { viewModel.whatsAroundMe(); audioTour.onButtonPressed(TourButton.AROUND_ME) },
             onAheadOfMe = { viewModel.aheadOfMe(); audioTour.onButtonPressed(TourButton.AHEAD_OF_ME) },
@@ -184,6 +179,8 @@ fun HomeScreen(
             onRouteSkipPrevious = { viewModel.routeSkipPrevious() },
             onRouteSkipNext = { viewModel.routeSkipNext() },
             onRouteMute = { viewModel.routeMute() },
+            onCalloutBeacon = { viewModel.calloutBeacon() },
+            onBeaconMoreInfo = { viewModel.beaconMoreInfo() },
             onRouteStop = { viewModel.routeStop() },
             onSearch = { viewModel.onTriggerSearch(it) },
             onStreetPreviewGo = { viewModel.streetPreviewGo() },
@@ -196,7 +193,6 @@ fun HomeScreen(
             onContactSupport = contactSupport,
             onToggleAudioTour = { audioTour.toggleState() },
             onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
-            onMapLongClick = onMapLongClickListener,
             onGoToAppSettings = { org.scottishtecharmy.soundscape.utils.goToAppSettings(context) },
             onGetCurrentLocationDescription = {
                 val location = viewModel.state.value.location
@@ -207,6 +203,20 @@ fun HomeScreen(
                 }
             },
             onGetOfflineAddress = { location -> viewModel.getOfflineAddress(location) },
+            onSpeak = { text ->
+                serviceConnection.soundscapeService?.speakCallout(
+                    org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout(
+                        positionedStrings = listOf(
+                            org.scottishtecharmy.soundscape.geoengine.PositionedString(
+                                text = text,
+                                type = org.scottishtecharmy.soundscape.audio.AudioType.STANDARD,
+                            )
+                        ),
+                        filter = false,
+                    ),
+                    false,
+                )
+            },
             onGetLanguageMismatch = { getLanguageMismatch() },
             provideLocationProvider = {
                 if (org.scottishtecharmy.soundscape.hasPlayServices(context)) {
@@ -256,16 +266,7 @@ fun HomeScreen(
             // ROUTE_DETAILS in the shared graph.
             onSaveMarker = { desc ->
                 callbackScope.launch {
-                    val name = desc.name.ifEmpty { desc.description ?: "Unknown" }
-                    val marker = org.scottishtecharmy.soundscape.database.local.model.MarkerEntity(
-                        markerId = desc.databaseId,
-                        name = name,
-                        fullAddress = desc.description ?: "",
-                        longitude = desc.location.longitude,
-                        latitude = desc.location.latitude,
-                    )
-                    if (desc.databaseId != 0L) routeDao.updateMarker(marker)
-                    else routeDao.insertMarker(marker)
+                    org.scottishtecharmy.soundscape.database.saveMarker(desc, routeDao)
                     audioTour.onMarkerCreateDone()
                 }
             },
@@ -288,6 +289,10 @@ fun HomeScreen(
             },
             onShareLocation = { desc, shareMessage ->
                 org.scottishtecharmy.soundscape.utils.shareLocation(context, shareMessage, desc)
+            },
+            onGetMapApps = { org.scottishtecharmy.soundscape.utils.getMapApps(context) },
+            onOpenInMapApp = { app, desc ->
+                org.scottishtecharmy.soundscape.utils.openInMapApp(context, app, desc)
             },
             onShareRoute = { routeId ->
                 callbackScope.launch {

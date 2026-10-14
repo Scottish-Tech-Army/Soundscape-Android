@@ -86,12 +86,16 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
      * directory whose name starts with "<logicalBaseName>." is deleted - this is what actually
      * retires a previous version of the same extract (see the comment above the rename below for
      * why in-place replacement isn't safe for pmtiles extracts that MapLibre may have opened).
+     * @param metadataJson If set, written to the "<outputFilePath>.geojson" sidecar once the
+     * download is published - and only then, so that a download which fails or is cancelled
+     * doesn't leave a sidecar behind for an extract that was never saved.
      */
     fun startDownload(
         fileUrl: String,
         outputFilePath: String,
         extractSize: Double?,
         logicalBaseName: String? = null,
+        metadataJson: String? = null,
     ) {
         if (downloadJob?.isActive == true) {
             Log.w(TAG, "Download is already in progress.")
@@ -162,6 +166,13 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
                             // are always in the same directory.
                             if (tempFile.renameTo(finalFile)) {
                                 Log.i(TAG, "Download successful. File saved to: ${finalFile.path}")
+                                if (metadataJson != null) {
+                                    try {
+                                        File("$outputFilePath.geojson").writeText(metadataJson)
+                                    } catch (e: Exception) {
+                                        Log.e(TAG, "Failed to write extract metadata", e)
+                                    }
+                                }
                                 // Clean up old versions before publishing Success - an observer
                                 // reacting to Success (e.g. refreshing the extract list) should
                                 // never see a superseded version still on disk.

@@ -1,23 +1,16 @@
 ---
-title: Nearby Markers
+title: Marqueurs à proximité
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 50
 lang: fr
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Marqueurs à proximité
 
-## What is it?
+*Marqueurs à proximité* annonce jusqu’à quatre de vos marqueurs, les plus proches de vous. Vous entendez chacun depuis sa propre direction, avec sa distance. Utilisez-le pour vous repérer grâce à des lieux que vous connaissez déjà. Les marqueurs situés à plus de 2 kilomètres environ ne sont pas annoncés.
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Si vous êtes à l’arrêt, pointez d’abord le haut de votre téléphone dans la direction à laquelle vous faites face. Si votre téléphone est verrouillé, ou si Soundscape n’est pas à l’écran, tenez aussi votre téléphone à plat.
 

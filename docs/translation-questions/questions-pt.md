@@ -1,0 +1,165 @@
+---
+title: "Português"
+layout: default
+nav_exclude: true
+search_exclude: true
+permalink: /translation-questions/questions-pt/
+---
+
+# Tradução portuguesa do Soundscape — algumas perguntas
+
+> Envie as suas respostas por e-mail para **soundscapeAndroid@scottishtecharmy.support**, indicando a língua no assunto.
+
+
+*European Portuguese translation — questions for native-speaker reviewers.
+English glosses in italics are for the maintainer.*
+
+Olá, e obrigado por aceitar dar uma vista de olhos.
+
+A tradução portuguesa vem em parte da aplicação original da Microsoft, mas
+muitos textos são novos e nunca foram revistos por um falante nativo. **Não
+precisa de conhecer nem de instalar a aplicação:** em cada pergunta encontra
+quando se ouve o texto, o que diz em inglês e como soa hoje em português.
+
+## O que é o Soundscape?
+
+O Soundscape é uma aplicação gratuita para pessoas cegas e com baixa visão.
+Usa-se a caminhar, com auscultadores, muitas vezes com o telemóvel no bolso. Não
+dá indicações passo a passo como um GPS («vire à esquerda»): diz em voz alta o
+que há por perto, para que quem a usa se oriente sozinho.
+
+Alguns conceitos que aparecem nas perguntas:
+
+- **Aviso** *(callout)*: uma mensagem falada curta sobre algo por onde passa,
+  por exemplo «Café», «Passeio ao lado de Rua Augusta» ou «A caminhar em direção
+  a norte na Rua Augusta». Ouve-se em som 3D, a partir da direção onde está
+  aquilo que é referido.
+- **Sinal de áudio** *(audio beacon)*: quando escolhe um destino, ouve-se nos
+  auscultadores um som regular e repetido que vem da direção do destino. Quando
+  se vira, o som «desloca-se», de modo que é possível chegar ao destino de
+  ouvido.
+- **Marco** e **rota** *(marker, route)*: locais guardados e uma sequência deles,
+  pelos quais o sinal de áudio guia um a um.
+
+As pessoas cegas usam o telemóvel com um **leitor de ecrã** (TalkBack no
+Android, VoiceOver no iPhone): cada botão e cada texto é lido por uma voz
+sintética. Os textos da aplicação são, portanto, quase sempre *ouvidos*, e não
+lidos, muitas vezes no meio do ruído da rua. O mais importante é que sejam
+curtos, claros e naturais de ouvir.
+
+Os conceitos estão descritos com mais pormenor (em inglês)
+[nesta página]({{ "/developers/translation-terminology.html" | relative_url }}).
+
+## Como responder
+
+Responda simplesmente por e-mail, indicando o número da pergunta («Q1: eu
+diria…»). Não precisa de responder a tudo. Se algo já estiver bem, um «OK»
+curto também ajuda.
+
+---
+
+### Q1 — «Caminho para beco sem saída» *(Dead-end way description)*
+
+**Quando se ouve:** ao caminhar, quando passa por um desvio. A aplicação diz
+para onde vai esse caminho.
+
+**Em inglês:** «Path to Moor Road», «Path to dead end».
+
+**Como soa agora:** «Caminho para Moor Road», «Caminho para beco sem saída».
+
+**O que nos deixa em dúvida:** falta um artigo antes de «beco sem saída».
+
+**A pergunta:** «Caminho para um beco sem saída» é melhor, ou diria outra coisa?
+
+### Q2 — «Está tudo pronto!» *(Gender-free "you're ready", changed 2026-09-30)*
+
+**Quando se ouve:** no fim da configuração, na primeira utilização.
+
+**Em inglês:** «You're ready!» e, logo abaixo, «You are ready for your first
+walk with Soundscape.».
+
+**Como soa agora:** «Está tudo pronto!» e «Está tudo pronto para a sua
+primeira caminhada com o Soundscape.». Até 30 de setembro dizia «Está
+pronto!», no masculino.
+
+**O que nos deixa em dúvida:** a aplicação não sabe o género de quem a usa,
+por isso mudámos para uma forma sem género. Fomos nós que escolhemos esta
+redação; ainda nenhum falante nativo a ouviu.
+
+**A pergunta:** soa natural, ou diria de outra forma?
+
+### Q3 — Os quatro níveis de detalhe *(Four detail levels, renamed 2026-09-30)*
+
+**Quando se ouve:** nas definições, onde se escolhe de ouvido quanto a
+aplicação diz pelo caminho.
+
+**Em inglês:** «Detailed / Simplified / Essential / Silent».
+
+**Como soa agora:** **Detalhado / Simplificado / Essencial / Silencioso**. O
+Detalhado refere tudo o que está perto; o Simplificado deixa de fora caminhos
+pequenos e repete-se menos; o Essencial refere apenas ruas, cruzamentos e
+pontos de referência; o Silencioso não faz nenhum aviso automático.
+
+**O que nos deixa em dúvida:** acabámos de mudar o nome dos dois níveis do
+meio. Antes eram «Equilibrado» e «Discreto», mas falantes nativos de outras
+línguas acharam que o inglês «Quiet» soava a volume. Os novos nomes foram
+escolhidos por nós, não por um falante nativo de português.
+
+**A pergunta:** são fáceis de distinguir e de perceber quando se ouvem? Daria
+outro nome aos dois do meio?
+
+### Q4 — Comandos Siri *(Siri phrases)*
+
+**Quando se ouve:** nunca; estas frases é o utilizador que as *diz*. No iPhone
+pode controlar o Soundscape com a Siri sem tocar no telemóvel.
+
+**Como soa agora:** «Soundscape arredores», «Soundscape rota», «Soundscape
+iniciar rota», «Soundscape sinal», «Soundscape parar sinal», «Soundscape
+lista», «Soundscape detalhe».
+
+**O que nos deixa em dúvida:** os comandos têm de ser naturais de dizer, senão
+ninguém os fixa.
+
+**A pergunta:** soam naturais? Diria outra coisa?
+
+### Q5 — Artigos antes dos nomes *(Articles now chosen from the name)*
+
+**Quando se ouve:** em muitos avisos, a caminhar. A aplicação insere os nomes
+tal como estão no mapa.
+
+**Como soa agora:** antes, as frases tinham sempre um artigo feminino („na Largo
+do Carmo”). Agora a aplicação escolhe-o pelo nome: „no Largo do Carmo”, „na Rua
+Augusta”, „da Praça do Comércio”, „ao Mercado da Ribeira”. Se não reconhece o
+nome (por exemplo „Marquês de Pombal”), mantém a frase como estava.
+
+**O que nos deixa em dúvida:** a lista de tipos de via e de locais pode estar
+incompleta.
+
+**A pergunta:** soa bem? Notou algum nome que saia mal?
+
+### Q6 — „Marcos” para *landmarks* *(Landmark vs Marker)*
+
+**Quando se ouve:** nas definições dos avisos, e na ajuda sobre o Sinal de Áudio.
+
+**Em inglês:** „Places and Landmarks”; e na ajuda, „when you want to keep track
+of a familiar landmark”.
+
+**Como soa agora:** „Locais e Marcos”; e na ajuda, „quando pretende monitorizar
+um marco familiar”.
+
+**O que nos deixa em dúvida:** na aplicação, „marco” é o nome dos locais que o
+utilizador guarda (*markers*). Aqui a palavra quer dizer outra coisa: um ponto
+de referência conhecido. Por isso „Locais e Marcos” pode soar como „locais e os
+seus marcos guardados”. Noutros textos, a aplicação já usa „Pontos de
+Referência” para *landmarks*. Estas duas frases vêm da versão original para
+iPhone, e quem a usava está habituado a elas.
+
+**A pergunta:** devemos mudar para „Locais e Pontos de Referência” e „um ponto
+de referência familiar”, ou „marco” não causa confusão?
+
+### Q7 — Mais alguma coisa? *(Anything else)*
+
+Se alguma frase soar a tradução do inglês, for demasiado longa ou pouco clara,
+diga-nos.
+
+Muito obrigado!

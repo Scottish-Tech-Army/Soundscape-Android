@@ -19,6 +19,7 @@ actual fun PlatformMapContainer(
     extractGeometry: Geometry?,
     forceOnlineTiles: Boolean,
     onInteractionChanged: (Boolean) -> Unit,
+    onBeaconLocationEdited: ((LngLatAlt) -> Unit)?,
 ) {
     IosMapContainerLibre(
         mapCenter = mapCenter,
@@ -32,5 +33,6 @@ actual fun PlatformMapContainer(
         extractGeometry = extractGeometry,
         forceOnlineTiles = forceOnlineTiles,
         onInteractionChanged = onInteractionChanged,
+        onBeaconLocationEdited = onBeaconLocationEdited,
     )
 }

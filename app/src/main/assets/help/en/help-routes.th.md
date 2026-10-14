@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: เส้นทาง
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 90
 lang: th
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# เส้นทาง
 
-## What is it?
+เส้นทางคือรายการตำแหน่งที่เรียกว่าจุดผ่านทาง ซึ่งคุณไปตามลำดับ Soundscape จะตั้งบีคอนบนจุดผ่านทางแรก เมื่อคุณไปถึง Soundscape จะบอกคุณและย้ายบีคอนไปยังจุดถัดไป
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+ใช้เส้นทางเพื่อเรียนรู้การเดินทางใหม่ หรือเพื่อไม่ให้ออกนอกทางในการเดินทางที่คุณรู้จักอยู่แล้ว
 
-## When would I use it?
+## การสร้างเส้นทาง
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. เลือก *เส้นทาง* บนหน้าจอหลัก แล้วเลือก *ใหม่*
 
-## How does it work?
+2. ตั้งชื่อเส้นทาง คุณเพิ่มคำอธิบายได้
 
-**Creating a route :**
+3. เลือก *เพิ่มจุดผ่านทาง* แล้วเลือกหมุด คุณยังเพิ่มตำแหน่งปัจจุบันหรือสถานที่ใกล้เคียงได้ด้วย
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. เลือก *เสร็จสิ้น*
 
-**Editing a route :**
+## การเดินตามเส้นทาง
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+เลือกเส้นทางบนหน้าจอ *เส้นทาง* แล้วเลือก *เริ่มเส้นทาง* หากต้องการเดินย้อนเส้นทาง ให้เลือก *เริ่มเส้นทางแบบย้อนกลับ* บนหน้าจอหลัก *จุดผ่านทางถัดไป* และ *จุดผ่านทางก่อนหน้า* จะย้ายบีคอนไปตามเส้นทาง *หยุดเส้นทาง* จะจบเส้นทาง
 
-**Sharing a route :**
+## การเปลี่ยนเส้นทาง
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+เลือกเส้นทางบนหน้าจอ *เส้นทาง* แล้วเลือก *แก้ไขเส้นทาง* คุณเพิ่ม ลบ และจัดลำดับจุดผ่านทางใหม่ได้ เปลี่ยนชื่อและคำอธิบายได้ หรือลบเส้นทางได้
+
+## การแชร์เส้นทาง
+
+เลือกเส้นทางบนหน้าจอ *เส้นทาง* แล้วเลือก *แชร์*
 

@@ -37,6 +37,34 @@ class PhotonSearchClient(
         parameter("lang", language)
     }
 
+    /**
+     * The places nearest to [latitude], [longitude] which have any of [osmTags], nearest first.
+     * This is a reverse geocode filtered by tag rather than a search: /api/ matches its query
+     * against names even when it's filtered by tag, so it can't find a pharmacy called "Boots".
+     *
+     * Each of [osmTags] is in Photon's osm_tag form - "amenity:pharmacy", ":pharmacy" for the
+     * value under any key, "!building" to exclude a key - and several are OR'd together, except
+     * the exclusions. [radius] is in km; Photon's default is only 1km. [nameFilter] restricts
+     * the results to those whose name matches it.
+     */
+    suspend fun nearbyByTagJson(
+        latitude: Double,
+        longitude: Double,
+        osmTags: List<String>,
+        radius: Double? = null,
+        limit: UInt? = null,
+        nameFilter: String? = null,
+        language: String? = null,
+    ): String? = doGet("reverse/") {
+        parameter("lat", latitude)
+        parameter("lon", longitude)
+        for (tag in osmTags) parameter("osm_tag", tag)
+        parameter("radius", radius)
+        parameter("limit", limit?.toInt())
+        parameter("query_string_filter", nameFilter)
+        parameter("lang", language)
+    }
+
     private suspend fun doGet(
         path: String,
         block: io.ktor.client.request.HttpRequestBuilder.() -> Unit,

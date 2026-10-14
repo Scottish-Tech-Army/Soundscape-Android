@@ -10,7 +10,9 @@ machine-translated: true
 
 # Sürüm notları
 
-Soundscape 2.0 büyük bir sürüm ve şu anda kapalı beta aşamasında. En önemli değişiklik, Soundscape'in
+Soundscape 2.0 büyük bir sürüm ve artık Android'de açık beta aşamasında.
+Bu, herkesin Play Store'a [buradan](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) giderek beta sürümüne kolayca erişebileceği anlamına geliyor.
+En önemli değişiklik, Soundscape'in
 artık yalnızca yürürken değil, arabayla, otobüsle veya trenle yolculuk ederken de söyleyecek yararlı
 bir şeyinin olması. Bunun yanında yerlerin nasıl tarif edildiğine dair pek çok küçük çalışma, yirmi
 yeni dil ve uzun bir düzeltme listesi var.
@@ -24,14 +26,31 @@ Daha eski sürümlerin notları
   ettiğinizi algılar ve yakın çevrenizi anlatmak yerine yolculuğunuzu tarif eder.
 * **Su yollarını ve demiryollarını geçerken bildirim.** Nehirler, kanallar, körfezler ve demiryolu
   hatları, üzerlerinden geçerken duyurulur — hem yürürken hem yolculuk ederken.
+* **Soundscape'in ne kadar konuşacağını seçin.** Yeni *Anons Ayrıntısı* ayarı kalabalık yerlerde
+  Soundscape'i daha sessiz yapar, *Anons Edilecek Yerler* ise hangi tür yerleri duyacağınızı seçmenizi
+  sağlar. Ayrıntı düzeyini yürürken kulaklığınızın düğmeleriyle değiştirebilirsiniz.
+* **Bir sonraki kavşağın ne kadar uzakta olduğunu bilin.** Kavşaklar yaklaştıkça sabit bir mesafede
+  anons edilir ve anons artık kaldırım kenarının ne kadar uzakta olduğunu söyler.
+* **Bir yer türünü ya da koordinatları arayın.** Adları ne olursa olsun en yakınlarını bulmak için
+  «eczane» ya da «otobüs durağı» diye arayın veya koordinat, harita bağlantısı ya da Plus Code
+  yapıştırın.
+* **Kayıtlı Noktalar ve Rotalar için ayrı düğmeler.** *Kayıtlı Noktalar ve Rotalar* ekranı ve iki
+  sekmesi, *Kayıtlı Noktalar* ekranı ve *Rotalar* ekranı olarak ayrıldı; her birinin ana ekranda
+  kendi düğmesi var. Kayıtlı Noktalar ekranında, mevcut konumunuzu veya yakındaki bir yeri kaydetmek
+  için bir *Yeni* düğmesi bulunur.
+* **Bir yeri başka bir harita uygulamasında açın**, örneğin Google Haritalar'da; Konum Ayrıntıları'ndan
+  ya da listelerden.
+* **Ana ekrandaki sesli işaretten daha fazlası.** Artık mesafeyi ve yönü gösteriyor; sesli işareti
+  anons etmek, hakkında daha fazla bilgi almak ya da kayıtlı nokta olarak kaydetmek için ekran okuyucu
+  eylemleri var.
 * **Daha iyi adresler ve yer adları.** Kendi adresi olmayan yerler artık bulundukları sokağı ve
   bölgeyi alıyor, kapı numaraları sokağın doğru tarafıyla eşleştiriliyor ve Büyük Britanya'daki otobüs
   durakları resmi adlarını kullanıyor.
 * **Yirmi yeni dil**, böylece toplam 46 oldu. Bu belge sitesi de çevrildi.
-* **Ayrılınca uyanma.** Uyku modu artık, onu uyuttuğunuz yerden ayrıldığınızda Soundscape'i yeniden
-  uyandırabiliyor.
+* **Ayrıldığımda Uyandır.** Soundscape'i Uyku Modu'na aldığınızda, yeni *Ayrıldığımda Uyandır*
+  düğmesi onu bunun yerine Erteleme Modu'na alır ve oradan ayrıldığınızda kendiliğinden uyanır.
 * **Daha kısa, daha doğal mesafeler**, hızlı hareket ederken daha büyük birimlerle.
-* **Daha hızlı çıkış.** *Soundscape'ten çık* artık ana menünün en üstünde.
+* **Daha hızlı çıkış.** *Soundscape'ten Çık* artık ana menünün en üstünde.
 * **Çevrimdışı harita iyileştirmeleri**, indirilmiş bir haritanın yerinde güncellenmesi ve bu sitede
   mevcut bölgelerin haritası dahil.
 * **Çok sayıda erişilebilirlik çalışması** TalkBack ile, özellikle tanıtım ekranları çevresinde.
@@ -59,10 +78,10 @@ Yolculuk sırasında şunları duyacaksınız:
 
 * **Nerede olduğunuzu**, zaman zaman — üzerinde gittiğiniz yolu ve yönünüzü, örneğin "M8 üzerinde
   kuzeye doğru". Numaralı yollar numaralarıyla duyurulur ve Soundscape, sokak adı her değiştiğinde aynı
-  yolu yeniden duyurmaz.
+  yolu yeniden duyurmaz. Bir yolun adı ancak üzerinde kısa bir mesafe gittikten sonra söylenir; böylece bir yerleşim bölgesinde art arda dönüşler her köşede anons getirmez.
 * **Yöneldiğiniz kasaba ve köyleri**, mesafesiyle birlikte; ayrıca uzaklaştığınız ya da yalnızca
   yanından geçtiğiniz yerleri.
-* **Otoyol kavşaklarını ve çıkışlarını**, onlara ulaştığınızda.
+* **Otoyol kavşaklarını ve çıkışlarını**, onlara ulaştığınızda. Yalnızca bulunduğunuz yöndekiler; yakınından geçtiğiniz bir yoldakiler ya da otoyolun karşı yönündekiler değil.
 * **Büyük yer imlerini** yanlarından geçerken: parklar, hastaneler, stadyumlar ve alışveriş merkezleri
   gibi.
 * **Otobüs, tramvay ve tren duraklarını** yanlarından geçerken. Soundscape yalnızca yolun sizin
@@ -80,11 +99,96 @@ Yürüyüşe ilişkin olağan bildirimler — yakındaki dükkânlar, yaya geçi
 bilinçli olarak tutulur ve şeylerin duyurulduğu mesafeler epeyce genişletilmiştir; böylece bir şeyi
 geçmeden önce ondan haberdar olursunuz.
 
+### Kavşaklar
+
+Kavşak anonslarıyla ilgili en sık sorulan soru, kavşağın aslında ne kadar uzakta olduğuydu. Artık
+Soundscape bunu söylüyor: «Kavşak 30 metre uzaklıkta». Mesafe, kavşağın ortasına değil, geçmek üzere
+olduğunuz sokağın kaldırım kenarına kadar ölçülür, çünkü gerçekte durduğunuz yer orasıdır.
+
+Anons ayrıca daha tutarlı bir noktada gelir. Önceden 45 metre ya da 10 metre önceden gelebiliyordu ve
+ikisini ayırt etmenin bir yolu yoktu. Artık kavşak yaklaşık 30 metre uzakta olana kadar bekliyor;
+böylece mesafe her seferinde aşağı yukarı aynı anlama geliyor.
+
 ### Su yollarını ve demiryollarını geçmek
 
 Soundscape artık bir nehri, kanalı, körfezi, koyu veya demiryolu hattını geçtiğinizde size söyler. Bu
 hem yürürken hem yolculuk ederken çalışır ve altından geçmeyi de üstünden geçmeyi de kapsar; böylece
 hem bir yaya köprüsü hem de bir alt geçit tarif edilir.
+
+### Soundscape'in ne kadar konuşacağını seçin
+
+Soundscape hakkında en sık duyduğumuz şey, şehir merkezi gibi kalabalık yerlerde fazla konuşmasıdır.
+*Ayarlar*'daki *Anonsları yönet* bölümünde artık eski anahtar listesi yerine üç ayar var:
+
+* **Anons Ayrıntısı** Sessiz, Temel, Sadeleştirilmiş ya da Ayrıntılı olabilir. *Ayrıntılı*, Soundscape'in her
+  zaman yaptığı şeydir ve başlangıç ayarıdır. *Sadeleştirilmiş* küçük patikaları ve servis yollarını atlar ve
+  kendini daha seyrek tekrarlar. *Temel* yalnızca sokakları, kavşakları ve simge yapıları anons eder.
+  *Sessiz* hiç otomatik anons yapmaz; sesli işaretler, rotalar ve ana ekran düğmeleri ise çalışmaya
+  devam eder. Eski *Anonsları Etkinleştir* anahtarının yerini alır; o anahtar kapalıysa Anons Ayrıntısı
+  artık Sessiz'e ayarlıdır. Seviyeler yolculuk sırasında da geçerlidir: *Sadeleştirilmiş* bulunduğunuz yolu daha seyrek söyler, *Temel* ise yalnızca ana yolları ve numaralı yolları söyler ve otobüs duraklarını atlar.
+* **Sokaklar ve Kavşaklar**, kavşaklarla ve üzerinde bulunduğunuz yolla ilgili anonsları açar ya da
+  kapatır.
+* **Anons Edilecek Yerler** işaretlenebilir bir listedir: Her Şey, Simge Yapılar, Toplu Taşıma, Yiyecek
+  ve İçecek, Market ve Bakkallar, Bankalar ve ATM'ler ya da Hiçbir Yer. İstediğiniz kadarını işaretleyin;
+  örneğin simge yapılar ve otobüs durakları. Kayıtlı noktalarınız her zaman anons edilir.
+
+Uygun ayrıntı düzeyi yürüdükçe değişir; bu yüzden değiştirmek için Ayarlar'a girmeniz gerekmez.
+Kulaklığınızdaki *Geri* düğmesine her basış Anons Ayrıntısı'nı bir düzey indirir: Ayrıntılı'dan
+Sadeleştirilmiş ve Temel üzerinden Sessiz'e, sonra yeniden Ayrıntılı'ya. Yeni düzey her seferinde söylenir. Bu,
+medya kontrollerinin iki modunda da çalışır ve bu yüzden kulaklık düğmeleri biraz değişti:
+
+* *Orijinal Mod*'da, hiçbir rota oynatılmıyorken *İleri* artık *Etrafımda* anonsunu yapar ve *Konumum*
+  artık düğmelerde değildir. Bir rota oynatılırken *İleri* ve *Geri* yine ara noktalar arasında
+  geçiş yapar.
+* *Sesli Menü* modunda *Geri* artık menüde geriye gitmez. *İleri* yine menüde ilerler ve
+  *Oynat/Duraklat* yine seçer. Menüdeki kayıtlı noktalar ve rotalar artık ada göre sıralanır ve
+  birini başlattığınızda menü, sizi listenin derinliklerinde bırakmak yerine başa döner.
+
+### Arama
+
+Arama çubuğu artık yer adlarından fazlasını anlıyor:
+
+* **Yer türleri.** Kendi dilinizde «eczane», «tuvalet», «ATM» gibi aramalar yapın; Soundscape, adları
+  ne olursa olsun o türdeki en yakın yerleri listeler. Çoğu tuvalet ve bank gibi adı olmayan yerler,
+  ne olduklarıyla ve adresleriyle birlikte listelenir.
+* **Koordinatlar, harita bağlantıları ve Plus Code'lar.** Bir sayı çifti, derece ve dakika, Google
+  Haritalar, Apple Haritalar ya da OpenStreetMap bağlantısı veya bir Plus Code yapıştırın; Soundscape
+  size tam o noktayı verir. Yalnız bir sayı çifti iki yönlü okunabilir; ikisi de anlamlıysa ikisi de
+  size sunulur, en yakını önce.
+* **Çevrim dışı arama.** Arama artık çevrim içinin yanı sıra her zaman indirdiğiniz haritalara da
+  bakıyor ve böylece çok daha fazla adsız yer buluyor. İnternet bağlantısı olmadan arama yaptığınızda
+  bulunduğunuz yerin çevrim dışı haritası yoksa Soundscape, hiçbir şey bulamamakla kalmak yerine bunu
+  size söyler.
+
+### Bir yeri başka bir uygulamada açmak
+
+Konum Ayrıntıları'nda telefonunuzdaki harita ve navigasyon uygulamalarını listeleyen yeni bir
+**Harita Uygulamasında Aç** düğmesi var. *Her zaman bu uygulamayı kullan* seçeneğini işaretlerseniz
+düğme örneğin *Google Haritalar ile Aç* olur ve uygulamayı hemen açar; uzun basış listeyi geri getirir.
+*Yakındaki Yerler* ve *Kayıtlı Noktalar* listelerinde de *… ile Aç*
+ve *Paylaş* ekran okuyucu eylemleri var.
+
+### Kayıtlı Noktalar ve Rotalar
+
+Kayıtlı noktalar ve rotalar eskiden her biri için bir sekme bulunan tek bir ekranı, *Kayıtlı
+Noktalar ve Rotalar*'ı paylaşıyordu ve hangi sekmede olduğunuzu unutmak kolaydı. Artık her birinin
+ana ekranda kendi düğmesi olan iki ayrı ekran var: *Yakındaki Yerler*'in hemen altında *Kayıtlı
+Noktalar* ve *Rotalar*.
+
+Her ekranın sağ üst köşesinde bir *Yeni* düğmesi var. Rotalar ekranında, eskiden olduğu gibi bir
+rota oluşturur. Kayıtlı Noktalar ekranında ise yenidir: *Mevcut Konum*'u ve *Yakındaki Yerler*
+kategorilerini gösterir, böylece yeri bulmak için önce ana ekrana dönmeden bir kayıtlı nokta
+kaydedebilirsiniz. Ekran okuyucular bu düğmeleri *Yeni Kayıtlı Nokta* ve *Yeni Rota* olarak duyurur.
+
+### Sesli işaret ve kayıtlı noktalar
+
+* Ana ekrandaki sesli işaret artık **mesafesini ve yönünü** gösteriyor; bir ekran okuyucu onu örneğin
+  «Milngavie Library'de Sesli İşaret, 390 metre, güneydoğu» diye okur. Rotalar da aynı şekilde geçerli
+  ara noktaya olan mesafeyi gösterir.
+* Sesli işaretin üç **ekran okuyucu eylemi** var: *İşareti Anons Et* nerede olduğunu söyler, *Daha
+  Fazla Bilgi* adresi ekler ve *Kayıtlı Noktalara Ekle* onu kaydeder.
+* *Kayıtlı Noktayı Düzenle* ekranında haritayı sürükleyerek bir **kayıtlı noktayı yeniden
+  taşıyabilirsiniz**.
 
 ### Daha iyi adresler ve yer adları
 
@@ -112,13 +216,13 @@ metin yoktu.
 
 Çeviriler topluluk çalışmasıdır; yardımınızı ya da bir şeyin kötü okunduğu yerlerde düzeltmelerinizi
 memnuniyetle karşılarız. Her metin şu adreste iyileştirilebilir:
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Uyku modu
+### Uyku Modu
 
-Uyku modu **ayrılınca uyanma** özelliğini kazandı. Soundscape'i uyuttuğunuzda, bölgeden ayrılır
-ayrılmaz uyanmasını isteyebilirsiniz; bu, bir yere vardığınızda ve yeniden yola çıkana kadar sessizlik
-istediğinizde işe yarar.
+Uyku Modu'nda yeni bir düğme var: ***Ayrıldığımda Uyandır***. Bunu seçtiğinizde Soundscape Erteleme
+Modu'na geçer: bölgeden ayrılana kadar sessiz kalır, sonra kendiliğinden uyanır. Bu, bir yere
+vardığınızda ve yeniden yola çıkana kadar sessizlik istediğinizde işe yarar.
 
 ### Mesafeler ve konuşma
 
@@ -150,12 +254,12 @@ hiç ayarlanmamış yerlerde anlamlı ipuçları yer alıyor.
 
 ### Menüler ve gezinme
 
-* **Soundscape'ten çık** artık daha aşağıda değil, ana menünün ilk öğesi.
+* **Soundscape'ten Çık** artık daha aşağıda değil, ana menünün ilk öğesi.
 * Ana menü artık bir kenarda ekranın bir şeridini görünür bırakmıyor; bu, ekran okuyucu kullananlara
   kafa karıştırıcı fazladan bir dokunma alanı veriyordu.
 * Sistemin geri hareketi, Yakındaki Yerler içinde kategorilere göz atarken artık bir düzeyi atlamıyor.
-* *Sesli öğretici*, **rehberli öğretici** olarak yeniden adlandırıldı.
-* Ayarlar düzenlendi ve *Varsayılanlara sıfırla* artık her şeyi doğru biçimde temizliyor.
+* *Sesli öğretici*nin yeni adı: **Kılavuzlu Eğitim**.
+* Ayarlar düzenlendi ve *Ayarları varsayılana sıfırla* artık her şeyi doğru biçimde temizliyor.
 
 ### Kararlılık
 
@@ -171,6 +275,8 @@ daha sağlam hale getirildi.
 * **Sesli denetim** kaldırıldı. Tutulmaya değecek kadar güvenilir çalışmadı ve kulaklıklardaki medya
   düğmeleri büyük ölçüde aynı işi görüyor — bkz.
   [Medya denetimlerini kullanma yardımı]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape, Android 16 ve sonrasında Gemini üzerinden sesli komutlara da hazır; ancak bu komutlar,
+  Google Gemini'de bunlar için desteği yayımlayana kadar çalışmayacak.
 * **Uygulama içindeki dil menüsü** kaldırıldı. Soundscape artık telefonunuzda ayarlı dili izliyor; çoğu
   kişinin zaten beklediği buydu. Değiştirmek için telefonun dilini değiştirin ya da sunuyorsa telefon
   ayarlarından uygulama başına bir dil belirleyin.

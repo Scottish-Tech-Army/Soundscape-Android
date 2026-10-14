@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Hljóðviti
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 60
 lang: is
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Hljóðviti
 
-## What is it?
+Hljóðviti er hljóð sem berst úr átt að stað sem þú velur. Hann segir þér hvar staðurinn er í beinni línu. Hann gefur ekki leiðbeiningar skref fyrir skref, svo þú velur leiðina þangað upp á eigin spýtur.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Að setja hljóðvita
 
-## When would I use it?
+1. Finndu staðinn. Notaðu leitarstikuna, *Nálægir staðir*, *Merki* eða *Núverandi staðsetning* á heimaskjánum.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Veldu staðinn til að opna *Upplýsingar um staðsetningu*.
 
-## How does it work?
+3. Veldu *Kveikja á hljóðvita*.
 
-**To set a beacon :**
+Soundscape fer aftur á heimaskjáinn og hljóðvitinn byrjar. Heimaskjárinn sýnir heiti staðarins og hversu langt í burtu hann er.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Að finna áttina
 
-**To remove the current beacon :**
+Hljóðvitinn breytir um hljóð þegar þú snýrð að staðnum eða gengur beint í átt að honum. Til að finna það hljóð skaltu halda símanum flötum og snúa þér hægt. Þú getur valið annað hljóð fyrir hljóðvitann í *Stillingar*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Að slökkva á hljóði hljóðvitans
 
-**To mute the audible beacon :**
+Veldu *Slökkva á hljóðvita* á heimaskjánum. Soundscape segir þér áfram hversu langt í burtu staðurinn er á meðan þú ert á ferð. Veldu *Virkja hljóðvita* til að heyra hljóðvitann aftur.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Að fjarlægja hljóðvitann
+
+Veldu *Stöðva leið* á heimaskjánum. Hnappurinn heitir þetta líka þegar hljóðvitinn er ekki hluti af leið.
+
+## Þegar þú kemur á staðinn
+
+Þegar þú ert um 12 metra frá staðnum lætur Soundscape þig vita og fjarlægir hljóðvitann. Síminn getur ekki fundið staðsetningu þína nákvæmar en það. Til að heyra hljóðvitann aftur skaltu setja hann aftur.
+
+Hljóðviti sem er settur á stað í minna en 30 metra fjarlægð er áfram virkur þar til þú fjarlægir hann.
 

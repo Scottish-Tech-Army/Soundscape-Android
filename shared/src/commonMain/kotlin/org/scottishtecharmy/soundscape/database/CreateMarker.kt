@@ -7,7 +7,60 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 
 /**
- * Insert a new marker, or update an existing one if its `databaseId` is non-zero.
+ * Save a marker and return its id. A location with a non-zero `databaseId` updates that marker.
+ * Otherwise, if a marker already exists at exactly this location, that marker is updated with the
+ * new name and annotation rather than a duplicate being added - the same merge the archive restore
+ * does. Only then is a new marker inserted.
+ *
+ * This is the one save path for Save as Marker, the beacon's Add to Markers action, the New Marker
+ * screen and Add Waypoints, on both platforms.
+ */
+suspend fun saveMarker(locationDescription: LocationDescription, routeDao: RouteDao): Long {
+    val name = locationDescription.name.ifEmpty { locationDescription.description ?: "Unknown" }
+    val fullAddress = locationDescription.description ?: ""
+
+    if (locationDescription.databaseId != 0L) {
+        routeDao.updateMarker(
+            MarkerEntity(
+                markerId = locationDescription.databaseId,
+                name = name,
+                fullAddress = fullAddress,
+                longitude = locationDescription.location.longitude,
+                latitude = locationDescription.location.latitude,
+            )
+        )
+        return locationDescription.databaseId
+    }
+
+    val existing = routeDao.getMarkerByLocation(
+        locationDescription.location.longitude,
+        locationDescription.location.latitude,
+    )
+    if (existing != null) {
+        routeDao.updateMarker(
+            MarkerEntity(
+                markerId = existing.markerId,
+                name = name,
+                fullAddress = fullAddress,
+                longitude = existing.longitude,
+                latitude = existing.latitude,
+            )
+        )
+        return existing.markerId
+    }
+
+    return routeDao.insertMarker(
+        MarkerEntity(
+            name = name,
+            fullAddress = fullAddress,
+            longitude = locationDescription.location.longitude,
+            latitude = locationDescription.location.latitude,
+        )
+    )
+}
+
+/**
+ * [saveMarker] on [scope], recording the saved marker's id in `locationDescription.databaseId`.
  * Calls `onSuccess` after a successful write or `onFailure` on any exception.
  */
 fun createMarker(
@@ -18,41 +71,11 @@ fun createMarker(
     onFailure: () -> Unit,
 ) {
     scope.launch {
-        var name = locationDescription.name
-        if (name.isEmpty()) {
-            name = locationDescription.description ?: "Unknown"
-        }
-
-        var updated = false
-        if (locationDescription.databaseId != 0L) {
-            val markerData = MarkerEntity(
-                markerId = locationDescription.databaseId,
-                name = name,
-                fullAddress = locationDescription.description ?: "",
-                longitude = locationDescription.location.longitude,
-                latitude = locationDescription.location.latitude,
-            )
-            try {
-                routeDao.updateMarker(markerData)
-                onSuccess()
-                updated = true
-            } catch (e: Exception) {
-                onFailure()
-            }
-        }
-        if (!updated) {
-            val marker = MarkerEntity(
-                name = name,
-                fullAddress = locationDescription.description ?: "",
-                longitude = locationDescription.location.longitude,
-                latitude = locationDescription.location.latitude,
-            )
-            try {
-                locationDescription.databaseId = routeDao.insertMarker(marker)
-                onSuccess()
-            } catch (e: Exception) {
-                onFailure()
-            }
+        try {
+            locationDescription.databaseId = saveMarker(locationDescription, routeDao)
+            onSuccess()
+        } catch (e: Exception) {
+            onFailure()
         }
     }
 }

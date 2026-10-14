@@ -1,23 +1,16 @@
 ---
-title: Ahead of Me
+title: Пред мен
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
+nav_order: 40
 lang: bg
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Пред мен
 
-## What is it?
+*Пред мен* съобщава за до пет места пред Вас. Чувате всяко от неговата посока, заедно с разстоянието. Използвайте го на улица, която не познавате, за да научите какво предстои.
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
-
-## When would I use it?
-
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Ако стоите на място, първо насочете горния край на телефона натам, накъдето сте с лице. Ако телефонът е заключен или Soundscape не е на екрана, дръжте телефона и хоризонтално.
 

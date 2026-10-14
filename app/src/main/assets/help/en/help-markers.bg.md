@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Маркери
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
+nav_order: 80
 lang: bg
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Маркери
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Маркерът е място, което сте запазили. Може да е всяко място, което е важно за Вас: Вашият дом, автобусна спирка, вход на сграда или пешеходна пътека.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape съобщава за маркерите Ви, когато минавате покрай тях. Можете да зададете аудио маяк на маркер, да го добавите към маршрут или да чуете най-близките с бутона *Близки маркери*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Създаване на маркери
+
+1. Изберете *Маркери* на началния екран, след това изберете *Нов*.
+
+2. Изберете *Текущо местоположение* или място от *Места наблизо*.
+
+3. Променете името, ако искате, и добавете бележки. Soundscape прочита бележките заедно с маркера.
+
+4. Изберете *Готово*.
+
+Можете също да запазите всяко място, което намерите. Отворете неговите *Подробности за местоположението* и изберете *Запази като маркер*.
+
+## Персонализиране на маркери
+
+Изберете маркера на екрана *Маркери*, след това изберете *Редактирай маркер*. Можете да промените името, бележките и позицията му или да изберете *Изтрий маркера*. Изтриването на маркер го премахва и от Вашите маршрути.
 

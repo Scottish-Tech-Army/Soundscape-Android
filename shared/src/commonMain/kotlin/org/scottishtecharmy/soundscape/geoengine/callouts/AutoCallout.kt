@@ -15,8 +15,8 @@ import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.RoadSettleTracker
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
@@ -63,12 +63,27 @@ class AutoCallout(
     private val destinationFilter = LocationUpdateFilter(60000, 10.0)
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
     private val poiFilter = LocationUpdateFilter(5000, 5.0)
-    private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
-    private val intersectionCalloutHistory = CalloutHistory(30000)
-    private val poiCalloutHistory = CalloutHistory()
+    /**
+     * Rate limiter for the intersection callout - not what decides when it is announced, which is
+     * intersectionAnnounceBandMetres below. Tighter than the other filters because the band is a
+     * threshold to be caught: at walking pace a 5s/5m filter can carry the user 8m past it.
+     */
+    private val intersectionFilter = LocationUpdateFilter(2000, 3.0)
+    private val intersectionCalloutHistory =
+        CalloutHistory(CalloutVerbosity.DETAILED.roadHistoryExpiryMs)
+    private val poiCalloutHistory = CalloutHistory(
+        CalloutVerbosity.DETAILED.poiHistoryExpiryMs,
+        CalloutVerbosity.DETAILED.poiHistoryTrimRadiusMetres
+    )
+    // When the last walking POI callout (other than a marker) was made - see
+    // CalloutVerbosity.minimumPoiGapMs.
+    private var lastPoiCalloutTimestampMs: Long? = null
     private val roadSenseCalloutHistory = CalloutHistory()
     private val vehicleLandmarkFilter = LocationUpdateFilter(10000, 50.0)
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
+    private val roadSettleTracker = RoadSettleTracker()
+    // When the last road description was made - see CalloutVerbosity.travelMinimumGapMs.
+    private var lastRoadSenseCalloutMs: Long? = null
     // An announced crossing or stop is forgotten once well clear of it - see updateSweepWindow.
     // Must exceed the largest lookahead below, or something announced at range is forgotten while
     // still being approached and announced again on the next fix.
@@ -222,36 +237,39 @@ class AutoCallout(
         lastTrainTimestampMs = lastTrainTimestampMs?.plus(stillness)
     }
 
+    private fun verbosity() = readCalloutVerbosity(preferences)
+
+    private fun placesToCallOut() = PlacesToCallOut.read(preferences)
+
+    /**
+     * Retunes the histories for the current verbosity. Done on every update rather than once, so
+     * that changing the setting takes effect straight away; the histories keep what's in them.
+     */
+    private fun applyVerbosity(verbosity: CalloutVerbosity) {
+        intersectionCalloutHistory.expiryPeriodMilliseconds = verbosity.roadHistoryExpiryMs
+        poiCalloutHistory.expiryPeriodMilliseconds = verbosity.poiHistoryExpiryMs
+        poiCalloutHistory.trimRadiusMetres = verbosity.poiHistoryTrimRadiusMetres
+        roadSenseCalloutHistory.expiryPeriodMilliseconds = verbosity.travelRoadHistoryExpiryMs
+    }
+
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
 
         // Check that we have a destination
-        val beacon = userGeometry.currentBeacon ?: return null
+        userGeometry.currentBeacon ?: return null
+
+        // ...and that the user wants to hear how far away it is
+        if (preferences?.getBoolean(
+                PreferenceKeys.DISTANCE_TO_BEACON,
+                PreferenceDefaults.DISTANCE_TO_BEACON
+            ) == false
+        ) return null
 
         // Check that our location/time has changed enough to generate this callout
         if (!destinationFilter.shouldUpdate(userGeometry)) {
             return null
         }
 
-        val distance = userGeometry.ruler.distance(userGeometry.location, beacon)
-        val distanceString =
-            formatDistanceAndDirection(distance, null, localized, speed = userGeometry.speed)
-        val text = localized?.get(StringKey.CalloutsAudioBeaconDistance, distanceString)
-            ?: "Distance to beacon $distanceString"
-        return TrackedCallout(
-            userGeometry = userGeometry,
-            trackedText = "",
-            location = beacon,
-            isPoint = true,
-            isGeneric = true,
-            filter = false,
-            positionedStrings = List(1) {
-                PositionedString(
-                    text = text,
-                    location = beacon,
-                    type = AudioType.LOCALIZED
-                )
-            }
-        )
+        return buildBeaconCallout(userGeometry, localized)
     }
 
     private fun buildCalloutForRoadSense(
@@ -300,11 +318,12 @@ class AutoCallout(
         if (!onTrain && !recentlyOnTrain(userGeometry)) {
             lastStationTracker.clear()
         }
+        roadSettleTracker.update(userGeometry)
 
         // Deliberately below the bookkeeping above and not at the top of the function: the sticky
         // vehicle/train windows are read by callouts this setting has nothing to do with, so they
         // have to keep being updated whether or not this one is allowed to speak.
-        if (!mobilityCalloutsEnabled()) return null
+        if (!streetsAndJunctionsEnabled()) return null
 
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
@@ -319,13 +338,36 @@ class AutoCallout(
             return null
         }
 
+        // Hold off until a newly joined road is one the vehicle is staying on - see
+        // RoadSettleTracker. Before the location filter is updated, so the callout is made on the
+        // first fix after the road settles rather than up to 10s later. A train is matched to a
+        // railway rather than a road, so this has nothing to say about one.
+        val probablyOnTrain = userGeometry.probablyOnTrain()
+        if (!probablyOnTrain && !roadSettleTracker.settled()) {
+            return null
+        }
+
+        // The callout detail's travel thresholds - see CalloutVerbosity. Like the settling above,
+        // these are about roads, so a train keeps describing its line and stations as it always
+        // has. The matched road rather than whatever the description falls back to: without a
+        // match there is nothing to judge the road by, and saying something is better than not.
+        val verbosity = verbosity()
+        if (!probablyOnTrain) {
+            val way = userGeometry.mapMatchedWay
+            if ((way != null) && !verbosity.allowsTravelOn(way)) return null
+            val last = lastRoadSenseCalloutMs
+            if ((last != null) &&
+                ((userGeometry.timestampMilliseconds - last) < verbosity.travelMinimumGapMs)
+            ) return null
+        }
+
         // Update time/location filter for our new position
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
         val result = describeReverseGeocode(
             userGeometry, gridState, settlementState, localized, lastStationTracker,
-            notableVehicleEventTracker
+            notableVehicleEventTracker, verbosity.travelMinorJunctions
         )
         if (result != null) {
             val callout = TrackedCallout(
@@ -345,6 +387,7 @@ class AutoCallout(
                 // Filter out
                 return null
             }
+            lastRoadSenseCalloutMs = userGeometry.timestampMilliseconds
 
             // Check that the geocode has changed before returning a callout describing it
             return callout
@@ -370,7 +413,9 @@ class AutoCallout(
         userGeometry: UserGeometry,
         gridState: GridState
     ): TrackedCallout? {
-        if (!placesAndLandmarkCalloutsEnabled()) {
+        if (PlacesToCallOut.LANDMARKS !in placesToCallOut() &&
+            PlacesToCallOut.EVERYTHING !in placesToCallOut()
+        ) {
             return null
         }
 
@@ -434,50 +479,33 @@ class AutoCallout(
     // is expected to be tuned once it has been ridden with.
     private val transitStopLookaheadMetres = 100.0
 
-    // The transit stop kinds the "Bus and tram stops" setting covers. Deliberately not the whole
-    // of TreeId.TRANSIT_STOPS: a station or a ferry terminal is a destination in its own right and
-    // is passed rarely enough that nobody needs it switched off, whereas these two are what make
-    // an urban street or a bus route noisy.
-    private val busAndTramStopValues = setOf("bus_stop", "tram_stop")
-
     /**
-     * The "Mobility" callout setting.
-     *
-     * As well as the mobility POIs it selects at grid load time (see GridState.classifyPois), it
-     * covers the intersection callouts and the in-vehicle road-sense callout - which is what makes
-     * its description, "Intersection and transportation information", true. Both of those are
-     * read here rather than through the grid's enabled categories, so they are gated on the
-     * current value rather than on whatever it was when the grid was last built.
+     * The "Streets and Junctions" setting: the intersection callouts and the in-vehicle road-sense
+     * callout. Read on each callout so that it takes effect straight away.
      */
-    private fun mobilityCalloutsEnabled(): Boolean =
-        preferences?.getBoolean(PreferenceKeys.MOBILITY, PreferenceDefaults.MOBILITY)
-            ?: PreferenceDefaults.MOBILITY
-
-    /**
-     * The "Places and Landmarks" callout setting.
-     *
-     * Walking callouts get this for free - the setting chooses what goes into
-     * TreeId.SELECTED_SUPER_CATEGORIES at grid load time, and buildCalloutForNearbyPOI reads only
-     * that. Anything reaching past that tree to a super-category tree of its own has to ask here.
-     */
-    private fun placesAndLandmarkCalloutsEnabled(): Boolean =
+    private fun streetsAndJunctionsEnabled(): Boolean =
         preferences?.getBoolean(
-            PreferenceKeys.PLACES_AND_LANDMARKS,
-            PreferenceDefaults.PLACES_AND_LANDMARKS
-        ) ?: PreferenceDefaults.PLACES_AND_LANDMARKS
+            PreferenceKeys.STREETS_AND_JUNCTIONS,
+            PreferenceDefaults.STREETS_AND_JUNCTIONS
+        ) ?: PreferenceDefaults.STREETS_AND_JUNCTIONS
 
     /**
-     * Whether this feature is one the "Bus and tram stops" setting silences, given that setting's
-     * current value. Read on each callout rather than captured once, so turning the switch off
-     * takes effect on the next location update rather than at the next grid rebuild.
+     * The "Distance to Intersections" callout setting - whether an intersection callout says how
+     * far away the junction is as well as that there is one. Read here rather than at grid load
+     * time so that it takes effect on the next callout rather than the next grid.
      */
-    private fun suppressedAsBusOrTramStop(feature: MvtFeature): Boolean {
-        if (feature.featureValue !in busAndTramStopValues) return false
-        return !(preferences?.getBoolean(
-            PreferenceKeys.BUS_AND_TRAM_STOPS,
-            PreferenceDefaults.BUS_AND_TRAM_STOPS
-        ) ?: PreferenceDefaults.BUS_AND_TRAM_STOPS)
-    }
+    private fun intersectionDistanceEnabled(): Boolean =
+        preferences?.getBoolean(
+            PreferenceKeys.DISTANCE_TO_INTERSECTION,
+            PreferenceDefaults.DISTANCE_TO_INTERSECTION
+        ) ?: PreferenceDefaults.DISTANCE_TO_INTERSECTION
+
+    /**
+     * Whether this feature is a bus or tram stop that the Places to Call Out setting leaves out -
+     * see PlacesToCallOut.includesBusAndTramStops.
+     */
+    private fun suppressedAsBusOrTramStop(feature: MvtFeature): Boolean =
+        isBusOrTramStop(feature) && !placesToCallOut().includesBusAndTramStops
 
     /**
      * Announces a bus/tram stop on the approach to it while travelling by car/bus, about
@@ -510,6 +538,7 @@ class AutoCallout(
         // travellingReverseGeocodeName. Suppressed shortly after losing rail lock too, since
         // probablyOnTrain() can flicker false for an instant mid-journey.
         if (userGeometry.probablyOnTrain() || recentlyOnTrain(userGeometry)) return null
+        if (!verbosity().travelTransitStops) return null
         val way = userGeometry.mapMatchedWay ?: return null
 
         val found = transitStopAhead(userGeometry, way) ?: return null
@@ -1164,12 +1193,23 @@ class AutoCallout(
         return null
     }
 
+    /**
+     * How close to a junction the user has to be before it is announced.
+     *
+     * Previously the callout fired wherever the update filter happened to land inside the 50m
+     * field of view, so it could come 45m out or 10m out with nothing to tell the two apart. Now
+     * that a distance is spoken, that would be worse than vague: a number heard at an arbitrary
+     * range is a number that cannot be calibrated against. Announcing on entering a band means
+     * "intersection ahead" always means about the same thing.
+     */
+    private val intersectionAnnounceBandMetres = 30.0
+
     fun buildCalloutForIntersections(
         userGeometry: UserGeometry,
         gridState: GridState
     ): TrackedCallout? {
 
-        if (!mobilityCalloutsEnabled()) return null
+        if (!streetsAndJunctionsEnabled()) return null
 
         // We rely heavily on having map matched our GPS location to a nearby way. If we're not in
         // StreetPreview mode and we don't have that Way, then skip intersection callouts until we
@@ -1197,15 +1237,29 @@ class AutoCallout(
         val roadsDescription = getRoadsDescriptionFromFov(
             gridState,
             userGeometry,
-            localized
+            localized,
+            verbosity().minimumIntersectionTier
         )
+
+        // Hold off until the junction is within the announce band. The callout history is keyed
+        // on the junction, so this gates rather than edge-triggers: if the user is already inside
+        // the band, or the chosen junction changes between fixes, it still gets announced once.
+        // In StreetPreview there is no real position to measure from, so there is nothing to wait
+        // for.
+        if (!userGeometry.inStreetPreview) {
+            val kerbDistance = roadsDescription.kerbDistance(gridState, localized)
+            if ((kerbDistance != null) && (kerbDistance > intersectionAnnounceBandMetres)) {
+                return null
+            }
+        }
 
         // Don't describe the road we're on if there's an intersection
         return addIntersectionCalloutFromDescription(
             roadsDescription,
             localized,
             intersectionCalloutHistory,
-            gridState
+            gridState,
+            speakDistance = intersectionDistanceEnabled()
         )
     }
 
@@ -1227,13 +1281,34 @@ class AutoCallout(
         // Trim history based on location and current time
         poiCalloutHistory.trim(userGeometry)
 
-        // Get nearby markers that are ahead of us in our field of view
+        val verbosity = verbosity()
+        // Too soon after the last POI callout for anything but a marker - see
+        // CalloutVerbosity.minimumPoiGapMs. Street Preview is stepped through deliberately, so
+        // it's exempt.
+        val onlyMarkers = !userGeometry.inStreetPreview &&
+                lastPoiCalloutTimestampMs?.let { last ->
+                    (userGeometry.timestampMilliseconds - last) < verbosity.minimumPoiGapMs
+                } ?: false
+
+        // Get nearby markers that are ahead of us in our field of view - or, with no heading to say
+        // which way is ahead, the nearest ones in any direction within the same distance. A marker
+        // is something the user chose to be told about, so missing one is worse than hearing about
+        // one that's behind them, and the callout gives its direction regardless.
         val triangle = getFovTriangle(userGeometry)
-        val markers = gridState.markerTree?.getNearestCollectionWithinTriangle(
-            triangle,
-            5,
-            userGeometry.ruler
-        )
+        val markers = if (triangle != null) {
+            gridState.markerTree?.getNearestCollectionWithinTriangle(
+                triangle,
+                5,
+                userGeometry.ruler
+            )
+        } else {
+            gridState.markerTree?.getNearestCollection(
+                userGeometry.location,
+                userGeometry.fovDistance,
+                5,
+                userGeometry.ruler
+            )
+        }
 
         // Get a list of the 10 nearest POI that are within search range, adding in the markers
         val pois = gridState.getFeatureTree(TreeId.SELECTED_SUPER_CATEGORIES).getNearestCollection(
@@ -1258,7 +1333,10 @@ class AutoCallout(
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         ordered.map { it.feature }.filter { feature ->
 
-            if (suppressedAsBusOrTramStop(feature as MvtFeature)) return@filter true
+            // No settings check here: TreeId.SELECTED_SUPER_CATEGORIES was built from them when
+            // the grid was, so everything in it is something this user wants to hear about.
+            val isMarker = (feature as MvtFeature).superCategory == SuperCategoryId.MARKER
+            if (onlyMarkers && !isMarker) return@filter true
 
             val name = feature.getText(localized)
             val nearestPoint =
@@ -1339,6 +1417,8 @@ class AutoCallout(
                                 }
                             }
                             poiCalloutHistory.add(callout)
+                            if (!isMarker)
+                                lastPoiCalloutTimestampMs = userGeometry.timestampMilliseconds
                             return callout
                         } else {
                             true
@@ -1378,12 +1458,14 @@ class AutoCallout(
                 // most of them.
                 discountUninformativeTime(userGeometry)
 
+                applyVerbosity(verbosity())
+
                 val destinationCallout = buildCalloutForDestination(userGeometry)
                 if (destinationCallout != null) {
                     // Update the destination filter if we're outputting it
                     destinationCallout.locationFilter = destinationFilter
                     trackedCallout = destinationCallout
-                } else if (preferences?.getBoolean(PreferenceKeys.ALLOW_CALLOUTS, true) != false) {
+                } else if (verbosity() != CalloutVerbosity.SILENT) {
                     // Going into a tunnel is worth saying however the user is travelling, so it's
                     // computed outside the vehicle/pedestrian split below and merged onto whatever
                     // else this update produced.

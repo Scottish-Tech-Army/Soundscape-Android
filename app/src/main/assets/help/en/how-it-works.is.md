@@ -1,13 +1,14 @@
 ---
-title: Hvernig Soundscape virkar
+title: Tæknin á bak við Soundscape
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 200
 lang: is
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Hvernig Soundscape virkar
+# Tæknin á bak við Soundscape
 Markmið þessarar síðu er að gefa almennan skilning á því hvernig Soundscape-forritið virkar undir yfirborðinu. Þú þarft ekki að lesa þetta til að nota forritið, en það eru nokkrar ástæður fyrir því að þetta hefur verið skrifað:
 
 1. Til að hjálpa áhugasömum nýliðum að skilja hvar takmarkanir forritsins liggja

@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: 오디오 비콘
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 60
 lang: ko
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# 오디오 비콘
 
-## What is it?
+오디오 비콘은 선택한 장소의 방향에서 들리는 소리입니다. 장소가 직선 방향으로 어디에 있는지 알려 줍니다. 턴바이턴 길 안내는 하지 않으므로 그곳까지 가는 길은 직접 고릅니다.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## 비콘 설정하기
 
-## When would I use it?
+1. 장소를 찾습니다. 홈 화면의 검색창, *주변 장소*, *마커* 또는 *현재 위치*를 사용합니다.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. 장소를 선택해 *위치 세부 정보*를 엽니다.
 
-## How does it work?
+3. *오디오 비콘 시작*을 선택합니다.
 
-**To set a beacon :**
+Soundscape가 홈 화면으로 돌아가고 비콘이 시작됩니다. 홈 화면에는 장소의 이름과 거리가 표시됩니다.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## 방향 찾기
 
-**To remove the current beacon :**
+장소 쪽을 바라보거나 장소를 향해 똑바로 걸으면 비콘 소리가 바뀝니다. 그 소리를 찾으려면 휴대폰을 수평으로 들고 천천히 몸을 돌리세요. *설정*에서 다른 비콘 소리를 고를 수 있습니다.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## 비콘 음소거하기
 
-**To mute the audible beacon :**
+홈 화면에서 *오디오 비콘 음소거*를 선택합니다. 이동하는 동안 Soundscape는 장소까지의 거리를 계속 알려 줍니다. 비콘을 다시 들으려면 *오디오 비콘 음소거 해제*를 선택하세요.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## 비콘 해제하기
+
+홈 화면에서 *경로 중지*를 선택합니다. 비콘이 경로의 일부가 아닐 때도 버튼 이름은 같습니다.
+
+## 도착했을 때
+
+장소까지 약 12미터가 남으면 Soundscape가 이를 알리고 비콘을 해제합니다. 휴대폰은 그보다 더 정확하게 위치를 찾을 수 없습니다. 비콘을 다시 들으려면 다시 설정하세요.
+
+30미터보다 가까운 장소에 설정한 비콘은 직접 해제할 때까지 계속 켜져 있습니다.
 

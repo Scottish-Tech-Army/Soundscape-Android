@@ -14,10 +14,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import androidx.compose.material3.Scaffold
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.resources.markers_routes_action_new
+import org.scottishtecharmy.soundscape.resources.routes_title
+import org.scottishtecharmy.soundscape.resources.route_detail_action_create
+import org.scottishtecharmy.soundscape.resources.route_detail_action_create_hint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.ic_routes
@@ -39,7 +46,46 @@ fun RoutesScreen(
     onCycleSort: () -> Unit,
     onSelectItem: (LocationDescription) -> Unit,
     onShowError: (String) -> Unit = {},
-    onStartPlayback: (Long) -> Unit = {}
+    onStartPlayback: (Long) -> Unit = {},
+    onNavigateUp: () -> Unit = {},
+    onAddRoute: () -> Unit = {},
+) {
+    Scaffold(
+        modifier = Modifier.testTag("routesScreen"),
+        topBar = {
+            CustomAppBar(
+                title = stringResource(Res.string.routes_title),
+                onNavigateUp = onNavigateUp,
+                rightButtonTitle = stringResource(Res.string.markers_routes_action_new),
+                rightButtonDescription = stringResource(Res.string.route_detail_action_create),
+                rightButtonHint = stringResource(Res.string.route_detail_action_create_hint),
+                onRightButton = onAddRoute,
+            )
+        }
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            RoutesList(
+                uiState = uiState,
+                userLocation = userLocation,
+                clearErrorMessage = clearErrorMessage,
+                onCycleSort = onCycleSort,
+                onSelectItem = onSelectItem,
+                onShowError = onShowError,
+                onStartPlayback = onStartPlayback,
+            )
+        }
+    }
+}
+
+@Composable
+private fun RoutesList(
+    uiState: MarkersAndRoutesUiState,
+    userLocation: LngLatAlt?,
+    clearErrorMessage: () -> Unit,
+    onCycleSort: () -> Unit,
+    onSelectItem: (LocationDescription) -> Unit,
+    onShowError: (String) -> Unit,
+    onStartPlayback: (Long) -> Unit,
 ) {
     Column(
         modifier =

@@ -285,19 +285,6 @@ class OfflineMapManager(
         }
     }
 
-    private fun featureContainsLocation(feature: Feature, location: LngLatAlt): Boolean {
-        return when (val geom = feature.geometry) {
-            is Polygon -> polygonContainsCoordinates(location, geom)
-            is MultiPolygon -> geom.coordinates.any { polygonRings ->
-                val poly = Polygon()
-                poly.coordinates.addAll(polygonRings)
-                polygonContainsCoordinates(location, poly)
-            }
-
-            else -> false
-        }
-    }
-
     /**
      * Check if an extract is already downloaded.
      */
@@ -450,5 +437,19 @@ class OfflineMapManager(
             logicalExtractName(it) == logicalName
         }
         if (match != null) deleteExtract(match)
+    }
+}
+
+/** Whether the area of an extract - its manifest entry, or its sidecar - contains [location] */
+internal fun featureContainsLocation(feature: Feature, location: LngLatAlt): Boolean {
+    return when (val geom = feature.geometry) {
+        is Polygon -> polygonContainsCoordinates(location, geom)
+        is MultiPolygon -> geom.coordinates.any { polygonRings ->
+            val poly = Polygon()
+            poly.coordinates.addAll(polygonRings)
+            polygonContainsCoordinates(location, poly)
+        }
+
+        else -> false
     }
 }

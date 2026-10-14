@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: موقعي
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 20
 lang: ar
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# موقعي
 
-## What is it?
+*موقعي* يخبرك أين أنت. يذكر الاتجاه الذي تواجهه أو تتحرك فيه، ثم الشارع أو العنوان الذي أنت عنده. استخدمه عندما تنزل من حافلة، أو تخرج من مبنى، أو تفقد إحساسك بالاتجاه.
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+إذا كنت تقف في مكانك، فوجّه أولًا أعلى الهاتف نحو الاتجاه الذي تواجهه. إذا كان هاتفك مقفلًا، أو لم يكن Soundscape ظاهرًا على الشاشة، فأمسك الهاتف بشكل أفقي أيضًا.
 

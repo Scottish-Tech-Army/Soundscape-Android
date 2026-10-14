@@ -1,13 +1,7 @@
 package org.scottishtecharmy.soundscape.navigation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import org.scottishtecharmy.soundscape.components.LocationListActions
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.PrimaryTabRow
-import androidx.compose.material3.Tab
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -16,7 +10,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -38,9 +31,7 @@ import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
-import org.scottishtecharmy.soundscape.resources.markers_title
-import org.scottishtecharmy.soundscape.resources.routes_title
-import org.scottishtecharmy.soundscape.resources.search_view_markers
+import org.scottishtecharmy.soundscape.resources.markers_marker_created
 import org.scottishtecharmy.soundscape.resources.universal_links_marker_share_message
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -63,9 +54,9 @@ import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMap
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.home.settings.SharedSettingsScreen
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.SharedAddAndEditRouteScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.SharedAddMarkerScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.SharedRouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
@@ -114,8 +105,9 @@ fun SharedNavHost(
             is IncomingIntent.StartRoute -> callbacks.onStartRoute(intent.routeId)
             IncomingIntent.StopRoute -> callbacks.onRouteStop()
             is IncomingIntent.OpenFeature -> {
-                MarkersAndRoutesTabMemory.selected = if (intent.tab == "markers") 0 else 1
-                navController.navigate(SharedRoutes.MARKERS_AND_ROUTES)
+                navController.navigate(
+                    if (intent.tab == "markers") SharedRoutes.MARKERS else SharedRoutes.ROUTES
+                )
             }
 
             is IncomingIntent.ImportRoute -> {
@@ -124,6 +116,7 @@ fun SharedNavHost(
             }
 
             is IncomingIntent.StartRouteByName -> callbacks.onStartRouteByName(intent.name)
+            is IncomingIntent.PerformAction -> callbacks.onPerformAction(intent.action)
         }
         flows.onPendingIntentHandled?.invoke()
     }
@@ -202,8 +195,13 @@ fun SharedNavHost(
                             navController, SharedRoutes.ROUTE_DETAILS, desc,
                         )
                     },
+                    onSaveMarker = { desc ->
+                        audioTour?.onMarkerCreateStarted()
+                        navStateHolder.navigateWithLocation(
+                            navController, SharedRoutes.EDIT_MARKER, desc,
+                        )
+                    },
                     preferencesProvider = preferencesProvider,
-                    onMapLongClick = callbacks.onMapLongClick,
                     bottomButtonFunctions = org.scottishtecharmy.soundscape.screens.home.home.BottomButtonFunctions(
                         myLocation = callbacks.onMyLocation,
                         aroundMe = callbacks.onWhatsAroundMe,
@@ -215,6 +213,8 @@ fun SharedNavHost(
                         skipNext = callbacks.onRouteSkipNext,
                         mute = callbacks.onRouteMute,
                         stop = callbacks.onRouteStop,
+                        calloutBeacon = callbacks.onCalloutBeacon,
+                        beaconMoreInfo = callbacks.onBeaconMoreInfo,
                     ),
                     streetPreviewFunctions = org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions(
                         go = callbacks.onStreetPreviewGo,
@@ -261,6 +261,7 @@ fun SharedNavHost(
                     onStartBeacon = { desc ->
                         holder.startBeacon(desc.location, desc.name)
                     },
+                    itemActions = rememberLocationListActions(callbacks, preferencesProvider),
                 )
             } else {
                 // Fallback path: external state holder publishes via flows.
@@ -288,22 +289,33 @@ fun SharedNavHost(
                             desc.name
                         )
                     },
+                    itemActions = rememberLocationListActions(callbacks, preferencesProvider),
                 )
             }
         }
 
-        composable(SharedRoutes.MARKERS_AND_ROUTES) {
-            MarkersAndRoutesContainer(
+        composable(SharedRoutes.MARKERS) {
+            MarkersContainer(
                 flows = flows,
                 callbacks = callbacks,
                 audioTour = audioTour,
+                itemActions = rememberLocationListActions(callbacks, preferencesProvider),
                 onBack = { navController.popBackStack() },
-                onAddRoute = { navController.navigate(SharedRoutes.ADD_ROUTE) },
+                onAddMarker = { navController.navigate(SharedRoutes.ADD_MARKER) },
                 onSelectMarker = { desc ->
                     navStateHolder.navigateWithLocation(
                         navController, SharedRoutes.LOCATION_DETAILS, desc,
                     )
                 },
+            )
+        }
+
+        composable(SharedRoutes.ROUTES) {
+            RoutesContainer(
+                flows = flows,
+                callbacks = callbacks,
+                onBack = { navController.popBackStack() },
+                onAddRoute = { navController.navigate(SharedRoutes.ADD_ROUTE) },
                 onSelectRoute = { desc ->
                     navStateHolder.navigateWithLocation(
                         navController, SharedRoutes.ROUTE_DETAILS, desc,
@@ -351,6 +363,9 @@ fun SharedNavHost(
                     onShareLocation = { sharedDesc ->
                         callbacks.onShareLocation(sharedDesc, shareMessage)
                     },
+                    // Queried each time the screen is entered so newly installed apps show up.
+                    mapApps = remember { callbacks.onGetMapApps?.invoke() ?: emptyList() },
+                    onOpenInMapApp = callbacks.onOpenInMapApp.takeIf { callbacks.onGetMapApps != null },
                     onOfflineMaps = { locationDesc ->
                         navStateHolder.navigateWithOfflineMapsTarget(
                             navController, SharedRoutes.OFFLINE_MAPS, locationDesc.location,
@@ -445,9 +460,9 @@ fun SharedNavHost(
                     }
                 }
                 fun navOnFinish(navController: NavController) {
-                    if (!navController.popBackStack(SharedRoutes.MARKERS_AND_ROUTES, inclusive = false)) {
+                    if (!navController.popBackStack(SharedRoutes.ROUTES, inclusive = false)) {
                         // If the list wasn't in the stack, navigate to it and remove the current "Add Route" screen
-                        navController.navigate(SharedRoutes.MARKERS_AND_ROUTES) {
+                        navController.navigate(SharedRoutes.ROUTES) {
                             popUpTo(SharedRoutes.ADD_ROUTE) { inclusive = true }
                         }
                     }
@@ -485,13 +500,13 @@ fun SharedNavHost(
                     onNavigateUp = { navController.popBackStack() },
                     onSaveComplete = {
                         navController.popBackStack(
-                            SharedRoutes.MARKERS_AND_ROUTES,
+                            SharedRoutes.ROUTES,
                             inclusive = false
                         )
                     },
                     onDeleteComplete = {
                         navController.popBackStack(
-                            SharedRoutes.MARKERS_AND_ROUTES,
+                            SharedRoutes.ROUTES,
                             inclusive = false
                         )
                     },
@@ -535,6 +550,37 @@ fun SharedNavHost(
                     onShareRoute = {
                         callbacks.onShareRoute(routeDesc.databaseId)
                     },
+                    onSelectWaypoint = { waypoint ->
+                        navStateHolder.navigateWithLocation(
+                            navController, SharedRoutes.LOCATION_DETAILS, waypoint,
+                        )
+                    },
+                )
+            }
+        }
+
+        composable(SharedRoutes.ADD_MARKER) {
+            val placesFactory = callbacks.createPlacesNearbyViewModel
+            if (placesFactory != null) {
+                val homeState by flows.homeState?.collectAsState()
+                    ?: remember { mutableStateOf(HomeState()) }
+                val holder = viewModel { placesFactory() }
+                val uiState by holder.uiState.collectAsState()
+                val createdMessage = stringResource(Res.string.markers_marker_created)
+                SharedAddMarkerScreen(
+                    placesNearbyUiState = uiState,
+                    userLocation = homeState.location,
+                    heading = homeState.heading,
+                    preferencesProvider = preferencesProvider,
+                    getCurrentLocationDescription = callbacks.onGetCurrentLocationDescription,
+                    onClickFolder = { filter, title -> holder.onClickFolder(filter, title) },
+                    onClickBack = { holder.onClickBack() },
+                    onCancel = { navController.popBackStack() },
+                    onSave = { desc ->
+                        callbacks.onSaveMarker(desc)
+                        callbacks.onSpeak(createdMessage)
+                        navController.popBackStack()
+                    },
                 )
             }
         }
@@ -572,9 +618,12 @@ fun SharedNavHost(
             val showMarkdown = useMarkdownHelp
                     || helpTopic is HelpTopic.MarkdownPage
                     || helpTopic is HelpTopic.MarkdownFaq
+            val helpHomeState by flows.homeState?.collectAsState()
+                ?: remember { mutableStateOf(HomeState()) }
             if (showMarkdown) {
                 SharedMarkdownHelpScreen(
                     topic = topicParam,
+                    locationAccuracy = helpHomeState.locationAccuracy,
                     onNavigate = { dest -> navController.navigate(dest) },
                     onNavigateUp = { navController.popBackStack() },
                     onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
@@ -587,6 +636,7 @@ fun SharedNavHost(
             } else {
                 SharedHelpScreen(
                     topic = topicParam,
+                    locationAccuracy = helpHomeState.locationAccuracy,
                     onNavigate = { dest -> navController.navigate(dest) },
                     onNavigateUp = { navController.popBackStack() },
                     onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
@@ -706,121 +756,116 @@ fun SharedNavHost(
     }
 }
 
-internal object MarkersAndRoutesTabMemory {
-    var selected: Int = 1
+/**
+ * Open in map app and Share, offered as screen reader actions on Places Nearby and Markers items.
+ * The map apps are queried each time a list is entered so newly installed apps show up.
+ */
+@Composable
+private fun rememberLocationListActions(
+    callbacks: AppCallbacks,
+    preferencesProvider: PreferencesProvider?,
+): LocationListActions {
+    val shareMessage = stringResource(Res.string.universal_links_marker_share_message)
+    val mapApps = remember { callbacks.onGetMapApps?.invoke() ?: emptyList() }
+    return LocationListActions(
+        mapApps = mapApps,
+        preferencesProvider = preferencesProvider,
+        onOpenInMapApp = callbacks.onOpenInMapApp.takeIf { callbacks.onGetMapApps != null },
+        onShare = { desc -> callbacks.onShareLocation(desc, shareMessage) },
+    )
 }
 
 @Composable
-private fun MarkersAndRoutesContainer(
+private fun MarkersContainer(
     flows: AppFlows,
     callbacks: AppCallbacks,
     audioTour: AudioTour? = null,
+    itemActions: LocationListActions = LocationListActions(),
     onBack: () -> Unit,
-    onAddRoute: () -> Unit = {},
-    onSelectMarker: (LocationDescription) -> Unit = {},
-    onSelectRoute: (LocationDescription) -> Unit = {},
+    onAddMarker: () -> Unit,
+    onSelectMarker: (LocationDescription) -> Unit,
 ) {
-    var selectedTab by remember { mutableStateOf(MarkersAndRoutesTabMemory.selected) }
-    LaunchedEffect(selectedTab) {
-        MarkersAndRoutesTabMemory.selected = selectedTab
-        when (selectedTab) {
-            0 -> audioTour?.onMarkers()
-            1 -> audioTour?.onMarkerAndRoutes()
-        }
-    }
+    LaunchedEffect(Unit) { audioTour?.onMarkers() }
     val location by flows.locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
     val userLocation = location?.let { LngLatAlt(it.longitude, it.latitude) }
 
-    Scaffold(
-        topBar = {
-            Column {
-                CustomAppBar(
-                    title = stringResource(Res.string.search_view_markers),
-                    onNavigateUp = onBack,
-                    rightButtonTitle = if (selectedTab == 1) "+" else "",
-                    onRightButton = { if (selectedTab == 1) onAddRoute() },
-                )
-                PrimaryTabRow(selectedTabIndex = selectedTab) {
-                    Tab(
-                        selected = selectedTab == 0,
-                        onClick = { selectedTab = 0 },
-                        text = { Text(stringResource(Res.string.markers_title)) },
-                        modifier = Modifier.testTag("markersTab")
-                    )
-                    Tab(
-                        selected = selectedTab == 1,
-                        onClick = { selectedTab = 1 },
-                        text = { Text(stringResource(Res.string.routes_title)) },
-                        modifier = Modifier.testTag("routesTab")
-                    )
-                }
-            }
+    val markersFactory = callbacks.createMarkersViewModel
+    if (markersFactory != null) {
+        val holder = viewModel { markersFactory() }
+        val uiState by holder.uiState.collectAsState()
+        LaunchedEffect(holder, userLocation) {
+            holder.updateUserLocation(userLocation)
         }
-    ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)) {
-            when (selectedTab) {
-                0 -> {
-                    val markersFactory = callbacks.createMarkersViewModel
-                    if (markersFactory != null) {
-                        val holder = viewModel { markersFactory() }
-                        val uiState by holder.uiState.collectAsState()
-                        LaunchedEffect(holder, userLocation) {
-                            holder.updateUserLocation(userLocation)
-                        }
-                        MarkersScreen(
-                            uiState = uiState,
-                            clearErrorMessage = { holder.clearErrorMessage() },
-                            onCycleSort = { holder.cycleSort() },
-                            userLocation = userLocation,
-                            onSelectItem = { onSelectMarker(it) },
-                            onStartBeacon = { loc, name -> holder.startBeacon(loc, name) },
-                        )
-                    } else {
-                        val uiState by flows.markersUiState?.collectAsState()
-                            ?: remember { mutableStateOf(MarkersAndRoutesUiState()) }
-                        MarkersScreen(
-                            uiState = uiState,
-                            clearErrorMessage = {},
-                            onCycleSort = {},
-                            userLocation = userLocation,
-                            onSelectItem = { onSelectMarker(it) },
-                            onStartBeacon = { loc, name ->
-                                callbacks.onStartBeacon(loc.latitude, loc.longitude, name)
-                            },
-                        )
-                    }
-                }
+        MarkersScreen(
+            uiState = uiState,
+            clearErrorMessage = { holder.clearErrorMessage() },
+            onCycleSort = { holder.cycleSort() },
+            userLocation = userLocation,
+            onSelectItem = onSelectMarker,
+            onStartBeacon = { loc, name -> holder.startBeacon(loc, name) },
+            itemActions = itemActions,
+            onNavigateUp = onBack,
+            onAddMarker = onAddMarker,
+        )
+    } else {
+        val uiState by flows.markersUiState?.collectAsState()
+            ?: remember { mutableStateOf(MarkersAndRoutesUiState()) }
+        MarkersScreen(
+            uiState = uiState,
+            clearErrorMessage = {},
+            onCycleSort = {},
+            userLocation = userLocation,
+            onSelectItem = onSelectMarker,
+            onStartBeacon = { loc, name ->
+                callbacks.onStartBeacon(loc.latitude, loc.longitude, name)
+            },
+            itemActions = itemActions,
+            onNavigateUp = onBack,
+            onAddMarker = onAddMarker,
+        )
+    }
+}
 
-                1 -> {
-                    val routesFactory = callbacks.createRoutesViewModel
-                    if (routesFactory != null) {
-                        val holder = viewModel { routesFactory() }
-                        val uiState by holder.uiState.collectAsState()
-                        LaunchedEffect(holder, userLocation) {
-                            holder.updateUserLocation(userLocation)
-                        }
-                        RoutesScreen(
-                            uiState = uiState,
-                            userLocation = userLocation,
-                            clearErrorMessage = { holder.clearErrorMessage() },
-                            onCycleSort = { holder.cycleSort() },
-                            onSelectItem = { onSelectRoute(it) },
-                            onStartPlayback = { holder.startRoute(it) },
-                        )
-                    } else {
-                        val uiState by flows.routesUiState?.collectAsState()
-                            ?: remember { mutableStateOf(MarkersAndRoutesUiState()) }
-                        RoutesScreen(
-                            uiState = uiState,
-                            userLocation = userLocation,
-                            clearErrorMessage = {},
-                            onCycleSort = {},
-                            onSelectItem = { onSelectRoute(it) },
-                            onStartPlayback = { callbacks.onStartRoute(it) },
-                        )
-                    }
-                }
-            }
+@Composable
+private fun RoutesContainer(
+    flows: AppFlows,
+    callbacks: AppCallbacks,
+    onBack: () -> Unit,
+    onAddRoute: () -> Unit,
+    onSelectRoute: (LocationDescription) -> Unit,
+) {
+    val location by flows.locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
+    val userLocation = location?.let { LngLatAlt(it.longitude, it.latitude) }
+
+    val routesFactory = callbacks.createRoutesViewModel
+    if (routesFactory != null) {
+        val holder = viewModel { routesFactory() }
+        val uiState by holder.uiState.collectAsState()
+        LaunchedEffect(holder, userLocation) {
+            holder.updateUserLocation(userLocation)
         }
+        RoutesScreen(
+            uiState = uiState,
+            userLocation = userLocation,
+            clearErrorMessage = { holder.clearErrorMessage() },
+            onCycleSort = { holder.cycleSort() },
+            onSelectItem = onSelectRoute,
+            onStartPlayback = { holder.startRoute(it) },
+            onNavigateUp = onBack,
+            onAddRoute = onAddRoute,
+        )
+    } else {
+        val uiState by flows.routesUiState?.collectAsState()
+            ?: remember { mutableStateOf(MarkersAndRoutesUiState()) }
+        RoutesScreen(
+            uiState = uiState,
+            userLocation = userLocation,
+            clearErrorMessage = {},
+            onCycleSort = {},
+            onSelectItem = onSelectRoute,
+            onStartPlayback = { callbacks.onStartRoute(it) },
+            onNavigateUp = onBack,
+            onAddRoute = onAddRoute,
+        )
     }
 }

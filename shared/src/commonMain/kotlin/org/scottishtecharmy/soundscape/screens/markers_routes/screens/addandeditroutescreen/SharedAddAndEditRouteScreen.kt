@@ -60,10 +60,10 @@ import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_nam
 import org.scottishtecharmy.soundscape.resources.route_description_description_hint
 import org.scottishtecharmy.soundscape.resources.route_detail_action_create
 import org.scottishtecharmy.soundscape.resources.route_detail_action_edit
-import org.scottishtecharmy.soundscape.resources.route_detail_action_start_route_disabled_hint
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_delete
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_delete_alert_message
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_description
+import org.scottishtecharmy.soundscape.resources.route_detail_edit_no_waypoints
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_remove_waypoint_hint
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_remove_waypoint_alert_message
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_waypoints_button
@@ -355,7 +355,7 @@ fun SharedAddAndEditRouteScreen(
 
                         if (routeMembers.isEmpty()) {
                             Text(
-                                stringResource(Res.string.route_detail_action_start_route_disabled_hint),
+                                stringResource(Res.string.route_detail_edit_no_waypoints),
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier

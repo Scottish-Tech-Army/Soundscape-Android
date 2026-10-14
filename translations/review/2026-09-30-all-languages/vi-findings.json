@@ -1,0 +1,1602 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Đây là một bản cập nhật lớn cho Soundscape. Chế độ Di chuyển đã được cải thiện đáng kể. Khi bạn di chuyển bằng ô tô hoặc xe buýt, Soundscape giờ đây thông báo số hiệu đường, hướng di chuyển của bạn và các khu dân cư gần đó. Ứng dụng cũng thông báo khi bạn băng qua sông, kênh đào, cửa sông và vịnh. Vui lòng cập nhật bản đồ ngoại tuyến của bạn để có được các tính năng mới này. Đối với người dùng ở Vương quốc Anh, mô tả về các điểm dừng xe buýt hiện đã tốt hơn nhiều. Chế độ Ngủ giờ đây tự động thức dậy khi phát hiện bạn di chuyển trở lại. Bạn không còn cần phải nhớ tự đánh thức nó nữa. Chúng tôi đã tái cấu trúc mã nguồn bên dưới để có thể xây dựng ứng dụng iOS từ cùng một mã nguồn. Điều này có nghĩa là trong tương lai chúng tôi có thể phát hành một ứng dụng iOS với tất cả các tính năng mà chúng tôi đã tạo ra cho Android. Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải, dù nhỏ đến đâu, qua mục Liên hệ hỗ trợ trong menu chính.",
+  "suggested": "\nĐây là một bản cập nhật lớn cho Soundscape.\n\nChế độ Di chuyển đã được cải thiện đáng kể. Khi bạn di chuyển bằng ô tô hoặc xe buýt, Soundscape giờ đây thông báo số hiệu đường, hướng di chuyển của bạn và các khu dân cư gần đó. Ứng dụng cũng thông báo khi bạn băng qua sông, kênh đào, cửa sông và vịnh. Vui lòng cập nhật bản đồ ngoại tuyến của bạn để có được các tính năng mới này. Đối với người dùng ở Vương quốc Anh, mô tả về các điểm dừng xe buýt hiện đã tốt hơn nhiều.\n\nChế độ Ngủ giờ đây tự động thức dậy khi phát hiện bạn di chuyển trở lại. Bạn không còn cần phải nhớ tự đánh thức nó nữa.\n\nChúng tôi đã tái cấu trúc mã nguồn bên dưới để có thể xây dựng ứng dụng iOS từ cùng một mã nguồn. Điều này có nghĩa là trong tương lai chúng tôi có thể phát hành một ứng dụng iOS với tất cả các tính năng mà chúng tôi đã tạo ra cho Android.\n\nVui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải, dù nhỏ đến đâu, qua mục Liên hệ hỗ trợ trong menu chính.\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) of the English were dropped, so the dialog is one block of text; the dialog splits on paragraph breaks",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape có các tính năng và lợi ích trải rộng trên nhiều tình huống và khung thời gian khác nhau. Giá trị mà Soundscape mang lại cho bạn có thể thay đổi theo thời gian, vì vậy cách bạn sử dụng nó hôm nay có thể khác với cách bạn sẽ sử dụng nó sau ba tháng. Mọi người thường nghĩ về các ứng dụng theo hướng *ứng dụng này giỏi giải quyết vấn đề gì?* Soundscape chắc chắn có thể được dùng cho những nhu cầu cụ thể – chẳng hạn như theo dõi một điểm đến trong lúc di chuyển đến đó, giúp định hướng khi bạn ra khỏi ga tàu điện ngầm, xác định phương hướng khi bước ra khỏi xe hơi, hoặc tìm tên đường hay khoảng cách đến giao lộ tiếp theo. Tuy nhiên, triết lý đằng sau Soundscape là *thắp sáng thế giới của bạn bằng âm thanh* — ứng dụng được thiết kế để sử dụng bất cứ khi nào bạn ra ngoài, nhằm mang lại nhận thức về môi trường xung quanh: tên các con đường bạn đang đi, hướng bạn đang di chuyển, và tên các cửa hàng bạn đang đi ngang qua. Với cách sử dụng này, người dùng của chúng tôi gọi Soundscape là một *ứng dụng đồng hành dễ chịu*, hỗ trợ *những khám phá tình cờ*, giúp *lấp đầy những khoảng trống trong bản đồ tinh thần của bạn* và mang lại nhiều *sự tự tin hơn khi đi bộ*. Dưới đây là một số ví dụ khác về cách người dùng của chúng tôi đưa Soundscape vào cuộc sống của họ:\\n\\nSoundscape đã giúp tôi quay lại đúng hướng sau khi tôi xuống xe buýt và đi nhầm hướng.\\n\\nNgay cả ở thị trấn mà tôi đã sống suốt 3 năm, tôi vẫn xây dựng được một bức tranh rõ nét hơn về những gì xung quanh mình [nhờ Soundscape].\\n\\nÂm thanh 3D làm phong phú thêm trải nghiệm đi bộ của tôi, vì tôi cảm thấy kết nối hơn với môi trường xung quanh…Giờ đây tôi sẵn sàng thử một lộ trình mới hơn vì đã có ứng dụng này để sử dụng.\\n\\nTôi nhớ cảm giác tình cờ bắt gặp và để ý những điều xung quanh khi đi bộ. Có Soundscape thật tuyệt – tôi không cần cố gắng gì cũng nghe được những gì xung quanh mình. Thông tin liên quan rất hữu ích, và đây là một ứng dụng tuyệt vời để nhận thức tình huống và khám phá các khu phố thương mại.\\n\\n[Tôi đã dùng Soundscape] để tìm một quán rượu ở giữa thành phố York. [Tôi] đã dùng nhiều tùy chọn của ứng dụng để trước tiên định vị và sau đó thực sự tìm ra nó. Nó đã dẫn tôi đến trong vòng 3 mét cách cửa ra vào – thật tuyệt vời!",
+  "suggested": "Soundscape có các tính năng và lợi ích trải rộng trên nhiều tình huống và khung thời gian khác nhau. Giá trị mà Soundscape mang lại cho bạn có thể thay đổi theo thời gian, vì vậy cách bạn sử dụng nó hôm nay có thể khác với cách bạn sẽ sử dụng nó sau ba tháng. Mọi người thường nghĩ về các ứng dụng theo hướng *ứng dụng này giỏi giải quyết vấn đề gì?* Soundscape chắc chắn có thể được dùng cho những nhu cầu cụ thể – chẳng hạn như theo dõi một điểm đến trong lúc di chuyển đến đó, giúp định hướng khi bạn ra khỏi ga tàu điện ngầm, xác định phương hướng khi bước ra khỏi xe hơi, hoặc tìm tên đường hay khoảng cách đến giao lộ tiếp theo. Tuy nhiên, triết lý đằng sau Soundscape là *thắp sáng thế giới của bạn bằng âm thanh* — ứng dụng được thiết kế để sử dụng bất cứ khi nào bạn ra ngoài, nhằm mang lại nhận thức về môi trường xung quanh: tên các con đường bạn đang đi, hướng bạn đang di chuyển, và tên các cửa hàng bạn đang đi ngang qua. Với cách sử dụng này, người dùng của chúng tôi gọi Soundscape là một *ứng dụng đồng hành dễ chịu*, hỗ trợ *những khám phá tình cờ*, giúp *lấp đầy những khoảng trống trong bản đồ tinh thần của bạn* và mang lại nhiều *sự tự tin hơn khi đi bộ*. Dưới đây là một số ví dụ khác về cách người dùng của chúng tôi đưa Soundscape vào cuộc sống của họ:\\n\\n“Soundscape đã giúp tôi quay lại đúng hướng sau khi tôi xuống xe buýt và đi nhầm hướng.”\\n\\n“Ngay cả ở thị trấn mà tôi đã sống suốt 3 năm, tôi vẫn xây dựng được một bức tranh rõ nét hơn về những gì xung quanh mình [nhờ Soundscape].”\\n\\n“Âm thanh 3D làm phong phú thêm trải nghiệm đi bộ của tôi, vì tôi cảm thấy kết nối hơn với môi trường xung quanh…Giờ đây tôi sẵn sàng thử một lộ trình mới hơn vì đã có ứng dụng này để sử dụng.”\\n\\n“Tôi nhớ cảm giác tình cờ bắt gặp và để ý những điều xung quanh khi đi bộ. Có Soundscape thật tuyệt – tôi không cần cố gắng gì cũng nghe được những gì xung quanh mình. Thông tin liên quan rất hữu ích, và đây là một ứng dụng tuyệt vời để nhận thức tình huống và khám phá các khu phố thương mại.”\\n\\n“[Tôi đã dùng Soundscape] để tìm một quán rượu ở giữa thành phố York. [Tôi] đã dùng nhiều tùy chọn của ứng dụng để trước tiên định vị và sau đó thực sự tìm ra nó. Nó đã dẫn tôi đến trong vòng 3 mét cách cửa ra vào – thật tuyệt vời!”",
+  "reason": "The user testimonials lost their quotation marks, so they read as the app speaking about itself (\"Soundscape helped me…\"); restored as typographic quotes",
+  "category": "formatting"
+ },
+ {
+  "context": "directions_name_goes_left",
+  "source": "%1$s, goes left",
+  "current": "%1$s, rẽ trái",
+  "suggested": "%1$s, rẽ trái",
+  "reason": "VI-G1 (agreed defect, wording unconfirmed and held): «rẽ trái» is a turn instruction, but the string describes which way the road leads (C11). Candidates «%1$s, đi về bên trái» / «%1$s ở bên trái»; the onboarding examples already use «nằm bên trái». Awaiting questionnaire answer",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_name_goes_right",
+  "source": "%1$s, goes right",
+  "current": "%1$s, rẽ phải",
+  "suggested": "%1$s, rẽ phải",
+  "reason": "VI-G1 (agreed defect, wording unconfirmed and held): «rẽ phải» is a turn instruction, but the string describes which way the road leads (C11). Candidates «%1$s, đi về bên phải» / «%1$s ở bên phải»; the onboarding examples already use «nằm bên phải». Awaiting questionnaire answer",
+  "category": "meaning"
+ },
+ {
+  "context": "beacon_audio_beacon",
+  "source": "Audio Beacon",
+  "current": "Đèn hiệu âm thanh",
+  "suggested": "Đèn hiệu âm thanh",
+  "reason": "VI-T1 (unconfirmed): «Đèn hiệu» means a signal lamp, a visual term for an audible feature (C12); about 116 strings. Candidates «tín hiệu âm thanh», «âm báo hướng», but split by meaning per C19 (sound/place/feature). Awaiting native speaker (Q2)",
+  "category": "terminology"
+ },
+ {
+  "context": "fab_add_route",
+  "source": "Add Route",
+  "current": "Thêm tuyến đường",
+  "suggested": "Thêm lộ trình",
+  "reason": "Route is «lộ trình» everywhere else (including the sibling clear-all alert message); «tuyến đường» here splits the term",
+  "category": "terminology"
+ },
+ {
+  "context": "advanced_markers_and_routes_export_button",
+  "source": "Export markers and routes database",
+  "current": "Xuất cơ sở dữ liệu điểm đánh dấu và tuyến đường",
+  "suggested": "Xuất cơ sở dữ liệu điểm đánh dấu và lộ trình",
+  "reason": "Route is «lộ trình» everywhere else (including the sibling clear-all alert message); «tuyến đường» here splits the term",
+  "category": "terminology"
+ },
+ {
+  "context": "advanced_markers_and_routes_import_button",
+  "source": "Import markers and routes database",
+  "current": "Nhập cơ sở dữ liệu điểm đánh dấu và tuyến đường",
+  "suggested": "Nhập cơ sở dữ liệu điểm đánh dấu và lộ trình",
+  "reason": "Route is «lộ trình» everywhere else (including the sibling clear-all alert message); «tuyến đường» here splits the term",
+  "category": "terminology"
+ },
+ {
+  "context": "markers_and_routes_import_success",
+  "source": "Import of markers and routes completed.",
+  "current": "Đã nhập xong điểm đánh dấu và tuyến đường.",
+  "suggested": "Đã nhập xong điểm đánh dấu và lộ trình.",
+  "reason": "Route is «lộ trình» everywhere else (including the sibling clear-all alert message); «tuyến đường» here splits the term",
+  "category": "terminology"
+ },
+ {
+  "context": "markers_and_routes_import_failure",
+  "source": "Import of markers and routes failed.",
+  "current": "Nhập điểm đánh dấu và tuyến đường không thành công.",
+  "suggested": "Nhập điểm đánh dấu và lộ trình không thành công.",
+  "reason": "Route is «lộ trình» everywhere else (including the sibling clear-all alert message); «tuyến đường» here splits the term",
+  "category": "terminology"
+ },
+ {
+  "context": "advanced_markers_and_routes_clear_all_button",
+  "source": "Delete all markers and routes",
+  "current": "Xóa tất cả điểm đánh dấu và tuyến đường",
+  "suggested": "Xóa tất cả điểm đánh dấu và lộ trình",
+  "reason": "Route is «lộ trình» everywhere else (including the sibling clear-all alert message); «tuyến đường» here splits the term",
+  "category": "terminology"
+ },
+ {
+  "context": "menu_advanced_markers_and_routes_clear_all_success",
+  "source": "Markers and routes deleted",
+  "current": "Đã xóa điểm đánh dấu và tuyến đường",
+  "suggested": "Đã xóa điểm đánh dấu và lộ trình",
+  "reason": "Route is «lộ trình» everywhere else (including the sibling clear-all alert message); «tuyến đường» here splits the term",
+  "category": "terminology"
+ },
+ {
+  "context": "street_preview_exit",
+  "source": "Exit location simulation",
+  "current": "Thoát mô phỏng vị trí",
+  "suggested": "Thoát giả lập vị trí",
+  "reason": "Location simulation is «Giả lập vị trí» (preview_title and the hints); «mô phỏng» here is a second term for the same mode",
+  "category": "terminology"
+ },
+ {
+  "context": "help_remote_page_title",
+  "source": "Using Media Controls",
+  "current": "Sử dụng nút điều khiển media",
+  "suggested": "Sử dụng nút điều khiển đa phương tiện",
+  "reason": "Media controls are «điều khiển đa phương tiện» in the settings and in the help body; the page title uses the English «media»",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_1",
+  "source": "**Turning callouts on or off :**\\n\\n Turning callouts off will silence the app. Callouts can be turned off in the *Manage Callouts* section of the *Settings* screen by setting *Callout Detail* to *Silent*, and turned back on by choosing any other level. On iPhone you can do the same by asking Siri, and on Android the same will work through Gemini once Google releases support for it. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *previous* moves down through *Detailed*, *Simplified*, *Essential* and *Silent*, and one more press goes back to *Detailed*. See the *Using Media Controls* help topic. Alternatively, you can use the *Sleep* button in the top-right corner of the home screen to stop Soundscape from making callouts until you wake it up.",
+  "current": "**Bật hoặc tắt thông báo :**\\n\\n Tắt thông báo sẽ khiến ứng dụng im lặng. Bạn có thể tắt thông báo trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt* bằng cách đặt *Mức chi tiết thông báo* thành *Im lặng*, và bật lại bằng cách chọn bất kỳ mức nào khác. Trên iPhone, bạn có thể làm điều tương tự bằng cách nhờ Siri, còn trên Android, điều tương tự sẽ hoạt động qua Gemini ngay khi Google phát hành tính năng hỗ trợ. Ngoài ra, bạn có thể giảm dần độ nói của Soundscape bằng các nút điều khiển media trên tai nghe: mỗi lần nhấn *trước đó* sẽ hạ xuống một mức theo thứ tự *Chi tiết*, *Đơn giản*, *Thiết yếu* và *Im lặng*, nhấn thêm một lần nữa sẽ quay lại *Chi tiết*. Xem chủ đề trợ giúp *Sử dụng nút điều khiển media*. Ngoài ra, bạn có thể dùng nút *Ngủ* ở góc trên bên phải màn hình chính để ngừng Soundscape đưa ra thông báo cho đến khi bạn đánh thức nó.",
+  "suggested": "**Bật hoặc tắt thông báo :**\\n\\n Tắt thông báo sẽ khiến ứng dụng im lặng. Bạn có thể tắt thông báo trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt* bằng cách đặt *Mức chi tiết thông báo* thành *Im lặng*, và bật lại bằng cách chọn bất kỳ mức nào khác. Trên iPhone, bạn có thể làm điều tương tự bằng cách nhờ Siri, còn trên Android, điều tương tự sẽ hoạt động qua Gemini ngay khi Google phát hành tính năng hỗ trợ. Ngoài ra, bạn có thể giảm dần lượng thông tin Soundscape nói bằng các nút điều khiển media trên tai nghe: mỗi lần nhấn *trước đó* sẽ hạ xuống một mức theo thứ tự *Chi tiết*, *Đơn giản*, *Thiết yếu* và *Im lặng*, nhấn thêm một lần nữa sẽ quay lại *Chi tiết*. Xem chủ đề trợ giúp *Sử dụng nút điều khiển đa phương tiện*. Ngoài ra, bạn có thể dùng nút *Ngủ* ở góc trên bên phải màn hình chính để ngừng Soundscape đưa ra thông báo cho đến khi bạn đánh thức nó.",
+  "reason": "Names the help page, whose title should use «đa phương tiện» like the rest of the corpus (see help_remote_page_title); also «giảm dần độ nói» is not idiomatic for \"make Soundscape quieter a step at a time\"",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_service_road",
+  "source": "Service Road",
+  "current": "Đường dịch vụ",
+  "suggested": "Đường nội bộ",
+  "reason": "callouts_verbosity_description calls service roads «đường nội bộ»; «Đường dịch vụ» is a calque and a different word for the thing that description says Simplified mode leaves out",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_neighbourhood",
+  "source": "Neighborhood",
+  "current": "Khu dân cư",
+  "suggested": "Khu phố",
+  "reason": "«Khu dân cư» is also osm_residential (Residential Area); a neighbourhood as a place name is «Khu phố»",
+  "category": "terminology"
+ },
+ {
+  "context": "callouts_mobility",
+  "source": "Mobility",
+  "current": "Di chuyển",
+  "suggested": "Giao thông",
+  "reason": "«Di chuyển» is the Travel mode word (Traveling/«Chế độ Di chuyển»); this setting is about intersections and transport information, so it reads as a travel-mode toggle",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_creating_markers_content_1",
+  "source": "You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *Places Nearby* button, or using the *Current Location* button, all of which can be found on the home screen. Once you have found the place you would like, selecting it will take you to the *Location Details* screen. On this screen, select the *Save as Marker* button.",
+  "current": "Bạn có thể tạo điểm đánh dấu theo ba cách: tìm kiếm địa điểm bạn muốn lưu bằng thanh tìm kiếm, tìm một nơi bằng nút *Địa điểm gần đây*, hoặc dùng nút *Vị trí hiện tại* — tất cả đều có thể tìm thấy trên màn hình chính. Sau khi tìm được địa điểm bạn muốn, chọn nó sẽ đưa bạn đến màn hình *Chi tiết vị trí*. Trên màn hình này, hãy chọn nút *Lưu làm Điểm đánh dấu*.",
+  "suggested": "Bạn có thể tạo điểm đánh dấu theo ba cách: tìm kiếm địa điểm bạn muốn lưu bằng thanh tìm kiếm, tìm một nơi bằng nút *Địa điểm gần đây*, hoặc dùng nút *Vị trí hiện tại* — tất cả đều có thể tìm thấy trên màn hình chính. Sau khi tìm được địa điểm bạn muốn, chọn nó sẽ đưa bạn đến màn hình *Chi tiết vị trí*. Trên màn hình này, hãy chọn nút *Lưu làm điểm đánh dấu*.",
+  "reason": "UI name does not match the button label «Lưu làm điểm đánh dấu» (Vietnamese labels are sentence case)",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_markers_function_answer",
+  "source": "Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *Current Location* button on the home screen and then selecting *Save as Marker*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *Places Nearby* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *Location Details* screen. On this screen, select the button called *Save as Marker*.",
+  "current": "Điểm đánh dấu là những địa điểm mà bạn đã lưu lại. Chúng có thể là những địa điểm có thể tìm thấy trong ứng dụng, hoặc là những địa điểm hoàn toàn mới mà bạn tự thêm vào. Bạn có thể lưu vị trí hiện tại của mình làm điểm đánh dấu bằng cách chọn nút *Vị trí hiện tại* trên màn hình chính rồi chọn *Lưu làm Điểm đánh dấu*. Bạn có thể lưu các địa điểm khác làm điểm đánh dấu bằng cách tìm kiếm địa điểm bạn muốn lưu qua thanh tìm kiếm, hoặc tìm một nơi bằng nút *Địa điểm gần đây* — cả hai đều có trên màn hình chính của Soundscape. Sau khi tìm được địa điểm bạn muốn, chọn nó sẽ đưa bạn đến màn hình *Chi tiết vị trí*. Trên màn hình này, hãy chọn nút có tên *Lưu làm Điểm đánh dấu*.",
+  "suggested": "Điểm đánh dấu là những địa điểm mà bạn đã lưu lại. Chúng có thể là những địa điểm có thể tìm thấy trong ứng dụng, hoặc là những địa điểm hoàn toàn mới mà bạn tự thêm vào. Bạn có thể lưu vị trí hiện tại của mình làm điểm đánh dấu bằng cách chọn nút *Vị trí hiện tại* trên màn hình chính rồi chọn *Lưu làm điểm đánh dấu*. Bạn có thể lưu các địa điểm khác làm điểm đánh dấu bằng cách tìm kiếm địa điểm bạn muốn lưu qua thanh tìm kiếm, hoặc tìm một nơi bằng nút *Địa điểm gần đây* — cả hai đều có trên màn hình chính của Soundscape. Sau khi tìm được địa điểm bạn muốn, chọn nó sẽ đưa bạn đến màn hình *Chi tiết vị trí*. Trên màn hình này, hãy chọn nút có tên *Lưu làm điểm đánh dấu*.",
+  "reason": "UI name does not match the button label «Lưu làm điểm đánh dấu» (Vietnamese labels are sentence case)",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_beacon_on_address_answer",
+  "source": "Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *Location Details* screen by selecting the *Save as Marker* button.",
+  "current": "Có, bạn có thể. Địa chỉ không được liệt kê theo mặc định nhưng có thể tìm thấy bằng cách sử dụng ô tìm kiếm. Để lưu địa chỉ này lại nhằm không cần tìm kiếm lại lần sau, bạn có thể thêm nó làm điểm đánh dấu từ màn hình *Chi tiết vị trí* bằng cách chọn nút *Lưu làm Điểm đánh dấu*.",
+  "suggested": "Có, bạn có thể. Địa chỉ không được liệt kê theo mặc định nhưng có thể tìm thấy bằng cách sử dụng ô tìm kiếm. Để lưu địa chỉ này lại nhằm không cần tìm kiếm lại lần sau, bạn có thể thêm nó làm điểm đánh dấu từ màn hình *Chi tiết vị trí* bằng cách chọn nút *Lưu làm điểm đánh dấu*.",
+  "reason": "UI name does not match the button label «Lưu làm điểm đánh dấu» (Vietnamese labels are sentence case)",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_1",
+  "source": "If you want to rename a marker you previously created, or add an annotation to it, select the marker from the *Markers* tab of the *Markers and Routes* page, and then select the *Edit Marker* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.",
+  "current": "Nếu bạn muốn đổi tên một điểm đánh dấu đã tạo trước đó, hoặc thêm ghi chú cho nó, hãy chọn điểm đánh dấu đó từ thẻ *Điểm đánh dấu* của trang *Điểm đánh dấu và lộ trình*, sau đó chọn nút *Chỉnh sửa Điểm đánh dấu*. Bạn có thể dùng cách này để đặt cho các điểm đánh dấu những biệt danh dễ hiểu hoặc hữu ích, cũng như thêm mô tả dài hơn bằng trường ghi chú.",
+  "suggested": "Nếu bạn muốn đổi tên một điểm đánh dấu đã tạo trước đó, hoặc thêm ghi chú cho nó, hãy chọn điểm đánh dấu đó từ thẻ *Điểm đánh dấu* của trang *Điểm đánh dấu và lộ trình*, sau đó chọn nút *Chỉnh sửa điểm đánh dấu*. Bạn có thể dùng cách này để đặt cho các điểm đánh dấu những biệt danh dễ hiểu hoặc hữu ích, cũng như thêm mô tả dài hơn bằng trường ghi chú.",
+  "reason": "UI name does not match the button label «Chỉnh sửa điểm đánh dấu»",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Tạo một lộ trình :**\\n\\n Trước tiên, hãy vào *Điểm đánh dấu và Lộ trình*, chọn thẻ *Lộ trình*, rồi chọn nút *Lộ trình mới*. Đặt tên cho lộ trình và thêm mô tả (không bắt buộc), sau đó thêm các điểm dừng trong khi di chuyển hoặc chọn chúng từ danh sách Điểm đánh dấu của bạn. Bạn có thể sắp xếp lại thứ tự các điểm dừng trên lộ trình bất cứ lúc nào bằng cách chỉnh sửa lộ trình.",
+  "suggested": "**Tạo một lộ trình :**\\n\\n Trước tiên, hãy vào *Điểm đánh dấu và lộ trình*, chọn thẻ *Lộ trình*, rồi chọn nút *Lộ trình mới*. Đặt tên cho lộ trình và thêm mô tả (không bắt buộc), sau đó thêm các điểm dừng trong khi di chuyển hoặc chọn chúng từ danh sách Điểm đánh dấu của bạn. Bạn có thể sắp xếp lại thứ tự các điểm dừng trên lộ trình bất cứ lúc nào bằng cách chỉnh sửa lộ trình.",
+  "reason": "UI name does not match the screen title «Điểm đánh dấu và lộ trình»",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**Chia sẻ một lộ trình :**\\n\\n Chọn lộ trình của bạn trên màn hình *Điểm đánh dấu và Lộ trình* rồi chọn tùy chọn *Chia sẻ*, sử dụng tất cả các tùy chọn chia sẻ thông thường có sẵn cho bạn.",
+  "suggested": "**Chia sẻ một lộ trình :**\\n\\n Chọn lộ trình của bạn trên màn hình *Điểm đánh dấu và lộ trình* rồi chọn tùy chọn *Chia sẻ*, sử dụng tất cả các tùy chọn chia sẻ thông thường có sẵn cho bạn.",
+  "reason": "UI name does not match the screen title «Điểm đánh dấu và lộ trình»",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_tip_create_marker_at_bus_stop",
+  "source": "If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.",
+  "current": "Nếu có một tuyến xe buýt bạn thường xuyên đi, hãy lưu điểm lên và điểm xuống của bạn làm điểm đánh dấu. Bằng cách này, chúng sẽ được lưu lại để bạn dễ dàng tìm lại: vào *Điểm đánh dấu và Lộ trình* từ màn hình chính và tìm chúng trong trang *Điểm đánh dấu*. Bạn có thể đặt đèn hiệu trên chúng để nhận cập nhật định kỳ về khoảng cách còn lại đến điểm xuống của mình. Lưu ý: ngay cả khi tắt âm thanh nhịp điệu, bạn vẫn nhận được cập nhật khoảng cách trong suốt hành trình.",
+  "suggested": "Nếu có một tuyến xe buýt bạn thường xuyên đi, hãy lưu điểm lên và điểm xuống của bạn làm điểm đánh dấu. Bằng cách này, chúng sẽ được lưu lại để bạn dễ dàng tìm lại: vào *Điểm đánh dấu và lộ trình* từ màn hình chính và tìm chúng trong trang *Điểm đánh dấu*. Bạn có thể đặt đèn hiệu trên chúng để nhận cập nhật định kỳ về khoảng cách còn lại đến điểm xuống của mình. Lưu ý: ngay cả khi tắt âm thanh nhịp điệu, bạn vẫn nhận được cập nhật khoảng cách trong suốt hành trình.",
+  "reason": "UI name does not match the screen title «Điểm đánh dấu và lộ trình»",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_2",
+  "source": "**Editing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select *Edit Route*. From here you can add and remove waypoints, as well as edit the name and description of the route.",
+  "current": "**Chỉnh sửa một lộ trình :**\\n\\n Chọn lộ trình của bạn trên màn hình *Điểm đánh dấu và Lộ trình* rồi chọn *Chỉnh sửa Lộ trình*. Từ đây bạn có thể thêm và xóa các điểm dừng, cũng như chỉnh sửa tên và mô tả của lộ trình.",
+  "suggested": "**Chỉnh sửa một lộ trình :**\\n\\n Chọn lộ trình của bạn trên màn hình *Điểm đánh dấu và lộ trình* rồi chọn *Chỉnh sửa lộ trình*. Từ đây bạn có thể thêm và xóa các điểm dừng, cũng như chỉnh sửa tên và mô tả của lộ trình.",
+  "reason": "UI names do not match the labels «Điểm đánh dấu và lộ trình» and «Chỉnh sửa lộ trình»",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Từ màn hình *Chỉnh sửa* này, bạn cũng có thể xóa một điểm đánh dấu nếu không còn cần đến nó nữa.",
+  "suggested": "Từ màn hình *Chỉnh sửa điểm đánh dấu* này, bạn cũng có thể xóa một điểm đánh dấu nếu không còn cần đến nó nữa.",
+  "reason": "*Edit* names markers_edit_screen_title_edit, whose Vietnamese label is «Chỉnh sửa điểm đánh dấu»",
+  "category": "formatting"
+ },
+ {
+  "context": "tour_markers_and_routes",
+  "source": "You have now successfully created a marker. Let's play an audio beacon to guide us to that location. Tap Markers and Routes, just below Places Nearby.",
+  "current": "Bạn đã tạo thành công một điểm đánh dấu. Bây giờ hãy phát một đèn hiệu âm thanh để dẫn chúng ta đến địa điểm đó. Hãy chạm vào Điểm đánh dấu và Lộ trình, nằm ngay bên dưới Địa điểm gần đây.",
+  "suggested": "Bạn đã tạo thành công một điểm đánh dấu. Bây giờ hãy phát một đèn hiệu âm thanh để dẫn chúng ta đến địa điểm đó. Hãy chạm vào Điểm đánh dấu và lộ trình, nằm ngay bên dưới Địa điểm gần đây.",
+  "reason": "Names the button/screen «Điểm đánh dấu và lộ trình»; case differs from the label",
+  "category": "formatting"
+ },
+ {
+  "context": "tour_markers",
+  "source": "The Markers and Routes screen has two tabs. One tab lists routes, which are playlists of markers. The other tab lists individual markers. Tap Markers to switch to that tab and find the marker you created.",
+  "current": "Màn hình Điểm đánh dấu và Lộ trình có hai thẻ. Một thẻ hiển thị các lộ trình, là danh sách các điểm đánh dấu. Thẻ còn lại hiển thị từng điểm đánh dấu riêng lẻ. Hãy chạm vào Điểm đánh dấu để chuyển sang thẻ đó và tìm điểm đánh dấu mà bạn đã tạo.",
+  "suggested": "Màn hình Điểm đánh dấu và lộ trình có hai thẻ. Một thẻ hiển thị các lộ trình, là danh sách các điểm đánh dấu. Thẻ còn lại hiển thị từng điểm đánh dấu riêng lẻ. Hãy chạm vào Điểm đánh dấu để chuyển sang thẻ đó và tìm điểm đánh dấu mà bạn đã tạo.",
+  "reason": "Names the button/screen «Điểm đánh dấu và lộ trình»; case differs from the label",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_beacon_title",
+  "source": "Choose an Audio Beacon",
+  "current": "Chọn Đèn hiệu Âm thanh",
+  "suggested": "Chọn đèn hiệu âm thanh",
+  "reason": "English title case carried over; Vietnamese uses sentence case and the term is «đèn hiệu âm thanh» everywhere else",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_what",
+  "source": "Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.",
+  "current": "Lộ trình là một chuỗi các điểm dừng. Bạn sẽ được thông báo khi đến mỗi điểm dừng, và Đèn hiệu Âm thanh sẽ tự động chuyển sang điểm dừng tiếp theo.",
+  "suggested": "Lộ trình là một chuỗi các điểm dừng. Bạn sẽ được thông báo khi đến mỗi điểm dừng, và đèn hiệu âm thanh sẽ tự động chuyển sang điểm dừng tiếp theo.",
+  "reason": "English title case carried over into running text",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_callouts_example_3",
+  "source": "Main Street goes left",
+  "current": "Main Street nằm bên trái",
+  "suggested": "Đường Lê Lợi nằm bên trái",
+  "reason": "Example street left as English «Main Street», which a Vietnamese TTS voice will mangle; the note allows a local generic street name",
+  "category": "tone"
+ },
+ {
+  "context": "first_launch_callouts_example_4",
+  "source": "Main Street goes right",
+  "current": "Main Street nằm bên phải",
+  "suggested": "Đường Lê Lợi nằm bên phải",
+  "reason": "Same as first_launch_callouts_example_3",
+  "category": "tone"
+ },
+ {
+  "context": "osm_path",
+  "source": "Path",
+  "current": "Đường mòn",
+  "suggested": "Lối đi",
+  "reason": "«Đường mòn» is a trail/dirt track; OSM path is mostly urban footpaths, and it is the %1$s of confected names («Đường mòn đến …»). callouts_verbosity_description already says «lối đi»",
+  "category": "tone"
+ },
+ {
+  "context": "search_synonyms_taxi",
+  "source": "taxi, taxi rank, taxi stand",
+  "current": "taxi, tắc xi, điểm đón taxi, xe ôm",
+  "suggested": "taxi, tắc xi, điểm đón taxi",
+  "reason": "«xe ôm» (motorbike taxi) does not use taxi stands, so searching it returns taxi ranks",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_pottery",
+  "source": "Pottery Studio",
+  "current": "Xưởng Gốm",
+  "suggested": "Xưởng gốm",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_key_cutter",
+  "source": "Key Cutter",
+  "current": "Dịch Vụ Cắt Chìa Khóa",
+  "suggested": "Dịch vụ cắt chìa khóa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_clockmaker",
+  "source": "Clockmaker",
+  "current": "Thợ Sửa Đồng Hồ",
+  "suggested": "Thợ sửa đồng hồ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_carpenter",
+  "source": "Carpenter",
+  "current": "Thợ Mộc",
+  "suggested": "Thợ mộc",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_builder",
+  "source": "Builder",
+  "current": "Nhà Thầu Xây Dựng",
+  "suggested": "Nhà thầu xây dựng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_bookbinder",
+  "source": "Bookbinder",
+  "current": "Thợ Đóng Sách",
+  "suggested": "Thợ đóng sách",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_boatbuilder",
+  "source": "Boat Builder",
+  "current": "Thợ Đóng Thuyền",
+  "suggested": "Thợ đóng thuyền",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_brewery",
+  "source": "Brewery",
+  "current": "Nhà Máy Bia",
+  "suggested": "Nhà máy bia",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_blacksmith",
+  "source": "Blacksmith",
+  "current": "Thợ Rèn",
+  "suggested": "Thợ rèn",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_basket_maker",
+  "source": "Basket Maker",
+  "current": "Thợ Đan Giỏ",
+  "suggested": "Thợ đan giỏ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_greenhouse",
+  "source": "Greenhouse",
+  "current": "Nhà Kính",
+  "suggested": "Nhà kính",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_civic",
+  "source": "Civic Building",
+  "current": "Công Trình Công Cộng",
+  "suggested": "Công trình công cộng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_bungalow",
+  "source": "Bungalow",
+  "current": "Nhà Trệt",
+  "suggested": "Nhà trệt",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_detached",
+  "source": "Detached House",
+  "current": "Nhà Riêng Biệt",
+  "suggested": "Nhà riêng biệt",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_hair_dresser",
+  "source": "Hair Dresser",
+  "current": "Tiệm Làm Tóc",
+  "suggested": "Tiệm làm tóc",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_clothing_store",
+  "source": "Clothing Shop",
+  "current": "Cửa Hàng Quần Áo",
+  "suggested": "Cửa hàng quần áo",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_user",
+  "source": "User",
+  "current": "Người Dùng",
+  "suggested": "Người dùng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_dojo",
+  "source": "Dojo",
+  "current": "Võ Đường",
+  "suggested": "Võ đường",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_nightclub",
+  "source": "Nightclub",
+  "current": "Hộp Đêm",
+  "suggested": "Hộp đêm",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_community_centre",
+  "source": "Community Centre",
+  "current": "Trung Tâm Cộng Đồng",
+  "suggested": "Trung tâm cộng đồng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_brothel",
+  "source": "Brothel",
+  "current": "Nhà Chứa",
+  "suggested": "Nhà chứa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_veterinary",
+  "source": "Veterinary Clinic",
+  "current": "Phòng Khám Thú Y",
+  "suggested": "Phòng khám thú y",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_social_facility",
+  "source": "Social Facility",
+  "current": "Cơ Sở Phúc Lợi Xã Hội",
+  "suggested": "Cơ sở phúc lợi xã hội",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_clinic",
+  "source": "Clinic",
+  "current": "Phòng Khám",
+  "suggested": "Phòng khám",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_charging_station",
+  "source": "Charging Station",
+  "current": "Trạm Sạc Điện",
+  "suggested": "Trạm sạc điện",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_kindergarten",
+  "source": "Kindergarten",
+  "current": "Trường Mầm Non",
+  "suggested": "Trường mầm non",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_ice_cream",
+  "source": "Ice Cream Shop",
+  "current": "Tiệm Kem",
+  "suggested": "Tiệm kem",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_fast_food",
+  "source": "Fast Food Restaurant",
+  "current": "Nhà Hàng Thức Ăn Nhanh",
+  "suggested": "Nhà hàng thức ăn nhanh",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_commercial",
+  "source": "Commercial Building",
+  "current": "Tòa Nhà Thương Mại",
+  "suggested": "Tòa nhà thương mại",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_canoe",
+  "source": "Canoeing",
+  "current": "Chèo Xuồng",
+  "suggested": "Chèo xuồng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_scuba_diving",
+  "source": "Scuba Diving",
+  "current": "Lặn Có Bình Khí",
+  "suggested": "Lặn có bình khí",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_fishing",
+  "source": "Fishing",
+  "current": "Câu Cá",
+  "suggested": "Câu cá",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_optician",
+  "source": "Optician",
+  "current": "Cửa Hàng Kính Mắt",
+  "suggested": "Cửa hàng kính mắt",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_confectionery",
+  "source": "Confectionery Shop",
+  "current": "Cửa Hàng Bánh Kẹo",
+  "suggested": "Cửa hàng bánh kẹo",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_bunker",
+  "source": "Bunker",
+  "current": "Hầm Trú Ẩn",
+  "suggested": "Hầm trú ẩn",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_sleeping_pods",
+  "source": "Sleeping Pods",
+  "current": "Khoang Ngủ",
+  "suggested": "Khoang ngủ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_motel",
+  "source": "Motel",
+  "current": "Nhà Nghỉ",
+  "suggested": "Nhà nghỉ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_guest_house",
+  "source": "Guest House",
+  "current": "Nhà Khách",
+  "suggested": "Nhà khách",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_wrestling",
+  "source": "Wrestling",
+  "current": "Đấu Vật",
+  "suggested": "Đấu vật",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_toboggan",
+  "source": "Toboggan",
+  "current": "Trượt Máng",
+  "suggested": "Trượt máng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_skiing",
+  "source": "Skiing",
+  "current": "Trượt Tuyết",
+  "suggested": "Trượt tuyết",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_paddle_tennis",
+  "source": "Paddle Tennis",
+  "current": "Quần Vợt Paddle",
+  "suggested": "Quần vợt Paddle",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_hockey",
+  "source": "Hockey",
+  "current": "Khúc Côn Cầu",
+  "suggested": "Khúc côn cầu",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_fencing",
+  "source": "Fencing",
+  "current": "Đấu Kiếm",
+  "suggested": "Đấu kiếm",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_bowls",
+  "source": "Bowls",
+  "current": "Bóng Bowls Trên Cỏ",
+  "suggested": "Bóng Bowls trên cỏ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_badminton",
+  "source": "Badminton",
+  "current": "Cầu Lông",
+  "suggested": "Cầu lông",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_archery",
+  "source": "Archery",
+  "current": "Bắn Cung",
+  "suggested": "Bắn cung",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_american_football",
+  "source": "American Football",
+  "current": "Bóng Bầu Dục Mỹ",
+  "suggested": "Bóng bầu dục Mỹ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_travel_agency",
+  "source": "Travel Agency",
+  "current": "Đại Lý Du Lịch",
+  "suggested": "Đại lý du lịch",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_tobacco",
+  "source": "Tobacco Shop",
+  "current": "Cửa Hàng Thuốc Lá",
+  "suggested": "Cửa hàng thuốc lá",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_e_cigarette",
+  "source": "E-Cigarette Shop",
+  "current": "Cửa Hàng Thuốc Lá Điện Tử",
+  "suggested": "Cửa hàng thuốc lá điện tử",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_video",
+  "source": "Video Shop",
+  "current": "Cửa Hàng Băng Đĩa",
+  "suggested": "Cửa hàng băng đĩa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_car_repair",
+  "source": "Car Repair",
+  "current": "Sửa Chữa Ô Tô",
+  "suggested": "Sửa chữa ô tô",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_lamps",
+  "source": "Lamp Shop",
+  "current": "Cửa Hàng Đèn",
+  "suggested": "Cửa hàng đèn",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_kitchen",
+  "source": "Kitchen Shop",
+  "current": "Cửa Hàng Nội Thất Bếp",
+  "suggested": "Cửa hàng nội thất bếp",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_interior_decoration",
+  "source": "Interior Decoration Shop",
+  "current": "Cửa Hàng Trang Trí Nội Thất",
+  "suggested": "Cửa hàng trang trí nội thất",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_houseware",
+  "source": "Houseware Shop",
+  "current": "Cửa Hàng Đồ Gia Dụng",
+  "suggested": "Cửa hàng đồ gia dụng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_erotic",
+  "source": "Erotic Shop",
+  "current": "Cửa Hàng Đồ Người Lớn",
+  "suggested": "Cửa hàng đồ người lớn",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_beauty",
+  "source": "Beauty Shop",
+  "current": "Tiệm Làm Đẹp",
+  "suggested": "Tiệm làm đẹp",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_wine",
+  "source": "Wine Shop",
+  "current": "Cửa Hàng Rượu Vang",
+  "suggested": "Cửa hàng rượu vang",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_dairy",
+  "source": "Dairy Shop",
+  "current": "Cửa Hàng Sữa",
+  "suggested": "Cửa hàng sữa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_cheese",
+  "source": "Cheese Shop",
+  "current": "Cửa Hàng Phô Mai",
+  "suggested": "Cửa hàng phô mai",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_bakery",
+  "source": "Bakery Shop",
+  "current": "Tiệm Bánh",
+  "suggested": "Tiệm bánh",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_telecommunication",
+  "source": "Telecommunication Shop",
+  "current": "Cửa Hàng Viễn Thông",
+  "suggested": "Cửa hàng viễn thông",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_tax",
+  "source": "Tax Office",
+  "current": "Văn Phòng Thuế",
+  "suggested": "Văn phòng thuế",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_real_estate_agent",
+  "source": "Real Estate Agent",
+  "current": "Đại Lý Bất Động Sản",
+  "suggested": "Đại lý bất động sản",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_notary",
+  "source": "Notary",
+  "current": "Văn Phòng Công Chứng",
+  "suggested": "Văn phòng công chứng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_ngo",
+  "source": "NGO Office",
+  "current": "Văn Phòng Tổ Chức Phi Chính Phủ",
+  "suggested": "Văn phòng tổ chức phi chính phủ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_lawyer",
+  "source": "Lawyer",
+  "current": "Văn Phòng Luật Sư",
+  "suggested": "Văn phòng luật sư",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_it",
+  "source": "IT Services",
+  "current": "Dịch Vụ Công Nghệ Thông Tin",
+  "suggested": "Dịch vụ công nghệ thông tin",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_employment_agency",
+  "source": "Employment Agency",
+  "current": "Trung Tâm Giới Thiệu Việc Làm",
+  "suggested": "Trung tâm giới thiệu việc làm",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_educational_institution",
+  "source": "Educational Institution",
+  "current": "Cơ Sở Giáo Dục",
+  "suggested": "Cơ sở giáo dục",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_adoption_agency",
+  "source": "Adoption Agency",
+  "current": "Trung Tâm Nhận Con Nuôi",
+  "suggested": "Trung tâm nhận con nuôi",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_miniature_golf",
+  "source": "Miniature Golf",
+  "current": "Golf Mini",
+  "suggested": "Golf mini",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_building",
+  "source": "Building",
+  "current": "Tòa Nhà",
+  "suggested": "Tòa nhà",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_winery",
+  "source": "Winery",
+  "current": "Nhà Máy Rượu Vang",
+  "suggested": "Nhà máy rượu vang",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_tiler",
+  "source": "Tiler",
+  "current": "Thợ Lát Gạch",
+  "suggested": "Thợ lát gạch",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_chimney_sweeper",
+  "source": "Chimney Sweeper",
+  "current": "Thợ Quét Ống Khói",
+  "suggested": "Thợ quét ống khói",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_stand_builder",
+  "source": "Stand Builder",
+  "current": "Nhà Thầu Dựng Gian Hàng Triển Lãm",
+  "suggested": "Nhà thầu dựng gian hàng triển lãm",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_saddler",
+  "source": "Saddler",
+  "current": "Thợ Đóng Yên Ngựa",
+  "suggested": "Thợ đóng yên ngựa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_plumber",
+  "source": "Plumber",
+  "current": "Thợ Ống Nước",
+  "suggested": "Thợ ống nước",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_plasterer",
+  "source": "Plasterer",
+  "current": "Thợ Trát Vữa",
+  "suggested": "Thợ trát vữa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_painter",
+  "source": "Painter",
+  "current": "Thợ Sơn",
+  "suggested": "Thợ sơn",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_jeweller",
+  "source": "Jewellery Shop",
+  "current": "Cửa Hàng Trang Sức",
+  "suggested": "Cửa hàng trang sức",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_floorer",
+  "source": "Floorer",
+  "current": "Thợ Lát Sàn",
+  "suggested": "Thợ lát sàn",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_distillery",
+  "source": "Distillery",
+  "current": "Nhà Máy Chưng Cất Rượu",
+  "suggested": "Nhà máy chưng cất rượu",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_carpet_layer",
+  "source": "Carpet Layer",
+  "current": "Thợ Trải Thảm",
+  "suggested": "Thợ trải thảm",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_beekeeper",
+  "source": "Beekeeper",
+  "current": "Người Nuôi Ong",
+  "suggested": "Người nuôi ong",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_dormitory",
+  "source": "Dormitory",
+  "current": "Ký Túc Xá",
+  "suggested": "Ký túc xá",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_apartments",
+  "source": "Apartments",
+  "current": "Chung Cư",
+  "suggested": "Chung cư",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_internet_cafe",
+  "source": "Internet Cafe",
+  "current": "Quán Cà Phê Internet",
+  "suggested": "Quán cà phê Internet",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_shoe_shop",
+  "source": "Shoe Shop",
+  "current": "Cửa Hàng Giày",
+  "suggested": "Cửa hàng giày",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_generic_shop",
+  "source": "Shop",
+  "current": "Cửa Hàng",
+  "suggested": "Cửa hàng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_coffee_shop",
+  "source": "Coffee Shop",
+  "current": "Quán Cà Phê",
+  "suggested": "Quán cà phê",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_coworking_space",
+  "source": "Coworking Space",
+  "current": "Không Gian Làm Việc Chung",
+  "suggested": "Không gian làm việc chung",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_stripclub",
+  "source": "Strip Club",
+  "current": "Câu Lạc Bộ Thoát Y",
+  "suggested": "Câu lạc bộ thoát y",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_ev_charging",
+  "source": "EV Charging",
+  "current": "Trạm Sạc Xe Điện",
+  "suggested": "Trạm sạc xe điện",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_pub",
+  "source": "Pub",
+  "current": "Quán Rượu",
+  "suggested": "Quán rượu",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_obstacle_course",
+  "source": "Obstacle Course",
+  "current": "Đường Chướng Ngại Vật",
+  "suggested": "Đường chướng ngại vật",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_volleyball",
+  "source": "Volleyball",
+  "current": "Bóng Chuyền",
+  "suggested": "Bóng chuyền",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_tennis",
+  "source": "Tennis",
+  "current": "Quần Vợt",
+  "suggested": "Quần vợt",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_soccer",
+  "source": "Soccer",
+  "current": "Bóng Đá",
+  "suggested": "Bóng đá",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_shooting",
+  "source": "Shooting",
+  "current": "Bắn Súng",
+  "suggested": "Bắn súng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_rugby_union",
+  "source": "Rugby Union",
+  "current": "Bóng Bầu Dục Rugby",
+  "suggested": "Bóng bầu dục Rugby",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_orienteering",
+  "source": "Orienteering",
+  "current": "Môn Định Hướng",
+  "suggested": "Môn định hướng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_motor",
+  "source": "Motor Shop",
+  "current": "Cửa Hàng Phương Tiện Cơ Giới",
+  "suggested": "Cửa hàng phương tiện cơ giới",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_kitesurfing",
+  "source": "Kitesurfing",
+  "current": "Lướt Ván Diều",
+  "suggested": "Lướt ván diều",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_karting",
+  "source": "Karting",
+  "current": "Đua Xe Kart",
+  "suggested": "Đua xe kart",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_horseshoes",
+  "source": "Horseshoes",
+  "current": "Ném Móng Ngựa",
+  "suggested": "Ném móng ngựa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_handball",
+  "source": "Handball",
+  "current": "Bóng Ném",
+  "suggested": "Bóng ném",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_gaelic_games",
+  "source": "Gaelic Games",
+  "current": "Môn Thể Thao Gaelic",
+  "suggested": "Môn thể thao Gaelic",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_darts",
+  "source": "Darts",
+  "current": "Phi Tiêu",
+  "suggested": "Phi tiêu",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_climbing_adventure",
+  "source": "Climbing Adventure",
+  "current": "Leo Núi Mạo Hiểm",
+  "suggested": "Leo núi mạo hiểm",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_basketball",
+  "source": "Basketball",
+  "current": "Bóng Rổ",
+  "suggested": "Bóng rổ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_australian_football",
+  "source": "Australian Football",
+  "current": "Bóng Bầu Dục Úc",
+  "suggested": "Bóng bầu dục Úc",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_9pin",
+  "source": "9-Pin",
+  "current": "Bowling 9 Chốt",
+  "suggested": "Bowling 9 chốt",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_lottery",
+  "source": "Lottery Shop",
+  "current": "Đại Lý Vé Số",
+  "suggested": "Đại lý vé số",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_trophy",
+  "source": "Trophy Shop",
+  "current": "Cửa Hàng Cúp Và Huy Chương",
+  "suggested": "Cửa hàng cúp và huy chương",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_music",
+  "source": "Music Shop",
+  "current": "Cửa Hàng Nhạc Cụ",
+  "suggested": "Cửa hàng nhạc cụ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_games",
+  "source": "Games Shop",
+  "current": "Cửa Hàng Trò Chơi",
+  "suggested": "Cửa hàng trò chơi",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_tyres",
+  "source": "Tyre Shop",
+  "current": "Cửa Hàng Lốp Xe",
+  "suggested": "Cửa hàng lốp xe",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_sports",
+  "source": "Sports Shop",
+  "current": "Cửa Hàng Thể Thao",
+  "suggested": "Cửa hàng thể thao",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_outdoor",
+  "source": "Outdoor Shop",
+  "current": "Cửa Hàng Đồ Ngoài Trời",
+  "suggested": "Cửa hàng đồ ngoài trời",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_car",
+  "source": "Car Dealer",
+  "current": "Đại Lý Ô Tô",
+  "suggested": "Đại lý ô tô",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_electronics",
+  "source": "Electronics Shop",
+  "current": "Cửa Hàng Điện Tử",
+  "suggested": "Cửa hàng điện tử",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_computer",
+  "source": "Computer Shop",
+  "current": "Cửa Hàng Máy Tính",
+  "suggested": "Cửa hàng máy tính",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_furniture",
+  "source": "Furniture Shop",
+  "current": "Cửa Hàng Nội Thất",
+  "suggested": "Cửa hàng nội thất",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_candles",
+  "source": "Candle Shop",
+  "current": "Cửa Hàng Nến",
+  "suggested": "Cửa hàng nến",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_hardware",
+  "source": "Hardware Shop",
+  "current": "Cửa Hàng Ngũ Kim",
+  "suggested": "Cửa hàng ngũ kim",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_gas",
+  "source": "Gas Station",
+  "current": "Trạm Xăng",
+  "suggested": "Trạm xăng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_energy",
+  "source": "Energy Company",
+  "current": "Công Ty Năng Lượng",
+  "suggested": "Công ty năng lượng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_doityourself",
+  "source": "DIY Shop",
+  "current": "Cửa Hàng Đồ Sửa Chữa Nhà",
+  "suggested": "Cửa hàng đồ sửa chữa nhà",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_bathroom_furnishing",
+  "source": "Bathroom Shop",
+  "current": "Cửa Hàng Thiết Bị Phòng Tắm",
+  "suggested": "Cửa hàng thiết bị phòng tắm",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_medical_supply",
+  "source": "Medical Supply Shop",
+  "current": "Cửa Hàng Thiết Bị Y Tế",
+  "suggested": "Cửa hàng thiết bị y tế",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_variety_store",
+  "source": "Variety Store",
+  "current": "Cửa Hàng Tạp Hóa",
+  "suggested": "Cửa hàng tạp hóa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_second_hand",
+  "source": "Second Hand Shop",
+  "current": "Cửa Hàng Đồ Cũ",
+  "suggested": "Cửa hàng đồ cũ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_charity",
+  "source": "Charity Shop",
+  "current": "Cửa Hàng Từ Thiện",
+  "suggested": "Cửa hàng từ thiện",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_fashion",
+  "source": "Fashion Shop",
+  "current": "Cửa Hàng Thời Trang",
+  "suggested": "Cửa hàng thời trang",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_fabric",
+  "source": "Fabric Shop",
+  "current": "Cửa Hàng Vải",
+  "suggested": "Cửa hàng vải",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_clothes",
+  "source": "Clothing Shop",
+  "current": "Cửa Hàng Quần Áo",
+  "suggested": "Cửa hàng quần áo",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_butcher",
+  "source": "Butcher Shop",
+  "current": "Cửa Hàng Thịt",
+  "suggested": "Cửa hàng thịt",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_water_utility",
+  "source": "Water Utility",
+  "current": "Công Ty Cấp Nước",
+  "suggested": "Công ty cấp nước",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_realtor",
+  "source": "Real Estate Agent",
+  "current": "Đại Lý Bất Động Sản",
+  "suggested": "Đại lý bất động sản",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_company",
+  "source": "Company",
+  "current": "Công Ty",
+  "suggested": "Công ty",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_accountant",
+  "source": "Accountant",
+  "current": "Kế Toán Viên",
+  "suggested": "Kế toán viên",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_bunker_silo",
+  "source": "Bunker Silo",
+  "current": "Silo Chứa",
+  "suggested": "Silo chứa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_hackerspace",
+  "source": "Hackerspace",
+  "current": "Không Gian Công Nghệ Sáng Tạo",
+  "suggested": "Không gian công nghệ sáng tạo",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_lifeguard_base",
+  "source": "Lifeguard Base",
+  "current": "Trạm Cứu Hộ",
+  "suggested": "Trạm cứu hộ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_roofer",
+  "source": "Roofer",
+  "current": "Thợ Lợp Mái",
+  "suggested": "Thợ lợp mái",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_rigger",
+  "source": "Rigger",
+  "current": "Thợ Dựng Giàn",
+  "suggested": "Thợ dựng giàn",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_parquet_layer",
+  "source": "Parquet Layer",
+  "current": "Thợ Lát Sàn Gỗ",
+  "suggested": "Thợ lát sàn gỗ",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_gardener",
+  "source": "Gardener",
+  "current": "Thợ Làm Vườn",
+  "suggested": "Thợ làm vườn",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_stable",
+  "source": "Stable",
+  "current": "Chuồng Ngựa",
+  "suggested": "Chuồng ngựa",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_garage",
+  "source": "Garage",
+  "current": "Ga-ra Ô Tô",
+  "suggested": "Ga-ra ô tô",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_transportation",
+  "source": "Transportation Facility",
+  "current": "Cơ Sở Giao Thông Vận Tải",
+  "suggested": "Cơ sở giao thông vận tải",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_house",
+  "source": "House",
+  "current": "Nhà Ở",
+  "suggested": "Nhà ở",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_helipad",
+  "source": "Helipad",
+  "current": "Bãi Đáp Trực Thăng",
+  "suggested": "Bãi đáp trực thăng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_consumer_electronics_store",
+  "source": "Electronics Shop",
+  "current": "Cửa Hàng Điện Tử",
+  "suggested": "Cửa hàng điện tử",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_speciality_store",
+  "source": "Specialty Shop",
+  "current": "Cửa Hàng Chuyên Doanh",
+  "suggested": "Cửa hàng chuyên doanh",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_defined",
+  "source": "Defined",
+  "current": "Đã Xác Định",
+  "suggested": "Đã xác định",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_sauna",
+  "source": "Sauna",
+  "current": "Phòng Xông Hơi",
+  "suggested": "Phòng xông hơi",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_gym",
+  "source": "Gym",
+  "current": "Phòng Tập Gym",
+  "suggested": "Phòng tập gym",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_crematorium",
+  "source": "Crematorium",
+  "current": "Nhà Hỏa Táng",
+  "suggested": "Nhà hỏa táng",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_gambling",
+  "source": "Gambling Venue",
+  "current": "Địa Điểm Cờ Bạc",
+  "suggested": "Địa điểm cờ bạc",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_music_school",
+  "source": "Music School",
+  "current": "Trường Âm Nhạc",
+  "suggested": "Trường âm nhạc",
+  "reason": "English Title Case copied into Vietnamese («Cửa Hàng Quần Áo»); the rest of the OSM names are sentence case («Cửa hàng quần áo»). Visual only",
+  "category": "formatting"
+ }
+]

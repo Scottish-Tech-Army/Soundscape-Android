@@ -5,19 +5,32 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.callouts.IntersectionDescription
+import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCalloutFromDescription
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
+import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
+import org.scottishtecharmy.soundscape.geoengine.utils.setbackAlong
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class IntersectionsTestMvt {
-    private fun setupTest(
+    /**
+     * The full description, for tests that care about more than which intersection was picked.
+     *
+     * mapMatchedLocation is passed alongside mapMatchedWay: without it everything downstream
+     * falls back to the raw GPS fix, so the snapped position, the sidewalk substitution and the
+     * network distances all go untested - which is the opposite of what these tile-backed tests
+     * are for.
+     */
+    private fun describe(
         currentLocation: LngLatAlt,
         deviceHeading: Double,
         fovDistance: Double
-    ): Intersection? {
+    ): IntersectionDescription {
 
         val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
         val mapMatchFilter = MapMatchFilter()
@@ -32,14 +45,209 @@ class IntersectionsTestMvt {
             location = currentLocation,
             phoneHeading = deviceHeading,
             fovDistance = fovDistance,
-            mapMatchedWay = mapMatchFilter.matchedWay
+            mapMatchedWay = mapMatchFilter.matchedWay,
+            mapMatchedLocation = mapMatchFilter.matchedLocation
         )
 
         return getRoadsDescriptionFromFov(
             gridState,
             userGeometry,
             null
-        ).intersection
+        )
+    }
+
+    private fun setupTest(
+        currentLocation: LngLatAlt,
+        deviceHeading: Double,
+        fovDistance: Double
+    ): Intersection? = describe(currentLocation, deviceHeading, fovDistance).intersection
+
+    /**
+     * As [describe], but walks in to [currentLocation] along [deviceHeading] first.
+     *
+     * MapMatchFilter scores candidate roads by how well a *track* follows them, so a single fix
+     * matches nothing at all and leaves mapMatchedWay/mapMatchedLocation null - which is why
+     * [describe] exercises the field-of-view fallback rather than the map-matched path. Anything
+     * asserting on a network distance needs a real match, so it needs an approach.
+     */
+    private fun describeWalkingIn(
+        currentLocation: LngLatAlt,
+        deviceHeading: Double,
+        fovDistance: Double,
+        approachMetres: Double = 30.0,
+        stepMetres: Double = 3.0,
+    ): IntersectionDescription {
+
+        val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+        val mapMatchFilter = MapMatchFilter()
+        val behind = (deviceHeading + 180.0) % 360.0
+        var offset = approachMetres
+        while (offset >= 0.0) {
+            mapMatchFilter.filter(
+                location = getDestinationCoordinate(currentLocation, behind, offset),
+                gridState = gridState,
+                collection = FeatureCollection(),
+                dump = false,
+                strings = null
+            )
+            offset -= stepMetres
+        }
+        val userGeometry = UserGeometry(
+            location = currentLocation,
+            phoneHeading = deviceHeading,
+            fovDistance = fovDistance,
+            mapMatchedWay = mapMatchFilter.matchedWay,
+            mapMatchedLocation = mapMatchFilter.matchedLocation
+        )
+        return getRoadsDescriptionFromFov(gridState, userGeometry, null)
+    }
+
+    /**
+     * The callout that would be spoken on walking in to [currentLocation], with the string keys
+     * left unresolved by FakeLocalizedStrings so that assertions can name them.
+     */
+    private fun calloutWalkingIn(
+        currentLocation: LngLatAlt,
+        deviceHeading: Double,
+        speakDistance: Boolean = true,
+    ): Pair<IntersectionDescription, TrackedCallout?> {
+
+        val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+        val mapMatchFilter = MapMatchFilter()
+        val behind = (deviceHeading + 180.0) % 360.0
+        var offset = 30.0
+        while (offset >= 0.0) {
+            mapMatchFilter.filter(
+                getDestinationCoordinate(currentLocation, behind, offset),
+                gridState, FeatureCollection(), false, null
+            )
+            offset -= 3.0
+        }
+        val userGeometry = UserGeometry(
+            location = currentLocation,
+            phoneHeading = deviceHeading,
+            fovDistance = 50.0,
+            mapMatchedWay = mapMatchFilter.matchedWay,
+            mapMatchedLocation = mapMatchFilter.matchedLocation
+        )
+        val strings = FakeLocalizedStrings()
+        val description = getRoadsDescriptionFromFov(gridState, userGeometry, strings)
+        return description to addIntersectionCalloutFromDescription(
+            description, strings, null, gridState, speakDistance
+        )
+    }
+
+    /**
+     * The whole point of the exercise: the callout says how far away the junction is, and the
+     * distance it says is to the kerb rather than to the node where the centre-lines meet.
+     */
+    @Test
+    fun intersectionCalloutSaysHowFarAway() {
+        val (description, callout) = calloutWalkingIn(
+            LngLatAlt(-2.637514213827643, 51.472589063821175), 225.0
+        )
+        Assert.assertNotNull(callout)
+
+        val spoken = callout!!.positionedStrings.first().text
+        Assert.assertTrue(
+            "expected a distance in \"$spoken\"",
+            spoken.startsWith("IntersectionApproachingIntersectionDistance(")
+        )
+
+        // The setback is subtracted, so what is spoken is shorter than the distance to the node.
+        val centreLine = description.centreLineDistance!!
+        val setback = description.intersection!!.setbackAlong(
+            description.nearestRoad!!,
+            getGridStateForLocation(
+                LngLatAlt(-2.637514213827643, 51.472589063821175), MAX_ZOOM_LEVEL, GRID_SIZE
+            ),
+            null
+        )
+        Assert.assertTrue("no setback was applied", setback > 0.0)
+        Assert.assertTrue("setback $setback exceeds the distance $centreLine", setback < centreLine)
+    }
+
+    /** With the setting off, the callout still announces the junction but says no distance. */
+    @Test
+    fun intersectionCalloutCanBeSilentAboutDistance() {
+        val (_, callout) = calloutWalkingIn(
+            LngLatAlt(-2.637514213827643, 51.472589063821175), 225.0, speakDistance = false
+        )
+        Assert.assertNotNull(callout)
+        Assert.assertEquals(
+            "IntersectionApproachingIntersection()",
+            callout!!.positionedStrings.first().text
+        )
+    }
+
+    /**
+     * Pavements aren't called out as ways leaving a junction. A footway is only found to be a
+     * pavement as its name is confected, so the first callout here - before anything had asked
+     * for that name - included "Pavement next to Long Down Avenue continues ahead", and every
+     * later one left it out.
+     */
+    @Test
+    fun intersectionCalloutLeavesOutPavementsFirstTime() {
+        val (_, callout) = calloutWalkingIn(
+            LngLatAlt(-2.5440826767238023, 51.49794221303514), 98.7
+        )
+        Assert.assertNotNull(callout)
+        Assert.assertEquals(
+            listOf(
+                "DirectionsNameGoesLeft(Long Down Avenue)",
+                "DirectionsNameGoesRight(Long Down Avenue)"
+            ),
+            callout!!.positionedStrings.drop(1).map { it.text }
+        )
+    }
+
+    /**
+     * The network distance to the intersection, which is what a spoken "intersection in N metres"
+     * is built from. On a straight approach it should agree closely with the straight-line
+     * distance; the point of measuring it along the graph is the cases where it doesn't.
+     */
+    @Test
+    fun networkDistanceToIntersectionIsMeasured() {
+        for ((location, heading) in listOf(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575) to 90.0,
+            LngLatAlt(-2.656109007812404, 51.43079699441145) to 250.0,
+            LngLatAlt(-2.656530323429564, 51.43065207103919) to 50.0,
+            LngLatAlt(-2.637514213827643, 51.472589063821175) to 225.0,
+        )) {
+            val description = describeWalkingIn(location, heading, 50.0)
+            val intersection = description.intersection
+            Assert.assertNotNull("no intersection found at $location", intersection)
+
+            val distance = description.centreLineDistance
+            Assert.assertNotNull("no network distance at $location", distance)
+
+            val straight = description.userGeometry.ruler.distance(
+                intersection!!.location,
+                description.userGeometry.mapMatchedLocation?.point
+                    ?: description.userGeometry.location
+            )
+            Assert.assertEquals(
+                "network distance disagrees with straight line at $location",
+                straight,
+                distance!!,
+                1.0
+            )
+            // Sanity: within the field of view we searched, and not at our feet.
+            Assert.assertTrue("implausible distance $distance at $location", distance in 1.0..50.0)
+        }
+    }
+
+    /**
+     * Without a map match there is no position to measure from, so the distance is absent rather
+     * than guessed - callers fall back to the wordless callout.
+     */
+    @Test
+    fun networkDistanceIsAbsentWithoutAMapMatch() {
+        val description = describe(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575), 90.0, 50.0
+        )
+        Assert.assertNull(description.userGeometry.mapMatchedLocation)
+        Assert.assertNull(description.centreLineDistance)
     }
 
     @Test

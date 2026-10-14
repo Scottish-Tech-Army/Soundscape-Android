@@ -8,6 +8,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import okio.Path.Companion.toPath
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
@@ -245,7 +246,7 @@ class SearchTest {
         gridState.validateContext = false
         gridState.startWithContext(ApplicationProvider.getApplicationContext(), offlineExtractPath)
         runBlocking {
-            gridState.locationUpdate(location, emptySet(), ComposeLocalizedStrings())
+            gridState.locationUpdate(location, CalloutPoiSelection.EVERYTHING, ComposeLocalizedStrings())
         }
 
         val nearbyWays = gridState.getFeatureTree(TreeId.WAYS_SELECTION)

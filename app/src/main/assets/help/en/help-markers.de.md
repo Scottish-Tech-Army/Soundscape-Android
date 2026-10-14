@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Markierungen
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 80
 lang: de
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Markierungen
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Eine Markierung ist ein Ort, den Sie gespeichert haben. Das kann jeder Ort sein, der Ihnen wichtig ist: Ihr Zuhause, eine Bushaltestelle, ein Gebäudeeingang oder ein Übergang.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape sagt Ihre Markierungen an, wenn Sie an ihnen vorbeikommen. Sie können ein Audiobeacon auf eine Markierung setzen, sie zu einer Route hinzufügen oder die nächstgelegenen mit der Schaltfläche *Markierungen in der Nähe* anhören.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Erstellen von Markierungen
+
+1. Wählen Sie auf dem Startbildschirm *Markierungen* und dann *Neu*.
+
+2. Wählen Sie *Aktueller Standort* oder einen Ort aus *Orte in der Nähe*.
+
+3. Ändern Sie den Namen, wenn Sie möchten, und fügen Sie Notizen hinzu. Soundscape liest die Notizen zusammen mit der Markierung vor.
+
+4. Wählen Sie *Fertig*.
+
+Sie können auch jeden Ort speichern, den Sie finden. Öffnen Sie seine *Standortdetails* und wählen Sie *Als Markierung speichern*.
+
+## Anpassen von Markierungen
+
+Wählen Sie die Markierung auf dem Bildschirm *Markierungen* aus und dann *Markierung bearbeiten*. Sie können Namen, Notizen und Position ändern oder *Markierung löschen* wählen. Wenn Sie eine Markierung löschen, wird sie auch aus Ihren Routen entfernt.
 

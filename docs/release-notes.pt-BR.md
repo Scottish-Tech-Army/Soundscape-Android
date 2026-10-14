@@ -10,7 +10,9 @@ machine-translated: true
 
 # Notas de versão
 
-O Soundscape 2.0 é uma versão importante e está atualmente em beta fechado. A principal mudança é
+O Soundscape 2.0 é uma versão importante e agora está em beta aberto no Android.
+Isso significa que qualquer pessoa pode acessar a versão beta simplesmente indo à Play Store [aqui](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+A principal mudança é
 que o Soundscape agora tem algo útil a dizer quando você viaja de carro, ônibus ou trem, e não
 apenas quando está a pé. Há também muito trabalho de menor porte sobre como os lugares são
 descritos, vinte novos idiomas e uma longa lista de correções.
@@ -24,14 +26,31 @@ As notas de versões anteriores estão na página
   deslocando em velocidade e descreve a viagem em vez do ambiente imediato.
 * **Aviso ao cruzar cursos d'água e ferrovias.** Rios, canais, enseadas e linhas ferroviárias são
   anunciados quando você os cruza, tanto a pé quanto em viagem.
+* **Escolha quanto o Soundscape fala.** O novo ajuste *Detalhe das Notificações* deixa o Soundscape
+  mais discreto em lugares movimentados, e *Locais a Anunciar* permite escolher sobre quais tipos de
+  lugar você quer ouvir. Você pode mudar o detalhe com os botões do fone de ouvido enquanto caminha.
+* **Saiba a que distância fica o próximo cruzamento.** Os cruzamentos são anunciados a uma distância
+  constante conforme você se aproxima, e a notificação agora diz a que distância fica o meio-fio.
+* **Pesquise um tipo de lugar, ou coordenadas.** Pesquise «farmácia» ou «ponto de ônibus» para
+  encontrar os mais próximos, qualquer que seja o nome, ou cole coordenadas, um link de mapa ou um
+  Plus Code.
+* **Botões separados para Favoritos e Rotas.** A tela *Favoritos e Rotas* e suas duas abas foram
+  divididas em uma tela *Favoritos* e uma tela *Rotas*, cada uma com seu próprio botão na tela
+  inicial. A tela Favoritos tem um botão *Novo* para salvar sua localização atual ou um local
+  próximo.
+* **Abra um lugar em outro aplicativo de mapas**, como o Google Maps, a partir dos detalhes da
+  localização ou das listas.
+* **Mais do sinalizador na tela inicial.** Agora ele mostra a distância e a direção, e tem ações do
+  leitor de tela para anunciar o sinalizador, saber mais sobre ele ou salvá-lo como favorito.
 * **Melhores endereços e nomes de lugares.** Lugares sem endereço próprio agora recebem a rua e a
   região em que estão, os números são associados ao lado correto da rua e os pontos de ônibus na
   Grã-Bretanha usam seus nomes oficiais.
 * **Vinte novos idiomas**, totalizando 46. Este site de documentação também foi traduzido.
-* **Despertar ao sair.** O modo de repouso agora pode acordar o Soundscape quando você deixa o local
-  onde o colocou para dormir.
+* **Despertar quando eu sair.** Quando você coloca o Soundscape em Suspensão, o novo botão
+  *Despertar quando eu sair* o coloca no modo Soneca, e ele desperta sozinho quando você sai do
+  local.
 * **Distâncias mais curtas e naturais**, com unidades maiores quando você se desloca rapidamente.
-* **Uma saída mais rápida.** *Sair do Soundscape* agora fica no topo do menu principal.
+* **Uma saída mais rápida.** *Fechar o Soundscape* agora fica no topo do menu principal.
 * **Melhorias nos mapas off-line**, incluindo a atualização de um mapa já baixado e um mapa das
   regiões disponíveis neste site.
 * **Muito trabalho de acessibilidade** com o TalkBack, especialmente nas telas iniciais.
@@ -59,10 +78,10 @@ Durante a viagem você vai ouvir:
 
 * **Onde você está**, de tempos em tempos: a rodovia em que está e a direção em que segue, por
   exemplo «Seguindo para o norte pela M8». Rodovias com número são anunciadas pelo número, e o
-  Soundscape não repete a mesma rodovia toda vez que o nome da rua muda.
+  Soundscape não repete a mesma rodovia toda vez que o nome da rua muda. Uma via só é anunciada depois que você percorre um trecho curto nela, para que uma sequência de curvas por um bairro residencial não gere uma notificação a cada esquina.
 * **Cidades e vilarejos** para os quais você está indo, com a distância, além daqueles dos quais
   você se afasta ou pelos quais simplesmente passa.
-* **Entroncamentos e saídas de rodovia** ao alcançá-los.
+* **Entroncamentos e saídas de rodovia** ao alcançá-los. Apenas os da pista em que você está — não os de uma via próxima nem os do outro sentido da rodovia.
 * **Grandes pontos de referência** ao passar por eles, como parques, hospitais, estádios e shopping
   centers.
 * **Pontos de ônibus, de bonde e estações de trem** ao passar por eles. O Soundscape menciona apenas
@@ -80,11 +99,98 @@ Os avisos comuns para quem caminha — lojas próximas, travessias e assim por d
 propositalmente contidos durante a viagem, e as distâncias em que as coisas são anunciadas foram
 bastante ampliadas, para que você saiba delas antes de já ter passado.
 
+### Cruzamentos
+
+A pergunta mais frequente sobre as notificações de cruzamento era a que distância o cruzamento fica
+de verdade. Agora o Soundscape diz: «Cruzamento a 30 metros de distância». A distância é medida até
+o meio-fio da rua que você vai atravessar, e não até o centro do cruzamento, porque é ali que você
+realmente para.
+
+A notificação também chega em um ponto mais constante. Antes ela podia vir a 45 metros ou a 10
+metros, sem nada que diferenciasse os dois casos. Agora ela espera até o cruzamento estar a cerca de
+30 metros, para que a distância signifique mais ou menos a mesma coisa toda vez.
+
 ### Cruzar cursos d'água e ferrovias
 
 O Soundscape agora avisa quando você cruza um rio, um canal, uma enseada, uma baía ou uma linha
 ferroviária. Funciona tanto a pé quanto em viagem e abrange tanto passar por baixo quanto por cima,
 de modo que tanto uma passarela quanto uma passagem subterrânea são descritas.
+
+### Escolher quanto o Soundscape fala
+
+O que mais ouvimos sobre o Soundscape é que ele fala demais em lugares movimentados, como o centro
+da cidade. A seção *Gerenciar Notificações* dos *Ajustes* agora tem três ajustes no lugar da antiga
+lista de chaves:
+
+* **Detalhe das Notificações** pode ser Silencioso, Essencial, Simplificado ou Detalhado. *Detalhado*
+  é o que o Soundscape sempre fez, e é o ponto de partida. *Simplificado* deixa de fora caminhos
+  secundários e vias de serviço e se repete menos. *Essencial* anuncia apenas ruas, cruzamentos e
+  pontos de referência. *Silencioso* não faz nenhuma notificação automática, enquanto sinalizadores,
+  rotas e os botões da tela inicial continuam funcionando. Ele substitui a antiga chave *Permitir
+  Notificações*: se ela estava desligada, você vai encontrar o Detalhe das Notificações em
+  Silencioso. Os níveis também valem quando você viaja: *Simplificado* anuncia a via em que você está com menos frequência, e *Essencial* nomeia apenas as rodovias principais e numeradas e omite os pontos de ônibus.
+* **Ruas e Cruzamentos** liga ou desliga as notificações de cruzamentos e da rua em que você está.
+* **Locais a Anunciar** é uma lista para marcar: Tudo, Pontos de Referência, Transporte Público,
+  Alimentos e Bebidas, Mercearias e Lojas de Conveniência, Bancos e Caixas Eletrônicos ou Nenhum
+  Local. Marque quantos quiser, por exemplo pontos de referência e pontos de ônibus. Seus favoritos
+  são sempre anunciados.
+
+O nível de detalhe certo muda enquanto você caminha, então não é preciso ir aos Ajustes para mudá-lo.
+Ao apertar *Anterior* no fone de ouvido, o Detalhe das Notificações desce um nível por vez, de
+Detalhado para Simplificado, Essencial e Silencioso, e depois volta para Detalhado. O novo nível é
+falado a cada vez. Isso funciona nos dois modos dos controles de mídia, e por isso os botões do fone
+mudaram um pouco:
+
+* No *Modo Original*, *Próximo* agora anuncia *Ao Meu Redor* quando nenhuma rota está em andamento,
+  e *Minha Localização* não fica mais nos botões. Durante uma rota, *Próximo* e *Anterior* continuam
+  passando de um localizador para outro.
+* No modo *Menu de Áudio*, *Anterior* não volta mais pelo menu. *Próximo* continua percorrendo o
+  menu e *Reproduzir/Pausar* continua selecionando. Os favoritos e as rotas do menu agora aparecem em
+  ordem alfabética, e depois que você inicia um, o menu volta para o começo em vez de deixar você no
+  meio da lista.
+
+### Pesquisa
+
+A barra de pesquisa agora entende mais do que nomes de lugares:
+
+* **Tipos de lugar.** Pesquise «farmácia», «banheiro», «caixa eletrônico» e assim por diante, no seu
+  idioma, e o Soundscape lista os lugares mais próximos desse tipo, qualquer que seja o nome. Lugares
+  sem nome, como a maioria dos banheiros e bancos de praça, aparecem pelo que são, com o endereço.
+* **Coordenadas, links de mapas e Plus Codes.** Cole um par de números, graus e minutos, um link do
+  Google Maps, do Apple Maps ou do OpenStreetMap, ou um Plus Code, e o Soundscape mostra aquele ponto
+  exato. Um par de números sozinho pode ser lido nos dois sentidos, então quando os dois fazem
+  sentido você recebe as duas opções, a mais próxima primeiro.
+* **Pesquisa offline.** A pesquisa agora sempre procura também nos mapas baixados, além da internet,
+  e assim encontra muito mais lugares sem nome. Se você pesquisar sem conexão com a internet e não
+  tiver um mapa offline de onde está, o Soundscape avisa em vez de simplesmente não encontrar nada.
+
+### Abrir um lugar em outro aplicativo
+
+Os detalhes da localização têm um botão novo, **Abrir em um aplicativo de mapa**, que lista os
+aplicativos de mapas e de navegação do seu celular. Marque *Sempre usar este aplicativo* e o botão
+passa a ser, por exemplo, *Abrir em Google Maps*, abrindo-o na hora; um toque longo traz a lista de
+volta. As listas *Locais Próximos* e *Favoritos* também têm as ações do leitor de tela *Abrir em…* e
+*Compartilhar*.
+
+### Favoritos e Rotas
+
+Favoritos e rotas compartilhavam uma única tela, *Favoritos e Rotas*, com uma aba para cada um, e
+era fácil perder a noção de em qual aba você estava. Agora são duas telas separadas, cada uma com
+seu próprio botão na tela inicial: *Favoritos* e *Rotas*, logo abaixo de *Locais Próximos*.
+
+Cada tela tem um botão *Novo* no canto superior direito. Na tela Rotas, ele cria uma rota, como
+antes. Na tela Favoritos, ele é novo: mostra *Localização Atual* e as categorias de *Locais
+Próximos*, para que você possa salvar um favorito sem voltar primeiro à tela inicial para encontrar
+o local. Os leitores de tela anunciam esses botões como *Novo Favorito* e *Nova Rota*.
+
+### O sinalizador e os favoritos
+
+* O sinalizador na tela inicial agora mostra a **distância e a direção**, e um leitor de tela o lê,
+  por exemplo, como «Sinalizador definido em Milngavie Library, 390 metros, sudeste». As rotas mostram
+  do mesmo jeito a distância até o localizador atual.
+* O sinalizador tem três **ações do leitor de tela**: *Anunciar Sinalizador* diz onde ele está,
+  *Mais Informações* acrescenta o endereço e *Adicionar a Favoritos* o salva.
+* Você pode de novo **mover um favorito** arrastando o mapa na tela *Editar Favorito*.
 
 ### Melhores endereços e nomes de lugares
 
@@ -114,13 +220,13 @@ traduzido suficiente para ser útil.
 
 As traduções são um trabalho da comunidade e agradecemos sua ajuda, ou suas correções quando algo
 soar mal. Qualquer texto pode ser melhorado em
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Modo de repouso
+### Modo Suspensão
 
-O modo de repouso ganhou o **despertar ao sair**. Ao colocar o Soundscape em repouso, você pode
-pedir que ele acorde assim que você deixar a área, o que é útil quando você chega a algum lugar e
-quer silêncio até sair novamente.
+O modo Suspensão tem um novo botão, ***Despertar quando eu sair***. Ao escolhê-lo, o Soundscape
+entra no modo Soneca: fica em silêncio até você deixar a área e depois desperta sozinho, o que é
+útil quando você chega a algum lugar e quer silêncio até sair novamente.
 
 ### Distâncias e voz
 
@@ -152,13 +258,13 @@ o verbo no fim, e dicas sensatas onde não havia nenhuma.
 
 ### Menus e navegação
 
-* **Sair do Soundscape** agora é o primeiro item do menu principal, em vez de ficar mais abaixo.
+* **Fechar o Soundscape** agora é o primeiro item do menu principal, em vez de ficar mais abaixo.
 * O menu principal não deixa mais aparecer uma faixa da tela em uma das laterais, que dava a quem
   usa leitor de tela uma área extra confusa para tocar.
 * O gesto de voltar do sistema não pula mais um nível quando você navega pelas categorias em Lugares
   próximos.
 * O *tutorial de áudio* passou a se chamar **tutorial guiado**.
-* As configurações foram organizadas, e *Restaurar padrões* agora limpa tudo corretamente.
+* As configurações foram organizadas, e *Redefinir Ajustes Padrão* agora limpa tudo corretamente.
 
 ### Estabilidade
 
@@ -175,6 +281,8 @@ aplicativos em segundo plano.
 * **O controle por voz** foi removido. Nunca funcionou de forma confiável o bastante para valer a
   pena mantê-lo, e os botões de mídia dos fones cobrem boa parte da mesma necessidade — veja
   [Ajuda sobre o uso dos controles de mídia]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  O Soundscape também está pronto para comandos de voz com o Gemini no Android 16 ou mais recente,
+  mas eles só vão funcionar quando o Google liberar esse suporte no Gemini.
 * **O menu de idioma dentro do aplicativo** foi retirado. O Soundscape agora segue o idioma
   configurado no celular, que é o que a maioria das pessoas esperava. Para mudá-lo, troque o idioma
   do celular ou defina um idioma por aplicativo nas configurações, se houver essa opção.

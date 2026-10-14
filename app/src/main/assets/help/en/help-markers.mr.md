@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: मार्कर
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
+nav_order: 80
 lang: mr
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# मार्कर
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+मार्कर म्हणजे तुम्ही जतन केलेले ठिकाण. ते तुमच्यासाठी महत्त्वाचे असलेले कोणतेही ठिकाण असू शकते: तुमचे घर, बस थांबा, इमारतीचे प्रवेशद्वार किंवा रस्ता ओलांडण्याची जागा.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+तुम्ही तुमच्या मार्करजवळून जाता तेव्हा Soundscape ते सांगते. तुम्ही मार्करवर ऑडिओ बीकन सेट करू शकता, तो मार्गात जोडू शकता, किंवा *जवळचे मार्कर* बटणाने सर्वात जवळचे मार्कर ऐकू शकता.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## मार्कर तयार करणे
+
+1. मुख्य स्क्रीनवर *मार्कर* निवडा, नंतर *नवीन* निवडा.
+
+2. *सध्याचे स्थान* निवडा, किंवा *जवळपासची ठिकाणे* मधून एखादे ठिकाण निवडा.
+
+3. हवे असल्यास नाव बदला आणि नोंदी जोडा. Soundscape मार्करसोबत नोंदी वाचून दाखवते.
+
+4. *पूर्ण झाले* निवडा.
+
+तुम्हाला सापडलेले कोणतेही ठिकाणही तुम्ही जतन करू शकता. त्याचे *स्थान तपशील* उघडा आणि *मार्कर म्हणून जतन करा* निवडा.
+
+## मार्कर सानुकूलित करणे
+
+*मार्कर* स्क्रीनवर मार्कर निवडा, नंतर *मार्कर संपादित करा* निवडा. तुम्ही त्याचे नाव, नोंदी आणि स्थान बदलू शकता, किंवा *मार्कर हटवा* निवडू शकता. मार्कर हटवल्यावर तो तुमच्या मार्गांमधूनही काढला जातो.
 

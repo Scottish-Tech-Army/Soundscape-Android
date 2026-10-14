@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Zapisane trasy
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 90
 lang: pl
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Zapisane trasy
 
-## What is it?
+Trasa to lista lokalizacji, nazywanych punktami trasy, które odwiedzasz po kolei. Soundscape włącza naprowadzanie na pierwszy punkt trasy. Gdy tam dotrzesz, mówi ci o tym i przenosi naprowadzanie do następnego punktu.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Korzystaj z trasy, aby nauczyć się nowej drogi albo nie zboczyć z drogi, którą już znasz.
 
-## When would I use it?
+## Tworzenie trasy
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Wybierz *Zapisane trasy* na ekranie głównym, a potem wybierz *Nowy*.
 
-## How does it work?
+2. Nadaj trasie nazwę. Możesz dodać opis.
 
-**Creating a route :**
+3. Wybierz *Dodaj punkty trasy* i wybierz znaczniki. Możesz też dodać swoją bieżącą lokalizację albo miejsce w pobliżu.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Wybierz *Gotowe*.
 
-**Editing a route :**
+## Przechodzenie trasy
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Wybierz trasę na ekranie *Zapisane trasy*, a potem wybierz *Rozpocznij trasę*. Aby przejść ją w drugą stronę, wybierz *Rozpocznij trasę w odwrotnej kolejności*. Na ekranie głównym *Następny punkt trasy* i *Poprzedni punkt trasy* przenoszą naprowadzanie wzdłuż trasy. *Zatrzymaj trasę* ją kończy.
 
-**Sharing a route :**
+## Zmienianie trasy
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Wybierz trasę na ekranie *Zapisane trasy*, a potem wybierz *Edytuj trasę*. Możesz dodawać i usuwać punkty trasy oraz zmieniać ich kolejność, zmienić nazwę i opis albo usunąć trasę.
+
+## Udostępnianie trasy
+
+Wybierz trasę na ekranie *Zapisane trasy*, a potem wybierz *Udostępnij*.
 

@@ -62,7 +62,10 @@ class CalloutController(
             println("CalloutController: speakCallout: Could not get audio focus.")
             return 0L
         }
-        return speakCalloutCommon(callout, addModeEarcon, audioEngine, lastGeometry, ruler)
+        return speakCalloutCommon(
+            callout, addModeEarcon, audioEngine, lastGeometry, ruler,
+            relativeDirectionMode = geoEngine.relativeDirectionMode(),
+        )
     }
 
     private suspend fun awaitHandle(handle: Long) {
@@ -183,6 +186,39 @@ class CalloutController(
             ensureActive()
             val lastHandle = speakCallout(results, true)
             awaitHandle(lastHandle)
+        }
+    }
+
+    /**
+     * Says how far away the beacon is, for the beacon card's "Call out Beacon" action.
+     *
+     * Not one of the four buttons, so it has no [TourButton] and no pulse animation - and
+     * asking twice means "say it again", not "be quiet", so it cancels any in-flight callout
+     * up front rather than toggling off like [startCallout] does.
+     */
+    fun calloutBeacon() = speakBeaconCallout("beacon callout") { geoEngine.calloutBeacon() }
+
+    /**
+     * Says the beacon's name, distance, direction and street address, for the beacon card's
+     * "More Info" action. Through TTS rather than the screen reader so it works the same when
+     * triggered without the screen, e.g. from media controls. Interrupts like [calloutBeacon].
+     */
+    fun beaconMoreInfo(beaconName: String?) =
+        speakBeaconCallout("beacon more info") { geoEngine.beaconMoreInfo(beaconName) }
+
+    private fun speakBeaconCallout(what: String, build: suspend () -> TrackedCallout?) {
+        cancel()
+        calloutJob = scope.launch {
+            audioEngine.clearTextToSpeechQueue()
+            try {
+                val results = withContext(Dispatchers.Default) { build() }
+                ensureActive()
+                awaitHandle(speakCallout(results, false))
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                println("CalloutController: $what failed: $e")
+            }
         }
     }
 }

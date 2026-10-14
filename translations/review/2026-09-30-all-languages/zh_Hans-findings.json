@@ -1,0 +1,186 @@
+[
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape 的功能和优势涵盖多种场景和时间跨度。Soundscape 对您的价值可能会随时间变化，因此您今天的使用方式可能与三个月后有所不同。人们常常以*这个应用能解决什么问题？*的角度来看待应用。Soundscape 当然可以用于特定需求——例如在前往目的地途中追踪目的地位置、从地铁站出来时帮助您辨别方向、下车后确定方位，或者查找下一个路口的街道名称和距离。然而，Soundscape 背后的理念是*用声音照亮您的世界*——它的设计初衷是在您外出时随时使用，提供对周围环境的感知：您所在街道的名称、您的行进方向，以及您经过的商家名称。在这种使用模式下，我们的用户将 Soundscape 称为*不错的伴侣应用*，它支持*偶然发现*，能*填补心理地图中的空白*，并在*步行时带来更多信心*。以下是我们的用户将 Soundscape 融入生活的一些其他例子：\\n\\nSoundscape帮助我在下错公交车后重新找到了方向。\\n\\n即使在我已经住了3年的城镇，使用Soundscape后，我对周围环境有了更好的了解。\\n\\n3D声音增强了我的步行体验，因为我感觉与环境的联系更加紧密……有了这个应用，我更愿意尝试新路线了。\\n\\n我怀念走在路上偶然发现事物的感觉。有了Soundscape真好——无需任何努力就能听到周围事物的信息。位置关系信息非常有用，是一款很棒的情境感知和探索商业区的应用。\\n\\n我用Soundscape在约克市中心找到一家酒吧。我使用了它的多种功能先定位再实际找到它。它把我带到了距离门口3米以内的地方——太棒了！",
+  "suggested": "Soundscape 的功能和优势涵盖多种场景和时间跨度。Soundscape 对您的价值可能会随时间变化，因此您今天的使用方式可能与三个月后有所不同。人们常常以*这个应用能解决什么问题？*的角度来看待应用。Soundscape 当然可以用于特定需求——例如在前往目的地途中追踪目的地位置、从地铁站出来时帮助您辨别方向、下车后确定方位，或者查找下一个路口的街道名称和距离。然而，Soundscape 背后的理念是*用声音照亮您的世界*——它的设计初衷是在您外出时随时使用，提供对周围环境的感知：您所在街道的名称、您的行进方向，以及您经过的商家名称。在这种使用模式下，我们的用户将 Soundscape 称为*不错的伴侣应用*，它支持*偶然发现*，能*填补心理地图中的空白*，并在*步行时带来更多信心*。以下是我们的用户将 Soundscape 融入生活的一些其他例子：\\n\\n“Soundscape 帮助我在下了公交车、走错方向之后重新找回了方向。”\\n\\n“即使在我已经住了 3 年的城镇，[借助 Soundscape] 我对周围环境也有了更清晰的了解。”\\n\\n“3D声音增强了我的步行体验，因为我感觉与环境的联系更加紧密……有了这个应用，我更愿意尝试新路线了。”\\n\\n“我怀念走在路上偶然发现事物的感觉。有了Soundscape真好——无需任何努力就能听到周围事物的信息。位置关系信息非常有用，是一款很棒的情境感知和探索商业区的应用。”\\n\\n“[我用 Soundscape] 在约克市中心找一家酒吧。[我]先用它的多种功能定位，然后真正找到了它。它把我带到了距离门口 3 米以内的地方——太棒了！”",
+  "reason": "First testimonial mistranslated: English is \"got off the bus and headed off in the wrong direction\", target says \"got off the wrong bus\" (下错公交车). Also the testimonials lost their quotation marks, so they read as the app's own claims; restored with typographic quotes (C: no ASCII quotes).",
+  "category": "meaning"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "这是 Soundscape 的一次重大更新。旅行模式已得到大幅改进。当您乘坐汽车或公交车出行时，Soundscape 现在会播报道路编号、您的行进方向以及附近的居民点。当您经过河流、运河、河口湾和海湾时，也会进行播报。请更新您的离线地图以获得这些新功能。对于英国用户，公交车站的描述现在好了很多。休眠模式现在会在检测到您再次移动时自动唤醒。您不再需要记得自己手动唤醒它。我们重组了底层代码，以便能够使用相同的代码构建 iOS 应用。这意味着未来我们可以发布一款拥有我们为 Android 开发的所有功能的 iOS 应用。请继续通过主菜单中的联系客服选项，向我们报告您遇到的任何问题，无论大小。",
+  "suggested": "\n这是 Soundscape 的一次重大更新。\n\n旅行模式已得到大幅改进。当您乘坐汽车或公交车出行时，Soundscape 现在会播报道路编号、您的行进方向以及附近的居民点。当您经过河流、运河、河口湾和海湾时，也会进行播报。请更新您的离线地图以获得这些新功能。对于英国用户，公交车站的描述现在好了很多。\n\n休眠模式现在会在检测到您再次移动时自动唤醒。您不再需要记得自己手动唤醒它。\n\n我们重组了底层代码，以便能够使用相同的代码构建 iOS 应用。这意味着未来我们可以发布一款拥有我们为 Android 开发的所有功能的 iOS 应用。\n\n请继续通过主菜单中的联系客服选项，向我们报告您遇到的任何问题，无论大小。\n",
+  "reason": "All paragraph breaks of the English were dropped, so the five paragraphs run together as one block (release notes are split on paragraph breaks). Text unchanged, breaks restored.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "媒体控制有 2 种操作模式。可以在*设置*的*媒体控制*部分选择模式。模式如下：\\n\\n *经典模式*。 \\n\\n⏯ 播放/暂停：切换音频信标的开/关。 \\n\\n⏭ 下一曲：如果正在播放路线，则将音频信标移到路线中的下一个航点；如果没有播放路线，则播报*周围*。\\n\\n⏮ 上一曲：如果正在播放路线，则将音频信标移到路线中的上一个航点；如果没有播放路线，则每按一次就把*提示详细程度*调低一级：*详细*、*简化*、*基本*、*静音*，然后回到*详细*。\\n\\n\\n\\n*音频菜单*。 \\n\\n\\n\\n⏭ 下一曲 在应用通过文字转语音朗读的菜单选项中依次移动，到最后一项后回到第一项。⏯ 播放/暂停 则触发应用执行当前所述的选项。菜单为单一顶层菜单，顶层菜单仅包含子菜单作为选项。每个子菜单将一组相似的可执行操作归为一类。\\n\\n⏮ 上一曲 不用于在菜单中移动。它改为调整*提示详细程度*，与原始模式中完全一样，因此无论使用哪种模式，同一个按钮都能让应用更安静。",
+  "suggested": "媒体控制有 2 种操作模式。可以在*设置*的*媒体控制*部分选择模式。模式如下：\\n\\n *经典模式*。 \\n\\n⏯ 播放/暂停：切换音频信标的开/关。 \\n\\n⏭ 下一曲：如果正在播放路线，则将音频信标移到路线中的下一个航点；如果没有播放路线，则播报*周围*。\\n\\n⏮ 上一曲：如果正在播放路线，则将音频信标移到路线中的上一个航点；如果没有播放路线，则每按一次就把*提示详细程度*调低一级：*详细*、*简化*、*基本*、*静音*，然后回到*详细*。\\n\\n\\n\\n*音频菜单*。 \\n\\n\\n\\n⏭ 下一曲 在应用通过文字转语音朗读的菜单选项中依次移动，到最后一项后回到第一项。⏯ 播放/暂停 则触发应用执行当前所述的选项。菜单为单一顶层菜单，顶层菜单仅包含子菜单作为选项。每个子菜单将一组相似的可执行操作归为一类。\\n\\n⏮ 上一曲 不用于在菜单中移动。它改为调整*提示详细程度*，与经典模式中完全一样，因此无论使用哪种模式，同一个按钮都能让应用更安静。",
+  "reason": "Last paragraph still says «原始模式» for Original mode; the setting label and the heading in this same string are «经典模式» (renamed in the 2026-09-29 review, this one was missed).",
+  "category": "terminology"
+ },
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%1$s到%2$s",
+  "suggested": "通往%2$s的%1$s",
+  "reason": "C10: «%1$s到%2$s» reads as a from–to range (\"from the path to Moor Road\"); %1$s is the kind of way, so use the relative clause \"the %1$s leading to %2$s\". Open question 5 in zh_Hans.md, so worth confirming with a reviewer.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_via",
+  "source": "%1$s to %2$s via %3$s",
+  "current": "%1$s 到 %2$s 经由 %3$s",
+  "suggested": "经由%3$s通往%2$s的%1$s",
+  "reason": "Same C10 from–to problem as confect_name_to, plus stray spaces around the placeholders; relative-clause form keeps it a description of the way.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_via",
+  "source": "%1$s via %2$s",
+  "current": "%1$s经由%2$s",
+  "suggested": "经由%2$s的%1$s",
+  "reason": "«%1$s经由%2$s» reads as a clause (\"Path goes via X\") rather than a way description; make it a noun phrase like the other confected names.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s连接%2$s和%3$s",
+  "suggested": "连接%2$s和%3$s的%1$s",
+  "reason": "«%1$s连接%2$s和%3$s» is a full sentence (\"the path connects A and B\") rather than the name-like description \"path that joins A and B\"; use a relative clause.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s到死胡同",
+  "suggested": "%1$s，尽头不通",
+  "reason": "«%1$s到死胡同» treats the dead end as a destination (\"path to dead-end alley\"). C21 allows describing the way itself as ending, which reads naturally in Chinese and works when %1$s is a road name.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%1$s 到 死胡同 经由 %2$s",
+  "suggested": "%1$s经由%2$s，尽头不通",
+  "reason": "Same as confect_name_to_dead_end, and the current text has stray spaces between every word («%1$s 到 死胡同 经由 %2$s»).",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_callouts_example_3",
+  "source": "Main Street goes left",
+  "current": "大街向左延伸",
+  "suggested": "大街向左延伸",
+  "reason": "Example callout uses «向左延伸», which the native speaker replaced in directions_name_goes_left with «，左转»; the onboarding example no longer matches what the app actually says. Resolve together with ZH-G1 (whatever wording is chosen for the directions strings should go here too).",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_callouts_example_4",
+  "source": "Main Street goes right",
+  "current": "大街向右延伸",
+  "suggested": "大街向右延伸",
+  "reason": "Same as first_launch_callouts_example_3: «向右延伸» here vs «，右转» in directions_name_goes_right. Settle with ZH-G1.",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_name_is_currently",
+  "source": "%1$s is currently %2$s.",
+  "current": "%1$s：当前%2$s。",
+  "suggested": "%1$s当前距离%2$s。",
+  "reason": "«%1$s：当前%2$s。» drops the verb: with %2$s = \"700米，西北\" it reads \"Starbucks: currently 700 m, northwest\". «当前距离» says what the figure is, matching callouts_audio_beacon_distance.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_name_is_currently_street_address",
+  "source": "%1$s is currently %2$s. Street address is %3$s.",
+  "current": "%1$s：当前%2$s。街道地址：%3$s。",
+  "suggested": "%1$s当前距离%2$s。街道地址：%3$s。",
+  "reason": "Keep in step with directions_name_is_currently (note says the two must match); same missing «距离».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_what_is_osm_answer",
+  "source": "Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.",
+  "current": "Soundscape 使用地图数据来生成语音播报。我们的主要地图数据源是 OpenStreetMap（www.openstreetmap.org），这是一个由贡献者社区共同建设的地图平台。组织和个人都可以使用 OpenStreetMap 的工具改进数据，让自己的场所更易于到达。",
+  "suggested": "Soundscape 使用地图数据来生成语音播报。我们的主要地图数据源是 OpenStreetMap（www.openstreetmap.org），这是一个由贡献者社区共同建设的地图平台。组织和个人都可以使用 OpenStreetMap 的工具改进数据，让自己的场所更加无障碍。",
+  "reason": "\"make their spaces more accessible\" is about disability access; «更易于到达» (\"easier to reach\") loses that sense in an app for blind users.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_markers_content_3",
+  "source": "To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *Nearby markers* button at the bottom of the home screen to hear a spatial callout of marked places around you. You can even set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.",
+  "current": "要体验已标记的地点，Soundscape 会在您经过或接近这些地点时自动播报它们，或者您也可以使用 主屏幕底部的*附近标记点*按钮收听周围标记点的空间播报。您甚至可以在任何已标记地点上设置音频信标。设置信标后，您熟悉的 Soundscape 音频信标将被听到，并且可以照常操作。",
+  "suggested": "要体验已标记的地点，Soundscape 会在您经过或接近这些地点时自动播报它们，或者您也可以使用主屏幕底部的*附近标记点*按钮收听周围标记点的空间播报。您甚至可以在任何已标记地点上设置音频信标。设置后，您会听到熟悉的 Soundscape 音频信标，并可以照常操作它。",
+  "reason": "Awkward passive «音频信标将被听到» (\"the beacon will be heard\") and a stray space before 主屏幕.",
+  "category": "tone"
+ },
+ {
+  "context": "action_item_not_found",
+  "source": "That's no longer saved in Soundscape",
+  "current": "那个已不在 Soundscape 中保存",
+  "suggested": "该项已不再保存在 Soundscape 中",
+  "reason": "«那个已不在 Soundscape 中保存» is clumsy spoken Chinese (odd word order, colloquial «那个»); this is a spoken Siri/assistant response.",
+  "category": "tone"
+ },
+ {
+  "context": "tour_markers",
+  "source": "The Markers and Routes screen has two tabs. One tab lists routes, which are playlists of markers. The other tab lists individual markers. Tap Markers to switch to that tab and find the marker you created.",
+  "current": "标记点和路线屏幕有两个选项卡。一个显示路线，即标记点的列表；另一个显示各个标记点。点击标记点切换到该选项卡，找到您创建的标记点。",
+  "suggested": "标记点和路线屏幕有两个选项卡。一个显示路线，即由标记点组成的播放列表；另一个显示各个标记点。点击标记点切换到该选项卡，找到您创建的标记点。",
+  "reason": "English calls routes \"playlists of markers\", the app's key metaphor (beacons played in sequence); «标记点的列表» is just \"a list of markers\", which is also what the other tab is.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_terminal",
+  "source": "Terminal",
+  "current": "航站楼",
+  "suggested": "客运站",
+  "reason": "«航站楼» is specifically an airport terminal building; the tag is any passenger/freight transport terminal (bus, ferry, rail).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_shrine",
+  "source": "Shrine",
+  "current": "神社",
+  "suggested": "圣祠",
+  "reason": "«神社» is specifically a Japanese Shinto shrine; the tag is any sacred place associated with a deity, saint or relic.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_stone",
+  "source": "Stone",
+  "current": "石碑",
+  "suggested": "立石",
+  "reason": "«石碑» is an inscribed stele; the tag is a standing stone or notable rock.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_rugby_league",
+  "source": "Rugby League",
+  "current": "橄榄球联赛球场",
+  "suggested": "联盟式橄榄球场",
+  "reason": "«橄榄球联赛球场» reads \"rugby league-competition ground\" (联赛 = league competition); rugby league the code is «联盟式橄榄球».",
+  "category": "meaning"
+ },
+ {
+  "context": "siri_short_detail",
+  "source": "Detail",
+  "current": "详细",
+  "suggested": "详细",
+  "reason": "«详细» is also the name of the Detailed level, so the Siri command becomes «Soundscape 详细 详细», the same group/option collision as «Soundscape 周围 周围». A distinct group word (e.g. «详细程度») would need AppShortcuts.strings, the generated catalog and help_text_assistant_commands_ios changed together (ZH-C1), so no string-only fix.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_config_voices_content_ios",
+  "source": "Soundscape can use any of the voices you have downloaded in the iOS Settings app, except for the Siri voices, which are not available to Soundscape. We recommend choosing one of the higher quality *Enhanced* voices, but you will first need to download a voice. You can download voices in the iOS Settings app by going to Accessibility > Read & Speak > Voices and tapping on a voice. (In iOS versions prior to 26, *Read & Speak* is known as *Spoken Content*.) Within the Soundscape app, to select the voice you want, go to *Settings* from the main menu and then from *Audio* select *Voices*.",
+  "current": "Soundscape 可以使用您在 iOS 设置应用中下载的任何语音，但 Siri 语音除外，它无法用于 Soundscape。我们建议选择一种音质更高的 *Enhanced* 语音，但您需要先下载一个语音。您可以在 iOS 设置应用中依次进入 Accessibility > Read & Speak > Voices，点击某个语音进行下载。（在 iOS 26 之前的版本中，*Read & Speak* 名为 *Spoken Content*。）在 Soundscape 应用中，要选择您想使用的语音，请从主菜单进入*设置*，然后在*音频*中选择*语音*。",
+  "suggested": "Soundscape 可以使用您在 iOS 设置应用中下载的任何语音，但 Siri 语音除外，它无法用于 Soundscape。我们建议选择一种音质更高的 *Enhanced* 语音，但您需要先下载一个语音。您可以在 iOS 设置应用中依次进入 Accessibility > Read & Speak > Voices，点击某个语音进行下载。（在 iOS 26 之前的版本中，*Read & Speak* 名为 *Spoken Content*。）在 Soundscape 应用中，要选择您想使用的语音，请从主菜单进入*设置*，然后在*音频*中选择*语音*。",
+  "reason": "iOS menu path and the *Enhanced* voice quality are left in English, but a Chinese-language iPhone shows Chinese labels (辅助功能 > 朗读内容/…> 声音, «增强音质»). Needs someone with a Chinese iOS 26 device to confirm exact labels.",
+  "category": "tone"
+ }
+]

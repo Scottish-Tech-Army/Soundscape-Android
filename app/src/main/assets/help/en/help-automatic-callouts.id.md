@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Pemberitahuan Otomatis
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 70
 lang: id
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Pemberitahuan Otomatis
 
-## What is it?
+Saat Anda berjalan, Soundscape memberitahukan apa yang ada di dekat Anda. Anda mendengar setiap nama dari arah tempatnya. Pemberitahuan mencakup jalan, persimpangan, toko, halte bus, landmark, dan penanda Anda sendiri.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Persimpangan
 
-## When would I use it?
+Saat Anda mendekati persimpangan, Soundscape menyebut nama setiap jalan yang keluar dari persimpangan itu. Anda mendengar jalan mana yang ke kiri, mana yang terus lurus, dan mana yang ke kanan.
 
-**Exploring a new area :**
+## Seberapa Banyak yang Anda Dengar
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Buka menu dan pilih *Pengaturan*, lalu *Kelola Pemberitahuan*. *Tingkat Detail Pemberitahuan* memiliki empat tingkat.
 
-**Walking to a specific location :**
+*Rinci* memberitahukan semua yang ada di sekitar.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Sederhana* melewatkan jalan setapak kecil dan jalan layanan, dan lebih jarang mengulang.
 
-**When you need silence :**
+*Esensial* hanya memberitahukan jalan, persimpangan, dan landmark.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Senyap* tidak memberi pemberitahuan otomatis. Suar, rute, dan tombol layar utama tetap berfungsi.
 
-## How does it work?
+## Apa yang Anda Dengar
 
-**Turning callouts on or off :**
+*Kelola Pemberitahuan* memiliki dua pengaturan lagi. *Jalan dan Persimpangan* menyalakan atau mematikan pemberitahuan jalan dan persimpangan. *Tempat yang Diberitahukan* memilih jenis tempat yang Anda dengar, seperti *Transportasi Umum* atau *Makanan dan Minuman*. Penanda Anda selalu diberitahukan.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Membuat Soundscape Lebih Tenang
 
-**Managing which callouts you hear :**
+Tekan *sebelumnya* pada kontrol headphone Anda. Setiap tekanan turun satu tingkat: *Rinci*, *Sederhana*, *Esensial*, lalu *Senyap*. Satu tekanan lagi kembali ke *Rinci*. Lihat halaman bantuan *Menggunakan Kontrol Media*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Menghentikan Soundscape Sementara
+
+Pilih tombol *Tidur* di bagian atas layar utama. Soundscape berhenti menggunakan lokasi Anda dan tidak bersuara sampai Anda memilih *Bangunkan Sekarang*. Atau pilih *Bangun Saat Pergi*, dan Soundscape bangun saat Anda meninggalkan tempat Anda berada.
+
+## Di Kendaraan atau Kereta
+
+Soundscape mengetahui saat Anda melaju dengan kecepatan kendaraan. Soundscape lalu berhenti memberitahukan persimpangan dan toko terdekat, karena terlalu cepat terlewati. Sebagai gantinya, Soundscape memberitahukan jalan yang Anda lalui, landmark, halte dan stasiun, sungai, dan terowongan.
 

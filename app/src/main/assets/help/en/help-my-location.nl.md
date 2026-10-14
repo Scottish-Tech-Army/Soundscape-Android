@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: Mijn locatie
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 20
 lang: nl
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Mijn locatie
 
-## What is it?
+*Mijn locatie* vertelt u waar u bent. U hoort welke kant u op kijkt of op gaat, en daarna de straat of het adres waar u bent. Gebruik de knop wanneer u uit een bus stapt, een gebouw verlaat of de weg kwijt bent.
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Staat u stil, richt dan eerst de bovenkant van uw telefoon in de richting waarin u kijkt. Is uw telefoon vergrendeld, of staat Soundscape niet op het scherm, houd uw telefoon dan ook plat.
 

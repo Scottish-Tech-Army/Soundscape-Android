@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Zvukový maják
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 60
 lang: sk
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Zvukový maják
 
-## What is it?
+Zvukový maják je zvuk, ktorý znie zo smeru miesta, ktoré si vyberiete. Hovorí vám, kde miesto leží vzdušnou čiarou. Nedáva pokyny krok za krokom, takže cestu si vyberáte sami.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Nastavenie majáka
 
-## When would I use it?
+1. Nájdite miesto. Použite vyhľadávacie pole, *Miesta v okolí*, *Značky* alebo *Aktuálna poloha* na domovskej obrazovke.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Vyberte miesto a otvoria sa *Podrobnosti o mieste*.
 
-## How does it work?
+3. Vyberte *Spustiť zvukový maják*.
 
-**To set a beacon :**
+Soundscape sa vráti na domovskú obrazovku a maják sa spustí. Domovská obrazovka ukazuje názov miesta a ako je ďaleko.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Hľadanie smeru
 
-**To remove the current beacon :**
+Maják zmení zvuk, keď stojíte čelom k miestu alebo idete priamo k nemu. Tento zvuk nájdete tak, že držíte telefón naplocho a pomaly sa otáčate. Iný zvuk majáka si môžete zvoliť v *Nastavenia*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Stlmenie majáka
 
-**To mute the audible beacon :**
+Na domovskej obrazovke vyberte *Stlmiť maják*. Soundscape vám pri pohybe ďalej hovorí, ako ďaleko miesto je. Ak chcete maják znova počuť, vyberte *Zrušiť stlmenie majáka*.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Odstránenie majáka
+
+Na domovskej obrazovke vyberte *Zastaviť trasu*. Tlačidlo má tento názov, aj keď maják nie je súčasťou trasy.
+
+## Keď dorazíte
+
+Keď ste asi 12 metrov od miesta, Soundscape vám to povie a maják odstráni. Presnejšie telefón vašu polohu určiť nedokáže. Ak chcete maják znova počuť, nastavte ho znova.
+
+Maják nastavený na miesto vzdialené menej ako 30 metrov zostáva zapnutý, kým ho neodstránite.
 

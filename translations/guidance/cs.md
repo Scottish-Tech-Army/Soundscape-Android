@@ -1,0 +1,92 @@
+# Czech (cs) — translation decisions
+
+| | |
+|---|---|
+| Weblate component | `androidkmp` |
+| Corpus at last sweep | 1522 units (2026-09-24) |
+| Last native-speaker input | **none yet** |
+| Register | Formal «vy» (vykání), `unconfirmed` |
+
+Read with [`_common.md`](_common.md).
+
+## Status of this file
+
+**No native speaker has reviewed Czech.** It has been AI-only since
+2026-08-21. It is good work structurally:
+- The hints are second-person future forms («ztlumíte»), which fit «Dvojitým
+  klepnutím %1$s» (C13).
+- Traveling/Heading are «Jízda»/«Chůze», which is exactly the vehicle/walking
+  split (see `bg.md` BG-T4).
+- «%1$s, vede doleva» is descriptive (C11).
+
+One `agreed` defect. Questions: `docs/translation-questions/questions-cs.md` (Q1…Q8).
+
+## Glossary
+
+| English | Czech | Status | Note |
+|---|---|---|---|
+| Callout | hlášení | `unconfirmed` | Consistent |
+| Audio Beacon | zvukový maják | `unconfirmed` | |
+| Marker | značka | `unconfirmed` | |
+| Waypoint | trasový bod | `unconfirmed` | Ask what Czech map apps (Mapy.cz, Google Maps) call it (C1). See Q2 |
+| Landmarks | orientační body | `unconfirmed` | |
+| Intersection | křižovatka | `unconfirmed` | |
+| Sleep / Snooze | Spánek / Spí ; Dřímá | `unconfirmed` | |
+| Detailed / Simplified / Essential / Silent | Podrobný / Zjednodušený / Základní / Bez zvuku | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Podrobný / Vyvážený / Tichý / Bez zvuku |
+| dead end | slepá ulice | `unconfirmed` word; case fixed 2026-09-24. See CS-G1 |
+
+## Rules
+
+### CS-G1 — «do slepá ulice» must be genitive «do slepé ulice» (`confirmed` fixed 2026-09-24)
+
+**Fixed 2026-09-24:** `confect_name_dead_end` is now «slepé ulice», uploaded to Weblate and verified live.
+
+Rule C9, and Czech is on its list. One string.
+
+### CS-R1 — «Jste připraveni!» is plural (`unconfirmed`)
+
+In vykání, adjectives and participles take the *singular* with the
+addressee's real gender («Jste připravený/připravená»). The plural
+«připraveni» addresses a group. Apps often use it as a gender-neutral dodge,
+and it avoids slashes. Ask whether it sounds acceptable, or whether a
+rephrase («Vše je připraveno!») is better.
+
+### CS-C1 — Siri phrases stay in English (`agreed`)
+
+There is no `cs.lproj`. See PL-C1.
+
+## Rejected
+
+Nothing yet.
+
+## Open questions
+
+1. Callout «hlášení»: natural?
+2. Waypoint «trasový bod»: what do Czech map apps call a stop along a route?
+3. «Jste připraveni!»: OK, or «Vše je připraveno!»? (CS-R1)
+4. Snooze «Dřímá»: clear?
+5. Is vykání right?
+6. Beacon «zvukový maják»: natural? (AI-only term, asked for confirmation)
+7. **The four detail levels** (Podrobný / Zjednodušený / Základní / Bez zvuku), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
+
+## Provenance
+
+**2026-08-21 → 2026-09-24 — AI passes only.**
+**2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-24 — dead-end case fix applied.** `confect_name_dead_end` → «slepé ulice» (the C9 batch fix across ru, cs, sk, hr, sr, sl, pl and is).
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 27 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
+
+**2026-09-28 — Weblate checks pass.** Byte `*_a11y` plurals: the «few» form had no number (read as «kilobajty» for 2–4 kB); `%1$s` restored. `osm_rigger` → «Vazač břemen», `osm_rc_car` → «Auto na dálkové ovládání», full stop added to `settings_reset_button_hint`. Uploaded live.
+
+**2026-09-29 — European batch review.** 13 hints were infinitives or nouns instead of the 2pl future the template needs («přidat»/«Zobrazit»/«výběr»/«sbalit» → «přidáte»/«zobrazíte»/«vyberete»/«sbalíte»…). `faq_controlling_what_you_hear_answer` and `faq_turn_beacon_back_on_answer` named the unmute button «zapnout maják»; now «Zrušit ztlumení majáku», its label. 15 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 32 flagged, 26 applied in `6c9839a56`. Findings: `translations/review/2026-09-30-all-languages/cs-findings.json`.
+Most serious fixed:
+- `directions_generic_train`: Goes into the 'Na %1$s' / 'Jízda … po %1$s' templates, which gives 'Na vlaku' (on the roof of the train) and 'po vlaku' (after the train).
+- `directions_generic_tram`: Same as directions_generic_train: 'Na tramvaji' means on top of the tram.
+- `faq_holding_phone_flat_answer`: The reflexive is missing: 'všimnete si, že ztiší' reads as 'that it silences [something]'.
+Also changed the same day:
+- `c85663f73`: `help_text_remote_control_how` now names the real Around Me button, following the English fix.

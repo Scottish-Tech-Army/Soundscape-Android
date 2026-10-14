@@ -31,19 +31,43 @@ fun interface PreferencesListener {
 }
 
 object PreferenceKeys {
-    const val ALLOW_CALLOUTS = "AllowCallouts"
-    const val PLACES_AND_LANDMARKS =
-        org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
-    const val MOBILITY = org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
+    /**
+     * The old "Allow Callouts" switch, replaced by the Silent callout detail. Only read to
+     * carry it over once - see CalloutVerbosity.migrate. Still written by the iOS LegacyMigrator.
+     */
+    const val LEGACY_ALLOW_CALLOUTS = "AllowCallouts"
+    /**
+     * The "Streets and Junctions" switch: intersection callouts while walking, and the road-sense
+     * callout while travelling. Stored under the key of the old "Mobility" switch, which gated
+     * both of those too, so turning that off carries over.
+     */
+    const val STREETS_AND_JUNCTIONS = org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
 
     /**
-     * Bus and tram stops are part of the Mobility super-category, but there are far more of them
-     * than of anything else in it - a walk down an urban main road passes one every couple of
-     * hundred metres, and a bus ride passes nothing else - so they get a switch of their own.
-     * Turning them off leaves the rest of Mobility (crossings, gates, lifts, steps...) alone.
+     * Which places are called out - see PlacesToCallOut. Stored as its preferenceValue.
      */
-    const val BUS_AND_TRAM_STOPS = "BusAndTramStops"
+    const val PLACES_TO_CALL_OUT = "PlacesToCallOut"
+
+    /**
+     * The old "Places and Landmarks" switch, replaced by PLACES_TO_CALL_OUT. Only read to set that
+     * once - see PlacesToCallOut.migrate. Still written by the iOS LegacyMigrator.
+     */
+    const val LEGACY_PLACES_AND_LANDMARKS =
+        org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
     const val DISTANCE_TO_BEACON = "DistanceToBeacon"
+
+    /**
+     * How much the walking auto callouts say - see CalloutVerbosity for what each level sets.
+     * Stored as CalloutVerbosity.preferenceValue.
+     */
+    const val CALLOUT_VERBOSITY = "CalloutVerbosity"
+
+    /**
+     * Whether an intersection callout says how far away the junction is, as well as that there is
+     * one. Part of Mobility, but separable: the distance is the whole point for somebody
+     * navigating an unfamiliar street, and just more words for somebody who knows the route.
+     */
+    const val DISTANCE_TO_INTERSECTION = "DistanceToIntersection"
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = "PositionTextDescription"
     const val RELATIVE_DIRECTION = "RelativeDirectionMode"
 
@@ -74,16 +98,25 @@ object PreferenceKeys {
      * throwing, and so that it round-trips through the plain string preference store.
      */
     const val POI_RANK_STRATEGY = "PoiRankStrategy"
+
+    /**
+     * Identifier of the map app the user chose to always open locations in from Location
+     * Details - an Android package name, or an iOS app key from IosMapApps. Empty means ask.
+     */
+    const val PREFERRED_MAP_APP = "PreferredMapApp"
 }
 
 object PreferenceDefaults {
-    const val ALLOW_CALLOUTS = true
-    const val PLACES_AND_LANDMARKS = true
-    const val MOBILITY = true
-    const val BUS_AND_TRAM_STOPS = true
+    const val STREETS_AND_JUNCTIONS = true
+    const val PLACES_TO_CALL_OUT = "Everything"
     const val DISTANCE_TO_BEACON = true
+    const val CALLOUT_VERBOSITY = "Detailed"
+    const val DISTANCE_TO_INTERSECTION = true
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = false
-    const val RELATIVE_DIRECTION = "ClockFace"
+    // Left/right rather than clock positions: the clock convention is taught in orientation and
+    // mobility training in some countries but is unfamiliar in others, and in Swahili the hour
+    // count itself differs (saa tatu is 9 o'clock).
+    const val RELATIVE_DIRECTION = "LeftRight"
 
     const val BEACON_TYPE = "Classic"
     const val SPEECH_RATE = 1.0f
@@ -105,4 +138,5 @@ object PreferenceDefaults {
     const val MARKERS_SORT_ASCENDING = true
     const val HEAD_TRACKING_ENABLED = false
     const val POI_RANK_STRATEGY = "off"
+    const val PREFERRED_MAP_APP = ""
 }

@@ -24,11 +24,50 @@ fun getCompassLabel(degrees: Int): StringKey {
     }
 }
 
+/**
+ * The abbreviated cardinal for [degrees] ("NW"), as used where there isn't room for the word -
+ * the beacon card on the home screen. Speech uses [getCompassLabel] instead, because a screen
+ * reader saying "NW" is worse than one saying "north west".
+ */
+fun getCompassLabelAbbreviated(degrees: Int): StringKey =
+    when (getCompassLabel(degrees)) {
+        StringKey.DirectionsCardinalNorthEast -> StringKey.DirectionsCardinalNorthEastAbb
+        StringKey.DirectionsCardinalEast -> StringKey.DirectionsCardinalEastAbb
+        StringKey.DirectionsCardinalSouthEast -> StringKey.DirectionsCardinalSouthEastAbb
+        StringKey.DirectionsCardinalSouth -> StringKey.DirectionsCardinalSouthAbb
+        StringKey.DirectionsCardinalSouthWest -> StringKey.DirectionsCardinalSouthWestAbb
+        StringKey.DirectionsCardinalWest -> StringKey.DirectionsCardinalWestAbb
+        StringKey.DirectionsCardinalNorthWest -> StringKey.DirectionsCardinalNorthWestAbb
+        else -> StringKey.DirectionsCardinalNorthAbb
+    }
+
 fun getRelativeClockTime(degrees: Int, userDegrees: Int): Int {
     val relative = normalizeHeading(degrees - userDegrees)
     val hour = ((relative + 15) / 30) % 12
     return if (hour == 0) 12 else hour
 }
+
+/**
+ * The clock position [hour] (1-12) as a word for relative_clock_direction. A bare digit leaves the
+ * speech synthesiser to guess its form, and where the position is an ordinal in a grammatical case
+ * (Polish "na godzinie dziewiątej") it guesses wrong. Languages that don't need a word keep the
+ * digit.
+ */
+fun getRelativeClockHourLabel(hour: Int): StringKey =
+    when (hour) {
+        1 -> StringKey.RelativeClockHour1
+        2 -> StringKey.RelativeClockHour2
+        3 -> StringKey.RelativeClockHour3
+        4 -> StringKey.RelativeClockHour4
+        5 -> StringKey.RelativeClockHour5
+        6 -> StringKey.RelativeClockHour6
+        7 -> StringKey.RelativeClockHour7
+        8 -> StringKey.RelativeClockHour8
+        9 -> StringKey.RelativeClockHour9
+        10 -> StringKey.RelativeClockHour10
+        11 -> StringKey.RelativeClockHour11
+        else -> StringKey.RelativeClockHour12
+    }
 
 fun getRelativeLeftRightLabel(relativeAngle: Int): StringKey {
     val normalizedAngle = normalizeHeading(relativeAngle)

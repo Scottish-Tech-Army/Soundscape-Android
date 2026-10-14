@@ -223,7 +223,7 @@ class VisuallyCheckOutput {
         //
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovIntersectionsFeatureCollection = intersectionTree.getAllWithinTriangle(triangle)
 
         // *************************************************************
@@ -272,7 +272,7 @@ class VisuallyCheckOutput {
         //
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovRoadsFeatureCollection = roadsTree.getAllWithinTriangle(triangle)
 
         // *************************************************************
@@ -321,7 +321,7 @@ class VisuallyCheckOutput {
         //
         // Create a FOV triangle to pick up the poi in the FoV.
         // In this case a couple of buildings
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovPoiFeatureCollection = poiTree.getAllWithinTriangle(triangle)
 
         // *************************************************************

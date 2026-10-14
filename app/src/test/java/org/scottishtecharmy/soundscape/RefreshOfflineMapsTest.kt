@@ -1,11 +1,10 @@
 package org.scottishtecharmy.soundscape
 
 import junit.framework.TestCase.assertFalse
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -22,23 +21,22 @@ class RefreshOfflineMapsTest {
     @Test
     fun refreshOfflineMapsForcesRecomputeWithoutMoving() {
         val location = LngLatAlt(-4.317357, 55.942527)
-        val enabledCategories = mutableSetOf(PLACES_AND_LANDMARKS_KEY, MOBILITY_KEY)
 
         val gridState = FileGridState(MAX_ZOOM_LEVEL, GRID_SIZE)
         gridState.start(offlineExtractPath)
 
         runBlocking {
             // The first update always recomputes, starting from an empty central bounding box.
-            assertTrue(gridState.locationUpdate(location, enabledCategories, null))
+            assertTrue(gridState.locationUpdate(location, CalloutPoiSelection.EVERYTHING, null))
 
             // A second update at the same, unmoved location is a no-op - it's still within the
             // grid's existing central area.
-            assertFalse(gridState.locationUpdate(location, enabledCategories, null))
+            assertFalse(gridState.locationUpdate(location, CalloutPoiSelection.EVERYTHING, null))
 
             // refreshOfflineMaps() (called when an offline map extract is downloaded or deleted)
             // must force the very next update to recompute, even without the location moving.
             gridState.refreshOfflineMaps()
-            assertTrue(gridState.locationUpdate(location, enabledCategories, null))
+            assertTrue(gridState.locationUpdate(location, CalloutPoiSelection.EVERYTHING, null))
         }
     }
 }

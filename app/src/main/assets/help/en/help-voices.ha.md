@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Muryoyi
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 100
 lang: ha
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Muryoyi
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape yana iya amfani da kowace murya da aka girka a wayarku. Don ƙara muryoyi, ku buɗe saitunan wayarku sannan ku nemi *Fitar da rubutu zuwa magana*. Don zaɓar murya a cikin Soundscape, ku buɗe menu sannan ku zaɓi *Saitunan*, sai *Sauti*, sai *Muryoyi*.
 

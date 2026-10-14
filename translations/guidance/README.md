@@ -7,8 +7,8 @@ translation and review pass starts from it instead of rediscovering it.
 - `_common.md` — rules that apply to every language.
 - `<code>.md` — one file per Weblate language code (`uk.md`, `fr_CA.md`, …).
 
-`weblate-translate` and `weblate-review` load `_common.md` plus the relevant
-`<code>.md` automatically. `weblate-feedback` is what writes to them.
+`translate` and `translation-review` load `_common.md` plus the relevant
+`<code>.md` automatically. `translation-feedback` is what writes to them.
 
 These files live outside `docs/` on purpose: `docs/` is the Jekyll source tree
 and a file added there becomes a published page.
@@ -36,5 +36,5 @@ Each decision carries one:
 | `rejected` | Considered and turned down | Flag if someone reintroduces it |
 
 `unconfirmed` and `provisional` findings are written with `suggested` equal to
-`current`, which is the existing signal `weblate-review`'s apply step reads as
+`current`, which is the existing signal `translation-review`'s apply step reads as
 "skip, don't upload".

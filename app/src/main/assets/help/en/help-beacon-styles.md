@@ -3,6 +3,7 @@ title: Beacon Styles
 layout: page
 parent: Using Soundscape
 has_toc: true
+nav_order: 180
 ---
 
 # Beacon Styles

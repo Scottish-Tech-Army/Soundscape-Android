@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: Wurina
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 20
 lang: ha
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Wurina
 
-## What is it?
+*Wurina* yana gaya muku inda kuke. Yana faɗin inda kuke fuskanta ko inda kuke tafiya, sannan titi ko adireshin da kuke. Ku yi amfani da shi idan kun sauka daga bas, kun fita daga gini ko kun rasa alkibla.
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Idan kuna tsaye a wuri ɗaya, ku fara nuna saman wayar zuwa inda kuke fuskanta. Idan wayarku a kulle take, ko Soundscape ba ya kan allo, ku kuma riƙe wayar a kwance.
 

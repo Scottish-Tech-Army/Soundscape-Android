@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: பாதைகள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 90
 lang: ta
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# பாதைகள்
 
-## What is it?
+பாதை என்பது வழிப்புள்ளிகள் எனப்படும் இருப்பிடங்களின் பட்டியல்; அவற்றுக்கு நீங்கள் வரிசைப்படி செல்கிறீர்கள். Soundscape முதல் வழிப்புள்ளியில் ஒரு பீக்கனை அமைக்கிறது. நீங்கள் வந்து சேர்ந்ததும், அது அதைச் சொல்லி பீக்கனை அடுத்த வழிப்புள்ளிக்கு நகர்த்துகிறது.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+ஒரு புதிய பயணத்தைக் கற்றுக்கொள்ள, அல்லது தெரிந்த பயணத்தில் வழி தவறாமல் இருக்க, பாதையைப் பயன்படுத்தவும்.
 
-## When would I use it?
+## பாதையை உருவாக்குதல்
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. முகப்புத் திரையில் *பாதைகள்* என்பதைத் தேர்ந்தெடுத்து, பின்னர் *புதியது* என்பதைத் தேர்ந்தெடுக்கவும்.
 
-## How does it work?
+2. பாதைக்கு ஒரு பெயர் கொடுக்கவும். விளக்கத்தையும் சேர்க்கலாம்.
 
-**Creating a route :**
+3. *வழிப்புள்ளிகளைச் சேர்* என்பதைத் தேர்ந்தெடுத்து குறிப்பான்களைத் தேர்வுசெய்யவும். உங்கள் தற்போதைய இருப்பிடத்தையோ அருகிலுள்ள ஓர் இடத்தையோ சேர்க்கலாம்.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *முடிந்தது* என்பதைத் தேர்ந்தெடுக்கவும்.
 
-**Editing a route :**
+## பாதையைப் பின்தொடர்தல்
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+*பாதைகள்* திரையில் பாதையைத் தேர்ந்தெடுத்து, பின்னர் *பாதையைத் தொடங்கு* என்பதைத் தேர்ந்தெடுக்கவும். அதை எதிர்த்திசையில் பின்தொடர, *பாதையை தலைகீழாகத் தொடங்கு* என்பதைத் தேர்ந்தெடுக்கவும். முகப்புத் திரையில், *அடுத்த வழிப்புள்ளி* மற்றும் *முந்தைய வழிப்புள்ளி* ஆகியவை பீக்கனைப் பாதை நெடுக நகர்த்துகின்றன. *பாதையை நிறுத்து* அதை முடிக்கிறது.
 
-**Sharing a route :**
+## பாதையை மாற்றுதல்
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+*பாதைகள்* திரையில் பாதையைத் தேர்ந்தெடுத்து, பின்னர் *பாதையைத் திருத்து* என்பதைத் தேர்ந்தெடுக்கவும். வழிப்புள்ளிகளைச் சேர்க்கலாம், நீக்கலாம், மறுவரிசைப்படுத்தலாம்; பெயரையும் விளக்கத்தையும் மாற்றலாம்; அல்லது பாதையை நீக்கலாம்.
+
+## பாதையைப் பகிர்தல்
+
+*பாதைகள்* திரையில் பாதையைத் தேர்ந்தெடுத்து, பின்னர் *பகிர்* என்பதைத் தேர்ந்தெடுக்கவும்.
 

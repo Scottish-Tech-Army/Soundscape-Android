@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Leiðir
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 90
 lang: is
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Leiðir
 
-## What is it?
+Leið er listi yfir staði, sem kallast leiðarpunktar, sem þú heimsækir í röð. Soundscape setur hljóðvita á fyrsta leiðarpunktinn. Þegar þú kemur þangað lætur það þig vita og færir hljóðvitann á þann næsta.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Notaðu leið til að læra nýja ferð, eða til að halda stefnunni á ferð sem þú þekkir.
 
-## When would I use it?
+## Að búa til leið
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Veldu *Leiðir* á heimaskjánum og veldu síðan *Nýtt*.
 
-## How does it work?
+2. Gefðu leiðinni heiti. Þú getur bætt við lýsingu.
 
-**Creating a route :**
+3. Veldu *Bæta við leiðarpunktum* og veldu merki. Þú getur líka bætt við núverandi staðsetningu þinni eða nálægum stað.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Veldu *Lokið*.
 
-**Editing a route :**
+## Að fylgja leið
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Veldu leiðina á skjánum *Leiðir* og veldu síðan *Hefja leið*. Til að fara hana í öfuga átt skaltu velja *Hefja leið í öfugri röð*. Á heimaskjánum færa *Næsti leiðarpunktur* og *Fyrri leiðarpunktur* hljóðvitann eftir leiðinni. *Stöðva leið* lýkur henni.
 
-**Sharing a route :**
+## Að breyta leið
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Veldu leiðina á skjánum *Leiðir* og veldu síðan *Breyta leið*. Þú getur bætt við leiðarpunktum, fjarlægt þá og endurraðað þeim, breytt heitinu og lýsingunni, eða eytt leiðinni.
+
+## Að deila leið
+
+Veldu leiðina á skjánum *Leiðir* og veldu síðan *Deila*.
 

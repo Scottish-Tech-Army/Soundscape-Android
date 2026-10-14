@@ -4,7 +4,7 @@
 |---|---|
 | Weblate component | `androidkmp` |
 | Corpus at last sweep | 1495 translated units (2026-09-21) |
-| Last native-speaker input | 2026-09-21 |
+| Last native-speaker input | 2026-09-25 |
 | Reporter platform | iOS v2.0.49 (strings are shared KMP — see rule C6) |
 
 Read with [`_common.md`](_common.md).
@@ -15,11 +15,12 @@ Read with [`_common.md`](_common.md).
 
 | English | Ukrainian | Status | Not | Why |
 |---|---|---|---|---|
-| Audio Beacon | звуковий маячок | `confirmed` | — | Already in use across 73 strings; native speaker confirmed it unchanged |
-| Marker | мітка | `confirmed` | — | Already in use across 80 strings; native speaker confirmed it unchanged |
+| Audio Beacon | звуковий маячок | `confirmed` | — | Already in use across 73 strings; native speaker confirmed it unchanged, and again as final on 2026-09-25 |
+| Marker | мітка | `confirmed` | — | Already in use across 80 strings; native speaker confirmed it unchanged, and again as final on 2026-09-25 |
 | Waypoint | зупинка | `agreed` | ~~маршрутна точка~~ | Google Maps Ukrainian uses «зупинка» for a stop added to a route. «маршрутна точка» was a calque of our own doc's "route point" gloss (rule C1) |
 | Callout | оголошення | `confirmed` | ~~підказка~~ | Kept unchanged on the reporter's second look — see "Rejected". Ukrainian has no good word for this; «оголошення» is the settled least-bad choice, not an oversight |
 | Guided tutorial | Інтерактивний тур | `agreed` | ~~Керований навчальний посібник~~, ~~Навчання~~ | Reporter proposed it 2026-09-18 as provisional ("cannot find any real examples of usage in Ukrainian applications"), confirmed OK 2026-09-21. Also replaces «Навчання» in `tour_finish` |
+| Detail levels | Докладний / Спрощений / Основний / Беззвучний | `agreed` (Dave), `unconfirmed` (speaker) | — | `callouts_verbosity_level_*`. The reporter confirmed the old «Збалансований / Тихий» as distinct on 2026-09-25. When the English became Simplified / Essential (C22, 2026-09-30), Dave overrode that confirmation for literal names, to be asked again (open question). Record the reporter's answer either way |
 | Dead end | тупик | `agreed` | ~~кінець дороги~~ | «кінець дороги» is "end of the road", not the street type. Reporter, 2026-09-21. See UK-G1 for the case it must take |
 
 ### Waypoint declension map (`agreed`, mechanical)
@@ -58,7 +59,7 @@ A sweep on 2026-09-21 found no informal forms in the 1495 translated units
 («ти»/«тебе»/«твій» and common singular imperatives): the rule confirms what
 ships. Its job now is to keep new strings in line.
 
-### UK-G1 — Strings slotted into a template take the template's case (`agreed`)
+### UK-G1 — Strings slotted into a template take the template's case (`agreed` as a principle; **the dead-end application is superseded by UK-G2**)
 Some strings are never shown on their own; the code substitutes them into a
 template. They must be translated in the grammatical case that template's
 preposition governs, not in the dictionary form.
@@ -72,6 +73,55 @@ preposition governs, not in the dictionary form.
 Open side: the same `%2$s` slot is also filled with destination names from map
 data, which arrive undeclined (question 1 below).
 
+### UK-G2 — Direction callouts use the label form «напрямок: X» (`confirmed`, reporter 2026-09-25; live 2026-09-25)
+
+The reporter, answering the open question about undeclined destinations:
+
+> String «Стежка у напрямку вулиця Шевченка» does not work, it is
+> grammatically incorrect and sounds broken. In Ukrainian, if we use
+> prepositional phrase "у напрямку" we must put "вулиця" in the correct case
+> (genitive, instead of nominative) - "вулиці". … Formation of genitive case is
+> different for different words, there is no predictable pattern. … The best
+> option for all these callouts of such type, including "тупик" is to use
+> approach (c) «%1$s, напрямок: %2$s». … Here nominative case sounds natural.
+
+Their second live example was «Далі дорога у напрямку парковка південь». («Далі»
+is the Street Preview "Go" button, and «парковка південь» is a map name.)
+
+The genitive can't be generated for runtime map names, so the preposition
+goes and the name stands in the nominative after a label:
+
+| Key | Was | Now |
+|---|---|---|
+| `confect_name_to` | «%1$s у напрямку %2$s» | «%1$s, напрямок: %2$s» |
+| `confect_name_to_via` | «%1$s у напрямку %2$s через %3$s» | «%1$s, напрямок: %2$s, через %3$s» |
+| `directions_towards_settlement` | «у напрямку %1$s, за %2$s» | «напрямок: %1$s, за %2$s» |
+| `confect_name_dead_end` | «тупика» | «тупик» (nominative again, since there is no preposition to govern it) |
+
+`directions_towards_settlement` wasn't named by the reporter, but it is the
+same «у напрямку + map name» construction ("…, towards Kyiv, 5 km away"), so
+it's in scope (C4). «через %3$s» stays, because %3$s only ever receives
+«Сходи», «Міст» or «Тунель», which are inanimate, so their accusative is the
+same as the nominative.
+
+### UK-G3 — The same problem in every other preposition + map-name template (`agreed` defect, fixes pending the reporter's notes)
+
+A sweep found **54 more templates** where a map name (road, POI, settlement or
+marker) follows a case-governing preposition and so arrives nominative. For
+example `directions_on_road` «На %1$s» → «На вулиця Шевченка» (needs «вулиці»),
+`directions_near_name` «Поблизу %1$s» (genitive), the 24
+`directions_along_*` «по/вздовж %1$s», `street_description_*` «між / до / після
+%2$s», `directions_approaching_name` «до %1$s», `directions_at_poi` «У %1$s».
+These are the main callouts, so this matters more than the four above.
+
+On 2026-09-25 the reporter confirmed that other templates do need changing,
+and said they are testing and noting the callouts that sound unnatural or
+unclear. **Don't apply the label form across the 54 yet.** Wait for those
+notes, which will say which templates are wrong and what they should become.
+Some may be fine as they are, and the fix may not always be a label. The
+inventory is in `/tmp/translation-review/uk-findings.json`, rule UK-G3; regenerate
+it if it's gone.
+
 ### UK-T4 — Callout stays «оголошення» (`confirmed`, closed)
 29 strings carry «оголошення» and all of them stay as they are. See "Rejected"
 below for why, and read that before proposing anything in this area.
@@ -79,6 +129,14 @@ below for why, and read that before proposing anything in this area.
 ---
 
 ## Rejected
+
+### Genitive dead end «тупика» — rejected 2026-09-25, superseded by UK-G2
+
+It was the obvious fix, and a correct one in isolation: «у напрямку» governs
+the genitive (UK-G1, C9), and the 2026-09-18 feedback asked for it. It was
+rejected because the same slot also takes map names that can't be declined.
+The label form fixes both at once and is the reporter's choice. Don't put
+«тупика» back while `confect_name_to` uses the label form.
 
 ### Callout → «підказка» — rejected 2026-09-18 by the reporter who proposed it
 
@@ -103,18 +161,13 @@ change was never the mechanical swap it appeared to be (rule C3).
 
 ## Open questions for the next native-speaker round
 
-1. **Undeclined destination names.** `confect_name_to` also receives
-   destination names straight from OpenStreetMap, in the nominative — e.g.
-   «Стежка у напрямку вулиця Шевченка». Is that acceptable to a listener, or
-   should the template change so it works with a nominative name? Options:
-   (a) leave it; (b) «%1$s до %2$s»; (c) «%1$s, напрямок: %2$s». If (b) or
-   (c), «тупика» may need to change to match.
-2. **Confirm the two locked terms.** «звуковий маячок» and «мітка» are marked
-   `confirmed` on the strength of the 2026-09-18 glossary note — please say
-   explicitly if either should move, because future passes will now actively
-   defend them.
+1. **The other 54 map-name templates (UK-G3).** The reporter is collecting
+   notes on the callouts that sound wrong (2026-09-25). Apply those when they
+   arrive, then ask about any of the 54 their notes don't cover.
+2. **The four detail levels** (Докладний / Спрощений / Основний / Беззвучний), renamed 2026-09-30 (C22); the reporter had confirmed the old «Збалансований / Тихий», overridden by Dave for literal names: distinct by ear? Better names for the middle two?
+3. Anything else.
 
-*Answered and closed: the two callout questions — see "Rejected"; the guided-tutorial term — confirmed OK 2026-09-21; register — formal «ви» confirmed 2026-09-21.*
+*Answered and closed: the two locked terms, confirmed final, and the four detail levels, confirmed distinct (both 2026-09-25); undeclined destination names → the label form (UK-G2, 2026-09-25); the two callout questions, see "Rejected"; the guided-tutorial term, confirmed OK 2026-09-21; register, formal «ви» confirmed 2026-09-21.*
 
 ---
 
@@ -166,3 +219,32 @@ throughout. UK-R1 moves to `confirmed`. The sweep found nothing to change.
 Waypoint → «зупинка» (26), Guided tutorial → «Інтерактивний тур» (6), the «нове
 оновлення» tautology (2) and dead end → «тупика» (1). A re-sweep afterwards
 found no «маршрутна точка» or «посібник» left anywhere in the corpus.
+
+**2026-09-25 — truncation repaired (C16).** `faq_background_battery_impact_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.
+
+**2026-09-25 — reporter answered question 1 (undeclined destinations).** Chose approach (c), the label form. Recorded as UK-G2 (4 units), with UK-G1's genitive dead end rejected. The sweep found 54 more preposition + map-name templates (UK-G3), now question 1.
+
+**2026-09-25 — UK-G2 applied.** The 4 units uploaded and verified live: `confect_name_to`, `confect_name_to_via`, `directions_towards_settlement`, `confect_name_dead_end` («тупик»).
+
+**2026-09-25 — reporter answered the questionnaire.** Q1: yes, other
+templates need changing too, and they are taking notes while testing (UK-G3
+moves to an `agreed` defect, with fixes pending). Q2: «звуковий маячок» and
+«мітка» are fine and stay. Q3: the four detail levels are easy to understand
+and to tell apart, so they are now in the glossary as `confirmed`. Nothing uploaded.
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 24 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
+
+**2026-09-28 — Weblate checks pass.** Byte `*_a11y` plurals: the «few» form had no number; `%1$s` restored. Full stop removed from `settings_mix_audio_description` (the English has none). Uploaded live.
+
+**2026-09-29 — European batch review.** 8 hints started with a capital after «Двічі торкніться, щоб» → lower case; `route_detail_action_start_route_disabled_hint` imperative «додайте» → «додати». Help: «Навколишні місця» → «Місця поблизу» (2), «Найближчі мітки» → «Мітки поблизу» (4), «Навколо Мене»/«Попереду Мене» → lower-case «мене». 15 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** help says button «Редагувати мітку», `markers_edit_screen_title_edit` is «Редагування мітки».
+
+**2026-09-29 — edit-marker label.** `markers_edit_screen_title_edit` is both the screen title and the button on the location details screen (`SharedLocationDetailsScreen.kt`), so the button said «Редагування мітки» ("editing of marker") while the help and the route button say «Редагувати мітку» / «Редагувати маршрут». Now «Редагувати мітку». Uploaded and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 115 flagged, 54 applied in `9661040d4`. Findings: `translations/review/2026-09-30-all-languages/uk-findings.json`.
+Most serious fixed:
+- `help_text_my_location_what`: "the direction you are facing" became «напрямок, в якому ви рухаєтесь» (moving).
+- `faq_why_does_beacon_disappear_answer`: The answer is about the direction you are *facing* when you stop;
+- `first_launch_headphones_title`: «Як звучить Soundscape» is "What Soundscape sounds like";
+Held for a person: `directions_along_heading_n` (reviewer: awaiting); `directions_along_heading_ne` (reviewer: awaiting); `directions_along_heading_e` (reviewer: awaiting); `directions_along_heading_se` (reviewer: awaiting); `directions_along_heading_s` (reviewer: awaiting); `directions_along_heading_sw` (reviewer: awaiting); `directions_along_heading_w` (reviewer: awaiting); `directions_along_heading_nw` (reviewer: awaiting).
+
+**2026-10-01 — home-button names.** My Location button «Моє\nмісце» → «Моє\nмісцезнаходження» (C27); release notes too.

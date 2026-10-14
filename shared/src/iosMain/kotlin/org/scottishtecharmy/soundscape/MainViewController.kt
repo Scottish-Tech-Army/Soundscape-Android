@@ -7,6 +7,8 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeUIViewController
+import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.useContents
 import kotlinx.coroutines.flow.MutableStateFlow
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.switchPreference
@@ -38,12 +40,14 @@ import org.scottishtecharmy.soundscape.screens.home.settings.SettingDetails
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesViewModel
+import platform.CoreGraphics.CGRectMake
 import platform.Foundation.NSURL
 import platform.StoreKit.SKStoreReviewController
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 import platform.UIKit.UIViewController
 import platform.UIKit.UIWindow
+import platform.UIKit.popoverPresentationController
 
 fun MainViewController() = ComposeUIViewController {
     val service = remember { IosSoundscapeService.getInstance() }
@@ -203,6 +207,7 @@ fun MainViewController() = ComposeUIViewController {
             onStartRouteByName = { name ->
                 service.performAction(SoundscapeAction.StartRouteNamed(name))
             },
+            onPerformAction = { action -> service.performDeepLinkAction(action) },
             onRouteStop = {
                 service.routeStop()
                 audioTour.onBeaconStopped()
@@ -210,6 +215,8 @@ fun MainViewController() = ComposeUIViewController {
             onRouteSkipNext = { service.routeSkipNext() },
             onRouteSkipPrevious = { service.routeSkipPrevious() },
             onRouteMute = { service.routeMute() },
+            onCalloutBeacon = { service.calloutBeacon() },
+            onBeaconMoreInfo = { service.beaconMoreInfo() },
             onSearch = { query -> homeViewModel.onTriggerSearch(query) },
             onSaveMarker = { desc ->
                 service.saveMarker(desc)
@@ -294,6 +301,8 @@ fun MainViewController() = ComposeUIViewController {
                     ),
                 )
             },
+            onGetMapApps = { getIosMapApps() },
+            onOpenInMapApp = { app, desc -> openInIosMapApp(app, desc) },
             onRateApp = {
                 val url =
                     NSURL.URLWithString("https://apps.apple.com/app/id6459021379?action=write-review")
@@ -302,7 +311,6 @@ fun MainViewController() = ComposeUIViewController {
             onContactSupport = { presentContactSupport(service) },
             onToggleAudioTour = { audioTour.toggleState() },
             onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
-            onMapLongClick = null,
             onGoToAppSettings = {
                 val url = NSURL.URLWithString("app-settings:")
                 if (url != null) openExternalUrl(url)
@@ -362,11 +370,32 @@ private fun keyWindow(): UIWindow? =
         .firstOrNull { it.isKeyWindow() }
         ?: UIApplication.sharedApplication.windows.firstOrNull() as? UIWindow
 
+/**
+ * Present [viewController] from the topmost view controller.
+ *
+ * On iPad UIKit adapts share sheets and action sheets to a popover, and throws
+ * NSGenericException during the presentation transition if that popover has no
+ * anchor. These presentations are driven from Compose rather than from a UIKit
+ * control, so there is no natural anchor view: anchor to the centre of the
+ * presenter with no arrow, which is how UIKit lays out a sourceless popover.
+ */
+@OptIn(ExperimentalForeignApi::class)
 internal fun presentTopViewController(viewController: UIViewController) {
     val keyWindow = keyWindow() ?: return
     var top: UIViewController? = keyWindow.rootViewController
     while (top?.presentedViewController != null) top = top.presentedViewController
-    top?.presentViewController(viewController, animated = true, completion = null)
+    val presenter = top ?: return
+
+    // Non-null only when UIKit has adapted the presentation to a popover.
+    viewController.popoverPresentationController?.apply {
+        sourceView = presenter.view
+        sourceRect = presenter.view.bounds.useContents {
+            CGRectMake(size.width / 2.0, size.height / 2.0, 0.0, 0.0)
+        }
+        permittedArrowDirections = 0uL
+    }
+
+    presenter.presentViewController(viewController, animated = true, completion = null)
 }
 
 internal fun openExternalUrl(url: NSURL) {

@@ -10,6 +10,8 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.components.LocationListActions
+import org.scottishtecharmy.soundscape.components.rememberLocationItemActions
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.location_detail_action_beacon_from_markers
@@ -24,8 +26,10 @@ fun MarkersAndRoutesList(
     modifier: Modifier = Modifier,
     onSelect: (LocationDescription) -> Unit,
     onStartPlayback: (LocationDescription) -> Unit = {},
-    onStartBeacon: (LocationDescription) -> Unit = {}
+    onStartBeacon: (LocationDescription) -> Unit = {},
+    itemActions: LocationListActions = LocationListActions(),
 ) {
+    val extraActions = rememberLocationItemActions(itemActions)
     val startBeaconHint = stringResource(Res.string.location_detail_action_beacon_from_markers)
     val startRouteHint = stringResource(Res.string.route_detail_action_start_route_hint)
 
@@ -46,7 +50,8 @@ fun MarkersAndRoutesList(
                         enabled = true,
                         functionLocation = if (uiState.markers) onStartBeacon else onStartPlayback,
                         hint = if (uiState.markers) startBeaconHint else startRouteHint
-                    )
+                    ),
+                    extraActions = extraActions,
                 ),
                 userLocation = userLocation
             )

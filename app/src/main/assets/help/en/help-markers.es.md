@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Marcadores
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
+nav_order: 80
 lang: es
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Marcadores
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Un marcador es un lugar que has guardado. Puede ser cualquier lugar que te interese: tu casa, una parada de autobús, la entrada de un edificio o un paso de peatones.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape avisa de tus marcadores cuando pasas junto a ellos. Puedes colocar una señal de audio en un marcador, añadirlo a una ruta u oír los más cercanos con el botón *Marcadores cercanos*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Creación de marcadores
+
+1. Selecciona *Marcadores* en la pantalla principal y después *Nuevo*.
+
+2. Elige *Ubicación actual* o un lugar de *Lugares cercanos*.
+
+3. Cambia el nombre si quieres y añade notas. Soundscape lee las notas junto con el marcador.
+
+4. Selecciona *Listo*.
+
+También puedes guardar cualquier lugar que encuentres. Abre sus *Detalles de la ubicación* y selecciona *Guardar como marcador*.
+
+## Personalización de marcadores
+
+Selecciona el marcador en la pantalla *Marcadores* y después selecciona *Editar marcador*. Puedes cambiar su nombre, sus notas y su posición, o seleccionar *Eliminar marcador*. Al eliminar un marcador, también se quita de tus rutas.
 

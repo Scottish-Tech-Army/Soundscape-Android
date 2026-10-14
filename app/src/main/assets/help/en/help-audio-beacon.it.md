@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Audiofaro
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 60
 lang: it
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Audiofaro
 
-## What is it?
+Un audiofaro è un suono che proviene dalla direzione di un luogo scelto da te. Ti dice dove si trova il luogo in linea retta. Non dà indicazioni passo passo, quindi il percorso lo scegli tu.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Impostare un audiofaro
 
-## When would I use it?
+1. Trova il luogo. Usa la barra di ricerca, *Luoghi nelle vicinanze*, *Indicatori* o *Posizione attuale* nella schermata iniziale.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Seleziona il luogo per aprire *Dettagli posizione*.
 
-## How does it work?
+3. Seleziona *Avvia audiofaro*.
 
-**To set a beacon :**
+Soundscape torna alla schermata iniziale e l'audiofaro parte. La schermata iniziale mostra il nome del luogo e quanto dista.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Trovare la direzione
 
-**To remove the current beacon :**
+L'audiofaro cambia suono quando guardi verso il luogo o cammini dritto verso di esso. Per trovare quel suono, tieni il telefono in piano e girati lentamente. Puoi scegliere un altro suono per l'audiofaro in *Impostazioni*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Disattivare l'audio dell'audiofaro
 
-**To mute the audible beacon :**
+Seleziona *Disattiva audio audiofaro* nella schermata iniziale. Soundscape continua a dirti quanto dista il luogo mentre ti sposti. Seleziona *Attiva audio audiofaro* per sentire di nuovo l'audiofaro.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Rimuovere l'audiofaro
+
+Seleziona *Interrompi Percorso* nella schermata iniziale. Il pulsante ha questo nome anche quando l'audiofaro non fa parte di un percorso.
+
+## Quando arrivi
+
+Quando sei a circa 12 metri dal luogo, Soundscape te lo dice e rimuove l'audiofaro. Il telefono non può determinare la tua posizione con più precisione. Per sentire di nuovo l'audiofaro, impostalo di nuovo.
+
+Un audiofaro impostato su un luogo a meno di 30 metri resta attivo finché non lo rimuovi.
 

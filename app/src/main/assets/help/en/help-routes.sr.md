@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Руте
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
+nav_order: 90
 lang: sr
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Руте
 
-## What is it?
+Рута је списак локација, које се зову путне тачке, а посећујете их редом. Soundscape поставља бакен на прву путну тачку. Када стигнете, то вам каже и помера бакен на следећу.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Користите руту да бисте научили нови пут или да не скренете са пута који познајете.
 
-## When would I use it?
+## Прављење руте
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Изаберите *Руте* на почетном екрану, затим изаберите *Ново*.
 
-## How does it work?
+2. Дајте рути назив. Можете додати опис.
 
-**Creating a route :**
+3. Изаберите *Додај путне тачке* и изаберите маркере. Можете додати и своју тренутну локацију или место у близини.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Изаберите *Готово*.
 
-**Editing a route :**
+## Праћење руте
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Изаберите руту на екрану *Руте*, затим изаберите *Покрени руту*. Да бисте је пратили у супротном смеру, изаберите *Покрени руту уназад*. На почетном екрану *Следећа путна тачка* и *Претходна путна тачка* померају бакен дуж руте. *Заустави руту* је завршава.
 
-**Sharing a route :**
+## Измена руте
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Изаберите руту на екрану *Руте*, затим изаберите *Уреди руту*. Можете додавати, уклањати и премештати путне тачке, променити назив и опис или обрисати руту.
+
+## Дељење руте
+
+Изаберите руту на екрану *Руте*, затим изаберите *Дели*.
 

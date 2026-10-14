@@ -1,13 +1,14 @@
 ---
-title: Soundscape nasıl çalışır
+title: Soundscape’in arkasındaki teknoloji
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 200
 lang: tr
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Soundscape nasıl çalışır
+# Soundscape’in arkasındaki teknoloji
 Bu sayfanın amacı, Soundscape uygulamasının arka planda nasıl çalıştığına dair genel bir anlayış sağlamaktır. Uygulamayı kullanmak için bunu okumanıza gerek yok, ancak yazılmasının birkaç nedeni var:
 
 1. Uygulamayla ilgilenen yeni başlayanların sınırlamalarının nerede olduğunu anlamalarına yardımcı olmak için

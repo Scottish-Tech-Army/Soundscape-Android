@@ -321,21 +321,21 @@ class StreetDescription(
         return newMap.toList().sortedBy { it.first }.toMap()
     }
 
-    private fun descriptiveIntersection(
+    /**
+     * The name of the cross street that describes [intersection], or null if nothing meeting this
+     * street there is worth describing it by - an un-named path with no confection, say. Deciding
+     * whether a junction goes into the description and what it's then called are the same
+     * question, so both are answered here: asked separately, a junction could be admitted on the
+     * strength of one Way and named after another.
+     */
+    private fun crossStreetName(
         intersection: Intersection,
         localizedStrings: LocalizedStrings?
-    ): Boolean {
-        // Return true if this intersection is useful for describing the street. If it's just an
-        // un-named path with no confection then we return false.
-        var count = 0
+    ): String? {
         for (member in intersection.members) {
             // Skips this street, and in travel mode anything without a name of its own - see
             // usableCrossStreet.
             if (!usableCrossStreet(member)) continue
-            if (member.properties?.get("pavement") != null) {
-                // Skip over pavements
-                continue
-            }
             val direction = member.intersections[WayEnd.START.id] == intersection
             val segmentName = member.getName(
                 direction,
@@ -344,6 +344,11 @@ class StreetDescription(
                 nonGenericOnly = true,
                 noGenericDeadEnds = true
             )
+            // Skip over pavements. Only once the name has been asked for: an un-named footway is
+            // found to be the pavement of a road as its name is confected, so before that it has
+            // nothing to say it is one and would be taken for a cross street - "On Coldharbour
+            // Lane between Pavement next to Coldharbour Lane and...".
+            if (member.properties?.get("pavement") != null) continue
             if (segmentName.isEmpty()) continue
 
             val segmentNameReverse = member.getName(
@@ -355,11 +360,26 @@ class StreetDescription(
             )
             // If the description is the same in both directions, then we don't want to include it
             // as it's probably a loop joining on to our road
-            if (segmentName.isNotEmpty() && ((segmentName == member.displayName) || (segmentName != segmentNameReverse))) ++count
-        }
+            if ((segmentName != member.displayName) && (segmentName == segmentNameReverse)) continue
 
-        return count > 0
+            // In travel mode usableCrossStreet has already established there's a real name or
+            // ref, so use it bare. Way.getName would otherwise append the confected part -
+            // "Thomson Place to dead end", "Mountblow Road via steps" - which is the same noise
+            // the filter above exists to avoid.
+            val crossStreetName = if (travelMode) {
+                member.displayName ?: member.ref ?: ""
+            } else {
+                member.getName(direction, gridState, localizedStrings, nonGenericOnly = true)
+            }
+            return crossStreetName.ifEmpty { segmentName }
+        }
+        return null
     }
+
+    private fun descriptiveIntersection(
+        intersection: Intersection,
+        localizedStrings: LocalizedStrings?
+    ): Boolean = crossStreetName(intersection, localizedStrings) != null
 
     /**
      * createDescription creates the street description
@@ -768,29 +788,8 @@ class StreetDescription(
     ): String? {
         if (intersection != null) {
             if (way != null) {
-                // Describe the intersection from the perspective of Way. The same filter as
-                // descriptiveIntersection, so that in travel mode the junction can't be admitted
-                // on the strength of a real road and then named after an unnamed path meeting it.
-                for (crossStreet in intersection.members) {
-                    if (usableCrossStreet(crossStreet)) {
-                        // In travel mode usableCrossStreet has already established there's a real
-                        // name or ref, so use it bare. Way.getName would otherwise append the
-                        // confected part - "Thomson Place to dead end", "Mountblow Road via
-                        // steps" - which is the same noise the filter above exists to avoid.
-                        val crossStreetName = if (travelMode) {
-                            crossStreet.displayName ?: crossStreet.ref ?: ""
-                        } else {
-                            crossStreet.getName(
-                                crossStreet.intersections[WayEnd.START.id] == intersection,
-                                gridState,
-                                localizedStrings,
-                                nonGenericOnly = true
-                            )
-                        }
-                        if (crossStreetName.isNotEmpty())
-                            return crossStreetName
-                    }
-                }
+                // Describe the intersection from the perspective of Way
+                crossStreetName(intersection, localizedStrings)?.let { return it }
             }
 
             return localizedStrings?.get(StringKey.StreetDescriptionIntersection, intersection.name)

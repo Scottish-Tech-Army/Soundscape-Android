@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Stemmer
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 100
 lang: da
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Stemmer
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape kan bruge alle stemmer, der er installeret på din telefon. Hvis du vil tilføje stemmer, skal du åbne telefonens indstillinger og finde *Tekst-til-tale-output*. Hvis du vil vælge en stemme i Soundscape, skal du åbne menuen og vælge *Indstillinger*, derefter *Lyd* og derefter *Stemmer*.
 

@@ -21,6 +21,8 @@ import kotlin.math.abs
  * @param phoneHeading is the direction in which the phone is pointing
  * @param travelHeading is the direction in which the phone is moving
  * @param headHeading is the direction in which the head tracking is pointing (not currently implemented)
+ * @param heldHeading is the last trusted travel heading, kept for a short while after it lapses -
+ * see HeadingHold. The last resort for [heading], after every live source.
  * @param fovDistance is the distance in which the user can see, used when searching for POI
  * @param speed is the speed of the user (currently straight from the location provider)
  * @param mapMatchedWay is the Way that has been map matched to the location
@@ -74,6 +76,7 @@ class UserGeometry(
     private val headingMode: HeadingMode = HeadingMode.CourseAuto,
     private var travelHeading: Double? = null,
     private var headHeading: Double? = null,
+    private val heldHeading: Double? = null,
     val errorDistance: Double = 0.0,
     val errorHeading: Double = 0.0,
     val inStreetPreview: Boolean = false
@@ -158,7 +161,7 @@ class UserGeometry(
 
     fun heading(): Double? {
         when (headingMode) {
-            // Priority: travel, head, phone
+            // Priority: travel, head, phone, held
             HeadingMode.CourseAuto -> {
                 var heading = getTravelHeading()
                 if (heading == null) {
@@ -167,10 +170,10 @@ class UserGeometry(
                         heading = phoneHeading
                     }
                 }
-                return heading
+                return heading ?: heldHeading
             }
 
-            // Priority: Head, phone, travel
+            // Priority: Head, phone, travel, held
             HeadingMode.HeadAuto -> {
                 var heading = headHeading
                 if (heading == null) {
@@ -179,7 +182,7 @@ class UserGeometry(
                         heading = getTravelHeading()
                     }
                 }
-                return heading
+                return heading ?: heldHeading
             }
 
             HeadingMode.Phone -> return phoneHeading

@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: خودکار کالآؤٹس
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 70
 lang: ur
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# خودکار کالآؤٹس
 
-## What is it?
+چلتے وقت Soundscape بتاتا ہے کہ آپ کے قریب کیا ہے۔ ہر نام اسی جگہ کی سمت سے سنائی دیتا ہے۔ کالآؤٹس میں سڑکیں، چوراہے، دکانیں، بس اسٹاپ، نشانات اور آپ کے اپنے مارکرز شامل ہیں۔
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## چوراہے
 
-## When would I use it?
+جب آپ کسی چوراہے کے قریب پہنچتے ہیں تو Soundscape وہاں سے نکلنے والی ہر سڑک کا نام بتاتا ہے۔ آپ سنتے ہیں کہ کون سی سڑک بائیں جاتی ہے، کون سی سیدھی آگے جاتی ہے اور کون سی دائیں جاتی ہے۔
 
-**Exploring a new area :**
+## آپ کتنا سنتے ہیں
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+مینو کھولیں اور *ترتیبات*، پھر *کالآؤٹس کا نظم کریں* منتخب کریں۔ *کالآؤٹ تفصیل* کی چار سطحیں ہیں۔
 
-**Walking to a specific location :**
+*تفصیلی* قریب کی ہر چیز کے بارے میں بتاتا ہے۔
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*سادہ* چھوٹے راستے اور سروس روڈ چھوڑ دیتا ہے، اور کم دہراتا ہے۔
 
-**When you need silence :**
+*ضروری* صرف سڑکوں، چوراہوں اور نشانات کے بارے میں بتاتا ہے۔
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*خاموش* کوئی خودکار کالآؤٹ نہیں دیتا۔ بیکن، روٹس اور ہوم اسکرین کے بٹن پھر بھی کام کرتے ہیں۔
 
-## How does it work?
+## آپ کیا سنتے ہیں
 
-**Turning callouts on or off :**
+*کالآؤٹس کا نظم کریں* میں دو اور ترتیبات ہیں۔ *سڑکیں اور چوراہے* سڑکوں اور چوراہوں کے کالآؤٹس کو آن یا آف کرتی ہے۔ *پکارے جانے والے مقامات* سے آپ چنتے ہیں کہ کس قسم کے مقامات سنائی دیں، جیسے *پبلک ٹرانزٹ* یا *کھانا اور مشروبات*۔ آپ کے مارکرز کے بارے میں ہمیشہ بتایا جاتا ہے۔
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Soundscape کو کم بولنے والا بنانا
 
-**Managing which callouts you hear :**
+اپنے ہیڈفون کے کنٹرولز پر *پریوئس* دبائیں۔ ہر بار دبانے سے ایک سطح کم ہوتی ہے: *تفصیلی*، *سادہ*، *ضروری*، پھر *خاموش*۔ ایک بار اور دبانے سے *تفصیلی* پر واپسی ہوتی ہے۔ مدد کا صفحہ *میڈیا کنٹرولز کا استعمال* دیکھیں۔
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Soundscape کو کچھ دیر کے لیے روکنا
+
+ہوم اسکرین کے اوپر *نیند* بٹن منتخب کریں۔ Soundscape آپ کا مقام استعمال کرنا بند کر دیتا ہے اور جب تک آپ *ابھی جاگیں* منتخب نہ کریں کوئی آواز نہیں نکالتا۔ یا *روانگی پر جاگیں* منتخب کریں، تو Soundscape اس وقت جاگ جاتا ہے جب آپ اپنی موجودہ جگہ سے نکلتے ہیں۔
+
+## گاڑی یا ٹرین میں
+
+Soundscape جان لیتا ہے کہ آپ گاڑی کی رفتار سے سفر کر رہے ہیں۔ تب یہ چوراہوں اور قریبی دکانوں کے بارے میں بتانا بند کر دیتا ہے، کیونکہ وہ بہت تیزی سے گزر جاتی ہیں۔ اس کے بجائے یہ اس سڑک کے بارے میں بتاتا ہے جس پر آپ ہیں، اور نشانات، اسٹاپ اور اسٹیشن، دریا اور سرنگوں کے بارے میں بتاتا ہے۔
 

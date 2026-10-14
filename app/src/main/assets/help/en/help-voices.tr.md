@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Ses Seçenekleri
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 100
 lang: tr
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Ses Seçenekleri
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape telefonunuzda yüklü olan herhangi bir sesi kullanabilir. Ses eklemek için telefonunuzun ayarlarını açın ve *Metin okuma çıkışı* bölümünü bulun. Soundscape içinde bir ses seçmek için menüyü açın ve *Ayarlar*, sonra *Ses*, sonra *Ses Seçenekleri* seçeneğini seçin.
 

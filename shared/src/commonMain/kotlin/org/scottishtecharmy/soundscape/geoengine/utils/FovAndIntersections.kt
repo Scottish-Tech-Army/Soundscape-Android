@@ -6,8 +6,19 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 
-fun getFovTriangle(userGeometry: UserGeometry, forceLocation: Boolean = false): Triangle {
-    val heading = userGeometry.snappedHeading() ?: 0.0
+/**
+ * The user's field of view: a triangle reaching [UserGeometry.fovDistance] out from where they are,
+ * centred on the way they are heading.
+ *
+ * Null when there is no heading to centre it on. That isn't rare: the GPS course is only trusted
+ * while moving and when its accuracy is good enough (see GeoEngine.createUserGeometry), and with
+ * the phone locked in a pocket there is no compass heading to fall back on either. This used to
+ * point the triangle due north instead, so a user walking south was told about what was behind
+ * them as though it were ahead. Each caller decides what "ahead" means without a heading - search
+ * all the way round, or say nothing - rather than inherit a guess.
+ */
+fun getFovTriangle(userGeometry: UserGeometry, forceLocation: Boolean = false): Triangle? {
+    val heading = userGeometry.snappedHeading() ?: return null
     val quadrant = Quadrant(heading)
     val location = if (forceLocation) userGeometry.location
     else if (userGeometry.mapMatchedLocation != null) userGeometry.mapMatchedLocation.point
@@ -86,6 +97,10 @@ fun getRelativeDirectionsPolygons(
     relativeDirectionType: RelativeDirections
 ): FeatureCollection {
 
+    // Without a heading the segments are the compass quadrants - ahead is north, right is east.
+    // That is a partition of the surroundings rather than a claim about which way the user faces,
+    // so it is only fit for a caller that speaks compass directions, as buildWhatsAroundMeCallout
+    // does: anything that says "ahead" or "on your left" needs a real heading.
     val heading = userGeometry.heading() ?: 0.0
     val segments =
         when (relativeDirectionType) {

@@ -35,6 +35,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.OnboardButton
+import org.scottishtecharmy.soundscape.i18n.resolveGrammarMarkers
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.terms_of_use_accept_checkbox_acc_label
 import org.scottishtecharmy.soundscape.resources.terms_of_use_medical_safety_disclaimer
@@ -42,6 +43,8 @@ import org.scottishtecharmy.soundscape.resources.terms_of_use_message
 import org.scottishtecharmy.soundscape.resources.terms_of_use_service_agreement
 import org.scottishtecharmy.soundscape.resources.terms_of_use_title
 import org.scottishtecharmy.soundscape.resources.ui_continue
+import org.scottishtecharmy.soundscape.screens.home.home.markdownToHtml
+import org.scottishtecharmy.soundscape.screens.home.home.parseHtmlToAnnotatedString
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -87,9 +90,11 @@ fun TermsScreen(
                     .focusable()
             ) {
                 TermsItem(
-                    stringResource(
-                        Res.string.terms_of_use_message,
-                        stringResource(Res.string.terms_of_use_service_agreement)
+                    resolveGrammarMarkers(
+                        stringResource(
+                            Res.string.terms_of_use_message,
+                            stringResource(Res.string.terms_of_use_service_agreement)
+                        )
                     )
                 )
                 TermsItem(stringResource(Res.string.terms_of_use_medical_safety_disclaimer))
@@ -153,8 +158,9 @@ fun TermsItem(text: String) {
             .fillMaxWidth()
     ) {
         Spacer(modifier = Modifier.width(spacing.medium))
+        // The terms are Markdown, with the name they define marked for emphasis
         Text(
-            text = text,
+            text = parseHtmlToAnnotatedString(markdownToHtml(text)),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface
         )

@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: मीडिया नियंत्रणे वापरणे
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
+nav_order: 110
 lang: mr
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# मीडिया नियंत्रणे वापरणे
 
-## What is it?
+तुम्ही तुमच्या हेडफोनवरील मीडिया बटणांनी Soundscape नियंत्रित करू शकता: *play/pause*, *next* आणि *previous*. हे वायर्ड आणि Bluetooth हेडफोन दोन्हींसोबत काम करते. Soundscape पार्श्वभूमीत असताना किंवा फोन लॉक असतानाही हे काम करते.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+सर्व हेडफोनवर तिन्ही बटणे नसतात.
 
-## When would I use it?
+दुसरे कोणतेही अॅप ऑडिओ वाजवत नसते तेव्हाच बटणे Soundscape नियंत्रित करतात. तुम्ही संगीत किंवा पॉडकास्ट वाजवत असाल, तर बटणे त्या अॅपला नियंत्रित करतात.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+बटणे दोन प्रकारे काम करू शकतात: *मूळ मोड* किंवा *ऑडिओ मेनू*. निवडण्यासाठी मेनू उघडा आणि *सेटिंग्ज*, नंतर *मीडिया नियंत्रणे* निवडा.
 
-## How does it work?
+## मूळ मोड
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Play/pause* बीकन म्यूट करते. बीकन ऐकण्यासाठी ते पुन्हा दाबा.
 
- Original mode. 
+*Next* तुम्ही मार्गावर चालत असताना बीकन पुढील मार्ग बिंदूवर नेते. नाहीतर ते *माझ्याभोवती* सांगते.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Previous* तुम्ही मार्गावर चालत असताना बीकन मागील मार्ग बिंदूवर नेते. नाहीतर ते *ध्वनी सूचना तपशील* बदलते. प्रत्येक वेळी दाबल्यावर एक स्तर कमी होतो: *तपशीलवार*, *सरलीकृत*, *आवश्यक*, नंतर *निःशब्द*. आणखी एकदा दाबल्यावर *तपशीलवार* वर परत येते. Soundscape नवीन स्तराचे नाव सांगते.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## ऑडिओ मेनू
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+ऑडिओ मेनू त्याच तीन बटणांनी तुम्हाला अधिक क्रिया देतो. Soundscape प्रत्येक पर्याय मोठ्याने वाचते.
 
+*Next* पुढच्या पर्यायावर जाते. शेवटच्या पर्यायानंतर ते पहिल्यावर परत येते.
 
+*Play/pause* तुम्ही नुकताच ऐकलेला पर्याय निवडते.
 
-Audio menu. 
+*Previous* *मूळ मोड* प्रमाणेच *ध्वनी सूचना तपशील* बदलते.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+मेनू चार गटांनी सुरू होतो: *माझा परिसर ऐका*, *मार्ग नियंत्रण*, *मार्ग सुरू करा* आणि *ऑडिओ बीकन सुरू करा*. एखाद्या गटातील क्रिया ऐकण्यासाठी तो गट निवडा. *माझा परिसर ऐका* आणि *मार्ग नियंत्रण* यांच्या शेवटी *मुख्य मेनू* असतो, जो तुम्हाला चार गटांकडे परत नेतो.
 

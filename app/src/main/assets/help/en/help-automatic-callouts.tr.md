@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Otomatik Anonslar
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 70
 lang: tr
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Otomatik Anonslar
 
-## What is it?
+Siz yürürken Soundscape yakınınızda ne olduğunu anons eder. Her adı yerin yönünden duyarsınız. Anonslar sokakları, kavşakları, dükkânları, otobüs duraklarını, simge yapıları ve kendi kayıtlı noktalarınızı kapsar.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Kavşaklar
 
-## When would I use it?
+Bir kavşağa yaklaşırken Soundscape oradan ayrılan her yolun adını söyler. Hangi yolun sola gittiğini, hangisinin düz devam ettiğini ve hangisinin sağa gittiğini duyarsınız.
 
-**Exploring a new area :**
+## Ne Kadar Duyarsınız
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Menüyü açın ve *Ayarlar*, sonra *Anonsları yönet* seçeneğini seçin. *Anons Ayrıntısı* ayarının dört düzeyi vardır.
 
-**Walking to a specific location :**
+*Ayrıntılı* yakındaki her şeyi anons eder.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Sadeleştirilmiş* küçük patikaları ve servis yollarını atlar ve kendini daha az tekrarlar.
 
-**When you need silence :**
+*Temel* yalnızca sokakları, kavşakları ve simge yapıları anons eder.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Sessiz* hiçbir otomatik anons yapmaz. İşaretler, rotalar ve ana ekran düğmeleri çalışmaya devam eder.
 
-## How does it work?
+## Neleri Duyarsınız
 
-**Turning callouts on or off :**
+*Anonsları yönet* bölümünde iki ayar daha vardır. *Sokaklar ve Kavşaklar* sokak ve kavşak anonslarını açar veya kapatır. *Anons Edilecek Yerler* hangi tür yerleri duyacağınızı seçer, örneğin *Toplu Taşıma* veya *Yiyecek ve İçecek*. Kayıtlı noktalarınız her zaman anons edilir.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Soundscape'i Daha Sessiz Yapma
 
-**Managing which callouts you hear :**
+Kulaklık kumandanızdaki *geri* düğmesine basın. Her basış bir düzey daha sessize geçer: *Ayrıntılı*, *Sadeleştirilmiş*, *Temel*, sonra *Sessiz*. Bir basış daha *Ayrıntılı* düzeyine döner. *Medya Kontrollerini Kullanma* yardım sayfasına bakın.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Soundscape'i Bir Süre Durdurma
+
+Ana ekranın üstündeki *Uyku Modu* düğmesini seçin. Siz *Şimdi Uyandır* seçeneğini seçene kadar Soundscape konumunuzu kullanmayı bırakır ve hiç ses çıkarmaz. Ya da *Ayrıldığımda Uyandır* seçeneğini seçin; Soundscape bulunduğunuz yerden ayrıldığınızda uyanır.
+
+## Taşıtta veya Trende
+
+Soundscape taşıt hızında ilerlediğinizi fark eder. O zaman kavşakları ve yakındaki dükkânları anons etmeyi bırakır, çünkü çok hızlı geçerler. Bunun yerine bulunduğunuz yolu, simge yapıları, durakları ve istasyonları, nehirleri ve tünelleri anons eder.
 

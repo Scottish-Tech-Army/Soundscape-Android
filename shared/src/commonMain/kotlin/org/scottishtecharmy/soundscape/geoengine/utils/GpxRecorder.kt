@@ -80,11 +80,15 @@ class GpxRecorder : LocationRecorder {
          * 2. Track points hold the unfiltered fix, so that a replay can reconstruct both of the
          *    streams the geoengine runs on rather than only the smoothed one. Fields the fix
          *    didn't carry are written as zero rather than as a sentinel.
+         * 3. bearingAccuracyDegrees is on Android's scale on every platform: iOS recordings carry
+         *    CoreLocation's courseAccuracy halved, the value the geoengine judged the course by -
+         *    see IosLocationProvider's COURSE_ACCURACY_SCALE. A version 2 recording from an
+         *    iPhone carries it unscaled.
          *
          * Bump this whenever what a track point means changes, so a replay of an older file can
          * keep treating it the way it was written - see GpxLocationStream.
          */
-        const val RECORDER_VERSION = 2
+        const val RECORDER_VERSION = 3
 
         private const val GPX_HEADER =
             "<?xml version='1.0' encoding='utf-8'?>\n" +

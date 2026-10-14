@@ -53,6 +53,7 @@ import org.jetbrains.compose.resources.getString
 import org.koin.android.ext.android.inject
 import org.scottishtecharmy.soundscape.actions.ActionResult
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
+import org.scottishtecharmy.soundscape.actions.executeForDeepLink
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
@@ -943,6 +944,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Runs an audio menu action asked for by a soundscape:// link, through the same
+     * SoundscapeActionExecutor as the assistants. Used by the IncomingIntent.PerformAction
+     * dispatch path.
+     */
+    fun performAction(action: SoundscapeAction) {
+        val service = soundscapeServiceConnection.soundscapeService
+        val actions = service?.actions
+        if (actions == null) {
+            Log.w(TAG, "Service not running, can't perform $action")
+            return
+        }
+        lifecycleScope.launch {
+            actions.executeForDeepLink(action, service)
+        }
+    }
+
     fun shareRoute(shareUri: Uri?) {
         if (shareUri != null) {
             val sendIntent: Intent =
@@ -1126,7 +1144,7 @@ class MainActivity : AppCompatActivity() {
         const val LAST_SPLASH_RELEASE_KEY = "LastNewRelease"
         const val POSITION_INCLUDES_HEADING_AND_DISTANCE_DEFAULT = false
         const val POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY = "PositionTextDescription"
-        const val RELATIVE_DIRECTION_DEFAULT = "ClockFace"
+        const val RELATIVE_DIRECTION_DEFAULT = "LeftRight"
         const val RELATIVE_DIRECTION_KEY = "RelativeDirectionMode"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"

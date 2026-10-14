@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: குரல்கள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 100
 lang: ta
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# குரல்கள்
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+உங்கள் தொலைபேசியில் நிறுவப்பட்டுள்ள எந்தக் குரலையும் Soundscape பயன்படுத்த முடியும். குரல்களைச் சேர்க்க, தொலைபேசியின் அமைப்புகளைத் திறந்து *உரையிலிருந்து பேச்சு வெளியீடு* என்பதைக் கண்டறியவும். Soundscape-இல் குரலைத் தேர்வுசெய்ய, மெனுவைத் திறந்து *அமைப்புகள்*, பின்னர் *ஆடியோ*, பின்னர் *குரல்கள்* என்பதைத் தேர்ந்தெடுக்கவும்.
 

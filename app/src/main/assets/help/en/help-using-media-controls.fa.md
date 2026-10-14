@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: استفاده از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 110
 lang: fa
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# استفاده از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری
 
-## What is it?
+می‌توانید ساند‌اسکیپ را با دکمه‌های رسانه‌ای هندزفری کنترل کنید: *پخش/مکث*، *بعدی* و *قبلی*. این کار با هندزفری سیمی و Bluetooth انجام می‌شود. وقتی ساند‌اسکیپ در پس‌زمینه است یا گوشی قفل است هم کار می‌کند.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+همه‌ی هندزفری‌ها هر سه دکمه را ندارند.
 
-## When would I use it?
+دکمه‌ها فقط وقتی ساند‌اسکیپ را کنترل می‌کنند که هیچ اپلیکیشن دیگری صدا پخش نکند. اگر موسیقی یا پادکست پخش می‌کنید، دکمه‌ها آن اپلیکیشن را کنترل می‌کنند.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+دکمه‌ها به دو شیوه می‌توانند کار کنند: *حالت اصلی* یا *منوی صوتی*. برای انتخاب، منو را باز کنید و *تنظیمات* و سپس *کنترل‌های رسانه‌ای* را انتخاب کنید.
 
-## How does it work?
+## حالت اصلی
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*پخش/مکث* صدای جهت‌نما را می‌بندد. برای شنیدن جهت‌نما دوباره آن را فشار دهید.
 
- Original mode. 
+*بعدی* وقتی مسیری را دنبال می‌کنید جهت‌نما را به نقطه‌ی بین‌راهی بعدی می‌برد. در غیر این صورت *اطراف من* را اعلام می‌کند.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*قبلی* وقتی مسیری را دنبال می‌کنید جهت‌نما را به نقطه‌ی بین‌راهی قبلی می‌برد. در غیر این صورت *جزئیات اعلان‌ها* را تغییر می‌دهد. هر فشار یک سطح آرام‌تر می‌شود: *مفصل*، *ساده‌شده*، *ضروری* و سپس *بی‌صدا*. یک فشار دیگر به *مفصل* برمی‌گردد. ساند‌اسکیپ نام سطح جدید را می‌گوید.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## منوی صوتی
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+منوی صوتی با همان سه دکمه کارهای بیشتری در اختیارتان می‌گذارد. ساند‌اسکیپ هر گزینه را با صدای بلند می‌خواند.
 
+*بعدی* به گزینه‌ی بعدی می‌رود. بعد از آخرین گزینه به اولین گزینه برمی‌گردد.
 
+*پخش/مکث* گزینه‌ای را که همین حالا شنیدید انتخاب می‌کند.
 
-Audio menu. 
+*قبلی* مانند *حالت اصلی*، *جزئیات اعلان‌ها* را تغییر می‌دهد.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+منو با چهار گروه شروع می‌شود: *آشنایی با محیط*، *کنترل مسیر*، *شروع مسیر* و *فعال‌سازی جهت‌نمای صوتی*. یک گروه را انتخاب کنید تا کارهای آن را بشنوید. *آشنایی با محیط* و *کنترل مسیر* با *منوی اصلی* تمام می‌شوند که شما را به چهار گروه برمی‌گرداند.
 

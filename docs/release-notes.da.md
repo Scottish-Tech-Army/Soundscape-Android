@@ -10,7 +10,9 @@ machine-translated: true
 
 # Udgivelsesnoter
 
-Soundscape 2.0 er en stor udgivelse og er i øjeblikket i lukket beta. Den vigtigste ændring er, at
+Soundscape 2.0 er en stor udgivelse og er nu i åben beta på Android.
+Det betyder, at alle kan få adgang til betaversionen ved blot at gå til Play Butik [her](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Den vigtigste ændring er, at
 Soundscape nu har noget nyttigt at sige, når du rejser med bil, bus eller tog, og ikke længere kun
 når du går. Dertil kommer en mængde mindre arbejde med, hvordan steder beskrives, tyve nye sprog og
 en lang liste af rettelser.
@@ -24,12 +26,27 @@ Noter til ældre versioner findes på siden
   fart, og beskriver din rejse i stedet for dine umiddelbare omgivelser.
 * **Besked når du krydser vand og jernbaner.** Floder, kanaler, fjorde og jernbanestrækninger
   meldes, når du krydser dem — både til fods og undervejs.
+* **Vælg, hvor meget Soundscape siger.** Den nye indstilling *Detaljeniveau for lydbeskeder* gør
+  Soundscape mere stille på travle steder, og med *Steder der skal annonceres* vælger du, hvilke slags
+  steder du hører om. Du kan ændre detaljeniveauet med knapperne på dine høretelefoner, mens du går.
+* **Hør, hvor langt der er til næste vejkryds.** Vejkryds annonceres i en ensartet afstand, når du
+  nærmer dig, og lydbeskeden siger nu, hvor langt der er til kantstenen.
+* **Søg efter en slags sted eller efter koordinater.** Søg efter "apotek" eller "busstoppested" for
+  at finde de nærmeste, uanset hvad de hedder, eller indsæt koordinater, et kortlink eller en Plus
+  Code.
+* **Separate knapper til Mærker og Ruter.** Skærmen *Mærker og ruter* og dens to faner er delt op i
+  en *Mærker*-skærm og en *Ruter*-skærm, hver med sin egen knap på startskærmen. Skærmen Mærker har
+  en *Ny*-knap til at gemme din aktuelle placering eller et sted i nærheden.
+* **Åbn et sted i en anden kortapp**, fx Google Maps, fra oplysningerne om placeringen eller fra
+  listerne.
+* **Mere fra lydfyret på startskærmen.** Det viser nu afstand og retning og har skærmlæserhandlinger,
+  så du kan få en lydbesked om lydfyret, høre mere om det eller gemme det som mærke.
 * **Bedre adresser og stednavne.** Steder uden egen adresse får nu den gade og det område, de ligger
   i, husnumre knyttes til den rigtige side af gaden, og busstoppesteder i Storbritannien bruger deres
   officielle navne.
 * **Tyve nye sprog**, så der nu er 46 i alt. Også dette dokumentationswebsted er oversat.
-* **Vækning ved afgang.** Dvaletilstand kan nu vække Soundscape igen, når du forlader det sted, hvor
-  du satte den i dvale.
+* **Væk, når jeg forlader stedet.** Når du sætter Soundscape i dvale, kan den nye knap *Væk, når jeg
+  forlader stedet* i stedet sætte den i slumretilstand, så den vågner af sig selv, når du går.
 * **Kortere, mere naturlige afstande**, med større enheder når du bevæger dig hurtigt.
 * **En hurtigere vej ud.** *Afslut Soundscape* ligger nu øverst i hovedmenuen.
 * **Forbedringer af offlinekort**, herunder opdatering af et allerede hentet kort og et kort over de
@@ -58,9 +75,9 @@ Undervejs hører du:
 
 * **Hvor du er**, med jævne mellemrum — vejen, du kører på, og din retning, for eksempel »Kører mod
   nord ad M8«. Veje med et nummer meldes med deres nummer, og Soundscape gentager ikke den samme vej,
-  hver gang gadenavnet skifter.
+  hver gang gadenavnet skifter. En vej nævnes først, når du har fulgt den et lille stykke, så en række sving gennem et boligkvarter ikke giver en lydbesked ved hvert hjørne.
 * **Byer og landsbyer**, du kører imod, med afstanden, samt dem, du kører væk fra eller blot passerer.
-* **Motorvejskryds og frakørsler**, når du når dem.
+* **Motorvejskryds og frakørsler**, når du når dem. Kun dem på den side af motorvejen, du kører på – ikke på en vej, du passerer tæt på.
 * **Store landemærker**, du passerer, såsom parker, hospitaler, stadioner og indkøbscentre.
 * **Bus-, sporvogns- og togstoppesteder**, du passerer. Soundscape nævner kun stoppesteder i din side
   af vejen, da dem på den modsatte side betjener den modsatte retning.
@@ -77,11 +94,93 @@ De almindelige meldinger for gående — butikker i nærheden, fodgængerovergan
 bevidst tilbage, mens du rejser, og afstandene, hvorpå ting meldes, er strakt betydeligt, så du hører
 om noget, før du er kørt forbi det.
 
+### Vejkryds
+
+Det mest almindelige spørgsmål om lydbeskeder ved vejkryds var, hvor langt væk krydset egentlig er.
+Nu siger Soundscape det: "Vejkryds 30 meter væk". Afstanden måles til kantstenen på den gade, du skal
+til at krydse, og ikke til midten af krydset, for det er der, du faktisk stopper.
+
+Lydbeskeden kommer også på et mere ensartet tidspunkt. Før kunne den komme 45 meter eller 10 meter
+før, uden noget der skilte de to ad. Nu venter den, til krydset er omkring 30 meter væk, så afstanden
+betyder nogenlunde det samme hver gang.
+
 ### At krydse vand og jernbaner
 
 Soundscape fortæller dig nu, når du krydser en flod, en kanal, en fjord, en bugt eller en
 jernbanestrækning. Det virker både til fods og undervejs og dækker både at gå under og over, så både
 en gangbro og en underføring beskrives.
+
+### Vælg, hvor meget Soundscape siger
+
+Det, vi oftest hører om Soundscape, er, at den siger for meget på travle steder som en bymidte.
+Afsnittet *Administrer lydbeskeder* i *Indstillinger* har nu tre indstillinger i stedet for den
+gamle liste med kontakter:
+
+* **Detaljeniveau for lydbeskeder** er Lydløs, Essentiel, Forenklet eller Detaljeret. *Detaljeret* er
+  det, Soundscape altid har gjort, og det er udgangspunktet. *Forenklet* udelader mindre stier og
+  servicevej og gentager sig sjældnere. *Essentiel* annoncerer kun gader, vejkryds og landemærker.
+  *Lydløs* giver slet ingen automatiske lydbeskeder, mens lydfyr, ruter og knapperne på startskærmen
+  fortsat virker. Indstillingen erstatter den gamle kontakt *Tillad lydbeskeder*, og hvis du havde
+  slået den fra, står detaljeniveauet nu på Lydløs. Niveauerne gælder også, når du rejser: *Forenklet* beskriver vejen, du er på, sjældnere, og *Essentiel* nævner kun hovedveje og nummererede veje og udelader busstoppesteder.
+* **Gader og vejkryds** slår lydbeskeder om vejkryds og om den gade, du er på, til eller fra.
+* **Steder der skal annonceres** er en liste, du kan sætte flueben i: Alt, Landemærker, Offentlig
+  transport, Mad og drikke, Dagligvarer og nærbutikker, Banker og hæveautomater eller Ingen steder.
+  Vælg så mange, du vil, fx landemærker og busstoppesteder. Dine mærker annonceres altid.
+
+Det rette detaljeniveau skifter, mens du går, så du behøver ikke gå ind i Indstillinger for at ændre
+det. Når du trykker på *Forrige* på dine høretelefoner, sænkes detaljeniveauet ét trin ad gangen, fra
+Detaljeret over Forenklet og Essentiel til Lydløs og så rundt til Detaljeret igen. Det nye niveau
+siges hver gang. Det virker i begge tilstande for medieknapperne, og det betyder, at knapperne på
+høretelefonerne er ændret en smule:
+
+* I *Originaltilstand* annoncerer *Næste* nu *Omkring mig*, når der ikke afspilles en rute, og *Min
+  placering* ligger ikke længere på knapperne. Mens en rute afspilles, flytter *Næste* og *Forrige*
+  stadig mellem vejpunkterne.
+* I tilstanden *Lydmenu* går *Forrige* ikke længere baglæns gennem menuen. *Næste* går stadig
+  gennem den, og *Afspil/Pause* vælger stadig. Mærker og ruter står nu i navneorden i menuen, og når
+  du har startet et, går menuen tilbage til toppen i stedet for at efterlade dig dybt nede i listen.
+
+### Søgning
+
+Søgelinjen forstår nu mere end stednavne:
+
+* **Slags steder.** Søg efter "apotek", "toilet", "hæveautomat" og så videre på dit eget sprog, og
+  Soundscape viser de nærmeste steder af den slags, uanset hvad de hedder. Steder uden navn, som de
+  fleste toiletter og bænke, vises som det, de er, med deres adresse.
+* **Koordinater, kortlinks og Plus Codes.** Indsæt et talpar, grader og minutter, et link fra Google
+  Maps, Apple Kort eller OpenStreetMap eller en Plus Code, og Soundscape giver dig præcis det sted.
+  Et talpar alene kan læses begge veje, så hvor begge giver mening, får du begge tilbudt, det nærmeste
+  først.
+* **Søgning offline.** Søgningen kigger nu altid i dine downloadede kort ud over online, så den finder
+  langt flere steder uden navn. Hvis du søger uden internetforbindelse og ikke har et offlinekort over
+  det sted, du er, siger Soundscape det i stedet for bare ikke at finde noget.
+
+### Åbn et sted i en anden app
+
+Oplysninger om placering har en ny knap, **Åbn i kortapp**, som viser kort- og navigationsapps på din
+telefon. Sæt flueben i *Brug altid denne app*, så hedder knappen fx *Åbn i Google Maps* og åbner den
+med det samme; et langt tryk henter listen frem igen. Listerne *Steder i nærheden* og *Mærker* har
+også skærmlæserhandlingerne *Åbn i …* og *Del*.
+
+### Mærker og ruter
+
+Mærker og ruter delte tidligere én skærm, *Mærker og ruter*, med en fane til hver, og det var let at
+miste overblikket over, hvilken fane man var på. Nu er de to separate skærme, hver med sin egen knap
+på startskærmen: *Mærker* og *Ruter*, lige under *Steder i nærheden*.
+
+Hver skærm har en *Ny*-knap øverst til højre. På skærmen Ruter opretter den en rute som hidtil. På
+skærmen Mærker er den ny: den viser *Aktuel placering* og kategorierne fra *Steder i nærheden*, så
+du kan gemme et mærke uden først at gå tilbage til startskærmen for at finde stedet. Skærmlæsere
+annoncerer knapperne som *Nyt mærke* og *Ny rute*.
+
+### Lydfyret og mærker
+
+* Lydfyret på startskærmen viser nu sin **afstand og retning**, og en skærmlæser læser det fx som
+  "Lydfyr ved Milngavie Library, 390 meter, sydøst". Ruter viser på samme måde afstanden til det
+  aktuelle vejpunkt.
+* Lydfyret har tre **skærmlæserhandlinger**: *Lydbesked om lydfyr* siger, hvor det er, *Flere
+  oplysninger* tilføjer adressen, og *Føj til mærker* gemmer det.
+* Du kan igen **flytte et mærke** ved at trække i kortet fra skærmen *Rediger mærke*.
 
 ### Bedre adresser og stednavne
 
@@ -111,13 +210,13 @@ nok oversat tekst til at være nyttige.
 
 Oversættelser er fælles arbejde, og vi tager gerne imod din hjælp eller dine rettelser, hvor noget
 læses dårligt. Enhver tekst kan forbedres på
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Dvaletilstand
 
-Dvaletilstand har fået **vækning ved afgang**. Når du sætter Soundscape i dvale, kan du bede den
-vågne igen, så snart du forlader området, hvilket er nyttigt, når du ankommer et sted og vil have ro,
-indtil du tager af sted igen.
+Dvaletilstand har fået en ny knap, ***Væk, når jeg forlader stedet***. Når du vælger den, går
+Soundscape i slumretilstand: den er stille, indtil du forlader området, og vågner så af sig selv.
+Det er nyttigt, når du ankommer et sted og vil have ro, indtil du tager af sted igen.
 
 ### Afstande og tale
 
@@ -154,8 +253,8 @@ udsagnsordet sidst, og fornuftige hjælpetekster, hvor der slet ingen var.
   et forvirrende ekstra område at trykke på.
 * Systemets tilbage-bevægelse springer ikke længere et niveau over, når du gennemser kategorier under
   Steder i nærheden.
-* *Lydvejledningen* er omdøbt til **guidet vejledning**.
-* Indstillingerne er ryddet op, og *Nulstil til standardværdier* rydder nu alt korrekt.
+* *Lydvejledningen* har fået et nyt navn: **Guidet tutorial**.
+* Indstillingerne er ryddet op, og *Gendan standardindstillinger* rydder nu alt korrekt.
 
 ### Stabilitet
 
@@ -171,6 +270,8 @@ robust på telefoner, der aggressivt lukker baggrundsapps.
 * **Stemmestyringen** er fjernet. Den fungerede aldrig pålideligt nok til at beholde, og
   medieknapperne på hovedtelefoner dækker stort set det samme — se
   [Hjælp til brug af medieknapper]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape er også klar til stemmekommandoer via Gemini på Android 16 og nyere, men de virker først,
+  når Google frigiver understøttelsen i Gemini.
 * **Sprogmenuen inde i appen** er væk. Soundscape følger nu det sprog, du har valgt på din telefon,
   hvilket er, hvad de fleste forventede. Vil du ændre det, så skift telefonens sprog, eller vælg et
   sprog pr. app i telefonens indstillinger, hvis den tilbyder det.

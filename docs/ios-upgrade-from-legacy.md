@@ -81,34 +81,52 @@ upgrading.
 
 ### Removed
 
-- **iCloud sync of markers and routes.** The legacy app used iCloud's
-  key-value store to mirror your markers and routes between devices
-  automatically. The new app stores everything locally only. **Workaround:**
-  use the new GPX export/import to move data between devices manually. Cloud
-  sync may return as a future feature, but it isn't on the immediate roadmap.
 - **Apple Watch app.** No watchOS companion is shipped.
 - **CarPlay support.** Not implemented.
-- **Siri Shortcuts.** The legacy app donated `NSUserActivity` shortcuts so you
-  could say things like "Hey Siri, what's around me?". This isn't wired up
-  yet. The standalone voice command UI is also not implemented on iOS.
 - **Push-notification subscriptions** for service announcements.
 - **The custom `.soundscape` document file format.** The new app uses
   industry-standard GPX and a JSON route format instead. Legacy `.soundscape`
   files cannot be opened directly — re-export them as GPX from the legacy app
   if you have a copy installed, or from another device that still has them.
-- **Sharing a single marker via universal link** (e.g. a `links.soundscape...`
-  URL pointing at one marker). Universal links from older shares still resolve
-  the way they did before, but new shares are expressed as GPX files instead.
 
 ### Reduced or changed
 
+- **iCloud sync of markers and routes.** The legacy app used iCloud's
+  key-value store to mirror your markers and routes between devices
+  automatically. The new app keeps a backup of them in iCloud instead, so that
+  deleting the app or replacing your phone doesn't lose them: it is restored
+  automatically into a fresh install. It is a backup rather than a sync, so it
+  isn't meant for keeping two devices in step — use GPX export/import to move
+  data between devices.
+- **Siri Shortcuts.** The legacy app donated `NSUserActivity` shortcuts so you
+  could say things like "Hey Siri, what's around me?". The new app provides
+  App Shortcuts instead, which Siri and the Shortcuts app offer without any
+  setup: hear your surroundings, start or control a route, start or stop a
+  beacon, list your markers or routes, and change Callout Detail. Your old
+  donated shortcuts are not carried over. The standalone voice command UI is
+  not implemented on iOS.
+
 - **Per-category callout toggles.** The legacy app had seven separate switches
   for callouts (places, landmarks, mobility, information, safety,
-  intersections, destination). The new app has fewer, broader categories
-  (places & landmarks, mobility, distance to beacon) plus the master "allow
-  callouts" switch. During migration, your old per-category preferences are
-  collapsed into the new ones — for example, "places" and "landmarks" are
-  combined into "places & landmarks" (on if either was on).
+  intersections, destination) plus a master switch for automatic callouts.
+  The new app's *Manage Callouts* settings work differently:
+  - **Callout Detail** — Silent, Essential, Simplified or Detailed — sets how much
+    is said as you walk. Silent replaces the master switch: no automatic
+    callouts, while beacons, routes and the home screen buttons carry on.
+  - **Streets and Junctions** turns intersection and road callouts on or off.
+  - **Places to Call Out** is a list to tick: Everything, Landmarks, Public
+    Transit, Food and Drink, Groceries, Banks, or No Places.
+  - **Distance to the Audio Beacon**, as before.
+
+  Your old settings are carried over in two steps. On first launch the
+  upgrade collapses them into an intermediate set: "places" and "landmarks"
+  become one switch (on if either was on), "mobility" is kept, and the master
+  switch is copied. The first time Soundscape then starts its callouts, those
+  become the new settings: the master switch off becomes Silent, "mobility"
+  becomes Streets and Junctions, and places and landmarks on becomes
+  Everything — otherwise Public Transit if mobility was on, or No Places if
+  both were off. "Information", "safety", "intersections" and "destination"
+  have no equivalent and are dropped.
 - **Per-channel audio gains.** The legacy app exposed separate gain controls
   for TTS, beacon and effects, plus three per-channel volume sliders. The new
   app has a single speech rate plus a "mix with other audio" toggle; per-

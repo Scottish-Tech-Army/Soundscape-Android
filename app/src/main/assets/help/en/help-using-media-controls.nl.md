@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Mediaregelaars gebruiken
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 110
 lang: nl
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Mediaregelaars gebruiken
 
-## What is it?
+U kunt Soundscape bedienen met de mediaknoppen op uw koptelefoon: *afspelen/pauzeren*, *volgende* en *vorige*. Dit werkt met bedrade en Bluetooth-koptelefoons. Het werkt ook wanneer Soundscape op de achtergrond draait of uw telefoon vergrendeld is.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Niet elke koptelefoon heeft alle drie de knoppen.
 
-## When would I use it?
+De knoppen bedienen Soundscape alleen wanneer geen andere app audio afspeelt. Speelt u muziek of een podcast af, dan bedienen de knoppen die app.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+De knoppen kunnen op twee manieren werken: *Originele modus* of *Audiomenu*. Om te kiezen, opent u het menu en selecteert u *Instellingen* en dan *Mediaregelaars*.
 
-## How does it work?
+## Originele modus
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Afspelen/pauzeren* dempt het baken. Druk nog een keer om het baken weer te horen.
 
- Original mode. 
+*Volgende* verplaatst het baken naar het volgende routepunt wanneer u een route volgt. Anders kondigt de knop *Om me heen* aan.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Vorige* verplaatst het baken naar het vorige routepunt wanneer u een route volgt. Anders wijzigt de knop het *Detailniveau aankondigingen*. Elke druk gaat één niveau stiller: *Uitgebreid*, *Vereenvoudigd*, *Essentieel* en dan *Stil*. Nog een druk gaat terug naar *Uitgebreid*. Soundscape zegt de naam van het nieuwe niveau.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Audiomenu
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Het audiomenu geeft u meer acties met dezelfde drie knoppen. Soundscape leest elke optie voor.
 
+*Volgende* gaat naar de volgende optie. Na de laatste optie begint het menu weer bij de eerste.
 
+*Afspelen/pauzeren* selecteert de optie die u net hebt gehoord.
 
-Audio menu. 
+*Vorige* wijzigt het *Detailniveau aankondigingen*, net als in de *Originele modus*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Het menu begint met vier groepen: *Luisteren naar mijn omgeving*, *Routebediening*, *Route starten* en *Audiobaken starten*. Selecteer een groep om de acties ervan te horen. *Luisteren naar mijn omgeving* en *Routebediening* eindigen met *Hoofdmenu*. Daarmee gaat u terug naar de vier groepen.
 

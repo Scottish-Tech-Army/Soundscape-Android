@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.intents
 
+import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 
@@ -27,4 +28,11 @@ sealed class IncomingIntent {
     data class ImportRoute(val route: RouteWithMarkers) : IncomingIntent()
 
     data class StartRouteByName(val name: String) : IncomingIntent()
+
+    /**
+     * One of the audio menu's actions, asked for by a soundscape://action/... or
+     * soundscape://beacon/... link. Run through the same SoundscapeActionExecutor as
+     * the assistants - see [org.scottishtecharmy.soundscape.actions.executeForDeepLink].
+     */
+    data class PerformAction(val action: SoundscapeAction) : IncomingIntent()
 }

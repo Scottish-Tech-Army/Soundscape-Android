@@ -9,6 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.StateFlow
+import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
@@ -26,6 +27,7 @@ import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.MapApp
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsViewModel
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
@@ -45,6 +47,8 @@ data class AppCallbacks(
     val onStartRoute: (Long) -> Unit = {},
     val onStartRouteInReverse: (Long) -> Unit = {},
     val onStartRouteByName: (String) -> Unit = {},
+    /** An audio menu action asked for by a soundscape:// link - see IncomingIntent.PerformAction. */
+    val onPerformAction: (SoundscapeAction) -> Unit = {},
     val onMyLocation: () -> Unit = {},
     val onWhatsAroundMe: () -> Unit = {},
     val onAheadOfMe: () -> Unit = {},
@@ -53,6 +57,8 @@ data class AppCallbacks(
     val onRouteSkipPrevious: () -> Unit = {},
     val onRouteMute: () -> Unit = {},
     val onRouteStop: () -> Unit = {},
+    val onCalloutBeacon: () -> Unit = {},
+    val onBeaconMoreInfo: () -> Unit = {},
     val onSearch: (String) -> Unit = {},
     val onSaveMarker: (LocationDescription) -> Unit = {},
     val onDeleteMarker: (Long) -> Unit = {},
@@ -86,11 +92,16 @@ data class AppCallbacks(
     val onShareRecording: () -> Unit = {},
     val onShareRoute: (routeId: Long) -> Unit = {},
     val onShareLocation: (LocationDescription, message: String) -> Unit = { _, _ -> },
+    /**
+     * Lists the installed apps a location can be opened in, and opens one. Location Details
+     * hides its "Open in Maps App" button while [onGetMapApps] is null.
+     */
+    val onGetMapApps: (() -> List<MapApp>)? = null,
+    val onOpenInMapApp: (MapApp, LocationDescription) -> Unit = { _, _ -> },
     val onRateApp: () -> Unit = {},
     val onContactSupport: () -> Unit = {},
     val onToggleAudioTour: () -> Unit = {},
     val onAudioTourInstructionAcknowledged: () -> Unit = {},
-    val onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
     val onGoToAppSettings: () -> Unit = {},
     val onGetCurrentLocationDescription: () -> LocationDescription = {
         LocationDescription(

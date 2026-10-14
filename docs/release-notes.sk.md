@@ -10,7 +10,9 @@ machine-translated: true
 
 # Poznámky k vydaniu
 
-Soundscape 2.0 je veľké vydanie a momentálne je v uzavretej beta verzii. Hlavnou zmenou je, že
+Soundscape 2.0 je veľké vydanie a teraz je v otvorenej beta verzii pre Android.
+To znamená, že k beta verzii sa môže dostať ktokoľvek, stačí prejsť do Obchodu Play [tu](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Hlavnou zmenou je, že
 Soundscape má teraz čo užitočné povedať aj vtedy, keď cestujete autom, autobusom alebo vlakom, a nie
 len keď idete pešo. Pribudlo aj množstvo menších úprav v tom, ako sa opisujú miesta, dvadsať nových
 jazykov a dlhý zoznam opráv.
@@ -24,12 +26,28 @@ Poznámky k starším verziám nájdete na stránke
   rýchlosťou, a opisuje vašu cestu namiesto bezprostredného okolia.
 * **Upozornenie pri prekonávaní vodných tokov a železníc.** Rieky, kanály, zálivy a železničné trate
   sa ohlasujú, keď ich prekračujete — pešo aj počas jazdy.
+* **Zvoľte, koľko toho Soundscape hovorí.** Nové nastavenie *Podrobnosť hlásení* stíši Soundscape na
+  rušných miestach a v *Miestach na ohlasovanie* si vyberiete, o akých druhoch miest chcete počuť.
+  Podrobnosť môžete meniť tlačidlami na slúchadlách aj počas chôdze.
+* **Viete, ako ďaleko je ďalšia križovatka.** Križovatky sa ohlasujú v stálej vzdialenosti, keď sa k
+  nim blížite, a hlásenie teraz hovorí, ako ďaleko je obrubník.
+* **Hľadajte druh miesta alebo súradnice.** Vyhľadajte „lekáreň“ alebo „autobusová zastávka“ a
+  nájdete tie najbližšie, nech sa volajú akokoľvek, alebo vložte súradnice, odkaz na mapu či Plus
+  Code.
+* **Samostatné tlačidlá pre Značky a Trasy.** Obrazovka *Značky a trasy* s dvoma kartami bola
+  rozdelená na obrazovku *Značky* a obrazovku *Trasy*, každú s vlastným tlačidlom na domovskej
+  obrazovke. Obrazovka Značky má tlačidlo *Nová* na uloženie vašej aktuálnej polohy alebo miesta v
+  okolí.
+* **Otvorte miesto v inej mapovej aplikácii**, napríklad v Mapách Google, z podrobností o mieste alebo
+  zo zoznamov.
+* **Viac z majáka na domovskej obrazovke.** Teraz ukazuje vzdialenosť a smer a má akcie pre čítačku
+  obrazovky, ktorými maják ohlásite, zistíte o ňom viac alebo ho uložíte ako značku.
 * **Lepšie adresy a názvy miest.** Miesta bez vlastnej adresy teraz dostávajú ulicu a oblasť, v
   ktorej ležia, súpisné čísla sa priraďujú k správnej strane ulice a autobusové zastávky vo Veľkej
   Británii používajú svoje oficiálne názvy.
 * **Dvadsať nových jazykov**, teda spolu 46. Preložený bol aj tento dokumentačný web.
-* **Prebudenie pri odchode.** Režim spánku dokáže teraz Soundscape opäť prebudiť, keď opustíte
-  miesto, kde ste ho uspali.
+* **Prebudiť pri odchode.** Keď Soundscape prepnete do Režimu spánku, nové tlačidlo *Prebudiť pri
+  odchode* ho namiesto toho prepne do režimu Driemanie a aplikácia sa sama prebudí, keď odídete.
 * **Kratšie, prirodzenejšie vzdialenosti**, s väčšími jednotkami, keď sa pohybujete rýchlo.
 * **Rýchlejšia cesta von.** *Ukončiť Soundscape* je teraz na začiatku hlavnej ponuky.
 * **Vylepšenia offline máp**, vrátane aktualizácie už stiahnutej mapy a mapy dostupných oblastí na
@@ -58,10 +76,10 @@ Počas cesty budete počuť:
 
 * **Kde ste**, čas od času — cestu, po ktorej idete, a smer jazdy, napríklad „Jazda na sever po M8“.
   Cesty s číslom sa ohlasujú svojím číslom a Soundscape neopakuje tú istú cestu vždy, keď sa zmení
-  názov ulice.
+  názov ulice. Cesta sa ohlási až potom, čo po nej prejdete kúsok, takže séria odbočiek cez obytnú štvrť neprinesie hlásenie na každom rohu.
 * **Mestá a dediny**, ku ktorým smerujete, so vzdialenosťou, ako aj tie, od ktorých sa vzďaľujete
   alebo ktoré len míňate.
-* **Diaľničné križovatky a zjazdy**, keď k nim prídete.
+* **Diaľničné križovatky a zjazdy**, keď k nim prídete. Iba tie na jazdnom páse, po ktorom idete – nie na ceste, okolo ktorej prechádzate, ani na druhej strane diaľnice.
 * **Veľké orientačné body**, ktoré míňate, napríklad parky, nemocnice, štadióny a nákupné centrá.
 * **Autobusové, električkové a vlakové zastávky**, ktoré míňate. Soundscape spomína len zastávky na
   vašej strane cesty, keďže tie na protiľahlej strane slúžia opačnému smeru.
@@ -77,10 +95,93 @@ Bežné hlásenia pre chodcov — obchody v okolí, priechody a tak ďalej — s
 a vzdialenosti, na ktorých sa veci ohlasujú, boli výrazne predĺžené, aby ste sa o niečom dozvedeli
 skôr, než to miniete.
 
+### Križovatky
+
+Najčastejšia otázka k hláseniu križovatiek bola, ako ďaleko tá križovatka vlastne je. Soundscape vám
+to teraz povie: „Križovatka vzdialená 30 metrov“. Vzdialenosť sa meria k obrubníku ulice, ktorú sa
+chystáte prejsť, nie k stredu križovatky, pretože tam sa naozaj zastavíte.
+
+Hlásenie tiež prichádza na stálejšom mieste. Predtým mohlo zaznieť 45 metrov vopred alebo 10 metrov
+vopred a nedalo sa to rozlíšiť. Teraz počká, kým je križovatka asi 30 metrov ďaleko, takže
+vzdialenosť znamená zakaždým zhruba to isté.
+
 ### Prekonávanie vodných tokov a železníc
 
 Soundscape vám teraz povie, keď prekračujete rieku, kanál, záliv, zátoku alebo železničnú trať.
 Funguje to pešo aj počas jazdy a zahŕňa prechod popod aj ponad, takže sa opíše aj lávka, aj podchod.
+
+### Zvoľte, koľko toho Soundscape hovorí
+
+Najčastejšie o Soundscape počúvame, že na rušných miestach, ako je centrum mesta, hovorí príliš veľa.
+Časť *Spravovať hlásenia* v *Nastaveniach* má teraz namiesto starého zoznamu prepínačov tri
+nastavenia:
+
+* **Podrobnosť hlásení** je Bez zvuku, Základný, Zjednodušený alebo Podrobný. *Podrobný* je to, čo
+  Soundscape robil vždy, a je predvolený. *Zjednodušený* vynecháva menšie cesty a obslužné komunikácie a
+  menej sa opakuje. *Základný* ohlasuje len ulice, križovatky a orientačné body. *Bez zvuku* nerobí
+  žiadne automatické hlásenia, zatiaľ čo majáky, trasy a tlačidlá na domovskej obrazovke ďalej
+  fungujú. Nahrádza starý prepínač *Povoliť hlásenia*; ak ste ho mali vypnutý, nájdete Podrobnosť
+  hlásení nastavenú na Bez zvuku. Úrovne platia aj pri cestovaní: *Zjednodušený* ohlasuje cestu, po ktorej idete, menej často a *Základný* uvádza iba hlavné a číslované cesty a vynecháva autobusové zastávky.
+* **Ulice a križovatky** zapína alebo vypína hlásenia o križovatkách a o ulici, na ktorej ste.
+* **Miesta na ohlasovanie** je zoznam na zaškrtnutie: Všetko, Orientačné body, Verejná doprava, Jedlo
+  a nápoje, Potraviny a obchody so zmiešaným tovarom, Banky a bankomaty alebo Žiadne miesta.
+  Zaškrtnite ich, koľko chcete, napríklad orientačné body a autobusové zastávky. Vaše značky sa
+  ohlasujú vždy.
+
+Vhodná podrobnosť sa počas chôdze mení, takže kvôli nej nemusíte chodiť do Nastavení. Stlačením
+*Predchádzajúce* na slúchadlách znížite podrobnosť hlásení vždy o jeden stupeň, z Podrobného cez
+Zjednodušený a Základný na Bez zvuku a potom späť na Podrobný. Nový stupeň sa zakaždým ohlási. Funguje to v
+oboch režimoch ovládania médií, a preto sa tlačidlá slúchadiel trochu zmenili:
+
+* V *Pôvodnom režime* teraz *Ďalej* ohlási *Okolo mňa*, keď sa neprehráva žiadna trasa, a *Moja
+  poloha* už na tlačidlách nie je. Počas prehrávania trasy *Ďalej* a *Predchádzajúce* ďalej
+  prechádzajú medzi bodmi trasy.
+* V režime *Zvukové menu* sa *Predchádzajúce* už v menu nevracia späť. *Ďalej* ním ďalej prechádza a
+  *Prehrať/Pozastaviť* ďalej vyberá. Značky a trasy sú teraz v menu zoradené podľa názvu a po spustení
+  jednej z nich sa menu vráti na začiatok, namiesto aby vás nechalo hlboko v zozname.
+
+### Vyhľadávanie
+
+Vyhľadávacie pole teraz rozumie viac než len názvom miest:
+
+* **Druhy miest.** Vyhľadajte vo svojom jazyku „lekáreň“, „toaleta“, „bankomat“ a podobne a
+  Soundscape vypíše najbližšie miesta tohto druhu, nech sa volajú akokoľvek. Miesta bez názvu, ako
+  väčšina toaliet a lavičiek, sú uvedené podľa toho, čím sú, aj s adresou.
+* **Súradnice, odkazy na mapy a Plus Codes.** Vložte dvojicu čísel, stupne a minúty, odkaz z Máp
+  Google, Máp Apple alebo OpenStreetMap, prípadne Plus Code, a Soundscape vám dá presne to miesto.
+  Samotnú dvojicu čísel možno čítať oboma smermi, takže keď dávajú zmysel oba, dostanete oba, bližší
+  prvý.
+* **Vyhľadávanie offline.** Vyhľadávanie sa teraz vždy pozrie aj do stiahnutých máp, nielen online, a
+  nájde tak oveľa viac miest bez názvu. Ak hľadáte bez pripojenia na internet a nemáte offline mapu
+  miesta, kde ste, Soundscape vám to povie, namiesto toho, aby jednoducho nič nenašiel.
+
+### Otvorenie miesta v inej aplikácii
+
+Podrobnosti o mieste majú nové tlačidlo **Otvoriť v mapovej aplikácii**, ktoré vypíše mapové a
+navigačné aplikácie vo vašom telefóne. Zaškrtnite *Vždy používať túto aplikáciu* a tlačidlo sa zmení
+napríklad na *Otvoriť v aplikácii Mapy Google* a otvorí ju hneď; dlhé stlačenie vráti zoznam.
+Zoznamy *Miesta v okolí* a *Značky* majú aj akcie pre čítačku obrazovky *Otvoriť v aplikácii…* a
+*Zdieľať*.
+
+### Značky a trasy
+
+Značky a trasy predtým zdieľali jednu obrazovku, *Značky a trasy*, s kartou pre každú z nich, a
+ľahko sa stalo, že ste stratili prehľad, na ktorej karte ste. Teraz sú to dve samostatné obrazovky,
+každá s vlastným tlačidlom na domovskej obrazovke: *Značky* a *Trasy*, tesne pod *Miesta v okolí*.
+
+Každá obrazovka má v pravom hornom rohu tlačidlo *Nová*. Na obrazovke Trasy vytvorí trasu, ako
+doteraz. Na obrazovke Značky je nové: ponúkne *Aktuálna poloha* a kategórie *Miesta v okolí*, takže
+značku uložíte bez toho, aby ste sa museli najprv vrátiť na domovskú obrazovku a miesto hľadať.
+Čítačky obrazovky ohlasujú tlačidlá ako *Nová značka* a *Nová trasa*.
+
+### Maják a značky
+
+* Maják na domovskej obrazovke teraz ukazuje svoju **vzdialenosť a smer** a čítačka obrazovky ho
+  prečíta napríklad ako „Maják pri Milngavie Library, 390 metrov, juhovýchod“. Trasy rovnako ukazujú
+  vzdialenosť k aktuálnemu bodu trasy.
+* Maják má tri **akcie pre čítačku obrazovky**: *Ohlásiť maják* povie, kde je, *Ďalšie informácie*
+  pridá adresu a *Pridať do značiek* ho uloží.
+* **Značku môžete znova presunúť** ťahaním mapy na obrazovke *Upraviť značku*.
 
 ### Lepšie adresy a názvy miest
 
@@ -111,13 +212,13 @@ preloženého textu, aby bola užitočná.
 
 Preklady sú dielom komunity a radi privítame vašu pomoc alebo opravy tam, kde sa niečo číta zle.
 Akýkoľvek text možno vylepšiť na
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Režim spánku
 
-Režim spánku získal **prebudenie pri odchode**. Keď Soundscape uspíte, môžete ho požiadať, aby sa
-prebudil, len čo opustíte oblasť. Hodí sa to, keď niekam prídete a chcete pokoj, kým sa opäť
-nevydáte na cestu.
+Režim spánku má nové tlačidlo ***Prebudiť pri odchode***. Keď ho vyberiete, Soundscape prejde do
+režimu Driemanie: zostane potichu, kým neopustíte oblasť, a potom sa sám prebudí. Hodí sa to, keď
+niekam prídete a chcete pokoj, kým sa opäť nevydáte na cestu.
 
 ### Vzdialenosti a reč
 
@@ -153,8 +254,8 @@ sloveso na koniec, a zmysluplné pokyny tam, kde neboli nastavené žiadne.
 * Hlavná ponuka už nenecháva po strane vidieť pruh obrazovky, ktorý používateľom čítačiek dával
   mätúcu ďalšiu plochu na ťuknutie.
 * Systémové gesto späť už nepreskakuje úroveň, keď prechádzate kategórie v Miestach v okolí.
-* *Zvukový sprievodca* bol premenovaný na **riadeného sprievodcu**.
-* Nastavenia boli upratané a *Obnoviť predvolené hodnoty* teraz správne vymaže všetko.
+* *Zvukový sprievodca* má nový názov: **Sprievodca aplikáciou**.
+* Nastavenia boli upratané a *Obnoviť predvolené nastavenia* teraz správne vymaže všetko.
 
 ### Stabilita
 
@@ -170,6 +271,8 @@ ktoré agresívne ukončujú aplikácie na pozadí.
 * **Hlasové ovládanie** bolo odstránené. Nikdy nefungovalo dosť spoľahlivo na to, aby stálo za
   zachovanie, a multimediálne tlačidlá na slúchadlách pokrývajú z veľkej časti to isté — pozrite
   [Pomocníka k používaniu multimediálnych tlačidiel]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape je tiež pripravený na hlasové príkazy cez Gemini v Androide 16 a novšom, tie však
+  nebudú fungovať, kým Google ich podporu v Gemini nezverejní.
 * **Ponuka jazyka vnútri aplikácie** zmizla. Soundscape sa teraz riadi jazykom nastaveným v telefóne,
   čo väčšina ľudí očakávala. Ak ho chcete zmeniť, zmeňte jazyk telefónu alebo v jeho nastaveniach
   určte jazyk pre jednotlivú aplikáciu, ak to ponúka.

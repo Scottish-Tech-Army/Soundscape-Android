@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Matangazo ya Sauti Kiotomatiki
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 70
 lang: sw
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Matangazo ya Sauti Kiotomatiki
 
-## What is it?
+Unapotembea, Soundscape inatangaza kilicho karibu nawe. Unasikia kila jina kutoka upande wa sehemu hiyo. Matangazo yanahusu barabara, makutano, maduka, vituo vya basi, vivutio na alama zako mwenyewe.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Makutano
 
-## When would I use it?
+Unapokaribia makutano, Soundscape inataja kila barabara inayotoka hapo. Unasikia barabara ipi inaenda kushoto, ipi inaendelea mbele na ipi inaenda kulia.
 
-**Exploring a new area :**
+## Kiasi Unachosikia
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Fungua menyu na uchague *Mipangilio*, kisha *Dhibiti Matangazo*. *Kiwango cha Matangazo* kina viwango vinne.
 
-**Walking to a specific location :**
+*Kwa Kina* inatangaza kila kitu kilicho karibu.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Rahisi* inaacha vijia vidogo na barabara za huduma, na inajirudia mara chache zaidi.
 
-**When you need silence :**
+*Muhimu* inatangaza barabara, makutano na vivutio tu.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Kimya* haitoi matangazo yoyote ya kiotomatiki. Beacon, njia na vitufe vya skrini ya mwanzo bado vinafanya kazi.
 
-## How does it work?
+## Unachosikia
 
-**Turning callouts on or off :**
+*Dhibiti Matangazo* ina mipangilio mingine miwili. *Barabara na Makutano* inawasha au kuzima matangazo ya barabara na makutano. *Sehemu za Kutangaza* inachagua aina za sehemu unazosikia, kama vile *Usafiri wa Umma* au *Chakula na Vinywaji*. Alama zako hutangazwa kila wakati.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Kuifanya Soundscape Iseme Kidogo
 
-**Managing which callouts you hear :**
+Bonyeza *iliyotangulia* kwenye vidhibiti vya vipokea sauti vyako. Kila mbonyezo unashuka kiwango kimoja: *Kwa Kina*, *Rahisi*, *Muhimu*, kisha *Kimya*. Mbonyezo mmoja zaidi unarudi kwenye *Kwa Kina*. Angalia ukurasa wa usaidizi *Kutumia Vidhibiti vya Sauti*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Kuisimamisha Soundscape kwa Muda
+
+Chagua kitufe cha *Lala* kilicho juu ya skrini ya mwanzo. Soundscape inaacha kutumia mahali ulipo na haitoi sauti yoyote hadi uchague *Amka Sasa*. Au chagua *Amka Ukiondoka*, na Soundscape itaamka utakapoondoka mahali ulipo.
+
+## Ndani ya Gari au Treni
+
+Soundscape inatambua unaposafiri kwa mwendo wa gari. Kisha inaacha kutangaza makutano na maduka ya karibu, kwa sababu yanapita haraka mno. Badala yake inatangaza barabara uliyomo, vivutio, vituo vya usafiri na stesheni, mito na mahandaki.
 

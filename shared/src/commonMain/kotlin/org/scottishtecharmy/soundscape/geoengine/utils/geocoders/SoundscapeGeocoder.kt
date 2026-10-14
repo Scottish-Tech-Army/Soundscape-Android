@@ -19,6 +19,17 @@ open class SoundscapeGeocoder {
         localizedStrings: LocalizedStrings?
     ): List<LocationDescription>? = null
 
+    /**
+     * The places nearest to [nearbyLocation] of [category] - pharmacies, say - nearest first. When
+     * [name] isn't null, only those which it matches the name of.
+     */
+    open suspend fun searchByCategory(
+        category: SearchCategory,
+        name: String?,
+        nearbyLocation: LngLatAlt,
+        localizedStrings: LocalizedStrings?
+    ): List<LocationDescription>? = null
+
     open suspend fun getAddressFromLngLat(
         userGeometry: UserGeometry,
         localizedStrings: LocalizedStrings?,

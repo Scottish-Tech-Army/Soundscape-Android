@@ -1,23 +1,16 @@
 ---
-title: Around Me
+title: میرے اردگرد
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 30
 lang: ur
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# میرے اردگرد
 
-## What is it?
+*میرے اردگرد* آپ کے قریب کے زیادہ سے زیادہ چار مقامات کے بارے میں بتاتا ہے: ایک آگے، ایک دائیں، ایک پیچھے اور ایک بائیں۔ ہر ایک اپنی سمت سے، اپنے فاصلے کے ساتھ سنائی دیتا ہے۔ کہیں پہنچنے پر اپنی جگہ سمجھنے کے لیے اسے استعمال کریں۔
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+اگر آپ ایک جگہ کھڑے ہیں تو پہلے فون کا اوپری سرا اس طرف کریں جدھر آپ کا رخ ہے۔ اگر فون لاک ہے، یا Soundscape اسکرین پر نہیں ہے، تو فون کو سیدھا افقی بھی پکڑیں۔
 

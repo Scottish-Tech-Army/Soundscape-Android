@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Rutter
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 90
 lang: sv
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Rutter
 
-## What is it?
+En rutt är en lista med platser, kallade brytpunkter, som du besöker i ordning. Soundscape ställer in en ljudfyr på den första brytpunkten. När du kommer fram talar appen om det och flyttar ljudfyren till nästa.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Använd en rutt för att lära dig en ny väg, eller för att hålla kursen på en väg du känner till.
 
-## When would I use it?
+## Skapa en rutt
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Välj *Rutter* på startskärmen och välj sedan *Ny*.
 
-## How does it work?
+2. Ge rutten ett namn. Du kan lägga till en beskrivning.
 
-**Creating a route :**
+3. Välj *Lägg till brytpunkter* och välj platsmarkörer. Du kan också lägga till din aktuella plats eller en plats i närheten.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Välj *Klart*.
 
-**Editing a route :**
+## Följa en rutt
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Välj rutten på skärmen *Rutter* och välj sedan *Starta rutt*. Om du vill följa den baklänges väljer du *Starta rutt i omvänd ordning*. På startskärmen flyttar *Nästa brytpunkt* och *Föregående brytpunkt* ljudfyren längs rutten. *Stoppa rutten* avslutar den.
 
-**Sharing a route :**
+## Ändra en rutt
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Välj rutten på skärmen *Rutter* och välj sedan *Redigera rutt*. Du kan lägga till, ta bort och ändra ordning på brytpunkter, ändra namn och beskrivning eller ta bort rutten.
+
+## Dela en rutt
+
+Välj rutten på skärmen *Rutter* och välj sedan *Dela*.
 

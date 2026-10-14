@@ -10,7 +10,9 @@ machine-translated: true
 
 # Note di rilascio
 
-Soundscape 2.0 è una versione importante ed è attualmente in beta chiusa. La novità principale è che
+Soundscape 2.0 è una versione importante ed è ora in beta aperta su Android.
+Questo significa che chiunque può accedere alla versione beta semplicemente andando sul Play Store [qui](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+La novità principale è che
 ora Soundscape ha qualcosa di utile da dire anche quando viaggi in auto, in autobus o in treno, e
 non soltanto quando cammini. Ci sono inoltre molti interventi più piccoli su come vengono descritti
 i luoghi, venti nuove lingue e un lungo elenco di correzioni.
@@ -24,12 +26,31 @@ Le note delle versioni precedenti si trovano nella pagina
   velocità sostenuta e descrive il viaggio anziché ciò che ti circonda immediatamente.
 * **Avvisi quando attraversi corsi d'acqua e ferrovie.** Fiumi, canali, insenature e linee
   ferroviarie vengono annunciati mentre li attraversi, sia a piedi sia in viaggio.
+* **Scegli quanto ti dice Soundscape.** La nuova impostazione *Dettaglio delle notifiche* rende
+  Soundscape più discreto nei luoghi affollati, e *Luoghi da annunciare* ti permette di scegliere di
+  quali tipi di luogo sentire parlare. Puoi cambiare il dettaglio con i pulsanti delle cuffie mentre
+  cammini.
+* **Sapere quanto dista il prossimo incrocio.** Gli incroci vengono annunciati a una distanza
+  costante mentre ti avvicini, e la notifica ora dice quanto dista il bordo del marciapiede.
+* **Cercare un tipo di luogo, o delle coordinate.** Cerca «farmacia» o «fermata dell'autobus» per
+  trovare le più vicine, comunque si chiamino, oppure incolla delle coordinate, un link di una mappa
+  o un Plus Code.
+* **Pulsanti separati per Indicatori e Percorsi.** La schermata *Indicatori e Percorsi* con le sue
+  due schede è stata divisa in una schermata *Indicatori* e una schermata *Percorsi*, ciascuna con
+  il proprio pulsante nella schermata iniziale. La schermata Indicatori ha un pulsante *Nuovo* per
+  salvare la tua posizione attuale o un luogo nelle vicinanze.
+* **Aprire un luogo in un'altra app di mappe**, come Google Maps, dai dettagli della posizione o dagli
+  elenchi.
+* **Più informazioni dall'audiofaro nella schermata principale.** Ora mostra distanza e direzione, e
+  ha azioni per lo screen reader per annunciare l'audiofaro, saperne di più o salvarlo come
+  indicatore.
 * **Indirizzi e nomi di luoghi migliori.** I luoghi privi di un indirizzo proprio ricevono ora la
   via e la zona in cui si trovano, i numeri civici vengono associati al lato corretto della strada e
   le fermate degli autobus in Gran Bretagna usano i nomi ufficiali.
 * **Venti nuove lingue**, per un totale di 46. Anche questo sito di documentazione è tradotto.
-* **Risveglio all'uscita.** La modalità di sospensione può ora risvegliare Soundscape quando lasci
-  il luogo in cui l'hai messo a riposo.
+* **Riattiva quando mi allontano.** Quando metti Soundscape in modalità Sospendi, il nuovo pulsante
+  *Riattiva quando mi allontano* lo mette invece in modalità Posponi, e si riattiva da solo quando
+  lasci il luogo.
 * **Distanze più brevi e naturali**, con unità più grandi quando ti muovi velocemente.
 * **Un'uscita più rapida.** *Esci da Soundscape* è ora in cima al menu principale.
 * **Miglioramenti alle mappe offline**, tra cui l'aggiornamento di una mappa già scaricata e una
@@ -59,10 +80,10 @@ Durante il viaggio sentirai:
 
 * **Dove ti trovi**, di tanto in tanto: la strada su cui sei e la direzione di marcia, per esempio
   «In viaggio verso nord lungo la M8». Le strade con un numero vengono annunciate con il loro numero
-  e Soundscape non riannuncia la stessa strada a ogni cambio di toponimo.
+  e Soundscape non riannuncia la stessa strada a ogni cambio di toponimo. Una strada viene nominata solo dopo che l'hai percorsa per un breve tratto, così una serie di svolte in un quartiere residenziale non porta una notifica a ogni angolo.
 * **Città e paesi** verso cui ti dirigi, con la distanza, oltre a quelli da cui ti allontani o
   davanti a cui semplicemente passi.
-* **Svincoli e uscite autostradali** quando li raggiungi.
+* **Svincoli e uscite autostradali** quando li raggiungi. Solo quelli della carreggiata che stai percorrendo, non quelli di una strada vicina o della carreggiata opposta dell'autostrada.
 * **Grandi punti di riferimento** mentre li superi, come parchi, ospedali, stadi e centri
   commerciali.
 * **Fermate di autobus, tram e treno** mentre le superi. Soundscape cita solo le fermate sul tuo
@@ -81,11 +102,102 @@ Gli annunci ordinari per chi cammina (negozi vicini, attraversamenti stradali e 
 volutamente trattenuti durante il viaggio, e le distanze alle quali le cose vengono annunciate sono
 molto ampliate, così da avvisarti prima che tu le abbia superate.
 
+### Incroci
+
+La domanda più frequente sulle notifiche degli incroci era a che distanza si trovi davvero
+l'incrocio. Ora Soundscape te lo dice: «Incrocio a 30 metri». La distanza è misurata fino al bordo
+del marciapiede della strada che stai per attraversare, non fino al centro dell'incrocio, perché è lì
+che ti fermi davvero.
+
+Anche il momento della notifica è più costante. Prima poteva arrivare a 45 metri o a 10 metri, senza
+nulla che permettesse di distinguerli. Ora aspetta che l'incrocio sia a circa 30 metri, così la
+distanza significa più o meno la stessa cosa ogni volta.
+
 ### Attraversare corsi d'acqua e ferrovie
 
 Soundscape ora ti avvisa quando attraversi un fiume, un canale, un'insenatura, una baia o una linea
 ferroviaria. Funziona sia a piedi sia in viaggio e comprende tanto il passaggio sotto quanto quello
 sopra, così vengono descritti sia una passerella sia un sottopasso.
+
+### Scegliere quanto ti dice Soundscape
+
+La cosa che ci sentiamo dire più spesso su Soundscape è che parla troppo nei luoghi affollati come un
+centro città. La sezione *Gestisci notifiche* delle *Impostazioni* ha ora tre impostazioni al posto
+della vecchia lista di interruttori:
+
+* **Dettaglio delle notifiche** può essere Silenzioso, Essenziale, Semplificato o Dettagliato.
+  *Dettagliato* è quello che Soundscape ha sempre fatto, ed è il punto di partenza. *Semplificato*
+  tralascia i sentieri minori e le strade di servizio e si ripete meno spesso. *Essenziale* annuncia
+  solo strade, incroci e punti di riferimento. *Silenzioso* non fa nessuna notifica automatica, mentre
+  audiofari, percorsi e pulsanti della schermata principale continuano a funzionare. Sostituisce il
+  vecchio interruttore *Consenti notifiche*: se lo avevi disattivato, troverai il Dettaglio delle
+  notifiche impostato su Silenzioso. I livelli valgono anche quando viaggi: *Semplificato* nomina meno spesso la strada che stai percorrendo, ed *Essenziale* nomina solo le strade principali e numerate e tralascia le fermate dell'autobus.
+* **Strade e incroci** attiva o disattiva le notifiche sugli incroci e sulla strada in cui ti trovi.
+* **Luoghi da annunciare** è un elenco da spuntare: Tutto, Punti di riferimento, Trasporto pubblico,
+  Cibi e bevande, Generi alimentari e minimarket, Banche e sportelli bancomat oppure Nessun luogo.
+  Spuntane quanti vuoi, per esempio punti di riferimento e fermate dell'autobus. I tuoi indicatori
+  vengono sempre annunciati.
+
+Il dettaglio giusto cambia mentre cammini, quindi non devi entrare nelle Impostazioni per
+modificarlo. Premendo *Indietro* sulle cuffie il Dettaglio delle notifiche scende di un livello alla
+volta, da Dettagliato a Semplificato, Essenziale e Silenzioso, e poi torna a Dettagliato. Il nuovo
+livello viene detto ogni volta. Funziona in entrambe le modalità dei controlli di riproduzione, e
+per questo i pulsanti delle cuffie sono cambiati un po':
+
+* In *Modalità originale*, *Avanti* ora annuncia *Intorno a me* quando non c'è nessun percorso in
+  corso, e *La mia posizione* non è più sui pulsanti. Durante un percorso, *Avanti* e *Indietro*
+  continuano a passare da un waypoint all'altro.
+* In modalità *Menu audio*, *Indietro* non torna più indietro nel menu. *Avanti* continua a
+  scorrerlo e *Riproduci/Pausa* continua a selezionare. Indicatori e percorsi nel menu sono ora
+  elencati per nome, e dopo averne avviato uno il menu torna all'inizio invece di lasciarti in fondo
+  all'elenco.
+
+### Ricerca
+
+La barra di ricerca ora capisce più dei soli nomi di luoghi:
+
+* **Tipi di luogo.** Cerca «farmacia», «bagno», «bancomat» e così via, nella tua lingua, e Soundscape
+  elenca i luoghi più vicini di quel tipo, comunque si chiamino. I luoghi senza nome, come la maggior
+  parte dei bagni e delle panchine, sono elencati per ciò che sono, con il loro indirizzo.
+* **Coordinate, link di mappe e Plus Code.** Incolla una coppia di numeri, gradi e minuti, un link di
+  Google Maps, Apple Mappe o OpenStreetMap, oppure un Plus Code, e Soundscape ti dà quel punto
+  esatto. Una semplice coppia di numeri si può leggere nei due sensi, quindi quando entrambi hanno
+  senso ti vengono proposti tutti e due, il più vicino per primo.
+* **Ricerca offline.** La ricerca ora guarda sempre anche nelle mappe scaricate oltre che online,
+  e trova così molti più luoghi senza nome. Se cerchi senza connessione a internet e non hai una
+  mappa offline del luogo in cui ti trovi, Soundscape te lo dice invece di non trovare semplicemente
+  nulla.
+
+### Aprire un luogo in un'altra app
+
+I dettagli della posizione hanno un nuovo pulsante, **Apri in un'app di mappe**, che elenca le app di
+mappe e di navigazione del telefono. Spunta *Usa sempre questa app* e il pulsante diventa, per
+esempio, *Apri in Google Maps*, e la apre subito; una pressione prolungata fa tornare l'elenco. Gli
+elenchi *Luoghi nelle vicinanze* e *Indicatori* hanno anche le azioni per lo screen reader *Apri in…*
+e *Condividi*.
+
+### Indicatori e Percorsi
+
+Indicatori e percorsi condividevano un'unica schermata, *Indicatori e Percorsi*, con una scheda per
+ciascuno, ed era facile perdere di vista in quale scheda ti trovavi. Ora sono due schermate
+separate, ciascuna con il proprio pulsante nella schermata iniziale: *Indicatori* e *Percorsi*,
+subito sotto *Luoghi nelle vicinanze*.
+
+Ogni schermata ha un pulsante *Nuovo* in alto a destra. Nella schermata Percorsi crea un percorso,
+come prima. Nella schermata Indicatori è una novità: propone *Posizione attuale* e le categorie di
+*Luoghi nelle vicinanze*, così puoi salvare un indicatore senza dover prima tornare alla schermata
+iniziale per trovare il luogo. Gli screen reader annunciano i pulsanti come *Nuovo indicatore* e
+*Nuovo Percorso*.
+
+### L'audiofaro e gli indicatori
+
+* L'audiofaro nella schermata principale ora mostra **distanza e direzione**, e uno screen reader lo
+  legge per esempio come «Audiofaro su Milngavie Library, 390 metri, sud est». I percorsi mostrano
+  allo stesso modo la distanza dal waypoint attuale.
+* L'audiofaro ha tre **azioni per lo screen reader**: *Annuncia audiofaro* dice dove si trova,
+  *Ulteriori informazioni* aggiunge l'indirizzo e *Aggiungi a indicatori* lo salva.
+* Puoi di nuovo **spostare un indicatore** trascinando la mappa dalla schermata *Modifica
+  indicatore*.
 
 ### Indirizzi e nomi di luoghi migliori
 
@@ -116,13 +228,13 @@ testo tradotto sufficiente per essere utile.
 
 Le traduzioni sono un lavoro collettivo e accogliamo volentieri il tuo aiuto, o le tue correzioni
 quando qualcosa si legge male. Ogni stringa può essere migliorata su
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Modalità di sospensione
+### Modalità Sospendi
 
-La modalità di sospensione ha guadagnato il **risveglio all'uscita**. Quando metti Soundscape a
-riposo puoi chiedergli di risvegliarsi non appena lasci la zona: utile quando arrivi da qualche
-parte e vuoi silenzio fino alla prossima partenza.
+La modalità Sospendi ha un nuovo pulsante, ***Riattiva quando mi allontano***. Se lo scegli,
+Soundscape passa in modalità Posponi: resta in silenzio finché non lasci la zona e poi si riattiva
+da solo. È utile quando arrivi da qualche parte e vuoi silenzio fino alla prossima partenza.
 
 ### Distanze e voce
 
@@ -161,7 +273,7 @@ stata impostata alcuna.
 * Il gesto di ritorno di sistema non salta più un livello mentre sfogli le categorie in Luoghi nelle
   vicinanze.
 * Il *tutorial audio* è stato rinominato **tutorial guidato**.
-* Le impostazioni sono state riordinate e *Ripristina i valori predefiniti* ora cancella davvero
+* Le impostazioni sono state riordinate e *Ripristina impostazioni predefinite* ora cancella davvero
   tutto.
 
 ### Stabilità
@@ -180,6 +292,8 @@ robusto sui telefoni che chiudono in modo aggressivo le app in background.
   giustificarne il mantenimento e i tasti multimediali delle cuffie coprono in gran parte le stesse
   esigenze: vedi
   [Guida all'uso dei comandi multimediali]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape è anche pronto per i comandi vocali con Gemini su Android 16 e versioni successive, ma
+  non funzioneranno finché Google non ne rilascerà il supporto in Gemini.
 * **Il menu della lingua nell'app** è scomparso. Soundscape segue ora la lingua impostata sul
   telefono, come la maggior parte delle persone si aspettava. Per cambiarla, modifica la lingua del
   telefono oppure imposta una lingua per singola app nelle impostazioni, se il telefono lo consente.

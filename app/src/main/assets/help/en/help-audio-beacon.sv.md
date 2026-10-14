@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Ljudfyr
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 60
 lang: sv
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Ljudfyr
 
-## What is it?
+En ljudfyr är ett ljud som hörs från riktningen till en plats du väljer. Den talar om var platsen ligger fågelvägen. Den ger inga sväng-för-sväng-anvisningar, så du väljer själv vägen dit.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Ställa in en ljudfyr
 
-## When would I use it?
+1. Hitta platsen. Använd sökfältet, *Platser i närheten*, *Platsmarkörer* eller *Aktuell plats* på startskärmen.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Välj platsen för att öppna *Platsuppgifter*.
 
-## How does it work?
+3. Välj *Ställ in ljudfyr*.
 
-**To set a beacon :**
+Soundscape går tillbaka till startskärmen och ljudfyren startar. Startskärmen visar platsens namn och hur långt bort den ligger.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Hitta riktningen
 
-**To remove the current beacon :**
+Ljudfyren byter ljud när du är vänd mot platsen eller går rakt mot den. Om du vill hitta det ljudet håller du telefonen plant och vrider dig långsamt. Du kan välja ett annat ljud för ljudfyren i *Inställningar*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Stänga av ljudfyrens ljud
 
-**To mute the audible beacon :**
+Välj *Stäng av ljudfyr* på startskärmen. Soundscape fortsätter att tala om hur långt bort platsen ligger medan du rör dig. Välj *Sätt på ljudfyr* för att höra ljudfyren igen.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Ta bort ljudfyren
+
+Välj *Stoppa rutten* på startskärmen. Knappen heter så även när ljudfyren inte ingår i en rutt.
+
+## När du kommer fram
+
+När du är ungefär 12 meter från platsen talar Soundscape om det och tar bort ljudfyren. Telefonen kan inte bestämma din position mer exakt än så. Om du vill höra ljudfyren igen ställer du in den på nytt.
+
+En ljudfyr som ställs in på en plats mindre än 30 meter bort är kvar tills du tar bort den.
 

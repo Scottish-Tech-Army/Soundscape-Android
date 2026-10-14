@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
@@ -12,13 +13,21 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
+import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildBeaconCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildBeaconMoreInfoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildNoBeaconCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildMyLocationCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildNearbyMarkersCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildWhatsAroundMeCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
+import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
+import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -29,18 +38,24 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.extrapolatePositionForward
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.MultiGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SearchCategories
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.formatCoordinate
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.parseCoordinateSearch
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.isAccuracyUsable
 import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
@@ -124,6 +139,12 @@ class GeoEngine {
     // see StationaryDetector. Driven below, ahead of the matchers, since the arbiter reads it.
     private var stationaryDetector = StationaryDetector()
     private var userStationary = false
+    // The last trusted travel heading, kept through a pause - see HeadingHold. Updated once per
+    // location update below, read by every UserGeometry built.
+    private var headingHold = HeadingHold()
+    // Which way the user is travelling when the GPS course alone can't say - see
+    // TravelHeadingEstimator. Fed every accepted fix below.
+    private var travelHeadingEstimator = TravelHeadingEstimator()
 
     // Running total of the time fixes have been arriving too inaccurate to place, and the
     // bookkeeping behind it - see UserGeometry.unobservedMillis and
@@ -139,6 +160,17 @@ class GeoEngine {
     private lateinit var localizedStrings: LocalizedStrings
     private lateinit var preferencesProvider: PreferencesProvider
 
+    /** The Relative Direction setting: how a callout says where something is relative to you. */
+    fun relativeDirectionMode(): String =
+        if (::preferencesProvider.isInitialized) {
+            preferencesProvider.getString(
+                PreferenceKeys.RELATIVE_DIRECTION,
+                PreferenceDefaults.RELATIVE_DIRECTION
+            )
+        } else {
+            PreferenceDefaults.RELATIVE_DIRECTION
+        }
+
     lateinit var geocoder: SoundscapeGeocoder
     private lateinit var multiGeocoder: MultiGeocoder
     lateinit var tileSearch: TileSearch
@@ -146,10 +178,6 @@ class GeoEngine {
     var appInForeground = false
 
     private lateinit var autoCallout: AutoCallout
-    private var autoCalloutDisabled = false
-    fun toggleAutoCallouts() {
-        autoCalloutDisabled = autoCalloutDisabled.xor(true)
-    }
 
     private val streetPreview = StreetPreview()
 
@@ -210,14 +238,18 @@ class GeoEngine {
             else
                 null
 
-        var travelHeading: Double? = null
-        if (location?.hasBearing == true) {
-            if (location.hasBearingAccuracy) {
-                if (location.bearingAccuracyDegrees < 45.0)
-                    travelHeading = location.bearing.toDouble()
-            } else {
-                travelHeading = location.bearing.toDouble()
-            }
+        // The road heading comes from the engine's own matcher, not the mapMatchFilter parameter:
+        // the audio engine's geometry passes none, and its travel heading should agree with the
+        // callouts' one.
+        val travelHeading = location?.let {
+            travelHeadingEstimator.estimate(
+                bearing = if (it.hasBearing) it.bearing.toDouble() else null,
+                bearingAccuracy =
+                    if (it.hasBearingAccuracy) it.bearingAccuracyDegrees.toDouble() else null,
+                roadHeading = this.mapMatchFilter.matchedLocation?.heading,
+                ruler = ruler,
+                nowMilliseconds = currentTimeMillis(),
+            )
         }
 
         val speed = speedFromLocation(location)
@@ -249,6 +281,7 @@ class GeoEngine {
             currentBeacon = beaconLocation,
             inStreetPreview = streetPreview.running,
             timestampMilliseconds = currentTimeMillis(),
+            heldHeading = headingHold.heading(latLng, ruler, currentTimeMillis()),
             unobservedMillis = unobservedMillis,
             // Also decided when the filters ran, and for the same reason: a UserGeometry is one
             // location update, and whether the user has gone anywhere is a question about the last
@@ -301,6 +334,8 @@ class GeoEngine {
         this.listener = listener
         this.localizedStrings = localizedStrings
         this.preferencesProvider = preferencesProvider
+        PlacesToCallOut.migrate(preferencesProvider)
+        CalloutVerbosity.migrate(preferencesProvider)
         this.analytics = analytics
         this.hasNetwork = hasNetwork
 
@@ -319,6 +354,13 @@ class GeoEngine {
                 )
             } else if (key == PreferenceKeys.MEASUREMENT_UNITS) {
                 updateMeasurementUnits(preferencesProvider)
+            } else if ((key == PreferenceKeys.CALLOUT_VERBOSITY) ||
+                (key == PreferenceKeys.PLACES_TO_CALL_OUT)
+            ) {
+                // TreeId.SELECTED_SUPER_CATEGORIES holds what these two settings allow, so it
+                // has to be built again - but only it: the tiles, ways and intersections behind
+                // it are unchanged.
+                gridState.updatePoiSelection(calloutPoiSelection())
             }
         }
         preferencesProvider.addListener(preferencesListener)
@@ -375,7 +417,8 @@ class GeoEngine {
                         PreferenceDefaults.POI_RANK_STRATEGY
                     )
                 )
-            }
+            },
+            categoryMatcher = { SearchCategories.matcher() }
         )
         geocoder = multiGeocoder
         locationProvider = newLocationProvider
@@ -436,16 +479,8 @@ class GeoEngine {
         tileSearch.refreshOfflineMaps()
     }
 
-    fun createSuperCategoriesSet(): Set<String> {
-        val enabledCategories = mutableSetOf<String>()
-        if (preferencesProvider.getBoolean(PLACES_AND_LANDMARKS_KEY, true))
-            enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-
-        if (preferencesProvider.getBoolean(MOBILITY_KEY, true))
-            enabledCategories.add(MOBILITY_KEY)
-
-        return enabledCategories
-    }
+    /** What the walking POI callouts may announce - see [CalloutPoiSelection]. */
+    fun calloutPoiSelection() = CalloutPoiSelection.read(preferencesProvider)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringLocation() {
@@ -511,12 +546,12 @@ class GeoEngine {
                     // settlements covering this location by the time gridState rebuilds.
                     settlementGrid.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        createSuperCategoriesSet(),
+                        calloutPoiSelection(),
                         localizedStrings
                     )
                     val updated = gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        createSuperCategoriesSet(),
+                        calloutPoiSelection(),
                         localizedStrings
                     )
 
@@ -524,6 +559,14 @@ class GeoEngine {
                         withContext(gridState.treeContext) {
                             locationProvider.locationFlow.value?.let { unfilteredLocation ->
                                 val unfilteredSpeed = speedFromLocation(unfilteredLocation)
+
+                                travelHeadingEstimator.addFix(
+                                    LngLatAlt(
+                                        unfilteredLocation.longitude,
+                                        unfilteredLocation.latitude
+                                    ),
+                                    nowMillis
+                                )
 
                                 // Ahead of both matchers, because RailMatchArbiter reads the
                                 // verdict below. MvtTileTest.testMovingGrid mirrors this ordering
@@ -553,7 +596,8 @@ class GeoEngine {
                                         null,
                                     unfilteredLocation.hasBearing &&
                                         unfilteredLocation.hasBearingAccuracy &&
-                                        (unfilteredLocation.bearingAccuracyDegrees < 45.0),
+                                        (unfilteredLocation.bearingAccuracyDegrees <
+                                            MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES),
                                     nowMillis
                                 )
 
@@ -601,10 +645,23 @@ class GeoEngine {
                         listener.tileGridUpdated()
                     }
 
-                    if ((!listener.isAudioEngineBusy() || streetPreview.running) && !autoCalloutDisabled && !listener.menuActive) {
+                    // Built once and used for both: the hold has to be fed on every location
+                    // update, not only the ones the callouts get to run on, or a busy audio engine
+                    // would let a fresh heading go unrecorded.
+                    val calloutGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
+                    headingHold.update(
+                        calloutGeometry,
+                        location.takeIf {
+                            it.hasBearing && it.hasBearingAccuracy &&
+                                (it.bearingAccuracyDegrees <
+                                    TravelHeadingEstimator.MAXIMUM_ROAD_COURSE_ACCURACY_DEGREES)
+                        }?.bearing?.toDouble()
+                    )
+
+                    if ((!listener.isAudioEngineBusy() || streetPreview.running) && !listener.menuActive) {
                         val callout =
                             autoCallout.updateLocation(
-                                getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
+                                calloutGeometry,
                                 gridState,
                                 settlementGrid
                             )
@@ -674,14 +731,47 @@ class GeoEngine {
         )
     }
 
+    /**
+     * Whether a search would be made offline with no offline map of where the user is, so that
+     * all it can find is their markers.
+     */
+    fun searchIsOfflineWithoutMaps(): Boolean =
+        multiGeocoder.searchesOffline() &&
+            !tileSearch.hasOfflineMapAt(getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location)
+
     suspend fun searchResult(searchString: String): List<LocationDescription>? {
         return withContext(org.scottishtecharmy.soundscape.platform.ioDispatcher) {
+            val userLocation = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location
+            val coordinates = parseCoordinateSearch(searchString, userLocation)
+            if (coordinates.isNotEmpty())
+                return@withContext coordinates.map { coordinateSearchResult(it) }
+
             return@withContext geocoder.getAddressFromLocationName(
                 searchString,
-                getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location,
+                userLocation,
                 localizedStrings
             )
         }
+    }
+
+    /**
+     * A search result for a coordinate that was searched for. It's named by the coordinate itself,
+     * so that when both ways round of a pair of numbers are listed they can be told apart, and
+     * described by the address there when the geocoder knows it.
+     */
+    private suspend fun coordinateSearchResult(location: LngLatAlt): LocationDescription {
+        val geocode = withContext(gridState.treeContext) {
+            geocoder.getAddressFromLngLat(UserGeometry(location), localizedStrings, false)
+        }
+        val address = geocode?.takeIf {
+            location.createCheapRuler().distance(it.location, location) <
+                COORDINATE_ADDRESS_RANGE_METERS
+        }?.name
+        return LocationDescription(
+            name = formatCoordinate(location),
+            location = location,
+            description = address,
+        )
     }
 
     fun whatsAroundMe(): TrackedCallout {
@@ -701,6 +791,40 @@ class GeoEngine {
             hasValidLocation = locationProvider.hasValidLocation(),
             localizedStrings = localizedStrings,
             gridState = gridState,
+        )
+    }
+
+    /**
+     * The beacon's distance on demand, for the "Call out Beacon" action on the home screen's
+     * beacon card. Unlike the automatic updates this ignores the DISTANCE_TO_BEACON preference
+     * and the update throttle - the user just asked for it.
+     */
+    fun calloutBeacon(): TrackedCallout? {
+        analytics.logEvent("calloutBeacon", null)
+        val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
+        return buildBeaconCallout(
+            userGeometry = userGeometry,
+            localizedStrings = localizedStrings,
+        ) ?: buildNoBeaconCallout(userGeometry, localizedStrings)
+    }
+
+    /**
+     * The beacon's name, distance, direction and - when the offline geocoder knows it - street
+     * address, for the "More Info" action on the home screen's beacon card and the audio menu.
+     * [beaconName] is null when nothing is playing, which says "No beacon active".
+     */
+    suspend fun beaconMoreInfo(beaconName: String?): TrackedCallout? {
+        analytics.logEvent("beaconMoreInfo", null)
+        val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
+        val beacon = userGeometry.currentBeacon
+        if (beaconName == null || beacon == null) {
+            return buildNoBeaconCallout(userGeometry, localizedStrings)
+        }
+        return buildBeaconMoreInfoCallout(
+            userGeometry = userGeometry,
+            localizedStrings = localizedStrings,
+            beaconName = beaconName,
+            address = getOfflineAddress(beacon),
         )
     }
 
@@ -824,28 +948,76 @@ class GeoEngine {
         }
     }
 
+    /**
+     * A name or address for [location], from the network geocoders when they answer in time and
+     * otherwise from the offline one.
+     *
+     * The offline geocoder is asked first. It reads the map data already loaded around the user,
+     * so it is quick, but it only has an answer when there is some: an offline map of the area,
+     * or tiles which were fetched while there was a connection. Whether it has one decides how
+     * long the network is worth waiting for:
+     *
+     *  - an offline answer, and a network: the network is given a short while to do better
+     *  - no offline answer, but a network: it is the only source, so it gets its full timeout
+     *  - no network: the offline answer is used straight away, and when there is none of that
+     *    either, nothing can name the place and it is called "Unknown location" without waiting
+     *
+     * Blocking, so never to be called on the main thread.
+     */
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getLocationDescription(location: LngLatAlt): LocationDescription {
 
+        // An answer which is somewhere else isn't a description of this location
+        fun LocationDescription?.ifNearby(): LocationDescription? =
+            this?.takeIf { ruler.distance(it.location, location) < 50.0 }
+
         val geocode = runBlocking {
             withContext(gridState.treeContext) {
-                geocoder.getAddressFromLngLat(UserGeometry(location), localizedStrings, false)
+                val userGeometry = UserGeometry(location)
+                val offline = multiGeocoder.offlineGeocoder
+                    .getAddressFromLngLat(userGeometry, localizedStrings, false)
+                    .ifNearby()
+
+                if (multiGeocoder.searchesOffline()) return@withContext offline
+
+                // The lookup runs in a scope of its own, and only the wait for it is timed. A
+                // timeout around the lookup itself can only end when the lookup lets it, and
+                // the platform geocoder doesn't: on Android 12 and earlier it's a blocking call.
+                val lookup = CoroutineScope(Job()).async(gridState.treeContext) {
+                    multiGeocoder.getOnlineAddressFromLngLat(userGeometry, localizedStrings, false)
+                }
+                val timeout =
+                    if (offline != null) ONLINE_DESCRIPTION_TIMEOUT_WITH_FALLBACK_MS
+                    else ONLINE_DESCRIPTION_TIMEOUT_WITHOUT_FALLBACK_MS
+                val online = withTimeoutOrNull(timeout) { lookup.await() }
+                lookup.cancel()
+                online.ifNearby() ?: offline
             }
         }
         if (geocode != null) {
-            if (ruler.distance(geocode.location, location) < 50.0) {
-                geocode.location = location
-                return geocode
-            }
+            geocode.location = location
+            return geocode
         }
         return LocationDescription(
-            name = "New location",
+            name = localizedStrings.get(StringKey.UnknownLocation),
             location = location
         )
     }
 
     companion object {
         private const val TAG = "GeoEngine"
+
+        // How near a searched-for coordinate the geocoded address must be to describe it
+        private const val COORDINATE_ADDRESS_RANGE_METERS = 200.0
+
+        // How long getLocationDescription waits for the network geocoders when the offline one
+        // has already answered - on a poor connection, or one that claims to be up but where
+        // DNS never answers, they can otherwise take their full timeouts
+        private const val ONLINE_DESCRIPTION_TIMEOUT_WITH_FALLBACK_MS = 4000L
+
+        // ...and when it hasn't, so that they are the only hope of a name. Photon's own HTTP
+        // timeout is 10 seconds, and this stops the platform geocoder taking longer still.
+        private const val ONLINE_DESCRIPTION_TIMEOUT_WITHOUT_FALLBACK_MS = 10000L
     }
 }
 

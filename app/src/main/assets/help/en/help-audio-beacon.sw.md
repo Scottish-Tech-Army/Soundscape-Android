@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Beacon ya Sauti
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 60
 lang: sw
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Beacon ya Sauti
 
-## What is it?
+Beacon ya sauti ni sauti inayotoka upande wa sehemu unayoichagua. Inakuambia sehemu ilipo kwa mstari ulionyooka. Haitoi maelekezo ya hatua kwa hatua, kwa hiyo unachagua njia yako mwenyewe ya kufika huko.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Kuweka Beacon
 
-## When would I use it?
+1. Tafuta sehemu hiyo. Tumia upau wa utafutaji, *Sehemu za Karibu*, *Alama* au *Mahali Nilipo Sasa* kwenye skrini ya mwanzo.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Chagua sehemu hiyo ili kufungua *Taarifa za Mahali*.
 
-## How does it work?
+3. Chagua *Anzisha Beacon ya Sauti*.
 
-**To set a beacon :**
+Soundscape inarudi kwenye skrini ya mwanzo na beacon inaanza. Skrini ya mwanzo inaonyesha jina la sehemu na umbali wake.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Kupata Mwelekeo
 
-**To remove the current beacon :**
+Beacon inabadilisha sauti unapoielekea sehemu hiyo au unapotembea moja kwa moja kuiendea. Ili kuipata sauti hiyo, shikilia simu yako kwa usawa na ugeuke polepole. Unaweza kuchagua sauti nyingine ya beacon katika *Mipangilio*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Kuzima Sauti ya Beacon
 
-**To mute the audible beacon :**
+Chagua *Zima Sauti ya Beacon* kwenye skrini ya mwanzo. Soundscape bado inakuambia sehemu iko umbali gani kadiri unavyosogea. Chagua *Washa Sauti ya Beacon* ili kuisikia beacon tena.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Kuondoa Beacon
+
+Chagua *Simamisha Njia* kwenye skrini ya mwanzo. Kitufe kina jina hili hata wakati beacon si sehemu ya njia.
+
+## Unapofika
+
+Unapokuwa umbali wa takriban mita 12 kutoka kwenye sehemu hiyo, Soundscape inakuambia na kuiondoa beacon. Simu yako haiwezi kupata mahali ulipo kwa usahihi zaidi ya hapo. Ili kuisikia beacon tena, iweke tena.
+
+Beacon iliyowekwa kwenye sehemu iliyo umbali wa chini ya mita 30 inabaki ikiwa imewashwa hadi uiondoe.
 

@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: 미디어 제어 사용하기
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 110
 lang: ko
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# 미디어 제어 사용하기
 
-## What is it?
+헤드폰의 미디어 버튼인 *재생/일시정지*, *다음*, *이전*으로 Soundscape를 제어할 수 있습니다. 유선 헤드폰과 Bluetooth 헤드폰 모두에서 작동합니다. Soundscape가 백그라운드에 있거나 휴대폰이 잠겨 있을 때도 작동합니다.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+모든 헤드폰에 버튼 세 개가 다 있는 것은 아닙니다.
 
-## When would I use it?
+버튼은 다른 앱이 오디오를 재생하지 않을 때만 Soundscape를 제어합니다. 음악이나 팟캐스트를 재생하고 있으면 버튼은 그 앱을 제어합니다.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+버튼은 *기본 모드*와 *오디오 메뉴*의 두 가지 방식으로 작동할 수 있습니다. 고르려면 메뉴를 열고 *설정*, *미디어 제어*를 차례로 선택하세요.
 
-## How does it work?
+## 기본 모드
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*재생/일시정지*는 비콘을 음소거합니다. 다시 누르면 비콘이 들립니다.
 
- Original mode. 
+*다음*은 경로를 따라가고 있을 때 비콘을 다음 경유지로 옮깁니다. 그렇지 않을 때는 *내 주변*을 안내합니다.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*이전*은 경로를 따라가고 있을 때 비콘을 이전 경유지로 옮깁니다. 그렇지 않을 때는 *안내 상세도*를 바꿉니다. 누를 때마다 한 단계씩 조용해집니다. *상세*, *간소화*, *핵심*, *무음* 순서입니다. 한 번 더 누르면 *상세*로 돌아갑니다. Soundscape가 새 단계의 이름을 말합니다.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## 오디오 메뉴
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+오디오 메뉴를 쓰면 같은 버튼 세 개로 더 많은 동작을 할 수 있습니다. Soundscape가 각 항목을 소리 내어 읽어 줍니다.
 
+*다음*은 다음 항목으로 이동합니다. 마지막 항목 다음에는 처음으로 돌아갑니다.
 
+*재생/일시정지*는 방금 들은 항목을 선택합니다.
 
-Audio menu. 
+*이전*은 *기본 모드*에서와 똑같이 *안내 상세도*를 바꿉니다.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+메뉴는 네 개의 그룹으로 시작합니다. *주변 환경 듣기*, *경로 제어*, *경로 시작*, *오디오 비콘 시작*입니다. 그룹을 선택하면 그 안의 동작을 들을 수 있습니다. *주변 환경 듣기*와 *경로 제어*는 *메인 메뉴*로 끝나며, 이 항목은 네 개의 그룹으로 돌아갑니다.
 

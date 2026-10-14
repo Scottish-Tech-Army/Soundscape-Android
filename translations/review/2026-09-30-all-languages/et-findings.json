@@ -1,0 +1,306 @@
+[
+ {
+  "context": "directions_cardinal_north_west",
+  "source": "North West",
+  "current": "Loe",
+  "suggested": "Loode",
+  "reason": "«Loe» is the imperative 'read!', not a compass point; North West is «Loode» (the abbreviation LO and every «loode suunas» string already use it).",
+  "category": "meaning"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "See on Soundscape'i suur uuendus. Reisimisrežiim on palju paremaks muutunud. Kui liigud autoga või bussiga, teatab Soundscape nüüd teenumbritest, sinu liikumissuunast ja lähedal asuvatest asulatest. Samuti teatatakse, kui ületad jõgesid, kanaleid, mereväinu ja lahtesid. Palun uuenda oma võrguühenduseta kaarte, et need uued võimalused kätte saada. Ühendkuningriigi kasutajatele on bussipeatuste kirjeldused nüüd palju paremad. Unerežiim võib nüüd automaatselt üles ärgata, kui tuvastab, et oled uuesti liikuma hakanud. Sa ei pea enam ise selle äratamist meeles pidama. Korraldasime aluskoodi ümber, et saaksime samast koodist ehitada ka iOS-i rakenduse. See tähendab, et tulevikus saame välja anda iOS-i rakenduse koos kõigi Androidi jaoks loodud funktsioonidega. Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikesed, kasutades peamenüüs valikut Võta ühendust toega.",
+  "suggested": "\nSee on Soundscape'i suur uuendus.\n\nReisimisrežiim on palju paremaks muutunud. Kui liigud autoga või bussiga, teatab Soundscape nüüd teenumbritest, sinu liikumissuunast ja lähedal asuvatest asulatest. Samuti teatatakse, kui ületad jõgesid, kanaleid, mereväinu ja lahtesid. Palun uuenda oma võrguühenduseta kaarte, et need uued võimalused kätte saada. Ühendkuningriigi kasutajatele on bussipeatuste kirjeldused nüüd palju paremad.\n\nUnerežiim võib nüüd automaatselt üles ärgata, kui tuvastab, et oled uuesti liikuma hakanud. Sa ei pea enam ise selle äratamist meeles pidama.\n\nKorraldasime aluskoodi ümber, et saaksime samast koodist ehitada ka iOS-i rakenduse. See tähendab, et tulevikus saame välja anda iOS-i rakenduse koos kõigi Androidi jaoks loodud funktsioonidega.\n\nPalun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikesed, kasutades peamenüüs valikut Võta ühendust toega.\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) were lost, so the release notes run as one block; the dialog now splits on paragraph breaks (7ca86e582). Text unchanged, breaks restored where the English has them.",
+  "category": "formatting"
+ },
+ {
+  "context": "callouts_audio_beacon_distance",
+  "source": "Beacon is currently %1$s away",
+  "current": "Majakas on praegu %1$s kaugusel",
+  "suggested": "Helimajakas on praegu %1$s kaugusel",
+  "reason": "Spoken callout uses the bare «Majakas» where the confirmed term is «helimajakas»; the setting that turns this callout on says «Vahemaa helimajakani». A bare «majakas» is also the POI name for a real navigation beacon (osm_beacon).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_what_is_osm_answer",
+  "source": "Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.",
+  "current": "Soundscape kasutab helihäälteadete loomiseks kaardiandmeid. Meie peamine kaardiandmete allikas on OpenStreetMap (www.openstreetmap.org). See on kaardiplatvorm, mille on loonud kaastöötajate kogukond. Organisatsioonid ja üksikisikud saavad kasutada OpenStreetMapi tööriistu, et andmeid parandada ja muuta oma ruumid ligipääsetavamaks.",
+  "suggested": "Soundscape kasutab häälteadete loomiseks kaardiandmeid. Meie peamine kaardiandmete allikas on OpenStreetMap (www.openstreetmap.org). See on kaardiplatvorm, mille on loonud kaastöötajate kogukond. Organisatsioonid ja üksikisikud saavad kasutada OpenStreetMapi tööriistu, et andmeid parandada ja muuta oma ruumid ligipääsetavamaks.",
+  "reason": "«helihäälteadete» ('sound voice callouts') is a doubled calque of 'audio callouts'; the corpus term is «häälteade».",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape pakub mitmeid võimalusi, kuidas kontrollida, mida ja millal kuulete:\\n\\n1. Kogu heli koheseks peatamiseks: puudutage ekraani kahe sõrmega korraga, et koheselt välja lülitada kogu heli, sealhulgas praegu esitatav häälteade ja helimajakas, kui see on sisse lülitatud. Häälteated jätkuvad automaatselt, kui lähenete järgmisele ristmikule või huvipunktile, kuid kuuldav helimajakas mitte. Helimajaka uuesti kuulmiseks valige põhikuval *helimajaka vaigistuse tühistamise nupp*.\\n\\n2. Automaatsete häälteadete peatamine: kui te ei liigu või olete jõudnud sihtkohta, ei ole teil tõenäoliselt vaja, et Soundscape jätkaks teavitamist ümbritsevatest asjadest. Rakendusest väljumise asemel saate lülitada Soundscape'i uinakurežiimi, mis ärkab uuesti, kui lahkute, või lülitada Soundscape'i unerežiimi, mis jääb väljalülitatuks, kuni selle uuesti sisse lülitate. Teise võimalusena saate menüüst valida *Seadistused* ja seada jaotises *Halda häälteateid* valiku *Häälteadete detailsus* väärtusele *Hääletu*.\\n\\n3. Helimajaka peatamine: on mitmeid olukordi, kus võite seada sihtkoha, kuid ei vaja kuuldavat helimajakat sisselülitatuna. Näiteks võite täpselt teada, kuidas oma sihtkohta jõuda, kuid soovite siiski automaatseid värskendusi selle kohta, kui kaugel olete. Või vajate helimajakat ainult siis, kui sihtkohale lähenete. Igal juhul saate valida, millal helimajakat kuulete, lülitades põhikuval nuppu *vaigista helimajakas*/*tühista helimajaka vaigistus*.\\n\\nKui soovite Soundscape'iga siiski suhelda, kuid ei soovi kuulda automaatseid häälteateid, saate menüüst ekraani *Seadistused* jaotises *Halda häälteateid* seada valiku *Häälteadete detailsus* väärtusele *Hääletu*. Või kui te ei kavatse Soundscape'i kasutada, saate selle lülitada kas unerežiimi või uinakurežiimi, kasutades avakuval nuppu *Unerežiim*.",
+  "suggested": "Soundscape pakub mitmeid võimalusi, kuidas kontrollida, mida ja millal kuulete:\\n\\n1. Kogu heli koheseks peatamiseks: puudutage ekraani kahe sõrmega kaks korda, et koheselt välja lülitada kogu heli, sealhulgas praegu esitatav häälteade ja helimajakas, kui see on sisse lülitatud. Häälteated jätkuvad automaatselt, kui lähenete järgmisele ristmikule või huvipunktile, kuid kuuldav helimajakas mitte. Helimajaka uuesti kuulmiseks valige põhikuval *helimajaka vaigistuse tühistamise nupp*.\\n\\n2. Automaatsete häälteadete peatamine: kui te ei liigu või olete jõudnud sihtkohta, ei ole teil tõenäoliselt vaja, et Soundscape jätkaks teavitamist ümbritsevatest asjadest. Rakendusest väljumise asemel saate lülitada Soundscape'i uinakurežiimi, mis ärkab uuesti, kui lahkute, või lülitada Soundscape'i unerežiimi, mis jääb väljalülitatuks, kuni selle uuesti sisse lülitate. Teise võimalusena saate menüüst valida *Seadistused* ja seada jaotises *Halda häälteateid* valiku *Häälteadete detailsus* väärtusele *Hääletu*.\\n\\n3. Helimajaka peatamine: on mitmeid olukordi, kus võite seada sihtkoha, kuid ei vaja kuuldavat helimajakat sisselülitatuna. Näiteks võite täpselt teada, kuidas oma sihtkohta jõuda, kuid soovite siiski automaatseid värskendusi selle kohta, kui kaugel olete. Või vajate helimajakat ainult siis, kui sihtkohale lähenete. Igal juhul saate valida, millal helimajakat kuulete, lülitades põhikuval nuppu *vaigista helimajakas*/*tühista helimajaka vaigistus*.\\n\\nKui soovite Soundscape'iga siiski suhelda, kuid ei soovi kuulda automaatseid häälteateid, saate menüüst ekraani *Seadistused* jaotises *Halda häälteateid* seada valiku *Häälteadete detailsus* väärtusele *Hääletu*. Või kui te ei kavatse Soundscape'i kasutada, saate selle lülitada kas unerežiimi või uinakurežiimi, kasutades avakuval nuppu *Unerežiim*.",
+  "reason": "The gesture is a two-finger DOUBLE tap; «kahe sõrmega korraga» ('with two fingers at once') describes a single tap, which does nothing.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_keep_value",
+  "source": "keep",
+  "current": "jäta",
+  "suggested": "säilitada",
+  "reason": "Grammatical form: this is a talkbackHint, so on iOS it lands in «Topeltkoputa, et %1$s», which needs a da-infinitive like every other hint; «jäta» is an imperative ('Topeltkoputa, et jäta'). «säilitada» = keep (the current value).",
+  "category": "gender"
+ },
+ {
+  "context": "settings_use_value",
+  "source": "use",
+  "current": "kasuta",
+  "suggested": "kasutada",
+  "reason": "Grammatical form: talkbackHint composed into «Topeltkoputa, et %1$s», which needs the da-infinitive; «kasuta» is an imperative.",
+  "category": "gender"
+ },
+ {
+  "context": "ui_action_button_my_location_acc_hint",
+  "source": "hear about your current location",
+  "current": "kuulata oma praegust asukohta",
+  "suggested": "kuulda oma praegusest asukohast",
+  "reason": "«kuulata oma praegust asukohta» means 'to listen to your current location'; 'hear about X' is «kuulda X-st», as the help texts already say («et kuulda … asukohtadest»).",
+  "category": "meaning"
+ },
+ {
+  "context": "ui_action_button_nearby_markers_acc_hint",
+  "source": "hear about nearby places that you have marked",
+  "current": "kuulata lähedal asuvatest markeritest",
+  "suggested": "kuulda lähedal asuvatest markeritest",
+  "reason": "«kuulata X-st» ('listen from X') is not idiomatic; 'hear about X' is «kuulda X-st».",
+  "category": "meaning"
+ },
+ {
+  "context": "ui_action_button_around_me_acc_hint",
+  "source": "hear about places in the four quadrants around you",
+  "current": "kuulata kohtadest neljas suunas sinu ümber",
+  "suggested": "kuulda kohtadest neljas suunas sinu ümber",
+  "reason": "«kuulata X-st» ('listen from X') is not idiomatic; 'hear about X' is «kuulda X-st».",
+  "category": "meaning"
+ },
+ {
+  "context": "ui_action_button_ahead_of_me_acc_hint",
+  "source": "hear about places in front of you",
+  "current": "kuulata sinu ees asuvatest kohtadest",
+  "suggested": "kuulda sinu ees asuvatest kohtadest",
+  "reason": "«kuulata X-st» ('listen from X') is not idiomatic; 'hear about X' is «kuulda X-st».",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_on_road_and_settlement_since",
+  "source": "On %1$s and close to %2$s, %3$s since %4$s",
+  "current": "{Teel %1$s} ja %2$s lähedal, %3$s alates peatusest %4$s",
+  "suggested": "%1$s, %2$s lähedal, %3$s alates peatusest %4$s",
+  "reason": "Train-only template, but it wraps %1$s in «{Teel %1$s}». %1$s is «rongis» (directions_generic_train), which the resolver can't decline (lowercase), so the callout is «Teel rongis ja Partick lähedal…» ('on the road in the train'). Dropping the road label gives «rongis, Partick lähedal, 1,6 km alates peatusest Westerton».",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_generic_train",
+  "source": "train",
+  "current": "rongis",
+  "suggested": "rongis",
+  "reason": "«rongis»/«trammis» are fed into the «On %s» templates, which in Estonian are «{Teel %1$s}» (directions_on_road, directions_on_road_and_settlement). resolveEstonianRoadCase keeps the label for a lowercase word, so a train rider hears «Teel rongis» ('on the road in the train'). Needs either a code special case or different wording for the vehicle templates. Same for directions_generic_tram. Needs a human/code decision.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_why_not_every_business_question",
+  "source": "Why doesn’t Soundscape announce every business that I pass?",
+  "current": "Miks Soundscape ei teata iga ettevõtet, millest mööda kõnnin?",
+  "suggested": "Miks Soundscape ei teata igast ettevõttest, millest mööda kõnnin?",
+  "reason": "Case: «teatama» takes the elative ('teatab ettevõttest'), as the answer text does («ei teata ettevõttest»); «ei teata iga ettevõtet» is ungrammatical.",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_assistant_commands",
+  "source": "You can ask Soundscape to:\\n\\nDescribe *My Location*, what is *Around Me*, or what is *Ahead of Me*.\\n\\nCall out the saved markers near you.\\n\\nStart one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.\\n\\nSet an audio beacon on one of your saved markers by name, or switch the beacon off.\\n\\nSet the callout detail to *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\nRead back the names of your saved routes or your saved markers.",
+  "current": "Võid paluda Soundscape'il:\\n\\nKirjeldada *Minu asukoht*, mis on *Minu ümber* või mis on *Minu ees*.\\n\\nTeatada sinu lähedal olevad salvestatud markerid.\\n\\nKäivitada mõne oma salvestatud marsruudi nime järgi, liikuda järgmisele teekonnapunktile, minna tagasi eelmisele, summutada majaka või marsruut peatada.\\n\\nSeada helimajaka mõnele oma salvestatud markerile nime järgi või majakas välja lülitada.\\n\\nSeada häälteadete detailsuse tasemele *Hääletu*, *Põhiline*, *Lihtsustatud* või *Üksikasjalik*, et muuta, kui palju Soundscape kõndides räägib. *Hääletu* lülitab automaatsed häälteated välja.\\n\\nLugeda ette sinu salvestatud marsruutide või salvestatud markerite nimed.",
+  "suggested": "Võid paluda Soundscape'il:\\n\\nKirjeldada *Minu asukoht*, mis on *Minu ümber* või mis on *Minu ees*.\\n\\nTeatada sinu lähedal olevatest salvestatud markeritest.\\n\\nKäivitada mõne oma salvestatud marsruudi nime järgi, liikuda järgmisele teekonnapunktile, minna tagasi eelmisele, summutada majaka või marsruut peatada.\\n\\nSeada helimajaka mõnele oma salvestatud markerile nime järgi või majakas välja lülitada.\\n\\nSeada häälteadete detailsuse tasemele *Hääletu*, *Põhiline*, *Lihtsustatud* või *Üksikasjalik*, et muuta, kui palju Soundscape kõndides räägib. *Hääletu* lülitab automaatsed häälteated välja.\\n\\nLugeda ette sinu salvestatud marsruutide või salvestatud markerite nimed.",
+  "reason": "Case: «teatada» takes the elative («teatada markeritest»); the nominative object reads as 'report the markers' in the sense of lodging a report.",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_routes_content_what",
+  "source": "Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.",
+  "current": "Marsruudid on teekonnapunktide jada. Teid teavitatakse iga teekonnapunkti saabumisel ja helimajakas liigub automaatselt järgmisele teekonnapunktile.",
+  "suggested": "Marsruudid on teekonnapunktide jada. Teid teavitatakse igasse teekonnapunkti jõudmisel ja helimajakas liigub automaatselt järgmisele teekonnapunktile.",
+  "reason": "«iga teekonnapunkti saabumisel» means 'when each waypoint arrives'; the user is the one arriving («igasse teekonnapunkti jõudmisel»).",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_assistant_notes_ios",
+  "source": "The commands also appear in the Shortcuts app, and in the iOS Settings app under *Siri*, where you can see the whole list and add your own wording for any of them.",
+  "current": "Käsklused ilmuvad ka rakenduses Käsud ja iOS-i rakenduses Seaded jaotises *Siri*, kus näed kogu loendit ja saad igaühele lisada oma sõnastuse.",
+  "suggested": "Käsklused ilmuvad ka rakenduses Otseteed ja iOS-i rakenduses Seaded jaotises *Siri*, kus näed kogu loendit ja saad igaühele lisada oma sõnastuse.",
+  "reason": "The iOS Shortcuts app is «Otseteed» in Estonian iOS; «Käsud» ('Commands') isn't an app a user can find. Verify on an Estonian-language iPhone.",
+  "category": "terminology"
+ },
+ {
+  "context": "search_synonyms_post_office",
+  "source": "post office",
+  "current": "postkontor, pakiautomaat, post",
+  "suggested": "postkontor, postiasutus, post",
+  "reason": "«pakiautomaat» is a parcel locker, a different thing (and in Estonia far more common than post offices); a user searching for one would be sent to post offices.",
+  "category": "meaning"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "Jagasin sinuga Soundscape'i markerit: %1$s.\\n\\nSelle Soundscape'is avamiseks kasuta %2$s.\\n\\n Google Mapsis avamiseks kasuta %3$s.",
+  "suggested": "Jagasin sinuga Soundscape'i markerit: „%1$s“.\\n\\nSelle Soundscape'is avamiseks kasuta %2$s.\\n\\n Google Mapsis avamiseks kasuta %3$s.",
+  "reason": "The quotes around the marker name were dropped; in a shared text message the name then runs into the sentence. Estonian quotes „…“.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_ferry_terminal",
+  "source": "Ferry Terminal",
+  "current": "Parvlaevaterminal",
+  "suggested": "Praamiterminal",
+  "reason": "Two words for one POI type: osm_tag_ferry_terminal is «Praamiterminal» and osm_ferry «Praamiliin», but this key says «Parvlaevaterminal». Pick one (praam is used everywhere else).",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_ferry_terminal_named",
+  "source": "%1$s Ferry Terminal",
+  "current": "%1$s parvlaevaterminal",
+  "suggested": "%1$s praamiterminal",
+  "reason": "Same split as osm_ferry_terminal: osm_tag_ferry_terminal_named is «%1$s praamiterminal».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_hamlet",
+  "source": "Hamlet",
+  "current": "Alevik",
+  "suggested": "Alevik",
+  "reason": "Estonian settlement ranks are linn > alev > alevik > küla, so «Alevik» (small town) ranks a hamlet ABOVE a village («Küla»). A hamlet is smaller than a küla; «Küla» or a diminutive is closer, but it needs a native call.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_beacon",
+  "source": "Beacon",
+  "current": "Majakas",
+  "suggested": "Majakas",
+  "reason": "C5: «Majakas» for a physical navigation beacon collides with the app's own audio beacon, which is «helimajakas» and often shortened to «majakas» (Siri names, tutorial, callouts_audio_beacon_distance). A callout «Majakas» could be heard as the audio beacon. «Signaalmajakas» or «Navigatsioonimajakas» may be clearer; needs a native call.",
+  "category": "terminology"
+ },
+ {
+  "context": "relative_clock_direction",
+  "source": "at %1$s o'clock",
+  "current": "kell %1$s",
+  "suggested": "kell %1$s",
+  "reason": "C20: «kell 3» is how Estonian gives the time of day ('at 3 o'clock'), so a direction callout «Kohvik, kell 3» can be heard as a time. A clock-face direction is usually «kella kolme suunas», which needs the genitive hour words in relative_clock_hour_1…12 («ühe», «kahe», «kolme»…) as well, changed together with this template. Needs a native call.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_approaching_name",
+  "source": "Approaching %1$s",
+  "current": "Läheneb %1$s",
+  "suggested": "Lähenemas: %1$s",
+  "reason": "C17: «lähenema» takes the allative («Läheneb Milngavie'le»), which a nominative name can't carry, so «Läheneb Milngavie» is ungrammatical. The subjectless 3sg also has the ET-S1 problem. A label form keeps the name nominative.",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Ekraanilt *Muuda* saate markeri ka kustutada, kui te seda enam ei vaja.",
+  "suggested": "Ekraanilt *Muuda* saate markeri ka kustutada, kui te seda enam ei vaja.",
+  "reason": "CROSS-LANGUAGE: the English says *Edit* while its comment says that's markers_edit_screen_title_edit, whose English is 'Edit Marker'. The Estonian follows the English («*Muuda*») and so doesn't match the real screen title «Muuda markerit». Fix the English (C7).",
+  "category": "terminology"
+ },
+ {
+  "context": "last_entry_in_list",
+  "source": " and %1$s",
+  "current": "ja %1$s",
+  "suggested": "ja %1$s",
+  "reason": "CROSS-LANGUAGE: the English ' and %1$s' starts with a space because StreetPreview.kt appends it straight onto the joined list; «ja %1$s» has lost it, so the screen shows «A, Bja C». Leading spaces seem to be lost in every translation (like number_decimal_separator_a11y before 8bc004bdd), so the fix belongs in code (add the space there).",
+  "category": "formatting"
+ },
+ {
+  "context": "directions_at_poi",
+  "source": "At %1$s",
+  "current": "%1$s juures",
+  "suggested": "%1$s juures",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the genitive of a map name that arrives in the nominative, so many names come out ungrammatical («Tallinn juures → Tallinna juures»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_near_name",
+  "source": "Near %1$s",
+  "current": "%1$s lähedal",
+  "suggested": "%1$s lähedal",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the genitive of a map name that arrives in the nominative, so many names come out ungrammatical («Selver lähedal → Selveri lähedal»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_towards_settlement",
+  "source": "towards %1$s, %2$s away",
+  "current": "%1$s suunas, %2$s kaugusel",
+  "suggested": "%1$s suunas, %2$s kaugusel",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the genitive of a map name that arrives in the nominative, so many names come out ungrammatical («Tallinn suunas»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_near_road_and_settlement",
+  "source": "Near %1$s and close to %2$s",
+  "current": "%1$s lähedal ja %2$s läheduses",
+  "suggested": "%1$s lähedal ja %2$s läheduses",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the genitive of a map name that arrives in the nominative, so many names come out ungrammatical («… ja Tallinn läheduses»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_crossing_waterway",
+  "source": "Passing over %1$s",
+  "current": "Läheb %1$s pealt üle",
+  "suggested": "Läheb %1$s pealt üle",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the genitive of a map name that arrives in the nominative, so many names come out ungrammatical («Läheb Emajõgi pealt üle → Emajõe»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_going_under_railway",
+  "source": "Passing under %1$s",
+  "current": "Läheb %1$s alt läbi",
+  "suggested": "Läheb %1$s alt läbi",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the genitive of a map name that arrives in the nominative, so many names come out ungrammatical («Läheb Tallinn–Tartu raudtee alt läbi»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "street_description_since",
+  "source": "On %1$s, %2$s since %3$s",
+  "current": "{Tänaval %1$s}, %2$s alates %3$s",
+  "suggested": "{Tänaval %1$s}, %2$s alates %3$s",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the elative (alates X-st) of a map name that arrives in the nominative, so many names come out ungrammatical («125 m alates Metsa»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "street_description_relative_before",
+  "source": "On %1$s just before %2$s",
+  "current": "{Tänaval %1$s} vahetult enne %2$s",
+  "suggested": "{Tänaval %1$s} vahetult enne %2$s",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the partitive (enne X-i) of a map name that arrives in the nominative, so many names come out ungrammatical («vahetult enne Rimi»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "street_description_relative_after",
+  "source": "On %1$s just after %2$s",
+  "current": "{Tänaval %1$s} vahetult pärast %2$s",
+  "suggested": "{Tänaval %1$s} vahetult pärast %2$s",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the partitive (pärast X-i) of a map name that arrives in the nominative, so many names come out ungrammatical («vahetult pärast Kalda põik»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s, mis ühendab %2$s ja %3$s",
+  "suggested": "%1$s, mis ühendab %2$s ja %3$s",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the genitive object of a map name that arrives in the nominative, so many names come out ungrammatical («Rada, mis ühendab Pärnu maantee ja Metsa»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_along_heading_n",
+  "source": "Heading north along %1$s",
+  "current": "Kõnnib põhja suunas mööda %1$s",
+  "suggested": "Kõnnib põhja suunas mööda %1$s",
+  "reason": "C17 (unresolved for Estonian): the postposition/preposition here governs the partitive (mööda X-i). Also the 7 other directions_along_heading_*, the 8 directions_along_traveling_* and 8 directions_along_facing_* of a map name that arrives in the nominative, so many names come out ungrammatical («Kõnnib põhja suunas mööda Pärnu maantee → maanteed»). The road names are handled by {Teel}/{Tänaval} markers (ET-G2), but these templates aren't. The fix is a label form or a new resolver marker. That's a reviewer/code decision, like IS-G2 or PL-G2.",
+  "category": "gender"
+ }
+]

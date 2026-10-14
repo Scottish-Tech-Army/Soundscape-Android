@@ -1,23 +1,16 @@
 ---
-title: Around Me
+title: Í kringum mig
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 30
 lang: is
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Í kringum mig
 
-## What is it?
+*Í kringum mig* tilkynnir allt að fjóra staði nálægt þér: einn fyrir framan, einn til hægri, einn fyrir aftan og einn til vinstri. Þú heyrir hvern þeirra úr sinni átt, með fjarlægðinni. Notaðu það til að átta þig þegar þú kemur á nýjan stað.
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Ef þú stendur kyrr skaltu fyrst beina efri brún símans í þá átt sem þú snýrð. Ef síminn er læstur, eða Soundscape er ekki á skjánum, skaltu líka halda símanum flötum.
 

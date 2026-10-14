@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Tafarkuna
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 90
 lang: ha
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Tafarkuna
 
-## What is it?
+Tafarki jerin wurare ne, da ake kira matsayai, waɗanda kuke ziyarta bi da bi. Soundscape yana saita sigina a kan matsayi na farko. Idan kun isa, yana gaya muku sannan ya matsar da siginar zuwa na gaba.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Ku yi amfani da tafarki don koyon sabuwar tafiya, ko don kada ku kauce a tafiyar da kuka sani.
 
-## When would I use it?
+## Ƙirƙirar Tafarki
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Ku zaɓi *Tafarkuna* a babban allo, sannan ku zaɓi *Sabo*.
 
-## How does it work?
+2. Ku ba tafarkin suna. Kuna iya ƙara bayani.
 
-**Creating a route :**
+3. Ku zaɓi *Ƙara Matsayai* sannan ku zaɓi alamomi. Kuna iya kuma ƙara wurin da kuke yanzu ko wani wuri na kusa.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Ku zaɓi *An Gama*.
 
-**Editing a route :**
+## Bin Tafarki
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Ku zaɓi tafarkin a allon *Tafarkuna*, sannan ku zaɓi *Fara Tafarki*. Don bin sa daga ƙarshe zuwa farko, ku zaɓi *Fara Tafarki a Baya*. A babban allo, *Matsayi na Gaba* da *Matsayi na Baya* suna matsar da siginar a kan tafarkin. *Tsayar da Tafarki* yana ƙare shi.
 
-**Sharing a route :**
+## Canja Tafarki
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Ku zaɓi tafarkin a allon *Tafarkuna*, sannan ku zaɓi *Gyara Tafarki*. Kuna iya ƙara matsayai, cire su da sake jera su, canja sunan da bayanin, ko share tafarkin.
+
+## Raba Tafarki
+
+Ku zaɓi tafarkin a allon *Tafarkuna*, sannan ku zaɓi *Raba*.
 

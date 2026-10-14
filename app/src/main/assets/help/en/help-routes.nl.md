@@ -3,31 +3,36 @@ title: Routes
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 90
 lang: nl
 permalink: /users/help-routes.html
 ---
 
 # Routes
 
-## What is it?
+Een route is een lijst met locaties, routepunten genoemd, die u op volgorde bezoekt. Soundscape stelt een baken in op het eerste routepunt. Wanneer u aankomt, zegt Soundscape dat en verplaatst het baken naar het volgende routepunt.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Gebruik een route om een nieuwe weg te leren, of om op koers te blijven op een weg die u kent.
 
-## When would I use it?
+## Een route maken
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Selecteer *Routes* op het startscherm en selecteer dan *Nieuw*.
 
-## How does it work?
+2. Geef de route een naam. U kunt een beschrijving toevoegen.
 
-**Creating a route :**
+3. Selecteer *Routepunten toevoegen* en kies markeringen. U kunt ook uw huidige locatie of een plaats in de buurt toevoegen.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Selecteer *Gereed*.
 
-**Editing a route :**
+## Een route volgen
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Selecteer de route op het scherm *Routes* en selecteer dan *Route starten*. Om de route andersom te volgen, selecteert u *Route in omgekeerde volgorde starten*. Op het startscherm verplaatsen *Volgende routepunt* en *Vorige routepunt* het baken langs de route. *Route stoppen* beëindigt de route.
 
-**Sharing a route :**
+## Een route wijzigen
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Selecteer de route op het scherm *Routes* en selecteer dan *Route bewerken*. U kunt routepunten toevoegen, verwijderen en anders ordenen, de naam en de beschrijving wijzigen, of de route verwijderen.
+
+## Een route delen
+
+Selecteer de route op het scherm *Routes* en selecteer dan *Delen*.
 

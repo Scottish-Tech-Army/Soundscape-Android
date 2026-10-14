@@ -7,6 +7,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class FovAndIntersectionsTest {
@@ -122,5 +124,26 @@ class FovAndIntersectionsTest {
         val userGeometry = UserGeometry(location = LngLatAlt(0.0, 0.0), fovDistance = 50.0)
         val result = makeTriangles(emptyArray(), userGeometry)
         assertTrue(result.features.isEmpty())
+    }
+
+    // --- getFovTriangle ---
+
+    @Test
+    fun noFovTriangleWithoutAHeading() {
+        // Not one pointing north: a user walking south would hear what is behind them as ahead.
+        val userGeometry = UserGeometry(location = LngLatAlt(-4.25, 55.86), fovDistance = 50.0)
+        assertNull(getFovTriangle(userGeometry))
+    }
+
+    @Test
+    fun fovTriangleFacesTheHeading() {
+        val location = LngLatAlt(-4.25, 55.86)
+        val userGeometry =
+            UserGeometry(location = location, phoneHeading = 180.0, fovDistance = 50.0)
+        val triangle = assertNotNull(getFovTriangle(userGeometry))
+        assertEquals(location, triangle.origin)
+        // Both far corners lie south of the user.
+        assertTrue(triangle.left.latitude < location.latitude)
+        assertTrue(triangle.right.latitude < location.latitude)
     }
 }

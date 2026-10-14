@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Aina za Sauti
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 100
 lang: sw
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Aina za Sauti
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape inaweza kutumia sauti yoyote iliyosakinishwa kwenye simu yako. Ili kuongeza sauti, fungua mipangilio ya simu yako na utafute *Kutoa maandishi kama matamshi*. Ili kuchagua sauti katika Soundscape, fungua menyu na uchague *Mipangilio*, kisha *Sauti*, kisha *Aina za Sauti*.
 

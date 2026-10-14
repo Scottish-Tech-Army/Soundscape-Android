@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: ルート
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 90
 lang: ja
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# ルート
 
-## What is it?
+ルートは、順番に訪れる場所の一覧です。それぞれの場所をウェイポイントと呼びます。Soundscape は最初のウェイポイントにビーコンを設定します。到着するとそれを知らせ、ビーコンを次のウェイポイントに移します。
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+ルートは、新しい道のりを覚えるときや、知っている道のりから外れないようにするときに使ってください。
 
-## When would I use it?
+## ルートを作成する
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. ホーム画面で *ルート* を選択し、次に *新規* を選択します。
 
-## How does it work?
+2. ルートに名前を付けます。説明を追加することもできます。
 
-**Creating a route :**
+3. *ウェイポイントを追加* を選択し、マーカーを選びます。現在地や近くの場所も追加できます。
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. *完了* を選択します。
 
-**Editing a route :**
+## ルートをたどる
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+*ルート* 画面でルートを選択し、次に *ルートを開始する* を選択します。逆向きにたどるには、*ルートを逆順で開始する* を選択します。ホーム画面では、*次のウェイポイント* と *前のウェイポイント* でビーコンをルートに沿って移せます。*ルートを中止する* でルートを終了します。
 
-**Sharing a route :**
+## ルートを変更する
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+*ルート* 画面でルートを選択し、次に *ルートを編集* を選択します。ウェイポイントの追加、削除、並べ替え、名前と説明の変更、ルートの削除ができます。
+
+## ルートを共有する
+
+*ルート* 画面でルートを選択し、次に *共有する* を選択します。
 

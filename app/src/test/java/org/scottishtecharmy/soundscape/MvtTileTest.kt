@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import junit.framework.TestCase.assertEquals
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNotNull
 import org.junit.Assert.assertNotEquals
@@ -10,8 +11,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.experimental.categories.Category
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
@@ -19,12 +18,18 @@ import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
+import org.scottishtecharmy.soundscape.geoengine.callouts.forceLegacyIntersectionSearch
+import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
+import org.scottishtecharmy.soundscape.geoengine.callouts.toPreference
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
 import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
+import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
+import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
@@ -63,6 +68,7 @@ import org.scottishtecharmy.soundscape.locationprovider.GpxReplayLocationProvide
 import org.scottishtecharmy.soundscape.locationprovider.toSoundscapeLocation
 import org.scottishtecharmy.soundscape.platform.parseGpxTimestamp
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
@@ -76,6 +82,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAda
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.PluralKey
 import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES
 import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_USABLE_ACCURACY_METRES
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
@@ -134,7 +141,7 @@ private class MvtTestPreferences : PreferencesProvider {
  * Minimal [LocalizedStrings] stub for tests that need to check *which* string key and arguments
  * a callout resolves to, without pulling in the real Compose resource-bundle string lookup.
  */
-private class FakeLocalizedStrings : LocalizedStrings {
+internal class FakeLocalizedStrings : LocalizedStrings {
     override fun get(key: StringKey, vararg args: Any?): String = when (key) {
         // Keep formatted numbers readable in assertions rather than nesting a
         // NumberDecimalSeparator() stub in the middle of every distance.
@@ -186,7 +193,7 @@ private fun vectorTileToGeoJsonFromFile(
  * properties equal the geometry and every replay behaves exactly as it did before the streams
  * were told apart.
  */
-private fun parseGpxFromFile(filename: String): FeatureCollection {
+internal fun parseGpxFromFile(filename: String): FeatureCollection {
     val fc = FeatureCollection()
     val gpx = parseGpx(File(filename).readText())
     val provider = GpxReplayLocationProvider(gpx.locationStream)
@@ -287,14 +294,11 @@ fun getGridStateForLocation(
     }
     runBlocking {
 
-        val enabledCategories = mutableSetOf<String>()
-        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-        enabledCategories.add(MOBILITY_KEY)
 
         // Update the grid state
         gridState.locationUpdate(
             LngLatAlt(location.longitude, location.latitude),
-            enabledCategories,
+            CalloutPoiSelection.EVERYTHING,
             null
         )
     }
@@ -481,6 +485,96 @@ class MvtTileTest {
     }
 
     /**
+     * A street is never described by its own pavement. The Tesco Express on Coldharbour Lane in
+     * Bristol sits beside a junction where the only other thing meeting the road is the footway
+     * running alongside it, which gave "On Coldharbour Lane between Pavement next to Coldharbour
+     * Lane and...": the footway is only found to be a pavement as its name is confected, and the
+     * junction was being admitted to the StreetDescription before that had happened.
+     *
+     * Without that junction there's only the university further along to place the shop by, which
+     * needs a heading to say which side of it the shop is. The address of the place is then that
+     * it's near the university, and with a heading the university is what it's measured from.
+     */
+    @Test
+    fun testReverseGeocodeDoesNotDescribeAStreetByItsOwnPavement() {
+        val location = LngLatAlt(-2.54373, 51.50155)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val geocoder = OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
+
+        runBlocking {
+            kotlinx.coroutines.withContext(gridState.treeContext) {
+                assertEquals(
+                    "On Coldharbour Lane near University of the West of England (Frenchay Campus)",
+                    geocoder.getAddressForFeature(UserGeometry(location), null, false)?.name
+                )
+                assertEquals(
+                    "On Coldharbour Lane, 35 metres since University of the West of England (Frenchay Campus)",
+                    geocoder.getAddressFromLngLat(
+                        UserGeometry(location, phoneHeading = 90.0), null, false
+                    )?.name
+                )
+            }
+        }
+    }
+
+    /**
+     * Somebody walking along a pavement is on the street it runs beside, and is told so. Which
+     * street that is only becomes known as the pavement's name is confected, and nothing has to
+     * have asked for that before the first My Location - which answered "On Pavement next to
+     * Filton Road just before Harry Stoke Road" and then got it right every time after.
+     */
+    @Test
+    fun testReverseGeocodeOnAPavementNamesTheStreetFirstTime() {
+        val location = LngLatAlt(-2.544861137866974, 51.50496446342322)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val geocoder = OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
+
+        runBlocking {
+            kotlinx.coroutines.withContext(gridState.treeContext) {
+                val pavement = gridState.getNearestFeature(
+                    TreeId.ROADS_AND_PATHS, gridState.ruler, location, 5.0
+                ) as Way
+                assertEquals("sidewalk", pavement.properties?.get("footway"))
+                // Not yet known to be a pavement, which is the state the fault needed
+                assertNull(pavement.properties?.get("pavement"))
+
+                assertEquals(
+                    "On Filton Road just before Harry Stoke Road",
+                    geocoder.getAddressFromLngLat(
+                        UserGeometry(location, phoneHeading = 90.0, mapMatchedWay = pavement),
+                        null,
+                        false
+                    )?.name
+                )
+            }
+        }
+    }
+
+    /**
+     * Too far from any named road to be given an address on it, the last resort is the nearest
+     * way of any kind - and beside a street that's its pavement. The address is still the street,
+     * not "Pavement next to Coldharbour Lane".
+     */
+    @Test
+    fun testReverseGeocodeLastResortNamesTheStreetNotItsPavement() {
+        val location = LngLatAlt(-2.54553, 51.50275)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val geocoder = OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
+
+        runBlocking {
+            kotlinx.coroutines.withContext(gridState.treeContext) {
+                assertEquals(
+                    "Coldharbour Lane",
+                    geocoder.getAddressForFeature(UserGeometry(location), null, false)?.name
+                )
+            }
+        }
+    }
+
+    /**
      * "just before"/"just after"/"until"/"since" describe where a location is relative to the
      * direction you're travelling, which StreetDescription.describeLocation only knows from a
      * heading - without one it fills ahead and behind in arbitrarily. Reverse geocoding a bare
@@ -660,7 +754,7 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals("Traveling north along Allander Road near Milngavie", result!!.text)
-        assertEquals("On Allander Road near Milngavie", result.dedupText)
+        assertEquals("On Allander Road and close to Milngavie", result.dedupText)
     }
 
     @Test
@@ -1843,7 +1937,8 @@ class MvtTileTest {
         )
 
         val off = MvtTestPreferences()
-        off.putBoolean(PreferenceKeys.BUS_AND_TRAM_STOPS, false)
+        // Landmarks Only is one of the choices that leaves bus and tram stops out
+        off.putString(PreferenceKeys.PLACES_TO_CALL_OUT, setOf(PlacesToCallOut.LANDMARKS).toPreference())
         val spokenWithStopsOff =
             driveOneFix(gridState, settlementGrid, way, startPoint, heading, off)
         assertTrue(
@@ -2764,13 +2859,118 @@ class MvtTileTest {
         assertEquals("M80", result.extraDedupText)
     }
 
+    // Beside M8 junction 17, St George's Cross, where Cowcaddens Road and West Graham Street
+    // pass within a few hundred metres of the junction without touching it.
+    private val stGeorgesCrossLocation = LngLatAlt(-4.2650, 55.8690)
+
+    private fun stGeorgesCross(gridState: GridState) =
+        gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS).getAllCollection().features
+            .map { it as MvtFeature }
+            .filter { it.name == "St George's Cross" }
+
+    /**
+     * A junction is recorded on the carriageway and slip road it sits on, and on nothing else -
+     * not the A804, which passes within 14m of junction 17.
+     */
+    @Test
+    fun testHighwayJunctionsAttachToTheirCarriageway() {
+        val gridState = getGridStateForLocation(stGeorgesCrossLocation, MAX_ZOOM_LEVEL, 3)
+        val junctions = stGeorgesCross(gridState)
+        assertTrue(junctions.isNotEmpty())
+
+        val carrying = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .map { it as Way }
+            .filter { way ->
+                way.alongWayFeatures(AlongWayKind.HIGHWAY_JUNCTION).any { it.feature in junctions }
+            }
+        assertTrue(carrying.any { it.ref == "M8" && !it.isRamp })
+        assertTrue(carrying.any { it.isRamp })
+        assertTrue(
+            "Junction 17 attached to non-motorway Ways: ${carrying.map { it.featureValue }}",
+            carrying.all { it.featureValue == "motorway" }
+        )
+    }
+
+    /**
+     * Driving along Cowcaddens Road past M8 junction 17 used to be "Traveling northwest along
+     * Cowcaddens Road at Junction 17, St George's Cross", because the junction was found by
+     * searching around the vehicle. It is on the M8, not on Cowcaddens Road.
+     */
+    @Test
+    fun testTravelCalloutIgnoresAJunctionOnAnotherRoad() {
+        val gridState = getGridStateForLocation(stGeorgesCrossLocation, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(stGeorgesCrossLocation, 12, 3)
+        val ruler = gridState.ruler
+        // The point on Cowcaddens Road nearest either carriageway's junction 17 node
+        val junctionPoints = stGeorgesCross(gridState).map { (it.geometry as Point).coordinates }
+        val (cowcaddensRoad, location) = gridState.getFeatureTree(TreeId.ROADS).getAllCollection()
+            .features
+            .map { it as Way }
+            .filter { it.name == "Cowcaddens Road" }
+            .flatMap { way ->
+                junctionPoints.map { junction ->
+                    way to ruler.distanceToLineString(junction, way.geometry as LineString).point
+                }
+            }
+            .minBy { (_, point) -> junctionPoints.minOf { ruler.distance(point, it) } }
+        assertTrue(junctionPoints.minOf { ruler.distance(location, it) } < 500.0)
+
+        for (heading in listOf(null, 0.0, 90.0, 180.0, 270.0)) {
+            val userGeometry = UserGeometry(
+                location = location, speed = 15.0, mapMatchedWay = cowcaddensRoad,
+                travelHeading = heading
+            )
+            val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+            assertNotNull(result)
+            assertFalse(
+                "Heading $heading: ${result!!.text}", result.text.contains("Junction")
+            )
+        }
+    }
+
+    /**
+     * A road running north through [location], with a junction of [junctionClass] on it 50m
+     * ahead, recorded the way GridState.attachHighwayJunctionsToWays records one, since a junction
+     * is only found along the road being travelled. Real tile data doesn't reliably offer minor junctions
+     * at a stable test location.
+     */
+    private fun roadWithJunction(
+        gridState: GridState, location: LngLatAlt, junctionName: String, junctionClass: String
+    ): Way {
+        val ruler = gridState.ruler
+        val junction = MvtFeature().apply {
+            geometry = Point(ruler.offset(location, 0.0, 50.0))
+            name = junctionName
+            featureType = "highway"
+            featureValue = "highway_junction"
+            setProperty("class", junctionClass)
+        }
+        return Way().apply {
+            geometry = LineString(
+                ruler.offset(location, 0.0, -100.0), ruler.offset(location, 0.0, 200.0)
+            )
+            name = "Test Road"
+            featureType = "highway"
+            featureValue = "primary"
+            length = 300.0
+            addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = 150.0,
+                    point = (junction.geometry as Point).coordinates,
+                    kind = AlongWayKind.HIGHWAY_JUNCTION,
+                    name = junctionName,
+                    feature = junction
+                )
+            )
+        }
+    }
+
     /**
      * Minor road junctions (secondary/tertiary/residential/unclassified) shouldn't compete with
      * major ones (motorway/trunk/primary) for attention while driving - they're only called out
      * once nothing notable (a major junction or a passed landmark - see
-     * NotableVehicleEventTracker) has been announced for a while. This synthesizes a minor
-     * junction via direct FeatureTree injection (real tile data doesn't reliably offer minor
-     * junctions at a stable test location) and checks it's suppressed shortly after a notable
+     * NotableVehicleEventTracker) has been announced for a while. This puts a minor junction on
+     * a test road (see roadWithJunction) and checks it's suppressed shortly after a notable
      * event.
      */
     @Test
@@ -2779,21 +2979,15 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
-        val minorJunction = MvtFeature().apply {
-            geometry = Point(junctionLocation)
-            name = "Minor Junction"
-            featureType = "highway"
-            featureValue = "highway_junction"
-            setProperty("class", "residential")
-        }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(minorJunction) })
+        val road = roadWithJunction(gridState, location, "Minor Junction", "residential")
 
         val tracker = NotableVehicleEventTracker()
         tracker.recordEvent(99_000L)
         val userGeometry =
-            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+            UserGeometry(
+                location = location, speed = 15.0, timestampMilliseconds = 100_000L,
+                mapMatchedWay = road, travelHeading = 0.0
+            )
         val result = describeReverseGeocode(
             userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
         )
@@ -2812,20 +3006,14 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
-        val minorJunction = MvtFeature().apply {
-            geometry = Point(junctionLocation)
-            name = "Minor Junction"
-            featureType = "highway"
-            featureValue = "highway_junction"
-            setProperty("class", "residential")
-        }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(minorJunction) })
+        val road = roadWithJunction(gridState, location, "Minor Junction", "residential")
 
         val tracker = NotableVehicleEventTracker()
         val userGeometry =
-            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+            UserGeometry(
+                location = location, speed = 15.0, timestampMilliseconds = 100_000L,
+                mapMatchedWay = road, travelHeading = 0.0
+            )
         val result = describeReverseGeocode(
             userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
         )
@@ -2844,21 +3032,15 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
-        val majorJunction = MvtFeature().apply {
-            geometry = Point(junctionLocation)
-            name = "Major Junction"
-            featureType = "highway"
-            featureValue = "highway_junction"
-            setProperty("class", "primary")
-        }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(majorJunction) })
+        val road = roadWithJunction(gridState, location, "Major Junction", "primary")
 
         val tracker = NotableVehicleEventTracker()
         tracker.recordEvent(99_000L)
         val userGeometry =
-            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+            UserGeometry(
+                location = location, speed = 15.0, timestampMilliseconds = 100_000L,
+                mapMatchedWay = road, travelHeading = 0.0
+            )
         val result = describeReverseGeocode(
             userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
         )
@@ -2881,18 +3063,11 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
-        val pathJunction = MvtFeature().apply {
-            geometry = Point(junctionLocation)
-            name = "Path Junction"
-            featureType = "highway"
-            featureValue = "highway_junction"
-            setProperty("class", "footway")
-        }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(pathJunction) })
+        val road = roadWithJunction(gridState, location, "Path Junction", "footway")
 
-        val userGeometry = UserGeometry(location = location, speed = 15.0)
+        val userGeometry = UserGeometry(
+            location = location, speed = 15.0, mapMatchedWay = road, travelHeading = 0.0
+        )
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
@@ -3569,7 +3744,7 @@ class MvtTileTest {
 
         var railEverConfident = false
         for (coordinate in (motorway!!.geometry as LineString).coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            runBlocking { gridState.locationUpdate(coordinate, CalloutPoiSelection.EVERYTHING, null) }
             mapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null, true)
             railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
             if (railMapMatchFilter.isMatchConfident) railEverConfident = true
@@ -3610,7 +3785,7 @@ class MvtTileTest {
 
         var matchedAsTrain = false
         for (coordinate in (railway!!.geometry as LineString).coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            runBlocking { gridState.locationUpdate(coordinate, CalloutPoiSelection.EVERYTHING, null) }
             mapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null, true)
             railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
             if (arbiter.update(mapMatchFilter, railMapMatchFilter, motorwaySpeedMps) != null) {
@@ -3641,7 +3816,7 @@ class MvtTileTest {
         val coordinates = (targetWay!!.geometry as LineString).coordinates
         val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
         for (coordinate in coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            runBlocking { gridState.locationUpdate(coordinate, CalloutPoiSelection.EVERYTHING, null) }
             railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
         }
 
@@ -3686,7 +3861,7 @@ class MvtTileTest {
 
         var railEverConfident = false
         for (sample in samples) {
-            runBlocking { gridState.locationUpdate(sample.location, emptySet(), null) }
+            runBlocking { gridState.locationUpdate(sample.location, CalloutPoiSelection.EVERYTHING, null) }
             mapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null, true)
             railMapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null)
             if (railMapMatchFilter.isMatchConfident) railEverConfident = true
@@ -4089,10 +4264,15 @@ class MvtTileTest {
 
     @Test
     fun testGetNearestCollectionWithinTriangle(){
-        val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245), fovDistance = 2000.0)
+        // Facing north: the triangle needs a heading, and this is the one it always measured.
+        val userGeometry = UserGeometry(
+            LngLatAlt(-4.313, 55.945245),
+            phoneHeading = 0.0,
+            fovDistance = 2000.0
+        )
         val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 2)
 
-        val triangle = getFovTriangle(userGeometry, true)
+        val triangle = getFovTriangle(userGeometry, true)!!
 
         val duration = measureTime {
             val collection = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
@@ -4203,7 +4383,42 @@ class MvtTileTest {
         }
     }
 
-    fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
+    /**
+     * The travel heading GeoEngine.createUserGeometry would have taken from this track point: from
+     * the same TravelHeadingEstimator, fed the same raw fixes and the same road match, so a
+     * recorded course is only believed as far as production believes it. Passing the course
+     * through regardless made a replay of a poor-course recording look better than the journey it
+     * recorded: an iPhone walk (ToFabricBazaar-iOS) replayed with a heading on every fix, when the
+     * app had had one on a quarter of them.
+     *
+     * [computedHeading], the bearing from the previous position, is only for GPX exported from
+     * other apps or written by hand, which carries no course at all - [recordsCourses] false.
+     */
+    private fun recordedTravelHeading(
+        position: Feature,
+        computedHeading: Double,
+        recordsCourses: Boolean,
+        estimator: TravelHeadingEstimator,
+        roadHeading: Double?,
+        ruler: Ruler,
+        timestamp: Long,
+    ): Double? {
+        if (!recordsCourses) return computedHeading
+        return estimator.estimate(
+            bearing = position.properties?.get("heading") as? Double?,
+            bearingAccuracy = position.properties?.get("bearingAccuracy") as? Double?,
+            roadHeading = roadHeading,
+            ruler = ruler,
+            nowMilliseconds = timestamp,
+        )
+    }
+
+    fun testMovingGrid(
+        gpxFilename: String,
+        calloutFilename: String,
+        geojsonFilename: String,
+        preferences: PreferencesProvider? = null
+    ): Int {
 
         val gridState = FileGridState()
         gridState.start(offlineExtractPath)
@@ -4216,16 +4431,18 @@ class MvtTileTest {
         // against each other rather than trusting the rail one alone.
         val railMatchArbiter = RailMatchArbiter()
         val stationaryDetector = StationaryDetector()
+        val headingHold = HeadingHold()
         val gps = parseGpxFromFile(gpxFilename)
+        // See recordedTravelHeading
+        val recordsCourses = gps.features.any { it.properties?.get("heading") != null }
+        val travelHeadingEstimator = TravelHeadingEstimator()
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
-        val autoCallout = AutoCallout(null, null)
+        val autoCallout = AutoCallout(null, preferences)
         val callOutText = FileOutputStream(calloutFilename)
+        var calloutCount = 0
 
-        val enabledCategories = mutableSetOf<String>()
-        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-        enabledCategories.add(MOBILITY_KEY)
 
         val markers = FeatureCollection()
         val marker = MvtFeature()
@@ -4281,6 +4498,10 @@ class MvtTileTest {
             val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
                 ?: fallbackTime
             fallbackTime = timestamp + 1000L
+            // Every fix past the accuracy gate, unfiltered, as GeoEngine feeds it.
+            travelHeadingEstimator.addFix(
+                LngLatAlt(rawLocation.longitude, rawLocation.latitude), timestamp
+            )
 
             if (blindSinceLastUsableFix) {
                 lastUsableFixMillis?.let { unobservedMillis += timestamp - it }
@@ -4298,12 +4519,12 @@ class MvtTileTest {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    enabledCategories,
+                    CalloutPoiSelection.EVERYTHING,
                     null
                 )
                 settlementGrid.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    emptySet(),
+                    CalloutPoiSelection.EVERYTHING,
                     null
                 )
 
@@ -4342,7 +4563,8 @@ class MvtTileTest {
                     LngLatAlt(rawLocation.longitude, rawLocation.latitude),
                     accuracy,
                     (position.properties?.get("heading") != null) &&
-                        (bearingAccuracy != null) && (bearingAccuracy < 45.0),
+                        (bearingAccuracy != null) &&
+                        (bearingAccuracy < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES),
                     timestamp
                 )
 
@@ -4399,8 +4621,10 @@ class MvtTileTest {
                 // be missing so we need to mock it up.
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = position.properties?.get("heading") as? Double?
-                        ?: travelHeading,
+                    travelHeading = recordedTravelHeading(
+                        position, travelHeading, recordsCourses, travelHeadingEstimator,
+                        mapMatchFilter.matchedLocation?.heading, gridState.ruler, timestamp
+                    ),
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
@@ -4408,10 +4632,22 @@ class MvtTileTest {
                         mapMatchFilter, railMapMatchFilter, speed, stationary
                     ),
                     timestampMilliseconds = timestamp,
+                    heldHeading = headingHold.heading(
+                        LngLatAlt(location.longitude, location.latitude),
+                        gridState.ruler,
+                        timestamp
+                    ),
                     unobservedMillis = unobservedMillis,
                     stationary = stationary,
                     stationaryMillis = stationaryDetector.stationaryMillis
                 )
+                // Fed once per fix from the geometry the callouts use, as GeoEngine does.
+                val holdCourse = (position.properties?.get("heading") as? Double?)?.takeIf {
+                    val accuracy = position.properties?.get("bearingAccuracy") as? Double?
+                    (accuracy != null) &&
+                        (accuracy < TravelHeadingEstimator.MAXIMUM_ROAD_COURSE_ACCURACY_DEGREES)
+                }
+                headingHold.update(userGeometry, holdCourse)
 
                 // Neither of these is a callout - they're state changes the callout text can't
                 // show, and which are the whole point of the stationary work: whether a ride
@@ -4443,11 +4679,14 @@ class MvtTileTest {
                 )
                 if (callout != null) {
                     // We've got a new callout, so add it to our geoJSON as a triangle for the
-                    // FOV that was used to create it, along with the text from the callouts.
+                    // FOV that was used to create it, along with the text from the callouts. With
+                    // no heading there was no FOV, so the callout is placed at the location.
                     callOutText.write("\nCallout\n".toByteArray())
-                    val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry, true))
+                    calloutCount++
                     val fovFeature = Feature()
-                    fovFeature.geometry = polygon
+                    fovFeature.geometry = getFovTriangle(userGeometry, true)
+                        ?.let { createPolygonFromTriangle(it) }
+                        ?: Point(userGeometry.location)
                     fovFeature.properties = HashMap<String, Any?>().apply {
                         for (positionedString in callout.positionedStrings.withIndex()) {
                             callOutText.write("\t${positionedString.value.text}\n".toByteArray())
@@ -4467,19 +4706,152 @@ class MvtTileTest {
         val mapMatchingOutput = FileOutputStream(geojsonFilename)
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
+        return calloutCount
     }
 
+    /**
+     * Replays four recorded walks - Central Station up Buchanan Street, from home through
+     * Milngavie town centre to the station, and to and from Tesco in Milngavie, which goes along
+     * the footpaths through the precinct and Lennox Park - and a bus from Buchanan Bus Station to
+     * Milngavie, for the travel callouts, at each CalloutVerbosity level, writing the callouts to
+     * gpxFiles/<walk>-<level>.txt for comparison. Each level must say no more than the one above
+     * it, and Silent must say nothing.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    // Sixteen full replays - four walks at four levels - so it keeps the whole-corpus company
+    // rather than running on every unit test invocation.
+    @Category(NightlyOnlyTest::class)
+    @Test
+    fun testCalloutVerbosityLevels() {
+        val resultsStorageDir = File("gpxFiles/")
+        if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
+        for (walk in listOf(
+            "CentralToBuchananStreet", "ToTown", "WalkToTesco-samsung", "WalkFromTesco-pixel",
+            "BusTripToMilngavie"
+        )) {
+            val counts = CalloutVerbosity.entries.associateWith { level ->
+                val preferences = MvtTestPreferences().apply {
+                    putString(PreferenceKeys.CALLOUT_VERBOSITY, level.preferenceValue)
+                }
+                testMovingGrid(
+                    "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$walk.gpx",
+                    "gpxFiles/$walk-${level.preferenceValue}.txt",
+                    "gpxFiles/$walk-${level.preferenceValue}.geojson",
+                    preferences
+                )
+            }
+            println("$walk callouts: $counts")
+            // No beacon is set on these walks, so Silent has nothing at all to say
+            assertEquals(0, counts[CalloutVerbosity.SILENT])
+            assertTrue(counts[CalloutVerbosity.QUIET]!! <= counts[CalloutVerbosity.BALANCED]!!)
+            assertTrue(counts[CalloutVerbosity.BALANCED]!! <= counts[CalloutVerbosity.DETAILED]!!)
+        }
+    }
+
+    /**
+     * Replays two recorded motorway drives and checks exactly which junctions they announce.
+     *
+     * A junction is found by walking along the carriageway being driven (see
+     * AlongWayKind.HIGHWAY_JUNCTION), so what's checked here is that each one is still reached and
+     * that nothing is announced from another road or the other carriageway. These two drives
+     * don't depend on the walk keeping to the carriageway past a slip road (Way.isRamp) - that is
+     * AlongWayTest.sameRoadKeepsToTheCarriagewayPastASlipRoad. Left out on purpose, and announced
+     * before junctions were attached to Ways: M73 junction 3 (Mollinsburn), passed on the M80; and the opposite
+     * carriageway's nodes, such as M90 junction 2A (Halbeath), M9 junctions 5 and 6 (whose
+     * northbound nodes are kilometres away), M80 junction 6A (Castlecary) and M876 junction 8
+     * (Kinnaird).
+     */
+    @Test
+    fun testMotorwayJunctionsAnnounced() {
+        val resultsStorageDir = File("gpxFiles/")
+        if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
+        val expected = mapOf(
+            "Motorway" to setOf(
+                "Junction 1, Checkbar",
+                "Junction 2, Glenbervie",
+                "Junction 3, Bowtrees",
+                "Junction 5, Auchenkilns Junction",
+                "Junction 6, Old Inns Junction",
+                "Junction 7, Haggs Interchange",
+                "Junction 7, Kinnaird House Interchange",
+                "Junction 8, Bankhead Interchange",
+            ),
+            "MotorwayForTravel" to setOf(
+                "Junction 1A, Queensferry Junction",
+                "Junction 1B, Ferrytoll",
+                "Junction 1B, Winchburgh",
+                "Junction 1C, Admiralty",
+                "Junction 1, Checkbar",
+                "Junction 1, Scotstoun",
+                "Junction 2, Glenbervie",
+                "Junction 2, Masterton",
+                "Junction 3, Burghmuir Junction",
+                "Junction 3, Halbeath",
+                "Junction 3, Hornshill Interchange",
+                "Junction 4, Cocklaw Junction",
+                "Junction 4, Lathallan Interchange",
+                "Junction 4, Mollinsburn Junction",
+                "Junction 5, Auchenkilns Junction",
+                "Junction 5, Cadgers Brae",
+                "Junction 5, Gairneybridge",
+                "Junction 6A, Castlecary Interchange",
+                "Junction 6, Old Inns Junction",
+                "Junction 7, Haggs Interchange",
+                "Junction 7, Kinnaird House Interchange",
+                "Junction 8, Kinnaird Interchange",
+            ),
+        )
+        val junction = Regex("Junction [^ ,]+(, .+)?")
+        for ((drive, junctions) in expected) {
+            val calloutFile = "gpxFiles/$drive-junctions.txt"
+            testMovingGrid(
+                "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$drive.gpx",
+                calloutFile,
+                "gpxFiles/$drive-junctions.geojson"
+            )
+            val announced = File(calloutFile).readLines()
+                .mapNotNull { junction.find(it)?.value?.trim() }
+                .toSet()
+            assertEquals("Junctions announced on $drive", junctions, announced)
+        }
+    }
+
+    /**
+     * One trace through the whole callout path, written out as text and as GeoJSON for eyeballing
+     * on geojson.io - each callout is the field-of-view triangle that produced it, carrying its
+     * spoken lines as properties.
+     *
+     * A walk rather than a journey: AutoCallout suppresses intersection callouts in a vehicle and
+     * for a while afterwards, so a drive or a train exercises everything here except the
+     * pedestrian callouts, which are most of them. CentralToBuchananStreet walks through the
+     * middle of Glasgow and produces getting on for two hundred callouts, around a quarter of
+     * them about junctions.
+     *
+     * testCallouts below still covers every trace, vehicles and trains included, nightly.
+     */
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "TransferAtQueenStreet"
+        val testFile = "bristol-bus"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",
             "gpxFiles/$testFile.geojson"
         )
+
+        // And again through the old tree-search + Dijkstra intersection path, to diff against.
+        forceLegacyIntersectionSearch = true
+        try {
+            testMovingGrid(
+                "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
+                "gpxFiles/$testFile-legacy.txt",
+                "gpxFiles/$testFile-legacy.geojson"
+            )
+        } finally {
+            forceLegacyIntersectionSearch = false
+        }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -4516,14 +4888,14 @@ class MvtTileTest {
         settlementGrid.start(offlineExtractPath)
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
+        // See recordedTravelHeading
+        val recordsCourses = gps.features.any { it.properties?.get("heading") != null }
+        val travelHeadingEstimator = TravelHeadingEstimator()
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
         val callOutText = FileOutputStream(calloutFilename)
 
-        val enabledCategories = mutableSetOf<String>()
-        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-        enabledCategories.add(MOBILITY_KEY)
 
         // Callout throttling is all elapsed-time arithmetic (CalloutHistory's expiry, AutoCallout's
         // sticky vehicle/train windows, the POI sweep interval), so a replay only behaves like the
@@ -4550,7 +4922,7 @@ class MvtTileTest {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    enabledCategories,
+                    CalloutPoiSelection.EVERYTHING,
                     null
                 )
 
@@ -4581,11 +4953,16 @@ class MvtTileTest {
                 val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
                     ?: fallbackTime
                 fallbackTime = timestamp + 1000L
+                travelHeadingEstimator.addFix(
+                    LngLatAlt(rawLocation.longitude, rawLocation.latitude), timestamp
+                )
 
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = position.properties?.get("heading") as? Double?
-                        ?: travelHeading,
+                    travelHeading = recordedTravelHeading(
+                        position, travelHeading, recordsCourses, travelHeadingEstimator,
+                        mapMatchFilter.matchedLocation?.heading, gridState.ruler, timestamp
+                    ),
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
@@ -4703,7 +5080,7 @@ class MvtTileTest {
                     // Update the grid state
                     gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        emptySet(),
+                        CalloutPoiSelection.EVERYTHING,
                         null
                     )
                     if (false) {
@@ -5028,10 +5405,6 @@ class MvtTileTest {
         // extracts
         val gridState = FileGridState(MAX_ZOOM_LEVEL, GRID_SIZE)
         gridState.start(offlineExtractPath)
-        val enabledCategories = emptySet<String>().toMutableSet()
-        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-        enabledCategories.add(MOBILITY_KEY)
-
         // Intersperse locations that are in each of the extracts (Glasgow, Bristol, Tehran, San
         // Salvador, Paris, Buenos Aires and Osaka) with some that are outside and should fail.
         // The failing ones are Isfahan, which is in Iran but well outside the Tehran extract, and
@@ -5060,7 +5433,7 @@ class MvtTileTest {
                 assertEquals(
                     gridState.locationUpdate(
                         location.first,
-                        enabledCategories,
+                        CalloutPoiSelection.EVERYTHING,
                         null
                     ), location.second
                 )

@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Platsmarkörer
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 80
 lang: sv
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Platsmarkörer
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+En platsmarkör är en plats som du har sparat. Det kan vara vilken plats som helst som är viktig för dig: ditt hem, en busshållplats, en entré till en byggnad eller ett övergångsställe.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape läser upp dina platsmarkörer när du passerar dem. Du kan ställa in en ljudfyr på en platsmarkör, lägga till den i en rutt eller höra de närmaste med knappen *Platsmarkörer i närheten*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Skapa platsmarkörer
+
+1. Välj *Platsmarkörer* på startskärmen och välj sedan *Ny*.
+
+2. Välj *Aktuell plats*, eller en plats från *Platser i närheten*.
+
+3. Ändra namnet om du vill, och lägg till anteckningar. Soundscape läser upp anteckningarna tillsammans med platsmarkören.
+
+4. Välj *Klart*.
+
+Du kan också spara vilken plats du än hittar. Öppna dess *Platsuppgifter* och välj *Spara som platsmarkör*.
+
+## Anpassa platsmarkörer
+
+Välj platsmarkören på skärmen *Platsmarkörer* och välj sedan *Redigera platsmarkör*. Du kan ändra namn, anteckningar och position, eller välja *Ta bort platsmarkör*. När du tar bort en platsmarkör försvinner den också från dina rutter.
 

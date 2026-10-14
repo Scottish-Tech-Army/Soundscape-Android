@@ -32,4 +32,4 @@ Soundscape는 원래 [Microsoft Research](https://www.microsoft.com/en-us/resear
 [Soundscape 사용법]({{ "/users/user.html" | relative_url }})
 
 # 사용자의 언어로 만나는 Soundscape
-가능한 한 많은 언어를 지원하고자 하며, 그래서 앱 현지화를 돕기 위해 훌륭한 [Weblate](https://hosted.weblate.org/projects/soundscape-android/)를 사용하기 시작했습니다. 처음에는 iOS에서 지원하는 것과 같은 언어로 시작했지만 Android 앱에는 새로운 문구가 있어 대부분의 언어에서 번역이 일부 빠져 있습니다. 이를 채우는 데 도움을 주시거나 새로운 언어를 추가해 주신다면 정말 감사하겠습니다. 진행 방식에 대한 설명은 [여기](https://docs.weblate.org/en/latest/user/translating.html)에서 볼 수 있습니다. Weblate 계정을 만들 때 번역할 수 있는 언어를 선택하게 되며, Soundscape 앱이 현재 그 언어를 지원하지 않는 경우 앱 기본 [페이지](https://hosted.weblate.org/projects/soundscape-android/android-app/)에서 해당 언어를 추가할 수 있습니다.
+Soundscape는 46개 언어로 제공되지만, 대부분의 번역은 아직 원어민의 검토를 받지 못했습니다. 이 중 한 언어를 사용하신다면 도움을 주시면 정말 감사하겠습니다. 가장 빠른 방법은 [사용하시는 언어의 짧은 설문]({{ "/help-translate/" | relative_url }})에 답해 주시는 것으로, 약 10분 정도 걸립니다. 번역을 관리하는 [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/)에서 직접 개선 사항을 제안하실 수도 있습니다([Weblate 사용 방법](https://docs.weblate.org/en/latest/user/translating.html)).

@@ -1,23 +1,16 @@
 ---
-title: Ahead of Me
+title: 내 앞쪽
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 40
 lang: ko
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# 내 앞쪽
 
-## What is it?
+*내 앞쪽*은 앞에 있는 장소를 최대 다섯 개까지 안내합니다. 각 장소는 그 방향에서 거리와 함께 들립니다. 모르는 길에서 앞에 무엇이 있는지 알고 싶을 때 사용하세요.
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
-
-## When would I use it?
-
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+멈춰 서 있다면 먼저 휴대폰의 위쪽 끝이 바라보는 방향을 향하게 하세요. 휴대폰이 잠겨 있거나 Soundscape가 화면에 없으면 휴대폰을 수평으로도 들어 주세요.
 

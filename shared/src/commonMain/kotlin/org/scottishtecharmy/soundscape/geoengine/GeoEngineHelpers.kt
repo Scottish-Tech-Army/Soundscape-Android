@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
@@ -7,11 +8,14 @@ import org.scottishtecharmy.soundscape.geoengine.utils.nextAlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.WayCursor
 import org.scottishtecharmy.soundscape.geoengine.utils.WayContinuation
 import org.scottishtecharmy.soundscape.geoengine.utils.AlongWayFeatureAhead
+import org.scottishtecharmy.soundscape.geoengine.utils.forEachAlongWayFeatureAhead
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelAbbreviated
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockHourLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockTime
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeLeftRightLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
@@ -113,6 +117,8 @@ fun nearestSettlement(
 var metric = true
 
 /**
+ * @param abbreviatedDirection use the abbreviated cardinal ("NW") rather than the word ("north
+ * west"). For text on screen where space is tight; never for speech.
  * @param speed the user's speed in m/s, if known. Above
  * [UserGeometry.BIG_UNIT_SPEED_THRESHOLD_MPS] the distance is always given in big units
  * (kilometres/miles), as metre/foot precision is worthless at that speed. Callers with no idea of
@@ -124,9 +130,10 @@ fun formatDistanceAndDirection(
     heading: Double?,
     localized: LocalizedStrings?,
     userHeading: Double? = null,
-    relativeTimeMode: String = "ClockFace",
+    relativeDirectionMode: String = PreferenceDefaults.RELATIVE_DIRECTION,
     forAccessibility: Boolean = false,
-    speed: Double = 0.0
+    speed: Double = 0.0,
+    abbreviatedDirection: Boolean = false
 ): String {
     var units = distance
     var bigUnitDivisor = 100
@@ -183,16 +190,20 @@ fun formatDistanceAndDirection(
     var headingText = ""
     if (heading != null) {
         if (userHeading == null) {
-            if (localized != null)
-                headingText = ", " + localized.get(getCompassLabel(heading.toInt()))
+            if (localized != null) {
+                val key =
+                    if (abbreviatedDirection) getCompassLabelAbbreviated(heading.toInt())
+                    else getCompassLabel(heading.toInt())
+                headingText = ", " + localized.get(key)
+            }
         } else {
-            when (relativeTimeMode) {
+            when (relativeDirectionMode) {
                 "ClockFace" -> {
                     val timeHeading = getRelativeClockTime(heading.toInt(), userHeading.toInt())
                     headingText = ", " +
                             (localized?.get(
                                 StringKey.RelativeClockDirection,
-                                timeHeading.toString()
+                                localized.get(getRelativeClockHourLabel(timeHeading))
                             )
                                 ?: "at $timeHeading o'clock")
                 }
@@ -201,7 +212,7 @@ fun formatDistanceAndDirection(
                     val relativeHeading = (heading - userHeading)
                     val degrees = normalizeHeading(((relativeHeading / 5.0).roundToInt() * 5))
                     headingText = ", " +
-                            (localized?.get(StringKey.RelativeDegreesDirection, degrees.toString())
+                            (localized?.getPlural(PluralKey.RelativeDegreesDirection, degrees, degrees.toString())
                                 ?: "at $degrees degrees")
                 }
 
@@ -226,9 +237,12 @@ fun formatDistanceAndDirection(
 }
 
 internal fun decimalSeparator(localized: LocalizedStrings?, forAccessibility: Boolean): String {
-    val key = if (forAccessibility) StringKey.NumberDecimalSeparatorA11y
-    else StringKey.NumberDecimalSeparator
-    return localized?.get(key) ?: if (forAccessibility) " point " else "."
+    if (!forAccessibility) return localized?.get(StringKey.NumberDecimalSeparator) ?: "."
+    // The spoken separator is a word between two numbers, so it needs a space either side. The
+    // English string carries them (" point "), but every translation had lost them, which gave
+    // "1przecinek5". So the spaces are added here rather than trusted to the strings.
+    val word = localized?.get(StringKey.NumberDecimalSeparatorA11y)?.trim() ?: "point"
+    return " $word "
 }
 
 internal fun formatDecimal(
@@ -379,6 +393,51 @@ private data class ReverseGeocodeText(
 private const val stationAtDistanceMetres = 200.0
 private const val stationApproachingDistanceMetres = 500.0
 
+// How far along the road a junction is described as the one the vehicle is "at". Ahead reaches
+// far enough to be heard before the exit at motorway speed; behind only covers the moment of
+// passing, since a junction already passed is no longer where the vehicle is. With no direction of
+// travel there is no telling ahead from behind, so both ways get the shorter reach.
+private const val junctionAheadDistanceMetres = 500.0
+private const val junctionBehindDistanceMetres = 200.0
+
+/**
+ * The nearest junction along the road from [cursor] that [eligible] accepts - see
+ * AlongWayKind.HIGHWAY_JUNCTION. Followed by name or ref through other junctions, the same as the
+ * transit stop lookahead, since a motorway is split into a new Way at every one of them; the
+ * walk keeps to the carriageway rather than turning off down a slip road (see Way.isRamp).
+ */
+private fun highwayJunctionOnRoad(
+    cursor: WayCursor,
+    eligible: (MvtFeature) -> Boolean
+): MvtFeature? {
+    fun nearestFrom(from: WayCursor, maxDistance: Double): AlongWayFeatureAhead? {
+        var found: AlongWayFeatureAhead? = null
+        forEachAlongWayFeatureAhead(from, maxDistance, WayContinuation.SAME_ROAD) { ahead ->
+            val junction = ahead.feature.feature
+            if ((ahead.feature.kind == AlongWayKind.HIGHWAY_JUNCTION) &&
+                (junction != null) && eligible(junction)
+            ) {
+                found = ahead
+                false
+            } else {
+                true
+            }
+        }
+        return found
+    }
+
+    val forwards = cursor.forwards
+    val candidates = if (forwards == null) {
+        listOfNotNull(nearestFrom(cursor, junctionBehindDistanceMetres))
+    } else {
+        listOfNotNull(
+            nearestFrom(cursor, junctionAheadDistanceMetres),
+            nearestFrom(cursor.copy(forwards = !forwards), junctionBehindDistanceMetres)
+        )
+    }
+    return candidates.minByOrNull { it.distance }?.feature?.feature
+}
+
 /** The nearest named station within [maxDistance] along the line from [cursor], or null. */
 private fun namedStationWithin(cursor: WayCursor, maxDistance: Double): AlongWayFeatureAhead? =
     nextAlongWayFeature(
@@ -392,6 +451,7 @@ private fun travellingReverseGeocodeName(
     localized: LocalizedStrings?,
     lastStationTracker: LastStationTracker? = null,
     notableEventTracker: NotableVehicleEventTracker? = null,
+    allowMinorJunctions: Boolean = true,
 ): ReverseGeocodeText? {
     val location = userGeometry.location
     if (!gridState.isLocationWithinGrid(location)) return null
@@ -498,25 +558,27 @@ private fun travellingReverseGeocodeName(
             localized?.get(StringKey.DirectionsOnRoad, name) ?: "On $name"
         }
 
-    // Check if we're near a highway junction (motorway exit, interchange etc.) - not relevant
-    // when travelling by train. Major junctions (motorway/trunk/primary) are always eligible;
-    // minor ones only become eligible once nothing notable has been announced for a while, so a
-    // quiet residential junction doesn't compete with a nearby motorway interchange. Junctions
-    // with an unrecognised/missing class (this also covers paths/tracks/service roads, which
-    // should never be called out) are never eligible.
-    if (!probablyOnTrain) {
-        val junctionTree = gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS)
-        val nearbyJunctions = junctionTree.getNearestCollection(location, 500.0, 5, gridState.ruler)
-        val allowMinorJunctions = notableEventTracker?.quietFor(
+    // Check if we're at a highway junction (motorway exit, interchange etc.) on the road being
+    // travelled - not relevant when travelling by train. Major junctions (motorway/trunk/primary)
+    // are always eligible; minor ones only become eligible once nothing notable has been announced
+    // for a while, so a quiet residential junction doesn't compete with a nearby motorway
+    // interchange. Junctions with an unrecognised/missing class (this also covers paths/tracks/
+    // service roads, which should never be called out) are never eligible.
+    if (!probablyOnTrain && (nearestRoad != null)) {
+        // The callout detail can rule minor junctions out altogether - see
+        // CalloutVerbosity.travelMinorJunctions.
+        val minorJunctionsEligible = allowMinorJunctions && (notableEventTracker?.quietFor(
             userGeometry.timestampMilliseconds, MINOR_JUNCTION_QUIET_THRESHOLD_MS
-        ) ?: true
-        val nearestJunction = nearbyJunctions.features.firstOrNull { feature ->
-            when ((feature as MvtFeature).properties?.get("class") as? String) {
-                in majorHighwayJunctionClasses -> true
-                in minorHighwayJunctionClasses -> allowMinorJunctions
-                else -> false
+        ) ?: true)
+        val nearestJunction = userGeometry.cursorOn(nearestRoad)?.let { cursor ->
+            highwayJunctionOnRoad(cursor) { junction ->
+                when (junction.properties?.get("class") as? String) {
+                    in majorHighwayJunctionClasses -> true
+                    in minorHighwayJunctionClasses -> minorJunctionsEligible
+                    else -> false
+                }
             }
-        } as MvtFeature?
+        }
         if (nearestJunction != null) {
             val ref = nearestJunction.ref
             val name = nearestJunction.displayName
@@ -670,52 +732,48 @@ private fun travellingReverseGeocodeName(
                         localized?.get(StringKey.DirectionsCloseToSettlementInline, nearestSettlementName)
                             ?: "close to $nearestSettlementName"
                         ),
-                    // Excludes the direction of travel - see the dedupText comment further below.
-                    dedupText = roadDedup("On $roadName close to $nearestSettlementName")
+                    // The same key as every other road-and-settlement phrasing - see below.
+                    dedupText = roadDedup("On $roadName and close to $nearestSettlementName")
                 )
             }
 
             val headingOffset = calculateHeadingOffset(
                 travelHeadingDegrees.toDouble(), gridState.ruler.bearing(location, settlementLocation)
             )
-            val (settlementPhrase, dedupSuffix) = when {
+            val settlementPhrase = when {
                 headingOffset <= 45.0 -> {
                     val distanceText = formatDistanceAndDirection(
                         gridState.ruler.distance(location, settlementLocation), null, localized,
                         speed = userGeometry.speed
                     )
-                    Pair(
-                        localized?.get(
-                            StringKey.DirectionsTowardsSettlement, nearestSettlementName, distanceText
-                        ) ?: "towards $nearestSettlementName, $distanceText away",
-                        "towards $nearestSettlementName"
-                    )
+                    localized?.get(
+                        StringKey.DirectionsTowardsSettlement, nearestSettlementName, distanceText
+                    ) ?: "towards $nearestSettlementName, $distanceText away"
                 }
                 headingOffset >= 135.0 -> {
                     val distanceText = formatDistanceAndDirection(
                         gridState.ruler.distance(location, settlementLocation), null, localized,
                         speed = userGeometry.speed
                     )
-                    Pair(
-                        localized?.get(
-                            StringKey.DirectionsAwayFromSettlement, nearestSettlementName, distanceText
-                        ) ?: "away from $nearestSettlementName, $distanceText away",
-                        "away from $nearestSettlementName"
-                    )
+                    localized?.get(
+                        StringKey.DirectionsAwayFromSettlement, nearestSettlementName, distanceText
+                    ) ?: "away from $nearestSettlementName, $distanceText away"
                 }
-                else -> Pair(
-                    localized?.get(StringKey.DirectionsNearSettlementInline, nearestSettlementName)
-                        ?: "near $nearestSettlementName",
-                    "near $nearestSettlementName"
-                )
+                else -> localized?.get(StringKey.DirectionsNearSettlementInline, nearestSettlementName)
+                    ?: "near $nearestSettlementName"
             }
             return ReverseGeocodeText(
                 text = "$phrase $settlementPhrase",
-                // Excludes both the ever-changing distance (see the "since station" case above)
-                // and the direction of travel - on a winding road the compass direction can shift
-                // tick to tick while the road and the towards/away/near relationship stay the
-                // same, and that alone shouldn't trigger a fresh announcement.
-                dedupText = roadDedup("On $roadName $dedupSuffix")
+                // Excludes the ever-changing distance (see the "since station" case above), the
+                // direction of travel, and whether the settlement is ahead, alongside or behind.
+                // On a winding road the compass direction shifts tick to tick, and in a housing
+                // estate every turn swings the settlement from "towards" to "near" to "away from"
+                // - each of which used to be a fresh key, so driving round a block re-announced
+                // the street at every corner. Being on the same road by the same settlement is
+                // the same thing to say, so all the road-and-settlement phrasings share one key,
+                // and losing the heading (which drops to the plain form below) doesn't change it
+                // either.
+                dedupText = roadDedup("On $roadName and close to $nearestSettlementName")
             )
         }
 
@@ -763,11 +821,12 @@ fun describeReverseGeocode(
     localized: LocalizedStrings?,
     lastStationTracker: LastStationTracker? = null,
     notableEventTracker: NotableVehicleEventTracker? = null,
+    allowMinorJunctions: Boolean = true,
 ): PositionedString? {
     val description =
         travellingReverseGeocodeName(
             userGeometry, gridState, settlementGrid, localized, lastStationTracker,
-            notableEventTracker
+            notableEventTracker, allowMinorJunctions
         ) ?: return null
     return PositionedString(
         text = description.text,

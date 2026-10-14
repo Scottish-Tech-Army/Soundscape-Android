@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -75,13 +76,12 @@ enum class TreeId(
     SETTLEMENT_VILLAGE(18, "Villages"),
     SETTLEMENT_HAMLET(19, "Hamlets"),
     TRANSIT(20, "Transit"),
-    HOUSENUMBER(21, "House numbers"),
-    HIGHWAY_JUNCTIONS(22, "Highway Junctions"),
-    NAMED_WATER_POLYGONS(23, "Named Water Polygons"),
-    NAMED_WATERWAYS(24, "Named Waterways"),
-    RAILWAY_STOPS(25, "Railway Stops"),
-    MAX_COLLECTION_ID(26, ""),
-    WAYS_SELECTION(id = 26, "Either Roads OR Roads and Paths")
+    HIGHWAY_JUNCTIONS(21, "Highway Junctions"),
+    NAMED_WATER_POLYGONS(22, "Named Water Polygons"),
+    NAMED_WATERWAYS(23, "Named Waterways"),
+    RAILWAY_STOPS(24, "Railway Stops"),
+    MAX_COLLECTION_ID(25, ""),
+    WAYS_SELECTION(id = 25, "Either Roads OR Roads and Paths")
 }
 
 fun treeIdToIndex(id: TreeId): TreeId {
@@ -694,7 +694,6 @@ open class GridState(
 
         for (feature in featureCollections[TreeId.POIS.id]) {
             val poi = feature as? MvtFeature ?: continue
-            if (poi.superCategory == SuperCategoryId.HOUSENUMBER) continue
 
             // A POI which carries its own OSM street doesn't need one confecting for it - but it
             // still needs a settlement. OSM addresses on POIs very often stop at addr:street with
@@ -983,6 +982,69 @@ open class GridState(
         return attached
     }
 
+    // How far off a road a junction node can sit and still be taken as being on it. Like a
+    // railway=stop, OSM puts it on the carriageway itself: measured across the M8, M80, A8 and
+    // A725 junctions in the test extracts, every one was at 0.0m from its own carriageway Ways and
+    // slip road, with the opposite carriageway 10-20m away and the nearest local road 5m away. So
+    // this only has to absorb the tile's coordinate quantisation.
+    private val highwayJunctionWayToleranceMetres = 2.0
+
+    /**
+     * Records each road junction against the Ways it sits on, as a HIGHWAY_JUNCTION
+     * AlongWayFeature - see AlongWayKind.HIGHWAY_JUNCTION for why.
+     *
+     * Every Way through the node gets it, not just the nearest: the carriageway is split at the
+     * junction, so it is the end of one Way and the start of the next, and the slip road starts
+     * there too. Only Ways of the junction's own class, though. A slip road is classed with its
+     * road, so a motorway junction is on motorway Ways only, and that keeps it off a local road
+     * that happens to pass under the node - Carnoustie Street meets M8 junction 20 at 0.0m in the
+     * tiles, where it runs beneath it.
+     */
+    private fun attachHighwayJunctionsToWays(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val junctions = featureCollections[TreeId.HIGHWAY_JUNCTIONS.id].features
+        if (junctions.isEmpty()) return 0
+        val roadTree = localTrees[TreeId.ROADS.id]
+        var attached = 0
+
+        for (feature in junctions) {
+            val junction = feature as? MvtFeature ?: continue
+            val point = (junction.geometry as? Point)?.coordinates ?: continue
+            val junctionClass = junction.properties?.get("class") as? String ?: continue
+
+            for (candidate in roadTree.getNearbyCollection(
+                point, highwayJunctionWayToleranceMetres, ruler
+            )) {
+                val way = candidate as? Way ?: continue
+                if (way.featureValue != junctionClass) continue
+                val line = way.geometry as? LineString ?: continue
+                if (line.coordinates.size < 2) continue
+                if (ruler.distanceToLineString(point, line).distance >
+                    highwayJunctionWayToleranceMetres
+                ) continue
+
+                way.addAlongWayFeature(
+                    AlongWayFeature(
+                        // Clamped because a junction usually sits on the node where the
+                        // carriageway is split, which is the end of the Way, and measuring along
+                        // the line can come out a few millimetres longer than Way.length.
+                        distanceFromStart = way.distanceAlongWay(point, ruler)
+                            .coerceAtMost(way.length),
+                        point = point,
+                        kind = AlongWayKind.HIGHWAY_JUNCTION,
+                        name = junction.name,
+                        feature = junction,
+                        translatedName = junction.translatedName
+                    )
+                )
+                attached++
+            }
+        }
+        return attached
+    }
+
     /**
      * processGridState is now called from within the single thread that can access the tile grid.
      * This makes it somewhat performance critical. However, by doing this it allows us to
@@ -990,7 +1052,7 @@ open class GridState(
      */
     fun processGridState(
         featureCollections: Array<FeatureCollection>,
-        enabledCategories: Set<String>,
+        selection: CalloutPoiSelection,
         newGridIntersections: List<HashMap<LngLatAlt, Intersection>>,
         newGridTransitIntersections: List<HashMap<LngLatAlt, Intersection>>,
         localTrees: Array<FeatureTree>,
@@ -1003,7 +1065,7 @@ open class GridState(
         fixupCollections(featureCollections)
 
         val classifyTiming = measureTime {
-            classifyPois(featureCollections, enabledCategories)
+            classifyPois(featureCollections, selection)
         }
         println("Classify took $classifyTiming")
 
@@ -1042,16 +1104,18 @@ open class GridState(
         var transitStopsAttached = 0
         var railwayStopsAttached = 0
         var stationsAttached = 0
+        var junctionsAttached = 0
         val transitStopTiming = measureTime {
             transitStopsAttached = attachTransitStopsToWays(featureCollections, localTrees)
             railwayStopsAttached = attachRailwayStopsToWays(featureCollections, localTrees)
             // After the stop nodes, so that it can see which stations they already stand for.
             stationsAttached = attachStationsAsRailwayStops(featureCollections, localTrees)
+            junctionsAttached = attachHighwayJunctionsToWays(featureCollections, localTrees)
         }
         println(
             "Transit stops took $transitStopTiming " +
                 "($transitStopsAttached road stops, $railwayStopsAttached railway stops, " +
-                "$stationsAttached stations as stops)"
+                "$stationsAttached stations as stops, $junctionsAttached highway junctions)"
         )
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
@@ -1099,7 +1163,7 @@ open class GridState(
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun locationUpdate(
         location: LngLatAlt,
-        enabledCategories: Set<String>,
+        selection: CalloutPoiSelection,
         strings: LocalizedStrings?,
     ): Boolean {
         // Check if we're still within the central area of our grid
@@ -1138,7 +1202,7 @@ open class GridState(
                             gridTransitIntersections.clear()
                             processGridState(
                                 featureCollections,
-                                enabledCategories,
+                                selection,
                                 newGridIntersections,
                                 newGridTransitIntersections,
                                 featureTrees,
@@ -1273,7 +1337,7 @@ open class GridState(
 
     fun classifyPois(
         featureCollections: Array<FeatureCollection>,
-        enabledCategories: Set<String> = emptySet()
+        selection: CalloutPoiSelection = CalloutPoiSelection.EVERYTHING
     ) {
         // The FeatureCollection for POIS has been created, but we need to create sub-collections
         // for each of the super-categories along with one for the currently selected super-
@@ -1289,7 +1353,6 @@ open class GridState(
             SuperCategoryId.SETTLEMENT_TOWN,
             SuperCategoryId.SETTLEMENT_VILLAGE,
             SuperCategoryId.SETTLEMENT_HAMLET,
-            SuperCategoryId.HOUSENUMBER,
         )
         val superCategoryCollections = superCategories.associateWith { superCategory ->
             getPoiFeatureCollectionBySuperCategory(
@@ -1311,9 +1374,6 @@ open class GridState(
         featureCollections[TreeId.MOBILITY_POIS.id] = category ?: FeatureCollection()
         category = superCategoryCollections[SuperCategoryId.SAFETY]
         featureCollections[TreeId.SAFETY_POIS.id] = category ?: FeatureCollection()
-        category = superCategoryCollections[SuperCategoryId.HOUSENUMBER]
-        featureCollections[TreeId.HOUSENUMBER.id] = category ?: FeatureCollection()
-
         // Settlement and their area names
         category = superCategoryCollections[SuperCategoryId.SETTLEMENT_CITY]
         featureCollections[TreeId.SETTLEMENT_CITY.id] = category ?: FeatureCollection()
@@ -1328,21 +1388,42 @@ open class GridState(
         featureCollections[TreeId.PLACES_AND_LANDMARKS.id] += featureCollections[TreeId.PLACE_POIS.id]
         featureCollections[TreeId.PLACES_AND_LANDMARKS.id] += featureCollections[TreeId.LANDMARK_POIS.id]
 
-        // Create merged collection of currently selected super categories. The two settings each
-        // cover more than one super-category, as they do on iOS (see CalloutSettingsCellView) -
-        // the switches are worded for what the user hears rather than for our category names, and
-        // "Places and Landmarks" is where a guidepost or a notice board belongs.
-        if (enabledCategories.contains(PLACES_AND_LANDMARKS_KEY)) {
-            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
-                featureCollections[TreeId.PLACE_POIS.id]
-            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
-                featureCollections[TreeId.LANDMARK_POIS.id]
-            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
-                featureCollections[TreeId.INFORMATION_POIS.id]
+        featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] =
+            selectPoisForCallouts(featureCollections[TreeId.POIS.id], selection)
+    }
+
+    /**
+     * The POIs the walking callouts may announce, as the Callout Detail and Places to Call Out
+     * settings stand - so that a callout searches a tree holding only what it could say, rather
+     * than fetching everything and discarding most of it.
+     *
+     * Kept apart from the rest of the classification because it is the only part that depends on
+     * a setting, and so the only part [updatePoiSelection] has to redo when one changes.
+     */
+    private fun selectPoisForCallouts(
+        pois: FeatureCollection,
+        selection: CalloutPoiSelection,
+    ) = FeatureCollection().apply {
+        for (feature in pois.features) {
+            if (selection.allows(feature as MvtFeature)) addFeature(feature)
         }
-        if (enabledCategories.contains(MOBILITY_KEY)) {
-            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
-                featureCollections[TreeId.MOBILITY_POIS.id]
+    }
+
+    /**
+     * Rebuilds TreeId.SELECTED_SUPER_CATEGORIES for a changed setting, from the POIs the grid
+     * already holds. Cheap next to a new grid: no tiles are read or decoded, no ways or
+     * intersections rebuilt - it is the last step of classifyPois and an rtree over the result.
+     */
+    fun updatePoiSelection(selection: CalloutPoiSelection) {
+        runBlocking {
+            withContext(treeContext) {
+                featureTrees[TreeId.SELECTED_SUPER_CATEGORIES.id] = FeatureTree(
+                    selectPoisForCallouts(
+                        featureTrees[TreeId.POIS.id].getAllCollection(),
+                        selection
+                    )
+                )
+            }
         }
     }
 

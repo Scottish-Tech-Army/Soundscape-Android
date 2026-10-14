@@ -2,7 +2,8 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedi
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -10,26 +11,19 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationSearching
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.semantics.LiveRegionMode
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.liveRegion
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
@@ -39,11 +33,11 @@ import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.components.SlowLoadingIndicator
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import org.scottishtecharmy.soundscape.resources.Res
-import org.scottishtecharmy.soundscape.resources.general_loading_start
 import org.scottishtecharmy.soundscape.resources.location_detail_add_waypoint_existing_hint
 import org.scottishtecharmy.soundscape.resources.location_detail_add_waypoint_new_hint
 import org.scottishtecharmy.soundscape.resources.places_nearby_selection_description
@@ -181,54 +175,45 @@ fun AddWaypointsList(
         if (placesNearbyUiState.level == 0) {
             userLocation?.let { currentLocation ->
                 items(1) {
-                    if (fetchingLocation) {
-                        var announceLoading by remember { mutableStateOf(false) }
-                        LaunchedEffect(Unit) {
-                            kotlinx.coroutines.delay(1500)
-                            announceLoading = true
-                        }
-                        val loadingLabel = stringResource(Res.string.general_loading_start)
-                        Box(
-                            contentAlignment = Alignment.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .defaultMinSize(minHeight = 48.dp)
-                                .then(
-                                    if (announceLoading) Modifier.semantics {
-                                        contentDescription = loadingLabel
-                                        liveRegion = LiveRegionMode.Polite
-                                    } else Modifier
-                                )
-                                .testTag("addWaypointsCurrentLocationLoading"),
-                        ) {
-                            CircularProgressIndicator()
-                        }
-                    } else {
-                        val summaryDescription = LocationDescription(
-                            stringResource(Res.string.search_use_current_location),
-                            location = currentLocation
-                        )
-                        LocationItem(
-                            item = summaryDescription,
-                            decoration = LocationItemDecoration(
-                                location = true,
-                                editRoute = EnabledFunction(false),
-                                details = EnabledFunction(
-                                    true,
-                                    {
-                                        fetchingLocation = true
-                                        coroutineScope.launch {
-                                            val ld = withContext(ioDispatcher) {
-                                                getCurrentLocationDescription()
-                                            }
-                                            fetchingLocation = false
-                                            onSelectLocation(ld)
-                                        }
-                                    }
+                    // The row stays in place while the address is looked up, so that TalkBack
+                    // keeps its focus on it (see SlowLoadingIndicator). LocationItem emits its
+                    // row and divider as siblings, so the Column keeps them stacked in the Box.
+                    Box(contentAlignment = Alignment.CenterEnd) {
+                        Column {
+                            LocationItem(
+                                item = LocationDescription(
+                                    stringResource(Res.string.search_use_current_location),
+                                    location = currentLocation
                                 ),
-                            ),
-                            userLocation = currentLocation
-                        )
+                                decoration = LocationItemDecoration(
+                                    location = true,
+                                    editRoute = EnabledFunction(false),
+                                    details = EnabledFunction(
+                                        true,
+                                        {
+                                            if (!fetchingLocation) {
+                                                fetchingLocation = true
+                                                coroutineScope.launch {
+                                                    val ld = withContext(ioDispatcher) {
+                                                        getCurrentLocationDescription()
+                                                    }
+                                                    fetchingLocation = false
+                                                    onSelectLocation(ld)
+                                                }
+                                            }
+                                        }
+                                    ),
+                                ),
+                                userLocation = currentLocation
+                            )
+                        }
+                        if (fetchingLocation) {
+                            SlowLoadingIndicator(
+                                modifier = Modifier
+                                    .padding(end = spacing.targetSize)
+                                    .testTag("addWaypointsCurrentLocationLoading"),
+                            )
+                        }
                     }
                 }
             }

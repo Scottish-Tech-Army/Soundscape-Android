@@ -1,0 +1,250 @@
+[
+ {
+  "context": "faq_section_what_is_soundscape",
+  "source": "What is Soundscape and how should I use it?",
+  "current": "Što je Soundscape i kako bih ga trebao/la koristiti?",
+  "suggested": "Što je Soundscape i kako ga koristiti?",
+  "category": "gender",
+  "reason": "HR-G2 (agreed defect): slashed participle is read aloud by the screen reader; rephrase impersonally as hr.md proposes (wording unconfirmed, questionnaire Q3)."
+ },
+ {
+  "context": "faq_when_to_use_soundscape_question",
+  "source": "When should I use Soundscape?",
+  "current": "Kada bih trebao/la koristiti Soundscape?",
+  "suggested": "Kada koristiti Soundscape?",
+  "category": "gender",
+  "reason": "HR-G2 (agreed defect): slashed participle is read aloud by the screen reader; rephrase impersonally as hr.md proposes (wording unconfirmed, questionnaire Q3)."
+ },
+ {
+  "context": "faq_supported_headsets_question",
+  "source": "What headphones should I use with Soundscape?",
+  "current": "Koje bih slušalice trebao/la koristiti uz Soundscape?",
+  "suggested": "Koje slušalice koristiti uz Soundscape?",
+  "category": "gender",
+  "reason": "HR-G2 (agreed defect): slashed participle is read aloud by the screen reader; rephrase impersonally as hr.md proposes (wording unconfirmed, questionnaire Q3)."
+ },
+ {
+  "context": "faq_sleep_mode_battery_question",
+  "source": "How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "Kako da koristim način rada Mirovanje kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?",
+  "suggested": "Kako koristiti način rada Mirovanje za smanjenje utjecaja Soundscapea na bateriju telefona?",
+  "category": "gender",
+  "reason": "HR-G2 (agreed defect): slashed participle is read aloud by the screen reader; rephrase impersonally as hr.md proposes (wording unconfirmed, questionnaire Q3)."
+ },
+ {
+  "context": "faq_snooze_mode_battery_question",
+  "source": "How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "Kako da koristim način rada Odgoda kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?",
+  "suggested": "Kako koristiti način rada Odgoda za smanjenje utjecaja Soundscapea na bateriju telefona?",
+  "category": "gender",
+  "reason": "HR-G2 (agreed defect): slashed participle is read aloud by the screen reader; rephrase impersonally as hr.md proposes (wording unconfirmed, questionnaire Q3)."
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape ima značajke i prednosti koje obuhvaćaju razne situacije i vremenske okvire. Vrijednost koju vam Soundscape pruža također se može mijenjati tijekom vremena, pa se način na koji ga koristite danas može razlikovati od načina na koji ćete ga koristiti za tri mjeseca. Ljudi često razmišljaju o aplikacijama u smislu *koji problem ova aplikacija dobro rješava?* Soundscape se svakako može koristiti za određene potrebe – primjerice za praćenje odredišta dok se prema njemu krećete, za snalaženje pri izlasku iz stanice metroa, za orijentaciju nakon izlaska iz automobila ili za pronalaženje naziva ulica odnosno udaljenosti do sljedećeg raskrižja. Međutim, filozofija koja stoji iza Soundscapea jest *osvijetliti vaš svijet zvukom* – aplikacija je osmišljena da se koristi kad god ste vani, kako bi vam pružila ambijentalnu svijest o okolini, primjerice nazive ulica u kojima se nalazite, smjer u kojem se krećete i nazive trgovina pored kojih prolazite. U ovom načinu korištenja, naši korisnici opisuju Soundscape kao *ugodnog pratitelja* koji potiče *slučajna otkrića*, pomaže *popuniti praznine u vašoj mentalnoj karti* i pruža veće *samopouzdanje pri hodanju*. Evo nekoliko primjera kako naši korisnici koriste Soundscape u svom životu:\\n\\nSoundscape mi je pomogao da se vratim na pravi put nakon što sam izašao/la iz autobusa i krenuo/la u pogrešnom smjeru.\\n\\nČak i u gradu u kojem živim već 3 godine, izgradio/la sam bolju sliku onoga što me okružuje [uz pomoć Soundscapea].\\n\\n3D zvuk poboljšava moj doživljaj šetnje jer se osjećam povezanije sa svojom okolinom … vjerojatnije je da ću isprobati novu rutu sada kada imam aplikaciju koju mogu koristiti.\\n\\nNedostaje mi ono slučajno otkrivanje stvari dok hodam uokolo i primjećujem ih. Lijepo je imati Soundscape – ne zahtijeva nikakav trud da čujem o stvarima oko sebe. Informacije o odnosima u prostoru su korisne, a aplikacija je odlična za situacijsku svijest i istraživanje trgovačkih ulica.\\n\\n[Koristio/la sam Soundscape] da pronađem pub u centru Yorka. [Koristio/la] sam niz njegovih opcija kako bih ga najprije locirao/la, a zatim i doista pronašao/la. Doveo me na 3 metra od vrata – sjajno!",
+  "suggested": "Soundscape ima značajke i prednosti koje obuhvaćaju razne situacije i vremenske okvire. Vrijednost koju vam Soundscape pruža također se može mijenjati tijekom vremena, pa se način na koji ga koristite danas može razlikovati od načina na koji ćete ga koristiti za tri mjeseca. Ljudi često razmišljaju o aplikacijama u smislu *koji problem ova aplikacija dobro rješava?* Soundscape se svakako može koristiti za određene potrebe – primjerice za praćenje odredišta dok se prema njemu krećete, za snalaženje pri izlasku iz stanice metroa, za orijentaciju nakon izlaska iz automobila ili za pronalaženje naziva ulica odnosno udaljenosti do sljedećeg raskrižja. Međutim, filozofija koja stoji iza Soundscapea jest *osvijetliti vaš svijet zvukom* – aplikacija je osmišljena da se koristi kad god ste vani, kako bi vam pružila ambijentalnu svijest o okolini, primjerice nazive ulica u kojima se nalazite, smjer u kojem se krećete i nazive trgovina pored kojih prolazite. U ovom načinu korištenja, naši korisnici opisuju Soundscape kao *ugodnog pratitelja* koji potiče *slučajna otkrića*, pomaže *popuniti praznine u vašoj mentalnoj karti* i pruža veće *samopouzdanje pri hodanju*. Evo nekoliko primjera kako naši korisnici koriste Soundscape u svom životu:\\n\\nSoundscape mi je pomogao da se vratim na pravi put nakon što sam izašao/la iz autobusa i krenuo/la u pogrešnom smjeru.\\n\\nČak i u gradu u kojem živim već 3 godine, izgradio/la sam bolju sliku onoga što me okružuje [uz pomoć Soundscapea].\\n\\n3D zvuk poboljšava moj doživljaj šetnje jer se osjećam povezanije sa svojom okolinom … vjerojatnije je da ću isprobati novu rutu sada kada imam aplikaciju koju mogu koristiti.\\n\\nNedostaje mi ono slučajno otkrivanje stvari dok hodam uokolo i primjećujem ih. Lijepo je imati Soundscape – ne zahtijeva nikakav trud da čujem o stvarima oko sebe. Informacije o odnosima u prostoru su korisne, a aplikacija je odlična za situacijsku svijest i istraživanje trgovačkih ulica.\\n\\n[Koristio/la sam Soundscape] da pronađem pub u centru Yorka. [Koristio/la] sam niz njegovih opcija kako bih ga najprije locirao/la, a zatim i doista pronašao/la. Doveo me na 3 metra od vrata – sjajno!",
+  "category": "gender",
+  "reason": "HR-G2: the user quotes carry six slashed participles (izašao/la, krenuo/la, izgradio/la, Koristio/la, locirao/la, pronašao/la) that the screen reader reads aloud. They are first-person quotes, so an impersonal rephrase doesn't work; a human should pick one gender per quote."
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Ovo je veliko ažuriranje Soundscapea. Način rada za putovanje znatno je poboljšan. Kada putujete automobilom ili autobusom, Soundscape sada najavljuje brojeve cesta, smjer vašeg kretanja i obližnja naselja. Najavljuje i kada prelazite rijeke, kanale, estuarije i zaljeve. Ažurirajte svoje izvanmrežne karte kako biste dobili te nove značajke. Opisi autobusnih stajališta sada su znatno bolji za korisnike u Ujedinjenom Kraljevstvu. Način rada Mirovanje sada se može automatski probuditi kada otkrije da se ponovno krećete. Više ga ne morate sami buditi. Preuredili smo temeljni kôd kako bismo iz istog kôda mogli izraditi i iOS aplikaciju. To znači da ćemo u budućnosti moći objaviti iOS aplikaciju sa svim značajkama koje smo izradili za Android. Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, putem opcije Kontaktirajte podršku u glavnom izborniku.",
+  "suggested": "\nOvo je veliko ažuriranje Soundscapea.\n\nNačin rada za putovanje znatno je poboljšan. Kada putujete automobilom ili autobusom, Soundscape sada najavljuje brojeve cesta, smjer vašeg kretanja i obližnja naselja. Najavljuje i kada prelazite rijeke, kanale, estuarije i zaljeve. Ažurirajte svoje izvanmrežne karte kako biste dobili te nove značajke. Opisi autobusnih stajališta sada su znatno bolji za korisnike u Ujedinjenom Kraljevstvu.\n\nNačin rada Mirovanje sada se može automatski probuditi kada otkrije da se ponovno krećete. Više ga ne morate sami buditi.\n\nPreuredili smo temeljni kôd kako bismo iz istog kôda mogli izraditi i iOS aplikaciju. To znači da ćemo u budućnosti moći objaviti iOS aplikaciju sa svim značajkama koje smo izradili za Android.\n\nMolimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, putem opcije Kontaktiraj podršku u glavnom izborniku.\n",
+  "category": "formatting",
+  "reason": "All paragraph breaks from the English were dropped (the dialog now splits on paragraph breaks, 7ca86e582), and the menu item is named «Kontaktirajte podršku» where the real label (menu_contact_support) is «Kontaktiraj podršku»."
+ },
+ {
+  "context": "faq_markers_function_answer",
+  "source": "Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *Current Location* button on the home screen and then selecting *Save as Marker*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *Places Nearby* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *Location Details* screen. On this screen, select the button called *Save as Marker*.",
+  "current": "Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći unutar aplikacije, ili potpuno nova mjesta koja ste sami dodali. Svoju trenutnu lokaciju možete spremiti kao oznaku odabirom gumba *Trenutačna lokacija* na početnom zaslonu, a zatim odabirom *Spremi kao oznaku*. Druge lokacije možete spremiti kao oznaku pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, ili pronalaženjem mjesta pomoću gumba *Mjesta u blizini*, oboje dostupno na početnom zaslonu Soundscapea. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Detalji lokacije*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.",
+  "suggested": "Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći unutar aplikacije, ili potpuno nova mjesta koja ste sami dodali. Svoju trenutnu lokaciju možete spremiti kao oznaku odabirom gumba *Trenutačna lokacija* na početnom zaslonu, a zatim odabirom *Spremi kao oznaku*. Druge lokacije možete spremiti kao oznaku pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, ili pronalaženjem mjesta pomoću gumba *Mjesta u blizini*, oboje dostupno na početnom zaslonu Soundscapea. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Pojedinosti o lokaciji*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.",
+  "category": "terminology",
+  "reason": "Names the Location Details screen «Detalji lokacije»; the real screen title (location_detail_title_default) and every other help string use «Pojedinosti o lokaciji»."
+ },
+ {
+  "context": "legacy_migration_description",
+  "source": "Your markers and routes are being brought across from your previous version of Soundscape. Looking up the places they refer to can take a moment.",
+  "current": "Vaše oznake i rute prenose se iz prethodne verzije Soundscape. Traženje mjesta na koja se odnose može potrajati trenutak.",
+  "suggested": "Vaše oznake i rute prenose se iz prethodne verzije Soundscapea. Traženje mjesta na koja se odnose može potrajati trenutak.",
+  "category": "meaning",
+  "reason": "«prethodne verzije Soundscape» leaves the app name undeclined; the rest of the corpus uses the genitive «Soundscapea»."
+ },
+ {
+  "context": "legacy_migration_failed",
+  "source": "Your data couldn't be imported. Your previous version of Soundscape still has it — please contact support from Settings, Help.",
+  "current": "Vaše podatke nije bilo moguće uvesti. Prethodna verzija Soundscape ih još uvijek ima — kontaktirajte podršku u Postavke, Pomoć.",
+  "suggested": "Vaše podatke nije bilo moguće uvesti. Prethodna verzija Soundscapea ih još uvijek ima — kontaktirajte podršku u izborniku Postavke, Pomoć.",
+  "category": "meaning",
+  "reason": "Undeclined «verzija Soundscape» (should be «Soundscapea»), and «u Postavke, Pomoć» puts the screen name in the wrong case after «u»; «u izborniku Postavke, Pomoć» keeps the label in the nominative."
+ },
+ {
+  "context": "tour_create_marker_started",
+  "source": "Great! You're now on the Location Details screen. From here you can save this location as a Marker, along with other actions. With Soundscape, you can mark any place that matters to you, such as your home, your bus stop, or even the spot where you are standing. Try it now. Save this location as a marker by tapping Save as Marker.",
+  "current": "Odlično! Sada ste na zaslonu Pojedinosti o lokaciji. Odavde možete spremiti ovu lokaciju kao oznaku, kao i izvesti druge radnje. Uz Soundscape možete označiti bilo koje mjesto koje vam je važno, poput svog doma, autobusne postaje ili čak mjesta na kojem trenutačno stojite. Isprobajte to sada. Spremite ovu lokaciju kao oznaku dodirom na Spremi kao oznaku.",
+  "suggested": "Odlično! Sada ste na zaslonu Pojedinosti o lokaciji. Odavde možete spremiti ovu lokaciju kao oznaku, kao i izvesti druge radnje. Uz Soundscape možete označiti bilo koje mjesto koje vam je važno, poput svog doma, autobusnog stajališta ili čak mjesta na kojem trenutačno stojite. Isprobajte to sada. Spremite ovu lokaciju kao oznaku dodirom na Spremi kao oznaku.",
+  "category": "terminology",
+  "reason": "«autobusna postaja» is a bus station; the corpus uses «autobusno stajalište» for a bus stop everywhere else (osm_bus_stop, callouts_bus_and_tram_stops, FAQ tips)."
+ },
+ {
+  "context": "home_screen_title",
+  "source": "Soundscape Home",
+  "current": "Soundscape početni zaslon",
+  "suggested": "Početni zaslon Soundscapea",
+  "category": "tone",
+  "reason": "«Soundscape početni zaslon» is an English-style noun stack; Croatian puts the owner in the genitive after the noun, as the corpus does elsewhere («Jezik Soundscapea»)."
+ },
+ {
+  "context": "menu_audio_tutorial",
+  "source": "Guided tutorial",
+  "current": "Vođeni vodič",
+  "suggested": "Vođeni vodič",
+  "category": "tone",
+  "reason": "C2 tautology: «Vođeni vodič» is literally 'guided guide', since «vodič» already means a guide/tutorial. Same wording in menu_audio_tutorial_cancel, tour_welcome (twice) and tour_cancel, which must change together. Candidate: «Vodič kroz aplikaciju» / «Otkaži vodič kroz aplikaciju», for a native speaker to confirm."
+ },
+ {
+  "context": "relative_clock_direction",
+  "source": "at %1$s o'clock",
+  "current": "na %1$s sati",
+  "suggested": "na %1$s",
+  "category": "gender",
+  "reason": "«na %1$s sati» fixes the genitive plural «sati», which only agrees with 5-12: TTS says «na jedan sati», «na tri sati» where Croatian needs «na jedan sat», «na tri sata». Since C20 the hour arrives as relative_clock_hour_N, so move the noun into those strings (and change this template together with them)."
+ },
+ {
+  "context": "relative_clock_hour_1",
+  "source": "1",
+  "current": "1",
+  "suggested": "1 sat",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («1 sat»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_2",
+  "source": "2",
+  "current": "2",
+  "suggested": "2 sata",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («2 sata»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_3",
+  "source": "3",
+  "current": "3",
+  "suggested": "3 sata",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («3 sata»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_4",
+  "source": "4",
+  "current": "4",
+  "suggested": "4 sata",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («4 sata»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_5",
+  "source": "5",
+  "current": "5",
+  "suggested": "5 sati",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («5 sati»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_6",
+  "source": "6",
+  "current": "6",
+  "suggested": "6 sati",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («6 sati»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_7",
+  "source": "7",
+  "current": "7",
+  "suggested": "7 sati",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («7 sati»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_8",
+  "source": "8",
+  "current": "8",
+  "suggested": "8 sati",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («8 sati»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_9",
+  "source": "9",
+  "current": "9",
+  "suggested": "9 sati",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («9 sati»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_10",
+  "source": "10",
+  "current": "10",
+  "suggested": "10 sati",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («10 sati»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_11",
+  "source": "11",
+  "current": "11",
+  "suggested": "11 sati",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («11 sati»). Apply only together with that template."
+ },
+ {
+  "context": "relative_clock_hour_12",
+  "source": "12",
+  "current": "12",
+  "suggested": "12 sati",
+  "category": "gender",
+  "reason": "Goes with the relative_clock_direction change to «na %1$s»: the hour carries its own noun so it agrees with the number («12 sati»). Apply only together with that template."
+ },
+ {
+  "context": "directions_at_poi",
+  "source": "At %1$s",
+  "current": "Kod %1$s",
+  "suggested": "Kod %1$s",
+  "category": "gender",
+  "reason": "C17: «Kod %1$s» (and «Blizu %1$s», directions_near_name; «Prolazak iznad/ispod %1$s», directions_crossing_waterway / directions_going_under_railway; «Ulazak u %1$s»; «Približavanje %1$s») put a nominative map name after a preposition that governs the genitive/accusative. HR-G3 records this only for «Na %1$s»/«cestom»; the label form asked in Q7 would cover these templates too."
+ },
+ {
+  "context": "osm_pet",
+  "source": "Pet Shop",
+  "current": "Trgovina kućnim ljubimcima",
+  "suggested": "Trgovina za kućne ljubimce",
+  "category": "meaning",
+  "reason": "«Trgovina kućnim ljubimcima» means a shop that sells pets; a pet shop is mainly supplies, «Trgovina za kućne ljubimce» is the usual name."
+ },
+ {
+  "context": "osm_hot_spring",
+  "source": "Hot Spring",
+  "current": "Toplice",
+  "suggested": "Termalni izvor",
+  "category": "meaning",
+  "reason": "«Toplice» is a spa resort/baths; natural=hot_spring is the spring itself, «Termalni izvor» (or «Topli izvor»)."
+ },
+ {
+  "context": "osm_reservoir",
+  "source": "Reservoir",
+  "current": "Vodospremnik",
+  "suggested": "Akumulacijsko jezero",
+  "category": "meaning",
+  "reason": "«Vodospremnik» is a (usually covered) water storage tank; OSM reservoir is an artificial lake behind a dam, «Akumulacijsko jezero»."
+ },
+ {
+  "context": "osm_town",
+  "source": "Town",
+  "current": "Mjesto",
+  "suggested": "Gradić",
+  "category": "terminology",
+  "reason": "«Mjesto» for Town is identical to osm_generic_place «Mjesto» (Place), so the two can't be told apart by ear; «Gradić» distinguishes it from City «Grad»."
+ }
+]

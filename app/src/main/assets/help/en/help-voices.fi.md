@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: Puheen äänet
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 100
 lang: fi
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Puheen äänet
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape voi käyttää mitä tahansa puhelimeesi asennettua ääntä. Jos haluat lisätä ääniä, avaa puhelimen asetukset ja etsi kohta *Tekstistä puheeksi -toisto*. Jos haluat valita äänen Soundscapessa, avaa valikko ja valitse *Asetukset*, sitten *Ääni* ja sitten *Puheen äänet*.
 

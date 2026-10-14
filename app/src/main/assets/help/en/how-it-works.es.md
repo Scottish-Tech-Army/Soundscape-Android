@@ -1,13 +1,14 @@
 ---
-title: Cómo funciona Soundscape
+title: La tecnología detrás de Soundscape
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
+nav_order: 200
 lang: es
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Cómo funciona Soundscape
+# La tecnología detrás de Soundscape
 El objetivo de esta página es ofrecer una comprensión general de cómo funciona la aplicación Soundscape por dentro. No necesita leer esto para usar la aplicación, pero hay algunas razones por las que se ha escrito:
 
 1. Para ayudar a cualquier recién llegado interesado en la aplicación a entender cuáles son sus limitaciones

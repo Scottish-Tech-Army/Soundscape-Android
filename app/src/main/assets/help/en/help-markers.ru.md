@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Отметки
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 80
 lang: ru
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Отметки
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Отметка — это сохранённое вами место. Это может быть любое важное для вас место: ваш дом, автобусная остановка, вход в здание или переход.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape сообщает о ваших отметках, когда вы проходите мимо них. На отметку можно установить звуковой маяк, её можно добавить в маршрут, а ближайшие отметки можно услышать с помощью кнопки *Ближайшие отметки*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Создание отметок
+
+1. Выберите *Отметки* на главном экране, затем выберите *Создать*.
+
+2. Выберите *Текущее место* или место из списка *Места рядом*.
+
+3. При желании измените название и добавьте заметки. Soundscape читает заметки вместе с отметкой.
+
+4. Выберите *Готово*.
+
+Можно также сохранить любое найденное место. Откройте его *Сведения о местоположении* и выберите *Сохранить как отметку*.
+
+## Настройка отметок
+
+Выберите отметку на экране *Отметки*, затем выберите *Изменить отметку*. Можно изменить её название, заметки и положение или выбрать *Удалить отметку*. Удаление отметки также убирает её из ваших маршрутов.
 

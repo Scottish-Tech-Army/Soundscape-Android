@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Utilisation des commandes multimédias
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 110
 lang: fr-CA
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Utilisation des commandes multimédias
 
-## What is it?
+Vous pouvez contrôler Soundscape avec les boutons multimédias de vos écouteurs : *lecture/pause*, *suivant* et *précédent*. Cela fonctionne avec des écouteurs filaires ou Bluetooth. Cela fonctionne aussi quand Soundscape est en arrière-plan ou que votre téléphone est verrouillé.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Tous les écouteurs n’ont pas les trois boutons.
 
-## When would I use it?
+Les boutons ne contrôlent Soundscape que si aucune autre appli ne diffuse de son. Si vous écoutez de la musique ou un balado, les boutons contrôlent cette appli à la place.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Les boutons peuvent fonctionner de deux façons : *Mode original* ou *Menu audio*. Pour choisir, ouvrez le menu et sélectionnez *Réglages*, puis *Contrôles multimédias*.
 
-## How does it work?
+## Mode original
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Lecture/pause* coupe le son de la balise. Appuyez de nouveau pour entendre la balise.
 
- Original mode. 
+*Suivant* déplace la balise vers l’étape suivante quand vous suivez un itinéraire. Sinon, il annonce *Autour de moi*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Précédent* déplace la balise vers l’étape précédente quand vous suivez un itinéraire. Sinon, il modifie le *Détail des annonces*. Chaque appui descend d’un niveau : *Détaillé*, *Simplifié*, *Minimal*, puis *Silencieux*. Un appui de plus revient à *Détaillé*. Soundscape dit le nom du nouveau niveau.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Menu audio
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Le menu audio vous donne accès à plus d’actions avec les trois mêmes boutons. Soundscape lit chaque option à voix haute.
 
+*Suivant* passe à l’option suivante. Après la dernière option, il revient à la première.
 
+*Lecture/pause* sélectionne l’option que vous venez d’entendre.
 
-Audio menu. 
+*Précédent* modifie le *Détail des annonces*, comme en *Mode original*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Le menu commence par quatre groupes : *Écouter mon environnement*, *Contrôle de l’itinéraire*, *Démarrer un Itinéraire* et *Démarrer la balise*. Sélectionnez un groupe pour entendre ses actions. *Écouter mon environnement* et *Contrôle de l’itinéraire* se terminent par *Menu principal*, qui vous ramène aux quatre groupes.
 

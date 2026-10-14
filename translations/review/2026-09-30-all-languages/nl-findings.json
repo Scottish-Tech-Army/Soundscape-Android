@@ -1,0 +1,186 @@
+[
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s dat %2$s en %3$s verbindt",
+  "suggested": "%1$s tussen %2$s en %3$s",
+  "reason": "«dat» only agrees with het-words (pad, fietspad); %1$s is a way type that is often a de-word (weg, stoep, ventweg), giving «Weg dat … verbindt». «tussen» avoids the gender agreement.",
+  "category": "gender"
+ },
+ {
+  "context": "faq_callouts_stopping_in_vehicle_answer",
+  "source": "In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.",
+  "current": "Om te voorkomen dat er te veel aankondigingen worden weergegeven, worden bepaalde categorieën, zoals kruispunten, niet automatisch aangekondigd wanneer u met een auto reist.",
+  "suggested": "Om te voorkomen dat het aantal aankondigingen overweldigend wordt, worden bepaalde categorieën, zoals kruispunten, niet automatisch aangekondigd wanneer u in een voertuig reist.",
+  "reason": "«aankondigingen worden weergegeven» describes spoken callouts as displayed; also «met een auto» narrows «vehicle» (the answer covers buses too).",
+  "category": "tone"
+ },
+ {
+  "context": "faq_why_does_beacon_disappear_answer",
+  "source": "Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.",
+  "current": "Het audiobaken van Soundscape is met name een richtingaanwijzing, zodat u weet waar uw bestemming is in relatie tot de richting waarin u kijkt. Wanneer Soundscape niet zeker weet in welke richting u kijkt, wordt het volume van het baken verlaagd. Dit gebeurt het vaakst wanneer de telefoon in een tas of zak zit en u stopt met lopen, bijvoorbeeld om over te steken. Het baken wordt luider wanneer u weer gaat lopen of als u de telefoon vlak houdt en in de richting wijst waarin u kijkt.",
+  "suggested": "Het audiobaken van Soundscape is in wezen een richtingaanwijzing, zodat u weet waar uw bestemming is in relatie tot de richting waarin u kijkt. Wanneer Soundscape niet zeker weet in welke richting u kijkt, wordt het volume van het baken verlaagd. Dit gebeurt het vaakst wanneer de telefoon in een tas of zak zit en u stopt met lopen, bijvoorbeeld om over te steken. Het baken wordt luider wanneer u weer gaat lopen of als u de telefoon vlak houdt en in de richting wijst waarin u kijkt.",
+  "reason": "«met name» means «particularly/notably», not «fundamentally»; «in wezen» carries the source meaning.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_bench",
+  "source": "Bench",
+  "current": "Bank",
+  "suggested": "Bankje",
+  "reason": "«Bank» is also the translation of osm_bank (a bank). Heard aloud, a bench and a bank are indistinguishable; the search synonyms already use «bankje, zitbank».",
+  "category": "tone"
+ },
+ {
+  "context": "osm_lift_gate",
+  "source": "Lift Gate",
+  "current": "Hefpoort",
+  "suggested": "Slagboom",
+  "reason": "OSM barrier=lift_gate is a boom barrier (arm that swings up), which Dutch calls «slagboom». «Hefpoort» is a vertically lifting gate — the translator followed the English note, which says «lifts vertically» and misleads every language (C7).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_sally_port",
+  "source": "Sally Port",
+  "current": "Sallypoort",
+  "suggested": "Uitvalspoort",
+  "reason": "«Sallypoort» isn't Dutch; the fortification term is «uitvalspoort».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_fire_flapper",
+  "source": "Fire Flapper",
+  "current": "Brandflapper (gereedschap om kleine branden te smoren)",
+  "suggested": "Brandklopper",
+  "reason": "The Dutch term for this heathland fire-beating tool is «brandklopper»; the English calque plus a long parenthetical is awkward in a spoken callout.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_paddle_tennis",
+  "source": "Paddle Tennis",
+  "current": "Padel (paddletennis)",
+  "suggested": "Paddletennis",
+  "reason": "Padel and paddle tennis are different sports (OSM has sport=padel separately); «Padel (paddletennis)» conflates them and speaks a parenthetical.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_water_works",
+  "source": "Water Works",
+  "current": "Waterwerken",
+  "suggested": "Drinkwaterinstallatie",
+  "reason": "Dutch «waterwerken» means hydraulic structures (locks, dams, weirs), not a facility for water treatment/distribution as the note describes.",
+  "category": "meaning"
+ },
+ {
+  "context": "voice_cmd_not_recognized",
+  "source": "I'm sorry, I can't find the command %1$s. The voice command, %2$s, will list available commands.",
+  "current": "Het spijt me, ik kan het commando %1$s niet vinden. Het spraakcommando %2$s geeft een lijst met beschikbare commando's.",
+  "suggested": "Het spijt me, ik kan de opdracht %1$s niet vinden. De spraakopdracht %2$s geeft een lijst met beschikbare opdrachten.",
+  "reason": "Only string using «commando»; everywhere else (voice_cmd_help_response, help_assistant_page_title, siri_choice_commands) the term is «(spraak)opdracht».",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "Er zijn 2 modi voor de mediaregelaars. De modus kan worden geselecteerd in de *Instellingen*-sectie *Mediaregelaars*. De modi zijn:\\n\\n *Originele modus*. \\n\\n⏯ Afspelen/Pauzeren: Zet het audiobaken aan of uit. \\n\\n⏭ Volgende: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het volgende routepunt in de route. Als er geen route wordt afgespeeld, roept het *Om me heen* op.\\n\\n⏮ Vorige: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het vorige routepunt in de route. Als er geen route wordt afgespeeld, wijzigt het het *Detailniveau aankondigingen*, met elke druk een stap rustiger: *Uitgebreid*, *Vereenvoudigd*, *Essentieel*, *Stil*, en weer terug naar *Uitgebreid*.\\n\\n\\n\\n*Audiomenu*. \\n\\n\\n\\n⏭ Volgende bladert door een reeks menuopties die de app via tekst-naar-spraak beschrijft, en keert na de laatste terug naar de eerste. ⏯ Afspelen/Pauzeren activeert vervolgens de beschreven optie. Er is één hoofdmenu dat alleen submenus als opties heeft. Elk submenu bevat een groep vergelijkbare acties.\\n\\n⏮ Vorige bladert niet door het menu. In plaats daarvan wijzigt het het *Detailniveau aankondigingen*, precies zoals in de originele modus, zodat dezelfde knop de app rustiger maakt in welke modus u ook werkt.",
+  "suggested": "Er zijn 2 modi voor de mediaregelaars. De modus kan worden geselecteerd in de *Instellingen*-sectie *Mediaregelaars*. De modi zijn:\\n\\n *Originele modus*. \\n\\n⏯ Afspelen/Pauzeren: Zet het audiobaken aan of uit. \\n\\n⏭ Volgende: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het volgende routepunt in de route. Als er geen route wordt afgespeeld, roept het *Om me heen* op.\\n\\n⏮ Vorige: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het vorige routepunt in de route. Als er geen route wordt afgespeeld, wijzigt het het *Detailniveau aankondigingen*, met elke druk een stap rustiger: *Uitgebreid*, *Vereenvoudigd*, *Essentieel*, *Stil*, en weer terug naar *Uitgebreid*.\\n\\n\\n\\n*Audiomenu*. \\n\\n\\n\\n⏭ Volgende bladert door een reeks menuopties die de app via tekst-naar-spraak beschrijft, en keert na de laatste terug naar de eerste. ⏯ Afspelen/Pauzeren activeert vervolgens de beschreven optie. Er is één hoofdmenu dat alleen submenu's als opties heeft. Elk submenu bevat een groep vergelijkbare acties.\\n\\n⏮ Vorige bladert niet door het menu. In plaats daarvan wijzigt het het *Detailniveau aankondigingen*, precies zoals in de originele modus, zodat dezelfde knop de app rustiger maakt in welke modus u ook werkt.",
+  "reason": "Spelling: the Dutch plural of «submenu» is «submenu's».",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "U kunt deze markering nu aanpassen. U kunt de naam wijzigen en een aantekening toevoegen die samen met de markering wordt aangekondigd om extra informatie te geven. Als u klaar bent, selecteert u de knop *\"Gereed\"* om uw markering op te slaan.",
+  "suggested": "U kunt deze markering nu aanpassen. U kunt de naam wijzigen en een aantekening toevoegen die samen met de markering wordt aangekondigd om extra informatie te geven. Als u klaar bent, selecteert u de knop *Gereed* om uw markering op te slaan.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English has none, and the markup already marks the label.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Op dit scherm *\"Markering bewerken\"* kunt u ook een markering verwijderen als u die niet meer nodig hebt.",
+  "suggested": "Op dit scherm *Markering bewerken* kunt u ook een markering verwijderen als u die niet meer nodig hebt.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English has none.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "Ja, u kunt het baken weer inschakelen nadat Soundscape het heeft uitgezet door de knop *\"Baken dempen opheffen\"* te selecteren; echter, omdat Locatievoorzieningen slechts tot ongeveer 10 meter nauwkeurig zijn, kunnen we het gedrag van het baken binnen een paar meter van uw bestemming niet garanderen.",
+  "suggested": "Ja, u kunt het baken weer inschakelen nadat Soundscape het heeft uitgezet door de knop *Baken dempen opheffen* te selecteren; echter, omdat Locatievoorzieningen slechts tot ongeveer 10 meter nauwkeurig zijn, kunnen we het gedrag van het baken binnen een paar meter van uw bestemming niet garanderen.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English has none, and faq_controlling_what_you_hear_answer writes the same label without them.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_destination_beacons_how_2",
+  "source": "**To remove the current beacon :**\\n\\n Simply press the *Stop Route* button on the home screen.",
+  "current": "**Om het huidige baken te verwijderen :**\\n\\nTik eenvoudig op de *Route stoppen* knop op het hoofdscherm.",
+  "suggested": "**Om het huidige baken te verwijderen :**\\n\\nTik op de knop *Route stoppen* op het hoofdscherm.",
+  "reason": "English word order («de *Route stoppen* knop»); Dutch puts the label after «de knop», as the sibling how_3 does. «eenvoudig» for «simply» is also a calque.",
+  "category": "tone"
+ },
+ {
+  "context": "faq_mobile_data_use_answer",
+  "source": "The amount of mobile data used depends on how you use Soundscape. We have designed the app to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to redownload them every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *Sleep* button to put Soundscape to sleep or force close the app.",
+  "current": "De hoeveelheid mobiele data die wordt gebruikt, hangt af van hoe u Soundscape gebruikt. We hebben de app zo ontworpen dat het onderweg maar een kleine hoeveelheid data verbruikt, onder andere door locaties op te slaan terwijl u rondloopt, zodat u ze niet telkens opnieuw hoeft te downloaden wanneer u teruggaat naar een plaats die u al eerder bezocht hebt. Om het mobiele dataverbruik te verminderen, zorgt u er waar mogelijk voor dat u verbonden bent met Wi‑Fi, met name bij het downloaden van de app. Wanneer u Soundscape niet gebruikt, gebruikt u de knop *Slapen* om Soundscape in de slaapstand te zetten of moet u de app geforceerd afsluiten.",
+  "suggested": "De hoeveelheid mobiele data die wordt gebruikt, hangt af van hoe u Soundscape gebruikt. We hebben de app zo ontworpen dat het onderweg maar een kleine hoeveelheid data verbruikt, onder andere door locaties op te slaan terwijl u rondloopt, zodat u ze niet telkens opnieuw hoeft te downloaden wanneer u teruggaat naar een plaats die u al eerder bezocht hebt. Om het mobiele dataverbruik te verminderen, zorgt u er waar mogelijk voor dat u verbonden bent met Wi‑Fi, met name bij het downloaden van de app. Wanneer u Soundscape niet gebruikt, gebruikt u de knop *Slapen* om Soundscape in de slaapstand te zetten, of sluit u de app geforceerd af.",
+  "reason": "The last clause switches mid-sentence from the instruction form («gebruikt u») to «moet u», which reads as broken.",
+  "category": "tone"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape biedt verschillende mogelijkheden om te bepalen wat en wanneer u iets hoort:\\n\\n1. Alle audio direct stoppen: dubbel tik met twee vingers op het scherm om direct alle audio uit te schakelen, inclusief eventuele aankondigingen die op dat moment worden afgespeeld en het audiobaken als dat aan staat. Aankondigingen worden automatisch hervat wanneer u het volgende kruispunt of referentiepunt nadert, maar het hoorbare baken niet. Selecteer de knop *Baken dempen opheffen* op het hoofdscherm om het baken weer te horen.\\n\\n2. Automatische aankondigingen stoppen: wanneer u niet onderweg bent of uw bestemming hebt bereikt, heeft u waarschijnlijk geen behoefte meer aan automatische meldingen van Soundscape. In plaats van de app te verlaten, kunt u Soundscape in de sluimerstand zetten; het wordt dan weer actief wanneer u vertrekt. U kunt Soundscape ook in de slaapstand zetten; het blijft dan uit totdat u het weer inschakelt. Als alternatief kunt u in het menu naar *Instellingen* gaan en in de sectie *Aankondigingen beheren* het *Detailniveau aankondigingen* op *Stil* zetten.\\n\\n3. Het baken stoppen: er zijn situaties waarin u wel een bestemming instelt maar het hoorbare baken niet continu nodig hebt. Misschien weet u precies hoe u er moet komen, maar wilt u wel automatische updates over hoe ver u nog bent. Of u wilt het audiobaken alleen gebruiken wanneer u dichter bij de bestemming komt. In elk geval kunt u zelf bepalen wanneer u het baken hoort door de knop *Baken dempen*/*Baken dempen opheffen* op het hoofdscherm te gebruiken.\\n\\nAls u wel met Soundscape wilt blijven werken maar geen automatische aankondigingen wilt horen, zet u het *Detailniveau aankondigingen* op *Stil* in de sectie *Aankondigingen beheren* op het scherm *Instellingen* via het menu. Of, als u Soundscape niet gaat gebruiken, zet u het via de knop *Slapen* op het startscherm in de slaap- of sluimerstand.",
+  "suggested": "Soundscape biedt verschillende mogelijkheden om te bepalen wat en wanneer u iets hoort:\\n\\n1. Alle audio direct stoppen: tik met twee vingers dubbel op het scherm om direct alle audio uit te schakelen, inclusief eventuele aankondigingen die op dat moment worden afgespeeld en het audiobaken als dat aan staat. Aankondigingen worden automatisch hervat wanneer u het volgende kruispunt of referentiepunt nadert, maar het hoorbare baken niet. Selecteer de knop *Baken dempen opheffen* op het hoofdscherm om het baken weer te horen.\\n\\n2. Automatische aankondigingen stoppen: wanneer u niet onderweg bent of uw bestemming hebt bereikt, heeft u waarschijnlijk geen behoefte meer aan automatische meldingen van Soundscape. In plaats van de app te verlaten, kunt u Soundscape in de sluimerstand zetten; het wordt dan weer actief wanneer u vertrekt. U kunt Soundscape ook in de slaapstand zetten; het blijft dan uit totdat u het weer inschakelt. Als alternatief kunt u in het menu naar *Instellingen* gaan en in de sectie *Aankondigingen beheren* het *Detailniveau aankondigingen* op *Stil* zetten.\\n\\n3. Het baken stoppen: er zijn situaties waarin u wel een bestemming instelt maar het hoorbare baken niet continu nodig hebt. Misschien weet u precies hoe u er moet komen, maar wilt u wel automatische updates over hoe ver u nog bent. Of u wilt het audiobaken alleen gebruiken wanneer u dichter bij de bestemming komt. In elk geval kunt u zelf bepalen wanneer u het baken hoort door de knop *Baken dempen*/*Baken dempen opheffen* op het hoofdscherm te gebruiken.\\n\\nAls u wel met Soundscape wilt blijven werken maar geen automatische aankondigingen wilt horen, zet u het *Detailniveau aankondigingen* op *Stil* in de sectie *Aankondigingen beheren* op het scherm *Instellingen* via het menu. Of, als u Soundscape niet gaat gebruiken, zet u het via de knop *Slapen* op het startscherm in de slaap- of sluimerstand.",
+  "reason": "«dubbel tik» (two words, as an imperative) isn't standard; NL-B1 settled on «Dubbeltik»/«tik dubbel».",
+  "category": "terminology"
+ },
+ {
+  "context": "preview_include_unnamed_roads_title",
+  "source": "Unnamed Roads",
+  "current": "Naamloze straten",
+  "suggested": "Naamloze wegen",
+  "reason": "The title says «straten» but its own description (preview_include_unnamed_roads_title_description) says «wegen»; the setting covers all unnamed roads, not only streets.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u kijkt, voordat u op *Vóór me* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Vóór me* en u hoort de referentiepunten die zich voor u bevinden.",
+  "suggested": "Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u kijkt, voordat u op *Vóór me* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Vóór me* en u hoort verschillende referentiepunten die zich ongeveer voor u bevinden.",
+  "reason": "Drops «several» and «roughly»: the source tells the user the points are approximately ahead, not exactly.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_config_voices_content_ios",
+  "source": "Soundscape can use any of the voices you have downloaded in the iOS Settings app, except for the Siri voices, which are not available to Soundscape. We recommend choosing one of the higher quality *Enhanced* voices, but you will first need to download a voice. You can download voices in the iOS Settings app by going to Accessibility > Read & Speak > Voices and tapping on a voice. (In iOS versions prior to 26, *Read & Speak* is known as *Spoken Content*.) Within the Soundscape app, to select the voice you want, go to *Settings* from the main menu and then from *Audio* select *Voices*.",
+  "current": "Soundscape kan elke stem gebruiken die u in de app Instellingen van iOS hebt gedownload, behalve de Siri-stemmen, die niet beschikbaar zijn voor Soundscape. We raden u aan een van de *Enhanced*-stemmen van hogere kwaliteit te kiezen, maar daarvoor moet u eerst een stem downloaden. U kunt stemmen downloaden in de app Instellingen van iOS door naar Toegankelijkheid > Gesproken materiaal > Stemmen te gaan en op een stem te tikken. Om binnen de Soundscape‑app de gewenste stem te kiezen, gaat u in het hoofdmenu naar *Instellingen* en kiest u vervolgens onder *Audio* de optie *Stemmen*.",
+  "suggested": "Soundscape kan elke stem gebruiken die u in de app Instellingen van iOS hebt gedownload, behalve de Siri-stemmen, die niet beschikbaar zijn voor Soundscape. We raden u aan een van de stemmen van hogere kwaliteit met het label *Verbeterd* te kiezen, maar daarvoor moet u eerst een stem downloaden. U kunt stemmen downloaden in de app Instellingen van iOS door naar Toegankelijkheid > Gesproken materiaal > Stemmen te gaan en op een stem te tikken. Om binnen de Soundscape‑app de gewenste stem te kiezen, gaat u in het hoofdmenu naar *Instellingen* en kiest u vervolgens onder *Audio* de optie *Stemmen*.",
+  "reason": "Dutch iOS labels these voices «Verbeterd», not «Enhanced», so the named label won't match what VoiceOver reads in the voice list. Verify on a Dutch iOS device (the provenance already marks this string's menu names unconfirmed).",
+  "category": "terminology"
+ },
+ {
+  "context": "ui_back_button_title",
+  "source": "Back",
+  "current": "Vorige",
+  "suggested": "Vorige",
+  "reason": "«Vorige» («previous») for a Back button; Android/iOS Dutch normally say «Terug». Possibly Microsoft's wording (C14), so check before changing.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_trade",
+  "source": "Trade Shop",
+  "current": "Handelswinkel",
+  "suggested": "Handelswinkel",
+  "reason": "CROSS-LANGUAGE: OSM shop=trade is a builders' merchant (Dutch «bouwmaterialenhandel»), but the English note says «General trade or commercial retail outlet», so translators produce vague words like «Handelswinkel». Fix the note in values/strings.xml (C7).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_garages",
+  "source": "Garages",
+  "current": "Autogarages",
+  "suggested": "Autogarages",
+  "reason": "CROSS-LANGUAGE: landuse/building=garages are rows of lock-up garages for parking (Dutch «garageboxen»), but the English note says «Workshops for vehicle repair and storage of cars», which pushes translations toward repair garages («Autogarages»). Fix the note (C7).",
+  "category": "meaning"
+ }
+]

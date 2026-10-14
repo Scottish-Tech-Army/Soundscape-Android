@@ -1,23 +1,16 @@
 ---
-title: Ahead of Me
+title: আমার সামনে
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
+nav_order: 40
 lang: bn
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# আমার সামনে
 
-## What is it?
+*আমার সামনে* আপনার সামনের সর্বোচ্চ পাঁচটি স্থান কলআউট করে। প্রতিটি আপনি তার নিজের দিক থেকে, দূরত্বসহ শোনেন। অচেনা রাস্তায় সামনে কী আছে তা জানতে এটি ব্যবহার করুন।
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
-
-## When would I use it?
-
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+আপনি এক জায়গায় দাঁড়িয়ে থাকলে, আগে ফোনের উপরের প্রান্তটি আপনি যেদিকে মুখ করে আছেন সেদিকে ধরুন। ফোন লক থাকলে, বা Soundscape স্ক্রিনে না থাকলে, ফোনটি সমতল করেও ধরুন।
 

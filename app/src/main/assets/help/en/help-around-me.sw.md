@@ -1,23 +1,16 @@
 ---
-title: Around Me
+title: Karibu Nami
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 30
 lang: sw
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Karibu Nami
 
-## What is it?
+*Karibu Nami* inatangaza hadi sehemu nne zilizo karibu nawe: moja mbele, moja kulia, moja nyuma na moja kushoto. Unasikia kila moja kutoka upande wake, pamoja na umbali wake. Itumie ili kujua ulipo unapofika mahali fulani.
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Ikiwa umesimama mahali pamoja, kwanza elekeza sehemu ya juu ya simu upande unaoelekea. Ikiwa simu yako imefungwa, au Soundscape haipo kwenye skrini, shikilia simu kwa usawa pia.
 

@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.services.mediacontrol
 
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -60,11 +61,38 @@ interface MediaControllableService {
     fun nearbyMarkers()
 
     /**
+     * Says how far away the current beacon is. The beacon card's "Call out Beacon"
+     * accessibility action and the audio menu's; says "No beacon active" when there is none.
+     */
+    fun calloutBeacon() {}
+
+    /**
+     * Speaks the current beacon's name, distance, direction and street address. The beacon
+     * card's "More Info" accessibility action; spoken through TTS rather than the screen reader
+     * so that it can be triggered without the screen too. Says "No beacon active" when there is
+     * none.
+     */
+    fun beaconMoreInfo() {}
+
+    /**
      * Cancels any in-flight user-initiated callout without starting another.
      * Defaults to a no-op for implementations with no callout pipeline of their
      * own; the real services delegate to CalloutController.cancel().
      */
     fun cancelCallout() {}
+
+    /**
+     * Sets the Callout Detail setting - see CalloutVerbosity. Saved, the same as choosing it
+     * in Settings. Defaults to doing nothing for implementations with no preferences.
+     */
+    fun setCalloutVerbosity(verbosity: CalloutVerbosity) {}
+
+    /**
+     * Steps the Callout Detail one quieter, wrapping from Silent back to the most detailed -
+     * see cycleCalloutVerbosity. Returns the level now in use, or null for implementations with
+     * no preferences.
+     */
+    fun cycleCalloutDetail(): CalloutVerbosity? = null
     fun routeStop()
     fun routeStartById(routeId: Long)
     fun startBeacon(location: LngLatAlt, name: String)
@@ -110,6 +138,9 @@ interface MediaControllableService {
      */
     suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? = null
     suspend fun searchResult(query: String): List<LocationDescription>?
+
+    /** Whether a search would be made offline with no offline maps downloaded to search */
+    fun searchIsOfflineWithoutMaps(): Boolean = false
     fun isAudioEngineBusy(): Boolean
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long
 }

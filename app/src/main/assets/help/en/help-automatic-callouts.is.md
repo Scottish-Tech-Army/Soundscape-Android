@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Sjálfvirkar tilkynningar
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 70
 lang: is
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Sjálfvirkar tilkynningar
 
-## What is it?
+Á meðan þú gengur tilkynnir Soundscape það sem er nálægt þér. Þú heyrir hvert heiti úr átt að staðnum. Tilkynningar ná yfir götur, gatnamót, verslanir, stoppistöðvar, kennileiti og þín eigin merki.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Gatnamót
 
-## When would I use it?
+Þegar þú nálgast gatnamót nefnir Soundscape hverja götu sem liggur frá þeim. Þú heyrir hvaða gata liggur til vinstri, hver heldur beint áfram og hver liggur til hægri.
 
-**Exploring a new area :**
+## Hversu mikið þú heyrir
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Opnaðu valmyndina og veldu *Stillingar* og síðan *Stjórna tilkynningum*. *Nákvæmni tilkynninga* hefur fjögur stig.
 
-**Walking to a specific location :**
+*Ítarlegt* tilkynnir allt sem er nálægt.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Einfaldað* sleppir minni stígum og þjónustuvegum og endurtekur sig sjaldnar.
 
-**When you need silence :**
+*Nauðsynlegt* tilkynnir aðeins götur, gatnamót og kennileiti.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Þögult* gefur engar sjálfvirkar tilkynningar. Hljóðvitar, leiðir og hnapparnir á heimaskjánum virka áfram.
 
-## How does it work?
+## Hvað þú heyrir
 
-**Turning callouts on or off :**
+*Stjórna tilkynningum* hefur tvær stillingar í viðbót. *Götur og gatnamót* kveikir eða slekkur á tilkynningum um götur og gatnamót. *Staðir til að tilkynna* velur hvaða tegundir staða þú heyrir, til dæmis *Almenningssamgöngur* eða *Matur og drykkur*. Merkin þín eru alltaf tilkynnt.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Að gera Soundscape hljóðlátara
 
-**Managing which callouts you hear :**
+Ýttu á *fyrri* á stýringum heyrnartólanna. Hver ýting fer einu stigi neðar: *Ítarlegt*, *Einfaldað*, *Nauðsynlegt* og síðan *Þögult*. Ein ýting í viðbót fer aftur í *Ítarlegt*. Sjá hjálparsíðuna *Notkun fjölmiðlastýringa*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Að stöðva Soundscape um stund
+
+Veldu hnappinn *Fara í dvala* efst á heimaskjánum. Soundscape hættir að nota staðsetningu þína og gefur ekkert hljóð frá sér þar til þú velur *Vakna núna*. Eða veldu *Vakna við brottför*, og þá vaknar Soundscape þegar þú ferð af staðnum þar sem þú ert.
+
+## Í farartæki eða lest
+
+Soundscape tekur eftir því þegar þú ferðast á hraða farartækis. Þá hættir það að tilkynna gatnamót og nálægar verslanir, því þau fara of hratt hjá. Í staðinn tilkynnir það veginn sem þú ert á, kennileiti, stoppistöðvar og stöðvar, ár og göng.
 

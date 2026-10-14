@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Znaczniki
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 80
 lang: pl
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Znaczniki
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Znacznik to zapisane przez ciebie miejsce. Może to być dowolne miejsce, które jest dla ciebie ważne: dom, przystanek autobusowy, wejście do budynku albo przejście dla pieszych.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape powiadamia o twoich znacznikach, gdy je mijasz. Możesz włączyć naprowadzanie na znacznik, dodać go do trasy albo usłyszeć najbliższe znaczniki przyciskiem *Bliskie znaczniki*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Tworzenie znaczników
+
+1. Wybierz *Znaczniki* na ekranie głównym, a potem wybierz *Nowy*.
+
+2. Wybierz *Bieżąca lokalizacja* albo miejsce z listy *Miejsca w pobliżu*.
+
+3. Jeśli chcesz, zmień nazwę i dodaj notatki. Soundscape odczytuje notatki razem ze znacznikiem.
+
+4. Wybierz *Gotowe*.
+
+Możesz też zapisać dowolne miejsce, które znajdziesz. Otwórz jego *Szczegóły lokalizacji* i wybierz *Zapisz jako znacznik*.
+
+## Dostosowywanie znaczników
+
+Wybierz znacznik na ekranie *Znaczniki*, a potem wybierz *Edytuj znacznik*. Możesz zmienić jego nazwę, notatki i położenie albo wybrać *Usuń znacznik*. Usunięcie znacznika usuwa go także z twoich tras.
 

@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Utilizzo dei controlli di riproduzione
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 110
 lang: it
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Utilizzo dei controlli di riproduzione
 
-## What is it?
+Puoi controllare Soundscape con i pulsanti multimediali dei tuoi auricolari: *riproduci/pausa*, *avanti* e *indietro*. Funziona con auricolari con filo e Bluetooth. Funziona anche quando Soundscape è in background o il telefono è bloccato.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Non tutti gli auricolari hanno tutti e tre i pulsanti.
 
-## When would I use it?
+I pulsanti controllano Soundscape solo quando nessun'altra app sta riproducendo audio. Se stai ascoltando musica o un podcast, i pulsanti controllano quell'app.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+I pulsanti possono funzionare in due modi: *Modalità originale* o *Menu audio*. Per scegliere, apri il menu e seleziona *Impostazioni*, poi *Controlli multimediali*.
 
-## How does it work?
+## Modalità originale
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Riproduci/pausa* disattiva l'audio dell'audiofaro. Premilo di nuovo per sentire l'audiofaro.
 
- Original mode. 
+*Avanti* sposta l'audiofaro al waypoint successivo quando stai seguendo un percorso. Altrimenti annuncia *Intorno a me*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Indietro* sposta l'audiofaro al waypoint precedente quando stai seguendo un percorso. Altrimenti cambia il *Dettaglio delle notifiche*. Ogni pressione scende di un livello: *Dettagliato*, *Semplificato*, *Essenziale*, poi *Silenzioso*. Un'altra pressione torna a *Dettagliato*. Soundscape dice il nome del nuovo livello.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Menu audio
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Il menu audio ti offre più azioni con gli stessi tre pulsanti. Soundscape legge ogni opzione ad alta voce.
 
+*Avanti* passa all'opzione successiva. Dopo l'ultima opzione torna alla prima.
 
+*Riproduci/pausa* seleziona l'opzione che hai appena sentito.
 
-Audio menu. 
+*Indietro* cambia il *Dettaglio delle notifiche*, come nella *Modalità originale*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Il menu inizia con quattro gruppi: *Ascolta i miei dintorni*, *Controllo percorso*, *Avvia Percorso* e *Avvia audiofaro*. Seleziona un gruppo per sentirne le azioni. *Ascolta i miei dintorni* e *Controllo percorso* finiscono con *Menu principale*, che ti riporta ai quattro gruppi.
 

@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Mærker
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 80
 lang: da
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Mærker
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Et mærke er et sted, du har gemt. Det kan være ethvert sted, der betyder noget for dig: dit hjem, et busstoppested, en indgang til en bygning eller en fodgængerovergang.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape annoncerer dine mærker, når du kommer forbi dem. Du kan sætte et lydfyr på et mærke, føje det til en rute eller høre de nærmeste med knappen *Mærker i nærheden*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Oprettelse af mærker
+
+1. Vælg *Mærker* på startskærmen, og vælg derefter *Ny*.
+
+2. Vælg *Aktuel placering* eller et sted fra *Steder i nærheden*.
+
+3. Ret navnet, hvis du vil, og tilføj noter. Soundscape læser noterne op sammen med mærket.
+
+4. Vælg *Udført*.
+
+Du kan også gemme ethvert sted, du finder. Åbn stedets *Oplysninger om placering*, og vælg *Gem som mærke*.
+
+## Tilpasning af mærker
+
+Vælg mærket på skærmen *Mærker*, og vælg derefter *Rediger mærke*. Du kan ændre navn, noter og position eller vælge *Slet mærke*. Når du sletter et mærke, fjernes det også fra dine ruter.
 

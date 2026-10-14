@@ -5,7 +5,6 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -26,7 +25,6 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.platform.analyticsEnabled
 import org.scottishtecharmy.soundscape.platform.appVersionMinorTrimmed
@@ -52,8 +50,9 @@ fun SharedHomeScreen(
     onNavigate: (String) -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
     onShowRouteDetails: (LocationDescription) -> Unit = {},
+    /** Saves the beacon's location as a marker, for the beacon card's "Add to Markers" action. */
+    onSaveMarker: ((LocationDescription) -> Unit)? = null,
     preferencesProvider: PreferencesProvider?,
-    onMapLongClick: ((LngLatAlt) -> Boolean)?,
     bottomButtonFunctions: BottomButtonFunctions,
     routeFunctions: RouteFunctions,
     streetPreviewFunctions: StreetPreviewFunctions,
@@ -77,7 +76,15 @@ fun SharedHomeScreen(
         PreferenceDefaults.SHOW_MAP,
     )
     var drawerOpen by remember { mutableStateOf(false) }
-    val fullscreenMap = remember { mutableStateOf(false) }
+    val map = rememberFullScreenableMap(
+        mapCenter = state.location,
+        userLocation = state.location,
+        userSymbolRotation = state.heading,
+        beaconLocation = state.beaconState?.location,
+        routeData = state.currentRouteData.routeData,
+        currentBeaconWaypointIndex = state.currentRouteData.currentWaypoint,
+    )
+    val fullscreenMap = map.fullscreen
     val keyboardOpen = keyboardAsState()
     var searchExpanded by remember { mutableStateOf(false) }
     // Stays true from the moment the search popup opens the IME until the IME has
@@ -157,51 +164,36 @@ fun SharedHomeScreen(
                 )
             }
 
-            if (fullscreenMap.value && showMap) {
-                state.location?.let { location ->
-                    PlatformMapContainer(
-                        beaconLocation = state.beaconState?.location,
-                        routeData = state.currentRouteData.routeData,
-                        currentBeaconWaypointIndex = state.currentRouteData.currentWaypoint,
-                        mapCenter = location,
-                        allowScrolling = false,
-                        userLocation = location,
-                        userSymbolRotation = state.heading,
-                        modifier = Modifier.fillMaxSize(),
+            SharedHomeContent(
+                location = state.location,
+                beaconState = state.beaconState,
+                routePlayerState = state.currentRouteData,
+                modifier = Modifier.padding(innerPadding),
+                onNavigate = onNavigate,
+                onSelectLocation = onSelectLocation,
+                onShowRouteDetails = onShowRouteDetails,
+                onSaveMarker = onSaveMarker,
+                getCurrentLocationDescription = getCurrentLocationDescription,
+                searchBar = {
+                    MainSearchBar(
+                        results = state.searchItems.orEmpty(),
+                        onTriggerSearch = searchFunctions.onTriggerSearch,
+                        onItemClick = { item -> onSelectLocation(item) },
+                        hint = stringResource(Res.string.search_bar_hint),
+                        userLocation = state.location,
+                        isSearching = state.searchInProgress,
+                        withoutOfflineMaps = state.searchWithoutOfflineMaps,
+                        onExpandedChange = { searchExpanded = it },
                     )
-                }
-            } else {
-                SharedHomeContent(
-                    location = state.location,
-                    beaconState = state.beaconState,
-                    routePlayerState = state.currentRouteData,
-                    heading = state.heading,
-                    modifier = Modifier.padding(innerPadding),
-                    onNavigate = onNavigate,
-                    onSelectLocation = onSelectLocation,
-                    onShowRouteDetails = onShowRouteDetails,
-                    getCurrentLocationDescription = getCurrentLocationDescription,
-                    searchBar = {
-                        MainSearchBar(
-                            results = state.searchItems.orEmpty(),
-                            onTriggerSearch = searchFunctions.onTriggerSearch,
-                            onItemClick = { item -> onSelectLocation(item) },
-                            hint = stringResource(Res.string.search_bar_hint),
-                            userLocation = state.location,
-                            isSearching = state.searchInProgress,
-                            onExpandedChange = { searchExpanded = it },
-                        )
-                    },
-                    onMapLongClick = onMapLongClick,
-                    streetPreviewState = state.streetPreviewState,
-                    routeFunctions = routeFunctions,
-                    streetPreviewFunctions = streetPreviewFunctions,
-                    goToAppSettings = goToAppSettings,
-                    fullscreenMap = fullscreenMap,
-                    permissionsRequired = permissionsRequired,
-                    showMap = showMap,
-                )
-            }
+                },
+                streetPreviewState = state.streetPreviewState,
+                routeFunctions = routeFunctions,
+                streetPreviewFunctions = streetPreviewFunctions,
+                goToAppSettings = goToAppSettings,
+                map = map,
+                permissionsRequired = permissionsRequired,
+                showMap = showMap,
+            )
         }
 
         AnimatedVisibility(

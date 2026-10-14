@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Oznake
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 80
 lang: hr
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Oznake
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Oznaka je mjesto koje ste spremili. To može biti bilo koje mjesto koje vam je važno: vaš dom, autobusno stajalište, ulaz u zgradu ili pješački prijelaz.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape najavljuje vaše oznake dok prolazite pokraj njih. Na oznaku možete postaviti zvučni svjetionik, dodati je ruti ili čuti najbliže oznake gumbom *Oznake u blizini*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Izrada oznaka
+
+1. Odaberite *Oznake* na početnom zaslonu, zatim odaberite *Nova*.
+
+2. Odaberite *Trenutačna lokacija* ili mjesto s popisa *Mjesta u blizini*.
+
+3. Ako želite, promijenite naziv i dodajte bilješke. Soundscape čita bilješke zajedno s oznakom.
+
+4. Odaberite *Gotovo*.
+
+Možete spremiti i bilo koje mjesto koje pronađete. Otvorite njegove *Pojedinosti o lokaciji* i odaberite *Spremi kao oznaku*.
+
+## Prilagodba oznaka
+
+Odaberite oznaku na zaslonu *Oznake*, zatim odaberite *Uredi oznaku*. Možete promijeniti njezin naziv, bilješke i položaj ili odabrati *Izbriši oznaku*. Brisanjem se oznaka uklanja i iz vaših ruta.
 

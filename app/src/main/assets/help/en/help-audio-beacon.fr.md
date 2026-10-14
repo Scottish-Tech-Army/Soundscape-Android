@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Balise sonore
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 60
 lang: fr
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Balise sonore
 
-## What is it?
+Une balise sonore est un son qui vient de la direction d’un lieu que vous choisissez. Elle vous indique où se trouve le lieu en ligne droite. Elle ne donne pas d’instructions de navigation étape par étape. Vous choisissez donc vous-même votre chemin.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Placer une balise
 
-## When would I use it?
+1. Trouvez le lieu. Utilisez la barre de recherche, *Emplacements à proximité*, *Marqueurs* ou *Emplacement actuel* sur l’écran d’accueil.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Sélectionnez le lieu pour ouvrir *Détails de l’emplacement*.
 
-## How does it work?
+3. Sélectionnez *Démarrer la balise*.
 
-**To set a beacon :**
+Soundscape revient à l’écran d’accueil et la balise démarre. L’écran d’accueil affiche le nom du lieu et sa distance.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Trouver la direction
 
-**To remove the current beacon :**
+Le son de la balise change quand vous faites face au lieu ou que vous marchez droit vers lui. Pour trouver ce son, tenez votre téléphone à plat et tournez-vous lentement. Vous pouvez choisir un autre son de balise dans les *Réglages*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Couper le son de la balise
 
-**To mute the audible beacon :**
+Sélectionnez *Désactiver le son de la balise* sur l’écran d’accueil. Soundscape continue de vous indiquer la distance du lieu pendant vos déplacements. Sélectionnez *Réactiver le son de la balise* pour entendre de nouveau la balise.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Retirer la balise
+
+Sélectionnez *Arrêter l’itinéraire* sur l’écran d’accueil. Le bouton porte ce nom même quand la balise ne fait pas partie d’un itinéraire.
+
+## À votre arrivée
+
+Quand vous êtes à environ 12 mètres du lieu, Soundscape vous le dit et retire la balise. Votre téléphone ne peut pas déterminer votre position plus précisément. Pour entendre de nouveau la balise, placez-la de nouveau.
+
+Une balise placée sur un lieu situé à moins de 30 mètres reste active jusqu’à ce que vous la retiriez.
 

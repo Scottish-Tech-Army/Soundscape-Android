@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Använda mediereglage
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 110
 lang: sv
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Använda mediereglage
 
-## What is it?
+Du kan styra Soundscape med medieknapparna på dina hörlurar: *spela/pausa*, *nästa* och *föregående*. Det fungerar med trådbundna hörlurar och Bluetooth-hörlurar. Det fungerar också när Soundscape är i bakgrunden eller telefonen är låst.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Alla hörlurar har inte alla tre knapparna.
 
-## When would I use it?
+Knapparna styr bara Soundscape när ingen annan app spelar upp ljud. Om du spelar musik eller en podd styr knapparna den appen i stället.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Knapparna kan fungera på två sätt: *Originalläge* eller *Ljudmeny*. Om du vill välja öppnar du menyn och väljer *Inställningar* och sedan *Mediereglage*.
 
-## How does it work?
+## Originalläge
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Spela/pausa* stänger av ljudfyrens ljud. Tryck igen för att höra ljudfyren.
 
- Original mode. 
+*Nästa* flyttar ljudfyren till nästa brytpunkt när du följer en rutt. Annars läser den upp *Omkring mig*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Föregående* flyttar ljudfyren till föregående brytpunkt när du följer en rutt. Annars ändrar den *Detaljnivå för informationsljud*. Varje tryck går en nivå tystare: *Detaljerad*, *Förenklad*, *Grundläggande* och sedan *Tyst*. Ett tryck till går tillbaka till *Detaljerad*. Soundscape säger namnet på den nya nivån.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Ljudmeny
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Ljudmenyn ger dig fler åtgärder med samma tre knappar. Soundscape läser upp varje alternativ.
 
+*Nästa* går till nästa alternativ. Efter det sista alternativet börjar menyn om från det första.
 
+*Spela/pausa* väljer det alternativ du just hörde.
 
-Audio menu. 
+*Föregående* ändrar *Detaljnivå för informationsljud*, precis som i *Originalläge*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menyn börjar med fyra grupper: *Lyssna på mina omgivningar*, *Ruttkontroll*, *Starta rutt* och *Ställ in ljudfyr*. Välj en grupp för att höra dess åtgärder. *Lyssna på mina omgivningar* och *Ruttkontroll* slutar med *Huvudmeny*, som tar dig tillbaka till de fyra grupperna.
 

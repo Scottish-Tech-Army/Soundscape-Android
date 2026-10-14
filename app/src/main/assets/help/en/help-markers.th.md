@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: หมุด
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 80
 lang: th
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# หมุด
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+หมุดคือสถานที่ที่คุณบันทึกไว้ จะเป็นสถานที่ใดก็ได้ที่สำคัญสำหรับคุณ เช่น บ้านของคุณ ป้ายรถประจำทาง ทางเข้าอาคาร หรือทางข้าม
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape จะแจ้งเตือนหมุดของคุณเมื่อคุณเดินผ่าน คุณตั้งบีคอนเสียงบนหมุด เพิ่มหมุดลงในเส้นทาง หรือฟังหมุดที่อยู่ใกล้ที่สุดด้วยปุ่ม *หมุดใกล้เคียง* ได้
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## การสร้างหมุด
+
+1. เลือก *หมุด* บนหน้าจอหลัก แล้วเลือก *ใหม่*
+
+2. เลือก *ตำแหน่งปัจจุบัน* หรือเลือกสถานที่จาก *สถานที่ใกล้เคียง*
+
+3. เปลี่ยนชื่อได้หากต้องการ และเพิ่มบันทึก Soundscape จะอ่านบันทึกพร้อมกับหมุด
+
+4. เลือก *เสร็จสิ้น*
+
+คุณยังบันทึกสถานที่ใดก็ได้ที่คุณพบ เปิด *รายละเอียดตำแหน่ง* ของสถานที่นั้นแล้วเลือก *บันทึกเป็นหมุด*
+
+## การปรับแต่งหมุด
+
+เลือกหมุดบนหน้าจอ *หมุด* แล้วเลือก *แก้ไขหมุด* คุณเปลี่ยนชื่อ บันทึก และตำแหน่งของหมุดได้ หรือเลือก *ลบหมุด* การลบหมุดจะนำหมุดออกจากเส้นทางของคุณด้วย
 

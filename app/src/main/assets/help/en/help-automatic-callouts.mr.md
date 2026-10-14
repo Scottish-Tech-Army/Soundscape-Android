@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: स्वयंचलित ध्वनी सूचना
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
+nav_order: 70
 lang: mr
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# स्वयंचलित ध्वनी सूचना
 
-## What is it?
+तुम्ही चालत असताना Soundscape तुमच्या जवळ काय आहे ते सांगते. प्रत्येक नाव त्या ठिकाणाच्या दिशेने ऐकू येते. ध्वनी सूचनांमध्ये रस्ते, चौक, दुकाने, बस थांबे, खुणा आणि तुमचे स्वतःचे मार्कर येतात.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## चौक
 
-## When would I use it?
+तुम्ही एखाद्या चौकाजवळ येता, तेव्हा Soundscape तिथून निघणाऱ्या प्रत्येक रस्त्याचे नाव सांगते. कोणता रस्ता डावीकडे जातो, कोणता सरळ पुढे जातो आणि कोणता उजवीकडे जातो हे तुम्हाला ऐकू येते.
 
-**Exploring a new area :**
+## तुम्हाला किती ऐकू येते
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+मेनू उघडा आणि *सेटिंग्ज*, नंतर *ध्वनी सूचना व्यवस्थापित करा* निवडा. *ध्वनी सूचना तपशील* मध्ये चार स्तर आहेत.
 
-**Walking to a specific location :**
+*तपशीलवार* जवळचे सर्व काही सांगते.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*सरलीकृत* लहान पायवाटा आणि सेवा रस्ते वगळते, आणि कमी वेळा पुन्हा सांगते.
 
-**When you need silence :**
+*आवश्यक* फक्त रस्ते, चौक आणि खुणा सांगते.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*निःशब्द* कोणतीही स्वयंचलित ध्वनी सूचना देत नाही. बीकन, मार्ग आणि मुख्य स्क्रीनवरील बटणे तरीही काम करतात.
 
-## How does it work?
+## तुम्हाला काय ऐकू येते
 
-**Turning callouts on or off :**
+*ध्वनी सूचना व्यवस्थापित करा* मध्ये आणखी दोन सेटिंग्ज आहेत. *रस्ते आणि चौक* रस्ते आणि चौकांच्या ध्वनी सूचना सुरू किंवा बंद करते. *सांगायची ठिकाणे* मध्ये तुम्ही कोणत्या प्रकारची ठिकाणे ऐकायची ते निवडता, जसे की *सार्वजनिक वाहतूक* किंवा *खाद्य आणि पेय*. तुमचे मार्कर नेहमी सांगितले जातात.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Soundscape ला कमी बोलायला लावणे
 
-**Managing which callouts you hear :**
+तुमच्या हेडफोनच्या नियंत्रणांवर *previous* दाबा. प्रत्येक वेळी दाबल्यावर एक स्तर कमी होतो: *तपशीलवार*, *सरलीकृत*, *आवश्यक*, नंतर *निःशब्द*. आणखी एकदा दाबल्यावर *तपशीलवार* वर परत येते. *मीडिया नियंत्रणे वापरणे* हे मदत पान पहा.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Soundscape काही वेळासाठी थांबवणे
+
+मुख्य स्क्रीनच्या वरच्या भागातील *झोप मोड* बटण निवडा. Soundscape तुमचे स्थान वापरणे थांबवते आणि तुम्ही *आत्ताच जागे व्हा* निवडेपर्यंत कोणताही आवाज करत नाही. किंवा *सोडल्यावर जागे व्हा* निवडा, म्हणजे तुम्ही सध्याची जागा सोडल्यावर Soundscape जागे होते.
+
+## वाहनात किंवा ट्रेनमध्ये
+
+तुम्ही वाहनाच्या वेगाने प्रवास करत आहात हे Soundscape ओळखते. तेव्हा ते चौक आणि जवळची दुकाने सांगणे थांबवते, कारण ती फार वेगाने मागे पडतात. त्याऐवजी ते तुम्ही ज्या रस्त्यावर आहात तो रस्ता, खुणा, थांबे आणि स्थानके, नद्या आणि बोगदे सांगते.
 

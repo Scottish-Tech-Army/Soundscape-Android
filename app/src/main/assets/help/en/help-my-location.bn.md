@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: আমার অবস্থান
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
+nav_order: 20
 lang: bn
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# আমার অবস্থান
 
-## What is it?
+*আমার অবস্থান* জানায় আপনি কোথায় আছেন। এটি বলে আপনি কোন দিকে মুখ করে আছেন বা চলছেন, তারপর আপনি যে রাস্তায় বা ঠিকানায় আছেন তা বলে। বাস থেকে নামার সময়, কোনো ভবন থেকে বেরোনোর সময় বা দিক হারিয়ে ফেললে এটি ব্যবহার করুন।
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+আপনি এক জায়গায় দাঁড়িয়ে থাকলে, আগে ফোনের উপরের প্রান্তটি আপনি যেদিকে মুখ করে আছেন সেদিকে ধরুন। ফোন লক থাকলে, বা Soundscape স্ক্রিনে না থাকলে, ফোনটি সমতল করেও ধরুন।
 

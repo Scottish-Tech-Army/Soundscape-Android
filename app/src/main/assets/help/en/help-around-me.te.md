@@ -1,23 +1,16 @@
 ---
-title: Around Me
+title: నా చుట్టూ
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 30
 lang: te
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# నా చుట్టూ
 
-## What is it?
+*నా చుట్టూ* మీకు దగ్గరలో ఉన్న నాలుగు స్థలాల వరకు కాలౌట్ చేస్తుంది: ఒకటి ముందు, ఒకటి కుడి వైపు, ఒకటి వెనుక, ఒకటి ఎడమ వైపు. ప్రతిదీ దాని సొంత దిశ నుండి, దూరంతో సహా మీకు వినిపిస్తుంది. ఎక్కడికైనా చేరుకున్నప్పుడు మీరు ఎక్కడ ఉన్నారో అర్థం చేసుకోవడానికి దీన్ని ఉపయోగించండి.
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+మీరు ఒకేచోట నిలబడి ఉంటే, ముందుగా ఫోన్ పై అంచును మీరు ముఖం పెట్టి ఉన్న వైపు చూపించండి. ఫోన్ లాక్ అయి ఉంటే, లేదా Soundscape స్క్రీన్‌పై లేకపోతే, ఫోన్‌ను చదునుగా కూడా పట్టుకోండి.
 

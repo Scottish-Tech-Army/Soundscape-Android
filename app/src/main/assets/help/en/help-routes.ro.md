@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Rute
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 90
 lang: ro
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Rute
 
-## What is it?
+O rută este o listă de locații, numite puncte de traseu, pe care le vizitezi în ordine. Soundscape setează o baliză pe primul punct de traseu. Când ajungi, îți spune și mută baliza la următorul.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Folosește o rută ca să înveți un drum nou sau ca să nu te abați de la unul pe care îl cunoști.
 
-## When would I use it?
+## Crearea unei rute
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Selectează *Rute* pe ecranul principal, apoi selectează *Nou*.
 
-## How does it work?
+2. Dă-i rutei un nume. Poți adăuga o descriere.
 
-**Creating a route :**
+3. Selectează *Adaugă puncte de traseu* și alege marcaje. Poți adăuga și locația ta curentă sau un loc din apropiere.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Selectează *Gata*.
 
-**Editing a route :**
+## Urmarea unei rute
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Selectează ruta pe ecranul *Rute*, apoi selectează *Pornește ruta*. Pentru a o urma în sens invers, selectează *Pornește ruta în sens invers*. Pe ecranul principal, *Punctul de traseu următor* și *Punctul de traseu anterior* mută baliza de-a lungul rutei. *Oprește ruta* o încheie.
 
-**Sharing a route :**
+## Modificarea unei rute
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Selectează ruta pe ecranul *Rute*, apoi selectează *Editează ruta*. Poți adăuga, elimina și reordona puncte de traseu, poți schimba numele și descrierea sau poți șterge ruta.
+
+## Partajarea unei rute
+
+Selectează ruta pe ecranul *Rute*, apoi selectează *Partajează*.
 

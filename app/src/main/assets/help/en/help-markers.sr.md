@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Маркери
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
+nav_order: 80
 lang: sr
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Маркери
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Маркер је место које сте сачували. То може бити било које место које вам је важно: ваш дом, аутобуско стајалиште, улаз у зграду или пешачки прелаз.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape најављује ваше маркере док пролазите поред њих. На маркер можете поставити звучни бакен, додати га рути или чути најближе маркере дугметом *Оближњи маркери*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Прављење маркера
+
+1. Изаберите *Маркери* на почетном екрану, затим изаберите *Ново*.
+
+2. Изаберите *Тренутна локација* или место са листе *Места у близини*.
+
+3. Ако желите, промените назив и додајте белешке. Soundscape чита белешке заједно са маркером.
+
+4. Изаберите *Готово*.
+
+Можете сачувати и било које место које пронађете. Отворите његове *Детаљи локације* и изаберите *Сачувај као маркер*.
+
+## Прилагођавање маркера
+
+Изаберите маркер на екрану *Маркери*, затим изаберите *Уреди маркер*. Можете променити његов назив, белешке и положај или изабрати *Обриши маркер*. Брисањем се маркер уклања и из ваших рута.
 

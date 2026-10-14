@@ -1,13 +1,14 @@
 ---
-title: Soundscape 的工作原理
+title: Soundscape 背后的技术
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 200
 lang: zh-CN
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Soundscape 的工作原理
+# Soundscape 背后的技术
 本页面旨在让您对 Soundscape 应用在底层是如何工作的有一个大致的了解。您无需阅读本页面即可使用该应用，但编写它有以下几个原因：
 
 1. 帮助任何对该应用感兴趣的新用户了解其局限性所在

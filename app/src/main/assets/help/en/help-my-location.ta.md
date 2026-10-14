@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: எனது இருப்பிடம்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 20
 lang: ta
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# எனது இருப்பிடம்
 
-## What is it?
+*எனது இருப்பிடம்* நீங்கள் எங்கே இருக்கிறீர்கள் என்பதைச் சொல்கிறது. நீங்கள் எந்தத் திசையை நோக்கி இருக்கிறீர்கள் அல்லது பயணிக்கிறீர்கள் என்பதையும், பின்னர் நீங்கள் இருக்கும் தெரு அல்லது முகவரியையும் அது சொல்கிறது. பேருந்திலிருந்து இறங்கும்போது, ஒரு கட்டிடத்தை விட்டு வெளியேறும்போது அல்லது திசை தெரியாமல் போகும்போது இதைப் பயன்படுத்தவும்.
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+நீங்கள் ஓரிடத்தில் நின்றிருந்தால், முதலில் தொலைபேசியின் மேல் முனையை நீங்கள் நோக்கியிருக்கும் திசையில் காட்டவும். தொலைபேசி பூட்டப்பட்டிருந்தால், அல்லது Soundscape திரையில் இல்லாவிட்டால், தொலைபேசியைத் தட்டையாகவும் பிடிக்கவும்.
 

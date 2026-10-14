@@ -1,23 +1,16 @@
 ---
-title: Ahead of Me
+title: Davant meu
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 40
 lang: ca
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Davant meu
 
-## What is it?
+*Davant meu* anuncia fins a cinc llocs que tens al davant. Sents cadascun des de la seva direcció, amb la distància. Fes-lo servir en un carrer que no coneixes, per saber què ve a continuació.
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
-
-## When would I use it?
-
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Si no t'estàs movent, apunta primer la part superior del telèfon cap on mires. Si el telèfon està bloquejat, o Soundscape no és a la pantalla, aguanta també el telèfon pla.
 

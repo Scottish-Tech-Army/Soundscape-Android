@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Indicatori
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 80
 lang: it
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Indicatori
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Un indicatore è un luogo che hai salvato. Può essere qualsiasi luogo importante per te: casa tua, una fermata dell'autobus, l'ingresso di un edificio o un attraversamento.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape annuncia i tuoi indicatori quando ci passi vicino. Puoi impostare un audiofaro su un indicatore, aggiungerlo a un percorso o ascoltare quelli più vicini con il pulsante *Indicatori nelle vicinanze*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Creazione di indicatori
+
+1. Seleziona *Indicatori* nella schermata iniziale, poi seleziona *Nuovo*.
+
+2. Scegli *Posizione attuale*, oppure un luogo da *Luoghi nelle vicinanze*.
+
+3. Cambia il nome, se vuoi, e aggiungi delle note. Soundscape legge le note insieme all'indicatore.
+
+4. Seleziona *Fatto*.
+
+Puoi anche salvare qualsiasi luogo che trovi. Apri i suoi *Dettagli posizione* e seleziona *Salva come indicatore*.
+
+## Personalizzazione di indicatori
+
+Seleziona l'indicatore nella schermata *Indicatori*, poi seleziona *Modifica indicatore*. Puoi cambiarne il nome, le note e la posizione, oppure selezionare *Elimina indicatore*. Eliminando un indicatore lo rimuovi anche dai tuoi percorsi.
 

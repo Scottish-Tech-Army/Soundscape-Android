@@ -1,0 +1,226 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "இது Soundscape-க்கான ஒரு முக்கிய புதுப்பிப்பு ஆகும். பயண முறை மிகவும் மேம்பட்டுள்ளது. நீங்கள் கார் அல்லது பேருந்தில் பயணிக்கும்போது, Soundscape இப்போது சாலை எண்கள், உங்கள் பயணத் திசை மற்றும் அருகிலுள்ள குடியிருப்புப் பகுதிகளை அறிவிக்கிறது. நதிகள், கால்வாய்கள், கடல்முகத்துவாரங்கள் மற்றும் விரிகுடாக்களைக் கடக்கும்போதும் அறிவிக்கிறது. இந்தப் புதிய அம்சங்களைப் பெற உங்கள் ஆஃப்லைன் வரைபடங்களைப் புதுப்பிக்கவும். இங்கிலாந்தில் உள்ள பயனர்களுக்கு பேருந்து நிறுத்தங்களின் விளக்கங்கள் இப்போது மிகச் சிறந்ததாக உள்ளன. தூக்க முறை இப்போது நீங்கள் மீண்டும் நகர்வதைக் கண்டறியும்போது தானாகவே விழிக்கும். அதை நீங்களே விழிக்க வைக்க நினைவில் கொள்ள வேண்டியதில்லை. அதே குறியீட்டிலிருந்து iOS பயன்பாட்டை உருவாக்க முடியும் வகையில் அடிப்படைக் குறியீட்டை நாங்கள் மறுசீரமைத்துள்ளோம். இதன் பொருள், எதிர்காலத்தில் Android-க்காக நாங்கள் உருவாக்கிய அனைத்து அம்சங்களுடனும் கூடிய iOS பயன்பாட்டை வெளியிட முடியும். நீங்கள் எதிர்கொள்ளும் சிக்கல்களை, அவை எவ்வளவு சிறியதாக இருந்தாலும், முதன்மை மெனுவில் உள்ள ஆதரவைத் தொடர்பு கொள்ளவும் மூலம் தொடர்ந்து தெரிவிக்கவும்.",
+  "suggested": "இது Soundscape-க்கான ஒரு முக்கிய புதுப்பிப்பு ஆகும். பயண முறை மிகவும் மேம்பட்டுள்ளது. நீங்கள் கார் அல்லது பேருந்தில் பயணிக்கும்போது, Soundscape இப்போது சாலை எண்கள், உங்கள் பயணத் திசை மற்றும் அருகிலுள்ள குடியிருப்புப் பகுதிகளை அறிவிக்கிறது. நதிகள், கால்வாய்கள், கடல்முகத்துவாரங்கள் மற்றும் விரிகுடாக்களைக் கடக்கும்போதும் அறிவிக்கிறது. இந்தப் புதிய அம்சங்களைப் பெற உங்கள் ஆஃப்லைன் வரைபடங்களைப் புதுப்பிக்கவும். ஐக்கிய இராச்சியத்தில் உள்ள பயனர்களுக்கு பேருந்து நிறுத்தங்களின் விளக்கங்கள் இப்போது மிகச் சிறந்ததாக உள்ளன. உறக்க நிலை இப்போது நீங்கள் மீண்டும் நகர்வதைக் கண்டறியும்போது தானாகவே விழிக்கும். அதை நீங்களே விழிக்க வைக்க நினைவில் கொள்ள வேண்டியதில்லை. அதே குறியீட்டிலிருந்து iOS பயன்பாட்டை உருவாக்க முடியும் வகையில் அடிப்படைக் குறியீட்டை நாங்கள் மறுசீரமைத்துள்ளோம். இதன் பொருள், எதிர்காலத்தில் Android-க்காக நாங்கள் உருவாக்கிய அனைத்து அம்சங்களுடனும் கூடிய iOS பயன்பாட்டை வெளியிட முடியும். நீங்கள் எதிர்கொள்ளும் சிக்கல்களை, அவை எவ்வளவு சிறியதாக இருந்தாலும், முதன்மை மெனுவில் உள்ள ‘ஆதரவைத் தொடர்பு கொள்ளவும்’ என்பதன் மூலம் தொடர்ந்து தெரிவிக்கவும்.",
+  "reason": "'UK' became இங்கிலாந்து (England, wrong for Scotland/Wales/NI users); Sleep mode is தூக்க முறை instead of the glossary உறக்கம் (elsewhere உறக்க நிலை); the menu label 'Contact support' is run into the sentence unquoted. Separately, the paragraph breaks are lost, but that is CROSS-LANGUAGE (43 of 47 files have none), so the fix keeps it single-paragraph.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%1$s முதல் %2$s வரை",
+  "suggested": "%2$s நோக்கிச் செல்லும் %1$s",
+  "reason": "TA-G1 (agreed defect, C10): «%1$s முதல் %2$s வரை» means 'from the path up to Moor Road'. %1$s is a way type, %2$s where it leads. Wording is the guidance file's candidate, unconfirmed by a native speaker.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_via",
+  "source": "%1$s to %2$s via %3$s",
+  "current": "%3$s வழியாக %1$s முதல் %2$s வரை",
+  "suggested": "%3$s வழியாக %2$s நோக்கிச் செல்லும் %1$s",
+  "reason": "TA-G1 applies to _via too: 'from X up to Y via Z' instead of 'X leading to Y via Z'.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s முதல் முட்டுச்சந்து வரை",
+  "suggested": "முட்டுச்சந்தில் முடியும் %1$s",
+  "reason": "Inherited TA-G1 (C21): «%1$s முதல் முட்டுச்சந்து வரை» says 'from the path up to the dead end'. Describe the way as ending in a dead end; %1$s may be a road name, so no agreement needed.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%2$s வழியாக %1$s முதல் முட்டுச்சந்து வரை",
+  "suggested": "%2$s வழியாக முட்டுச்சந்தில் முடியும் %1$s",
+  "reason": "Same TA-G1 'from … to' construction as confect_name_to_dead_end.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_crossing",
+  "source": "Crosswalk",
+  "current": "கால்நடைக் கடவு",
+  "suggested": "பாதசாரிகள் கடவு",
+  "reason": "கால்நடை also means 'livestock' and this corpus uses it that way (osm_cattle_grid «கால்நடைத் தடுப்பு கட்டம்», osm_veterinary «கால்நடை மருத்துவமனை»), so «கால்நடைக் கடவு» is heard as 'cattle crossing'. Use பாதசாரி (pedestrian).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_pedestrian_street",
+  "source": "Pedestrian Street",
+  "current": "கால்நடைச் சாலை",
+  "suggested": "நடைபயணிகள் தெரு",
+  "reason": "«கால்நடைச் சாலை» reads as 'livestock road' (see osm_crossing). Match osm_pedestrianised_area «நடைபயணிகள் பகுதி».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_unmanaged_crossing",
+  "source": "Unmanaged Crosswalk",
+  "current": "கண்காணிப்பற்ற நடைபாதைக் கடவு",
+  "suggested": "கட்டுப்பாடற்ற பாதசாரிகள் கடவு",
+  "reason": "Inconsistent with osm_crossing and wrong sense: «நடைபாதை» is the corpus word for Sidewalk (confect_name_pavement), and «கண்காணிப்பற்ற» means 'unsupervised' rather than uncontrolled/no signals.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_around_me",
+  "source": "The next button is Around Me. This tells you what is nearby in each direction. Tap Around Me.",
+  "current": "அடுத்த பொத்தான் 'என்னைச் சுற்றி'. இது ஒவ்வொரு திசையிலும் அருகில் என்ன இருக்கிறது என்பதைச் சொல்கிறது. 'என்னைச் சுற்றி' என்பதைத் தட்டவும்.",
+  "suggested": "அடுத்த பொத்தான் 'எனைச் சுற்றி'. இது ஒவ்வொரு திசையிலும் அருகில் என்ன இருக்கிறது என்பதைச் சொல்கிறது. 'எனைச் சுற்றி' என்பதைத் தட்டவும்.",
+  "reason": "The tutorial names the button «என்னைச் சுற்றி», but the button (ui_action_button_around_me) and help pages say «எனைச் சுற்றி». The user is told to tap a label that doesn't exist.",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_approaching_name",
+  "source": "Approaching %1$s",
+  "current": "%1$s நெருங்குகிறது",
+  "suggested": "%1$s-ஐ நெருங்குகிறது",
+  "reason": "Without the accusative, «%1$s நெருங்குகிறது» reads 'X is approaching' (X as subject). intersection_approaching_intersection correctly uses «சந்திப்பை நெருங்குகிறது».",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_headphones_message_1",
+  "source": "Soundscape works great with any pair of headphones. If you would like to use headphones, grab them now.",
+  "current": "Soundscape எந்த ஹெட்·போன் ஜோடியுடனும் சிறப்பாக செயல்படும். நீங்கள் ஹெட்·போன்களைப் பயன்படுத்த விரும்பினால், இப்போதே அவற்றை எடுத்துக்கொள்ளுங்கள்.",
+  "suggested": "Soundscape எந்த ஹெட்போன் ஜோடியுடனும் சிறப்பாக செயல்படும். நீங்கள் ஹெட்போன்களைப் பயன்படுத்த விரும்பினால், இப்போதே அவற்றை எடுத்துக்கொள்ளுங்கள்.",
+  "reason": "Stray middle dot «·» inside «ஹெட்·போன்»; everywhere else the word is «ஹெட்போன்». A screen reader may voice the dot or break the word.",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_headphones_message_2",
+  "source": "You don't need headphones. Soundscape also works well with the speakers on your phone.",
+  "current": "உங்களுக்கு ஹெட்·போன்கள் தேவையில்லை. Soundscape உங்கள் மொபைலின் ஸ்பீக்கர்களுடனும் நன்றாக இயங்கும்.",
+  "suggested": "உங்களுக்கு ஹெட்போன்கள் தேவையில்லை. Soundscape உங்கள் மொபைலின் ஸ்பீக்கர்களுடனும் நன்றாக இயங்கும்.",
+  "reason": "Stray middle dot «·» inside «ஹெட்·போன்»; everywhere else the word is «ஹெட்போன்». A screen reader may voice the dot or break the word.",
+  "category": "formatting"
+ },
+ {
+  "context": "last_entry_in_list",
+  "source": " and %1$s",
+  "current": "மற்றும் %1$s",
+  "suggested": "மற்றும் %1$s",
+  "reason": "CROSS-LANGUAGE: the leading space of \" and %1$s\" is lost (as in ~21 languages), and StreetPreview.kt concatenates it straight after the comma-joined list, giving «A, Bமற்றும் C». Same class as the decimal-separator fix in 8bc004bdd; best fixed in code (add the space there), or per language as « மற்றும் %1$s».",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape பல்வேறு சூழல்கள் மற்றும் காலஅளவுகளில் பயன்படும் அம்சங்களையும் நன்மைகளையும் கொண்டுள்ளது. Soundscape உங்களுக்கு அளிக்கும் மதிப்பும் காலப்போக்கில் மாறலாம், எனவே இன்று நீங்கள் அதைப் பயன்படுத்தும் விதம் மூன்று மாதங்களில் நீங்கள் பயன்படுத்தும் விதத்திலிருந்து வேறுபடலாம். மக்கள் பெரும்பாலும் பயன்பாடுகளை *இந்தப் பயன்பாடு எந்தப் பிரச்சினையைத் தீர்ப்பதில் சிறந்தது?* என்ற அடிப்படையில் சிந்திக்கிறார்கள். குறிப்பிட்ட தேவைகளுக்கு Soundscape ஐ நிச்சயமாகப் பயன்படுத்தலாம் – ஒரு இலக்கை நோக்கிச் செல்லும்போது அதைக் கண்காணிப்பது, ஒரு மெட்ரோ நிலையத்திலிருந்து வெளியேறும்போது உங்களை நோக்குநிலைப்படுத்த உதவுவது, ஒரு காரிலிருந்து இறங்கும்போது திசையறிவு பெறுவது, அல்லது அடுத்த சந்திப்பிற்கான தெரு பெயர்களை அல்லது தொலைவைக் கண்டறிவது போன்றவை. எனினும், Soundscape க்குப் பின்னால் உள்ள தத்துவம் *உங்கள் உலகத்தை ஒலியால் ஒளிரச் செய்வது* என்பதாகும் – நீங்கள் வெளியே இருக்கும் எந்த நேரத்திலும் பயன்படுத்தப்பட வடிவமைக்கப்பட்டுள்ளது, உங்கள் சுற்றுப்புறத்தைப் பற்றிய விழிப்புணர்வை வழங்கும் வகையில் — நீங்கள் இருக்கும் தெருக்களின் பெயர்கள், நீங்கள் செல்லும் திசை, மற்றும் நீங்கள் கடந்து செல்லும் வணிக நிறுவனங்களின் பெயர்கள் போன்றவை. இந்தப் பயன்பாட்டு முறையில், எங்கள் பயனர்கள் Soundscape ஐ *ஒரு நல்ல துணைப் பயன்பாடு* என்று குறிப்பிட்டுள்ளனர், இது *எதேச்சையான கண்டுபிடிப்புகளை* ஆதரிக்கிறது, *உங்கள் மனநிலை வரைபடத்தில் உள்ள இடைவெளிகளை நிரப்ப* உதவுகிறது, மேலும் *நடக்கும்போது அதிக நம்பிக்கையை* வழங்குகிறது. எங்கள் பயனர்கள் Soundscape ஐ தங்கள் வாழ்க்கையில் எவ்வாறு பயன்படுத்துகிறார்கள் என்பதற்கான வேறு சில உதாரணங்கள் இதோ:\\n\\nநான் பேருந்திலிருந்து இறங்கி தவறான திசையில் சென்ற பிறகு, Soundscape எனக்கு மீண்டும் சரியான பாதைக்குத் திரும்ப உதவியது.\\n\\nநான் 3 ஆண்டுகளாக வசித்து வரும் நகரத்தில் கூட, [Soundscape உடன்] எனைச் சுற்றி உள்ளதைப் பற்றிய மேம்பட்ட சித்திரத்தை நான் உருவாக்கியுள்ளேன்.\\n\\n3D ஒலி எனது நடைப்பயண அனுபவத்தை மேம்படுத்துகிறது, ஏனெனில் நான் எனது சுற்றுப்புறத்துடன் அதிகம் இணைந்திருப்பதாக உணர்கிறேன்…இப்போது இந்தப் பயன்பாடு எனக்கு இருப்பதால் ஒரு புதிய பாதையை முயற்சிக்க அதிக வாய்ப்பு உள்ளது.\\n\\nசுற்றி நடந்து விஷயங்களைக் கவனிக்கும் எதேச்சையான அனுபவத்தை நான் தவறவிடுகிறேன். Soundscape இருப்பது நன்றாக உள்ளது – எனைச் சுற்றியுள்ள விஷயங்களைப் பற்றி கேட்க எந்த முயற்சியும் தேவையில்லை. தொடர்பான தகவல் பயனுள்ளதாக உள்ளது, மேலும் இது சூழல் விழிப்புணர்விற்கும் வணிகத் தெருக்களை ஆராய்வதற்கும் ஒரு சிறந்த பயன்பாடாகும்.\\n\\n[நான் Soundscape ஐப் பயன்படுத்தி] யார்க் நகரின் நடுவில் ஒரு பப் ஐக் கண்டறிந்தேன். [நான்] முதலில் கண்டறியவும் பின்னர் உண்மையில் அதைக் கண்டுபிடிக்கவும் அதன் பல விருப்பங்களைப் பயன்படுத்தினேன். அது என்னைக் கதவிலிருந்து 3 மீட்டர் தூரத்திற்குள் அழைத்துச் சென்றது – அற்புதம்!",
+  "suggested": "Soundscape பல்வேறு சூழல்கள் மற்றும் காலஅளவுகளில் பயன்படும் அம்சங்களையும் நன்மைகளையும் கொண்டுள்ளது. Soundscape உங்களுக்கு அளிக்கும் மதிப்பும் காலப்போக்கில் மாறலாம், எனவே இன்று நீங்கள் அதைப் பயன்படுத்தும் விதம் மூன்று மாதங்களில் நீங்கள் பயன்படுத்தும் விதத்திலிருந்து வேறுபடலாம். மக்கள் பெரும்பாலும் பயன்பாடுகளை *இந்தப் பயன்பாடு எந்தப் பிரச்சினையைத் தீர்ப்பதில் சிறந்தது?* என்ற அடிப்படையில் சிந்திக்கிறார்கள். குறிப்பிட்ட தேவைகளுக்கு Soundscape ஐ நிச்சயமாகப் பயன்படுத்தலாம் – ஒரு இலக்கை நோக்கிச் செல்லும்போது அதைக் கண்காணிப்பது, ஒரு மெட்ரோ நிலையத்திலிருந்து வெளியேறும்போது உங்களை நோக்குநிலைப்படுத்த உதவுவது, ஒரு காரிலிருந்து இறங்கும்போது திசையறிவு பெறுவது, அல்லது அடுத்த சந்திப்பிற்கான தெரு பெயர்களை அல்லது தொலைவைக் கண்டறிவது போன்றவை. எனினும், Soundscape க்குப் பின்னால் உள்ள தத்துவம் *உங்கள் உலகத்தை ஒலியால் ஒளிரச் செய்வது* என்பதாகும் – நீங்கள் வெளியே இருக்கும் எந்த நேரத்திலும் பயன்படுத்தப்பட வடிவமைக்கப்பட்டுள்ளது, உங்கள் சுற்றுப்புறத்தைப் பற்றிய விழிப்புணர்வை வழங்கும் வகையில் — நீங்கள் இருக்கும் தெருக்களின் பெயர்கள், நீங்கள் செல்லும் திசை, மற்றும் நீங்கள் கடந்து செல்லும் வணிக நிறுவனங்களின் பெயர்கள் போன்றவை. இந்தப் பயன்பாட்டு முறையில், எங்கள் பயனர்கள் Soundscape ஐ *ஒரு நல்ல துணைப் பயன்பாடு* என்று குறிப்பிட்டுள்ளனர், இது *எதேச்சையான கண்டுபிடிப்புகளை* ஆதரிக்கிறது, *உங்கள் மனநிலை வரைபடத்தில் உள்ள இடைவெளிகளை நிரப்ப* உதவுகிறது, மேலும் *நடக்கும்போது அதிக நம்பிக்கையை* வழங்குகிறது. எங்கள் பயனர்கள் Soundscape ஐ தங்கள் வாழ்க்கையில் எவ்வாறு பயன்படுத்துகிறார்கள் என்பதற்கான வேறு சில உதாரணங்கள் இதோ:\\n\\nநான் பேருந்திலிருந்து இறங்கி தவறான திசையில் சென்ற பிறகு, Soundscape எனக்கு மீண்டும் சரியான பாதைக்குத் திரும்ப உதவியது.\\n\\nநான் 3 ஆண்டுகளாக வசித்து வரும் நகரத்தில் கூட, [Soundscape உடன்] எனைச் சுற்றி உள்ளதைப் பற்றிய மேம்பட்ட சித்திரத்தை நான் உருவாக்கியுள்ளேன்.\\n\\n3D ஒலி எனது நடைப்பயண அனுபவத்தை மேம்படுத்துகிறது, ஏனெனில் நான் எனது சுற்றுப்புறத்துடன் அதிகம் இணைந்திருப்பதாக உணர்கிறேன்…இப்போது இந்தப் பயன்பாடு எனக்கு இருப்பதால் ஒரு புதிய பாதையை முயற்சிக்க அதிக வாய்ப்பு உள்ளது.\\n\\nசுற்றி நடந்து விஷயங்களைக் கவனிக்கும் எதேச்சையான அனுபவத்தை நான் தவறவிடுகிறேன். Soundscape இருப்பது நன்றாக உள்ளது – எனைச் சுற்றியுள்ள விஷயங்களைப் பற்றி கேட்க எந்த முயற்சியும் தேவையில்லை. தொடர்பான தகவல் பயனுள்ளதாக உள்ளது, மேலும் இது சூழல் விழிப்புணர்விற்கும் வணிகத் தெருக்களை ஆராய்வதற்கும் ஒரு சிறந்த பயன்பாடாகும்.\\n\\n[நான் Soundscape ஐப் பயன்படுத்தி] யார்க் நகரின் நடுவில் ஒரு பப் ஐக் கண்டறிந்தேன். [நான்] முதலில் கண்டறியவும் பின்னர் உண்மையில் அதைக் கண்டுபிடிக்கவும் அதன் பல விருப்பங்களைப் பயன்படுத்தினேன். அது என்னைக் கதவிலிருந்து 3 மீட்டர் தூரத்திற்குள் அழைத்துச் சென்றது – அற்புதம்!",
+  "reason": "CROSS-LANGUAGE: all quotation marks are gone (Weblate-era stripping of bare \"; ~31 languages have the same loss), so the five user testimonials read as the app speaking in first person. Restoring typographic quotes “…” would fix it; same loss in terms_of_use_message and the Siri phrase examples in help_text_assistant_how_ios / _commands_ios.",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_permissions_notification",
+  "source": "Notifications",
+  "current": "அறிவிப்புகள்",
+  "suggested": "அறிவிப்புகள்",
+  "reason": "Human look (open question Q1): «அறிவிப்புகள்» for Android Notifications is the same word as the app's Callout term, so on the permissions screen 'Notifications' and 'callouts' are indistinguishable. Android Tamil uses அறிவிப்புகள் here, so the question is really whether Callout should move.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_neighbourhood",
+  "source": "Neighborhood",
+  "current": "சுற்றுப்புறம்",
+  "suggested": "வட்டாரம்",
+  "reason": "«சுற்றுப்புறம்» means 'surroundings' and is the app's word for that (callouts_panel_title, siri_short_surroundings), so a place callout 'Neighbourhood' sounds like 'surroundings'. A locality word such as «வட்டாரம்» fits a named district within a town.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_town",
+  "source": "Town",
+  "current": "நகர்",
+  "suggested": "சிறுநகரம்",
+  "reason": "Town «நகர்» vs City «நகரம்» are the same word (short and full form) and can't be told apart by ear. «சிறுநகரம்» keeps them distinct.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_grave_yard",
+  "source": "Graveyard",
+  "current": "கல்லறை",
+  "suggested": "இடுகாடு",
+  "reason": "Same word as osm_tomb («கல்லறை», a single grave). Graveyard is the burial ground: «இடுகாடு».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_tag_ferry_terminal",
+  "source": "Ferry Terminal",
+  "current": "படகுத் துறைமுகம்",
+  "suggested": "ஃபெர்ரி முனையம்",
+  "reason": "«படகுத் துறைமுகம்» is also the translation of osm_marina, while osm_ferry_terminal (same English) is «ஃபெர்ரி முனையம்». Two words for one concept, and one collides with Marina.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_tag_ferry_terminal_named",
+  "source": "%1$s Ferry Terminal",
+  "current": "%1$s படகுத் துறைமுகம்",
+  "suggested": "%1$s ஃபெர்ரி முனையம்",
+  "reason": "Match osm_ferry_terminal_named «%1$s ஃபெர்ரி முனையம்»; «படகுத் துறைமுகம்» is also the Marina word.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_wreck",
+  "source": "Wreck",
+  "current": "சிதைவு",
+  "suggested": "கப்பல் சிதைவு",
+  "reason": "«சிதைவு» alone means 'decay/destruction' (and «சிதைவுகள்» is Debris). OSM historic=wreck is a shipwreck.",
+  "category": "meaning"
+ },
+ {
+  "context": "terms_of_use_medical_safety_disclaimer",
+  "source": "You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\\n\\nSafety Notice\\n\\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.",
+  "current": "Soundscape (1) ஒரு மருத்துவ சாதனமாக வடிவமைக்கப்படவில்லை, நோக்கம் கொள்ளப்படவில்லை அல்லது கிடைக்கச் செய்யப்படவில்லை என்றும், (2) தொழில்முறை மருத்துவ ஆலோசனை, நோயறிதல், சிகிச்சை அல்லது தீர்ப்புக்கு மாற்றாக வடிவமைக்கப்படவில்லை அல்லது நோக்கம் கொள்ளப்படவில்லை என்றும், தொழில்முறை மருத்துவ ஆலோசனை, நோயறிதல், சிகிச்சை அல்லது தீர்ப்புக்குப் பதிலாகவோ மாற்றாகவோ பயன்படுத்தப்படக் கூடாது என்றும் நீங்கள் ஒப்புக்கொள்கிறீர்கள்.\\n\\nபாதுகாப்பு அறிவிப்பு\\n\\nSoundscape ஒரு வழிசெலுத்தல் உதவியாகும், மேலும் இயக்கத் திறன்கள், உங்கள் சுற்றுப்புறத்தை உணர்ந்திருத்தல் மற்றும் நல்ல முடிவெடுத்தலுக்குப் பதிலாகப் பயன்படுத்தப்படக் கூடாது. Soundscape திட்டத்தில் இணைக்கப்பட்டுள்ள வரைபடத் தரவு மூன்றாம் தரப்பு திட்டத்திலிருந்து பெறப்பட்டதால், உங்கள் சுற்றுப்புறத்தில் வழிசெலுத்தும்போது எச்சரிக்கையாக இருங்கள், எனவே வழங்கப்படும் தகவலின் துல்லியத்தில் வரம்புகள் இருக்கக்கூடும்.",
+  "suggested": "Soundscape (1) ஒரு மருத்துவ சாதனமாக வடிவமைக்கப்படவில்லை, நோக்கம் கொள்ளப்படவில்லை அல்லது கிடைக்கச் செய்யப்படவில்லை என்றும், (2) தொழில்முறை மருத்துவ ஆலோசனை, நோயறிதல், சிகிச்சை அல்லது தீர்ப்புக்கு மாற்றாக வடிவமைக்கப்படவில்லை அல்லது நோக்கம் கொள்ளப்படவில்லை என்றும், தொழில்முறை மருத்துவ ஆலோசனை, நோயறிதல், சிகிச்சை அல்லது தீர்ப்புக்குப் பதிலாகவோ மாற்றாகவோ பயன்படுத்தப்படக் கூடாது என்றும் நீங்கள் ஒப்புக்கொள்கிறீர்கள்.\\n\\nபாதுகாப்பு அறிவிப்பு\\n\\nSoundscape ஒரு வழிசெலுத்தல் உதவியாகும், மேலும் இயக்கத் திறன்கள், உங்கள் சுற்றுப்புறத்தை உணர்ந்திருத்தல் மற்றும் நல்ல முடிவெடுத்தலுக்குப் பதிலாகப் பயன்படுத்தப்படக் கூடாது. Soundscape திட்டத்தில் இணைக்கப்பட்டுள்ள வரைபடத் தரவு மூன்றாம் தரப்பு திட்டத்திலிருந்து பெறப்பட்டதால், வழங்கப்படும் தகவலின் துல்லியத்தில் வரம்புகள் இருக்கக்கூடும்; எனவே உங்கள் சுற்றுப்புறத்தில் வழிசெலுத்தும்போது எச்சரிக்கையாக இருங்கள்.",
+  "reason": "Last sentence has its logic scrambled: 'because the data is third-party, be careful, therefore there may be accuracy limits'. Reordered so the third-party source explains the limits and the caution follows. Legal text: worth a human check.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_head_tracking_description",
+  "source": "Position spatial audio relative to where your head is facing, using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.",
+  "current": "ஆதரிக்கப்படும் AirPods, Bose Frames அல்லது வெளிப்புற Bluetooth IMU இலிருந்து இயக்கத் தரவைப் பயன்படுத்தி, உங்கள் தலை எதிர்நோக்கும் திசைக்கு ஏற்ப இடவியல் ஆடியோவை நிலைநிறுத்தும். நீங்கள் நடக்கும்போது தானாகவே அளவீடு செய்யும்.",
+  "suggested": "ஆதரிக்கப்படும் AirPods, Bose Frames அல்லது வெளிப்புற Bluetooth IMU இலிருந்து இயக்கத் தரவைப் பயன்படுத்தி, உங்கள் தலை எதிர்நோக்கும் திசைக்கு ஏற்ப இடவியல் ஆடியோவை நிலைநிறுத்தும். நீங்கள் நடக்கும்போது தானாகவே அளவீடு செய்யும்.",
+  "reason": "Human look: 'spatial audio' is «இடவியல் ஆடியோ» here and in 6 FAQ/help strings, but «இடவியல்» is the usual word for topology; first_launch_welcome_description uses «இடஞ்சார் ஒலி». Pick one term for spatial audio.",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_permissions_title",
+  "source": "App Permissions",
+  "current": "பயன்பாட்டு அனுமதிகள்",
+  "suggested": "செயலி அனுமதிகள்",
+  "reason": "'App' is «செயலி» in most UI strings (settings_explanation, first_launch_soundscape_language_text 'செயலி அமைப்புகளில்') but «பயன்பாடு» here, which also means 'usage' (battery_optimization_title) and makes e.g. «பயன்பாட்டு அனுமதிகள்» readable as 'usage permissions'. The long help/FAQ texts also mix பயன்பாடு/செயலி/ஆப்ஸ்; only the short onboarding strings are fixed here.",
+  "category": "terminology"
+ },
+ {
+  "context": "permissions_required",
+  "source": "The app requires location permissions to be able to run.",
+  "current": "இந்தப் பயன்பாடு இயங்குவதற்கு இருப்பிட அனுமதிகள் தேவை.",
+  "suggested": "இந்தச் செயலி இயங்குவதற்கு இருப்பிட அனுமதிகள் தேவை.",
+  "reason": "'App' is «செயலி» in most UI strings (settings_explanation, first_launch_soundscape_language_text 'செயலி அமைப்புகளில்') but «பயன்பாடு» here, which also means 'usage' (battery_optimization_title) and makes e.g. «பயன்பாட்டு அனுமதிகள்» readable as 'usage permissions'. The long help/FAQ texts also mix பயன்பாடு/செயலி/ஆப்ஸ்; only the short onboarding strings are fixed here.",
+  "category": "terminology"
+ },
+ {
+  "context": "permissions_button",
+  "source": "Change the permissions in app settings",
+  "current": "பயன்பாட்டு அமைப்புகளில் அனுமதிகளை மாற்றவும்",
+  "suggested": "செயலி அமைப்புகளில் அனுமதிகளை மாற்றவும்",
+  "reason": "'App' is «செயலி» in most UI strings (settings_explanation, first_launch_soundscape_language_text 'செயலி அமைப்புகளில்') but «பயன்பாடு» here, which also means 'usage' (battery_optimization_title) and makes e.g. «பயன்பாட்டு அனுமதிகள்» readable as 'usage permissions'. The long help/FAQ texts also mix பயன்பாடு/செயலி/ஆப்ஸ்; only the short onboarding strings are fixed here.",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_beacon_message_3",
+  "source": "This can be changed later in app settings.",
+  "current": "இதை பின்னர் பயன்பாட்டு அமைப்புகளில் மாற்றலாம்.",
+  "suggested": "இதை பின்னர் செயலி அமைப்புகளில் மாற்றலாம்.",
+  "reason": "'App' is «செயலி» in most UI strings (settings_explanation, first_launch_soundscape_language_text 'செயலி அமைப்புகளில்') but «பயன்பாடு» here, which also means 'usage' (battery_optimization_title) and makes e.g. «பயன்பாட்டு அனுமதிகள்» readable as 'usage permissions'. The long help/FAQ texts also mix பயன்பாடு/செயலி/ஆப்ஸ்; only the short onboarding strings are fixed here.",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_change_language_hint",
+  "source": "change the language used for the app",
+  "current": "பயன்பாட்டிற்குப் பயன்படுத்தப்படும் மொழியை மாற்ற",
+  "suggested": "செயலிக்குப் பயன்படுத்தப்படும் மொழியை மாற்ற",
+  "reason": "'App' is «செயலி» in most UI strings (settings_explanation, first_launch_soundscape_language_text 'செயலி அமைப்புகளில்') but «பயன்பாடு» here, which also means 'usage' (battery_optimization_title) and makes e.g. «பயன்பாட்டு அனுமதிகள்» readable as 'usage permissions'. The long help/FAQ texts also mix பயன்பாடு/செயலி/ஆப்ஸ்; only the short onboarding strings are fixed here.",
+  "category": "terminology"
+ }
+]

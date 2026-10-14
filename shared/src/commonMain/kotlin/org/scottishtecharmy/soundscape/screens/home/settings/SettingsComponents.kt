@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.CheckBox
@@ -76,6 +77,42 @@ fun ListPreferenceItem(
     }
 }
 
+/**
+ * A row in a dialog where more than one thing can be chosen. Unlike [ListPreferenceItem] the
+ * choice takes effect as it is tapped rather than on OK, because choosing one can change the
+ * others - see PlacesToCallOut.normalized - and a screen reader user has no way of noticing a
+ * tick disappearing somewhere else in the list unless it has already happened.
+ */
+@Composable
+fun MultiSelectPreferenceItem(
+    description: String,
+    checked: Boolean,
+    onToggle: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.surfaceContainer)
+            .extraSmallPadding()
+            .defaultMinSize(minHeight = spacing.targetSize)
+            .toggleable(value = checked, role = Role.Checkbox) { onToggle() },
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = description,
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.align(Alignment.CenterVertically).weight(1f),
+        )
+        Icon(
+            modifier = Modifier.align(Alignment.CenterVertically).width(spacing.targetSize),
+            imageVector = if (checked) Icons.Filled.CheckBox
+            else Icons.Filled.CheckBoxOutlineBlank,
+            tint = MaterialTheme.colorScheme.onSurface,
+            contentDescription = "",
+        )
+    }
+}
+
 @Composable
 fun ExpandableSectionHeader(
     title: String,
@@ -129,6 +166,37 @@ fun SettingDetails(title: StringResource, description: StringResource, textColor
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(spacing.extraSmall),
         )
+    }
+}
+
+/**
+ * A setting's name on its own, for one whose choices are made in a dialog: the preference
+ * library shows the same title in the row and in the dialog, and a paragraph explaining the
+ * setting is worth reading on the way in but only stands between the user and the options once
+ * the dialog is open. The description goes below it, with the chosen value - see
+ * [SettingDescriptionAndOption].
+ */
+@Composable
+fun SettingTitle(title: StringResource, textColor: Color) {
+    Text(
+        text = stringResource(title),
+        color = textColor,
+        style = MaterialTheme.typography.headlineSmall,
+        modifier = Modifier.padding(spacing.extraSmall),
+    )
+}
+
+/** What a setting means, and what it is set to - see [SettingTitle]. */
+@Composable
+fun SettingDescriptionAndOption(description: StringResource, option: String, textColor: Color) {
+    Column {
+        Text(
+            text = stringResource(description),
+            color = textColor,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(spacing.extraSmall),
+        )
+        ClickableOption(option, textColor)
     }
 }
 

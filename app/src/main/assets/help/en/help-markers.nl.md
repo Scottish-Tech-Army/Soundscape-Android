@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Markeringen
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 80
 lang: nl
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Markeringen
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Een markering is een plaats die u hebt opgeslagen. Dat kan elke plaats zijn die voor u belangrijk is: uw huis, een bushalte, de ingang van een gebouw of een oversteekplaats.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape kondigt uw markeringen aan wanneer u erlangs komt. U kunt een audiobaken op een markering instellen, haar aan een route toevoegen of de dichtstbijzijnde horen met de knop *Markeringen in de buurt*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Markeringen maken
+
+1. Selecteer *Markeringen* op het startscherm en selecteer dan *Nieuw*.
+
+2. Kies *Huidige locatie*, of een plaats uit *Plaatsen in de buurt*.
+
+3. Wijzig de naam als u wilt, en voeg aantekeningen toe. Soundscape leest de aantekeningen voor bij de markering.
+
+4. Selecteer *Gereed*.
+
+U kunt ook elke plaats opslaan die u vindt. Open de *Locatiedetails* van de plaats en selecteer *Opslaan als markering*.
+
+## Markeringen aanpassen
+
+Selecteer de markering op het scherm *Markeringen* en selecteer dan *Markering bewerken*. U kunt de naam, de aantekeningen en de positie wijzigen, of *Markering verwijderen* selecteren. Als u een markering verwijdert, verdwijnt die ook uit uw routes.
 

@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Використання елементів керування медіа
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 110
 lang: uk
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Використання елементів керування медіа
 
-## What is it?
+Soundscape можна керувати медіакнопками на навушниках: *відтворення/пауза*, *далі* та *назад*. Це працює з дротовими та Bluetooth-навушниками. Це працює й тоді, коли Soundscape у фоновому режимі або телефон заблоковано.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Не всі навушники мають усі три кнопки.
 
-## When would I use it?
+Кнопки керують Soundscape, лише коли жодна інша програма не відтворює звук. Якщо ви слухаєте музику чи подкаст, кнопки керують тією програмою.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Кнопки можуть працювати двома способами: *Оригінальний режим* або *Аудіо‑меню*. Щоб вибрати, відкрийте меню й виберіть *Налаштування*, потім *Керування медіа*.
 
-## How does it work?
+## Оригінальний режим
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Відтворення/пауза* вимикає звук маячка. Натисніть ще раз, щоб знову чути маячок.
 
- Original mode. 
+*Далі* переміщує маячок до наступної зупинки, коли ви йдете маршрутом. В інших випадках оголошує *Навколо мене*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Назад* переміщує маячок до попередньої зупинки, коли ви йдете маршрутом. В інших випадках змінює параметр *Деталізація оголошень*. Кожне натискання переходить на один рівень тихіше: *Докладний*, *Спрощений*, *Основний*, потім *Беззвучний*. Ще одне натискання повертає рівень *Докладний*. Soundscape промовляє назву нового рівня.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Аудіо‑меню
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Аудіо-меню дає більше дій із тими самими трьома кнопками. Soundscape читає кожен пункт уголос.
 
+*Далі* переходить до наступного пункту. Після останнього пункту повертається до першого.
 
+*Відтворення/пауза* вибирає пункт, який ви щойно почули.
 
-Audio menu. 
+*Назад* змінює параметр *Деталізація оголошень*, так само як *Оригінальний режим*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Меню починається з чотирьох груп: *Що навколо*, *Керування маршрутом*, *Розпочати маршрут* і *Запустити звуковий маячок*. Виберіть групу, щоб почути її дії. Групи *Що навколо* та *Керування маршрутом* закінчуються пунктом *Головне меню*, який повертає до чотирьох груп.
 

@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Percorsi
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 90
 lang: it
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Percorsi
 
-## What is it?
+Un percorso è un elenco di luoghi, chiamati waypoint, che visiti in ordine. Soundscape imposta un audiofaro sul primo waypoint. Quando arrivi, te lo dice e sposta l'audiofaro su quello successivo.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Usa un percorso per imparare un tragitto nuovo, o per non perdere la strada in uno che conosci.
 
-## When would I use it?
+## Creare un percorso
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Seleziona *Percorsi* nella schermata iniziale, poi seleziona *Nuovo*.
 
-## How does it work?
+2. Dai un nome al percorso. Puoi aggiungere una descrizione.
 
-**Creating a route :**
+3. Seleziona *Aggiungi waypoint* e scegli degli indicatori. Puoi anche aggiungere la tua posizione attuale o un luogo nelle vicinanze.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Seleziona *Fatto*.
 
-**Editing a route :**
+## Seguire un percorso
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Seleziona il percorso nella schermata *Percorsi*, poi seleziona *Avvia Percorso*. Per seguirlo al contrario, seleziona *Avvia Percorso in senso inverso*. Nella schermata iniziale, *Waypoint successivo* e *Waypoint precedente* spostano l'audiofaro lungo il percorso. *Interrompi Percorso* lo termina.
 
-**Sharing a route :**
+## Modificare un percorso
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Seleziona il percorso nella schermata *Percorsi*, poi seleziona *Modifica percorso*. Puoi aggiungere, rimuovere e riordinare i waypoint, cambiare il nome e la descrizione, oppure eliminare il percorso.
+
+## Condividere un percorso
+
+Seleziona il percorso nella schermata *Percorsi*, poi seleziona *Condividi*.
 

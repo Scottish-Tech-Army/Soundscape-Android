@@ -1,0 +1,92 @@
+# Thai (th) — translation decisions
+
+| | |
+|---|---|
+| Weblate component | `androidkmp` |
+| Corpus at last sweep | 1522 units (2026-09-24) |
+| Last native-speaker input | **none yet** |
+| Register | «คุณ» (438), polite and neutral, `unconfirmed` |
+
+Read with [`_common.md`](_common.md).
+
+## Status of this file
+
+**No native speaker has reviewed Thai.** It has been AI-only since
+2026-08-22. The authored Siri phrases (`iosApp/iosApp/th.lproj/AppShortcuts.strings`)
+match the help text. The main risk is two detail levels that sound too alike.
+Questions: `docs/translation-questions/questions-th.md` (Q1…Q8).
+
+## Glossary
+
+| English | Thai | Status | Note |
+|---|---|---|---|
+| Callout | การแจ้งเตือน(ด้วยเสียง) | `unconfirmed` | 67. «การแจ้งเตือน» is also Android's word for notifications. See Q1 |
+| Audio Beacon | บีคอนเสียง | `unconfirmed` | |
+| Marker | หมุด | `unconfirmed` | "Pin". Natural |
+| Waypoint | จุดผ่านทาง | `unconfirmed` | |
+| Landmarks | จุดสังเกต | `unconfirmed` | |
+| Intersection | ทางแยก | `unconfirmed` | |
+| Sleep / Snooze | สลีป / สนูซ | `unconfirmed` | Loanwords (C12) |
+| Detailed / Simplified / Essential / Silent | ละเอียด / แบบง่าย / เฉพาะที่สำคัญ / เงียบสนิท | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was ละเอียด / สมดุล / **เงียบ / เงียบสนิท** |
+| dead end | ทางตัน | `unconfirmed` | |
+
+## Rules
+
+### TH-T1 — Quiet and Silent share a root (`unconfirmed`)
+
+«เงียบ» (quiet) vs «เงียบสนิท» (completely quiet). This is the Polish PL-T1
+problem again, and worse, because one is a prefix of the other. English
+"Quiet" means *fewer* callouts, not almost no sound. «กระชับ» or «สั้น»
+("brief", like mr/te/ur/ko) would separate them. 14 strings contain
+«เงียบ»: the two level names, `callouts_verbosity_description`,
+`action_no_such_callout_detail`, the `help_text_automatic_callouts_*` and
+`help_text_assistant_commands*` help, and three FAQ entries. Some of these
+use «เงียบ» in its ordinary sense (`faq_tip_beacon_quiet`,
+`help_text_remote_control_how`), so check each one before sweeping (C5). `Localizable.xcstrings` has no Thai level
+names (checked 2026-09-24), so nothing outside Weblate moves.
+
+### TH-C1 — Siri phrases are Thai and live outside Weblate (`agreed`)
+
+The same coupling as FR-C1: a phrase change must land in `th.lproj`, in
+`Localizable.xcstrings` and in the two `help_text_assistant_*_ios` strings.
+
+## Rejected
+
+Nothing yet.
+
+## Open questions
+
+1. Callout «การแจ้งเตือน»: confused with phone notifications?
+2. The four detail levels (ละเอียด / แบบง่าย / เฉพาะที่สำคัญ / เงียบสนิท), renamed 2026-09-30 (C22), which also ends the «เงียบ» / «เงียบสนิท» clash: clear by ear? (TH-T1)
+3. Waypoint «จุดผ่านทาง»: natural?
+4. Sleep/Snooze «สลีป» / «สนูซ»: understood?
+5. Siri phrases «Soundscape รอบตัว / เส้นทาง / บีคอน…»: natural to say?
+6. Is «คุณ» right?
+7. Beacon «บีคอนเสียง»: natural? (AI-only term, asked for confirmation)
+8. Anything else.
+
+## Provenance
+
+**2026-08-22 → 2026-09-24 — AI passes only.**
+**2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
+
+**2026-09-29 — Stale beacon FAQ fixed (C16).** `faq_how_to_use_beacon_answer` had been translated from an older English. Three passages were replaced to match the current source:
+- the sailboat-tacking sentence, now "you may still need to make navigation choices along the way to work around obstacles";
+- "turn the phone slowly", now "slowly turn in a circle";
+- "the lighthouse metaphor … has natural implications", now "This design has a few natural results".
+
+The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
+
+**2026-09-29 — full review.** 5 fixes. «รายละเอียดสถานที่» → «รายละเอียดตำแหน่ง», the screen title (3 strings); «*ปุ่มเปิดเสียงบีคอน*» → «ปุ่ม *เปิดเสียงบีคอน*» (2). Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** TH-T1.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 21 flagged, 20 applied in `aa8ef5cbe`. Findings: `translations/review/2026-09-30-all-languages/th-findings.json`.
+Most serious fixed:
+- `directions_away_from_settlement`: %2$s is a distance ("away from Strathblane, 5.0 km behind you");
+- `directions_name_is_currently`: %2$s is a distance plus direction ("700 metres, north west");
+- `directions_name_is_currently_street_address`: Same sentence as directions_name_is_currently (translator note asks to keep them consistent);
+Also changed the same day:
+- `7ca86e582`: `new_version_info_details` got the English paragraph breaks back, which the release-notes dialog now splits Thai on.
+
+**2026-09-30 — `osm_path` no longer shares the Routes word.** It said «เส้นทางเดิน», the same word as `routes_title`, so a footpath sounded like a route. Now «ทางเดิน», a footpath word (AI choice, `unconfirmed`). The English comment now says Path means a footpath and must not share a word with Routes.

@@ -1,0 +1,922 @@
+[
+ {
+  "context": "new_version_info_details",
+  "category": "formatting",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Це велике оновлення Soundscape. Режим подорожі значно покращено. Коли ви подорожуєте автомобілем або автобусом, Soundscape тепер оголошує номери доріг, напрямок вашого руху та найближчі населені пункти. Він також оголошує, коли ви перетинаєте річки, канали, естуарії та затоки. Будь ласка, оновіть свої офлайн-карти, щоб отримати ці нові можливості. Для користувачів у Великій Британії опис автобусних зупинок тепер значно кращий. Режим сну тепер прокидається автоматично, коли виявляє, що ви знову рухаєтеся. Вам більше не потрібно пам'ятати, щоб розбудити його самостійно. Ми реорганізували базовий код, щоб мати змогу створити застосунок для iOS з того самого коду. Це означає, що в майбутньому ми зможемо випустити застосунок для iOS з усіма функціями, які ми створили для Android. Будь ласка, і надалі повідомляйте про будь-які проблеми, з якими ви стикаєтеся, якими б незначними вони не були, за допомогою опції «Звернутися до служби підтримки» в головному меню.",
+  "suggested": "\nЦе велике оновлення Soundscape.\n\nРежим подорожі значно покращено. Коли ви подорожуєте автомобілем або автобусом, Soundscape тепер оголошує номери доріг, напрямок вашого руху та найближчі населені пункти. Він також оголошує, коли ви перетинаєте річки, канали, естуарії та затоки. Будь ласка, оновіть свої офлайн-карти, щоб отримати ці нові можливості. Для користувачів у Великій Британії опис автобусних зупинок тепер значно кращий.\n\nРежим сну тепер прокидається автоматично, коли виявляє, що ви знову рухаєтеся. Вам більше не потрібно пам'ятати, щоб розбудити його самостійно.\n\nМи реорганізували базовий код, щоб мати змогу створити застосунок для iOS з того самого коду. Це означає, що в майбутньому ми зможемо випустити застосунок для iOS з усіма функціями, які ми створили для Android.\n\nБудь ласка, і надалі повідомляйте про будь-які проблеми, з якими ви стикаєтеся, якими б незначними вони не були, за допомогою опції «Звернутися до служби підтримки» в головному меню.\n",
+  "reason": "All four paragraph breaks and the leading/trailing line breaks of the English were collapsed into one paragraph; the dialog splits on paragraph breaks."
+ },
+ {
+  "context": "routes_no_routes_hint_2",
+  "category": "terminology",
+  "source": "As you walk your route, Soundscape will announce each waypoint when you arrive. The Audio Beacon will then automatically move to the next waypoint.",
+  "current": "Коли ви йдете своїм маршрутом, Soundscape повідомлятиме вас про прибуття до кожної зупинки. Після цього звуковий маячок автоматично переміститься до наступної точки.",
+  "suggested": "Коли ви йдете своїм маршрутом, Soundscape повідомлятиме вас про прибуття до кожної зупинки. Після цього звуковий маячок автоматично переміститься до наступної зупинки.",
+  "reason": "Waypoint is «зупинка» (glossary, agreed); the second mention reverted to «точки»."
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "category": "terminology",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Створення маршруту:**\\n\\nСпочатку перейдіть до *Мітки та Маршрути*, виберіть вкладку *Маршрути*, а потім натисніть кнопку *Новий маршрут*. Дайте маршруту назву та, за бажанням, опис, потім додайте зупинки під час руху або виберіть їх зі свого списку міток. Ви можете в будь-який момент змінити порядок точок вздовж маршруту, відредагувавши його.",
+  "suggested": "**Створення маршруту:**\\n\\nСпочатку перейдіть до *Мітки та Маршрути*, виберіть вкладку *Маршрути*, а потім натисніть кнопку *Новий маршрут*. Дайте маршруту назву та, за бажанням, опис, потім додайте зупинки під час руху або виберіть їх зі свого списку міток. Ви можете в будь-який момент змінити порядок зупинок уздовж маршруту, відредагувавши його.",
+  "reason": "Waypoint is «зупинка»; «порядок точок» is a leftover of the old «маршрутна точка» rendering."
+ },
+ {
+  "context": "help_text_automatic_callouts_when_3",
+  "category": "terminology",
+  "source": "**When you need silence :**\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "current": "**Коли вам потрібна тиша**:\\n\\nЯкщо ви збираєтеся переходити дорогу або просто потрібно, щоб програма вас не відволікала, ви можете вимкнути голосові підказки. Коли голосові підказки вимкнено, програма повідомлятиме вам інформацію лише в тому випадку, якщо ви вручну натиснете одну з кнопок *Моє місцезнаходження*, *Мітки поблизу*, *Навколо мене* або *Попереду мене*.",
+  "suggested": "**Коли вам потрібна тиша**:\\n\\nЯкщо ви збираєтеся переходити дорогу або просто потрібно, щоб програма вас не відволікала, ви можете вимкнути оголошення. Коли оголошення вимкнено, програма повідомлятиме вам інформацію лише в тому випадку, якщо ви вручну натиснете одну з кнопок *Моє місцезнаходження*, *Мітки поблизу*, *Навколо мене* або *Попереду мене*.",
+  "reason": "Callout is «оголошення» (UK-T4 confirmed); «голосові підказки» is the rejected «підказка» term, and contradicts the surrounding help."
+ },
+ {
+  "context": "faq_supported_headsets_answer",
+  "category": "terminology",
+  "source": "Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.",
+  "current": "Які навушники використовувати з Soundscape — це справа особистих вподобань, і кожен варіант має свої переваги та недоліки. Єдина вимога — використовувати стереонавушники, щоб ви могли скористатися перевагами 3D просторових аудіо підказок Soundscape.",
+  "suggested": "Які навушники використовувати з Soundscape — це справа особистих вподобань, і кожен варіант має свої переваги та недоліки. Єдина вимога — використовувати стереонавушники, щоб ви могли скористатися перевагами просторових 3D-оголошень Soundscape.",
+  "reason": "Callout is «оголошення» (UK-T4 confirmed), not the rejected «підказка»."
+ },
+ {
+  "context": "faq_callouts_stopping_in_vehicle_answer",
+  "category": "terminology",
+  "source": "In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.",
+  "current": "Щоб кількість повідомлень не стала надмірною, деякі категорії, наприклад перехрестя, не оголошуються автоматично під час руху у транспортному засобі.",
+  "suggested": "Щоб кількість оголошень не стала надмірною, деякі категорії, наприклад перехрестя, не оголошуються автоматично під час руху у транспортному засобі.",
+  "reason": "Callouts are «оголошення» everywhere else; «повідомлень» (notifications) is a third word for the same thing."
+ },
+ {
+  "context": "tour_nearby_markers",
+  "category": "terminology",
+  "source": "The final button is Nearby Markers, which announces saved places around you. Tap Nearby Markers to try that.",
+  "current": "Остання кнопка — «Навколишні мітки», яка оголошує збережені місця навколо вас. Натисніть «Навколишні мітки», щоб спробувати.",
+  "suggested": "Остання кнопка — «Мітки поблизу», яка оголошує збережені місця навколо вас. Натисніть «Мітки поблизу», щоб спробувати.",
+  "reason": "The button is «Мітки поблизу» (callouts_nearby_markers); the tutorial tells the user to tap «Навколишні мітки», which doesn't exist. The 2026-09-29 help fix missed the tour."
+ },
+ {
+  "context": "help_orient_page_title",
+  "category": "terminology",
+  "source": "Around Me",
+  "current": "Навколо Мене",
+  "suggested": "Навколо мене",
+  "reason": "The button reads «Навколо мене» (lower-case «мене», ui_action_button_around_me); the 2026-09-29 lower-casing reached the help bodies' plain mentions but not this title, which the help cites as the UI name."
+ },
+ {
+  "context": "help_explore_page_title",
+  "category": "terminology",
+  "source": "Ahead of Me",
+  "current": "Попереду Мене",
+  "suggested": "Попереду мене",
+  "reason": "The button reads «Попереду мене» (ui_action_button_ahead_of_me); capital «Мене» left over from before the 2026-09-29 fix."
+ },
+ {
+  "context": "help_text_around_me_what",
+  "category": "terminology",
+  "source": "The *Around Me* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *Around Me* is intended to help you orient yourself to your surroundings.",
+  "current": "Кнопка *\"Навколо Мене\"* дозволяє вам дізнатися про одне місце у кожному з чотирьох квадрантів навколо вас (попереду, праворуч, позаду та ліворуч). *\"Навколо Мене\"* призначена для того, щоб допомогти вам зорієнтуватися на місцевості.",
+  "suggested": "Кнопка *Навколо мене* дозволяє вам дізнатися про одне місце у кожному з чотирьох квадрантів навколо вас (попереду, праворуч, позаду та ліворуч). *Навколо мене* призначена для того, щоб допомогти вам зорієнтуватися на місцевості.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these. Also drops the stray quotes inside *…*, which no other UI name has."
+ },
+ {
+  "context": "help_text_around_me_when",
+  "category": "terminology",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "current": "Коли ви намагаєтесь зорієнтуватися та ознайомитися з місцевістю, використовуйте *\"Навколо Мене\"*, щоб дізнатися про місця навколо вас.",
+  "suggested": "Коли ви намагаєтесь зорієнтуватися та ознайомитися з місцевістю, використовуйте *Навколо мене*, щоб дізнатися про місця навколо вас.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these. Also drops the stray quotes inside *…*, which no other UI name has."
+ },
+ {
+  "context": "help_text_around_me_how",
+  "category": "terminology",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "Як і з усіма чотирма кнопками внизу головного екрана, перш ніж натиснути кнопку *Навколо Мене*, тримайте телефон горизонтально (екраном догори) і верхньою частиною телефону в напрямку, в якому ви дивитеся. Це працює як компас, що дозволяє програмі визначити, в якому напрямку ви дивитесь. Просто торкніться кнопки *Навколо Мене*, і ви почуєте чотири точки інтересу поблизу вас.",
+  "suggested": "Як і з усіма чотирма кнопками внизу головного екрана, перш ніж натиснути кнопку *Навколо мене*, тримайте телефон горизонтально (екраном догори) і верхньою частиною телефону в напрямку, в якому ви дивитеся. Це працює як компас, що дозволяє програмі визначити, в якому напрямку ви дивитесь. Просто торкніться кнопки *Навколо мене*, і ви почуєте чотири точки інтересу поблизу вас.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these."
+ },
+ {
+  "context": "help_text_ahead_of_me_what",
+  "category": "terminology",
+  "source": "The *Ahead of Me* button tells you about up to five things ahead of you. *Ahead of Me* is intended to help you explore the way ahead of yourself when you are learning about a new area.",
+  "current": "Кнопка *Попереду Мене* повідомляє про до п'яти об'єктів попереду вас. *Попереду Мене* призначена, щоб допомогти вам дослідити шлях попереду, коли ви знайомитеся з новою місцевістю.",
+  "suggested": "Кнопка *Попереду мене* повідомляє про до п'яти об'єктів попереду вас. *Попереду мене* призначена, щоб допомогти вам дослідити шлях попереду, коли ви знайомитеся з новою місцевістю.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these."
+ },
+ {
+  "context": "help_text_ahead_of_me_when",
+  "category": "terminology",
+  "source": "When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.",
+  "current": "Коли ви йдете вулицею, спробуйте використовувати *\"Попереду Мене\"*, щоб дізнатися про місця та об'єкти, які знаходяться з обох боків вулиці попереду.",
+  "suggested": "Коли ви йдете вулицею, спробуйте використовувати *Попереду мене*, щоб дізнатися про місця та об'єкти, які знаходяться з обох боків вулиці попереду.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these. Also drops the stray quotes inside *…*, which no other UI name has."
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "category": "terminology",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Як і у випадку з усіма чотирма кнопками в нижній частині головного екрана, перш ніж натиснути кнопку *Попереду Мене*, тримайте телефон горизонтально (екраном вгору) і верхньою частиною телефона в напрямку, куди ви дивитесь. Це діє як компас, дозволяючи програмі визначити, в якому напрямку ви дивитеся. Просто натисніть кнопку *Попереду Мене*, і ви почуєте інформацію про кілька точок інтересу, що знаходяться перед вами.",
+  "suggested": "Як і у випадку з усіма чотирма кнопками в нижній частині головного екрана, перш ніж натиснути кнопку *Попереду мене*, тримайте телефон горизонтально (екраном вгору) і верхньою частиною телефона в напрямку, куди ви дивитесь. Це діє як компас, дозволяючи програмі визначити, в якому напрямку ви дивитеся. Просто натисніть кнопку *Попереду мене*, і ви почуєте інформацію про кілька точок інтересу, що знаходяться перед вами.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these."
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "category": "terminology",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "Існує 2 режими роботи кнопок керування медіа. Режим можна вибрати в розділі *Налаштування* *Керування медіа*. Режими:\\n\\n *Оригінальний режим*. \\n\\n⏯ Відтворити/Пауза: вмикає або вимикає звук маячка. \\n\\n⏭ Далі: якщо відтворюється маршрут — перемістити звуковий маячок до наступної зупинки в маршруті. Якщо маршрут не відтворюється — оголосити *Навколо Мене*.\\n\\n⏮ Назад: якщо відтворюється маршрут — перемістити звуковий маячок до попередньої зупинки в маршруті. Якщо маршрут не відтворюється — змінити *Деталізацію оголошень* на один рівень тихіше з кожним натисканням: *Докладний*, *Спрощений*, *Основний*, *Беззвучний* і знову *Докладний*.\\n\\n\\n\\n*Аудіо-меню*. \\n\\n\\n\\n⏭ Далі переміщує вас по списку пунктів меню, які додаток зачитує голосом, і після останнього повертається до першого. ⏯ Відтворити/Пауза потім змушує додаток виконати описаний пункт. Є один верхній рівень меню, у якому опціями є лише підменю. Кожне підменю групує набір подібних дій.\\n\\n⏮ Назад не переміщує вас по меню. Натомість вона змінює *Деталізацію оголошень* так само, як в оригінальному режимі, тож та сама кнопка стишує додаток у будь-якому з режимів.",
+  "suggested": "Існує 2 режими роботи кнопок керування медіа. Режим можна вибрати в розділі *Налаштування* *Керування медіа*. Режими:\\n\\n *Оригінальний режим*. \\n\\n⏯ Відтворити/Пауза: вмикає або вимикає звук маячка. \\n\\n⏭ Далі: якщо відтворюється маршрут — перемістити звуковий маячок до наступної зупинки в маршруті. Якщо маршрут не відтворюється — оголосити *Навколо мене*.\\n\\n⏮ Назад: якщо відтворюється маршрут — перемістити звуковий маячок до попередньої зупинки в маршруті. Якщо маршрут не відтворюється — змінити *Деталізацію оголошень* на один рівень тихіше з кожним натисканням: *Докладний*, *Спрощений*, *Основний*, *Беззвучний* і знову *Докладний*.\\n\\n\\n\\n*Аудіо-меню*. \\n\\n\\n\\n⏭ Далі переміщує вас по списку пунктів меню, які додаток зачитує голосом, і після останнього повертається до першого. ⏯ Відтворити/Пауза потім змушує додаток виконати описаний пункт. Є один верхній рівень меню, у якому опціями є лише підменю. Кожне підменю групує набір подібних дій.\\n\\n⏮ Назад не переміщує вас по меню. Натомість вона змінює *Деталізацію оголошень* так само, як в оригінальному режимі, тож та сама кнопка стишує додаток у будь-якому з режимів.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these."
+ },
+ {
+  "context": "help_text_assistant_commands",
+  "category": "terminology",
+  "source": "You can ask Soundscape to:\\n\\nDescribe *My Location*, what is *Around Me*, or what is *Ahead of Me*.\\n\\nCall out the saved markers near you.\\n\\nStart one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.\\n\\nSet an audio beacon on one of your saved markers by name, or switch the beacon off.\\n\\nSet the callout detail to *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\nRead back the names of your saved routes or your saved markers.",
+  "current": "Ви можете попросити Soundscape:\\n\\nОписати *Моє місцезнаходження*, що є *Навколо Мене* або що є *Попереду Мене*.\\n\\nОголосити збережені мітки поблизу вас.\\n\\nЗапустити один зі збережених маршрутів за назвою, перейти до наступної зупинки, повернутися до попередньої, вимкнути звук маячка або зупинити маршрут.\\n\\nВстановити звуковий маячок на одну зі збережених міток за назвою або вимкнути маячок.\\n\\nВстановити деталізацію оголошень на *Беззвучний*, *Основний*, *Спрощений* або *Докладний*, щоб змінити, скільки Soundscape говорить під час ходьби. *Беззвучний* вимикає автоматичні оголошення.\\n\\nЗачитати назви ваших збережених маршрутів або ваших збережених міток.",
+  "suggested": "Ви можете попросити Soundscape:\\n\\nОписати *Моє місцезнаходження*, що є *Навколо мене* або що є *Попереду мене*.\\n\\nОголосити збережені мітки поблизу вас.\\n\\nЗапустити один зі збережених маршрутів за назвою, перейти до наступної зупинки, повернутися до попередньої, вимкнути звук маячка або зупинити маршрут.\\n\\nВстановити звуковий маячок на одну зі збережених міток за назвою або вимкнути маячок.\\n\\nВстановити деталізацію оголошень на *Беззвучний*, *Основний*, *Спрощений* або *Докладний*, щоб змінити, скільки Soundscape говорить під час ходьби. *Беззвучний* вимикає автоматичні оголошення.\\n\\nЗачитати назви ваших збережених маршрутів або ваших збережених міток.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these."
+ },
+ {
+  "context": "help_text_assistant_commands_ios",
+  "category": "terminology",
+  "source": "*\"Soundscape surroundings\"* — then *My Location*, *Around Me*, *Ahead of Me* or *Nearby Markers*.\\n\\n*\"Soundscape route\"* — then *Next Waypoint*, *Previous Waypoint*, *Mute Beacon* or *Stop*.\\n\\n*\"Soundscape start route\"* — then the name of one of your saved routes.\\n\\n*\"Soundscape beacon\"* — then the name of one of your saved markers.\\n\\n*\"Soundscape stop beacon\"*.\\n\\n*\"Soundscape detail\"* — then *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\n*\"Soundscape list\"* — then *Routes*, *Markers* or *Commands*.\\n\\nSaying *\"Soundscape list commands\"* reads this list of commands back to you.",
+  "current": "*Soundscape surroundings* — потім *Моє місцезнаходження*, *Навколо Мене*, *Попереду Мене* або *Мітки поблизу*.\\n\\n*Soundscape route* — потім *Наступна зупинка*, *Попередня зупинка*, *Вимкнути звук маячка* або *Зупинити*.\\n\\n*Soundscape start route* — потім назва одного з ваших збережених маршрутів.\\n\\n*Soundscape beacon* — потім назва однієї з ваших збережених міток.\\n\\n*Soundscape stop beacon*.\\n\\n*Soundscape detail* — потім *Беззвучний*, *Основний*, *Спрощений* або *Докладний*, щоб змінити, скільки Soundscape говорить під час ходьби. *Беззвучний* вимикає автоматичні оголошення.\\n\\n*Soundscape list* — потім *Маршрути*, *Мітки* або *Команди*.\\n\\nЯкщо сказати *Soundscape list commands*, вам зачитають цей список команд.",
+  "suggested": "*Soundscape surroundings* — потім *Моє місцезнаходження*, *Навколо мене*, *Попереду мене* або *Мітки поблизу*.\\n\\n*Soundscape route* — потім *Наступна зупинка*, *Попередня зупинка*, *Вимкнути звук маячка* або *Зупинити*.\\n\\n*Soundscape start route* — потім назва одного з ваших збережених маршрутів.\\n\\n*Soundscape beacon* — потім назва однієї з ваших збережених міток.\\n\\n*Soundscape stop beacon*.\\n\\n*Soundscape detail* — потім *Беззвучний*, *Основний*, *Спрощений* або *Докладний*, щоб змінити, скільки Soundscape говорить під час ходьби. *Беззвучний* вимикає автоматичні оголошення.\\n\\n*Soundscape list* — потім *Маршрути*, *Мітки* або *Команди*.\\n\\nЯкщо сказати *Soundscape list commands*, вам зачитають цей список команд.",
+  "reason": "Button name should be lower-case «мене» as on the button (ui_action_button_around_me / _ahead_of_me); 2026-09-29 fix missed these."
+ },
+ {
+  "context": "tour_around_me",
+  "category": "terminology",
+  "source": "The next button is Around Me. This tells you what is nearby in each direction. Tap Around Me.",
+  "current": "Наступна кнопка — «Навколо Мене». Вона повідомляє, що знаходиться поблизу в кожному напрямку. Натисніть «Навколо Мене».",
+  "suggested": "Наступна кнопка — «Навколо мене». Вона повідомляє, що знаходиться поблизу в кожному напрямку. Натисніть «Навколо мене».",
+  "reason": "Button name should be lower-case «мене», as on the button; the tutorial was missed by the 2026-09-29 fix."
+ },
+ {
+  "context": "tour_ahead",
+  "category": "terminology",
+  "source": "The next button is Ahead of Me. It tells you what is in front of you. Tap Ahead of Me.",
+  "current": "Далі — кнопка «Попереду Мене». Вона розповідає, що знаходиться перед вами. Натисніть «Попереду Мене».",
+  "suggested": "Далі — кнопка «Попереду мене». Вона розповідає, що знаходиться перед вами. Натисніть «Попереду мене».",
+  "reason": "Button name should be lower-case «мене», as on the button; the tutorial was missed by the 2026-09-29 fix."
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "category": "terminology",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "На екрані *\"Редагування\"* ви також можете видалити мітку, якщо вона вам більше не потрібна.",
+  "suggested": "На екрані *Редагувати мітку* ви також можете видалити мітку, якщо вона вам більше не потрібна.",
+  "reason": "The *Edit* screen is markers_edit_screen_title_edit, now «Редагувати мітку» (2026-09-29); «\"Редагування\"» names no screen and carries stray quotes."
+ },
+ {
+  "context": "help_config_voices_content_ios",
+  "category": "terminology",
+  "source": "Soundscape can use any of the voices you have downloaded in the iOS Settings app, except for the Siri voices, which are not available to Soundscape. We recommend choosing one of the higher quality *Enhanced* voices, but you will first need to download a voice. You can download voices in the iOS Settings app by going to Accessibility > Read & Speak > Voices and tapping on a voice. (In iOS versions prior to 26, *Read & Speak* is known as *Spoken Content*.) Within the Soundscape app, to select the voice you want, go to *Settings* from the main menu and then from *Audio* select *Voices*.",
+  "current": "Soundscape може використовувати будь-який голос, який ви завантажили в програмі «Налаштування» iOS, окрім голосів Siri — вони недоступні для Soundscape. Рекомендуємо обрати один із якісніших голосів *Enhanced*, але спершу потрібно завантажити голос. Голоси можна завантажити в програмі «Налаштування» iOS, перейшовши до Accessibility > Read & Speak > Voices і торкнувшись потрібного голосу. (У версіях iOS до 26 *Read & Speak* називається *Spoken Content*.) Щоб вибрати потрібний голос у програмі Soundscape, перейдіть до *Налаштування* з головного меню, а потім у розділі *Аудіо* виберіть *Голоси*.",
+  "suggested": "Soundscape може використовувати будь-який голос, який ви завантажили в програмі «Параметри» iOS, окрім голосів Siri — вони недоступні для Soundscape. Рекомендуємо обрати один із якісніших голосів *Enhanced*, але спершу потрібно завантажити голос. Голоси можна завантажити в програмі «Параметри» iOS, перейшовши до Accessibility > Read & Speak > Voices і торкнувшись потрібного голосу. (У версіях iOS до 26 *Read & Speak* називається *Spoken Content*.) Щоб вибрати потрібний голос у програмі Soundscape, перейдіть до *Налаштування* з головного меню, а потім у розділі *Аудіо* виберіть *Голоси*.",
+  "reason": "The iOS Settings app is «Параметри» in Ukrainian iOS, as help_text_assistant_notes_ios already says; «Налаштування» here clashes and also collides with Soundscape's own *Налаштування* later in the same string."
+ },
+ {
+  "context": "directions_cardinal_north_east_abb",
+  "category": "terminology",
+  "source": "NE",
+  "current": "П Сх",
+  "suggested": "ПнСх",
+  "reason": "Inconsistent abbreviation set: N is «Пн» but NE is «П Сх». Standard Ukrainian compass abbreviations are ПнСх / ПдСх / ПдЗх / ПнЗх."
+ },
+ {
+  "context": "directions_cardinal_south_east_abb",
+  "category": "terminology",
+  "source": "SE",
+  "current": "Пд Сх",
+  "suggested": "ПдСх",
+  "reason": "Standard abbreviation is «ПдСх» (no space), matching the set."
+ },
+ {
+  "context": "directions_cardinal_south_west_abb",
+  "category": "terminology",
+  "source": "SW",
+  "current": "Пд З",
+  "suggested": "ПдЗх",
+  "reason": "W is «Зх» elsewhere; «Пд З» mixes forms. Standard is «ПдЗх»."
+ },
+ {
+  "context": "directions_cardinal_north_west_abb",
+  "category": "terminology",
+  "source": "NW",
+  "current": "П З",
+  "suggested": "ПнЗх",
+  "reason": "«П З» uses neither «Пн» nor «Зх». Standard is «ПнЗх»."
+ },
+ {
+  "context": "osm_motorcycle_parking",
+  "category": "terminology",
+  "source": "Motorcycle Parking",
+  "current": "Паркування для мотоциклів",
+  "suggested": "Парковка для мотоциклів",
+  "reason": "«Паркування» is the act of parking; the place is «Парковка», as in osm_parking_lot and osm_bicycle_parking."
+ },
+ {
+  "context": "help_text_my_location_what",
+  "category": "meaning",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "Кнопка *\"Моє місцезнаходження\"* швидко надає вам інформацію, яка допомагає з'ясувати, де ви зараз знаходитесь. *\"Моє місцезнаходження\"* повідомляє вам про ваше поточне місцезнаходження, включаючи деталі, як напрямок, в якому ви рухаєтесь, де знаходяться найближчі дороги чи перехрестя та де розташовані найближчі точки інтересу.",
+  "suggested": "Кнопка *Моє місцезнаходження* швидко надає вам інформацію, яка допомагає з'ясувати, де ви зараз знаходитесь. *Моє місцезнаходження* повідомляє вам про ваше поточне місцезнаходження, включаючи деталі, як напрямок, у якому ви дивитеся, де знаходяться найближчі дороги чи перехрестя та де розташовані найближчі точки інтересу.",
+  "reason": "\"the direction you are facing\" became «напрямок, в якому ви рухаєтесь» (moving). My Location is used standing still, holding the phone. Also drops stray quotes inside *…*."
+ },
+ {
+  "context": "faq_why_does_beacon_disappear_answer",
+  "category": "meaning",
+  "source": "Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.",
+  "current": "Звуковий маячок Soundscape - це, загалом, направлений звуковий сигнал, який показує, де знаходиться ваш пункт призначення відносно напрямку, в якому ви рухаєтесь. Коли Soundscape не може визначити напрямок вашого руху, програма знижує гучність маячка. Найчастіше це трапляється, якщо ви йшли з телефоном у кишені або сумці та зупинилися, наприклад, щоб перейти вулицю. Гучність маячка збільшиться, коли ви знову почнете рухатися, або якщо ви триматимете телефон горизонтально і направите його в напрямку, в якому ви рухаєтесь.",
+  "suggested": "Звуковий маячок Soundscape - це, загалом, направлений звуковий сигнал, який показує, де знаходиться ваш пункт призначення відносно напрямку, куди ви дивитеся. Коли Soundscape не може визначити, куди ви дивитеся, програма знижує гучність маячка. Найчастіше це трапляється, якщо ви йшли з телефоном у кишені або сумці та зупинилися, наприклад, щоб перейти вулицю. Гучність маячка збільшиться, коли ви знову почнете рухатися, або якщо ви триматимете телефон горизонтально і направите його туди, куди ви дивитеся.",
+  "reason": "The answer is about the direction you are *facing* when you stop; the translation says \"direction you are moving\" three times, which makes the explanation wrong (you have stopped moving)."
+ },
+ {
+  "context": "first_launch_headphones_title",
+  "category": "meaning",
+  "source": "Listening to Soundscape",
+  "current": "Як звучить Soundscape",
+  "suggested": "Як слухати Soundscape",
+  "reason": "«Як звучить Soundscape» is \"What Soundscape sounds like\"; the screen is about how to listen (headphones or speaker)."
+ },
+ {
+  "context": "first_launch_callouts_listen",
+  "category": "meaning",
+  "source": "Listen to an example of what Soundscape might call out on your next walk",
+  "current": "Послухайте приклад того, як Soundscape може працювати під час вашої наступної прогулянки",
+  "suggested": "Послухайте приклад того, що Soundscape може оголосити під час вашої наступної прогулянки",
+  "reason": "\"what Soundscape might call out\" became \"how Soundscape might work\"; the button plays example callouts."
+ },
+ {
+  "context": "settings_list_item_description",
+  "category": "meaning",
+  "source": "%1$s is choice %2$s out of %3$s",
+  "current": "%1$s елемент %2$s з %3$s",
+  "suggested": "%1$s, варіант %2$s з %3$s",
+  "reason": "«%1$s елемент %2$s з %3$s» reads as \"X element 2 of 3\" with no verb or pause; screen-reader users hear it on every list choice."
+ },
+ {
+  "context": "osm_parking",
+  "category": "meaning",
+  "source": "Parking",
+  "current": "Паркування",
+  "suggested": "Парковка",
+  "reason": "«Паркування» means the act of parking; a mapped parking area is «Парковка» (as osm_parking_lot)."
+ },
+ {
+  "context": "osm_silo",
+  "category": "meaning",
+  "source": "Silo",
+  "current": "Силос",
+  "suggested": "Силосна вежа",
+  "reason": "«Силос» is the fermented fodder, not the building. The storage tower is «Силосна вежа»."
+ },
+ {
+  "context": "help_text_section_title_when",
+  "category": "gender",
+  "source": "When would I use it?",
+  "current": "Коли б я міг це використати?",
+  "suggested": "Коли це використовувати?",
+  "reason": "«Коли б я міг…» is masculine; the app doesn't know the user's gender (C15). An impersonal heading avoids it."
+ },
+ {
+  "context": "help_text_my_location_when",
+  "category": "gender",
+  "source": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "current": "*\"Моє місцезнаходження\"* корисна, коли вам потрібно з'ясувати, де ви знаходитесь або в якому географічному напрямку дивитеся.",
+  "suggested": "Кнопка *Моє місцезнаходження* корисна, коли вам потрібно з'ясувати, де ви знаходитесь або в якому географічному напрямку дивитеся.",
+  "reason": "«Моє місцезнаходження» is neuter but the adjective «корисна» is feminine (agreeing with an unstated «кнопка»). Also drops stray quotes inside *…*."
+ },
+ {
+  "context": "directions_heading_n",
+  "category": "tone",
+  "source": "Heading north",
+  "current": "Ви ідете на північ",
+  "suggested": "Ви йдете на північ",
+  "reason": "Euphony: after a vowel it is «йдете», as the rest of the corpus writes («ви йдете вулицею»)."
+ },
+ {
+  "context": "directions_heading_ne",
+  "category": "tone",
+  "source": "Heading northeast",
+  "current": "Ви ідете на північний схід",
+  "suggested": "Ви йдете на північний схід",
+  "reason": "Euphony: after a vowel it is «йдете», as the rest of the corpus writes («ви йдете вулицею»)."
+ },
+ {
+  "context": "directions_heading_e",
+  "category": "tone",
+  "source": "Heading east",
+  "current": "Ви ідете на схід",
+  "suggested": "Ви йдете на схід",
+  "reason": "Euphony: after a vowel it is «йдете», as the rest of the corpus writes («ви йдете вулицею»)."
+ },
+ {
+  "context": "directions_heading_se",
+  "category": "tone",
+  "source": "Heading southeast",
+  "current": "Ви ідете на південний схід",
+  "suggested": "Ви йдете на південний схід",
+  "reason": "Euphony: after a vowel it is «йдете», as the rest of the corpus writes («ви йдете вулицею»)."
+ },
+ {
+  "context": "directions_heading_s",
+  "category": "tone",
+  "source": "Heading south",
+  "current": "Ви ідете на південь",
+  "suggested": "Ви йдете на південь",
+  "reason": "Euphony: after a vowel it is «йдете», as the rest of the corpus writes («ви йдете вулицею»)."
+ },
+ {
+  "context": "directions_heading_sw",
+  "category": "tone",
+  "source": "Heading southwest",
+  "current": "Ви ідете на південний захід",
+  "suggested": "Ви йдете на південний захід",
+  "reason": "Euphony: after a vowel it is «йдете», as the rest of the corpus writes («ви йдете вулицею»)."
+ },
+ {
+  "context": "directions_heading_w",
+  "category": "tone",
+  "source": "Heading west",
+  "current": "Ви ідете на захід",
+  "suggested": "Ви йдете на захід",
+  "reason": "Euphony: after a vowel it is «йдете», as the rest of the corpus writes («ви йдете вулицею»)."
+ },
+ {
+  "context": "directions_heading_nw",
+  "category": "tone",
+  "source": "Heading northwest",
+  "current": "Ви ідете на північний захід",
+  "suggested": "Ви йдете на північний захід",
+  "reason": "Euphony: after a vowel it is «йдете», as the rest of the corpus writes («ви йдете вулицею»)."
+ },
+ {
+  "context": "directions_along_heading_n",
+  "category": "tone",
+  "source": "Heading north along %1$s",
+  "current": "Ви ідете на північ по %1$s",
+  "suggested": "Ви йдете на північ по %1$s",
+  "reason": "Euphony: «Ви йдете», not «Ви ідете». Separately, «по %1$s» is one of the UK-G3 map-name templates still awaiting the reporter's notes; this fix leaves the preposition alone."
+ },
+ {
+  "context": "directions_along_heading_ne",
+  "category": "tone",
+  "source": "Heading northeast along %1$s",
+  "current": "Ви ідете на північний схід по %1$s",
+  "suggested": "Ви йдете на північний схід по %1$s",
+  "reason": "Euphony: «Ви йдете», not «Ви ідете». Separately, «по %1$s» is one of the UK-G3 map-name templates still awaiting the reporter's notes; this fix leaves the preposition alone."
+ },
+ {
+  "context": "directions_along_heading_e",
+  "category": "tone",
+  "source": "Heading east along %1$s",
+  "current": "Ви ідете на схід по %1$s",
+  "suggested": "Ви йдете на схід по %1$s",
+  "reason": "Euphony: «Ви йдете», not «Ви ідете». Separately, «по %1$s» is one of the UK-G3 map-name templates still awaiting the reporter's notes; this fix leaves the preposition alone."
+ },
+ {
+  "context": "directions_along_heading_se",
+  "category": "tone",
+  "source": "Heading southeast along %1$s",
+  "current": "Ви ідете на південний схід по %1$s",
+  "suggested": "Ви йдете на південний схід по %1$s",
+  "reason": "Euphony: «Ви йдете», not «Ви ідете». Separately, «по %1$s» is one of the UK-G3 map-name templates still awaiting the reporter's notes; this fix leaves the preposition alone."
+ },
+ {
+  "context": "directions_along_heading_s",
+  "category": "tone",
+  "source": "Heading south along %1$s",
+  "current": "Ви ідете на південь по %1$s",
+  "suggested": "Ви йдете на південь по %1$s",
+  "reason": "Euphony: «Ви йдете», not «Ви ідете». Separately, «по %1$s» is one of the UK-G3 map-name templates still awaiting the reporter's notes; this fix leaves the preposition alone."
+ },
+ {
+  "context": "directions_along_heading_sw",
+  "category": "tone",
+  "source": "Heading southwest along %1$s",
+  "current": "Ви ідете на південний захід по %1$s",
+  "suggested": "Ви йдете на південний захід по %1$s",
+  "reason": "Euphony: «Ви йдете», not «Ви ідете». Separately, «по %1$s» is one of the UK-G3 map-name templates still awaiting the reporter's notes; this fix leaves the preposition alone."
+ },
+ {
+  "context": "directions_along_heading_w",
+  "category": "tone",
+  "source": "Heading west along %1$s",
+  "current": "Ви ідете на захід по %1$s",
+  "suggested": "Ви йдете на захід по %1$s",
+  "reason": "Euphony: «Ви йдете», not «Ви ідете». Separately, «по %1$s» is one of the UK-G3 map-name templates still awaiting the reporter's notes; this fix leaves the preposition alone."
+ },
+ {
+  "context": "directions_along_heading_nw",
+  "category": "tone",
+  "source": "Heading northwest along %1$s",
+  "current": "Ви ідете на північний захід по %1$s",
+  "suggested": "Ви йдете на північний захід по %1$s",
+  "reason": "Euphony: «Ви йдете», not «Ви ідете». Separately, «по %1$s» is one of the UK-G3 map-name templates still awaiting the reporter's notes; this fix leaves the preposition alone."
+ },
+ {
+  "context": "osm_tailor",
+  "category": "tone",
+  "source": "Tailor",
+  "current": "Портний",
+  "suggested": "Кравець",
+  "reason": "«Портний» is a Russianism; Ukrainian is «Кравець»."
+ },
+ {
+  "context": "osm_tag_ferry_terminal_named",
+  "category": "tone",
+  "source": "%1$s Ferry Terminal",
+  "current": "%1$s поромний термінал",
+  "suggested": "Поромний термінал %1$s",
+  "reason": "English word order kept: «Обан поромний термінал». Ukrainian puts the type first, as osm_train_station_named does («Залізнична станція %1$s»)."
+ },
+ {
+  "context": "osm_ferry_terminal_named",
+  "category": "tone",
+  "source": "%1$s Ferry Terminal",
+  "current": "%1$s поромний термінал",
+  "suggested": "Поромний термінал %1$s",
+  "reason": "English word order kept: «Обан поромний термінал». Ukrainian puts the type first, as osm_train_station_named does («Залізнична станція %1$s»)."
+ },
+ {
+  "context": "osm_subway_named",
+  "category": "tone",
+  "source": "%1$s Subway Station",
+  "current": "%1$s станція метро",
+  "suggested": "Станція метро %1$s",
+  "reason": "English word order kept; Ukrainian puts the type first, matching osm_train_station_named."
+ },
+ {
+  "context": "help_text_remote_control_what",
+  "category": "formatting",
+  "source": "You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.",
+  "current": "Ви можете отримати доступ до певних функцій у Soundscape за допомогою кнопок керування мультимедіа на ваших навушниках. Ця функціональність працює з будь-якими дротовими або Bluetooth-навушниками, які мають кнопки керування мультимедіа, такі як «Відтворити», «Пауза», Наступний трек», «Попередній трек» та інші. Різні навушники можуть мати різні кнопки, тому, будь ласка, зверніться до списку дій нижче, щоб визначити, які з них вам доступні.",
+  "suggested": "Ви можете отримати доступ до певних функцій у Soundscape за допомогою кнопок керування мультимедіа на ваших навушниках. Ця функціональність працює з будь-якими дротовими або Bluetooth-навушниками, які мають кнопки керування мультимедіа, такі як «Відтворити», «Пауза», «Наступний трек», «Попередній трек» та інші. Різні навушники можуть мати різні кнопки, тому, будь ласка, зверніться до списку дій нижче, щоб визначити, які з них вам доступні.",
+  "reason": "Opening quote missing: «Пауза», Наступний трек» — a screen reader reads the stray closing mark."
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "category": "formatting",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape має функції та переваги, які охоплюють різноманітні сценарії та часові проміжки. Цінність Soundscape для вас може змінюватися з часом, тому те, як ви використовуєте його сьогодні, може відрізнятися від того, як ви користуватиметеся ним через три місяці. Люди часто думають про програми з погляду *яку проблему добре вирішує ця програма?* Soundscape, безумовно, можна використовувати для конкретних потреб: відстежувати пункт призначення дорогою до нього, зорієнтуватися, коли ви виходите зі станції метро, визначити напрямок при виході з машини або дізнатися назви вулиць чи відстань до наступного перехрестя. Проте філософія Soundscape полягає в тому, щоб *оживити ваш світ звуком* — програму створено для використання будь-коли, коли ви перебуваєте поза домом, щоб надавати вам обізнаність про оточення: назви вулиць, на яких ви перебуваєте, напрямок, у якому ви рухаєтеся, та назви закладів, повз які ви проходите. У цьому режимі використання наші користувачі називають Soundscape *приємною програмою-компаньйоном*, яка сприяє *випадковим відкриттям*, допомагає *заповнити прогалини у вашій ментальній карті* та додає *більше впевненості під час прогулянки*. Ось кілька інших прикладів того, як наші користувачі використовують Soundscape у своєму житті:\\n\\n«Soundscape допомогла мені повернутися на правильний шлях, коли я вийшов з автобуса і пішов не в тому напрямку».\\n\\n«Навіть у місті, де я живу вже 3 роки, я створив покращену картину того, що мене оточує [за допомогою Soundscape]».\\n\\n«3D-звук покращує мої враження від прогулянки, оскільки я відчуваю більший зв'язок із навколишнім середовищем… Тепер, коли у мене є ця програма, я з більшою ймовірністю спробую новий маршрут».\\n\\n«Я сумував за можливістю робити випадкові відкриття під час прогулянок. Мати Soundscape — це чудово, адже не потрібно докладати зусиль, щоб почути про місця навколо мене. Інформація про місця навколо корисна і це чудова програма для ситуаційної обізнаності та дослідження комерційних районів.\\n\\n[Я використовував Soundscape], щоб знайти паб у центрі Йорка. [Я] за допомогою низки функцій програми спочатку визначив місцезнаходження пабу, а потім насправді дістався туди. Програма привела мене на відстань 3 метрів від дверей – чудово!",
+  "suggested": "Soundscape має функції та переваги, які охоплюють різноманітні сценарії та часові проміжки. Цінність Soundscape для вас може змінюватися з часом, тому те, як ви використовуєте його сьогодні, може відрізнятися від того, як ви користуватиметеся ним через три місяці. Люди часто думають про програми з погляду *яку проблему добре вирішує ця програма?* Soundscape, безумовно, можна використовувати для конкретних потреб: відстежувати пункт призначення дорогою до нього, зорієнтуватися, коли ви виходите зі станції метро, визначити напрямок при виході з машини або дізнатися назви вулиць чи відстань до наступного перехрестя. Проте філософія Soundscape полягає в тому, щоб *оживити ваш світ звуком* — програму створено для використання будь-коли, коли ви перебуваєте поза домом, щоб надавати вам обізнаність про оточення: назви вулиць, на яких ви перебуваєте, напрямок, у якому ви рухаєтеся, та назви закладів, повз які ви проходите. У цьому режимі використання наші користувачі називають Soundscape *приємною програмою-компаньйоном*, яка сприяє *випадковим відкриттям*, допомагає *заповнити прогалини у вашій ментальній карті* та додає *більше впевненості під час прогулянки*. Ось кілька інших прикладів того, як наші користувачі використовують Soundscape у своєму житті:\\n\\n«Soundscape допомогла мені повернутися на правильний шлях, коли я вийшов з автобуса і пішов не в тому напрямку».\\n\\n«Навіть у місті, де я живу вже 3 роки, я створив покращену картину того, що мене оточує [за допомогою Soundscape]».\\n\\n«3D-звук покращує мої враження від прогулянки, оскільки я відчуваю більший зв'язок із навколишнім середовищем… Тепер, коли у мене є ця програма, я з більшою ймовірністю спробую новий маршрут».\\n\\n«Я сумував за можливістю робити випадкові відкриття під час прогулянок. Мати Soundscape — це чудово, адже не потрібно докладати зусиль, щоб почути про місця навколо мене. Інформація про місця навколо корисна і це чудова програма для ситуаційної обізнаності та дослідження комерційних районів».\\n\\n«[Я використовував Soundscape], щоб знайти паб у центрі Йорка. [Я] за допомогою низки функцій програми спочатку визначив місцезнаходження пабу, а потім насправді дістався туди. Програма привела мене на відстань 3 метрів від дверей – чудово!»",
+  "reason": "The last two user quotes lost their quotation marks: «Я сумував… районів. has no closing », and the York quote has none at all, so the testimonial runs into the narrator's voice."
+ },
+ {
+  "context": "first_launch_callouts_example_3",
+  "category": "formatting",
+  "source": "Main Street goes left",
+  "current": "проспект Соборний іде ліворуч",
+  "suggested": "Проспект Соборний іде ліворуч",
+  "reason": "Example callout starts with a lower-case letter; it is a sentence on its own."
+ },
+ {
+  "context": "first_launch_callouts_example_4",
+  "category": "formatting",
+  "source": "Main Street goes right",
+  "current": "проспект Соборний іде праворуч",
+  "suggested": "Проспект Соборний іде праворуч",
+  "reason": "Example callout starts with a lower-case letter; it is a sentence on its own."
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "category": "formatting",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "Ділюся з вами міткою Soundscape: %1$s.\\n\\nЩоб відкрити її в Soundscape, використовуйте %2$s.\\n\\nЩоб відкрити в Google Maps, використовуйте %3$s.",
+  "suggested": "Ділюся з вами міткою Soundscape: «%1$s».\\n\\nЩоб відкрити її в Soundscape, використовуйте %2$s.\\n\\nЩоб відкрити в Google Maps, використовуйте %3$s.",
+  "reason": "The English quotes the marker name (\"%1$s\"); the translation dropped them, so a multi-word name runs into the sentence."
+ },
+ {
+  "context": "osm_books",
+  "category": "formatting",
+  "source": "Book Shop",
+  "current": "книжковий магазин",
+  "suggested": "Книжковий магазин",
+  "reason": "Lower-case first letter; every other POI type is capitalised (osm_book_store «Книжковий магазин»)."
+ },
+ {
+  "context": "search_view_markers",
+  "category": "tone",
+  "source": "Markers and Routes",
+  "current": "Мітки та Маршрути",
+  "suggested": "Мітки та Маршрути",
+  "reason": "Capital «Маршрути» mid-title is English title case; Ukrainian would write «Мітки та маршрути». Not changed here because ~10 help/tour strings quote the title verbatim and would all need to follow in one go."
+ },
+ {
+  "context": "directions_transit_stop_with_landmark",
+  "category": "meaning",
+  "source": "%1$s for %2$s",
+  "current": "%1$s поблизу %2$s",
+  "suggested": "%1$s поблизу %2$s",
+  "reason": "NaPTAN \"Stop for Marks & Spencer\" means the stop that serves the landmark; «поблизу» (\"near\") loses that and duplicates directions_transit_stop_near_poi. Also a UK-G3 genitive slot. Worth a native-speaker look."
+ },
+ {
+  "context": "relative_degrees_direction",
+  "category": "gender",
+  "source": "at %1$s degrees",
+  "current": "під кутом %1$s градусів",
+  "suggested": "під кутом %1$s градусів",
+  "reason": "CROSS-LANGUAGE: «під кутом %1$s градусів» is fixed genitive plural, wrong for 1, 21 (градус) and 2-4 (градуси). The template gets a bare number, so only a plural resource in code can fix it; affects every language with plural forms."
+ },
+ {
+  "context": "directions_at_poi",
+  "category": "gender",
+  "source": "At %1$s",
+  "current": "У %1$s",
+  "suggested": "У %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «У» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_near_name",
+  "category": "gender",
+  "source": "Near %1$s",
+  "current": "Поблизу %1$s",
+  "suggested": "Поблизу %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «Поблизу» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_approaching_name",
+  "category": "gender",
+  "source": "Approaching %1$s",
+  "current": "Наближення до %1$s",
+  "suggested": "Наближення до %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «до» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_transit_stop_near_poi",
+  "category": "gender",
+  "source": "%1$s near %2$s",
+  "current": "%1$s поблизу %2$s",
+  "suggested": "%1$s поблизу %2$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «поблизу» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_near_road_and_settlement",
+  "category": "gender",
+  "source": "Near %1$s and close to %2$s",
+  "current": "Поблизу %1$s та неподалік від %2$s",
+  "suggested": "Поблизу %1$s та неподалік від %2$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «Поблизу» / «від» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_on_road",
+  "category": "gender",
+  "source": "On %1$s",
+  "current": "На %1$s",
+  "suggested": "На %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_on_road_and_settlement",
+  "category": "gender",
+  "source": "On %1$s and close to %2$s",
+  "current": "На %1$s і поблизу %2$s",
+  "suggested": "На %1$s і поблизу %2$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «поблизу» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_on_road_at_junction",
+  "category": "gender",
+  "source": "On %1$s at %2$s",
+  "current": "На %1$s біля %2$s",
+  "suggested": "На %1$s біля %2$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «біля» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_at_junction_inline",
+  "category": "gender",
+  "source": "at %1$s",
+  "current": "біля %1$s",
+  "suggested": "біля %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «біля» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_on_road_and_settlement_since",
+  "category": "gender",
+  "source": "On %1$s and close to %2$s, %3$s since %4$s",
+  "current": "На %1$s і поблизу %2$s, %3$s від %4$s",
+  "suggested": "На %1$s і поблизу %2$s, %3$s від %4$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «поблизу»/«від» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_away_from_settlement",
+  "category": "gender",
+  "source": "away from %1$s, %2$s behind you",
+  "current": "віддаляєтеся від %1$s, %2$s позаду вас",
+  "suggested": "віддаляєтеся від %1$s, %2$s позаду вас",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «від» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_near_settlement_inline",
+  "category": "gender",
+  "source": "near %1$s",
+  "current": "поблизу %1$s",
+  "suggested": "поблизу %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «поблизу» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_close_to_settlement_inline",
+  "category": "gender",
+  "source": "close to %1$s",
+  "current": "поблизу %1$s",
+  "suggested": "поблизу %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «поблизу» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_crossing_waterway",
+  "category": "gender",
+  "source": "Passing over %1$s",
+  "current": "Проїзд над %1$s",
+  "suggested": "Проїзд над %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «над» + instrumental, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_going_under_railway",
+  "category": "gender",
+  "source": "Passing under %1$s",
+  "current": "Проїзд під %1$s",
+  "suggested": "Проїзд під %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «під» + instrumental, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_entering_tunnel_named",
+  "category": "gender",
+  "source": "Entering %1$s",
+  "current": "В’їзд у %1$s",
+  "suggested": "В’їзд у %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «у» + accusative (mostly harmless for inanimate masculine names), but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "stationary_on_way",
+  "category": "gender",
+  "source": "Not moving on %1$s",
+  "current": "Ви стоїте на %1$s",
+  "suggested": "Ви стоїте на %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «на» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "behavior_scavenger_hunt_callout_next_flag",
+  "category": "gender",
+  "source": "Beacon set on %1$s, %2$s away, %3$s of %4$s",
+  "current": "Маячок встановлено на %1$s, %2$s від вас, %3$s з %4$s",
+  "suggested": "Маячок встановлено на %1$s, %2$s від вас, %3$s з %4$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «на» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "behavior_scavenger_hunt_callout_next_flag_short_route",
+  "category": "gender",
+  "source": "Beacon set on %1$s, %2$s away",
+  "current": "Маячок встановлено на %1$s, %2$s від вас",
+  "suggested": "Маячок встановлено на %1$s, %2$s від вас",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «на» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "confect_name_joins",
+  "category": "gender",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s, що приєднується до %2$s і %3$s",
+  "suggested": "%1$s, що приєднується до %2$s і %3$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «до» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "confect_name_pavement_next_to",
+  "category": "gender",
+  "source": "Sidewalk next to %1$s",
+  "current": "Тротуар поруч із %1$s",
+  "suggested": "Тротуар поруч із %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «поруч із» + instrumental, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "confect_name_next_to",
+  "category": "gender",
+  "source": "%1$s next to %2$s",
+  "current": "%1$s поруч із %2$s",
+  "suggested": "%1$s поруч із %2$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «поруч із» + instrumental, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "route_beacon_progress",
+  "category": "gender",
+  "source": "Beacon at %1$s",
+  "current": "Маячок встановлено на %1$s",
+  "suggested": "Маячок встановлено на %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «на» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "street_description_between",
+  "category": "gender",
+  "source": "On %1$s between %2$s and %3$s",
+  "current": "На %1$s між %2$s та %3$s",
+  "suggested": "На %1$s між %2$s та %3$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «між» + instrumental, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "street_description_until",
+  "category": "gender",
+  "source": "On %1$s, %2$s until %3$s",
+  "current": "На %1$s, за %2$s до %3$s",
+  "suggested": "На %1$s, за %2$s до %3$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «до» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "street_description_since",
+  "category": "gender",
+  "source": "On %1$s, %2$s since %3$s",
+  "current": "На %1$s, %2$s після %3$s",
+  "suggested": "На %1$s, %2$s після %3$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «після» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "street_description_relative_before",
+  "category": "gender",
+  "source": "On %1$s just before %2$s",
+  "current": "На %1$s, одразу перед %2$s",
+  "suggested": "На %1$s, одразу перед %2$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «перед» + instrumental, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "street_description_relative_after",
+  "category": "gender",
+  "source": "On %1$s just after %2$s",
+  "current": "На %1$s, одразу після %2$s",
+  "suggested": "На %1$s, одразу після %2$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «після» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "street_description_relative_near",
+  "category": "gender",
+  "source": "On %1$s near %2$s",
+  "current": "На %1$s поблизу %2$s",
+  "suggested": "На %1$s поблизу %2$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «На» + locative, «поблизу» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "street_description_intersection",
+  "category": "gender",
+  "source": "Near intersection of %1$s",
+  "current": "Поблизу перехрестя %1$s",
+  "suggested": "Поблизу перехрестя %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «перехрестя» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "osm_entrance_named_with_destination",
+  "category": "gender",
+  "source": "%1$s %2$s from %3$s",
+  "current": "%1$s %2$s з %3$s",
+  "suggested": "%1$s %2$s з %3$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «з» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "voice_cmd_start_beacon_at_marker_with_name",
+  "category": "gender",
+  "source": "Start audio beacon at %1$s",
+  "current": "Запустити звуковий маячок на %1$s",
+  "suggested": "Запустити звуковий маячок на %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «на» + locative (marker name), but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "voice_cmd_starting_beacon_at_marker",
+  "category": "gender",
+  "source": "Starting audio beacon at %1$s",
+  "current": "Запускається звуковий маячок на %1$s",
+  "suggested": "Запускається звуковий маячок на %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «на» + locative (marker name), but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "action_beacon_started",
+  "category": "gender",
+  "source": "Beacon set on %1$s",
+  "current": "Маячок встановлено на %1$s",
+  "suggested": "Маячок встановлено на %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «на» + locative (marker name), but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_traveling_n",
+  "category": "gender",
+  "source": "Traveling north along %1$s",
+  "current": "Ви їдете на північ по %1$s",
+  "suggested": "Ви їдете на північ по %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «по» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_facing_n",
+  "category": "gender",
+  "source": "Facing north along %1$s",
+  "current": "Обличчям на північ вздовж %1$s",
+  "suggested": "Обличчям на північ вздовж %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «вздовж» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_traveling_ne",
+  "category": "gender",
+  "source": "Traveling northeast along %1$s",
+  "current": "Ви їдете на північний схід по %1$s",
+  "suggested": "Ви їдете на північний схід по %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «по» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_facing_ne",
+  "category": "gender",
+  "source": "Facing northeast along %1$s",
+  "current": "Обличчям на північний схід вздовж %1$s",
+  "suggested": "Обличчям на північний схід вздовж %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «вздовж» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_traveling_e",
+  "category": "gender",
+  "source": "Traveling east along %1$s",
+  "current": "Ви їдете на схід по %1$s",
+  "suggested": "Ви їдете на схід по %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «по» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_facing_e",
+  "category": "gender",
+  "source": "Facing east along %1$s",
+  "current": "Обличчям на схід вздовж %1$s",
+  "suggested": "Обличчям на схід вздовж %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «вздовж» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_traveling_se",
+  "category": "gender",
+  "source": "Traveling southeast along %1$s",
+  "current": "Ви їдете на південний схід по %1$s",
+  "suggested": "Ви їдете на південний схід по %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «по» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_facing_se",
+  "category": "gender",
+  "source": "Facing southeast along %1$s",
+  "current": "Обличчям на південний схід вздовж %1$s",
+  "suggested": "Обличчям на південний схід вздовж %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «вздовж» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_traveling_s",
+  "category": "gender",
+  "source": "Traveling south along %1$s",
+  "current": "Ви їдете на південь по %1$s",
+  "suggested": "Ви їдете на південь по %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «по» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_facing_s",
+  "category": "gender",
+  "source": "Facing south along %1$s",
+  "current": "Обличчям на південь вздовж %1$s",
+  "suggested": "Обличчям на південь вздовж %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «вздовж» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_traveling_sw",
+  "category": "gender",
+  "source": "Traveling southwest along %1$s",
+  "current": "Ви їдете на південний захід по %1$s",
+  "suggested": "Ви їдете на південний захід по %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «по» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_facing_sw",
+  "category": "gender",
+  "source": "Facing southwest along %1$s",
+  "current": "Обличчям на південний захід вздовж %1$s",
+  "suggested": "Обличчям на південний захід вздовж %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «вздовж» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_traveling_w",
+  "category": "gender",
+  "source": "Traveling west along %1$s",
+  "current": "Ви їдете на захід по %1$s",
+  "suggested": "Ви їдете на захід по %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «по» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_facing_w",
+  "category": "gender",
+  "source": "Facing west along %1$s",
+  "current": "Обличчям на захід вздовж %1$s",
+  "suggested": "Обличчям на захід вздовж %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «вздовж» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_traveling_nw",
+  "category": "gender",
+  "source": "Traveling northwest along %1$s",
+  "current": "Ви їдете на північний захід по %1$s",
+  "suggested": "Ви їдете на північний захід по %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «по» + locative, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ },
+ {
+  "context": "directions_along_facing_nw",
+  "category": "gender",
+  "source": "Facing northwest along %1$s",
+  "current": "Обличчям на північний захід вздовж %1$s",
+  "suggested": "Обличчям на північний захід вздовж %1$s",
+  "reason": "UK-G3 (agreed defect, fix pending the reporter's notes, do not apply yet): «вздовж» + genitive, but the map name arrives in the nominative. Candidate fix is the UK-G2 label form."
+ }
+]

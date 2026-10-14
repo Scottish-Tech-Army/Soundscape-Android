@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Sanarwowi Kai Tsaye
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 70
 lang: ha
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Sanarwowi Kai Tsaye
 
-## What is it?
+Yayin da kuke tafiya, Soundscape yana sanar da abin da ke kusa da ku. Kuna jin kowane suna daga ɓangaren wurin. Sanarwowi suna ƙunshe da tituna, mahaɗun hanyoyi, shaguna, tashoshin bas, shahararrun wurare da alamominku.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Mahaɗun Hanyoyi
 
-## When would I use it?
+Idan kuna kusantar mahaɗar hanya, Soundscape yana ambaton kowace hanya da ke fita daga gare ta. Kuna jin wace hanya ce ke zuwa hagu, wacce ke ci gaba a gaba, da wacce ke zuwa dama.
 
-**Exploring a new area :**
+## Yawan Abin da Kuke Ji
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Ku buɗe menu sannan ku zaɓi *Saitunan*, sai *Sarrafa Sanarwa*. *Matakin Sanarwa* yana da matakai huɗu.
 
-**Walking to a specific location :**
+*Cikakke* yana sanar da duk abin da ke kusa.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Sauƙaƙe* yana barin ƙananan hanyoyi da hanyoyin sabis, kuma ba ya yawan maimaitawa.
 
-**When you need silence :**
+*Muhimmi* yana sanar da tituna, mahaɗun hanyoyi da shahararrun wurare kawai.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Shiru* ba ya yin kowace sanarwa kai tsaye. Sigina, tafarkuna da maɓallan babban allo suna ci gaba da aiki.
 
-## How does it work?
+## Abin da Kuke Ji
 
-**Turning callouts on or off :**
+*Sarrafa Sanarwa* yana da ƙarin saituna biyu. *Titina da Mahaɗun Hanyoyi* yana kunna ko kashe sanarwowin tituna da mahaɗun hanyoyi. *Wuraren da za a Sanar* yana zaɓar irin wuraren da kuke ji, kamar *Sufurin Jama'a* ko *Abinci da Abin Sha*. Ana sanar da alamominku koyaushe.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Rage Maganar Soundscape
 
-**Managing which callouts you hear :**
+Ku danna *na baya* a kan maɓallan belun kunnenku. Kowane dannawa yana sauka mataki ɗaya: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, sannan *Shiru*. Ƙarin dannawa ɗaya yana komawa *Cikakke*. Duba shafin taimako *Amfani da Maɓallan Sarrafa Sauti*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Tsayar da Soundscape na Ɗan Lokaci
+
+Ku zaɓi maɓallin *Barci* da ke saman babban allo. Soundscape yana daina amfani da wurinku kuma ba ya yin wani sauti har sai kun zaɓi *Farka Yanzu*. Ko ku zaɓi *Farka Idan Na Tafi*, sai Soundscape ya farka idan kun bar wurin da kuke.
+
+## A Cikin Abin Hawa ko Jirgin Ƙasa
+
+Soundscape yana gane lokacin da kuke tafiya da saurin abin hawa. Sai ya daina sanar da mahaɗun hanyoyi da shagunan da ke kusa, domin suna wucewa da sauri sosai. A maimakon haka yana sanar da hanyar da kuke kai, shahararrun wurare, tashoshi, koguna da ramukan ƙarƙashin ƙasa.
 

@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Njia
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 90
 lang: sw
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Njia
 
-## What is it?
+Njia ni orodha ya mahali, panapoitwa vituo, unapopitia kwa mpangilio. Soundscape inaweka beacon kwenye kituo cha kwanza. Unapofika, inakuambia na kuisogeza beacon hadi kinachofuata.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Tumia njia ili kujifunza safari mpya, au ili usipotee kwenye safari unayoijua.
 
-## When would I use it?
+## Kuunda Njia
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Chagua *Njia* kwenye skrini ya mwanzo, kisha uchague *Mpya*.
 
-## How does it work?
+2. Ipe njia jina. Unaweza kuongeza maelezo.
 
-**Creating a route :**
+3. Chagua *Ongeza Vituo* na uchague alama. Unaweza pia kuongeza mahali ulipo sasa au sehemu iliyo karibu.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Chagua *Imekamilika*.
 
-**Editing a route :**
+## Kufuata Njia
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Chagua njia kwenye skrini ya *Njia*, kisha uchague *Anzisha Njia*. Ili kuifuata kinyumenyume, chagua *Anzisha Njia kwa Mpangilio wa Kinyume*. Kwenye skrini ya mwanzo, *Kituo Kinachofuata* na *Kituo Kilichopita* vinaisogeza beacon kando ya njia. *Simamisha Njia* inaimaliza.
 
-**Sharing a route :**
+## Kubadilisha Njia
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Chagua njia kwenye skrini ya *Njia*, kisha uchague *Hariri Njia*. Unaweza kuongeza, kuondoa na kupanga upya vituo, kubadilisha jina na maelezo, au kufuta njia.
+
+## Kushiriki Njia
+
+Chagua njia kwenye skrini ya *Njia*, kisha uchague *Shiriki*.
 

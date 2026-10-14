@@ -32,4 +32,4 @@ Soundscape はもともと [Microsoft Research](https://www.microsoft.com/en-us/
 [Soundscape の使い方]({{ "/users/user.html" | relative_url }})
 
 # Soundscape をあなたの言語で
-当社はできるだけ多くの言語をサポートすることを目指しており、アプリのローカライズを支援するために、素晴らしい [Weblate](https://hosted.weblate.org/projects/soundscape-android/) の利用を開始しました。当初は iOS でサポートされているのと同じ言語をサポートしていましたが、Android アプリにはいくつか新しい文字列があるため、ほとんどの言語で未翻訳の部分があります。これらの追加翻訳、あるいは新しい言語の追加について、ご協力いただけると大変ありがたく思います。この仕組みの説明は[こちら](https://docs.weblate.org/en/latest/user/translating.html)でご覧いただけます。Weblate アカウントを設定すると、翻訳できる言語を選択でき、Soundscape アプリが現在その言語をサポートしていない場合は、メイン アプリの[ページ](https://hosted.weblate.org/projects/soundscape-android/android-app/)でその言語を追加するオプションが表示されます。
+Soundscape は 46 の言語で利用できますが、ほとんどの翻訳はまだネイティブスピーカーによる確認を受けていません。いずれかの言語を話す方は、ぜひご協力ください。いちばん手軽なのは、[あなたの言語の短いアンケート]({{ "/help-translate/" | relative_url }})に答えていただくことで、10 分ほどで終わります。翻訳を管理している [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) で直接改善を提案することもできます（[Weblate の使い方](https://docs.weblate.org/en/latest/user/translating.html)）。

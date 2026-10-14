@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Маршруты
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 90
 lang: ru
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Маршруты
 
-## What is it?
+Маршрут — это список мест, называемых путевыми точками, которые вы посещаете по порядку. Soundscape устанавливает маяк на первую путевую точку. Когда вы приходите, он сообщает об этом и перемещает маяк к следующей.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Используйте маршрут, чтобы выучить новый путь или не сбиться на знакомом.
 
-## When would I use it?
+## Создание маршрута
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Выберите *Маршруты* на главном экране, затем выберите *Создать*.
 
-## How does it work?
+2. Дайте маршруту название. Можно добавить описание.
 
-**Creating a route :**
+3. Выберите *Добавить путевые точки* и выберите отметки. Можно также добавить текущее местоположение или место рядом.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Выберите *Готово*.
 
-**Editing a route :**
+## Прохождение маршрута
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Выберите маршрут на экране *Маршруты*, затем выберите *Начать маршрут*. Чтобы пройти его в обратную сторону, выберите *Начать маршрут в обратном порядке*. На главном экране кнопки *Следующая путевая точка* и *Предыдущая путевая точка* перемещают маяк вдоль маршрута. *Остановить маршрут* завершает его.
 
-**Sharing a route :**
+## Изменение маршрута
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Выберите маршрут на экране *Маршруты*, затем выберите *Изменить маршрут*. Можно добавлять, удалять и переставлять путевые точки, менять название и описание или удалить маршрут.
+
+## Отправка маршрута
+
+Выберите маршрут на экране *Маршруты*, затем выберите *Поделиться*.
 

@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: Samodejna zvočna obvestila
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
+nav_order: 70
 lang: sl
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Samodejna zvočna obvestila
 
-## What is it?
+Med hojo Soundscape oznanja, kaj je v vaši bližini. Vsako ime slišite iz smeri kraja. Zvočna obvestila zajemajo ulice, križišča, trgovine, avtobusna postajališča, znamenitosti in vaše lastne oznake.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## Križišča
 
-## When would I use it?
+Ko se bližate križišču, Soundscape imenuje vsako cesto, ki vodi iz njega. Slišite, katera cesta gre levo, katera se nadaljuje naravnost in katera gre desno.
 
-**Exploring a new area :**
+## Koliko slišite
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Odprite meni in izberite *Nastavitve*, nato *Upravljanje zvočnih obvestil*. *Raven podrobnosti obvestil* ima štiri ravni.
 
-**Walking to a specific location :**
+*Podrobno* oznanja vse v bližini.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Poenostavljeno* izpusti manjše poti in servisne ceste ter se manj ponavlja.
 
-**When you need silence :**
+*Osnovno* oznanja samo ulice, križišča in znamenitosti.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*Brez zvoka* ne daje samodejnih zvočnih obvestil. Svetilniki, poti in gumbi na domačem zaslonu delujejo še naprej.
 
-## How does it work?
+## Kaj slišite
 
-**Turning callouts on or off :**
+*Upravljanje zvočnih obvestil* ima še dve nastavitvi. *Ulice in križišča* vklopi ali izklopi obvestila o ulicah in križiščih. *Kraji za oznanjanje* določa, katere vrste krajev slišite, na primer *Javni prevoz* ali *Hrana in pijača*. Vaše oznake so vedno oznanjene.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Kako utišati Soundscape
 
-**Managing which callouts you hear :**
+Pritisnite *nazaj* na upravljalniku slušalk. Vsak pritisk gre eno raven tišje: *Podrobno*, *Poenostavljeno*, *Osnovno*, nato *Brez zvoka*. Še en pritisk se vrne na *Podrobno*. Glejte stran pomoči *Uporaba kontrolnikov predstavnosti*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Zaustavitev aplikacije Soundscape za nekaj časa
+
+Izberite gumb *Spanje* na vrhu domačega zaslona. Soundscape preneha uporabljati vašo lokacijo in je tiho, dokler ne izberete *Prebudi zdaj*. Ali izberite *Prebudi ob odhodu* in Soundscape se prebudi, ko zapustite kraj, kjer ste.
+
+## V vozilu ali na vlaku
+
+Soundscape zazna, ko se gibljete s hitrostjo vozila. Takrat preneha oznanjati križišča in trgovine v bližini, ker prehitro minejo. Namesto tega oznanja cesto, po kateri se peljete, znamenitosti, postajališča in postaje, reke in predore.
 

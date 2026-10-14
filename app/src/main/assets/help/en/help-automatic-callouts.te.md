@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: స్వయంచాలక కాలౌట్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 70
 lang: te
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# స్వయంచాలక కాలౌట్‌లు
 
-## What is it?
+మీరు నడుస్తున్నప్పుడు, Soundscape మీకు దగ్గరలో ఉన్నవాటిని కాలౌట్ చేస్తుంది. ప్రతి పేరు ఆ స్థలం దిశ నుండి మీకు వినిపిస్తుంది. కాలౌట్‌లలో వీధులు, కూడళ్లు, దుకాణాలు, బస్ స్టాప్‌లు, మైలురాళ్లు మరియు మీ సొంత మార్కర్‌లు ఉంటాయి.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## కూడళ్లు
 
-## When would I use it?
+మీరు ఒక కూడలిని సమీపిస్తున్నప్పుడు, Soundscape అక్కడి నుండి బయలుదేరే ప్రతి రోడ్డు పేరును చెబుతుంది. ఏ రోడ్డు ఎడమకు వెళ్తుందో, ఏది నేరుగా ముందుకు సాగుతుందో, ఏది కుడికి వెళ్తుందో మీకు వినిపిస్తుంది.
 
-**Exploring a new area :**
+## మీరు ఎంత వింటారు
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+మెనూ తెరిచి *సెట్టింగ్‌లు*, తర్వాత *కాలౌట్‌లను నిర్వహించండి* ఎంచుకోండి. *కాలౌట్ వివరాలు* లో నాలుగు స్థాయిలు ఉన్నాయి.
 
-**Walking to a specific location :**
+*వివరణాత్మకం* దగ్గరలో ఉన్న ప్రతిదాన్నీ కాలౌట్ చేస్తుంది.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*సరళీకృతం* చిన్న దారులను మరియు సర్వీస్ రోడ్లను వదిలేస్తుంది, తక్కువగా పునరావృతం చేస్తుంది.
 
-**When you need silence :**
+*ముఖ్యం* వీధులు, కూడళ్లు మరియు మైలురాళ్లను మాత్రమే కాలౌట్ చేస్తుంది.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*నిశ్శబ్దం* ఎలాంటి స్వయంచాలక కాలౌట్‌లూ ఇవ్వదు. బీకాన్‌లు, రూట్‌లు మరియు హోమ్ స్క్రీన్ బటన్‌లు ఇంకా పని చేస్తాయి.
 
-## How does it work?
+## మీరు ఏమి వింటారు
 
-**Turning callouts on or off :**
+*కాలౌట్‌లను నిర్వహించండి* లో మరో రెండు సెట్టింగ్‌లు ఉన్నాయి. *వీధులు మరియు కూడళ్లు* వీధి మరియు కూడలి కాలౌట్‌లను ఆన్ లేదా ఆఫ్ చేస్తుంది. *కాలౌట్ చేయాల్సిన స్థలాలు* మీరు ఏ రకాల స్థలాలను వినాలో ఎంచుకుంటుంది, ఉదాహరణకు *ప్రజా రవాణా* లేదా *ఆహారం మరియు పానీయాలు*. మీ మార్కర్‌లు ఎప్పుడూ కాలౌట్ అవుతాయి.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## Soundscapeను తక్కువగా మాట్లాడేలా చేయడం
 
-**Managing which callouts you hear :**
+మీ హెడ్‌ఫోన్ నియంత్రణలలో *మునుపటి* నొక్కండి. ప్రతి నొక్కుతో ఒక స్థాయి తగ్గుతుంది: *వివరణాత్మకం*, *సరళీకృతం*, *ముఖ్యం*, తర్వాత *నిశ్శబ్దం*. మరోసారి నొక్కితే *వివరణాత్మకం* కు తిరిగి వస్తుంది. *మీడియా నియంత్రణలను ఉపయోగించడం* సహాయ పేజీని చూడండి.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## Soundscapeను కొంతసేపు ఆపడం
+
+హోమ్ స్క్రీన్ పైభాగంలో ఉన్న *నిద్ర* బటన్‌ను ఎంచుకోండి. Soundscape మీ స్థానాన్ని ఉపయోగించడం ఆపేస్తుంది, మీరు *ఇప్పుడే మేల్కొల్పు* ఎంచుకునే వరకు ఎలాంటి శబ్దమూ చేయదు. లేదా *వెళ్ళినప్పుడు మేల్కొల్పు* ఎంచుకోండి, అప్పుడు మీరు ఉన్న చోటు నుండి వెళ్లినప్పుడు Soundscape మేల్కొంటుంది.
+
+## వాహనంలో లేదా రైలులో
+
+మీరు వాహన వేగంతో ప్రయాణిస్తున్నారని Soundscape గమనిస్తుంది. అప్పుడు అది కూడళ్లను మరియు దగ్గరలోని దుకాణాలను కాలౌట్ చేయడం ఆపేస్తుంది, ఎందుకంటే అవి చాలా వేగంగా దాటిపోతాయి. బదులుగా మీరు ఉన్న రోడ్డు, మైలురాళ్లు, స్టాప్‌లు మరియు స్టేషన్‌లు, నదులు మరియు సొరంగాలను కాలౌట్ చేస్తుంది.
 

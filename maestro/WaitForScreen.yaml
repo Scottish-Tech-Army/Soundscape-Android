@@ -11,7 +11,7 @@ appId: org.scottishtecharmy.soundscape
 #       env:
 #         screen: Home
 #
-# Supported screens: Home, LocationDetails, PlacesNearby, MarkersAndRoutes,
+# Supported screens: Home, LocationDetails, PlacesNearby, Markers, Routes,
 # RouteDetails, Settings. Add a new entry to the map below to support another.
 ---
 # Map the requested screen name to its anchor testTag, failing fast with a clear
@@ -23,7 +23,8 @@ appId: org.scottishtecharmy.soundscape
         Home: 'mainSearchBarCollapsed',
         LocationDetails: 'locationDetailsStartBeacon',
         PlacesNearby: 'placesNearby-0',
-        MarkersAndRoutes: 'routesTab',
+        Markers: 'markersScreen',
+        Routes: 'routesScreen',
         RouteDetails: 'routeDetailsStartButton',
         Settings: 'settingsSectionAudio',
         Welcome: 'welcomeScreenContinueButton'

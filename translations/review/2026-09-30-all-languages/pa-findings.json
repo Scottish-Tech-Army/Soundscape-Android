@@ -1,0 +1,74 @@
+[
+ {
+  "context": "settings_keep_value",
+  "source": "keep",
+  "current": "ਰੱਖੋ",
+  "suggested": "ਰੱਖਣ ਲਈ",
+  "reason": "Passed to talkbackHint() (SettingsComponents.kt), so iOS reads it through talkback_double_tap_template «%1$s ਦੋ ਵਾਰ ਟੈਪ ਕਰੋ»: the bare imperative gives «ਰੱਖੋ ਦੋ ਵਾਰ ਟੈਪ ਕਰੋ». Every other pa hint is a purpose clause ending «ਲਈ» (pa.md, C13). The English comment doesn't say it's a 'Double tap to' hint, which is why it was missed; worth adding that to the comment for all languages.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_use_value",
+  "source": "use",
+  "current": "ਵਰਤੋ",
+  "suggested": "ਵਰਤਣ ਲਈ",
+  "reason": "Same as settings_keep_value: a talkbackHint, so iOS says «ਵਰਤੋ ਦੋ ਵਾਰ ਟੈਪ ਕਰੋ». Needs the «…ਲਈ» purpose form the pa template expects. The English comment is empty, so nothing told the translator.",
+  "category": "meaning"
+ },
+ {
+  "context": "beacon_styles_drop",
+  "source": "Drop",
+  "current": "ਬੂੰਦ",
+  "suggested": "ਬੂੰਦ",
+  "reason": "«ਬੂੰਦ» means a droplet (of water), but the comment says the style is the sound of an object dropped on a hard floor. Not wrong enough to change unasked, since it's only a style name, but a native speaker might prefer a word for something falling or dropping.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_crypt",
+  "source": "Crypt",
+  "current": "ਤਹਿਖਾਨਾ ਕਬਰਗਾਹ",
+  "suggested": "ਜ਼ਮੀਨਦੋਜ਼ ਕਬਰਗਾਹ",
+  "reason": "«ਤਹਿਖਾਨਾ ਕਬਰਗਾਹ» puts two nouns side by side ('basement graveyard'), which isn't grammatical Punjabi. «ਜ਼ਮੀਨਦੋਜ਼ ਕਬਰਗਾਹ» ('underground burial place') says what a crypt is.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_campanile",
+  "source": "Bell Tower",
+  "current": "ਘੰਟਾਘਰ",
+  "suggested": "ਘੰਟਾਘਰ",
+  "reason": "In Punjab «ਘੰਟਾਘਰ» usually means a clock tower (Amritsar's Ghanta Ghar), not a church bell tower. It may be acceptable, but a native speaker should check whether a bell-tower wording is clearer.",
+  "category": "meaning"
+ },
+ {
+  "context": "search_synonyms_pub",
+  "source": "pub, bar",
+  "current": "ਪੱਬ, ਬਾਰ, ਠੇਕਾ",
+  "suggested": "ਪੱਬ, ਬਾਰ",
+  "reason": "«ਠੇਕਾ» is a licensed liquor shop (off-licence), not a pub or bar. Having it as a pub synonym sends someone searching for a liquor shop to pubs, while osm_alcohol «ਸ਼ਰਾਬ ਦੀ ਦੁਕਾਨ» is the actual match.",
+  "category": "meaning"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "\nਇਹ Soundscape ਦਾ ਇੱਕ ਵੱਡਾ ਅੱਪਡੇਟ ਹੈ।\n\nਸਫ਼ਰ ਮੋਡ ਬਹੁਤ ਬਿਹਤਰ ਹੋ ਗਿਆ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਕਾਰ ਜਾਂ ਬੱਸ ਵਿੱਚ ਸਫ਼ਰ ਕਰਦੇ ਹੋ, ਤਾਂ Soundscape ਹੁਣ ਸੜਕਾਂ ਦੇ ਨੰਬਰ, ਤੁਹਾਡੇ ਸਫ਼ਰ ਦੀ ਦਿਸ਼ਾ ਅਤੇ ਨੇੜਲੀਆਂ ਬਸਤੀਆਂ ਦੀ ਘੋਸ਼ਣਾ ਕਰਦਾ ਹੈ। ਇਹ ਉਦੋਂ ਵੀ ਘੋਸ਼ਣਾ ਕਰਦਾ ਹੈ ਜਦੋਂ ਤੁਸੀਂ ਦਰਿਆ, ਨਹਿਰਾਂ, ਮੁਹਾਣੇ ਅਤੇ ਖਾੜੀਆਂ ਪਾਰ ਕਰਦੇ ਹੋ। ਇਹ ਨਵੀਆਂ ਸਹੂਲਤਾਂ ਲੈਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਆਫ਼ਲਾਈਨ ਨਕਸ਼ੇ ਅੱਪਡੇਟ ਕਰੋ। ਯੂਕੇ ਦੇ ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਬੱਸ ਸਟਾਪਾਂ ਦੇ ਵਰਣਨ ਹੁਣ ਬਹੁਤ ਬਿਹਤਰ ਹਨ।\n\nਸਲੀਪ ਮੋਡ ਹੁਣ ਆਪਣੇ ਆਪ ਜਾਗ ਸਕਦਾ ਹੈ ਜਦੋਂ ਉਸਨੂੰ ਪਤਾ ਲੱਗੇ ਕਿ ਤੁਸੀਂ ਮੁੜ ਚੱਲ ਪਏ ਹੋ। ਹੁਣ ਤੁਹਾਨੂੰ ਇਸਨੂੰ ਆਪ ਜਗਾਉਣਾ ਯਾਦ ਰੱਖਣ ਦੀ ਲੋੜ ਨਹੀਂ।\n\nਅਸੀਂ ਅੰਦਰਲਾ ਕੋਡ ਮੁੜ ਵਿਵਸਥਿਤ ਕੀਤਾ ਹੈ ਤਾਂ ਜੋ ਉਸੇ ਕੋਡ ਤੋਂ iOS ਐਪ ਵੀ ਬਣਾ ਸਕੀਏ। ਇਸਦਾ ਮਤਲਬ ਹੈ ਕਿ ਭਵਿੱਖ ਵਿੱਚ ਅਸੀਂ Android ਲਈ ਬਣਾਈਆਂ ਸਾਰੀਆਂ ਸਹੂਲਤਾਂ ਵਾਲੀ iOS ਐਪ ਜਾਰੀ ਕਰ ਸਕਦੇ ਹਾਂ।\n\nਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਵੀ ਸਮੱਸਿਆ, ਭਾਵੇਂ ਕਿੰਨੀ ਵੀ ਛੋਟੀ ਹੋਵੇ, ਮੁੱਖ ਮੀਨੂ ਵਿੱਚ ਸਹਾਇਤਾ ਨਾਲ ਸੰਪਰਕ ਕਰੋ ਰਾਹੀਂ ਦੱਸਦੇ ਰਹੋ।\n",
+  "suggested": "\nਇਹ Soundscape ਦਾ ਇੱਕ ਵੱਡਾ ਅੱਪਡੇਟ ਹੈ।\n\nਸਫ਼ਰ ਮੋਡ ਬਹੁਤ ਬਿਹਤਰ ਹੋ ਗਿਆ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਕਾਰ ਜਾਂ ਬੱਸ ਵਿੱਚ ਸਫ਼ਰ ਕਰਦੇ ਹੋ, ਤਾਂ Soundscape ਹੁਣ ਸੜਕਾਂ ਦੇ ਨੰਬਰ, ਤੁਹਾਡੇ ਸਫ਼ਰ ਦੀ ਦਿਸ਼ਾ ਅਤੇ ਨੇੜਲੀਆਂ ਬਸਤੀਆਂ ਦੀ ਘੋਸ਼ਣਾ ਕਰਦਾ ਹੈ। ਇਹ ਉਦੋਂ ਵੀ ਘੋਸ਼ਣਾ ਕਰਦਾ ਹੈ ਜਦੋਂ ਤੁਸੀਂ ਦਰਿਆ, ਨਹਿਰਾਂ, ਮੁਹਾਣੇ ਅਤੇ ਖਾੜੀਆਂ ਪਾਰ ਕਰਦੇ ਹੋ। ਇਹ ਨਵੀਆਂ ਸਹੂਲਤਾਂ ਲੈਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਆਫ਼ਲਾਈਨ ਨਕਸ਼ੇ ਅੱਪਡੇਟ ਕਰੋ। ਯੂਕੇ ਦੇ ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਬੱਸ ਸਟਾਪਾਂ ਦੇ ਵਰਣਨ ਹੁਣ ਬਹੁਤ ਬਿਹਤਰ ਹਨ।\n\nਸਲੀਪ ਮੋਡ ਹੁਣ ਆਪਣੇ ਆਪ ਜਾਗ ਸਕਦਾ ਹੈ ਜਦੋਂ ਉਸਨੂੰ ਪਤਾ ਲੱਗੇ ਕਿ ਤੁਸੀਂ ਮੁੜ ਚੱਲ ਪਏ ਹੋ। ਹੁਣ ਤੁਹਾਨੂੰ ਇਸਨੂੰ ਆਪ ਜਗਾਉਣਾ ਯਾਦ ਰੱਖਣ ਦੀ ਲੋੜ ਨਹੀਂ।\n\nਅਸੀਂ ਅੰਦਰਲਾ ਕੋਡ ਮੁੜ ਵਿਵਸਥਿਤ ਕੀਤਾ ਹੈ ਤਾਂ ਜੋ ਉਸੇ ਕੋਡ ਤੋਂ iOS ਐਪ ਵੀ ਬਣਾ ਸਕੀਏ। ਇਸਦਾ ਮਤਲਬ ਹੈ ਕਿ ਭਵਿੱਖ ਵਿੱਚ ਅਸੀਂ Android ਲਈ ਬਣਾਈਆਂ ਸਾਰੀਆਂ ਸਹੂਲਤਾਂ ਵਾਲੀ iOS ਐਪ ਜਾਰੀ ਕਰ ਸਕਦੇ ਹਾਂ।\n\nਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਵੀ ਸਮੱਸਿਆ, ਭਾਵੇਂ ਕਿੰਨੀ ਵੀ ਛੋਟੀ ਹੋਵੇ, ਮੁੱਖ ਮੀਨੂ ਵਿੱਚ ‘ਸਹਾਇਤਾ ਨਾਲ ਸੰਪਰਕ ਕਰੋ’ ਰਾਹੀਂ ਦੱਸਦੇ ਰਹੋ।\n",
+  "reason": "The menu item name «ਸਹਾਇਤਾ ਨਾਲ ਸੰਪਰਕ ਕਰੋ» is an imperative dropped into the middle of the sentence without quotes, so it reads as 'please report … in the main menu contact support through'. Typographic quotes mark it as a UI name, as location_detail_adjust_marker_location_instructions does with ‘ਹੋ ਗਿਆ’.",
+  "category": "tone"
+ },
+ {
+  "context": "osm_coffee_shop",
+  "source": "Coffee Shop",
+  "current": "ਕੌਫ਼ੀ ਸ਼ਾਪ",
+  "suggested": "ਕੌਫ਼ੀ ਦੀ ਦੁਕਾਨ",
+  "reason": "The same English 'Coffee Shop' is «ਕੌਫ਼ੀ ਦੀ ਦੁਕਾਨ» in osm_coffee but the loanword «ਕੌਫ਼ੀ ਸ਼ਾਪ» here, so one kind of place gets two callout names. Match osm_coffee and the '…ਦੀ ਦੁਕਾਨ' pattern the other shop names use.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_realtor",
+  "source": "Real Estate Agent",
+  "current": "ਪ੍ਰਾਪਰਟੀ ਏਜੰਟ",
+  "suggested": "ਪ੍ਰਾਪਰਟੀ ਡੀਲਰ",
+  "reason": "The same English 'Real Estate Agent' is «ਪ੍ਰਾਪਰਟੀ ਡੀਲਰ» in osm_real_estate_agent but «ਪ੍ਰਾਪਰਟੀ ਏਜੰਟ» here. «ਪ੍ਰਾਪਰਟੀ ਡੀਲਰ» is the usual Indian Punjabi term.",
+  "category": "terminology"
+ }
+]

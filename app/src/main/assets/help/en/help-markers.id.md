@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Penanda
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 80
 lang: id
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Penanda
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Penanda adalah tempat yang telah Anda simpan. Penanda bisa berupa tempat apa pun yang penting bagi Anda: rumah Anda, halte bus, pintu masuk gedung, atau penyeberangan.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape memberitahukan penanda Anda saat Anda melewatinya. Anda dapat memasang suar audio pada penanda, menambahkannya ke rute, atau mendengar yang terdekat dengan tombol *Penanda Terdekat*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Membuat Penanda
+
+1. Pilih *Penanda* di layar utama, lalu pilih *Baru*.
+
+2. Pilih *Lokasi Saat Ini*, atau sebuah tempat dari *Tempat di Sekitar*.
+
+3. Ubah namanya jika mau, dan tambahkan catatan. Soundscape membacakan catatan itu bersama penandanya.
+
+4. Pilih *Selesai*.
+
+Anda juga dapat menyimpan tempat apa pun yang Anda temukan. Buka *Detail Lokasi* tempat itu dan pilih *Simpan sebagai Penanda*.
+
+## Menyesuaikan Penanda
+
+Pilih penanda di layar *Penanda*, lalu pilih *Edit Penanda*. Anda dapat mengubah nama, catatan, dan posisinya, atau memilih *Hapus Penanda*. Menghapus penanda juga mengeluarkannya dari rute Anda.
 

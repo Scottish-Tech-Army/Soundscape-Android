@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Merki
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 80
 lang: is
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Merki
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Merki er staður sem þú hefur vistað. Það getur verið hvaða staður sem skiptir þig máli: heimilið þitt, stoppistöð, inngangur að byggingu eða gangbraut.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape tilkynnir merkin þín þegar þú ferð fram hjá þeim. Þú getur sett hljóðvita á merki, bætt því við leið eða heyrt þau sem eru næst með hnappnum *Nálæg merki*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Búa til merki
+
+1. Veldu *Merki* á heimaskjánum og veldu síðan *Nýtt*.
+
+2. Veldu *Núverandi staðsetning*, eða stað úr *Nálægir staðir*.
+
+3. Breyttu heitinu ef þú vilt og bættu við athugasemdum. Soundscape les athugasemdirnar upp með merkinu.
+
+4. Veldu *Lokið*.
+
+Þú getur líka vistað hvaða stað sem þú finnur. Opnaðu *Upplýsingar um staðsetningu* fyrir staðinn og veldu *Vista sem merki*.
+
+## Sérsníða merki
+
+Veldu merkið á skjánum *Merki* og veldu síðan *Breyta merki*. Þú getur breytt heiti þess, athugasemdum og staðsetningu, eða valið *Eyða merki*. Þegar merki er eytt er það líka fjarlægt úr leiðunum þínum.
 

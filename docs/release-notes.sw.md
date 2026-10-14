@@ -10,7 +10,9 @@ machine-translated: true
 
 # Maelezo ya toleo
 
-Soundscape 2.0 ni toleo kubwa na kwa sasa liko katika hatua ya beta iliyofungwa. Badiliko kuu ni
+Soundscape 2.0 ni toleo kubwa na sasa liko katika hatua ya beta iliyo wazi kwenye Android.
+Hii inamaanisha kwamba mtu yeyote anaweza kupata toleo la beta kwa kwenda tu kwenye Play Store [hapa](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Badiliko kuu ni
 kwamba sasa Soundscape ina jambo la maana la kusema unaposafiri kwa gari, basi au treni, siyo tu
 unapotembea kwa miguu. Zaidi ya hayo, kuna kazi nyingi ndogo kuhusu jinsi maeneo yanavyoelezwa,
 lugha mpya ishirini, na orodha ndefu ya marekebisho.
@@ -24,14 +26,29 @@ Maelezo ya matoleo ya zamani yako kwenye ukurasa wa
   kasi na kuelezea safari yako badala ya mazingira yaliyo karibu nawe.
 * **Kuarifiwa unapovuka maji na reli.** Mito, mifereji, ghuba na njia za reli hutangazwa unapozivuka,
   ukiwa unatembea au unasafiri.
+* **Chagua kiasi ambacho Soundscape husema.** Mpangilio mpya wa *Kiwango cha Matangazo* hufanya
+  Soundscape iseme kidogo katika sehemu zenye watu wengi, na *Sehemu za Kutangaza* hukuruhusu kuchagua
+  aina za sehemu unazotaka kusikia. Unaweza kubadilisha kiwango kwa vitufe vya vipokea sauti ukitembea.
+* **Jua makutano yanayofuata yako umbali gani.** Makutano hutangazwa kwa umbali ulio sawa unapoyakaribia,
+  na tangazo sasa husema ukingo wa njia ya miguu uko umbali gani.
+* **Tafuta aina ya mahali, au viwianishi.** Tafuta «duka la dawa» au «kituo cha basi» ili kupata vilivyo
+  karibu zaidi, vyovyote viitwavyo, au bandika viwianishi, kiungo cha ramani au Plus Code.
+* **Vitufe tofauti vya Alama na Njia.** Skrini ya *Alama na Njia* na vichupo vyake viwili
+  imegawanywa kuwa skrini ya *Alama* na skrini ya *Njia*, kila moja ikiwa na kitufe chake kwenye
+  skrini ya mwanzo. Skrini ya Alama ina kitufe cha *Mpya* cha kuhifadhi mahali ulipo sasa au sehemu
+  ya karibu.
+* **Fungua mahali katika programu nyingine ya ramani**, kama Google Maps, kutoka Taarifa za Mahali au
+  kutoka kwenye orodha.
+* **Zaidi kutoka kwa beacon kwenye skrini ya mwanzo.** Sasa inaonyesha umbali na mwelekeo, na ina vitendo
+  vya kisoma skrini vya kutangaza beacon, kusikia zaidi kuihusu au kuihifadhi kama alama.
 * **Anwani na majina bora ya maeneo.** Maeneo yasiyo na anwani yao sasa hupewa barabara na eneo
   yalipo, namba za nyumba huoanishwa na upande sahihi wa barabara, na vituo vya basi nchini Uingereza
   hutumia majina yao rasmi.
 * **Lugha mpya ishirini**, na hivyo jumla kufikia 46. Tovuti hii ya nyaraka pia imetafsiriwa.
-* **Kuamka unapoondoka.** Hali ya usingizi sasa inaweza kuiamsha Soundscape unapoondoka mahali
-  ulipoiweka usingizini.
+* **Amka Ukiondoka.** Unapoiweka Soundscape katika Hali ya Kulala, kitufe kipya cha *Amka Ukiondoka*
+  kinaiweka badala yake katika Hali ya Kusinzia, nayo huamka yenyewe unapoondoka mahali hapo.
 * **Umbali mfupi na wa asili zaidi**, kwa vipimo vikubwa unaposonga kwa kasi.
-* **Njia ya haraka ya kutoka.** *Toka Soundscape* sasa iko juu kabisa ya menyu kuu.
+* **Njia ya haraka ya kutoka.** *Ondoka Soundscape* sasa iko juu kabisa ya menyu kuu.
 * **Maboresho ya ramani zisizohitaji intaneti**, ikijumuisha kusasisha ramani iliyopakuliwa palepale
   na ramani ya maeneo yanayopatikana kwenye tovuti hii.
 * **Kazi nyingi ya ufikivu** pamoja na TalkBack, hasa katika skrini za mwanzo.
@@ -59,10 +76,10 @@ Wakati wa safari utasikia:
 
 * **Ulipo**, mara kwa mara — barabara uliyopo na mwelekeo wako, kwa mfano «Unaelekea kaskazini kwenye
   M8». Barabara zenye namba hutangazwa kwa namba zake, na Soundscape hairudii barabara ileile kila
-  jina la mtaa linapobadilika.
+  jina la mtaa linapobadilika. Barabara hutajwa tu baada ya kuwa umeifuata kwa umbali mfupi, kwa hivyo mfululizo wa kona katika mtaa wa makazi hauleti tangazo kila kona.
 * **Miji na vijiji** unavyoelekea, pamoja na umbali, pia vile unavyoviacha nyuma au unavyopita tu
   karibu navyo.
-* **Makutano na maeneo ya kutokea barabara kuu** unapoyafikia.
+* **Makutano na maeneo ya kutokea barabara kuu** unapoyafikia. Yale tu yaliyo upande wa barabara unaoutumia — si ya barabara unayoipita karibu, wala ya upande wa pili wa barabara kuu.
 * **Alama kubwa** unapozipita, kama bustani, hospitali, viwanja vya michezo na vituo vya ununuzi.
 * **Vituo vya basi, tramu na treni** unapovipita. Soundscape hutaja tu vituo vilivyo upande wako wa
   barabara, kwa kuwa vile vya upande wa pili hutumikia mwelekeo tofauti.
@@ -80,11 +97,94 @@ Matangazo ya kawaida kwa watembea kwa miguu — maduka yaliyo karibu, vivuko vya
 — huzuiliwa kwa makusudi wakati wa safari, na umbali ambao vitu hutangazwa umeongezwa sana ili upate
 habari ya kitu kabla hujakipita.
 
+### Makutano
+
+Swali lililoulizwa zaidi kuhusu matangazo ya makutano lilikuwa ni umbali gani hasa makutano yalipo. Sasa
+Soundscape inakuambia: «Makutano umbali wa mita 30». Umbali hupimwa hadi ukingo wa njia ya miguu wa
+barabara unayokaribia kuvuka, si hadi katikati ya makutano, kwa sababu hapo ndipo unaposimama kweli.
+
+Tangazo pia linakuja mahali palipo sawa zaidi. Awali lingeweza kuja ukiwa mita 45 au mita 10, bila chochote
+cha kuyatofautisha. Sasa linasubiri hadi makutano yawe karibu mita 30, ili umbali uwe na maana ileile kila
+mara.
+
 ### Kuvuka maji na reli
 
 Sasa Soundscape hukueleza unapovuka mto, mfereji, ghuba, hori au njia ya reli. Hufanya kazi ukiwa
 unatembea na pia unaposafiri, na hujumuisha kupita chini kama vile kupita juu, hivyo daraja la
 watembea kwa miguu na njia ya chini ya ardhi vyote huelezwa.
+
+### Chagua kiasi ambacho Soundscape husema
+
+Tunachosikia mara nyingi zaidi kuhusu Soundscape ni kwamba husema mno katika sehemu zenye watu wengi kama
+katikati ya mji. Sehemu ya *Dhibiti Matangazo* katika *Mipangilio* sasa ina mipangilio mitatu badala ya
+orodha ya zamani ya swichi:
+
+* **Kiwango cha Matangazo** ni Kimya, Muhimu, Rahisi au Kwa Kina. *Kwa Kina* ndicho Soundscape imekuwa
+  ikifanya siku zote, na ndipo unapoanzia. *Rahisi* huacha njia ndogo na barabara za huduma na hujirudia
+  mara chache. *Muhimu* hutangaza barabara, makutano na vivutio pekee. *Kimya* haitoi matangazo ya kiotomatiki
+  kabisa, huku beacon, njia na vitufe vya skrini ya mwanzo vikiendelea kufanya kazi. Unachukua nafasi ya
+  swichi ya zamani *Ruhusu Matangazo ya Sauti*; kama ulikuwa umeizima, Kiwango cha Matangazo sasa kiko
+  kwenye Kimya. Viwango hivi vinatumika pia unaposafiri: *Rahisi* hutaja barabara uliyopo mara chache zaidi, na *Muhimu* hutaja barabara kuu na barabara zenye namba pekee na huacha vituo vya basi.
+* **Barabara na Makutano** huwasha au kuzima matangazo ya makutano na ya barabara uliyopo.
+* **Sehemu za Kutangaza** ni orodha ya kuchagua: Kila Kitu, Vivutio, Usafiri wa Umma, Chakula na Vinywaji,
+  Maduka ya Vyakula na Bidhaa Muhimu, Benki na Mashine za ATM au Hakuna Sehemu. Chagua nyingi kadri
+  unavyotaka, kwa mfano vivutio na vituo vya basi. Alama zako hutangazwa kila wakati.
+
+Kiwango kinachofaa hubadilika unapotembea, kwa hiyo huhitaji kwenda kwenye Mipangilio ili kukibadilisha.
+Kubonyeza *Iliyotangulia* kwenye vipokea sauti hushusha Kiwango cha Matangazo hatua moja kila mara, kutoka
+Kwa Kina kupitia Rahisi na Muhimu hadi Kimya, kisha tena Kwa Kina. Kiwango kipya husemwa kila mara. Hii
+hufanya kazi katika hali zote mbili za vidhibiti vya sauti, na ndiyo sababu vitufe vya vipokea sauti
+vimebadilika kidogo:
+
+* Katika *Hali ya Awali*, *Ifuatayo* sasa hutangaza *Karibu Nami* wakati hakuna njia inayochezwa, na
+  *Mahali Nilipo* haipo tena kwenye vitufe. Njia inapochezwa, *Ifuatayo* na *Iliyotangulia* bado huhama
+  kati ya vituo.
+* Katika hali ya *Menyu ya Sauti*, *Iliyotangulia* hairudi tena nyuma kwenye menyu. *Ifuatayo* bado
+  hupitia menyu na *Cheza/Simamisha* bado huchagua. Alama na njia kwenye menyu sasa zimepangwa kwa jina, na
+  ukishaanzisha moja, menyu inarudi mwanzo badala ya kukuacha ndani kabisa ya orodha.
+
+### Utafutaji
+
+Upau wa utafutaji sasa unaelewa zaidi ya majina ya mahali:
+
+* **Aina za mahali.** Tafuta kwa lugha yako «duka la dawa», «choo», «ATM» na kadhalika, na Soundscape
+  itaorodhesha sehemu za aina hiyo zilizo karibu zaidi, vyovyote ziitwavyo. Sehemu zisizo na jina, kama
+  vyoo na viti vingi, huonyeshwa kwa aina yake pamoja na anwani.
+* **Viwianishi, viungo vya ramani na Plus Codes.** Bandika jozi ya namba, nyuzi na dakika, kiungo kutoka
+  Google Maps, Apple Maps au OpenStreetMap, au Plus Code, na Soundscape itakupa mahali hapo hasa. Jozi ya
+  namba peke yake inaweza kusomwa pande zote mbili, kwa hiyo pale ambapo zote mbili zina maana, unapewa
+  zote mbili, iliyo karibu zaidi kwanza.
+* **Utafutaji nje ya mtandao.** Utafutaji sasa huangalia kila wakati pia ramani ulizopakua, si mtandaoni
+  tu, na hivyo hupata sehemu nyingi zaidi zisizo na jina. Ukitafuta bila muunganisho wa intaneti na huna
+  ramani ya nje ya mtandao ya mahali ulipo, Soundscape itakuambia hivyo badala ya kukosa kupata chochote
+  tu.
+
+### Kufungua mahali katika programu nyingine
+
+Taarifa za Mahali zina kitufe kipya, **Fungua katika programu ya ramani**, kinachoorodhesha programu za
+ramani na uelekezaji kwenye simu yako. Chagua *Tumia programu hii kila wakati* na kitufe kitakuwa, kwa
+mfano, *Fungua katika Google Maps*, na kuifungua mara moja; kubonyeza kwa muda mrefu hurudisha orodha.
+Orodha za *Sehemu za Karibu* na *Alama* pia zina vitendo vya kisoma skrini *Fungua katika…* na *Shiriki*.
+
+### Alama na Njia
+
+Alama na njia zilikuwa zikitumia skrini moja, *Alama na Njia*, yenye kichupo kwa kila moja, na
+ilikuwa rahisi kusahau uko kwenye kichupo kipi. Sasa ni skrini mbili tofauti, kila moja ikiwa na
+kitufe chake kwenye skrini ya mwanzo: *Alama* na *Njia*, chini kidogo ya *Sehemu za Karibu*.
+
+Kila skrini ina kitufe cha *Mpya* kwenye kona ya juu kulia. Kwenye skrini ya Njia kinaunda njia,
+kama awali. Kwenye skrini ya Alama ni kipya: kinaonyesha *Mahali Nilipo Sasa* na kategoria za
+*Sehemu za Karibu*, ili uweze kuhifadhi alama bila kurudi kwanza kwenye skrini ya mwanzo kutafuta
+mahali. Visomaji skrini hutaja vitufe hivi kama *Alama Mpya* na *Njia Mpya*.
+
+### Beacon na alama
+
+* Beacon kwenye skrini ya mwanzo sasa inaonyesha **umbali na mwelekeo** wake, na kisoma skrini
+  kinaisoma, kwa mfano, kama «Beacon kwenye Milngavie Library, mita 390, kusini mashariki». Njia pia
+  zinaonyesha kwa njia hiyohiyo umbali hadi kituo cha sasa.
+* Beacon ina **vitendo vitatu vya kisoma skrini**: *Tangaza Beacon* husema ilipo, *Maelezo Zaidi*
+  huongeza anwani, na *Ongeza kwenye Alama* huihifadhi.
+* Unaweza tena **kusogeza alama** kwa kuburuta ramani kwenye skrini ya *Hariri Alama*.
 
 ### Anwani na majina bora ya maeneo
 
@@ -115,13 +215,13 @@ kilichokuwa na maandishi ya kutosha yaliyotafsiriwa ili kiwe na manufaa.
 
 Tafsiri ni kazi ya jamii na tunakaribisha msaada wako, au marekebisho pale ambapo kitu hakisomeki
 vizuri. Maandishi yoyote yanaweza kuboreshwa kwenye
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Hali ya usingizi
+### Hali ya Kulala
 
-Hali ya usingizi imepata **kuamka unapoondoka**. Unapoiweka Soundscape usingizini, unaweza kuiomba
-iamke mara tu utakapoondoka eneo hilo. Hii husaidia unapofika mahali na kutaka utulivu hadi
-utakapoondoka tena.
+Hali ya Kulala ina kitufe kipya, ***Amka Ukiondoka***. Ukikichagua, Soundscape huingia katika Hali
+ya Kusinzia: hukaa kimya hadi utakapoondoka eneo hilo, kisha huamka yenyewe. Hii husaidia unapofika
+mahali na kutaka utulivu hadi utakapoondoka tena.
 
 ### Umbali na usemi
 
@@ -153,12 +253,12 @@ zinazoweka kitenzi mwishoni, na vidokezo vyenye maana pale ambapo hapakuwa na ch
 
 ### Menyu na uelekezaji
 
-* **Toka Soundscape** sasa ni kipengee cha kwanza kwenye menyu kuu, badala ya kuwa chini zaidi.
+* **Ondoka Soundscape** sasa ni kipengee cha kwanza kwenye menyu kuu, badala ya kuwa chini zaidi.
 * Menyu kuu haiachi tena ukanda wa skrini upande mmoja, jambo lililowapa watumiaji wa visomaji skrini
   eneo la ziada la kugusa lililokuwa likichanganya.
 * Ishara ya kurudi nyuma ya mfumo hairuki tena ngazi unapovinjari makundi katika Maeneo ya Karibu.
-* *Mafunzo ya sauti* yamepewa jina jipya **mafunzo yenye mwongozo**.
-* Mipangilio imepangwa upya, na *Rejesha chaguo-msingi* sasa hufuta kila kitu ipasavyo.
+* *Mafunzo ya sauti* yana jina jipya: **Mafunzo elekezi**.
+* Mipangilio imepangwa upya, na *Rejesha mipangilio kwa chaguomsingi* sasa hufuta kila kitu ipasavyo.
 
 ### Uthabiti
 
@@ -175,6 +275,8 @@ mandharinyuma kwa nguvu.
 * **Udhibiti wa sauti** umeondolewa. Haukuwahi kufanya kazi kwa uhakika wa kutosha kustahili kubaki,
   na vitufe vya midia kwenye vipokea sauti hufanya kwa kiasi kikubwa kazi ileile — angalia
   [Msaada wa kutumia vitufe vya midia]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape pia iko tayari kwa amri za sauti kupitia Gemini kwenye Android 16 na matoleo mapya zaidi,
+  lakini hazitafanya kazi hadi Google itakapotoa usaidizi wake katika Gemini.
 * **Menyu ya lugha ndani ya programu** imeondoka. Sasa Soundscape hufuata lugha uliyoweka kwenye simu
   yako, jambo ambalo watu wengi walitegemea hata hivyo. Ili kuibadilisha, badilisha lugha ya simu, au
   weka lugha ya kila programu katika mipangilio ya simu kama inaruhusu.

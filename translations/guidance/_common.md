@@ -142,3 +142,500 @@ warn any of them.
 > slepá ulice», sk «do slepá ulica», hr «do slijepa ulica», sr «до ћорсокак»
 > and sl «do slepa ulica» (all need the genitive). The English comment said
 > only "Dead end road description".
+>
+> **Update (2026-09-25):** uk no longer uses the genitive here. Its templates switched to the label form «%1$s, напрямок: %2$s», and the dead end is the nominative «тупик» again (C17, `uk.md` UK-G2).
+>
+> **Addendum (2026-09-24):** Icelandic has it too. «til blindgata» should be
+> genitive «til blindgötu» (`is.md` IS-G1). Bulgarian is correctly absent,
+> since it has no noun case (`bg.md` BG-G1). A non-inflecting language can
+> still get this slot wrong another way: French «à impasse» lacks its article
+> (`fr.md` FR-G1).
+>
+> **Fixed 2026-09-24** in ru, cs, sk, hr, sr, sl, pl and is: the genitive (dative for
+> ru «тупику») was uploaded and verified live in all eight. uk was fixed earlier
+> (see `uk.md`). fr FR-G1 is still open, because it needs a wording decision.
+
+## C17 — When a runtime name can't be declined, use a label instead of a preposition
+
+Names from the map (roads, POIs, settlements) arrive in the nominative. In a
+case-inflecting language, a template that puts one after a preposition
+(«до %2$s», «Á %1$s», «%1$s'de») is always wrong for some names, and no
+string edit can fix it. The fix a native speaker chose is to drop the
+preposition and introduce the name with a **label**, after which the
+nominative is natural.
+
+> **Case (uk, 2026-09-25):** «Стежка у напрямку вулиця Шевченка» → «Стежка,
+> напрямок: вулиця Шевченка». In the reporter's words: "Formation of genitive
+> case is different for different words, there is no predictable pattern."
+> The dead-end string then went back to the nominative «тупик».
+
+The same problem is recorded, unresolved, as IS-G2 (Icelandic). Polish
+(PL-G2) asked and **declined** the label form (2026-09-30): the robotic
+nominative is acceptable there, so a reviewer may prefer no change. FR-G2 (French contractions), HU-A1 (Hungarian «a(z)») and
+TR-G1 (Turkish suffixes) are now resolved in code, see C18. The label form is the candidate fix to put to each
+language's reviewer. It isn't a rule to apply unasked, because it changes
+how the callout sounds. Finnish already dodges it with «kohteeseen %2$s».
+Remember C9: if a template changes, strings substituted into it may need
+their case changed back.
+
+## C18 — Either-form markers are resolved in code; keep writing them
+
+Some languages have a form that depends only on the sound of the name that
+follows or precedes it. Translators write both forms, and
+`resolveGrammarMarkers()` (`shared/.../i18n/GrammarMarkers.kt`) keeps the
+right one once the name has been filled in. It covers text formatted
+through `LocalizedStrings` (all callouts) and the offline-maps and Terms
+screens.
+
+| Language | Marker | Chosen by |
+|---|---|---|
+| hu | «a(z)», «A(z)» | first sound of the next word: vowel → «az»; letter names (az M7, az SZTE) and numbers (az 1, az 5, a 12) by how they're said |
+| fi | «{Tiellä %1$s}», «{Kadulla %1$s}» | the name's street-word ending takes the adessive (-tie → -tiellä, -katu → -kadulla, -mäki → -mäellä), a leading Vanha / Itäinen / Toinen… declines too; a name without a known ending keeps the label («Tiellä Almas väg») |
+| et | «{Teel %1$s}», «{Tänaval %1$s}» | the name's street word takes the adessive (maantee → maanteel, põik → põigul, mnt → maanteel); a single-word name is a «tänav» street, so «Metsa» → «Metsa tänaval»; anything else keeps the label |
+| fr, fr_CA, es, it, pt, pt_BR | «{fr:de %1$s}», «{es:por %1$s}», «{it:a %1$s}», «{pt:na %1$s}»: a preposition and a map name, tagged with the language | the article is added and fused from the name: fr «le long de la rue de Rivoli», «au boulevard Haussmann», «du Bon Marché»; es «por la avenida de Mayo», «del Corte Inglés» (only «el» contracts); it «alla Scala», «sul Corso» (no article before via/piazza); pt «no Largo do Carmo», «na Rua Augusta», «ao Mercado». A name with no known type keeps the template's wording |
+| hu | «%3$s{-ig}» | terminative written onto the name: a/e lengthen (utcáig, teréig, Astoriáig), else «ig» (térig); numbers and abbreviations take «-ig» (M7-ig) |
+| hu | «%1$s{úton}» | the name's own street word takes the "on" case (Andrássy út → úton, Váci utca → utcán, Deák tér → téren, Hősök tere → terén); a route number takes its suffix by vowel harmony (M7-es, 8-as, M5-ös, M0-s); any other name without one gets « úton» |
+| ko | 을(를), 이(가), 은(는), 과(와) and the reversed forms, (으)로, (이) | final consonant of the preceding syllable; ㄹ takes 로; numbers in Sino-Korean, Latin by letter name or spelling |
+| tr | '{DA} '{DAn} '{A} '{I} '{In} (locative, ablative, dative, accusative, genitive) | last vowel (harmony) and final sound of the preceding word: İstanbul'da, Park'ta, Ankara'ya; the possessive ending of «Caddesi», «Parkı», «Mahallesi»… adds n (Caddesi'nde); numbers by their last spoken word (3'te, 40'ta, 5'in); abbreviations by letter name (TRT'ye) |
+
+So **keep** these markers in translations and never replace them with one
+fixed form: a bare «와» or «a» is wrong for some names. A marker that isn't
+in the table is read aloud as written. Add it to the code (with a test)
+before translations start using it. Anything shared rather than shown or
+spoken (the share-location message) is left as written.
+
+## C10 — `confect_name_to` means "a path that leads to", not "from … to"
+
+`confect_name_to` («%1$s to %2$s») and `confect_name_to_via` put a **way
+type** in `%1$s` («Path», «Service road») and the place it leads to in
+`%2$s`. English "to" is ambiguous, so translators reached for their language's
+*from–to* range construction, which makes the path the starting point instead
+of the thing being described:
+
+> **Case (2026-09-24 sweep):** hi «%1$s से %2$s तक», ta «%1$s முதல் %2$s
+> வரை» and ja «%1$s から %2$s へ» all say "from the path to Moor Road".
+> zh «%1$s到%2$s» is ambiguous in the same way. mr, te and ko got it right
+> with a relative clause («%2$s कडे जाणारा %1$s», «%2$s(으)로 이어지는
+> %1$s»), which is the model to follow.
+
+This is a rule C7 source problem. The English comment ("Road description of
+path to another road e.g. "Path to Moor Road"") doesn't say that `%1$s` is a
+way type. It should say "%1$s is a kind of way (Path, Track…); %2$s is where
+it leads. Translate as 'a %1$s leading to %2$s', not 'from %1$s to %2$s'".
+**Edited 2026-09-24**, together with `confect_name_dead_end`'s comment,
+which now says it only ever lands in these templates' `%2$s` (C9). A comment
+edit reaches translators in Weblate only after the component pulls the new
+English source. Existing translations are not re-flagged, so the hi, ta and
+ja strings still need fixing through their reviewers (HI-G1, TA-G1, JA-G1).
+
+## C11 — "goes left" describes a road; it is not a turn instruction
+
+`directions_name_goes_left/right` and `directions_name_continues_ahead` tell
+the user which way each road at an intersection *leads*. Soundscape never
+gives turn-by-turn instructions. A translation that reads as an instruction
+(«turn left») tells a blind user to do something the app never decided.
+
+> **Case (2026-09-24 sweep):** vi «%1$s, rẽ trái» and zh «%1$s，左转» both
+> mean "turn left". The zh version was a native speaker's change (Benjamin
+> Lin, 2026-02-17, replacing «向左延伸», "extends to the left"). So the
+> original wording evidently sounded wrong to a native ear, and the fix
+> overshot. Treat that as a question, not a revert (C8).
+
+## C12 — A transliterated English term isn't wrong by default
+
+In many languages the phone itself uses the English loanword (Hindi
+«स्लीप», Japanese «スヌーズ», Telugu «కాలౌట్»). A native-sounding coinage the
+user has never heard on their phone is worse than a loanword they recognise.
+This is the same logic as C1. Ask what the reviewer's phone and navigation
+apps say before "nativising" a transliteration.
+
+Two things still make a term wrong regardless of origin:
+
+- **the wrong sense**: a term with a *visual* meaning for something audible
+  (vi «Đèn hiệu», "signal lamp", and id «Suar», "flare", for Beacon)
+- **a split corpus**: two different words for one concept (bn ঘোষণা/কলআউট,
+  ur اعلان/کالآؤٹ, zh 提示/播报, ja コールアウト/読み上げ)
+
+"One concept" means one *meaning*. **Beacon** is several meanings under one
+English word, and splitting it by meaning is correct, not a split corpus
+(see C19).
+
+## C13 — Accessibility hints serve two platforms; fix the iOS template, not the hints
+
+Every `*_hint` / `*_acc_hint` fragment goes to both platforms:
+
+- **Android:** `TalkbackHelpers.android.kt` passes it as the `onClick` label,
+  and TalkBack wraps it in its *own* system-language phrasing ("Double-tap to
+  <label>" in English).
+- **iOS:** `TalkbackHelpers.ios.kt` substitutes it into our
+  `talkback_double_tap_template`.
+
+So when the iOS output reads badly, the first fix to try is the **template**,
+which is one string and iOS-only. The hints are ~40 strings and changing
+them also changes what TalkBack says. Pick a template frame that fits the
+grammatical form the hints already have:
+
+> **Case (sk, 2026-09-24):** The hints are infinitives («stlmiť zvukový
+> maják»), but the template «Dvojitým ťuknutím %1$s» ("by double-tapping …")
+> needs a finite verb. «Ak chcete %1$s, dvakrát ťuknite» or «Dvojitým
+> ťuknutím môžete %1$s» fits the existing infinitives without touching them.
+> By contrast, cs hints are already second-person future («ztlumíte»), which
+> «Dvojitým klepnutím %1$s» expects.
+
+Only change the hints if no template frame can work, and then ask a
+TalkBack user in that language what Android actually says around them.
+
+## C14 — Fifteen languages started from Microsoft's professional localisation
+
+The original Microsoft Soundscape iOS app shipped professionally translated
+strings for **da, de, el, en_GB, es, fi, fr, fr_CA, it, ja, nb_NO, nl, pt,
+pt_BR, sv**. They are open source at
+`github.com/microsoft/soundscape/tree/main/apps/ios/GuideDogs/Assets/Localization/<locale>.lproj/Localizable.strings`.
+The files are UTF-16, and a key `a.b.c` there is our `a_b_c`. The 2024
+prototype commits (`53d4f20d5`, then Adam Ward's "Translation strings for …"
+series) copied them in verbatim. Verified 2026-09-24: `first_launch_beacon_message_2`
+in German is word-for-word Microsoft's.
+
+About 360 of our non-POI keys exist in Microsoft's files. As of 2026-09-24,
+roughly 60% of those are still Microsoft's exact wording in each language.
+The rest changed, mostly because our English changed. The ones that matter
+are **drift**: the English is identical to Microsoft's en-US, but the
+translation differs. That means an AI pass replaced a professional
+translation for no source reason. Counts: da 73, fr_CA 69, es 34, nl 29,
+fr 27, ja 27, nb 26, fi 24, el 21, de 20, sv 15, it 8, pt_BR 8, pt 7,
+en_GB 2.
+
+**Dave's policy (2026-09-25):** *"We want iOS users to have as few
+differences as possible."* Legacy iOS users are moving to this app, so in
+the Microsoft-origin languages **Microsoft's wording is the target, not just
+a default**. A drift away from it needs a reason: a real error in Microsoft's
+text (like the ones below), or a string whose English has changed. First
+applied to the whole Sleep/Snooze family (`sleep_sleep`, `sleep_sleeping`,
+`sleep_snoozing`): 13 units in da, de, el, es, fi, fr, fr_CA and sv were
+restored to Microsoft's wording and verified live. **Spanish uses a newer reference:** JJ's
+Soundscape Community `es-ES`, which supersedes Microsoft's (see `es.md`). **pt_BR is the one
+exception:** Microsoft's «Em Ociosidade» ("idle") doesn't describe the mode,
+so «Em Soneca» stays.
+
+**Drift pass applied (2026-09-25).** Every drifted string in the 14 remaining
+languages was sorted into restore, keep or fix, and Dave approved da, de, el,
+en_GB, fi, it, ja, nb_NO, nl, pt, pt_BR and sv (269 units, verified live).
+**French: Dave declined all of its drift restores**, so French keeps its
+current wording. **fr_CA is pending re-examination.** The sort also found six
+help/FAQ strings (el, nl, pt_BR, fr_CA) truncated to a single sentence of
+their English, which the restores fixed for el, nl and pt_BR. Rules that
+came out of it: restoring only the drifted strings of a term that has been
+changed throughout a language would split the corpus, so those are
+whole-language decisions (nl «aankondiging» kept, fr_CA pending); and a
+Soundscape Community translation by a native speaker is a stronger
+reference than Microsoft's where it exists (Spanish; Finnish, for Ricky
+Tigg's edits).
+
+How to use this:
+
+- **Microsoft's term is the default** when a term is disputed and no native
+  speaker has spoken. It was chosen by professional translators, and it's
+  what long-time Soundscape users have heard for years.
+- **But it isn't infallible.** Some drift is an AI fixing Microsoft's errors:
+  de «Endpunkt» for "Done", the typo «Wie verwenden ich», «zu, dass» for
+  «hin, an dem». Check each drifted string on its merits, not by reverting.
+- **Microsoft never saw ~410 of our keys** (callout detail, confected way
+  names, voice commands, travel mode…). Those are AI-only in every language.
+
+> **Case (sv, 2026-09-24):** Microsoft's button/status pair was «Inaktivera» /
+> «Inaktiverad». An AI pass changed only the button, to «Viloläge», leaving the
+> status on Microsoft's word, so the two no longer match.
+
+## C15 — "You're ready!" forces a gender the English doesn't have
+
+`first_launch_prompt_title` was Microsoft's "You're all set!" and became
+"You're ready!" in `19af0e0a1` (2026-04-19). "Ready" is an adjective, and in
+most gendered languages it has to agree with the user. Translators then pick
+the masculine, a slash, or a plural dodge. Microsoft's translators, working
+from "all set", mostly found an impersonal form:
+
+> **Case (2026-09-24 sweep):** pt «Está tudo pronto!» → «Está pronto!» (m),
+> pt_BR «Tudo pronto!» → «Você está pronto!» (m), fr_CA «La configuration est
+> terminée.» → «Vous êtes prêt!» (m). Also it «Sei pronto!» (m), ro «Ești
+> pregătit!» (m), ar «أنت جاهز!» (m), is «tilbúin/n» (slash, read aloud),
+> cs/sk plural «připraveni»/«pripravení».
+
+This is a rule C7 source problem. Either restore "You're all set!" or add a
+translator comment such as "Prefer an impersonal phrasing (e.g. 'All set!',
+'Everything is ready') so the text doesn't have to agree with the user's
+gender". The same applies to any future English that puts an adjective or
+participle on "you".
+
+**Comment edited 2026-09-24** (English text unchanged, to avoid flagging 44
+languages at once) for `first_launch_prompt_title`, `first_launch_welcome_title`
+and `tour_welcome`: prefer gender-free phrasing, and never use slashes or
+brackets. The welcome title had the same problem: es «¡Bienvenido!», pt
+«Bem-vindo!» and ca «Benvingut!» are masculine, and pt_BR «Bem-vindo(a)!»
+puts brackets in front of a screen reader. it «Salve!» is the model. Existing
+translations aren't re-flagged by a comment change, so fix them through each
+language's reviewer.
+
+## C16 — A pass must translate the whole string, not the part that changed
+
+When an English string is edited, Weblate flags every translation of it.
+A pass that then translates only the *changed fragment*, and saves that
+fragment as the whole translation, silently deletes the rest of a correct
+translation. It often marks the gap with «...». The English is fine and
+Weblate shows the string as translated, so nothing else catches it.
+
+> **Case (2026-09-25 check):** 19 strings in 16 languages, all from AI
+> passes on 2026-08-19 → 22. The medical-safety disclaimer in the Terms of
+> Use was cut down in pl («...ponieważ dane mapowe użyte w programie
+> Soundscape pochodzą od podmiotu trzeciego...», 86 of 728 characters), pt
+> and es. Six battery/data FAQ answers kept one sentence (uk stopped at
+> "here are a few tips:"). sv's «Min plats» help went from 354 to 38
+> characters. One pass (`03968a047`) touched 56 Polish strings.
+
+**Always translate the full English string**, even when only one sentence
+changed. After any bulk pass, run the check:
+
+```
+python3 .claude/skills/translate/scripts/truncation_check.py /tmp/translation-review [<code> ...]
+```
+
+It compares each translation's length with its language's own median ratio
+(so ja/zh/ko aren't flagged wholesale), counts sentences, and looks for a
+leading or trailing «...». Check every flag against the English: Thai has no
+sentence punctuation, and a human's concise wording can look short (the
+three Icelandic flags are Þorkell's). **To repair one, look in git history
+first.** In all 19 cases, the complete pre-damage translation was still in
+the repo with its English unchanged, so it was restored instead of
+retranslated. The repo XML writes a line break as `\n` and doubles a
+backslash before a quote, where Weblate stores a real newline and `\"`.
+Convert before uploading.
+
+Applied 2026-09-25: all 19 restored, uploaded and verified live.
+
+## C19 — "Beacon" names three things; don't force one word on all of them
+
+English uses *beacon* for three meanings, and many languages can't stretch
+one word over all of them:
+
+| Meaning | English examples | What the translation must name |
+|---|---|---|
+| **Sound**: the audio signal | "Audio beacon styles", "mute the beacon", "the beacon gets quieter" | a sound |
+| **Place**: the location the beacon is on | "Distance to the Audio Beacon", "Beacon is currently %1$s away", "Call out Beacon", "Beacon Info" | a place or target (you can be a distance *from* it) |
+| **Feature**: guiding someone to a place | "set a beacon on an address", "Start/Stop Beacon", "No beacon active" | the act or mode of guiding |
+
+A term that names the sound («dźwięk naprowadzający», "guiding sound") turns
+"Distance to the Audio Beacon" into "distance to the guiding sound". That is
+nonsense when spoken, and this app is mostly heard.
+
+> **Case (2026-09-29, pl):** A Polish user reported that one fixed term
+> broke the place and feature strings. They warned that any pass enforcing
+> "Beacon → one term" (a glossary, translation memory, AI normalisation)
+> would bring the problem back. Their words: *"one domain object does not
+> necessarily imply one user-facing noun in every language."*
+
+**How to apply:**
+
+- Before translating or reviewing a beacon string, decide which of the three
+  meanings it is. The translator comment says *"A 'beacon' is an audio
+  signal…"* on about 20 FAQ strings, including ones where the meaning is
+  the place. Don't let that comment decide it.
+- A language may use one word for all three **if it works for all three**.
+  This rule doesn't require a split. It forbids *forcing* one where a
+  reviewer has chosen to split.
+- Never "fix" a beacon string to match another beacon string's wording
+  without first checking that both have the same meaning (C8). Deliberate
+  variation looks exactly like drift.
+- A glossary row for Beacon in `<code>.md` lists one term **per meaning**,
+  not one term.
+- Don't leave "beacon" in English as a workaround. A local speech
+  synthesiser will mispronounce it (unlike C12's loanwords, which the phone
+  itself already uses).
+
+
+## C20 — A bare digit can't carry an ordinal or a case (code fixed 2026-09-30)
+
+`relative_clock_direction` ("at %1$s o'clock") gets the clock position as a
+digit, and the speech engine chooses how to say it. In a language where the
+clock position is an ordinal in an oblique case, the engine guesses the
+cardinal and gets it wrong. No wording of the template can fix that.
+
+> **Case (pl, 2026-09-30):** «na godzinie 9» was spoken «na godzinie
+> dziewięciu» (cardinal locative). It should be «dziewiątej» (ordinal). The
+> reviewer's verdict on the resulting callouts: "quite nonsensical".
+
+Same shape: cs «na %1$s hodině», sk «na %1$s hodine», uk «на %1$s годині»
+(all ordinals in the locative). Slovenian «na %1$s. uri» uses an ordinal dot,
+which may or may not survive TTS.
+
+A cardinal template breaks too wherever the noun after the number agrees
+with it. **Correction (2026-09-30):** this rule used to say Russian «в %1$s
+часов» and Croatian «na %1$s sati» were fine. They are right only for 5–12
+(«в три часов» is wrong). The all-language review found the same fault in
+seven languages, and these were fixed the same day by moving the noun into
+the hour words:
+
+| Language | Template | Hour words |
+|---|---|---|
+| ru | «на %1$s» | «1 час», «2–4 часа», «5–12 часов» |
+| hr | «na %1$s» | «1 sat», «2–4 sata», «5–12 sati» |
+| sr | «на %1$s» | «1 сат», «2–4 сата», «5–12 сати» |
+| es | «a %1$s en punto» | «la una», «las 2» … «las 12» |
+| ca | «a %1$s en punt» | «la una», «les dues», «les 3» … «les 12» |
+| fr, fr_CA | «à %1$s» | «1 heure», «2 heures» … |
+| pt, pt_BR | «%1$s» | «à 1 hora», «às 2 horas» … |
+| ro | «la ora %1$s» (unchanged) | «două», «douăsprezece» (feminine; the rest stay digits) |
+
+Also changed for meaning, not agreement: de «bei %1$s Uhr» → «auf %1$s
+Uhr» («bei» sounds like a time of day), ar «عند الساعة» → «باتجاه الساعة»
+("in the direction of"), tr «saat %1$s'{DA}» → «saat %1$s yönünde».
+
+**Still open, for a native speaker:** sw (Swahili counts clock time from 6
+o'clock, so «saa tatu», literally "hour three", means 9 o'clock and the
+position may be heard on the opposite side), sl (the ordinal dot), el
+(«στις 1» needs «στη μία», and the TTS may read the digits as neuter), bg
+(«на 1 часа»), it («a ore 1»), et.
+
+**Fixed in code (2026-09-30):** the position now arrives as
+`relative_clock_hour_1`…`_12`. The English value is the digit, so a language
+that leaves them untranslated sounds exactly as before.
+
+**How to apply:** for most languages, translate each one as its digit. Where
+the template needs an ordinal or a case, write the word that fits *your*
+`relative_clock_direction`. Polish «na godzinie %1$s» + «dziewiątej»; Czech
+«na %1$s hodině» + «deváté»; Slovak «deviatej»; Ukrainian «дев'ятій».
+Changing the template and the hour words must happen together.
+
+## C21 — Dead ends have their own template (code, 2026-09-30)
+
+`confect_name_dead_end` ("dead end", substituted as the `%2$s` of
+`confect_name_to`) is **gone**. It's replaced by `confect_name_to_dead_end`
+("%1$s to dead end") and `confect_name_to_dead_end_via` ("%1$s to dead end
+via %2$s"). A language can now describe the way itself as ending instead of
+as leading to a place.
+
+> **Case (nl, 2026-09-30):** the reviewer wanted «Doodlopend pad». `%1$s` is
+> the way type *or a road's name* («Ladywood to dead end»), so Dutch uses
+> «%1$s, doodlopend».
+
+**How to apply:** each language's first values were built from its own
+`confect_name_to` + `confect_name_dead_end`, so the output didn't change. The
+per-language decisions recorded against `confect_name_dead_end` (C9 genitives,
+PL-G1, ES-G1, FR-G1, NL-G1…) now live in these two strings. Don't make `%1$s`
+agree in gender or case: it may be a proper name.
+
+## C22 — Detail levels renamed in English: Simplified and Essential (2026-09-30)
+
+"Balanced" and "Quiet" became **Simplified** and **Essential**. All three
+native-speaker reviewers so far rejected at least one of the old names. The
+Polish reviewer said "Quiet" sounds like volume. French and Dutch said
+"Balanced" has no natural equivalent («Équilibré» "doesn't work",
+«Gebalanceerd» is an anglicism). All three found Quiet too close to Silent.
+The new names describe *how much* the app says, and they form a descending
+ladder: Detailed → Simplified → Essential → Silent.
+
+Only the display names changed. The stored preference values («Quiet»,
+«Balanced»), the resource keys (`callouts_verbosity_level_quiet` /
+`_balanced`) and the iOS `CalloutDetailLevel` raw values are unchanged, so
+saved settings and the Siri/Gemini lookups still work. The lookup matches the
+stored value *or* the localized name.
+
+**How to apply:** translate each level by what it does (level 2 leaves out
+minor paths; level 3 is streets, junctions and landmarks only), and keep all
+four distinct by ear. pl, fr and nl took literal names on Dave's call and
+will be re-asked (PL-T1, FR-L1, NL-L1). The other languages were retranslated
+literally on 2026-09-30 and are asked on their questionnaires, including Ukrainian.
+Ukrainian's old names had been native-confirmed; Dave chose on 2026-09-30 to override
+that for literal names and ask again. A confirmed decision is only overridden like this
+explicitly and on the record (C8).
+
+## C23 — Right-to-left languages mirror the screen, so left and right swap (2026-09-30)
+
+The app declares `supportsRtl`, and Compose mirrors the layout for Arabic,
+Persian and Urdu. The Sleep button is at the **top-left** there, and My Location
+is the **right-most** of the four buttons at the bottom. Help text that copies
+the English positions sends a blind user to the wrong corner.
+
+> **Case (ar, fa, ur, 2026-09-30):** the all-language review found «الزاوية
+> العلوية اليمنى» (top-right) for the Sleep button and «الزر الموجود على اليسار»
+> (the button on the left) for My Location. Fixed in `tour_my_location`,
+> `help_text_automatic_callouts_how_1`, `faq_sleep_mode_battery_answer` and
+> `faq_snooze_mode_battery_answer`. Persian's two FAQ answers already said top-left.
+
+**How to apply:** in a right-to-left language, swap left and right wherever a
+string gives a **screen position**. Never swap a spatial callout
+(«goes left», «on your right»): the world doesn't mirror, only the screen does.
+Those four English comments now say so.
+
+## C24 — "Ahead" is a template now (code, 2026-09-30)
+
+`directions_direction_ahead` ("ahead") was joined to the road name in code,
+«ahead» + " " + name, so no language could change the word order. Turkish
+came out as «düz Moor Road» ("straight Moor Road"). It is replaced by
+`directions_ahead_road` ("Ahead %1$s"). Each language's first value is its
+old word plus « %1$s», so nothing sounds different except Turkish, which is
+now «İleride %1$s». A language whose word order wants the name first can now
+write «%1$s ileride».
+
+> **Follow-up (2026-09-30 translate pass):** the head-final Indic languages
+> now put the name first, as their "near %1$s" siblings do: hi «%1$s आगे»,
+> mr «%1$s पुढे», bn «%1$s সামনে», pa «%1$s ਅੱਗੇ», ur «%1$s آگے»,
+> ta «%1$s முன்னால்», te «%1$s ముందు». Japanese and Korean keep «ahead»
+> first but gain the particle: ja «前方に%1$s», ko «앞쪽에 %1$s». Every other
+> language's prefix wording was reviewed and acknowledged unchanged.
+
+## C25 — Degrees are a plural now; the angle is always a multiple of 5 (code, 2026-09-30)
+
+`relative_degrees_direction` ("at %1$s degrees") is a `<plurals>` resource,
+selected on the angle. The app rounds the angle to a multiple of 5, so it is
+only ever 0, 5, 10 … 355. In most languages that reaches a single plural form,
+and the old wording was already right for every angle the app says.
+
+> **Case (2026-09-30 review):** ru, sr and uk reported «1 градусов» / «22
+> градусов». Those angles never occur: every multiple of 5 is Russian «many»
+> («градусов»), so the string was fine. The real cases are Arabic (5, 10, 105…
+> take the plural «درجات», 15–99 the singular «درجة»), Romanian («la 20 de
+> grade», but «la 5 grade») and a singular for 0° in French and Portuguese
+> («à 0 degré»).
+
+**How to apply:** give every category your language has. Check which ones
+multiples of 5 actually reach before calling a form wrong.
+
+## C26 — Docs pages must use the app's own labels and terms (2026-10-01)
+
+The translated docs pages (`docs/release-notes.<lang>.md`, marked `machine-translated: true`) were translated without the app's glossary, so they name features in their own words. **Case (JJ, Spanish):** the release notes call Sleep «modo de reposo» and the new button «despertar al salir», while the app says «modo de suspensión», «modo de aplazamiento» and *Reactivar al salir* (ES-D1). A blind user who hears «reposo» can't find anything with that name in the app.
+
+It isn't only Spanish. On 2026-10-01, 41 of the 45 translated release notes didn't contain the app's exact `sleep_wake_on_leave` label, its `sleep_sleep` label, or either. Exact matching overcounts a little, because labels inflect inside sentences. The term changes made on 2026-10-01 (hu Beacon/Callout, fr «Reprendre au déplacement» / «Minimal») have also made the hu, fr and fr-CA notes stale.
+
+**Partly a source problem.** The English notes write "**wake on leave**" in lowercase, as a feature name, and never say that it puts Soundscape into snooze. Proposed English, quoting the button as it appears in the app:
+
+> * ***Wake On Leave.*** When you put Soundscape to sleep, a new *Wake On Leave* button snoozes it instead, and it wakes up by itself when you leave.
+>
+> Sleep mode has a new button, ***Wake On Leave***. Choosing it puts Soundscape into snooze mode: it stays quiet until you leave the area and then wakes up by itself, which is useful when you arrive somewhere and want it quiet until you next set off.
+
+**Applied 2026-10-01:** the English (and en-GB) bullet and section were rewritten as above, and the two passages were retranslated in all 44 other languages. Each quotes that language's `sleep_wake_on_leave` label exactly and uses the sleep/snooze mode names from its `faq_snooze_mode_battery_answer`. The same pass brought the fr and hu notes up to the 2026-10-01 terms. fr-CA was rebuilt from the fr notes plus the Canadian layer (it still said «notification» and «intersection»), keeping «autobus»/«tramway» in prose and fr_CA's own Sleep labels.
+
+**Second pass, 2026-10-01: all quoted labels.** The other 24 labels the notes quote were checked against each language's strings. Fixed: the English *Reset to defaults* (really "Reset settings to defaults") and *Start Beacon* (no such list action: the list announces "guide you towards this location with sound", so the clause was dropped), carried into all 44 languages; **Guided Tutorial** in 26 languages and **Exit Soundscape** in 9, which had paraphrased the menu label; pl «Moja lokalizacja» and ha «Kewaye Na» / «Matsayi Na». A rename sentence is written as "*old* has a new name: **label**", so the label is quoted in its own form, not inflected. Not errors: a label inflected for case («V *Původním režimu*»), and bn/hr/mr/sr/ta *Next*/*Previous*, which the app's own help leaves in English too.
+
+**How to apply:** when translating or revising a docs page, quote button and setting names exactly as that language's `strings.xml` has them (in `*…*`, like the help texts), and use the glossary in `translations/guidance/<code>.md` for concepts. When a glossary term changes, grep that language's docs pages for the old term as well.
+
+## C27 — The four home buttons have one name each, and it is the Siri name (2026-10-01)
+
+My Location, Around Me, Ahead of Me and Nearby Markers are named in four places: the button (`ui_action_button_*`, with a `\n` to wrap it), the tour (`tour_*`), the help and FAQ, and Siri. `scripts/generate-ios-siri-strings.py` takes Siri's names from `directions_my_location`, `help_orient_page_title`, `help_explore_page_title` and `callouts_nearby_markers`, so **those four strings are the canonical names**. The button must say the same words (only the line break may differ), and the tour and help must quote them.
+
+**Case (2026-10-01):** the Hungarian buttons said «Magam körül» and «Előre nézve» while all the help and the tour said «Körülöttem» and «Előttem», so the tour told users to tap a button that didn't exist. Swahili had the same defect on 2026-09-29. A check of every language found 10 more. **Buttons renamed to the canonical name:** de, et, ro and sv Nearby Markers (shortened forms; German «Mark.» was read out with its full stop), uk My Location, ru Ahead of Me, hu My Location/Around Me/Ahead of Me, and ha all four. **Help or tour fixed to match:** fi `help_text_assistant_commands_ios`, ru «Отметки рядом» (5 strings), ur `tour_my_location`, and ha (11 strings, which had a third and fourth name of their own). Not errors: a name inflected for case (sr «Оближње маркере»), and Telugu's invisible joiner difference.
+
+**How to apply:** a one-word name stays one word on the button. «Körülöttem», «Előttem», «Wurina» have no `\n`, like Arabic, Chinese and Japanese already did, even though `strings_sync.py apply` rejects a missing line break (those three were written to the XML directly). Don't abbreviate a name to make it fit: since 2026-10-01 (`HomeBottomAppBarButton`) each line of the label is drawn whole and shrunk to fit, down to 60%, instead of being wrapped mid-word, and the screen reader gets the label with `-\n` removed and `\n` turned into a space. Before that, Finnish «Oma si-\njaintini» was read with a long pause at the hyphen (Dave, TalkBack, 2026-10-01), and «Lähiympäristön», «Markierungen», «Platsmarkörer», «місцезнаходження», «местоположение» were split mid-word. A very long single word still shrinks a lot (uk/ru My Location reach the 60% floor), so prefer a two-word name when there is a natural one.
+
+
+## C28 — Help and FAQ rewritten in plain language (2026-10-12)
+
+The English help and FAQ were rewritten against the code in `67e99c61b` (short sentences, one idea each, Gunning fog under 10) and all 46 languages were retranslated from it in `ca202215b`. No native speaker has reviewed that pass.
+
+**How to apply** when touching a help or FAQ string:
+
+- **Keep it plain.** Translate sentence for sentence. Don't merge the short English sentences back into long ones, and don't add politeness padding.
+- **UI names are quoted bare, as `*Label*`,** exactly as the language's own string has them. A label that can't be inflected goes after a neutral verb or noun («select *X*», «the *X* button») instead of being declined.
+- **Units:** the base English is US English (feet and miles). Every other language, including en_GB, uses metres and kilometres: 30 ft = 10 m, 40 ft = 12 m, 60 ft = 20 m, 100 ft = 30 m, about a mile = about 2 km.
+- **No Android assistant is named.** Voice commands are Siri only for now: the page is titled "Siri Voice Commands", is linked from the help index on iOS only, and uses the `*_ios` strings on both platforms (the docs site is generated from them). The Android-variant strings were removed.
+- **Siri phrases** stay as each language's `AppShortcuts.strings` has them, in typographic quotes inside the asterisks. Where a language has no Siri phrases, the English phrase is quoted.
+- **Avoid gendering the user** (C15). "The way you are facing", "when you are standing still" and "a place you have saved" were all reworded where the literal translation needs a gendered participle (fr «à laquelle vous faites face», es «cuando no te muevas», it «in cui guardi», pl «w którą patrzysz», pt «para a sua frente»). FAQ questions in the first person were made impersonal in hi, ur, pa, mr, bn, ta and te for the same reason. Hausa uses the plural «ku» forms throughout these strings.
+- **iOS menu names** («Read & Speak», formerly «Spoken Content») were translated only for languages that already used a localised name; they are unverified against a device.

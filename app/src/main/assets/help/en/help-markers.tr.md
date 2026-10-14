@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Kayıtlı Noktalar
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 80
 lang: tr
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Kayıtlı Noktalar
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Kayıtlı nokta, kaydettiğiniz bir yerdir. Sizin için önemli olan herhangi bir yer olabilir: eviniz, bir otobüs durağı, bir bina girişi veya bir yaya geçidi.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape, yanlarından geçerken kayıtlı noktalarınızı anons eder. Bir kayıtlı noktaya sesli işaret ayarlayabilir, onu bir rotaya ekleyebilir veya *Yakındaki Kayıtlı Noktalar* düğmesiyle en yakın olanları duyabilirsiniz.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Kayıtlı Nokta Oluşturma
+
+1. Ana ekranda *Kayıtlı Noktalar* seçeneğini, sonra *Yeni* seçeneğini seçin.
+
+2. *Mevcut Konum* seçeneğini veya *Yakındaki Yerler* bölümünden bir yeri seçin.
+
+3. İsterseniz adı değiştirin ve not ekleyin. Soundscape notları kayıtlı noktayla birlikte okur.
+
+4. *Tamam* seçeneğini seçin.
+
+Bulduğunuz herhangi bir yeri de kaydedebilirsiniz. Yerin *Konum Ayrıntıları* ekranını açın ve *Kayıtlı Nokta Olarak Kaydet* seçeneğini seçin.
+
+## Kayıtlı Noktaları Özelleştirme
+
+*Kayıtlı Noktalar* ekranında kayıtlı noktayı seçin, sonra *Kayıtlı Noktayı Düzenle* seçeneğini seçin. Adını, notlarını ve konumunu değiştirebilir veya *Kayıtlı Noktayı Sil* seçeneğini seçebilirsiniz. Bir kayıtlı noktayı silmek onu rotalarınızdan da kaldırır.
 

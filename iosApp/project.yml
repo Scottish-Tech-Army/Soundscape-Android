@@ -102,6 +102,14 @@ targets:
         SearchProviderURL: "$(SEARCH_PROVIDER_URL)"
         ExtractProviderURL: "$(EXTRACT_PROVIDER_URL)"
         LSSupportsOpeningDocumentsInPlace: true
+        # Map apps Location Details can open a location in - see IosMapApps.kt
+        LSApplicationQueriesSchemes:
+          - comgooglemaps
+          - waze
+          - citymapper
+          - moovit
+          - om
+          - osmandmaps
         CFBundleURLTypes:
           - CFBundleURLName: org.scottishtecharmy.soundscape.geo
             CFBundleURLSchemes: [ geo ]

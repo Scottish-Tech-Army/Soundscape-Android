@@ -7,9 +7,11 @@ has_toc: false
 
 # Release notes
 
-Soundscape 2.0 is a big release and is currently in closed Beta. The headline change is that
+Soundscape 2.0 is a big release and is now in open Beta on Android. This means that anyone can access the beta
+release simply by going to the Play Store [here](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+The headline change is that
 Soundscape now has something useful to say when you're travelling by car, bus or train, rather than
-only when you're on foot. There's also a great deal of smaller work on how places are described,
+only when you're on foot. However, there's also a great deal of smaller work on how places are described,
 twenty new languages, and a long list of fixes.
 
 Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release-notes.md %}) page.
@@ -20,12 +22,25 @@ Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release
   speed and describes your journey instead of your immediate surroundings.
 * **Told when you cross water and railways.** Rivers, canals, firths and railway lines are called
   out as you cross them, whether you're walking or travelling.
+* **Choose how much Soundscape says.** A new *Callout Detail* setting makes Soundscape quieter in
+  busy places, and *Places to Call Out* lets you choose which kinds of place you hear about. You
+  can change the detail from your headphone buttons as you walk.
+* **Know how far away the next intersection is.** Intersections are announced at a consistent
+  distance as you approach, and the callout now says how far away the kerb is.
+* **Search for a type of place, or a coordinate.** Search for "pharmacy" or "bus stop" to find the
+  nearest ones, whatever they're called, or paste in coordinates, a map link or a plus code.
+* **Separate Markers and Routes buttons.** The *Markers and Routes* screen and its two tabs have
+  been split into a *Markers* screen and a *Routes* screen, each with its own button on the home
+  screen. The Markers screen has a *New* button for saving your current location or a place nearby.
+* **Open a place in another map app**, such as Google Maps, from Location Details or the lists.
+* **More from the beacon on the home screen.** It now shows the distance and direction, and has
+  screen reader actions to call out the beacon, hear more about it or save it as a marker.
 * **Better addresses and place names.** Places that have no address of their own now get the street
   and area they're in, house numbers are matched to the correct side of the street, and bus stops
   in Great Britain use their official names.
 * **Twenty new languages**, bringing the total to 46. The documentation website is translated too.
-* **Wake on leave.** Sleep mode can now wake Soundscape up again when you leave the place where you
-  put it to sleep.
+* **Wake On Leave.** When you put Soundscape to sleep, a new *Wake On Leave* button snoozes it
+  instead, and it wakes up by itself when you leave.
 * **Shorter, more natural distances**, using larger units when you're moving quickly.
 * **A quicker way out.** *Exit Soundscape* is now at the top of the main menu.
 * **Offline map improvements**, including updating a downloaded map in place and a map of the
@@ -55,10 +70,13 @@ While you're travelling you'll hear:
 
 * **Where you are**, every so often - the road you're on and the direction you're going, for
   example "Travelling north along M8". Roads with a number are announced by their number, and
-  Soundscape won't keep re-announcing the same road each time its street name changes.
+  Soundscape won't keep re-announcing the same road each time its street name changes. A road is
+  only named once you've stayed on it for a short distance, so a run of turns through a housing
+  estate doesn't bring a callout at every corner.
 * **Towns and villages** you're heading towards, with the distance, as well as ones you're moving
   away from or simply passing.
-* **Motorway junctions and exits** as you reach them.
+* **Motorway junctions and exits** as you reach them, on the carriageway you're on - not ones on a
+  road you're passing nearby, or on the other side of the motorway.
 * **Large landmarks** as you pass them, such as parks, hospitals, stadiums and shopping centres.
 * **Bus, tram and train stops** as you pass them. Soundscape only mentions the stops on your side
   of the road, since the ones on the far side serve the opposite direction.
@@ -76,11 +94,96 @@ The ordinary walking callouts - nearby shops, road crossings and so on - are del
 while you're travelling, and the distances at which things are announced are stretched a long way so
 that you hear about something before you've passed it.
 
+### Intersections
+
+The most common question about intersection callouts was how far away the junction actually is.
+Soundscape now tells you: "Intersection in 30 metres". The distance is measured to the kerb of the
+road you're about to cross, rather than to the middle of the junction, because that's where you'll
+actually stop.
+
+The callout also arrives at a more consistent point. Previously it could come 45 metres out or 10
+metres out, with nothing to tell the two apart. It now waits until the junction is about 30 metres
+away, so the distance means roughly the same thing every time.
+
 ### Crossing water and railways
 
 Soundscape now tells you when you cross a river, canal, firth, bay or railway line. This works when
 you're walking as well as when you're travelling, and it covers going underneath as well as over the
 top, so a footbridge and an underpass are both described.
+
+### Choosing how much Soundscape says
+
+The most common thing we hear about Soundscape is that there's too much of it in busy places like a
+city centre. The *Manage Callouts* section of *Settings* now has three settings in place of the old
+list of switches:
+
+* **Callout Detail** is Silent, Essential, Simplified or Detailed. *Detailed* is what Soundscape has
+  always done, and is where you start. *Simplified* leaves out minor paths and service roads and
+  repeats itself less often. *Essential* calls out only streets, junctions and landmarks. *Silent* makes
+  no automatic callouts at all, while beacons, routes and the home screen buttons carry on working.
+  It replaces the old *Allow Callouts* switch, and if you had that switched off you'll find
+  Callout Detail set to Silent. The levels apply when you're travelling too: *Simplified*
+  describes the road you're on less often, and *Essential* names only main and numbered roads and
+  leaves out bus stops.
+* **Streets and Junctions** turns the callouts for intersections and the road you're on on or off.
+* **Places to Call Out** is a list you can tick: Everything, Landmarks, Public Transit, Food and
+  Drink, Groceries, Banks or No Places. Tick as many as you like - for example landmarks and bus
+  stops. Your markers are always called out.
+
+The right amount of detail changes as you walk, so you don't have to go into Settings to change
+it. Pressing *previous* on your headphones steps the Callout Detail down one level at a time,
+from Detailed through Simplified and Essential to Silent, then round to Detailed again. It says the new
+level each time. This works in both media control modes, and it means the headphone buttons have
+changed a little:
+
+* In *Original* mode, *next* now calls out *Around Me* when no route is playing, and *My Location*
+  is no longer on the buttons. While a route is playing, *next* and *previous* still move between
+  waypoints.
+* In *Audio menu* mode, *previous* no longer steps backwards through the menu. *Next* still moves
+  through it and *play/pause* still selects. Markers and routes in the menu are now listed by name,
+  and after you start one the menu goes back to the top rather than leaving you deep in the list.
+
+### Searching
+
+The search bar now understands more than place names:
+
+* **Types of place.** Search for "pharmacy", "toilet", "cash machine" and so on, in your own
+  language, and Soundscape lists the nearest places of that type, whatever they're called. Places
+  with no name, like most toilets and benches, are listed by what they are, with their address.
+* **Coordinates, map links and plus codes.** Paste in a pair of numbers, degrees and minutes, a
+  link from Google Maps, Apple Maps or OpenStreetMap, or a plus code, and Soundscape gives you that
+  exact spot. A bare pair of numbers can be read either way round, so where both make sense you're
+  offered both, nearest first.
+* **Searching offline.** Search now always looks in your downloaded maps as well as online, which
+  finds far more unnamed places. If you search without an internet connection and have no offline
+  map of where you are, Soundscape says so instead of just finding nothing.
+
+### Opening a place in another app
+
+Location Details has a new **Open in Maps App** button, which lists the map and navigation apps on
+your phone. Tick *Always use this app* and the button changes to, for example, *Open in Google
+Maps*, opening it straight away; a long press brings the list back. The Places Nearby and Markers
+lists have *Open in* and *Share* screen reader actions as well.
+
+### Markers and Routes
+
+Markers and routes used to share one screen, *Markers and Routes*, with a tab for each, and it was
+easy to lose track of which tab you were on. They are now two separate screens, each with its own
+button on the home screen: *Markers* and *Routes*, just below *Places Nearby*.
+
+Each screen has a *New* button at the top right. On the Routes screen it creates a route, as before.
+On the Markers screen it's new: it lists *Current Location* and the *Places Nearby* categories, so
+you can save a marker without going back to the home screen to find the place first. Screen readers
+announce the buttons as *New Marker* and *New Route*.
+
+### The beacon and markers
+
+* The beacon on the home screen now shows its **distance and direction**, and a screen reader reads
+  it as, for example, "Beacon at Milngavie Library, 390 metres, south east". Routes show the distance
+  to the current waypoint in the same way.
+* The beacon has three **screen reader actions**: *Call out Beacon* says where it is, *More Info*
+  adds the street address, and *Add to Markers* saves it.
+* You can once again **move a marker** by dragging the map from the Edit Marker screen.
 
 ### Better addresses and place names
 
@@ -110,13 +213,13 @@ translated text to be useful.
 
 Translations are community work and we'd welcome your help with them, or corrections where something
 reads badly. Any string can be improved at
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Sleep mode
 
-Sleep mode has gained **wake on leave**. When you put Soundscape to sleep you can ask it to wake up
-again once you leave the area, which is useful when you arrive somewhere and want it quiet until
-you next set off.
+Sleep mode has a new button, ***Wake On Leave***. Choosing it puts Soundscape into snooze mode: it
+stays quiet until you leave the area and then wakes up by itself, which is useful when you arrive
+somewhere and want it quiet until you next set off.
 
 ### Distances and speech
 
@@ -154,7 +257,7 @@ sensible hints where none had been set at all.
   reader users a confusing extra area to tap.
 * The system back gesture no longer skips a level when you're browsing categories in Places Nearby.
 * The *Audio Tutorial* has been renamed the **Guided Tutorial**.
-* Settings has been tidied, and *Reset to defaults* now properly clears everything.
+* Settings has been tidied, and *Reset settings to defaults* now properly clears everything.
 
 ### Stability
 
@@ -170,6 +273,8 @@ more robust on phones that aggressively shut background apps down.
 * **Voice control** has been removed. It never worked reliably enough to be worth keeping, and the
   media control buttons on headphones cover most of the same ground - see
   [Help using Media Controls]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape is also ready for voice commands through Gemini on Android 16 and later, but they
+  won't work until Google releases support for them in Gemini.
 * **The language menu inside the app** has gone. Soundscape now follows the language you've set for
   your phone, which is what most people expected it to do. To change it, change your phone's
   language, or set a per-app language in your phone's settings if it offers that.

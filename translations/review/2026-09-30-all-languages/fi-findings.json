@@ -1,0 +1,250 @@
+[
+ {
+  "context": "directions_along_traveling_e",
+  "source": "Traveling east along %1$s",
+  "current": "Kuljetaan itään tietä %1$s pitkin",
+  "suggested": "Kuljetaan itään {tiellä %1$s}",
+  "reason": "Missed by the FI-G2 conversion: every sibling (N, NE, SE, S, SW, W, NW) uses the inflecting marker {tiellä %1$s}; this one still says «tietä %1$s pitkin», so east alone names the road type twice and doesn't inflect.",
+  "category": "terminology"
+ },
+ {
+  "context": "terms_of_use_message",
+  "source": "Your use of Soundscape is subject to the terms of the %1$s and the terms set out below (together, the *\"Terms of Use\"*).",
+  "current": "Soundscapen käyttöä säätelevät %1$s:n ehdot sekä alla esitetyt ehdot (yhdessä *\"Käyttöehdot\"*).",
+  "suggested": "Soundscapen käyttöön sovelletaan asiakirjan %1$s ehtoja sekä alla esitettyjä ehtoja (yhdessä *\"Käyttöehdot\"*).",
+  "reason": "%1$s is terms_of_use_service_agreement «Scottish Tech Army palvelusopimus», so the screen reads «…palvelusopimus:n ehdot». The colon genitive is only for abbreviations and numerals; the real genitive is «palvelusopimuksen». Rephrase so the substituted title can stay in the nominative.",
+  "category": "meaning"
+ },
+ {
+  "context": "terms_of_use_service_agreement",
+  "source": "Scottish Tech Army Services Agreement",
+  "current": "Scottish Tech Army palvelusopimus",
+  "suggested": "Scottish Tech Army -palvelusopimus",
+  "reason": "A multi-word proper name followed by a common noun takes a space plus hyphen in Finnish: «Scottish Tech Army -palvelusopimus».",
+  "category": "formatting"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Tämä on suuri päivitys Soundscapeen. Matkustustila on parantunut huomattavasti. Kun matkustat autolla tai bussilla, Soundscape ilmoittaa nyt tienumerot, kulkusuuntasi ja lähellä olevat taajamat. Se ilmoittaa myös, kun ylität jokia, kanavia, vuonoja ja lahtia. Päivitä offline-karttasi saadaksesi nämä uudet ominaisuudet käyttöön. Linja-autopysäkkien kuvaukset ovat nyt paljon parempia Ison-Britannian käyttäjille. Lepotila voi nyt herätä automaattisesti, kun se havaitsee sinun liikkuvan taas. Sinun ei enää tarvitse muistaa herättää sitä itse. Järjestimme taustalla olevan koodin uudelleen, jotta voimme rakentaa iOS-sovelluksen samasta koodista. Tämä tarkoittaa, että voimme tulevaisuudessa julkaista iOS-sovelluksen, jossa on kaikki Androidille rakentamamme ominaisuudet. Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahansa, valikon Ota yhteyttä tukeen -vaihtoehdon kautta.",
+  "suggested": "\nTämä on suuri päivitys Soundscapeen.\n\nMatkustustila on parantunut huomattavasti. Kun matkustat autolla tai bussilla, Soundscape ilmoittaa nyt tienumerot, kulkusuuntasi ja lähellä olevat taajamat. Se ilmoittaa myös, kun ylität jokia, kanavia, vuonoja ja lahtia. Päivitä offline-karttasi saadaksesi nämä uudet ominaisuudet käyttöön. Linja-autopysäkkien kuvaukset ovat nyt paljon parempia Ison-Britannian käyttäjille.\n\nLepotila voi nyt herätä automaattisesti, kun se havaitsee sinun liikkuvan taas. Sinun ei enää tarvitse muistaa herättää sitä itse.\n\nJärjestimme taustalla olevan koodin uudelleen, jotta voimme rakentaa iOS-sovelluksen samasta koodista. Tämä tarkoittaa, että voimme tulevaisuudessa julkaista iOS-sovelluksen, jossa on kaikki Androidille rakentamamme ominaisuudet.\n\nIlmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahansa, valikon Ota yhteyttä tukeen -vaihtoehdon kautta.\n",
+  "reason": "The English has five paragraphs separated by blank lines; the Finnish runs them all into one paragraph. The dialog splits on paragraph breaks (7ca86e582), so the grouping is lost.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_when",
+  "source": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "current": "*\"Oma sijaintini\"* on hyödyllinen, kun sinun on selvitettävä, missä olet, tai mitä ilmansuuntaa kohti olet kääntyneenä.",
+  "suggested": "*Oma sijaintini* on hyödyllinen, kun sinun on selvitettävä, missä olet, tai mitä ilmansuuntaa kohti olet kääntyneenä.",
+  "reason": "Markup mismatch: the English wraps the button name in *…* only; the Finnish adds ASCII double quotes inside the asterisks (*\"…\"*), unlike every other help string that names this button. TalkBack/TTS may read the quotes, and Compose Resources handling of bare \" is fragile.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "Kuten kaikkien aloitusnäytön alaosassa olevien painikkeiden tapauksessa, pidä puhelintasi näyttö vaakatasossa (osoittaen taivasta kohti) ja puhelimen yläosa kohti sitä suuntaa, johon olet kääntyneenä, ennen kuin painat *\"Oma sijaintini\"* -painiketta. Tämä toimii kompassin tapaan kertoen sovellukselle, mihin suuntaan olet kääntynyt. Napauta yksinkertaisesti *\"Oma sijaintini\"* -painiketta ja kuuntele.",
+  "suggested": "Kuten kaikkien aloitusnäytön alaosassa olevien painikkeiden tapauksessa, pidä puhelintasi näyttö vaakatasossa (osoittaen taivasta kohti) ja puhelimen yläosa kohti sitä suuntaa, johon olet kääntyneenä, ennen kuin painat *Oma sijaintini* -painiketta. Tämä toimii kompassin tapaan kertoen sovellukselle, mihin suuntaan olet kääntynyt. Napauta yksinkertaisesti *Oma sijaintini* -painiketta ja kuuntele.",
+  "reason": "Markup mismatch: the English wraps the button name in *…* only; the Finnish adds ASCII double quotes inside the asterisks (*\"…\"*), unlike every other help string that names this button. TalkBack/TTS may read the quotes, and Compose Resources handling of bare \" is fragile.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_what",
+  "source": "The *Around Me* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *Around Me* is intended to help you orient yourself to your surroundings.",
+  "current": "*\"Lähiympäristö\"*-painike kertoo sinulle yhdestä asiasta kussakin lähiympäristösi neljässä neljänneksessä (edessä, oikealla, takana ja vasemmalla). *\"Lähiympäristö\"* on tarkoitettu auttamaan sinua perehtymään ympäristöösi.",
+  "suggested": "*Lähiympäristö*-painike kertoo sinulle yhdestä asiasta kussakin lähiympäristösi neljässä neljänneksessä (edessä, oikealla, takana ja vasemmalla). *Lähiympäristö* on tarkoitettu auttamaan sinua perehtymään ympäristöösi.",
+  "reason": "Markup mismatch: the English wraps the button name in *…* only; the Finnish adds ASCII double quotes inside the asterisks (*\"…\"*), unlike every other help string that names this button. TalkBack/TTS may read the quotes, and Compose Resources handling of bare \" is fragile.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "current": "Kun haluat päästä jyvälle siitä, missä olet, ja perehtyä ympäristöösi, käytä *\"Lähiympäristö\"*-toimintoa kuullaksesi lähiympäristösi asioista.",
+  "suggested": "Kun haluat päästä jyvälle siitä, missä olet, ja perehtyä ympäristöösi, käytä *Lähiympäristö*-toimintoa kuullaksesi lähiympäristösi asioista.",
+  "reason": "Markup mismatch: the English wraps the button name in *…* only; the Finnish adds ASCII double quotes inside the asterisks (*\"…\"*), unlike every other help string that names this button. TalkBack/TTS may read the quotes, and Compose Resources handling of bare \" is fragile.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_when",
+  "source": "When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.",
+  "current": "Kun kävelet kadulla, kokeile käyttää *\"Edessäpäin\"*-toimintoa löytääksesi kummallakin puolella katua vastaan tulevia asioita.",
+  "suggested": "Kun kävelet kadulla, kokeile käyttää *Edessäpäin*-toimintoa löytääksesi kummallakin puolella katua vastaan tulevia asioita.",
+  "reason": "Markup mismatch: the English wraps the button name in *…* only; the Finnish adds ASCII double quotes inside the asterisks (*\"…\"*), unlike every other help string that names this button. TalkBack/TTS may read the quotes, and Compose Resources handling of bare \" is fragile.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Kuten kaikkien aloitusnäytön alaosassa olevien painikkeiden tapauksessa, pidä puhelintasi näyttö vaakatasossa (osoittaen taivasta kohti) ja puhelimen yläosa kohti sitä suuntaa, johon olet kääntyneenä, ennen kuin painat *\"Edessäpäin\"*-painiketta. Tämä toimii kompassin tapaan kertoen sovellukselle, mihin suuntaan olet kääntynyt. Napauta yksinkertaisesti *\"Edessäpäin\"*-painiketta ja kuulet useita kiinnostavia kohteita, jotka ovat suunnilleen edessäsi.",
+  "suggested": "Kuten kaikkien aloitusnäytön alaosassa olevien painikkeiden tapauksessa, pidä puhelintasi näyttö vaakatasossa (osoittaen taivasta kohti) ja puhelimen yläosa kohti sitä suuntaa, johon olet kääntyneenä, ennen kuin painat *Edessäpäin*-painiketta. Tämä toimii kompassin tapaan kertoen sovellukselle, mihin suuntaan olet kääntynyt. Napauta yksinkertaisesti *Edessäpäin*-painiketta ja kuulet useita kiinnostavia kohteita, jotka ovat suunnilleen edessäsi.",
+  "reason": "Markup mismatch: the English wraps the button name in *…* only; the Finnish adds ASCII double quotes inside the asterisks (*\"…\"*), unlike every other help string that names this button. TalkBack/TTS may read the quotes, and Compose Resources handling of bare \" is fragile.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "Kyllä, voit ottaa majakan takaisin käyttöön sen jälkeen, kun Soundscape on sen poistanut käytöstä, valitsemalla *\"Poista majakan hiljennys\"* -painikkeen; huomaa kuitenkin, että Sijaintipalvelut ovat vain noin 10 metrin tarkkuudella, joten emme voi taata majakan käyttäytymistä, kun olet vain muutaman metrin päässä määränpäästä.",
+  "suggested": "Kyllä, voit ottaa majakan takaisin käyttöön sen jälkeen, kun Soundscape on sen poistanut käytöstä, valitsemalla *Poista majakan hiljennys* -painikkeen; huomaa kuitenkin, että Sijaintipalvelut ovat vain noin 10 metrin tarkkuudella, joten emme voi taata majakan käyttäytymistä, kun olet vain muutaman metrin päässä määränpäästä.",
+  "reason": "Markup mismatch: the English wraps the button name in *…* only; the Finnish adds ASCII double quotes inside the asterisks (*\"…\"*), unlike every other help string that names this button. TalkBack/TTS may read the quotes, and Compose Resources handling of bare \" is fragile.",
+  "category": "formatting"
+ },
+ {
+  "context": "behavior_scavenger_hunt_callout_next_flag",
+  "source": "Beacon set on %1$s, %2$s away, %3$s of %4$s",
+  "current": "Majakka on asetettu kohteeseen %1$s, %2$s etäisyydellä, %3$s/%4$s",
+  "suggested": "Majakka on asetettu kohteeseen %1$s, %2$s etäisyydellä, reittipiste %3$s (yhteensä %4$s)",
+  "reason": "Spoken callout: «%3$s/%4$s» (\"1/4\") is likely to be read by Finnish TTS as a fraction («yksi neljäsosa») or «kautta». route_waypoint_progress already uses «reittipiste %2$s (yhteensä %3$s)».",
+  "category": "tone"
+ },
+ {
+  "context": "legacy_migration_progress",
+  "source": "%1$s of %2$s imported",
+  "current": "%1$s/%2$s tuotu",
+  "suggested": "%1$s tuotu (yhteensä %2$s)",
+  "reason": "«%1$s/%2$s tuotu» can be read by a screen reader as a fraction. Same fix pattern as route_waypoint_progress.",
+  "category": "tone"
+ },
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s, joka yhdistää %2$s:n ja %3$s:n",
+  "suggested": "%1$s, joka yhdistää tiet %2$s ja %3$s",
+  "reason": "Colon genitive on runtime road names («Moor Road:n», «Mannerheimintie:n») is wrong orthography for names ending in a vowel or a full word, and TTS may say it literally. Finnish's own dodge (FI-G1, «kohteen %2$s») is a label noun that takes the case instead.",
+  "category": "tone"
+ },
+ {
+  "context": "confect_name_pavement_next_to",
+  "source": "Sidewalk next to %1$s",
+  "current": "Jalkakäytävä %1$s:n vieressä",
+  "suggested": "Jalkakäytävä tien %1$s vieressä",
+  "reason": "Same colon-genitive problem on a road name («Clober Road:n vieressä»). Use a label noun as confect_name_next_to already does («kohteen %2$s vieressä»).",
+  "category": "tone"
+ },
+ {
+  "context": "street_description_since",
+  "source": "On %1$s, %2$s since %3$s",
+  "current": "{Kadulla %1$s}, %2$s kuljettu %3$s:stä lähtien",
+  "suggested": "{Kadulla %1$s}, %2$s kuljettu kohteesta %3$s",
+  "reason": "«%3$s:stä» puts an elative colon suffix on a runtime street/POI name («32nd Street:stä»). Use the label form used elsewhere («kohteesta %3$s»).",
+  "category": "tone"
+ },
+ {
+  "context": "faq_how_close_to_destination_answer",
+  "source": "Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.",
+  "current": "Soundscape voi tunnistaa määränpääsi paikan muutamien metrien etäisyydellä, mutta ei sitä lähempänä. Kun Soundscape päättelee, että olet lähellä määränpäätäsi, kuulet viimeisen ilmoituksen siitä, että määränpääsi on lähellä, ja majakka poistuu käytöstä.",
+  "suggested": "Soundscape voi määrittää määränpääsi sijainnin muutaman metrin tarkkuudella, mutta ei tarkemmin. Kun Soundscape päättelee, että olet lähellä määränpäätäsi, kuulet viimeisen ilmoituksen siitä, että määränpääsi on lähellä, ja majakka poistuu käytöstä.",
+  "reason": "\"to within several meters, but not less\" is about precision; «muutamien metrien etäisyydellä, mutta ei sitä lähempänä» says \"at a distance of a few metres, but not closer\".",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_sleep_mode_battery_answer",
+  "source": "To put Soundscape into Sleep Mode, select the *Sleep* button in the top-right corner of the home screen. When you select this, Soundscape will stop using Location Services and mobile data until you wake it up.",
+  "current": "Laita Soundscape lepotilaan valitsemalla aloitusnäytön oikeassa yläkulmassa oleva *Siirry lepotilaan* -painike. Valitsemalla tämän Soundscape lopettaa Sijaintipalveluiden ja mobiilidatan käytön siihen asti, kunnes herätät sen.",
+  "suggested": "Laita Soundscape lepotilaan valitsemalla aloitusnäytön oikeassa yläkulmassa oleva *Siirry lepotilaan* -painike. Kun valitset tämän, Soundscape lopettaa Sijaintipalveluiden ja mobiilidatan käytön siihen asti, kunnes herätät sen.",
+  "reason": "Dangling adverbial: «Valitsemalla tämän Soundscape lopettaa…» makes Soundscape the one selecting. Needs a finite clause.",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_markers_content_3",
+  "source": "To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *Nearby markers* button at the bottom of the home screen to hear a spatial callout of marked places around you. You can even set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.",
+  "current": "Kokeaksesi merkittyjä paikkoja Soundscape ilmoittaa merkityistä paikoista automaattisesti, kun kävelet niiden ohi tai lähestyt niitä. Voit myös käyttää aloitusnäytön alareunassa olevaa *Lähiympäristön merkitsimet* -painiketta kuullaksesi merkittyjen paikkojen tilaääni-ilmoituksia ympäriltäsi. Voit jopa asettaa äänimajakan mille tahansa merkitylle paikalle. Tällöin kuulet tutun Soundscape‑äänimajakan ja voit käyttää sitä normaalisti.",
+  "suggested": "Soundscape ilmoittaa merkityistä paikoista automaattisesti, kun kävelet niiden ohi tai lähestyt niitä. Voit myös käyttää aloitusnäytön alareunassa olevaa *Lähiympäristön merkitsimet* -painiketta kuullaksesi merkittyjen paikkojen tilaääni-ilmoituksia ympäriltäsi. Voit jopa asettaa äänimajakan mille tahansa merkitylle paikalle. Tällöin kuulet tutun Soundscape‑äänimajakan ja voit käyttää sitä normaalisti.",
+  "reason": "Dangling translative: «Kokeaksesi merkittyjä paikkoja Soundscape ilmoittaa…» (\"for you to experience…, Soundscape calls out\") has a subject mismatch and reads oddly aloud. Drop the lead-in.",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_customizing_markers_content_1",
+  "source": "If you want to rename a marker you previously created, or add an annotation to it, select the marker from the *Markers* tab of the *Markers and Routes* page, and then select the *Edit Marker* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.",
+  "current": "Jos haluat nimetä aiemmin luomasi merkitsimen uudelleen tai lisätä siihen annotaation, valitse merkitsin *Merkitsimet ja reitit* -sivun *Merkitsimet*‑välilehdeltä ja napauta sitten *Muokkaa merkitsintä* -painiketta. Tämän avulla voit antaa merkitsimille kuvaavia tai hyödyllisiä lempinimiä sekä kirjoittaa pidemmän kuvauksen annotaatio‑kenttään.",
+  "suggested": "Jos haluat nimetä aiemmin luomasi merkitsimen uudelleen tai lisätä siihen lisätietoja, valitse merkitsin *Merkitsimet ja reitit* -sivun *Merkitsimet*‑välilehdeltä ja napauta sitten *Muokkaa merkitsintä* -painiketta. Tämän avulla voit antaa merkitsimille kuvaavia tai hyödyllisiä lempinimiä sekä kirjoittaa pidemmän kuvauksen *Lisätiedot*-kenttään.",
+  "reason": "The annotation field is labelled «Lisätiedot» (markers_annotation), and help_text_creating_markers_content_2 says «lisätieto». Here it's the loanword «annotaatio», which matches no label in the app.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "Nyt voit mukauttaa tätä merkitsintä. Voit muuttaa merkitsimen nimeä ja lisätä merkitsimelle lisätiedon, joka luetaan merkitsimen yhteydessä antaen lisätietoa. Kun olet valmis, valitse *Valmis* tallentaaksesi merkitsimen.",
+  "suggested": "Nyt voit mukauttaa tätä merkitsintä. Voit muuttaa merkitsimen nimeä ja lisätä merkitsimelle lisätietoja, jotka luetaan merkitsimen yhteydessä. Kun olet valmis, valitse *Valmis* tallentaaksesi merkitsimen.",
+  "reason": "«lisätiedon, joka luetaan merkitsimen yhteydessä antaen lisätietoa» says \"additional info … giving additional info\", which is a tautology.",
+  "category": "tone"
+ },
+ {
+  "context": "faq_use_with_wayfinding_apps_answer",
+  "source": "Soundscape is designed to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.",
+  "current": "Soundscape on suunniteltu parantamaan tietoisuutta ympäristöstäsi ja antamaan lisätietoja sen yksityiskohdista, joita et ehkä muuten huomaisi. Sitä ei ole suunniteltu kääntymisohjeita antavaksi navigointisovellukseksi, mutta sitä voidaan käyttää sellaisten rinnalla antamaan täydentäviä tietoja. Jos haluat käyttää Soundscapea näiden sovellusten rinnalla, käynnistä ensin navigointisovellus. Siirry sitten Soundscapeen ja määritä äänimajakka samaan määränpäähän kuin navigointisovelluksessa. Tässä vaiheessa molemmat sovellukset ovat käynnissä ja kuulet kävelyohjeita navigointisovelluksestasi samalla, kun saat päivityksiä mielenkiintoisista kohteista, risteyksistä ja etäisyydestäsi määränpäähän Soundscapesta.",
+  "suggested": "Soundscape on suunniteltu parantamaan tietoisuutta ympäristöstäsi ja antamaan lisätietoja sen yksityiskohdista, joita et ehkä muuten huomaisi. Sitä ei ole suunniteltu kääntymisohjeita antavaksi navigointisovellukseksi, mutta sitä voidaan käyttää sellaisten rinnalla antamaan täydentäviä tietoja. Jos haluat käyttää Soundscapea näiden sovellusten rinnalla, käynnistä ensin navigointisovellus. Siirry sitten Soundscapeen ja määritä äänimajakka samaan määränpäähän kuin navigointisovelluksessa. Tässä vaiheessa molemmat sovellukset ovat käynnissä ja kuulet kävelyohjeita navigointisovelluksestasi samalla, kun saat päivityksiä kiinnostavista kohteista, risteyksistä ja etäisyydestäsi määränpäähän Soundscapesta.",
+  "reason": "Point of interest is «kiinnostava kohde» everywhere else in the corpus; here it's «mielenkiintoisista kohteista».",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_callouts_message",
+  "source": "Soundscape helps you stay aware of where you are and where you're going by calling out roads, intersections and points of interest as you approach them.",
+  "current": "Soundscape auttaa sinua pysymään tietoisena siitä, missä olet ja mihin olet menossa. Se mainitsee tiet, risteykset ja kiinnostavat kohteet kun lähestyt niitä.",
+  "suggested": "Soundscape auttaa sinua pysymään tietoisena siitä, missä olet ja mihin olet menossa. Se mainitsee tiet, risteykset ja kiinnostavat kohteet, kun lähestyt niitä.",
+  "reason": "Finnish punctuation needs a comma before the subordinate «kun» clause.",
+  "category": "formatting"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "Olen jakanut sinulle Soundscape-merkitsimen: %1$s.\\n\\nAvaa Soundscapessa käyttämällä %2$s.\\n\\n Avaa Google Mapsissa käyttämällä %3$s.",
+  "suggested": "Olen jakanut sinulle Soundscape-merkitsimen: ”%1$s”.\\n\\nAvaa Soundscapessa käyttämällä %2$s.\\n\\n Avaa Google Mapsissa käyttämällä %3$s.",
+  "reason": "The English quotes the marker name; the Finnish drops the quotes, so in a shared message the name runs into the sentence. Finnish typographic quotes are ”…” (never ASCII \", see composeresources-no-quote-escaping).",
+  "category": "formatting"
+ },
+ {
+  "context": "steam_copyright",
+  "source": "[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).",
+  "current": "[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio)ia käytetään 3D-äänen tuottamiseen, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) nojalla.",
+  "suggested": "3D-ääni tuotetaan [Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) -kirjastolla, joka on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) nojalla.",
+  "reason": "A case ending is glued onto the markdown link: «…(url)ia» renders as «Steam Audio library ©Valve Corporationia». Rephrase so the link text stays uninflected.",
+  "category": "formatting"
+ },
+ {
+  "context": "oboe_copyright",
+  "source": "[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).",
+  "current": "[Oboe library ©The Android Open Source Project](https://github.com/google/oboe)a käytetään äänen toistamiseen pienellä viiveellä, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/google/oboe/blob/main/LICENSE) nojalla.",
+  "suggested": "Ääni toistetaan pienellä viiveellä [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) -kirjastolla, joka on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/google/oboe/blob/main/LICENSE) nojalla.",
+  "reason": "Same as steam_copyright: «…Open Source Project](url)a» renders as «…Projecta».",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_debris",
+  "source": "Debris",
+  "current": "Roskaa / esteitä",
+  "suggested": "Romua",
+  "reason": "«Roskaa / esteitä» puts a slash in a spoken POI name, and TTS reads it aloud («kautta»).",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_beauty",
+  "source": "Beauty Shop",
+  "current": "Kosmetiikkaliike",
+  "suggested": "Kauneushoitola",
+  "reason": "OSM shop=beauty is a beauty salon (services), not a cosmetics shop. It's now almost the same as osm_cosmetics «Kosmetiikkakauppa».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_adult_gaming_centre",
+  "source": "Gambling Arcade",
+  "current": "Pelihalli",
+  "suggested": "Rahapelihalli",
+  "reason": "Same word as osm_amusement_arcade «Pelihalli», so the two can't be told apart. The English makes this one gambling.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_entering_tunnel_named",
+  "source": "Entering %1$s",
+  "current": "Siirryt kohteeseen %1$s",
+  "suggested": "Siirryt kohteeseen %1$s",
+  "reason": "«Siirryt kohteeseen %1$s» (\"you move to the destination Clyde Tunnel\") treats a tunnel as a destination. It's also 2nd person, where the sibling vehicle callouts use the passive («Ylitetään», «Alitetaan»). Possible fix: «Ajetaan tunneliin: %1$s» or a label form. Needs a native speaker's choice.",
+  "category": "tone"
+ },
+ {
+  "context": "directions_entering_tunnel",
+  "source": "Entering a tunnel",
+  "current": "Siirryt tunneliin",
+  "suggested": "Ajetaan tunneliin",
+  "reason": "2nd person «Siirryt tunneliin» is inconsistent with the passive in the sibling travel callouts («Ylitetään rautatie», «Alitetaan rautatie», «Kuljetaan…»).",
+  "category": "tone"
+ }
+]

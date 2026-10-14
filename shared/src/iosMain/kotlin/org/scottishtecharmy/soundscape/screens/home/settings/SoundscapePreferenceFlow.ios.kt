@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.settings
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.toKString
@@ -14,13 +15,31 @@ import me.zhanghai.compose.preference.MapPreferences
 import me.zhanghai.compose.preference.Preferences
 import platform.Foundation.NSArray
 import platform.Foundation.NSBundle
+import platform.Foundation.NSNotification
+import platform.Foundation.NSNotificationCenter
 import platform.Foundation.NSNumber
+import platform.Foundation.NSOperationQueue
 import platform.Foundation.NSString
 import platform.Foundation.NSUserDefaults
+import platform.Foundation.NSUserDefaultsDidChangeNotification
 
 @Composable
-internal actual fun rememberSoundscapePreferenceFlow(): MutableStateFlow<Preferences> =
-    remember { createSoundscapePreferenceFlow(NSUserDefaults.standardUserDefaults) }
+internal actual fun rememberSoundscapePreferenceFlow(): MutableStateFlow<Preferences> {
+    val userDefaults = NSUserDefaults.standardUserDefaults
+    val flow = remember { createSoundscapePreferenceFlow(userDefaults) }
+
+    DisposableEffect(flow) {
+        val observer = NSNotificationCenter.defaultCenter.addObserverForName(
+            name = NSUserDefaultsDidChangeNotification,
+            `object` = userDefaults,
+            queue = NSOperationQueue.mainQueue,
+        ) { _: NSNotification? ->
+            flow.publishExternalChange(userDefaults.readSoundscapePreferences().asMap())
+        }
+        onDispose { NSNotificationCenter.defaultCenter.removeObserver(observer) }
+    }
+    return flow
+}
 
 private fun createSoundscapePreferenceFlow(
     userDefaults: NSUserDefaults,

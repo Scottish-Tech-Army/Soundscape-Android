@@ -1,0 +1,402 @@
+[
+ {
+  "context": "help_text_destination_beacons_what",
+  "source": "Setting a beacon on a nearby location allows Soundscape to keep you informed by playing a sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.",
+  "current": "Η ρύθμιση ενός ηχητικού σήματος σε μια κοντινή τοποθεσία επιτρέπει στο Soundscape να σας ενημερώνει αναπαράγοντας έναν ήχο που προέρχεται από την κατεύθυνση αυτής της τοποθεσίας. Αυτό το ηχητικό σήμα μπορεί να βρίσκεται σε σίγαση ή όχι, στην αρχική οθόνη. Επιπλέον, το Soundscape εμφανίζει πληροφορίες σχετικά με την τοποθεσία στην αρχική οθόνη, συμπεριλαμβανομένης της απόστασης από αυτήν και της διεύθυνσης του δρόμου, εάν είναι γνωστή.",
+  "suggested": "Η ρύθμιση ενός ηχητικού σήματος σε μια κοντινή τοποθεσία επιτρέπει στο Soundscape να σας ενημερώνει αναπαράγοντας έναν ήχο που προέρχεται από την κατεύθυνση αυτής της τοποθεσίας. Μπορείτε να θέσετε σε σίγαση αυτό το ηχητικό σήμα ή να καταργήσετε τη σίγασή του από την αρχική οθόνη. Επιπλέον, το Soundscape εμφανίζει πληροφορίες σχετικά με την τοποθεσία στην αρχική οθόνη, συμπεριλαμβανομένης της απόστασης από αυτήν και της διεύθυνσης του δρόμου, εάν είναι γνωστή.",
+  "reason": "\"can be muted or unmuted on the home screen\" became \"can be on mute or not, on the home screen\": it no longer says the user can do it there.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_3",
+  "source": "**When you need silence :**\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "current": "**Όταν χρειάζεστε σιωπή :**\\n\\n Όταν πρόκειται να διασχίσετε έναν δρόμο ή απλά θέλετε η εφαρμογή να είναι σιωπηλή, μπορείτε να απενεργοποιήσετε τις επεξηγήσεις. Όταν οι επεξηγήσεις είναι απενεργοποιημένες, η εφαρμογή θα σας ενημερώσει για πληροφορίες μόνο με μη αυτόματο τρόπο, πατώντας ένα από τα κουμπιά *Η τοποθεσία μου*, *Κοντινοί δείκτες*, *Γύρω μου* ή *Μπροστά μου*.",
+  "suggested": "**Όταν χρειάζεστε σιωπή :**\\n\\n Όταν πρόκειται να διασχίσετε έναν δρόμο ή απλά θέλετε η εφαρμογή να είναι σιωπηλή, μπορείτε να απενεργοποιήσετε τις επεξηγήσεις. Όταν οι επεξηγήσεις είναι απενεργοποιημένες, η εφαρμογή θα σας δίνει πληροφορίες μόνο αν πατήσετε εσείς ένα από τα κουμπιά *Η τοποθεσία μου*, *Κοντινοί δείκτες*, *Γύρω μου* ή *Μπροστά μου*.",
+  "reason": "Reads as if the app informs you \"manually, by tapping\": the tapping is the user's, not the app's.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_use_with_wayfinding_apps_answer",
+  "source": "Soundscape is designed to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.",
+  "current": "Το Soundscape έχει σχεδιαστεί για να σας βοηθήσει να συμπληρώσετε λεπτομέρειες σχετικά με το περιβάλλον σας που ενδέχεται να μην γνωρίζατε. Αν και δεν έχει σχεδιαστεί ως εφαρμογή πλοήγησης, μπορεί να χρησιμοποιηθεί παράλληλα με τέτοιες εφαρμογές για την παροχή συμπληρωματικών πληροφοριών. Για να χρησιμοποιήσετε το Soundscape με αυτές τις εφαρμογές, ξεκινήστε πρώτα την εφαρμογή πλοήγησης. Στη συνέχεια, μεταβείτε στο Soundscape και ορίστε ένα ηχητικό σήμα στον ίδιο προορισμό με την εφαρμογή πλοήγησης. Σε αυτό το σημείο, και οι δύο εφαρμογές θα εκτελούνται και θα ακούτε οδηγίες πεζοπορίας από την εφαρμογή πλοήγησης, ενώ θα λαμβάνετε ενημερώσεις για σημεία ενδιαφέροντος, διασταυρώσεις και την απόστασή σας από τον προορισμό σας από το Soundscape.",
+  "suggested": "Το Soundscape έχει σχεδιαστεί για να σας βοηθήσει να συμπληρώσετε λεπτομέρειες σχετικά με το περιβάλλον σας που ενδέχεται να μην γνωρίζατε. Αν και δεν έχει σχεδιαστεί ως εφαρμογή πλοήγησης στροφή προς στροφή, μπορεί να χρησιμοποιηθεί παράλληλα με τέτοιες εφαρμογές για την παροχή συμπληρωματικών πληροφοριών. Για να χρησιμοποιήσετε το Soundscape με αυτές τις εφαρμογές, ξεκινήστε πρώτα την εφαρμογή πλοήγησης. Στη συνέχεια, μεταβείτε στο Soundscape και ορίστε ένα ηχητικό σήμα στον ίδιο προορισμό με την εφαρμογή πλοήγησης. Σε αυτό το σημείο, και οι δύο εφαρμογές θα εκτελούνται και θα ακούτε οδηγίες για πεζούς από την εφαρμογή πλοήγησης, ενώ θα λαμβάνετε ενημερώσεις για σημεία ενδιαφέροντος, διασταυρώσεις και την απόστασή σας από τον προορισμό σας από το Soundscape.",
+  "reason": "Drops \"turn-by-turn\", so it says Soundscape is not a navigation app at all; and \"walking directions\" became «οδηγίες πεζοπορίας» (hiking directions).",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_why_does_beacon_disappear_answer",
+  "source": "Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.",
+  "current": "Το ηχητικό σήμα Soundscape είναι βασικά ένα κατευθυντικό σύνθημα, που σας λέει πού είναι ο προορισμός σας σε σχέση με την κατεύθυνση που στρέφεστε. Όταν το Soundscape είναι αβέβαιο για το ποια κατεύθυνση είστε στραμμένος, μειώνει την ένταση του ηχητικού σήματος. Τις περισσότερες φορές αυτό συμβαίνει εάν περπατάτε με το τηλέφωνο τοποθετημένο σε μια τσέπη ή τσάντα και σταματάτε να κινείστε, όπως διασχίζοντας έναν δρόμο. Το ηχητικό σήμα θα γίνει δυνατότερο μόλις αρχίσετε να κινείστε ξανά ή αν κρατήσετε το τηλέφωνο επίπεδο και το στέψετε προς την κατεύθυνση που κοιτάτε.",
+  "suggested": "Το ηχητικό σήμα Soundscape είναι βασικά ένα κατευθυντική ένδειξη, που σας λέει πού είναι ο προορισμός σας σε σχέση με την κατεύθυνση που στρέφεστε. Όταν το Soundscape είναι αβέβαιο για το προς ποια κατεύθυνση κοιτάτε, μειώνει την ένταση του ηχητικού σήματος. Τις περισσότερες φορές αυτό συμβαίνει εάν περπατάτε με το τηλέφωνο τοποθετημένο σε μια τσέπη ή τσάντα και σταματάτε να κινείστε, όπως διασχίζοντας έναν δρόμο. Το ηχητικό σήμα θα γίνει δυνατότερο μόλις αρχίσετε να κινείστε ξανά ή αν κρατήσετε το τηλέφωνο επίπεδο και το στρέψετε προς την κατεύθυνση που κοιτάτε.",
+  "reason": "Typo «στέψετε» (\"crown\") for «στρέψετε» (\"point\"); «σύνθημα» means slogan/password, not a cue; and masculine singular «στραμμένος» breaks the formal plural used everywhere else.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_how_to_use_beacon_answer",
+  "source": "You can think of the audible beacon like a *lighthouse for your ears*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *ring* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *ring*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.\\n\\nThis design has a few natural results:\\n\\n1. There is no *correct* direction to travel when using the beacon – with Soundscape, you choose how to get there;\\n\\n2. The higher-pitched *ring* only helps you pinpoint the direction of the destination – it does not tell you how to get there;\\n\\n3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.",
+  "current": "Μπορείτε να σκεφτείτε το ακουστό ηχητικό σήμα ως έναν *φάρο για τα αυτιά σας*: σας λέει πού βρίσκεται ο προορισμός σας, σε ευθεία γραμμή από την τρέχουσα θέση σας. Όπως ένας φάρος, δεν σας λέει πώς να φτάσετε εκεί — μπορεί να χρειαστεί να πάρετε αποφάσεις πλοήγησης στην πορεία για να παρακάμψετε εμπόδια. Ο συνεχής ρυθμικός ήχος του ηχητικού σήματος προέρχεται από την κατεύθυνση του προορισμού και σας βοηθά να διατηρείτε επίγνωση του πού βρίσκεται ο προορισμός σε σχέση με εσάς όσο περπατάτε. Όταν περπατάτε απευθείας προς τον προορισμό ή στρέφετε το τηλέφωνο προς αυτόν, θα ακούσετε έναν υψηλότερης τονικότητας ήχο *ring*. Αυτό σας βοηθά να εντοπίσετε την κατεύθυνση του προορισμού, καθώς η κατεύθυνση του ρυθμικού ήχου μπορεί μερικές φορές να είναι δύσκολο να ακουστεί σε θορυβώδη περιβάλλοντα. Για να βρείτε το υψηλότερης τονικότητας *ring*, κρατήστε το τηλέφωνο επίπεδο και στρίψτε αργά γύρω σας· στρέφοντας το κεφάλι σας προς την ίδια κατεύθυνση με το τηλέφωνο θα έχετε την καλύτερη εμπειρία χωρικού ήχου.\\n\\nΑυτή η σχεδίαση έχει μερικές φυσικές συνέπειες:\\n\\n1. Δεν υπάρχει *σωστή* κατεύθυνση για να κινηθείτε όταν χρησιμοποιείτε το ηχητικό σήμα — με το Soundscape εσείς επιλέγετε πώς θα φτάσετε εκεί·\\n\\n2. Το υψηλότερης τονικότητας *ring* σας βοηθά μόνο να εντοπίσετε την κατεύθυνση του προορισμού — δεν σας λέει πώς να φτάσετε εκεί·\\n\\n3. Εάν γενικά ξέρετε πώς να φτάσετε στον προορισμό σας, μπορεί να θέλετε να σιγήσετε το ηχητικό σήμα για το μεγαλύτερο μέρος του ταξιδιού και να το ενεργοποιήσετε μόνο όσο πλησιάζετε στον προορισμό σας.",
+  "suggested": "Μπορείτε να σκεφτείτε το ακουστό ηχητικό σήμα ως έναν *φάρο για τα αυτιά σας*: σας λέει πού βρίσκεται ο προορισμός σας, σε ευθεία γραμμή από την τρέχουσα θέση σας. Όπως ένας φάρος, δεν σας λέει πώς να φτάσετε εκεί — μπορεί να χρειαστεί να πάρετε αποφάσεις πλοήγησης στην πορεία για να παρακάμψετε εμπόδια. Ο συνεχής ρυθμικός ήχος του ηχητικού σήματος προέρχεται από την κατεύθυνση του προορισμού και σας βοηθά να διατηρείτε επίγνωση του πού βρίσκεται ο προορισμός σε σχέση με εσάς όσο περπατάτε. Όταν περπατάτε απευθείας προς τον προορισμό ή στρέφετε το τηλέφωνο προς αυτόν, θα ακούσετε ένα οξύτερο *κουδούνισμα*. Αυτό σας βοηθά να εντοπίσετε την κατεύθυνση του προορισμού, καθώς η κατεύθυνση του ρυθμικού ήχου μπορεί μερικές φορές να είναι δύσκολο να ακουστεί σε θορυβώδη περιβάλλοντα. Για να βρείτε το οξύτερο *κουδούνισμα*, κρατήστε το τηλέφωνο επίπεδο και στρίψτε αργά γύρω σας· στρέφοντας το κεφάλι σας προς την ίδια κατεύθυνση με το τηλέφωνο θα έχετε την καλύτερη εμπειρία χωρικού ήχου.\\n\\nΑυτή η σχεδίαση έχει μερικές φυσικές συνέπειες:\\n\\n1. Δεν υπάρχει *σωστή* κατεύθυνση για να κινηθείτε όταν χρησιμοποιείτε το ηχητικό σήμα — με το Soundscape εσείς επιλέγετε πώς θα φτάσετε εκεί·\\n\\n2. Το οξύτερο *κουδούνισμα* σας βοηθά μόνο να εντοπίσετε την κατεύθυνση του προορισμού — δεν σας λέει πώς να φτάσετε εκεί·\\n\\n3. Εάν γενικά ξέρετε πώς να φτάσετε στον προορισμό σας, μπορεί να θέλετε να θέσετε σε σίγαση το ηχητικό σήμα για το μεγαλύτερο μέρος του ταξιδιού και να το ενεργοποιήσετε μόνο όσο πλησιάζετε στον προορισμό σας.",
+  "reason": "The English word \"ring\" is left untranslated three times (a Greek speech engine will mangle it), and «σιγήσετε» (\"fall silent\") is the wrong verb for muting; the corpus uses «θέσετε σε σίγαση».",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_permissions_message",
+  "source": "Soundscape needs certain permissions to run. These permissions let the app receive your phone's location, even when the phone is locked. Please tap each of the following permissions and turn them on when prompted:",
+  "current": "Το Soundscape χρειάζεται ορισμένες άδειες για να λειτουργήσει. Αυτές οι άδειες επιτρέπουν στην εφαρμογή να λαμβάνει την τοποθεσία του τηλεφώνου σας, ακόμη και όταν το τηλέφωνο είναι κλειδωμένο. Πατήστε σε κάθε μία από τις παρακάτω άδειες και ενεργοποιήστε τη όταν σας ζητηθεί:",
+  "suggested": "Το Soundscape χρειάζεται ορισμένες άδειες για να λειτουργήσει. Αυτές οι άδειες επιτρέπουν στην εφαρμογή να λαμβάνει την τοποθεσία του τηλεφώνου σας, ακόμη και όταν το τηλέφωνο είναι κλειδωμένο. Πατήστε σε κάθε μία από τις παρακάτω άδειες και ενεργοποιήστε τες όταν σας ζητηθεί:",
+  "reason": "Agreement: «τη» (singular) refers back to «κάθε μία από τις ... άδειες»; \"turn them on\" needs plural «τες».",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_on_road_at_junction",
+  "source": "On %1$s at %2$s",
+  "current": "Στην %1$s σε %2$s",
+  "suggested": "Στην %1$s σε %2$s",
+  "reason": "%2$s is always «Κόμβος …» (directions_junction_with_ref*), so this says «Στην M8 σε Κόμβος 2, Robroyston»: σε + bare nominative, no article, and the name can't be declined. An article alone («στον Κόμβος 2») is still wrong. The C17 label form «Στην %1$s, %2$s» would fix it but changes how the callout sounds, so ask the reviewer.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_at_junction_inline",
+  "source": "at %1$s",
+  "current": "σε %1$s",
+  "suggested": "σε %1$s",
+  "reason": "Same as directions_on_road_at_junction: «… κατά μήκος της M8 σε Κόμβος 2» is σε + nominative without an article. Candidate (C17) is a label form such as «, %1$s»; needs the reviewer and a check of how the fragment is joined.",
+  "category": "meaning"
+ },
+ {
+  "context": "location_detail_exit_full_screen_hint",
+  "source": "Exit the full-screen map",
+  "current": "έξοδο από τον χάρτη πλήρους οθόνης",
+  "suggested": "Έξοδος από τον χάρτη πλήρους οθόνης",
+  "reason": "Accusative fragment «έξοδο» (\"exit\", object case) with a lowercase start; its sibling location_detail_full_screen_hint is a nominative label («Μεγιστοποίηση …»).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_name_is_currently_street_address",
+  "source": "%1$s is currently %2$s. Street address is %3$s.",
+  "current": "%1$s είναι προς το παρόν %2$s. Η διεύθυνση του δρόμου είναι %3$s.",
+  "suggested": "%1$s βρίσκεται αυτή τη στιγμή %2$s. Διεύθυνση: %3$s.",
+  "reason": "«είναι προς το παρόν 700 μέτρα, βορειοδυτικά» is a word-for-word calque (\"is for the time being\"), and «Η διεύθυνση του δρόμου» calques \"street address\"; «βρίσκεται» and «Διεύθυνση:» are what Greek says.",
+  "category": "tone"
+ },
+ {
+  "context": "directions_name_is_currently",
+  "source": "%1$s is currently %2$s.",
+  "current": "%1$s είναι προς το παρόν %2$s.",
+  "suggested": "%1$s βρίσκεται αυτή τη στιγμή %2$s.",
+  "reason": "Same calque as directions_name_is_currently_street_address; keep the two consistent.",
+  "category": "tone"
+ },
+ {
+  "context": "faq_road_names_question",
+  "source": "Why does Soundscape call out road names twice when I approach an intersection?",
+  "current": "Γιατί το Soundscape επεξηγεί τα ονόματα των δρόμων δύο φορές όταν πλησιάζω σε μια διασταύρωση;",
+  "suggested": "Γιατί το Soundscape ανακοινώνει τα ονόματα των δρόμων δύο φορές όταν πλησιάζω σε μια διασταύρωση;",
+  "reason": "\"call out\" rendered with the verb of the Callout noun («επεξηγεί», \"explains\"): road names are announced, not explained. The corpus elsewhere uses «ανακοινώνει» for the verb (C3).",
+  "category": "tone"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_question",
+  "source": "Can I turn the beacon back on when I am close to my destination?",
+  "current": "Μπορώ να ενεργοποιήσω το ηχητικό σήμα όταν είμαι κοντά στον προορισμό μου;",
+  "suggested": "Μπορώ να ενεργοποιήσω ξανά το ηχητικό σήμα όταν είμαι κοντά στον προορισμό μου;",
+  "reason": "\"turn the beacon back on\" lost \"back\"; the answer says «ενεργοποιήσετε ξανά».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_racquet",
+  "source": "Racquet Sports Facility",
+  "current": "Εγκατάσταση ρακέτας",
+  "suggested": "Εγκατάσταση αθλημάτων ρακέτας",
+  "reason": "«Εγκατάσταση ρακέτας» reads as \"installation of a racquet\"; the sport has to be named.",
+  "category": "meaning"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Αυτή είναι μια σημαντική ενημέρωση του Soundscape. Η Λειτουργία Ταξιδιού έχει βελτιωθεί πολύ. Όταν ταξιδεύετε με αυτοκίνητο ή λεωφορείο, το Soundscape ανακοινώνει πλέον αριθμούς δρόμων, την κατεύθυνση της κίνησής σας και κοντινούς οικισμούς. Ανακοινώνει επίσης όταν διασχίζετε ποτάμια, κανάλια, όρμους και κόλπους. Παρακαλούμε ενημερώστε τους εκτός σύνδεσης χάρτες σας για να αποκτήσετε αυτές τις νέες λειτουργίες. Οι περιγραφές των στάσεων λεωφορείων είναι πλέον πολύ καλύτερες για τους χρήστες στο Ηνωμένο Βασίλειο. Η Λειτουργία Αναστολής μπορεί πλέον να ξυπνά αυτόματα όταν ανιχνεύει ότι κινείστε ξανά. Δεν χρειάζεται πια να θυμάστε να την ξυπνήσετε εσείς οι ίδιοι. Αναδιοργανώσαμε τον υποκείμενο κώδικα ώστε να μπορούμε να δημιουργήσουμε μια εφαρμογή iOS από τον ίδιο κώδικα. Αυτό σημαίνει ότι στο μέλλον θα μπορέσουμε να κυκλοφορήσουμε μια εφαρμογή iOS με όλες τις λειτουργίες που έχουμε δημιουργήσει για το Android. Παρακαλούμε συνεχίστε να αναφέρετε τυχόν προβλήματα, όσο μικρά κι αν είναι, μέσω της επιλογής Επικοινωνία με την υποστήριξη στο κύριο μενού.",
+  "suggested": "\nΑυτή είναι μια σημαντική ενημέρωση του Soundscape.\n\nΗ Λειτουργία Ταξιδιού έχει βελτιωθεί πολύ. Όταν ταξιδεύετε με αυτοκίνητο ή λεωφορείο, το Soundscape ανακοινώνει πλέον αριθμούς δρόμων, την κατεύθυνση της κίνησής σας και κοντινούς οικισμούς. Ανακοινώνει επίσης όταν διασχίζετε ποτάμια, κανάλια, όρμους και κόλπους. Παρακαλούμε ενημερώστε τους εκτός σύνδεσης χάρτες σας για να αποκτήσετε αυτές τις νέες λειτουργίες. Οι περιγραφές των στάσεων λεωφορείων είναι πλέον πολύ καλύτερες για τους χρήστες στο Ηνωμένο Βασίλειο.\n\nΗ Λειτουργία Αναστολής μπορεί πλέον να ξυπνά αυτόματα όταν ανιχνεύει ότι κινείστε ξανά. Δεν χρειάζεται πια να θυμάστε να την ξυπνήσετε εσείς οι ίδιοι.\n\nΑναδιοργανώσαμε τον υποκείμενο κώδικα ώστε να μπορούμε να δημιουργήσουμε μια εφαρμογή iOS από τον ίδιο κώδικα. Αυτό σημαίνει ότι στο μέλλον θα μπορέσουμε να κυκλοφορήσουμε μια εφαρμογή iOS με όλες τις λειτουργίες που έχουμε δημιουργήσει για το Android.\n\nΠαρακαλούμε συνεχίστε να αναφέρετε τυχόν προβλήματα, όσο μικρά κι αν είναι, μέσω της επιλογής Επικοινωνία με την υποστήριξη στο κύριο μενού.\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) of the English were dropped, so the dialog shows one block; the release-notes splitter now uses paragraph breaks. Text unchanged, only the breaks restored.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Όπως και με τα τέσσερα κουμπιά στο κάτω μέρος της αρχικής οθόνης, κρατήστε το τηλέφωνό σας με την οθόνη επίπεδη (στραμμένη προς τον ουρανό) και το επάνω μέρος του τηλεφώνου στραμμένο προς την κατεύθυνση που κοιτάτε πριν πατήσετε το κουμπί *Μπροστά μου*. Αυτό λειτουργεί σαν πυξίδα που λέει στην εφαρμογή προς ποια κατεύθυνση κοιτάτε. Απλά, πατήστε το κουμπί*Μπροστά μου* και θα ακούσετε για πολλά σημεία ενδιαφέροντος που βρίσκονται μπροστά σας.",
+  "suggested": "Όπως και με τα τέσσερα κουμπιά στο κάτω μέρος της αρχικής οθόνης, κρατήστε το τηλέφωνό σας με την οθόνη επίπεδη (στραμμένη προς τον ουρανό) και το επάνω μέρος του τηλεφώνου στραμμένο προς την κατεύθυνση που κοιτάτε πριν πατήσετε το κουμπί *Μπροστά μου*. Αυτό λειτουργεί σαν πυξίδα που λέει στην εφαρμογή προς ποια κατεύθυνση κοιτάτε. Απλά, πατήστε το κουμπί *Μπροστά μου* και θα ακούσετε για πολλά σημεία ενδιαφέροντος που βρίσκονται μπροστά σας.",
+  "reason": "Missing space before *Μπροστά μου*, so the markdown emphasis may not render.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_remote_control_what",
+  "source": "You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.",
+  "current": "Μπορείτε να αποκτήσετε πρόσβαση σε ορισμένες λειτουργίες του Soundscape με τη βοήθεια των κουμπιών ελέγχου πολυμέσων στα ακουστικά σας. Αυτή η λειτουργία λειτουργεί με ενσύρματα ακουστικά ή ακουστικά Bluetooth που έχουν κουμπιά χειριστήριων πολυμέσων όπως Αναπαραγωγή, Παύση, Επόμενο, Προηγούμενο και άλλα. Διαφορετικά ακουστικά μπορεί να περιλαμβάνουν διαφορετικά κουμπιά, οπότε ανατρέξτε στη λίστα των παρακάτω ενεργειών για να προσδιορίσετε ποια είναι διαθέσιμα σε εσάς.",
+  "suggested": "Μπορείτε να αποκτήσετε πρόσβαση σε ορισμένες λειτουργίες του Soundscape με τη βοήθεια των κουμπιών ελέγχου πολυμέσων στα ακουστικά σας. Αυτή η λειτουργία λειτουργεί με ενσύρματα ακουστικά ή ακουστικά Bluetooth που έχουν κουμπιά χειριστηρίων πολυμέσων όπως Αναπαραγωγή, Παύση, Επόμενο, Προηγούμενο και άλλα. Διαφορετικά ακουστικά μπορεί να περιλαμβάνουν διαφορετικά κουμπιά, οπότε ανατρέξτε στη λίστα των παρακάτω ενεργειών για να προσδιορίσετε ποια είναι διαθέσιμα σε εσάς.",
+  "reason": "Typo: genitive plural is «χειριστηρίων».",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_beacon_message_1",
+  "source": "When navigating with Soundscape, you will hear the audio beacon in the direction of your destination. By following its sound, you will always know which way to go.",
+  "current": "Όταν περιηγείστε με το Soundscape, θα ακούτε το ηχητικό σήμα προς την κατεύθυνση του προορισμού σας. Ακολουθώντας τον ήχο του, θα γνωρίζετε πάντα προς τα που να κατευθυνθείτε.",
+  "suggested": "Όταν περιηγείστε με το Soundscape, θα ακούτε το ηχητικό σήμα προς την κατεύθυνση του προορισμού σας. Ακολουθώντας τον ήχο του, θα γνωρίζετε πάντα προς τα πού να κατευθυνθείτε.",
+  "reason": "Interrogative «πού» needs its accent («προς τα πού»); unaccented «που» is the relative pronoun.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_main_entrance",
+  "source": "main entrance",
+  "current": "Κύρια είσοδος",
+  "suggested": "κύρια είσοδος",
+  "reason": "Lowercase in English because it is substituted mid-phrase (osm_entrance_with_destination: \"Supermarket main entrance\"); capital Κ lands mid-sentence.",
+  "category": "formatting"
+ },
+ {
+  "context": "ui_menu_hint",
+  "source": "open the menu",
+  "current": "Ανοίξτε το μενού",
+  "suggested": "ανοίξτε το μενού",
+  "reason": "Hint follows «Πατήστε δύο φορές για να …»; every other hint starts lowercase. (Verb form is EL-B1's open question.)",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_what",
+  "source": "The *Nearby Markers* button tells you about up to four markers that are closest to you. *Nearby Markers* is intended to help you orient yourself using places you already know about.",
+  "current": "Το κουμπί *\"Κοντινοί δείκτες\"* σας ενημερώνει για έως και τέσσερις δείκτες που βρίσκονται πιο κοντά σας. Το *\"Κοντινοί δείκτες\"* προορίζεται να σας βοηθήσει να προσανατολιστείτε χρησιμοποιώντας μέρη που γνωρίζετε ήδη.",
+  "suggested": "Το κουμπί *Κοντινοί δείκτες* σας ενημερώνει για έως και τέσσερις δείκτες που βρίσκονται πιο κοντά σας. Το *Κοντινοί δείκτες* προορίζεται να σας βοηθήσει να προσανατολιστείτε χρησιμοποιώντας μέρη που γνωρίζετε ήδη.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English and the sibling help strings (e.g. help_text_ahead_of_me_*) use *…* alone. The quotes show literally on screen.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Nearby Markers* to hear about the locations of places you know of.",
+  "current": "Όταν προσπαθείτε να βρείτε τον δρόμο σας και να προσανατολιστείτε στο περιβάλλον σας, χρησιμοποιήστε το *\"Κοντινοί δείκτες\"* για να μάθετε τις τοποθεσίες των θέσεων που γνωρίζετε.",
+  "suggested": "Όταν προσπαθείτε να βρείτε τον δρόμο σας και να προσανατολιστείτε στο περιβάλλον σας, χρησιμοποιήστε το *Κοντινοί δείκτες* για να μάθετε τις τοποθεσίες των θέσεων που γνωρίζετε.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English and the sibling help strings (e.g. help_text_ahead_of_me_*) use *…* alone. The quotes show literally on screen.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_what",
+  "source": "The *Around Me* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *Around Me* is intended to help you orient yourself to your surroundings.",
+  "current": "Το κουμπί *\"Γύρω μου\"* σας λέει για ένα πράγμα σε καθένα από τα τέσσερα τεταρτημόρια γύρω σας (μπροστά, δεξιά, πίσω και αριστερά). Το *\"Γύρω μου\"* έχει ως στόχο να σας βοηθήσει να προσανατολιστείτε στο περιβάλλον σας.",
+  "suggested": "Το κουμπί *Γύρω μου* σας λέει για ένα πράγμα σε καθένα από τα τέσσερα τεταρτημόρια γύρω σας (μπροστά, δεξιά, πίσω και αριστερά). Το *Γύρω μου* έχει ως στόχο να σας βοηθήσει να προσανατολιστείτε στο περιβάλλον σας.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English and the sibling help strings (e.g. help_text_ahead_of_me_*) use *…* alone. The quotes show literally on screen.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "current": "Όταν προσπαθείτε να βρείτε την πορεία σας και να προσανατολίζεστε στο περιβάλλον σας, χρησιμοποιήστε το *\"Γύρω μου\"* για να ακούσετε για τα πράγματα γύρω σας.",
+  "suggested": "Όταν προσπαθείτε να βρείτε την πορεία σας και να προσανατολίζεστε στο περιβάλλον σας, χρησιμοποιήστε το *Γύρω μου* για να ακούσετε για τα πράγματα γύρω σας.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English and the sibling help strings (e.g. help_text_ahead_of_me_*) use *…* alone. The quotes show literally on screen.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "Όπως και με τα τέσσερα κουμπιά στο κάτω μέρος της αρχικής οθόνης, κρατήστε το τηλέφωνό σας με την οθόνη επίπεδη (στραμμένη προς τον ουρανό) και το επάνω μέρος του τηλεφώνου στραμμένο προς την κατεύθυνση που κοιτάτε πριν πατήσετε το κουμπί *\"Γύρω μου\"*. Αυτό λειτουργεί σαν πυξίδα που λέει στην εφαρμογή προς ποια κατεύθυνση είστε στραμμένοι. Απλά, πατήστε το κουμπί *\"Γύρω μου\"* και θα ακούσετε τέσσερα σημεία ενδιαφέροντος τοποθετημένα γύρω σας.",
+  "suggested": "Όπως και με τα τέσσερα κουμπιά στο κάτω μέρος της αρχικής οθόνης, κρατήστε το τηλέφωνό σας με την οθόνη επίπεδη (στραμμένη προς τον ουρανό) και το επάνω μέρος του τηλεφώνου στραμμένο προς την κατεύθυνση που κοιτάτε πριν πατήσετε το κουμπί *Γύρω μου*. Αυτό λειτουργεί σαν πυξίδα που λέει στην εφαρμογή προς ποια κατεύθυνση είστε στραμμένοι. Απλά, πατήστε το κουμπί *Γύρω μου* και θα ακούσετε τέσσερα σημεία ενδιαφέροντος τοποθετημένα γύρω σας.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English and the sibling help strings (e.g. help_text_ahead_of_me_*) use *…* alone. The quotes show literally on screen.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "Τώρα θα έχετε την επιλογή να προσαρμόσετε αυτόν τον δείκτη. Μπορείτε να αλλάξετε το όνομα του δείκτη και επίσης να προσθέσετε ένα σχόλιο/σημείωση που θα ανακοινώνεται μαζί με τον δείκτη για να παρέχει επιπλέον πληροφορίες. Μόλις τελειώσετε, επιλέξτε το κουμπί *\"Έτοιμο\"* για να αποθηκεύσετε τον δείκτη σας.",
+  "suggested": "Τώρα θα έχετε την επιλογή να προσαρμόσετε αυτόν τον δείκτη. Μπορείτε να αλλάξετε το όνομα του δείκτη και επίσης να προσθέσετε ένα σχόλιο/σημείωση που θα ανακοινώνεται μαζί με τον δείκτη για να παρέχει επιπλέον πληροφορίες. Μόλις τελειώσετε, επιλέξτε το κουμπί *Έτοιμο* για να αποθηκεύσετε τον δείκτη σας.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English and the sibling help strings (e.g. help_text_ahead_of_me_*) use *…* alone. The quotes show literally on screen.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Από αυτή την οθόνη *\"Επεξεργασία\"* μπορείτε επίσης να διαγράψετε έναν δείκτη εάν δεν τον χρειάζεστε πλέον.",
+  "suggested": "Από αυτή την οθόνη *Επεξεργασία* μπορείτε επίσης να διαγράψετε έναν δείκτη εάν δεν τον χρειάζεστε πλέον.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English and the sibling help strings (e.g. help_text_ahead_of_me_*) use *…* alone. The quotes show literally on screen. (Also C7: the English names the *Edit* screen, but markers_edit_screen_title_edit is \"Edit Marker\".)",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "Ναι, μπορείτε να ενεργοποιήσετε ξανά το ηχητικό σήμα αφού το Soundscape το απενεργοποιήσει, επιλέγοντας το κουμπί *\"Κατάργηση σίγασης ηχητικού σήματος\"*· ωστόσο, επειδή οι Υπηρεσίες τοποθεσίας έχουν ακρίβεια περίπου 10 μέτρων, δεν μπορούμε να εγγυηθούμε τη συμπεριφορά του ηχητικού σήματος όταν βρίσκεστε εντός λίγων μέτρων από τον προορισμό σας.",
+  "suggested": "Ναι, μπορείτε να ενεργοποιήσετε ξανά το ηχητικό σήμα αφού το Soundscape το απενεργοποιήσει, επιλέγοντας το κουμπί *Κατάργηση σίγασης ηχητικού σήματος*· ωστόσο, επειδή οι Υπηρεσίες τοποθεσίας έχουν ακρίβεια περίπου 10 μέτρων, δεν μπορούμε να εγγυηθούμε τη συμπεριφορά του ηχητικού σήματος όταν βρίσκεστε εντός λίγων μέτρων από τον προορισμό σας.",
+  "reason": "Straight quotes inside the *…* UI-name markup; the English and the sibling help strings (e.g. help_text_ahead_of_me_*) use *…* alone. The quotes show literally on screen.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**Κοινή χρήση διαδρομής :**\\n\\n Επιλέξτε τη διαδρομή σας στην οθόνη *\"Δείκτες και Διαδρομές\"* και στη συνέχεια επιλέξτε την επιλογή *\"Κοινή χρήση\"* χρησιμοποιώντας όλες τις συνηθισμένες επιλογές κοινοποίησης που έχετε στη διάθεσή σας.",
+  "suggested": "**Κοινή χρήση διαδρομής :**\\n\\n Επιλέξτε τη διαδρομή σας στην οθόνη *Δείκτες και διαδρομές* και στη συνέχεια επιλέξτε την επιλογή *Κοινή χρήση* χρησιμοποιώντας όλες τις συνηθισμένες επιλογές κοινοποίησης που έχετε στη διάθεσή σας.",
+  "reason": "Straight quotes inside *…* show literally, and the screen is «Δείκτες και διαδρομές» (search_view_markers), lowercase δ.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_destination_beacons_how_1",
+  "source": "**To set a beacon :**\\n\\n First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "**Για να ορίσετε ένα ηχητικό σήμα :**\\n\\n Πρώτα, εμφανίστε τις λεπτομέρειες μιας τοποθεσίας είτε χρησιμοποιώντας τη γραμμή αναζήτησης για να βρείτε ένα μέρος, είτε πατώντας ένα από τα κουμπιά *Κοντινές τοποθεσίες*, *Δείκτες και Διαδρομές* ή *Τρέχουσα τοποθεσία* και επιλέγοντας μια τοποθεσία. Στη συνέχεια, από την οθόνη *Λεπτομέρειες τοποθεσίας*, επιλέξτε το κουμπί *Έναρξη ηχητικού σήματος*. Το πάτημα αυτού θα σας επιστρέψει στην αρχική οθόνη και θα ενεργοποιήσει ένα ακουστό ηχητικό σήμα που θα προέρχεται από την κατεύθυνση της τοποθεσίας που επιλέξατε. Το όνομα της τοποθεσίας μαζί με την απόστασή της και τη φυσική διεύθυνση, εάν είναι διαθέσιμη, θα εμφανίζονται πλέον στην κύρια οθόνη.",
+  "suggested": "**Για να ορίσετε ένα ηχητικό σήμα :**\\n\\n Πρώτα, εμφανίστε τις λεπτομέρειες μιας τοποθεσίας είτε χρησιμοποιώντας τη γραμμή αναζήτησης για να βρείτε ένα μέρος, είτε πατώντας ένα από τα κουμπιά *Κοντινές τοποθεσίες*, *Δείκτες και διαδρομές* ή *Τρέχουσα τοποθεσία* και επιλέγοντας μια τοποθεσία. Στη συνέχεια, από την οθόνη *Λεπτομέρειες τοποθεσίας*, επιλέξτε το κουμπί *Έναρξη ηχητικού σήματος*. Το πάτημα αυτού θα σας επιστρέψει στην αρχική οθόνη και θα ενεργοποιήσει ένα ακουστό ηχητικό σήμα που θα προέρχεται από την κατεύθυνση της τοποθεσίας που επιλέξατε. Το όνομα της τοποθεσίας μαζί με την απόστασή της και τη φυσική διεύθυνση, εάν είναι διαθέσιμη, θα εμφανίζονται πλέον στην κύρια οθόνη.",
+  "reason": "The UI name is «Δείκτες και διαδρομές» (search_view_markers); capital Δ on «Διαδρομές» doesn't match the label.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_routes_content_how_2",
+  "source": "**Editing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select *Edit Route*. From here you can add and remove waypoints, as well as edit the name and description of the route.",
+  "current": "**Επεξεργασία διαδρομής :**\\n\\n Επιλέξτε τη διαδρομή σας στην οθόνη *Δείκτες και Διαδρομές* και στη συνέχεια επιλέξτε *Επεξεργασία διαδρομής*. Από εδώ μπορείτε να προσθέσετε και να αφαιρέσετε σημεία πορείας, καθώς και να επεξεργαστείτε το όνομα και την περιγραφή της διαδρομής.",
+  "suggested": "**Επεξεργασία διαδρομής :**\\n\\n Επιλέξτε τη διαδρομή σας στην οθόνη *Δείκτες και διαδρομές* και στη συνέχεια επιλέξτε *Επεξεργασία διαδρομής*. Από εδώ μπορείτε να προσθέσετε και να αφαιρέσετε σημεία πορείας, καθώς και να επεξεργαστείτε το όνομα και την περιγραφή της διαδρομής.",
+  "reason": "The UI name is «Δείκτες και διαδρομές» (search_view_markers); capital Δ on «Διαδρομές» doesn't match the label.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_what_can_I_set_answer",
+  "source": "You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "Μπορείτε να ορίσετε ένα ηχητικό σήμα σε οποιαδήποτε επιχείρηση, μέρος, σημείο ενδιαφέροντος, διεύθυνση ή διασταύρωση. Υπάρχουν διάφοροι τρόποι να προσθέσετε ένα ηχητικό σήμα σε μια τοποθεσία. Αρχικά, εμφανίστε τις λεπτομέρειες μιας τοποθεσίας είτε χρησιμοποιώντας τη γραμμή αναζήτησης για να βρείτε ένα μέρος, είτε πατώντας ένα από τα κουμπιά *Κοντινές τοποθεσίες*, *Δείκτες και Διαδρομές* ή *Τρέχουσα τοποθεσία* και επιλέγοντας μια τοποθεσία. Στη συνέχεια, από την οθόνη *Λεπτομέρειες τοποθεσίας*, επιλέξτε το κουμπί *Έναρξη ηχητικού σήματος*. Το πάτημα αυτού θα σας επιστρέψει στην αρχική οθόνη και θα ενεργοποιήσει ένα ακουστό ηχητικό σήμα που θα προέρχεται από την κατεύθυνση της τοποθεσίας που επιλέξατε. Το όνομα της τοποθεσίας μαζί με την απόστασή της και τη φυσική διεύθυνσή της, εφόσον είναι διαθέσιμα, θα εμφανίζονται πλέον στην κύρια οθόνη.",
+  "suggested": "Μπορείτε να ορίσετε ένα ηχητικό σήμα σε οποιαδήποτε επιχείρηση, μέρος, σημείο ενδιαφέροντος, διεύθυνση ή διασταύρωση. Υπάρχουν διάφοροι τρόποι να προσθέσετε ένα ηχητικό σήμα σε μια τοποθεσία. Αρχικά, εμφανίστε τις λεπτομέρειες μιας τοποθεσίας είτε χρησιμοποιώντας τη γραμμή αναζήτησης για να βρείτε ένα μέρος, είτε πατώντας ένα από τα κουμπιά *Κοντινές τοποθεσίες*, *Δείκτες και διαδρομές* ή *Τρέχουσα τοποθεσία* και επιλέγοντας μια τοποθεσία. Στη συνέχεια, από την οθόνη *Λεπτομέρειες τοποθεσίας*, επιλέξτε το κουμπί *Έναρξη ηχητικού σήματος*. Το πάτημα αυτού θα σας επιστρέψει στην αρχική οθόνη και θα ενεργοποιήσει ένα ακουστό ηχητικό σήμα που θα προέρχεται από την κατεύθυνση της τοποθεσίας που επιλέξατε. Το όνομα της τοποθεσίας μαζί με την απόστασή της και τη φυσική διεύθυνσή της, εφόσον είναι διαθέσιμα, θα εμφανίζονται πλέον στην κύρια οθόνη.",
+  "reason": "The UI name is «Δείκτες και διαδρομές» (search_view_markers); capital Δ on «Διαδρομές» doesn't match the label.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_tip_create_marker_at_bus_stop",
+  "source": "If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.",
+  "current": "Αν χρησιμοποιείτε τακτικά μια γραμμή λεωφορείου, αποθηκεύστε τις στάσεις επιβίβασης και αποβίβασης ως δείκτες. Έτσι αποθηκεύονται και μπορείτε να τις βρείτε εύκολα ξανά. Μεταβείτε στο *Δείκτες και Διαδρομές* από την αρχική οθόνη και βρείτε τις στη σελίδα *Δείκτες*. Μπορείτε να ορίσετε ένα ηχητικό σήμα σε αυτές για να λαμβάνετε περιοδικές ενημερώσεις για το πόσο κοντά είστε στη στάση αποβίβασής σας. Σημείωση: μπορείτε να απενεργοποιήσετε τον ρυθμικό ήχο και να εξακολουθείτε να λαμβάνετε ενημερώσεις απόστασης κατά τη διαδρομή.",
+  "suggested": "Αν χρησιμοποιείτε τακτικά μια γραμμή λεωφορείου, αποθηκεύστε τις στάσεις επιβίβασης και αποβίβασης ως δείκτες. Έτσι αποθηκεύονται και μπορείτε να τις βρείτε εύκολα ξανά. Μεταβείτε στο *Δείκτες και διαδρομές* από την αρχική οθόνη και βρείτε τις στη σελίδα *Δείκτες*. Μπορείτε να ορίσετε ένα ηχητικό σήμα σε αυτές για να λαμβάνετε περιοδικές ενημερώσεις για το πόσο κοντά είστε στη στάση αποβίβασής σας. Σημείωση: μπορείτε να απενεργοποιήσετε τον ρυθμικό ήχο και να εξακολουθείτε να λαμβάνετε ενημερώσεις απόστασης κατά τη διαδρομή.",
+  "reason": "The UI name is «Δείκτες και διαδρομές» (search_view_markers); capital Δ on «Διαδρομές» doesn't match the label.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_markers_and_routes",
+  "source": "You have now successfully created a marker. Let's play an audio beacon to guide us to that location. Tap Markers and Routes, just below Places Nearby.",
+  "current": "Έχετε πλέον δημιουργήσει επιτυχώς έναν δείκτη. Ας αναπαράξουμε ένα ηχητικό σήμα για να μας καθοδηγήσει σε αυτήν την τοποθεσία. Πατήστε «Δείκτες και Διαδρομές», ακριβώς κάτω από τις «Κοντινές τοποθεσίες».",
+  "suggested": "Έχετε πλέον δημιουργήσει επιτυχώς έναν δείκτη. Ας αναπαράξουμε ένα ηχητικό σήμα για να μας καθοδηγήσει σε αυτήν την τοποθεσία. Πατήστε «Δείκτες και διαδρομές», ακριβώς κάτω από τις «Κοντινές τοποθεσίες».",
+  "reason": "The UI name is «Δείκτες και διαδρομές» (search_view_markers); capital Δ on «Διαδρομές» doesn't match the label.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_markers",
+  "source": "The Markers and Routes screen has two tabs. One tab lists routes, which are playlists of markers. The other tab lists individual markers. Tap Markers to switch to that tab and find the marker you created.",
+  "current": "Η οθόνη «Δείκτες και Διαδρομές» έχει δύο καρτέλες. Η μία καρτέλα εμφανίζει διαδρομές, που είναι λίστες αναπαραγωγής δεικτών. Η άλλη εμφανίζει μεμονωμένους δείκτες. Πατήστε «Δείκτες» για να μεταβείτε σε αυτήν την καρτέλα και να βρείτε τον δείκτη που δημιουργήσατε.",
+  "suggested": "Η οθόνη «Δείκτες και διαδρομές» έχει δύο καρτέλες. Η μία καρτέλα εμφανίζει διαδρομές, που είναι λίστες αναπαραγωγής δεικτών. Η άλλη εμφανίζει μεμονωμένους δείκτες. Πατήστε «Δείκτες» για να μεταβείτε σε αυτήν την καρτέλα και να βρείτε τον δείκτη που δημιουργήσατε.",
+  "reason": "The UI name is «Δείκτες και διαδρομές» (search_view_markers); capital Δ on «Διαδρομές» doesn't match the label.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_start_beacon",
+  "source": "You're now on the Markers tab which lists all your saved markers. Select a marker, and when the Location Details screen appears, tap Start Audio Beacon.",
+  "current": "Τώρα βρίσκεστε στην καρτέλα Δείκτες, όπου εμφανίζονται όλοι οι αποθηκευμένοι δείκτες σας. Επιλέξτε έναν δείκτη και όταν εμφανιστεί η οθόνη «Λεπτομέρειες τοποθεσίας», πατήστε «Έναρξη Ηχητικού σήματος».",
+  "suggested": "Τώρα βρίσκεστε στην καρτέλα Δείκτες, όπου εμφανίζονται όλοι οι αποθηκευμένοι δείκτες σας. Επιλέξτε έναν δείκτη και όταν εμφανιστεί η οθόνη «Λεπτομέρειες τοποθεσίας», πατήστε «Έναρξη ηχητικού σήματος».",
+  "reason": "Button label is «Έναρξη ηχητικού σήματος» (location_detail_action_beacon); stray capital Η.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_tag_ferry_terminal",
+  "source": "Ferry Terminal",
+  "current": "Τερματικός σταθμός φέρι μποτ",
+  "suggested": "Τερματικός σταθμός φέρι",
+  "reason": "osm_ferry_terminal and osm_ferry_terminal_named say «Τερματικός σταθμός φέρι»; the same place is called two ways depending on the tag path.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_tag_ferry_terminal_named",
+  "source": "%1$s Ferry Terminal",
+  "current": "Τερματικός σταθμός φέρι μποτ %1$s",
+  "suggested": "Τερματικός σταθμός φέρι %1$s",
+  "reason": "osm_ferry_terminal and osm_ferry_terminal_named say «Τερματικός σταθμός φέρι»; the same place is called two ways depending on the tag path.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_golf_course",
+  "source": "Golf Course",
+  "current": "Γήπεδο Γκολφ",
+  "suggested": "Γήπεδο γκολφ",
+  "reason": "English title case copied; every other Greek OSM name uses sentence case.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_lifeguard_place",
+  "source": "Lifeguard Post",
+  "current": "Φυλάκιο Ναυαγοσωστών",
+  "suggested": "Φυλάκιο ναυαγοσωστών",
+  "reason": "English title case copied; every other Greek OSM name uses sentence case.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_photographic_laboratory",
+  "source": "Photographic Laboratory",
+  "current": "Φωτογραφικό Εργαστήριο",
+  "suggested": "Φωτογραφικό εργαστήριο",
+  "reason": "English title case copied; every other Greek OSM name uses sentence case.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_dive_centre",
+  "source": "Dive Centre",
+  "current": "Κέντρο Καταδύσεων",
+  "suggested": "Κέντρο καταδύσεων",
+  "reason": "English title case copied; every other Greek OSM name uses sentence case.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_driving_school",
+  "source": "Driving School",
+  "current": "Σχολή Οδηγών",
+  "suggested": "Σχολή οδηγών",
+  "reason": "English title case copied; every other Greek OSM name uses sentence case.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_theme_park",
+  "source": "Theme Park",
+  "current": "Θεματικό Πάρκο",
+  "suggested": "Θεματικό πάρκο",
+  "reason": "English title case copied; every other Greek OSM name uses sentence case.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_naval_base",
+  "source": "Naval Base",
+  "current": "Ναυτική Βάση",
+  "suggested": "Ναυτική βάση",
+  "reason": "English title case copied; every other Greek OSM name uses sentence case.",
+  "category": "formatting"
+ },
+ {
+  "context": "beacon_styles_original",
+  "source": "Original",
+  "current": "Αρχικός",
+  "suggested": "Αρχικό",
+  "reason": "Masculine «Αρχικός» among neuter style names («Τρέχον», «Σήμα (Αργό)»); στυλ is neuter.",
+  "category": "gender"
+ },
+ {
+  "context": "confect_name_pavement_next_to",
+  "source": "Sidewalk next to %1$s",
+  "current": "Πεζοδρόμιο δίπλα στο %1$s",
+  "suggested": "Πεζοδρόμιο δίπλα στην %1$s",
+  "reason": "%1$s is a road name, and every other road template uses the feminine «στην %1$s» (recorded road-template decision); «στο» is neuter.",
+  "category": "gender"
+ },
+ {
+  "context": "confect_name_next_to",
+  "source": "%1$s next to %2$s",
+  "current": "%1$s δίπλα στο %2$s",
+  "suggested": "%1$s δίπλα σε %2$s",
+  "reason": "%2$s is a river or lake (ποταμός m., λίμνη f.), so neuter «στο» is wrong for most; bare «σε» matches «κοντά σε %1$s» elsewhere.",
+  "category": "gender"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Το Soundscape έχει λειτουργίες και οφέλη που καλύπτουν μια ποικιλία σεναρίων και χρονικών κλιμάκων. Η αξία του Soundscape για εσάς μπορεί επίσης να αλλάξει με την πάροδο του χρόνου, οπότε ο τρόπος που το χρησιμοποιείτε σήμερα μπορεί να διαφέρει από τον τρόπο που θα το χρησιμοποιείτε σε τρεις μήνες. Οι άνθρωποι συχνά σκέφτονται τις εφαρμογές με όρους *ποιο πρόβλημα λύνει καλά αυτή η εφαρμογή;* Το Soundscape μπορεί σίγουρα να χρησιμοποιηθεί για συγκεκριμένες ανάγκες – όπως η παρακολούθηση ενός προορισμού καθώς κατευθύνεστε προς αυτόν, η βοήθεια στον προσανατολισμό σας όταν βγαίνετε από έναν σταθμό του μετρό, ο προσανατολισμός σας όταν κατεβαίνετε από ένα αυτοκίνητο, ή η εύρεση των ονομάτων των δρόμων ή της απόστασης μέχρι την επόμενη διασταύρωση. Ωστόσο, η φιλοσοφία πίσω από το Soundscape είναι *να φωτίζει τον κόσμο σας με ήχο* – έχει σχεδιαστεί για να χρησιμοποιείται οποτεδήποτε βρίσκεστε έξω, ώστε να σας δίνει επίγνωση του περιβάλλοντός σας, όπως τα ονόματα των δρόμων στους οποίους βρίσκεστε, την κατεύθυνση προς την οποία κινείστε και τα ονόματα των επιχειρήσεων από τις οποίες περνάτε. Σε αυτόν τον τρόπο χρήσης, οι χρήστες μας έχουν χαρακτηρίσει το Soundscape ως μια *ωραία εφαρμογή-σύντροφο*, που υποστηρίζει τις *τυχαίες ανακαλύψεις*, βοηθά να *καλυφθούν τα κενά στον νοητικό σας χάρτη* και προσφέρει μεγαλύτερη *αυτοπεποίθηση στο περπάτημα*. Ακολουθούν μερικά ακόμη παραδείγματα του πώς οι χρήστες μας χρησιμοποιούν το Soundscape στη ζωή τους:\\n\\nΤο Soundscape με βοήθησε να βρω ξανά τον σωστό δρόμο αφού κατέβηκα από το λεωφορείο και ξεκίνησα προς τη λάθος κατεύθυνση.\\n\\nΑκόμη και στην πόλη όπου ζω 3 χρόνια, έχω αποκτήσει καλύτερη εικόνα του τι υπάρχει γύρω μου [με το Soundscape].\\n\\nΟ τρισδιάστατος ήχος βελτιώνει την εμπειρία μου σε μια βόλτα, καθώς νιώθω πιο συνδεδεμένος με το περιβάλλον μου… Είναι πιο πιθανό να δοκιμάσω μια νέα διαδρομή τώρα που έχω την εφαρμογή.\\n\\nΜου λείπει η τυχαία ανακάλυψη του να περπατάς και να προσέχεις πράγματα. Είναι ωραίο που έχω το Soundscape – δεν απαιτεί καμία προσπάθεια για να ακούσω για τα πράγματα γύρω μου. Οι σχετικές πληροφορίες είναι χρήσιμες και η εφαρμογή είναι εξαιρετική για επίγνωση της κατάστασης και για εξερεύνηση εμπορικών οδών.\\n\\n[Χρησιμοποίησα το Soundscape] για να εντοπίσω μια παμπ στο κέντρο του Γιορκ. [Χρησιμοποίησα] μια σειρά από τις επιλογές του για να την εντοπίσω πρώτα και μετά να τη βρω πραγματικά. Με οδήγησε σε απόσταση 3 μέτρων από την πόρτα – εξαιρετικό!",
+  "suggested": "Το Soundscape έχει λειτουργίες και οφέλη που καλύπτουν μια ποικιλία σεναρίων και χρονικών κλιμάκων. Η αξία του Soundscape για εσάς μπορεί επίσης να αλλάξει με την πάροδο του χρόνου, οπότε ο τρόπος που το χρησιμοποιείτε σήμερα μπορεί να διαφέρει από τον τρόπο που θα το χρησιμοποιείτε σε τρεις μήνες. Οι άνθρωποι συχνά σκέφτονται τις εφαρμογές με όρους *ποιο πρόβλημα λύνει καλά αυτή η εφαρμογή;* Το Soundscape μπορεί σίγουρα να χρησιμοποιηθεί για συγκεκριμένες ανάγκες – όπως η παρακολούθηση ενός προορισμού καθώς κατευθύνεστε προς αυτόν, η βοήθεια στον προσανατολισμό σας όταν βγαίνετε από έναν σταθμό του μετρό, ο προσανατολισμός σας όταν κατεβαίνετε από ένα αυτοκίνητο, ή η εύρεση των ονομάτων των δρόμων ή της απόστασης μέχρι την επόμενη διασταύρωση. Ωστόσο, η φιλοσοφία πίσω από το Soundscape είναι *να φωτίζει τον κόσμο σας με ήχο* – έχει σχεδιαστεί για να χρησιμοποιείται οποτεδήποτε βρίσκεστε έξω, ώστε να σας δίνει επίγνωση του περιβάλλοντός σας, όπως τα ονόματα των δρόμων στους οποίους βρίσκεστε, την κατεύθυνση προς την οποία κινείστε και τα ονόματα των επιχειρήσεων από τις οποίες περνάτε. Σε αυτόν τον τρόπο χρήσης, οι χρήστες μας έχουν χαρακτηρίσει το Soundscape ως μια *ωραία εφαρμογή-σύντροφο*, που υποστηρίζει τις *τυχαίες ανακαλύψεις*, βοηθά να *καλυφθούν τα κενά στον νοητικό σας χάρτη* και προσφέρει μεγαλύτερη *αυτοπεποίθηση στο περπάτημα*. Ακολουθούν μερικά ακόμη παραδείγματα του πώς οι χρήστες μας χρησιμοποιούν το Soundscape στη ζωή τους:\\n\\n«Το Soundscape με βοήθησε να βρω ξανά τον σωστό δρόμο αφού κατέβηκα από το λεωφορείο και ξεκίνησα προς τη λάθος κατεύθυνση.»\\n\\n«Ακόμη και στην πόλη όπου ζω 3 χρόνια, έχω αποκτήσει καλύτερη εικόνα του τι υπάρχει γύρω μου [με το Soundscape].»\\n\\n«Ο τρισδιάστατος ήχος βελτιώνει την εμπειρία μου σε μια βόλτα, καθώς νιώθω πιο συνδεδεμένος με το περιβάλλον μου… Είναι πιο πιθανό να δοκιμάσω μια νέα διαδρομή τώρα που έχω την εφαρμογή.»\\n\\n«Μου λείπει η τυχαία ανακάλυψη του να περπατάς και να προσέχεις πράγματα. Είναι ωραίο που έχω το Soundscape – δεν απαιτεί καμία προσπάθεια για να ακούσω για τα πράγματα γύρω μου. Οι σχετικές πληροφορίες είναι χρήσιμες και η εφαρμογή είναι εξαιρετική για επίγνωση της κατάστασης και για εξερεύνηση εμπορικών οδών.»\\n\\n«[Χρησιμοποίησα το Soundscape] για να εντοπίσω μια παμπ στο κέντρο του Γιορκ. [Χρησιμοποίησα] μια σειρά από τις επιλογές του για να την εντοπίσω πρώτα και μετά να τη βρω πραγματικά. Με οδήγησε σε απόσταση 3 μέτρων από την πόρτα – εξαιρετικό!»",
+  "reason": "The five user testimonials lost their quotation marks, so the first-person sentences («με βοήθησε», «νιώθω πιο συνδεδεμένος») read as Soundscape speaking about itself. Guillemets restore them as quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "talkback_double_tap_template",
+  "source": "Double tap to %1$s",
+  "current": "Πατήστε δύο φορές για να %1$s",
+  "suggested": "Πατήστε δύο φορές για να %1$s",
+  "reason": "EL-B1 (agreed defect, wording unconfirmed): «για να %1$s» needs a subjunctive, but most hints are imperatives («θέστε σε σίγαση», «μετακινηθείτε», «ακούστε», «δείτε»…), so iOS VoiceOver says «για να θέστε σε σίγαση». Left for the reviewer (questionnaire Q1); no change proposed here.",
+  "category": "tone"
+ }
+]

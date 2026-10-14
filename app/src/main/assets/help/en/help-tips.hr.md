@@ -1,25 +1,22 @@
 ---
-title: Tips
+title: Savjeti
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 130
 lang: hr
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Savjeti
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Da biste pronašli obližnja autobusna stajališta, odaberite *Mjesta u blizini*, zatim *Javni prijevoz*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Ako se često vozite istim autobusom, spremite svoja stajališta kao oznake. Postavite svjetionik na stajalište na kojem izlazite, pa vam Soundscape tijekom vožnje govori koliko je udaljeno.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Možete utišati svjetionik i svejedno čuti koliko je mjesto udaljeno. Soundscape povremeno izgovara udaljenost dok se krećete.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Da biste mjesto istražili prije odlaska, otvorite njegove *Pojedinosti o lokaciji* i odaberite *Simulacija lokacije*. Soundscape se tada ponaša kao da ste ondje.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
-
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
-
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Za upute skretanje po skretanje otvorite *Pojedinosti o lokaciji* nekog mjesta i odaberite *Otvori u aplikaciji za karte*. Soundscape nastavlja raditi dok druga aplikacija daje upute.
 

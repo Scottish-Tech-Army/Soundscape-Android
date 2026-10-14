@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Marqueurs
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 80
 lang: fr-CA
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Marqueurs
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Un marqueur est un lieu que vous avez enregistré. Ce peut être n’importe quel lieu qui compte pour vous : votre domicile, un arrêt d’autobus, l’entrée d’un bâtiment ou un passage piéton.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape annonce vos marqueurs quand vous passez près d’eux. Vous pouvez placer une balise sonore sur un marqueur, l’ajouter à un itinéraire ou écouter les plus proches avec le bouton *Marqueurs à proximité*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Création de marqueurs
+
+1. Sélectionnez *Marqueurs* sur l’écran d’accueil, puis *Nouveau*.
+
+2. Choisissez *Emplacement actuel*, ou un lieu dans *Emplacements à proximité*.
+
+3. Modifiez le nom si vous le souhaitez, et ajoutez des notes. Soundscape lit les notes avec le marqueur.
+
+4. Sélectionnez *Terminé*.
+
+Vous pouvez aussi enregistrer n’importe quel lieu que vous trouvez. Ouvrez ses *Détails de l’emplacement* et sélectionnez *Enregistrer en tant que marqueur*.
+
+## Personnalisation de marqueurs
+
+Sélectionnez le marqueur sur l’écran *Marqueurs*, puis sélectionnez *Modifier le marqueur*. Vous pouvez changer son nom, ses notes et sa position, ou sélectionner *Supprimer le marqueur*. Supprimer un marqueur le retire aussi de vos itinéraires.
 

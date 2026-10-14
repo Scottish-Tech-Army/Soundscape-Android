@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: குறிப்பான்கள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 80
 lang: ta
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# குறிப்பான்கள்
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+குறிப்பான் என்பது நீங்கள் சேமித்த ஓர் இடம். உங்களுக்கு முக்கியமான எந்த இடமாகவும் அது இருக்கலாம்: உங்கள் வீடு, ஒரு பேருந்து நிறுத்தம், ஒரு கட்டிடத்தின் நுழைவாயில் அல்லது ஒரு பாதசாரி கடவை.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+நீங்கள் உங்கள் குறிப்பான்களைக் கடந்து செல்லும்போது Soundscape அவற்றை அறிவிக்கிறது. ஒரு குறிப்பானில் ஒலி பீக்கனை அமைக்கலாம், அதை ஒரு பாதையில் சேர்க்கலாம், அல்லது *அருகிலுள்ள குறிப்பான்கள்* பொத்தானைக் கொண்டு மிக அருகிலுள்ளவற்றைக் கேட்கலாம்.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## குறிப்பான்களை உருவாக்குதல்
+
+1. முகப்புத் திரையில் *குறிப்பான்கள்* என்பதைத் தேர்ந்தெடுத்து, பின்னர் *புதியது* என்பதைத் தேர்ந்தெடுக்கவும்.
+
+2. *தற்போதைய இருப்பிடம்* என்பதையோ, *அருகிலுள்ள இடங்கள்* என்பதிலிருந்து ஓர் இடத்தையோ தேர்வுசெய்யவும்.
+
+3. விரும்பினால் பெயரை மாற்றி, குறிப்புகளைச் சேர்க்கவும். Soundscape குறிப்பானுடன் குறிப்புகளையும் படித்துக் காட்டும்.
+
+4. *முடிந்தது* என்பதைத் தேர்ந்தெடுக்கவும்.
+
+நீங்கள் கண்டறியும் எந்த இடத்தையும் சேமிக்கலாம். அதன் *இருப்பிட விவரங்கள்* என்பதைத் திறந்து *குறிப்பானாகச் சேமி* என்பதைத் தேர்ந்தெடுக்கவும்.
+
+## குறிப்பான்களைத் தனிப்பயனாக்குதல்
+
+*குறிப்பான்கள்* திரையில் குறிப்பானைத் தேர்ந்தெடுத்து, பின்னர் *குறிப்பானைத் திருத்து* என்பதைத் தேர்ந்தெடுக்கவும். அதன் பெயர், குறிப்புகள் மற்றும் நிலையை மாற்றலாம், அல்லது *குறிப்பானை நீக்கு* என்பதைத் தேர்ந்தெடுக்கலாம். ஒரு குறிப்பானை நீக்கினால் அது உங்கள் பாதைகளிலிருந்தும் நீக்கப்படும்.
 

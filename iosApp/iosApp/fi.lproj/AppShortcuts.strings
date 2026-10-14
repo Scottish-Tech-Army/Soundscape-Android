@@ -26,3 +26,6 @@
 "${applicationName} list" = "${applicationName} luettelo";
 
 "${applicationName} stop beacon" = "${applicationName} pysäytä majakka";
+
+"${applicationName} detail ${level}" = "${applicationName} yksityiskohdat ${level}";
+"${applicationName} detail" = "${applicationName} yksityiskohdat";

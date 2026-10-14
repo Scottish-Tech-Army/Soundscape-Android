@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Suar Audio
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 60
 lang: id
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Suar Audio
 
-## What is it?
+Suar audio adalah suara yang terdengar dari arah tempat yang Anda pilih. Suar memberi tahu di mana tempat itu berada dalam garis lurus. Suar tidak memberi petunjuk belokan demi belokan, jadi Anda memilih sendiri jalan ke sana.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Memasang Suar
 
-## When would I use it?
+1. Temukan tempatnya. Gunakan bilah pencarian, *Tempat di Sekitar*, *Penanda*, atau *Lokasi Saat Ini* di layar utama.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Pilih tempat itu untuk membuka *Detail Lokasi*.
 
-## How does it work?
+3. Pilih *Mulai Suar Audio*.
 
-**To set a beacon :**
+Soundscape kembali ke layar utama dan suar dimulai. Layar utama menampilkan nama tempat dan jaraknya.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Menemukan Arah
 
-**To remove the current beacon :**
+Suara suar berubah saat Anda menghadap ke tempat itu atau berjalan lurus ke arahnya. Untuk menemukan suara itu, pegang ponsel secara mendatar dan berputarlah perlahan. Anda dapat memilih suara suar yang lain di *Pengaturan*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Menonaktifkan Suara Suar
 
-**To mute the audible beacon :**
+Pilih *Nonaktifkan Suara Suar* di layar utama. Soundscape tetap memberi tahu seberapa jauh tempat itu saat Anda bergerak. Pilih *Aktifkan Suara Suar* untuk mendengar suar lagi.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Menghapus Suar
+
+Pilih *Hentikan Rute* di layar utama. Tombol ini memakai nama tersebut meskipun suar bukan bagian dari rute.
+
+## Saat Anda Tiba
+
+Saat Anda berada sekitar 12 meter dari tempat itu, Soundscape memberi tahu Anda dan menghapus suar. Ponsel tidak dapat menentukan posisi Anda lebih tepat dari itu. Untuk mendengar suar lagi, pasang lagi suarnya.
+
+Suar yang dipasang pada tempat yang jaraknya kurang dari 30 meter tetap menyala sampai Anda menghapusnya.
 

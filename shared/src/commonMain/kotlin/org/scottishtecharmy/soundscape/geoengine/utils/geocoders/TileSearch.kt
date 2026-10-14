@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.translatePropert
 import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
@@ -25,11 +26,15 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.network.GeoJsonParser
+import org.scottishtecharmy.soundscape.network.featureContainsLocation
+import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import vector_tile.Tile
+import kotlin.math.abs
 
 class TileSearch(
     val offlineExtractPath: String,
@@ -358,19 +363,6 @@ class TileSearch(
         (string[index] == ' ') && (index > 0) && (index + 1 < string.length) &&
             isUnspacedScript(codePointBefore(string, index)) && isUnspacedScript(codePointAt(string, index + 1))
 
-    /**
-     * Whether [codePoint] is in a script which doesn't put spaces between its words, or doesn't
-     * always: Chinese and Japanese kanji/hanzi, hiragana and katakana, Korean hangul, and Thai.
-     */
-    private fun isUnspacedScript(codePoint: Int): Boolean =
-        (codePoint in 0x0E00..0x0E7F) ||     // Thai
-            (codePoint in 0x3040..0x30FF) ||  // Hiragana and Katakana, including the voicing marks
-            (codePoint in 0x3400..0x4DBF) ||  // CJK Unified Ideographs Extension A
-            (codePoint in 0x4E00..0x9FFF) ||  // CJK Unified Ideographs
-            (codePoint in 0xAC00..0xD7A3) ||  // Hangul syllables
-            (codePoint in 0xF900..0xFAFF) ||  // CJK Compatibility Ideographs
-            (codePoint in 0x20000..0x3FFFF)   // CJK Unified Ideographs Extensions B onwards
-
     /** A layer of a tile which the search looks in, with its strings normalized to compare with a match. */
     private class SearchedLayer(
         val layer: Tile.Layer,
@@ -478,6 +470,59 @@ class TileSearch(
         }
     }
 
+    /**
+     * The name of the settlement [location] is in, if it's within the settlement grid. Must be
+     * called within the grid's treeContext.
+     */
+    private fun nearestSettlementName(location: LngLatAlt): String? {
+        if (!settlementGrid.isLocationWithinGrid(location)) return null
+
+        // Get the nearest settlements. Nominatim uses the following proximities,
+        // so we do the same:
+        //
+        // cities, municipalities, islands | 15 km
+        // towns, boroughs                 |  4 km
+        // villages, suburbs               |  2 km
+        // hamlets, farms, neighbourhoods  |  1 km
+        //
+        var nearestDistrict: MvtFeature?
+        nearestDistrict = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
+            .getNearestFeature(
+                location,
+                settlementGrid.ruler,
+                1000.0
+            ) as MvtFeature?
+        if (nearestDistrict?.name == null) {
+            nearestDistrict =
+                settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
+                    .getNearestFeature(
+                        location,
+                        settlementGrid.ruler,
+                        2000.0
+                    ) as MvtFeature?
+            if (nearestDistrict?.name == null) {
+                nearestDistrict =
+                    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
+                        .getNearestFeature(
+                            location,
+                            settlementGrid.ruler,
+                            4000.0
+                        ) as MvtFeature?
+                if (nearestDistrict?.name == null) {
+                    nearestDistrict =
+                        settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
+                            .getNearestFeature(
+                                location,
+                                settlementGrid.ruler,
+                                15000.0
+                            ) as MvtFeature?
+                }
+            }
+        }
+        val settlement = nearestDistrict ?: return null
+        return if (settlement.name != null) settlement.displayName else null
+    }
+
     private class FeatureLocation(val location: LngLatAlt, val distance: Double)
 
     /**
@@ -549,13 +594,40 @@ class TileSearch(
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    override fun search(
-        location: LngLatAlt,
-        searchString: String,
-        localizedStrings: LocalizedStrings?,
-        settlementNames: Set<String>
-    ): List<LocationDescription> {
-        val tileLocation = getXYTile(location, MAX_ZOOM_LEVEL)
+    /**
+     * Whether one of the offline maps covers [location] - having some downloaded is no use for a
+     * search in a city none of them are of. An extract's area is in the sidecar written next to it
+     * when it was downloaded. One from before sidecars were written is asked for the tile at
+     * [location] instead, which misses only a tile it left out for being empty.
+     */
+    fun hasOfflineMapAt(location: LngLatAlt): Boolean {
+        val (tileX, tileY) = getXYTile(location, MAX_ZOOM_LEVEL)
+        for (extract in findExtractPaths(offlineExtractPath)) {
+            val area = try {
+                GeoJsonParser.parseFeature(systemFileSystem.read("$extract.geojson".toPath()) { readUtf8() })
+            } catch (_: Exception) {
+                null
+            }
+            if (area?.geometry != null) {
+                if (featureContainsLocation(area, location)) return true
+                continue
+            }
+            val reader = try { PmTilesReader(extract.toPath()) } catch (_: Exception) { continue }
+            try {
+                if (reader.getTile(MAX_ZOOM_LEVEL, tileX, tileY) != null) return true
+            } catch (_: Exception) {
+            } finally {
+                try { reader.close() } catch (_: Exception) {}
+            }
+        }
+        return false
+    }
+
+    /**
+     * A reader for the offline extract which has the tile at [tileLocation] - or failing that, the
+     * last extract which could be read - or null if there are none. The caller closes it.
+     */
+    private fun openReader(tileLocation: Pair<Int, Int>): PmTilesReader? {
         val extracts = findExtractPaths(offlineExtractPath).toMutableList()
         var reader: PmTilesReader? = null
         for (extract in extracts) {
@@ -573,10 +645,16 @@ class TileSearch(
                 reader = null
             }
         }
+        return reader
+    }
 
-        // We now have a PM tile reader
-        var x = tileLocation.first
-        var y = tileLocation.second
+    /**
+     * The tiles in a square spiral out from [centreX], [centreY], [MAX_SEARCH_RADIUS] tiles out,
+     * starting with the tile itself.
+     */
+    private fun spiralTiles(centreX: Int, centreY: Int): Sequence<Pair<Int, Int>> = sequence {
+        var x = centreX
+        var y = centreY
 
         var dx = 1 // Change in x per step
         var dy = 0 // Change in y per step
@@ -585,9 +663,42 @@ class TileSearch(
         var turnCount = 0
         var stepsTaken = 0
 
-        // Set a limit to how far out you want to spiral
-        val maxSearchRadius = 10
-        val maxTurns = maxSearchRadius * 2
+        val maxTurns = MAX_SEARCH_RADIUS * 2
+        while (turnCount < maxTurns) {
+            yield(Pair(x, y))
+
+            x += dx
+            y += dy
+            stepsTaken++
+
+            // Check if it's time to turn
+            if (stepsTaken == steps) {
+                stepsTaken = 0
+                turnCount++
+
+                // Rotate direction: (1,0) -> (0,1) -> (-1,0) -> (0,-1)
+                val temp = dx
+                dx = -dy
+                dy = temp
+
+                // After every two turns, increase the number of steps
+                if (turnCount % 2 == 0) {
+                    steps++
+                }
+            }
+        }
+    }
+
+    override fun search(
+        location: LngLatAlt,
+        searchString: String,
+        localizedStrings: LocalizedStrings?,
+        settlementNames: Set<String>
+    ): List<LocationDescription> {
+        val tileLocation = getXYTile(location, MAX_ZOOM_LEVEL)
+        val reader = openReader(tileLocation)
+
+        // We now have a PM tile reader
 
         // Can we decode this into a street number and a street? A word starting with a digit may be
         // a house number ("21 Kersland Drive", "Avenida Corrientes 1155"), but it may just as well
@@ -628,7 +739,7 @@ class TileSearch(
         val needleWithoutSettlement = generateWithoutSettlement(normalizedNeedle, settlementNames)
         val wholeNeedleWithoutSettlement = wholeNeedle?.let { generateWithoutSettlement(it, settlementNames) }
         val tilesUsed = mutableSetOf<Long>()
-        while (turnCount < maxTurns) {
+        for ((x, y) in spiralTiles(tileLocation.first, tileLocation.second)) {
             val tileIndex = cacheIndex(x, y)
             var cache = stringCache[tileIndex]
             tilesUsed.add(tileIndex)
@@ -694,26 +805,6 @@ class TileSearch(
                         addressMatches.add(AddressMatch(address, block = false))
                     else if (JapaneseAddress.isMatch(addressNeedle, address.blockKey))
                         addressMatches.add(AddressMatch(address, block = true))
-                }
-            }
-            // --- 2. Move to the next position in the spiral ---
-            x += dx
-            y += dy
-            stepsTaken++
-
-            // --- 3. Check if it's time to turn ---
-            if (stepsTaken == steps) {
-                stepsTaken = 0
-                turnCount++
-
-                // Rotate direction: (1,0) -> (0,1) -> (-1,0) -> (0,-1)
-                val temp = dx
-                dx = -dy
-                dy = temp
-
-                // After every two turns, increase the number of steps
-                if (turnCount % 2 == 0) {
-                    steps++
                 }
             }
         }
@@ -870,54 +961,7 @@ class TileSearch(
                             }
                         }
                     }
-                    if (settlementGrid.isLocationWithinGrid(result.location)) {
-
-                        // Get the nearest settlements. Nominatim uses the following proximities,
-                        // so we do the same:
-                        //
-                        // cities, municipalities, islands | 15 km
-                        // towns, boroughs                 |  4 km
-                        // villages, suburbs               |  2 km
-                        // hamlets, farms, neighbourhoods  |  1 km
-                        //
-                        var nearestDistrict: MvtFeature?
-                        nearestDistrict = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
-                            .getNearestFeature(
-                                location,
-                                settlementGrid.ruler,
-                                1000.0
-                            ) as MvtFeature?
-                        if (nearestDistrict?.name == null) {
-                            nearestDistrict =
-                                settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
-                                    .getNearestFeature(
-                                        result.location,
-                                        settlementGrid.ruler,
-                                        2000.0
-                                    ) as MvtFeature?
-                            if (nearestDistrict?.name == null) {
-                                nearestDistrict =
-                                    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
-                                        .getNearestFeature(
-                                            result.location,
-                                            settlementGrid.ruler,
-                                            4000.0
-                                        ) as MvtFeature?
-                                if (nearestDistrict?.name == null) {
-                                    nearestDistrict =
-                                        settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
-                                            .getNearestFeature(
-                                                result.location,
-                                                settlementGrid.ruler,
-                                                15000.0
-                                            ) as MvtFeature?
-                                }
-                            }
-                        }
-                        if (nearestDistrict?.name != null) {
-                            mvt.properties?.set("city", nearestDistrict.displayName)
-                        }
-                    }
+                    nearestSettlementName(result.location)?.let { mvt.properties?.set("city", it) }
                 }
             }
             Pair(mvt, result)
@@ -973,12 +1017,132 @@ class TileSearch(
         }
     }
 
+    /** A place found by [searchByCategory] */
+    private class CategoryResult(
+        val properties: HashMap<String, Any?>,
+        val location: LngLatAlt,
+        val distance: Double,
+    )
+
+    override fun searchByCategory(
+        location: LngLatAlt,
+        values: Set<String>,
+        name: String?,
+        localizedStrings: LocalizedStrings?,
+        limit: Int
+    ): List<LocationDescription> {
+        val tileLocation = getXYTile(location, MAX_ZOOM_LEVEL)
+        val reader = openReader(tileLocation) ?: return emptyList()
+        val ruler = CheapRuler(location.latitude)
+        val nameNeedle = name?.let { normalizeForSearch(it) }
+
+        // Every tile in a ring of the spiral is at least this much further away than the ring
+        // inside it, so once the ring is further than the furthest of the results so far there's
+        // no point looking any further
+        val tileWidth = ruler.distance(
+            getLatLonTileWithOffset(tileLocation.first, tileLocation.second, MAX_ZOOM_LEVEL, 0.0, 0.0),
+            getLatLonTileWithOffset(tileLocation.first, tileLocation.second, MAX_ZOOM_LEVEL, 1.0, 0.0)
+        )
+
+        val results = mutableListOf<CategoryResult>()
+        for ((x, y) in spiralTiles(tileLocation.first, tileLocation.second)) {
+            val ring = maxOf(abs(x - tileLocation.first), abs(y - tileLocation.second))
+            if (results.size >= limit) {
+                val furthest = results.sortedBy { it.distance }[limit - 1].distance
+                if ((ring - 1) * tileWidth > furthest) break
+            }
+
+            val tileData = try { reader.getTile(MAX_ZOOM_LEVEL, x, y) } catch (_: Exception) { null }
+                ?: continue
+            val tile = decompressTile(reader.tileCompression, tileData) ?: continue
+            val layer = tile.layers.firstOrNull { it.name == "poi" } ?: continue
+
+            val classKeys = layer.keys.withIndex()
+                .filter { (_, key) -> (key == "class") || (key == "subclass") }
+                .map { it.index }.toSet()
+            val matchingValues = layer.values.withIndex()
+                .filter { (_, value) -> value.string_value in values }
+                .map { it.index }.toSet()
+            if (classKeys.isEmpty() || matchingValues.isEmpty()) continue
+            val nameKeys = layer.keys.withIndex().filter { (_, key) -> isNameKey(key) }.map { it.index }.toSet()
+
+            for (feature in layer.features) {
+                val tags = feature.tags
+                var isMatch = false
+                var nameMatches = (nameNeedle == null)
+                for (i in 0 until tags.size - 1 step 2) {
+                    if ((tags[i] in classKeys) && (tags[i + 1] in matchingValues)) isMatch = true
+                    if (!nameMatches && (tags[i] in nameKeys)) {
+                        val featureName = layer.values[tags[i + 1]].string_value ?: continue
+                        nameMatches = normalizeForSearch(featureName)
+                            .fuzzyCompare(nameNeedle!!, true) < NAME_MATCH_THRESHOLD
+                    }
+                }
+                if (!isMatch || !nameMatches) continue
+
+                val featureLocation = featureLocation(feature, x, y, location, ruler) ?: continue
+                val properties = featureProperties(layer, feature)
+                // A polygon which crosses tiles is found in each of them. Its rank is an ordinal
+                // within each tile, so it's the one property which differs between them.
+                if (results.any {
+                        (it.properties.filterKeys { key -> key != "rank" } ==
+                            properties.filterKeys { key -> key != "rank" }) &&
+                            (ruler.distance(it.location, featureLocation.location) < 100.0)
+                    }
+                ) continue
+                results.add(CategoryResult(properties, featureLocation.location, featureLocation.distance))
+            }
+        }
+        try { reader.close() } catch (_: Exception) {}
+
+        return results
+            .sortedBy { it.distance }
+            .take(limit)
+            .map { result ->
+                val mvt = MvtFeature()
+                mvt.name = result.properties["name"] as? String?
+                mvt.featureClass = result.properties["class"] as? String?
+                mvt.featureSubClass = result.properties["subclass"] as? String?
+                mvt.properties = result.properties
+                mvt.geometry = Point(result.location)
+                translateProperties(mvt)
+
+                runBlocking {
+                    withContext(gridState.treeContext) {
+                        if ((mvt.properties?.get("street") == null) &&
+                            gridState.isLocationWithinGrid(result.location)
+                        ) {
+                            findNearestNamedWay(result.location, null)?.let {
+                                mvt.properties?.set("street", it.displayName)
+                            }
+                        }
+                        nearestSettlementName(result.location)?.let { mvt.properties?.set("city", it) }
+                    }
+                }
+                val featureName = mvt.getText(localizedStrings)
+                mvt.toLocationDescription(LocationSource.OfflineGeocoder, featureName = featureName)
+                    .also {
+                        // An unnamed place would otherwise be named by its address, and a list of
+                        // toilets would read "Milngavie", "Milngavie" with nothing to say what
+                        // they are. Its type names it instead, with the address below.
+                        if (mvt.name == null) it.name = featureName.text
+                    }
+            }
+    }
+
     companion object {
         // Added to the score of a match made by taking a house number out of the search string
         private const val HOUSE_NUMBER_PENALTY = 0.001
 
         // How many differently named features one match can find in each layer of a tile
         private const val MAX_FEATURES_PER_LAYER = 4
+
+        // How many tiles out from the search location's tile a search looks
+        private const val MAX_SEARCH_RADIUS = 10
+
+        // How close a name has to be to the name given to a category search - the same threshold
+        // MultiGeocoder uses for markers
+        private const val NAME_MATCH_THRESHOLD = 0.25
     }
 }
 

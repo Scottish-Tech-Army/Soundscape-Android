@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Sử dụng nút điều khiển đa phương tiện
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 110
 lang: vi
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Sử dụng nút điều khiển đa phương tiện
 
-## What is it?
+Bạn có thể điều khiển Soundscape bằng các nút đa phương tiện trên tai nghe: *phát/tạm dừng*, *tiếp theo* và *trước*. Cách này dùng được với tai nghe có dây và tai nghe Bluetooth. Nó cũng dùng được khi Soundscape chạy nền hoặc điện thoại đang khóa.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Không phải tai nghe nào cũng có đủ ba nút.
 
-## When would I use it?
+Các nút chỉ điều khiển Soundscape khi không có ứng dụng nào khác đang phát âm thanh. Nếu bạn đang nghe nhạc hoặc podcast, các nút sẽ điều khiển ứng dụng đó.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Các nút có thể hoạt động theo hai cách: *Chế độ gốc* hoặc *Menu âm thanh*. Để chọn, hãy mở menu và chọn *Cài đặt*, rồi *Điều khiển Đa phương tiện*.
 
-## How does it work?
+## Chế độ gốc
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Phát/tạm dừng* tắt tiếng đèn hiệu. Nhấn lại để nghe đèn hiệu.
 
- Original mode. 
+*Tiếp theo* chuyển đèn hiệu đến điểm dừng tiếp theo khi bạn đang đi theo một lộ trình. Nếu không, nút này thông báo *Xung quanh tôi*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Trước* chuyển đèn hiệu đến điểm dừng trước khi bạn đang đi theo một lộ trình. Nếu không, nút này thay đổi *Mức chi tiết thông báo*. Mỗi lần nhấn giảm một mức: *Chi tiết*, *Đơn giản*, *Thiết yếu*, rồi *Im lặng*. Nhấn thêm một lần nữa sẽ quay lại *Chi tiết*. Soundscape đọc tên mức mới.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Menu âm thanh
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Menu âm thanh cho bạn nhiều thao tác hơn với cùng ba nút đó. Soundscape đọc to từng tùy chọn.
 
+*Tiếp theo* chuyển sang tùy chọn kế tiếp. Sau tùy chọn cuối cùng, menu quay lại tùy chọn đầu tiên.
 
+*Phát/tạm dừng* chọn tùy chọn bạn vừa nghe.
 
-Audio menu. 
+*Trước* thay đổi *Mức chi tiết thông báo*, giống như ở *Chế độ gốc*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu bắt đầu với bốn nhóm: *Nghe xung quanh tôi*, *Điều khiển lộ trình*, *Bắt đầu lộ trình* và *Bắt đầu đèn hiệu âm thanh*. Chọn một nhóm để nghe các thao tác của nhóm đó. *Nghe xung quanh tôi* và *Điều khiển lộ trình* kết thúc bằng *Menu chính*, đưa bạn trở lại bốn nhóm.
 

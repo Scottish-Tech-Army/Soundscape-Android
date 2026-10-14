@@ -19,7 +19,6 @@ import org.scottishtecharmy.soundscape.resources.tour_cancel
 import org.scottishtecharmy.soundscape.resources.tour_create_marker_done
 import org.scottishtecharmy.soundscape.resources.tour_create_marker_started
 import org.scottishtecharmy.soundscape.resources.tour_finish
-import org.scottishtecharmy.soundscape.resources.tour_markers
 import org.scottishtecharmy.soundscape.resources.tour_markers_and_routes
 import org.scottishtecharmy.soundscape.resources.tour_my_location
 import org.scottishtecharmy.soundscape.resources.tour_nearby_markers
@@ -38,8 +37,7 @@ enum class AudioTourStep {
     SELECT_PLACE,
     CREATE_MARKER_STARTED,
     CREATE_MARKER_DONE,
-    MARKERS_AND_ROUTES,
-    MARKERS,
+    OPEN_MARKERS,
     START_BEACON,
     BEACON_DEMO,
     BEACON_DEMO_LOCKED,
@@ -211,20 +209,13 @@ class AudioTour(
     fun onMarkerCreateDone() {
         println("$TAG: Marker create done, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.CREATE_MARKER_DONE) {
-            advanceToStep(AudioTourStep.MARKERS_AND_ROUTES)
-        }
-    }
-
-    fun onMarkerAndRoutes() {
-        println("$TAG: Marker and routes, current step: ${_currentStep.value}")
-        if (_currentStep.value == AudioTourStep.MARKERS_AND_ROUTES) {
-            advanceToStep(AudioTourStep.MARKERS)
+            advanceToStep(AudioTourStep.OPEN_MARKERS)
         }
     }
 
     fun onMarkers() {
-        println("$TAG: Marker and routes, current step: ${_currentStep.value}")
-        if (_currentStep.value == AudioTourStep.MARKERS) {
+        println("$TAG: Markers, current step: ${_currentStep.value}")
+        if (_currentStep.value == AudioTourStep.OPEN_MARKERS) {
             advanceToStep(AudioTourStep.START_BEACON)
         }
     }
@@ -282,12 +273,8 @@ class AudioTour(
                 showTourInstruction(runBlocking { getString(Res.string.tour_create_marker_done) })
             }
 
-            AudioTourStep.MARKERS_AND_ROUTES -> {
+            AudioTourStep.OPEN_MARKERS -> {
                 showTourInstruction(runBlocking { getString(Res.string.tour_markers_and_routes) })
-            }
-
-            AudioTourStep.MARKERS -> {
-                showTourInstruction(runBlocking { getString(Res.string.tour_markers) })
             }
 
             AudioTourStep.START_BEACON -> {

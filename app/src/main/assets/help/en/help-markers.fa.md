@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: نشانه‌ها
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 80
 lang: fa
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# نشانه‌ها
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+نشانه مکانی است که ذخیره کرده‌اید. می‌تواند هر جایی باشد که برایتان مهم است: خانه‌تان، یک ایستگاه اتوبوس، ورودی یک ساختمان یا یک گذرگاه عابر پیاده.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+ساند‌اسکیپ نشانه‌های شما را هنگام عبور از کنارشان اعلام می‌کند. می‌توانید روی یک نشانه جهت‌نمای صوتی تنظیم کنید، آن را به یک مسیر اضافه کنید یا با دکمه‌ی *نشانه‌های نزدیک* نزدیک‌ترین‌ها را بشنوید.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## ایجاد نشانه
+
+1. در صفحه‌ی اصلی *نشانه‌ها* و سپس *جدید* را انتخاب کنید.
+
+2. *موقعیت مکانی فعلی* یا مکانی از *مکان‌های نزدیک* را انتخاب کنید.
+
+3. اگر می‌خواهید نام را تغییر دهید و یادداشت اضافه کنید. ساند‌اسکیپ یادداشت‌ها را همراه با نشانه می‌خواند.
+
+4. *تمام* را انتخاب کنید.
+
+هر مکانی را که پیدا می‌کنید هم می‌توانید ذخیره کنید. *جزئیات موقعیت مکانی* آن را باز کنید و *نشانه‌گذاری و ذخیره* را انتخاب کنید.
+
+## شخصی‌سازی نشانه‌ها
+
+نشانه را در صفحه‌ی *نشانه‌ها* انتخاب کنید و سپس *ویرایش نشانه* را انتخاب کنید. می‌توانید نام، یادداشت‌ها و موقعیت آن را تغییر دهید یا *حذف نشانه* را انتخاب کنید. با حذف یک نشانه، آن نشانه از مسیرهای شما هم برداشته می‌شود.
 

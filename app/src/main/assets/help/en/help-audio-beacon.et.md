@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Helimajakas
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 60
 lang: et
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Helimajakas
 
-## What is it?
+Helimajakas on heli, mis kostab sinu valitud koha suunast. See ütleb, kus koht linnulennult asub. See ei anna pöördepõhiseid juhiseid, seega valid tee sinna ise.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Helimajaka määramine
 
-## When would I use it?
+1. Leia koht. Kasuta avakuval otsinguriba või valikuid *Lähedal asuvad kohad*, *Markerid* või *Praegune asukoht*.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Vali koht, et avada *Asukoha üksikasjad*.
 
-## How does it work?
+3. Vali *Käivita helimajakas*.
 
-**To set a beacon :**
+Soundscape naaseb avakuvale ja helimajakas käivitub. Avakuva näitab koha nime ja seda, kui kaugel see on.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Suuna leidmine
 
-**To remove the current beacon :**
+Helimajaka heli muutub, kui oled näoga koha poole või kõnnid otse selle suunas. Selle heli leidmiseks hoia telefoni horisontaalselt ja pööra end aeglaselt. Teise helimajaka heli saad valida jaotises *Seadistused*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Helimajaka summutamine
 
-**To mute the audible beacon :**
+Vali avakuval *Summuta helimajakas*. Soundscape ütleb sulle liikumise ajal endiselt, kui kaugel koht on. Helimajaka uuesti kuulmiseks vali *Tühista helimajaka vaigistus*.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Helimajaka eemaldamine
+
+Vali avakuval *Peata marsruut*. Nupul on see nimi ka siis, kui helimajakas ei ole marsruudi osa.
+
+## Kui jõuad kohale
+
+Kui oled kohast umbes 12 meetri kaugusel, ütleb Soundscape seda ja eemaldab helimajaka. Telefon ei suuda sinu asukohta sellest täpsemalt määrata. Helimajaka uuesti kuulmiseks määra see uuesti.
+
+Helimajakas, mis on määratud vähem kui 30 meetri kaugusel olevale kohale, jääb sisse, kuni sa selle eemaldad.
 

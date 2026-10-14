@@ -13,9 +13,11 @@ import org.scottishtecharmy.soundscape.resources.action_at_route_end
 import org.scottishtecharmy.soundscape.resources.action_at_route_start
 import org.scottishtecharmy.soundscape.resources.action_beacon_started
 import org.scottishtecharmy.soundscape.resources.action_beacon_stopped
+import org.scottishtecharmy.soundscape.resources.action_no_such_callout_detail
 import org.scottishtecharmy.soundscape.resources.action_item_not_found
 import org.scottishtecharmy.soundscape.resources.action_no_location
 import org.scottishtecharmy.soundscape.resources.action_no_map_data
+import org.scottishtecharmy.soundscape.resources.location_detail_unknown_location
 import org.scottishtecharmy.soundscape.resources.action_no_markers_saved
 import org.scottishtecharmy.soundscape.resources.action_no_other_waypoints
 import org.scottishtecharmy.soundscape.resources.action_no_route_active
@@ -36,14 +38,23 @@ import org.scottishtecharmy.soundscape.resources.bytes_format_tb
 import org.scottishtecharmy.soundscape.resources.bytes_format_tb_a11y
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_distance
+import org.scottishtecharmy.soundscape.resources.callouts_no_beacon_active
+import org.scottishtecharmy.soundscape.resources.directions_name_is_currently
+import org.scottishtecharmy.soundscape.resources.directions_name_is_currently_street_address
 import org.scottishtecharmy.soundscape.resources.callouts_no_nearby_markers
 import org.scottishtecharmy.soundscape.resources.callouts_nothing_to_call_out_now
-import org.scottishtecharmy.soundscape.resources.confect_name_dead_end
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_balanced
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_detailed
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_quiet
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_silent
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_set
 import org.scottishtecharmy.soundscape.resources.confect_name_joins
 import org.scottishtecharmy.soundscape.resources.confect_name_pavement
 import org.scottishtecharmy.soundscape.resources.confect_name_next_to
 import org.scottishtecharmy.soundscape.resources.confect_name_pavement_next_to
 import org.scottishtecharmy.soundscape.resources.confect_name_to
+import org.scottishtecharmy.soundscape.resources.confect_name_to_dead_end
+import org.scottishtecharmy.soundscape.resources.confect_name_to_dead_end_via
 import org.scottishtecharmy.soundscape.resources.confect_name_to_via
 import org.scottishtecharmy.soundscape.resources.confect_name_via
 import org.scottishtecharmy.soundscape.resources.directions_along_facing_e
@@ -79,6 +90,14 @@ import org.scottishtecharmy.soundscape.resources.directions_cardinal_south
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_east
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_west
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_west
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_east_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_east_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_east_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_west_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_west_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_west_abb
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_bound
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_east_bound
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_east_bound
@@ -91,7 +110,7 @@ import org.scottishtecharmy.soundscape.resources.directions_transit_stop_street_
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_street_locality_bound
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_common_name_bound
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_with_landmark
-import org.scottishtecharmy.soundscape.resources.directions_direction_ahead
+import org.scottishtecharmy.soundscape.resources.directions_ahead_road
 import org.scottishtecharmy.soundscape.resources.directions_facing_e
 import org.scottishtecharmy.soundscape.resources.directions_facing_n
 import org.scottishtecharmy.soundscape.resources.directions_facing_ne
@@ -152,6 +171,7 @@ import org.scottishtecharmy.soundscape.resources.distance_format_meters
 import org.scottishtecharmy.soundscape.resources.distance_format_miles
 import org.scottishtecharmy.soundscape.resources.general_error_location_services_find_location_error
 import org.scottishtecharmy.soundscape.resources.intersection_approaching_intersection
+import org.scottishtecharmy.soundscape.resources.intersection_approaching_intersection_distance
 import org.scottishtecharmy.soundscape.resources.markers_generic_name
 import org.scottishtecharmy.soundscape.resources.menu_no_routes
 import org.scottishtecharmy.soundscape.resources.voice_cmd_markers_list
@@ -174,6 +194,18 @@ import org.scottishtecharmy.soundscape.resources.osm_train_station_named
 import org.scottishtecharmy.soundscape.resources.osm_tram_stop
 import org.scottishtecharmy.soundscape.resources.osm_tram_stop_named
 import org.scottishtecharmy.soundscape.resources.relative_clock_direction
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_1
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_2
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_3
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_4
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_5
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_6
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_7
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_8
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_9
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_10
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_11
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_12
 import org.scottishtecharmy.soundscape.resources.relative_degrees_direction
 import org.scottishtecharmy.soundscape.resources.relative_left_right_direction_ahead
 import org.scottishtecharmy.soundscape.resources.relative_left_right_direction_ahead_left
@@ -202,14 +234,18 @@ private val singularFractionLanguages = setOf("bn", "fa", "fr", "hi", "mr", "pt"
 
 class ComposeLocalizedStrings : LocalizedStrings {
     override fun get(key: StringKey, vararg args: Any?): String =
-        runBlocking { getString(resId(key), *args.map { it ?: "" }.toTypedArray()) }
+        runBlocking {
+            resolveGrammarMarkers(getString(resId(key), *args.map { it ?: "" }.toTypedArray()))
+        }
 
     override fun getOrNull(key: StringKey, vararg args: Any?): String? =
         runCatching { get(key, *args) }.getOrNull()
 
     override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String =
         runBlocking {
-            getPluralString(pluralResId(key), quantity, *args.map { it ?: "" }.toTypedArray())
+            resolveGrammarMarkers(
+                getPluralString(pluralResId(key), quantity, *args.map { it ?: "" }.toTypedArray())
+            )
         }
 
     override val fractionalPluralQuantity: Int
@@ -225,10 +261,21 @@ class ComposeLocalizedStrings : LocalizedStrings {
 
     private fun pluralResId(key: PluralKey): PluralStringResource = when (key) {
         PluralKey.DistanceMeters -> Res.plurals.distance_format_meters
+        PluralKey.RelativeDegreesDirection -> Res.plurals.relative_degrees_direction
         PluralKey.DistanceFeet -> Res.plurals.distance_format_feet
         PluralKey.DistanceKm -> Res.plurals.distance_format_km
         PluralKey.DistanceKmA11y -> Res.plurals.distance_format_km_a11y
         PluralKey.DistanceMiles -> Res.plurals.distance_format_miles
+        PluralKey.BytesFormatB -> Res.plurals.bytes_format_b
+        PluralKey.BytesFormatBA11y -> Res.plurals.bytes_format_b_a11y
+        PluralKey.BytesFormatKb -> Res.plurals.bytes_format_kb
+        PluralKey.BytesFormatKbA11y -> Res.plurals.bytes_format_kb_a11y
+        PluralKey.BytesFormatMb -> Res.plurals.bytes_format_mb
+        PluralKey.BytesFormatMbA11y -> Res.plurals.bytes_format_mb_a11y
+        PluralKey.BytesFormatGb -> Res.plurals.bytes_format_gb
+        PluralKey.BytesFormatGbA11y -> Res.plurals.bytes_format_gb_a11y
+        PluralKey.BytesFormatTb -> Res.plurals.bytes_format_tb
+        PluralKey.BytesFormatTbA11y -> Res.plurals.bytes_format_tb_a11y
     }
 
     private fun resId(key: StringKey): StringResource = when (key) {
@@ -236,32 +283,39 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ConfectNameToVia -> Res.string.confect_name_to_via
         StringKey.ConfectNameVia -> Res.string.confect_name_via
         StringKey.ConfectNameJoins -> Res.string.confect_name_joins
-        StringKey.ConfectNameDeadEnd -> Res.string.confect_name_dead_end
+        StringKey.ConfectNameToDeadEnd -> Res.string.confect_name_to_dead_end
+        StringKey.ConfectNameToDeadEndVia -> Res.string.confect_name_to_dead_end_via
         StringKey.ConfectNamePavementNextTo -> Res.string.confect_name_pavement_next_to
         StringKey.ConfectNamePavement -> Res.string.confect_name_pavement
         StringKey.ConfectNameNextTo -> Res.string.confect_name_next_to
         StringKey.CalloutsAudioBeacon -> Res.string.callouts_audio_beacon
         StringKey.CalloutsAudioBeaconDistance -> Res.string.callouts_audio_beacon_distance
+        StringKey.CalloutsNoBeaconActive -> Res.string.callouts_no_beacon_active
+        StringKey.DirectionsNameIsCurrently -> Res.string.directions_name_is_currently
+        StringKey.DirectionsNameIsCurrentlyStreetAddress ->
+            Res.string.directions_name_is_currently_street_address
         StringKey.DirectionsAtPoi -> Res.string.directions_at_poi
-        StringKey.DirectionsDirectionAhead -> Res.string.directions_direction_ahead
+        StringKey.DirectionsAheadRoad -> Res.string.directions_ahead_road
         StringKey.IntersectionApproachingIntersection -> Res.string.intersection_approaching_intersection
+        StringKey.IntersectionApproachingIntersectionDistance -> Res.string.intersection_approaching_intersection_distance
         StringKey.DirectionsNameGoesLeft -> Res.string.directions_name_goes_left
         StringKey.DirectionsNameGoesRight -> Res.string.directions_name_goes_right
         StringKey.DirectionsNameContinuesAhead -> Res.string.directions_name_continues_ahead
-        StringKey.BytesFormatB -> Res.string.bytes_format_b
-        StringKey.BytesFormatBA11y -> Res.string.bytes_format_b_a11y
-        StringKey.BytesFormatKb -> Res.string.bytes_format_kb
-        StringKey.BytesFormatKbA11y -> Res.string.bytes_format_kb_a11y
-        StringKey.BytesFormatMb -> Res.string.bytes_format_mb
-        StringKey.BytesFormatMbA11y -> Res.string.bytes_format_mb_a11y
-        StringKey.BytesFormatGb -> Res.string.bytes_format_gb
-        StringKey.BytesFormatGbA11y -> Res.string.bytes_format_gb_a11y
-        StringKey.BytesFormatTb -> Res.string.bytes_format_tb
-        StringKey.BytesFormatTbA11y -> Res.string.bytes_format_tb_a11y
         StringKey.NumberDecimalSeparator -> Res.string.number_decimal_separator
         StringKey.NumberDecimalSeparatorA11y -> Res.string.number_decimal_separator_a11y
         StringKey.RelativeClockDirection -> Res.string.relative_clock_direction
-        StringKey.RelativeDegreesDirection -> Res.string.relative_degrees_direction
+        StringKey.RelativeClockHour1 -> Res.string.relative_clock_hour_1
+        StringKey.RelativeClockHour2 -> Res.string.relative_clock_hour_2
+        StringKey.RelativeClockHour3 -> Res.string.relative_clock_hour_3
+        StringKey.RelativeClockHour4 -> Res.string.relative_clock_hour_4
+        StringKey.RelativeClockHour5 -> Res.string.relative_clock_hour_5
+        StringKey.RelativeClockHour6 -> Res.string.relative_clock_hour_6
+        StringKey.RelativeClockHour7 -> Res.string.relative_clock_hour_7
+        StringKey.RelativeClockHour8 -> Res.string.relative_clock_hour_8
+        StringKey.RelativeClockHour9 -> Res.string.relative_clock_hour_9
+        StringKey.RelativeClockHour10 -> Res.string.relative_clock_hour_10
+        StringKey.RelativeClockHour11 -> Res.string.relative_clock_hour_11
+        StringKey.RelativeClockHour12 -> Res.string.relative_clock_hour_12
         StringKey.RelativeLeftRightDirectionAhead -> Res.string.relative_left_right_direction_ahead
         StringKey.RelativeLeftRightDirectionAheadRight -> Res.string.relative_left_right_direction_ahead_right
         StringKey.RelativeLeftRightDirectionRight -> Res.string.relative_left_right_direction_right
@@ -278,6 +332,14 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsCardinalSouthWest -> Res.string.directions_cardinal_south_west
         StringKey.DirectionsCardinalWest -> Res.string.directions_cardinal_west
         StringKey.DirectionsCardinalNorthWest -> Res.string.directions_cardinal_north_west
+        StringKey.DirectionsCardinalNorthAbb -> Res.string.directions_cardinal_north_abb
+        StringKey.DirectionsCardinalNorthEastAbb -> Res.string.directions_cardinal_north_east_abb
+        StringKey.DirectionsCardinalEastAbb -> Res.string.directions_cardinal_east_abb
+        StringKey.DirectionsCardinalSouthEastAbb -> Res.string.directions_cardinal_south_east_abb
+        StringKey.DirectionsCardinalSouthAbb -> Res.string.directions_cardinal_south_abb
+        StringKey.DirectionsCardinalSouthWestAbb -> Res.string.directions_cardinal_south_west_abb
+        StringKey.DirectionsCardinalWestAbb -> Res.string.directions_cardinal_west_abb
+        StringKey.DirectionsCardinalNorthWestAbb -> Res.string.directions_cardinal_north_west_abb
         StringKey.DirectionsCardinalNorthBound -> Res.string.directions_cardinal_north_bound
         StringKey.DirectionsCardinalNorthEastBound -> Res.string.directions_cardinal_north_east_bound
         StringKey.DirectionsCardinalEastBound -> Res.string.directions_cardinal_east_bound
@@ -402,12 +464,19 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ActionRouteStopped -> Res.string.action_route_stopped
         StringKey.ActionBeaconStarted -> Res.string.action_beacon_started
         StringKey.ActionBeaconStopped -> Res.string.action_beacon_stopped
+        StringKey.CalloutDetailSet -> Res.string.callouts_verbosity_set
+        StringKey.ActionNoSuchCalloutDetail -> Res.string.action_no_such_callout_detail
+        StringKey.CalloutDetailSilent -> Res.string.callouts_verbosity_level_silent
+        StringKey.CalloutDetailQuiet -> Res.string.callouts_verbosity_level_quiet
+        StringKey.CalloutDetailBalanced -> Res.string.callouts_verbosity_level_balanced
+        StringKey.CalloutDetailDetailed -> Res.string.callouts_verbosity_level_detailed
         StringKey.ActionNoSuchRoute -> Res.string.action_no_such_route
         StringKey.ActionNoSuchMarker -> Res.string.action_no_such_marker
         StringKey.ActionItemNotFound -> Res.string.action_item_not_found
         StringKey.ActionNoMarkersSaved -> Res.string.action_no_markers_saved
         StringKey.ActionNoLocation -> Res.string.action_no_location
         StringKey.ActionNoMapData -> Res.string.action_no_map_data
+        StringKey.UnknownLocation -> Res.string.location_detail_unknown_location
         StringKey.ActionNoRouteActive -> Res.string.action_no_route_active
         StringKey.ActionAtRouteStart -> Res.string.action_at_route_start
         StringKey.ActionAtRouteEnd -> Res.string.action_at_route_end

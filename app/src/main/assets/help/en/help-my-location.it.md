@@ -1,23 +1,16 @@
 ---
-title: My Location
+title: La mia posizione
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 20
 lang: it
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# La mia posizione
 
-## What is it?
+*La mia posizione* ti dice dove sei. Dice in che direzione guardi o ti stai spostando, poi la strada o l'indirizzo in cui ti trovi. Usalo quando scendi da un autobus, esci da un edificio o perdi l'orientamento.
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
-
-## When would I use it?
-
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Se non ti muovi, punta prima la parte superiore del telefono nella direzione in cui guardi. Se il telefono è bloccato, o Soundscape non è sullo schermo, tieni anche il telefono in piano.
 

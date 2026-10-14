@@ -3,9 +3,11 @@ package org.scottishtecharmy.soundscape.screens.home.settings
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
@@ -13,17 +15,27 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import me.zhanghai.compose.preference.Preference
 import me.zhanghai.compose.preference.LocalPreferenceTheme
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
@@ -32,8 +44,13 @@ import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
+import org.scottishtecharmy.soundscape.platform.isDebugBuild
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
+import org.scottishtecharmy.soundscape.geoengine.callouts.normalized
+import org.scottishtecharmy.soundscape.geoengine.callouts.toPreference
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreferenceState
 import org.scottishtecharmy.soundscape.resources.Res
@@ -41,16 +58,25 @@ import org.scottishtecharmy.soundscape.resources.beacon_settings_style
 import org.scottishtecharmy.soundscape.resources.beacon_settings_style_description
 import org.scottishtecharmy.soundscape.resources.callout_settings_position_description
 import org.scottishtecharmy.soundscape.resources.callout_settings_position_text
-import org.scottishtecharmy.soundscape.resources.callouts_allow_callouts
-import org.scottishtecharmy.soundscape.resources.callouts_allow_callouts_description
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_description
-import org.scottishtecharmy.soundscape.resources.callouts_bus_and_tram_stops
-import org.scottishtecharmy.soundscape.resources.callouts_bus_and_tram_stops_description
-import org.scottishtecharmy.soundscape.resources.callouts_mobility
-import org.scottishtecharmy.soundscape.resources.callouts_mobility_description
-import org.scottishtecharmy.soundscape.resources.callouts_places_and_landmarks
-import org.scottishtecharmy.soundscape.resources.callouts_places_and_landmarks_description
+import org.scottishtecharmy.soundscape.resources.callouts_places_everything
+import org.scottishtecharmy.soundscape.resources.callouts_places_landmarks
+import org.scottishtecharmy.soundscape.resources.callouts_places_nothing
+import org.scottishtecharmy.soundscape.resources.callouts_places_to_call_out
+import org.scottishtecharmy.soundscape.resources.callouts_places_to_call_out_description
+import org.scottishtecharmy.soundscape.resources.callouts_streets_and_junctions
+import org.scottishtecharmy.soundscape.resources.callouts_streets_and_junctions_description
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_balanced
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_detailed
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_quiet
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_silent
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_description
+import org.scottishtecharmy.soundscape.resources.filter_banks
+import org.scottishtecharmy.soundscape.resources.filter_food_drink
+import org.scottishtecharmy.soundscape.resources.filter_groceries
+import org.scottishtecharmy.soundscape.resources.filter_transit
 import org.scottishtecharmy.soundscape.resources.general_alert_cancel
 import org.scottishtecharmy.soundscape.resources.menu_advanced_markers_and_routes
 import org.scottishtecharmy.soundscape.resources.menu_manage_accessibility
@@ -98,6 +124,7 @@ import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -136,6 +163,8 @@ fun SharedSettingsScreen(
     onBeaconPreviewStart: ((String) -> Unit)? = null,
     onBeaconPreviewUpdate: ((String) -> Unit)? = null,
     onBeaconPreviewStop: ((Boolean, String?) -> Unit)? = null,
+    /** The section that starts expanded, e.g. "callouts". Used by the screenshot tests. */
+    initialExpandedSection: String? = null,
     modifier: Modifier = Modifier,
 ) {
     val showResetDialog = rememberSaveable { mutableStateOf(false) }
@@ -164,7 +193,7 @@ fun SharedSettingsScreen(
             },
         )
     }
-    val expandedSection = rememberSaveable { mutableStateOf<String?>(null) }
+    val expandedSection = rememberSaveable { mutableStateOf(initialExpandedSection) }
 
     val textColor = MaterialTheme.colorScheme.onBackground
     val backgroundColor = MaterialTheme.colorScheme.background
@@ -177,6 +206,27 @@ fun SharedSettingsScreen(
         stringResource(Res.string.settings_relative_directions_left_right),
     )
     val relativeDirectionValues = listOf("ClockFace", "Degrees", "LeftRight")
+
+    // In CalloutVerbosity.entries order, which is the order of the slider: quietest left
+    val verbosityNames = listOf(
+        stringResource(Res.string.callouts_verbosity_level_silent),
+        stringResource(Res.string.callouts_verbosity_level_quiet),
+        stringResource(Res.string.callouts_verbosity_level_balanced),
+        stringResource(Res.string.callouts_verbosity_level_detailed),
+    )
+
+    // The narrowing choices use the Places Nearby folder names, so that each reads the same as the
+    // folder it filters with - see PlacesToCallOut. Same order as PlacesToCallOut.entries.
+    val placesDescriptions = listOf(
+        stringResource(Res.string.callouts_places_everything),
+        stringResource(Res.string.callouts_places_landmarks),
+        stringResource(Res.string.filter_transit),
+        stringResource(Res.string.filter_food_drink),
+        stringResource(Res.string.filter_groceries),
+        stringResource(Res.string.filter_banks),
+        stringResource(Res.string.callouts_places_nothing),
+    )
+    val placesValues = PlacesToCallOut.entries.toList()
 
     val unitsDescriptions = listOf(
         stringResource(Res.string.settings_theme_auto),
@@ -214,11 +264,12 @@ fun SharedSettingsScreen(
     )
 
     ProvidePreferenceLocals(flow = rememberSoundscapePreferenceFlow()) {
-        // Track allowCallouts reactively for enabling/disabling child settings
-        val allowCallouts by rememberPreferenceState(
-            PreferenceKeys.ALLOW_CALLOUTS,
-            PreferenceDefaults.ALLOW_CALLOUTS,
+        // Everything else in the section only matters while callouts are on, i.e. not Silent
+        val verbosity by rememberPreferenceState(
+            PreferenceKeys.CALLOUT_VERBOSITY,
+            PreferenceDefaults.CALLOUT_VERBOSITY,
         )
+        val allowCallouts = verbosity != CalloutVerbosity.SILENT.preferenceValue
 
         LazyColumn(modifier = modifier.background(backgroundColor).fillMaxSize()) {
             stickyHeader {
@@ -253,61 +304,41 @@ fun SharedSettingsScreen(
                 )
             }
             if (expandedSection.value == "callouts") {
+                item(key = PreferenceKeys.CALLOUT_VERBOSITY) {
+                    CalloutVerbositySlider(
+                        names = verbosityNames,
+                        textColor = textColor,
+                        modifier = expandedSectionModifier,
+                    )
+                }
                 switchPreference(
-                    key = PreferenceKeys.ALLOW_CALLOUTS,
-                    defaultValue = PreferenceDefaults.ALLOW_CALLOUTS,
+                    key = PreferenceKeys.STREETS_AND_JUNCTIONS,
+                    defaultValue = PreferenceDefaults.STREETS_AND_JUNCTIONS,
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            Res.string.callouts_allow_callouts,
-                            Res.string.callouts_allow_callouts_description,
-                            textColor
-                        )
-                    },
-                )
-                switchPreference(
-                    key = PreferenceKeys.PLACES_AND_LANDMARKS,
-                    defaultValue = PreferenceDefaults.PLACES_AND_LANDMARKS,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_places_and_landmarks,
-                            Res.string.callouts_places_and_landmarks_description,
+                            Res.string.callouts_streets_and_junctions,
+                            Res.string.callouts_streets_and_junctions_description,
                             textColor
                         )
                     },
                     enabled = { allowCallouts },
                 )
-                switchPreference(
-                    key = PreferenceKeys.MOBILITY,
-                    defaultValue = PreferenceDefaults.MOBILITY,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_mobility,
-                            Res.string.callouts_mobility_description,
-                            textColor
-                        )
-                    },
-                    enabled = { allowCallouts },
-                )
-                switchPreference(
-                    key = PreferenceKeys.BUS_AND_TRAM_STOPS,
-                    defaultValue = PreferenceDefaults.BUS_AND_TRAM_STOPS,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_bus_and_tram_stops,
-                            Res.string.callouts_bus_and_tram_stops_description,
-                            textColor
-                        )
-                    },
-                    enabled = { allowCallouts },
-                )
+                item(key = PreferenceKeys.PLACES_TO_CALL_OUT) {
+                    PlacesToCallOutPreference(
+                        names = placesDescriptions,
+                        textColor = textColor,
+                        enabled = allowCallouts,
+                        modifier = expandedSectionModifier,
+                    )
+                }
                 switchPreference(
                     key = PreferenceKeys.DISTANCE_TO_BEACON,
                     defaultValue = PreferenceDefaults.DISTANCE_TO_BEACON,
                     modifier = expandedSectionModifier,
+                    // Not gated on the callout level: the beacon distance is the one automatic
+                    // callout Silent leaves running - it belongs to a beacon the user set - so
+                    // greying its switch out at Silent would leave no way to stop it.
                     title = {
                         SettingDetails(
                             Res.string.callouts_audio_beacon,
@@ -315,8 +346,23 @@ fun SharedSettingsScreen(
                             textColor
                         )
                     },
-                    enabled = { allowCallouts },
                 )
+// We're making the decision to always announce the distance to an intersection - don't give the
+// user a choice. If we left it, it would be just another confusingly named setting. We leave the
+// actual setting in so that tests can use it to disable the distance callout.
+//                switchPreference(
+//                    key = PreferenceKeys.DISTANCE_TO_INTERSECTION,
+//                    defaultValue = PreferenceDefaults.DISTANCE_TO_INTERSECTION,
+//                    modifier = expandedSectionModifier,
+//                    title = {
+//                        SettingDetails(
+//                            Res.string.callouts_intersection_distance,
+//                            Res.string.callouts_intersection_distance_description,
+//                            textColor
+//                        )
+//                    },
+//                    enabled = { allowCallouts },
+//                )
                 switchPreference(
                     key = PreferenceKeys.POSITION_INCLUDES_HEADING_AND_DISTANCE,
                     defaultValue = PreferenceDefaults.POSITION_INCLUDES_HEADING_AND_DISTANCE,
@@ -336,11 +382,7 @@ fun SharedSettingsScreen(
                     values = relativeDirectionValues,
                     modifier = expandedSectionModifier,
                     title = {
-                        SettingDetails(
-                            Res.string.settings_relative_directions_text,
-                            Res.string.settings_relative_directions_description,
-                            textColor
-                        )
+                        SettingTitle(Res.string.settings_relative_directions_text, textColor)
                     },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
@@ -355,10 +397,10 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
-                            relativeDirectionDescriptions[relativeDirectionValues.indexOf(
-                                it
-                            )], textColor
+                        SettingDescriptionAndOption(
+                            Res.string.settings_relative_directions_description,
+                            relativeDirectionDescriptions[relativeDirectionValues.indexOf(it)],
+                            textColor
                         )
                     },
                 )
@@ -382,13 +424,7 @@ fun SharedSettingsScreen(
                     defaultValue = PreferenceDefaults.GEOCODER_MODE,
                     values = geocoderValues,
                     modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_section_search_network,
-                            Res.string.settings_section_search_network_description,
-                            textColor
-                        )
-                    },
+                    title = { SettingTitle(Res.string.settings_section_search_network, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
                             geocoderDescriptions[geocoderValues.indexOf(value)],
@@ -400,7 +436,8 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
+                        SettingDescriptionAndOption(
+                            Res.string.settings_section_search_network_description,
                             geocoderDescriptions[geocoderValues.indexOf(it)],
                             textColor
                         )
@@ -411,13 +448,7 @@ fun SharedSettingsScreen(
                     defaultValue = PreferenceDefaults.SEARCH_LANGUAGE,
                     values = searchLanguageValues,
                     modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_search_results_language,
-                            Res.string.settings_search_results_language_description,
-                            textColor
-                        )
-                    },
+                    title = { SettingTitle(Res.string.settings_search_results_language, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
                             searchLanguageDescriptions[searchLanguageValues.indexOf(
@@ -431,10 +462,10 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
-                            searchLanguageDescriptions[searchLanguageValues.indexOf(
-                                it
-                            )], textColor
+                        SettingDescriptionAndOption(
+                            Res.string.settings_search_results_language_description,
+                            searchLanguageDescriptions[searchLanguageValues.indexOf(it)],
+                            textColor
                         )
                     },
                 )
@@ -568,13 +599,7 @@ fun SharedSettingsScreen(
                     defaultValue = PreferenceDefaults.MEASUREMENT_UNITS,
                     values = unitsValues,
                     modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_section_units,
-                            Res.string.settings_section_units_description,
-                            textColor
-                        )
-                    },
+                    title = { SettingTitle(Res.string.settings_section_units, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
                             unitsDescriptions[unitsValues.indexOf(value)],
@@ -586,7 +611,8 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
+                        SettingDescriptionAndOption(
+                            Res.string.settings_section_units_description,
                             unitsDescriptions[unitsValues.indexOf(it)],
                             textColor
                         )
@@ -614,13 +640,7 @@ fun SharedSettingsScreen(
                     defaultValue = PreferenceDefaults.MEDIA_CONTROLS_MODE,
                     values = defaultMediaControlsValues,
                     modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_section_media_controls,
-                            Res.string.settings_section_media_controls_description,
-                            textColor
-                        )
-                    },
+                    title = { SettingTitle(Res.string.settings_section_media_controls, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
                             defaultMediaControlsDescriptions[defaultMediaControlsValues.indexOf(
@@ -634,10 +654,10 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
-                            defaultMediaControlsDescriptions[defaultMediaControlsValues.indexOf(
-                                it
-                            )], textColor
+                        SettingDescriptionAndOption(
+                            Res.string.settings_section_media_controls_description,
+                            defaultMediaControlsDescriptions[defaultMediaControlsValues.indexOf(it)],
+                            textColor
                         )
                     },
                 )
@@ -656,31 +676,34 @@ fun SharedSettingsScreen(
                 )
             }
             if (expandedSection.value == "debug") {
-                listPreference(
-                    key = PreferenceKeys.POI_RANK_STRATEGY,
-                    defaultValue = PreferenceDefaults.POI_RANK_STRATEGY,
-                    values = PoiRankStrategy.keys,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        Text(text = "Nearby POI ranking", color = textColor)
-                    },
-                    item = { value, currentValue, onClick ->
-                        ListPreferenceItem(
-                            poiRankDescriptions[PoiRankStrategy.keys.indexOf(value)],
-                            value,
-                            currentValue,
-                            onClick,
-                            PoiRankStrategy.keys.indexOf(value),
-                            PoiRankStrategy.keys.size
-                        )
-                    },
-                    summary = {
-                        ClickableOption(
-                            poiRankDescriptions[PoiRankStrategy.keys.indexOf(it)],
-                            textColor
-                        )
-                    },
-                )
+                // Not in release builds: it chooses between prototypes, not something to ship
+                if (isDebugBuild) {
+                    listPreference(
+                        key = PreferenceKeys.POI_RANK_STRATEGY,
+                        defaultValue = PreferenceDefaults.POI_RANK_STRATEGY,
+                        values = PoiRankStrategy.keys,
+                        modifier = expandedSectionModifier,
+                        title = {
+                            Text(text = "Nearby POI ranking", color = textColor)
+                        },
+                        item = { value, currentValue, onClick ->
+                            ListPreferenceItem(
+                                poiRankDescriptions[PoiRankStrategy.keys.indexOf(value)],
+                                value,
+                                currentValue,
+                                onClick,
+                                PoiRankStrategy.keys.indexOf(value),
+                                PoiRankStrategy.keys.size
+                            )
+                        },
+                        summary = {
+                            ClickableOption(
+                                poiRankDescriptions[PoiRankStrategy.keys.indexOf(it)],
+                                textColor
+                            )
+                        },
+                    )
+                }
 
                 switchPreference(
                     key = PreferenceKeys.RECORD_TRAVEL,
@@ -855,6 +878,200 @@ private fun BeaconStylePreference(
                     onPreviewStop?.invoke(false, null)
                     showDialog = false
                 }) {
+                    Text(stringResource(Res.string.general_alert_cancel))
+                }
+            },
+        )
+    }
+}
+
+/** A slider position as an index into [CalloutVerbosity.entries]. */
+private fun Float.levelIndex(): Int =
+    roundToInt().coerceIn(0, CalloutVerbosity.entries.size - 1)
+
+/**
+ * The Callout Detail setting, as a slider over [CalloutVerbosity.entries] - quietest on the
+ * left, so moving right is more talk.
+ *
+ * Built from the preference library's [Preference] row rather than its sliderPreference so that
+ * the Slider's own modifier is ours to set: left alone, a screen reader reads the bare position
+ * ("2 of 4"), which says nothing about what it means. [stateDescription] replaces that with the
+ * level's name, and is what a screen reader then speaks as the slider is moved. Deliberately not
+ * clearAndSetSemantics, which would take the slider's adjust action away with it.
+ *
+ * The setting itself stays a word (CalloutVerbosity.preferenceValue), since Siri, Gemini, the
+ * headphone button and the callouts all read it by name; only this slider thinks in positions.
+ */
+@Composable
+private fun CalloutVerbositySlider(
+    names: List<String>,
+    textColor: Color,
+    modifier: Modifier = Modifier,
+) {
+    var stored by rememberPreferenceState(
+        PreferenceKeys.CALLOUT_VERBOSITY,
+        PreferenceDefaults.CALLOUT_VERBOSITY
+    )
+    val index = CalloutVerbosity.fromPreference(stored).ordinal
+    val title = stringResource(Res.string.callouts_verbosity)
+    val theme = LocalPreferenceTheme.current
+
+    Preference(
+        title = {
+            SettingDetails(
+                Res.string.callouts_verbosity,
+                Res.string.callouts_verbosity_description,
+                textColor
+            )
+        },
+        modifier = modifier,
+        summary = {
+            // No line of its own describing the level: a screen reader never reads it when the
+            // slider moves, so it told a sighted user something a blind one couldn't have. What
+            // each level does is in the setting's own description above, read with the title.
+            Column {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Slider(
+                        value = index.toFloat(),
+                        onValueChange = { position ->
+                            val level = CalloutVerbosity.entries[position.levelIndex()]
+                            if (level.preferenceValue != stored) stored = level.preferenceValue
+                        },
+                        modifier = Modifier.weight(1f).semantics {
+                            contentDescription = title
+                            stateDescription = names[index]
+                        },
+                        valueRange = 0f..(CalloutVerbosity.entries.size - 1).toFloat(),
+                        // One stop per level, so there is nothing in between to land on
+                        steps = CalloutVerbosity.entries.size - 2,
+                    )
+                    Box(modifier = Modifier.padding(start = theme.horizontalSpacing)) {
+                        Text(text = names[index], color = textColor)
+                    }
+                }
+            }
+        },
+    )
+}
+
+/**
+ * Drives the Places to Call Out checkboxes from the setting, which is stored as a list of names
+ * (PlacesToCallOut.preferenceValue) so that it stays readable by the callouts and by anything
+ * else that has to know what was chosen.
+ *
+ * Everything and No Places are normalised as they are ticked - see [normalized] - so the list
+ * can't end up saying two things at once.
+ */
+@Composable
+private fun rememberPlacesToCallOutState(): MutableState<Set<PlacesToCallOut>> {
+    val stored = rememberPreferenceState(
+        PreferenceKeys.PLACES_TO_CALL_OUT,
+        PreferenceDefaults.PLACES_TO_CALL_OUT
+    )
+    return remember(stored) {
+        object : MutableState<Set<PlacesToCallOut>> {
+            override var value: Set<PlacesToCallOut>
+                get() = PlacesToCallOut.fromPreference(stored.value)
+                set(newValue) {
+                    val justAdded = (newValue - PlacesToCallOut.fromPreference(stored.value))
+                        .firstOrNull()
+                    stored.value = newValue.normalized(justAdded).toPreference()
+                }
+
+            override fun component1(): Set<PlacesToCallOut> = value
+            override fun component2(): (Set<PlacesToCallOut>) -> Unit = { value = it }
+        }
+    }
+}
+
+/**
+ * The Places to Call Out setting: a row saying what is chosen, and a dialog of kinds to tick.
+ *
+ * Its own dialog rather than the preference library's multiSelectListPreference, whose rows can
+ * only tick or untick themselves: ticking Landmarks has to clear Everything and No Places as it
+ * happens - see [normalized] - or the list sits there saying two things at once until OK is
+ * pressed. The dialog shows the title alone, without the paragraph that introduces the setting on
+ * the screen behind it.
+ */
+@Composable
+private fun PlacesToCallOutPreference(
+    names: List<String>,
+    textColor: Color,
+    enabled: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    var stored by rememberPreferenceState(
+        PreferenceKeys.PLACES_TO_CALL_OUT,
+        PreferenceDefaults.PLACES_TO_CALL_OUT
+    )
+    val chosen = PlacesToCallOut.fromPreference(stored)
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+    var chosenInDialog by remember { mutableStateOf(chosen) }
+
+    Preference(
+        title = {
+            SettingDetails(
+                Res.string.callouts_places_to_call_out,
+                Res.string.callouts_places_to_call_out_description,
+                textColor
+            )
+        },
+        modifier = modifier,
+        enabled = enabled,
+        summary = {
+            // The same row the list settings use for what is chosen - see the relative
+            // directions setting - so that it reads as something to tap rather than as a line
+            // of text about the setting above it.
+            ClickableOption(
+                PlacesToCallOut.entries.filter { it in chosen }
+                    .joinToString { names[it.ordinal] },
+                textColor
+            )
+        },
+        onClick = {
+            chosenInDialog = chosen
+            showDialog = true
+        },
+    )
+
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = {
+                Text(
+                    text = stringResource(Res.string.callouts_places_to_call_out),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+            },
+            text = {
+                LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                    items(PlacesToCallOut.entries.size) { index ->
+                        val kind = PlacesToCallOut.entries[index]
+                        val ticked = kind in chosenInDialog
+                        MultiSelectPreferenceItem(
+                            description = names[index],
+                            checked = ticked,
+                            onToggle = {
+                                chosenInDialog = if (ticked) {
+                                    (chosenInDialog - kind).normalized()
+                                } else {
+                                    (chosenInDialog + kind).normalized(kind)
+                                }
+                            },
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    stored = chosenInDialog.toPreference()
+                    showDialog = false
+                }) {
+                    Text(stringResource(Res.string.ui_continue))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDialog = false }) {
                     Text(stringResource(Res.string.general_alert_cancel))
                 }
             },

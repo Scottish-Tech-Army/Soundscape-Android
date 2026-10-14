@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Звуковий маячок
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 60
 lang: uk
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Звуковий маячок
 
-## What is it?
+Звуковий маячок — це звук, який лунає з боку вибраного вами місця. Він повідомляє, де розташоване місце по прямій. Він не дає покрокових вказівок, тож шлях туди ви обираєте самі.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Установлення маячка
 
-## When would I use it?
+1. Знайдіть місце. Скористайтеся рядком пошуку або пунктами *Місця поблизу*, *Мітки* чи *Поточне місцезнаходження* на головному екрані.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Виберіть місце, щоб відкрити *Деталі місця*.
 
-## How does it work?
+3. Виберіть *Запустити звуковий маячок*.
 
-**To set a beacon :**
+Soundscape повертається на головний екран, і маячок починає звучати. На головному екрані показано назву місця й відстань до нього.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Пошук напрямку
 
-**To remove the current beacon :**
+Звук маячка змінюється, коли ви стоїте обличчям до місця або йдете просто до нього. Щоб знайти цей звук, тримайте телефон горизонтально й повільно повертайтеся. Інший звук маячка можна вибрати в розділі *Налаштування*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Вимкнення звуку маячка
 
-**To mute the audible beacon :**
+Виберіть *Вимкнути звук маячка* на головному екрані. Soundscape і далі повідомляє під час руху, як далеко розташоване місце. Виберіть *Увімкнути звук маячка*, щоб знову чути маячок.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Прибирання маячка
+
+Виберіть *Зупинити маршрут* на головному екрані. Кнопка має цю назву, навіть якщо маячок не є частиною маршруту.
+
+## Коли ви на місці
+
+Коли до місця залишається близько 12 метрів, Soundscape повідомляє про це й прибирає маячок. Точніше телефон визначити ваше положення не може. Щоб знову чути маячок, установіть його ще раз.
+
+Маячок, установлений на місце ближче ніж 30 метрів, залишається ввімкненим, доки ви його не приберете.
 

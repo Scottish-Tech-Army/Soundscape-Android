@@ -1,39 +1,40 @@
 ---
-title: Using Media Controls
+title: Коришћење медијских контрола
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
+nav_order: 110
 lang: sr
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Коришћење медијских контрола
 
-## What is it?
+Апликацијом Soundscape можете управљати медијским дугмадима на слушалицама: *play/pause*, *next* и *previous*. То ради са жичаним и Bluetooth слушалицама. Ради и када је Soundscape у позадини или је телефон закључан.
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Немају све слушалице сва три дугмета.
 
-## When would I use it?
+Дугмад управљају апликацијом Soundscape само када ниједна друга апликација не пушта звук. Ако слушате музику или подкаст, дугмад управљају том апликацијом.
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Дугмад могу да раде на два начина: *Оригинални режим* или *Звучни мени*. Да бисте изабрали, отворите мени и изаберите *Подешавања*, затим *Управљање медијима*.
 
-## How does it work?
+## Оригинални режим
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+*Play/pause* утишава бакен. Притисните поново да бисте чули бакен.
 
- Original mode. 
+*Next* помера бакен на следећу путну тачку када пратите руту. Иначе најављује *Око мене*.
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+*Previous* помера бакен на претходну путну тачку када пратите руту. Иначе мења подешавање *Ниво детаља најава*. Сваки притисак прелази један ниво тише: *Детаљно*, *Поједностављено*, *Основно*, затим *Без звука*. Још један притисак враћа на *Детаљно*. Soundscape изговара назив новог нивоа.
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+## Звучни мени
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+Звучни мени вам даје више радњи са иста три дугмета. Soundscape наглас чита сваку опцију.
 
+*Next* прелази на следећу опцију. После последње опције враћа се на прву.
 
+*Play/pause* бира опцију коју сте управо чули.
 
-Audio menu. 
+*Previous* мења подешавање *Ниво детаља најава*, исто као *Оригинални режим*.
 
-
-
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Мени почиње са четири групе: *Чуј моју околину*, *Контрола руте*, *Покрени руту* и *Покрени звучни бакен*. Изаберите групу да бисте чули њене радње. *Чуј моју околину* и *Контрола руте* завршавају се ставком *Главни мени*, која вас враћа на четири групе.
 

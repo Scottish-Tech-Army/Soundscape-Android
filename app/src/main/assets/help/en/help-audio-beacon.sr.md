@@ -1,33 +1,42 @@
 ---
-title: Audio Beacon
+title: Звучни бакен
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
+nav_order: 60
 lang: sr
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Звучни бакен
 
-## What is it?
+Звучни бакен је звук који долази из смера места које изаберете. Говори вам где је место ваздушном линијом. Не даје упутства скретање по скретање, па сами бирате пут до њега.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Постављање бакена
 
-## When would I use it?
+1. Пронађите место. Употребите траку за претрагу, *Места у близини*, *Маркери* или *Тренутна локација* на почетном екрану.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Изаберите место да бисте отворили *Детаљи локације*.
 
-## How does it work?
+3. Изаберите *Покрени звучни бакен*.
 
-**To set a beacon :**
+Soundscape се враћа на почетни екран и бакен почиње. Почетни екран приказује назив места и колико је удаљено.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+## Проналажење смера
 
-**To remove the current beacon :**
+Бакен мења звук када гледате ка месту или ходате право ка њему. Да бисте пронашли тај звук, држите телефон водоравно и полако се окрећите. Други звук бакена можете изабрати у *Подешавања*.
 
- Simply press the *\"Stop Route\"* button on the home screen.
+## Утишавање бакена
 
-**To mute the audible beacon :**
+Изаберите *Утишај бакен* на почетном екрану. Soundscape вам и даље говори колико је место удаљено док се крећете. Изаберите *Укључи звук бакена* да бисте поново чули бакен.
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+## Уклањање бакена
+
+Изаберите *Заустави руту* на почетном екрану. Дугме има тај назив и када бакен није део руте.
+
+## Када стигнете
+
+Када сте око 12 метара од места, Soundscape вам то каже и уклања бакен. Телефон не може тачније да одреди ваш положај. Да бисте поново чули бакен, поставите га поново.
+
+Бакен постављен на место удаљено мање од 30 метара остаје укључен док га не уклоните.
 

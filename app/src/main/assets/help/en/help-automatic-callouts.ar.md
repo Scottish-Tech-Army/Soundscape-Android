@@ -1,39 +1,46 @@
 ---
-title: Automatic Callouts
+title: النداءات الصوتية التلقائية
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 70
 lang: ar
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# النداءات الصوتية التلقائية
 
-## What is it?
+أثناء مشيك، ينادي Soundscape بما هو قريب منك. تسمع كل اسم من اتجاه المكان. تشمل النداءات الصوتية الشوارع والتقاطعات والمتاجر ومحطات الحافلات والمعالم وعلاماتك الخاصة.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+## التقاطعات
 
-## When would I use it?
+عندما تقترب من تقاطع، يذكر Soundscape اسم كل طريق يخرج منه. تسمع أي طريق يتجه يسارًا، وأيها يستمر إلى الأمام، وأيها يتجه يمينًا.
 
-**Exploring a new area :**
+## مقدار ما تسمعه
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+افتح القائمة واختر *الإعدادات*، ثم *إدارة النداءات الصوتية*. في *تفاصيل النداءات الصوتية* أربعة مستويات.
 
-**Walking to a specific location :**
+*مفصّل* ينادي بكل ما هو قريب.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*مبسّط* يتجاوز الممرات الصغيرة وطرق الخدمة، ويكرر نفسه أقل.
 
-**When you need silence :**
+*أساسي* ينادي بالشوارع والتقاطعات والمعالم فقط.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+*صامت* لا يقدّم أي نداءات صوتية تلقائية. وتبقى المنارات والمسارات وأزرار الشاشة الرئيسية تعمل.
 
-## How does it work?
+## ما الذي تسمعه
 
-**Turning callouts on or off :**
+في *إدارة النداءات الصوتية* إعدادان آخران. *الشوارع والتقاطعات* يشغّل نداءات الشوارع والتقاطعات أو يوقفها. *الأماكن التي يُنادى بها* يحدد أنواع الأماكن التي تسمعها، مثل *النقل العام* أو *الطعام والشراب*. أما علاماتك فيُنادى بها دائمًا.
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+## جعل Soundscape أهدأ
 
-**Managing which callouts you hear :**
+اضغط *السابق* في أزرار التحكم بسماعات الرأس. كل ضغطة تنزل مستوى واحدًا: *مفصّل*، ثم *مبسّط*، ثم *أساسي*، ثم *صامت*. وضغطة إضافية تعود إلى *مفصّل*. راجع صفحة المساعدة *استخدام أزرار التحكم بالوسائط*.
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+## إيقاف Soundscape لبعض الوقت
+
+اختر زر *نوم* أعلى الشاشة الرئيسية. يتوقف Soundscape عن استخدام موقعك ولا يصدر أي صوت حتى تختار *الاستيقاظ الآن*. أو اختر *الاستيقاظ عند المغادرة*، فيستيقظ Soundscape عندما تغادر المكان الذي أنت فيه.
+
+## في مركبة أو قطار
+
+يلاحظ Soundscape أنك تتنقل بسرعة مركبة. عندها يتوقف عن النداء بالتقاطعات والمتاجر القريبة، لأنها تمرّ بسرعة كبيرة. وبدلًا من ذلك ينادي بالطريق الذي أنت عليه، والمعالم، والمواقف والمحطات، والأنهار والأنفاق.
 

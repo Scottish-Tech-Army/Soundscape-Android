@@ -35,12 +35,8 @@ fun StreetPreview(
                 state.choices.map { it.name }.distinct()
             }
 
-            val intersectionText = when {
-                roads.isEmpty() -> ""
-                roads.size == 1 -> roads.first()
-                else -> roads.dropLast(1).joinToString(", ") +
-                        stringResource(Res.string.last_entry_in_list, roads.last())
-            }
+            val lastEntry = roads.lastOrNull()?.let { stringResource(Res.string.last_entry_in_list, it) }
+            val intersectionText = joinRoadNames(roads, lastEntry)
 
             if (intersectionText.isNotEmpty()) {
                 Text(text = stringResource(Res.string.directions_at_poi, intersectionText))
@@ -54,4 +50,17 @@ fun StreetPreview(
             )
         }
     }
+}
+
+/**
+ * "A, B and C": every road but the last joined with commas, then [lastEntry], which is
+ * last_entry_in_list already filled in with the last road (" and C").
+ *
+ * The English string starts with a space, but about half the translations had lost it, which gave
+ * "Bdan C" on screen. So the space is added here rather than trusted to the strings.
+ */
+internal fun joinRoadNames(roads: List<String>, lastEntry: String?): String = when {
+    roads.isEmpty() -> ""
+    roads.size == 1 || lastEntry == null -> roads.first()
+    else -> roads.dropLast(1).joinToString(", ") + " " + lastEntry.trimStart()
 }

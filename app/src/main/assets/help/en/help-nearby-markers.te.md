@@ -1,23 +1,16 @@
 ---
-title: Nearby Markers
+title: సమీప మార్కర్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 50
 lang: te
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# సమీప మార్కర్‌లు
 
-## What is it?
+*సమీప మార్కర్‌లు* మీ మార్కర్‌లలో మీకు అత్యంత దగ్గరగా ఉన్న నాలుగు వరకు కాలౌట్ చేస్తుంది. ప్రతిదీ దాని సొంత దిశ నుండి, దూరంతో సహా మీకు వినిపిస్తుంది. మీకు ముందే తెలిసిన స్థలాల ఆధారంగా మీరు ఎక్కడ ఉన్నారో అర్థం చేసుకోవడానికి దీన్ని ఉపయోగించండి. సుమారు 2 కిలోమీటర్ల కంటే ఎక్కువ దూరంలో ఉన్న మార్కర్‌లు వదిలివేయబడతాయి.
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
-
-## When would I use it?
-
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+మీరు ఒకేచోట నిలబడి ఉంటే, ముందుగా ఫోన్ పై అంచును మీరు ముఖం పెట్టి ఉన్న వైపు చూపించండి. ఫోన్ లాక్ అయి ఉంటే, లేదా Soundscape స్క్రీన్‌పై లేకపోతే, ఫోన్‌ను చదునుగా కూడా పట్టుకోండి.
 

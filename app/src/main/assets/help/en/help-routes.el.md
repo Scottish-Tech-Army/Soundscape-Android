@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: Διαδρομές
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 90
 lang: el
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Διαδρομές
 
-## What is it?
+Η διαδρομή είναι μια λίστα τοποθεσιών, που λέγονται σημεία πορείας, τις οποίες επισκέπτεστε με τη σειρά. Το Soundscape ορίζει ηχητικό σήμα στο πρώτο σημείο πορείας. Όταν φτάσετε, σας το λέει και μετακινεί το ηχητικό σήμα στο επόμενο.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Χρησιμοποιήστε μια διαδρομή για να μάθετε μια νέα πορεία, ή για να μην ξεφύγετε σε μια πορεία που γνωρίζετε.
 
-## When would I use it?
+## Δημιουργία διαδρομής
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Επιλέξτε *Διαδρομές* στην αρχική οθόνη και μετά επιλέξτε *Νέο*.
 
-## How does it work?
+2. Δώστε ένα όνομα στη διαδρομή. Μπορείτε να προσθέσετε περιγραφή.
 
-**Creating a route :**
+3. Επιλέξτε *Προσθήκη σημείων πορείας* και διαλέξτε δείκτες. Μπορείτε επίσης να προσθέσετε την τρέχουσα τοποθεσία σας ή ένα κοντινό μέρος.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Επιλέξτε *Έτοιμο*.
 
-**Editing a route :**
+## Ακολουθώντας μια διαδρομή
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Επιλέξτε τη διαδρομή στην οθόνη *Διαδρομές* και μετά επιλέξτε *Έναρξη διαδρομής*. Για να την ακολουθήσετε ανάποδα, επιλέξτε *Έναρξη διαδρομής (αντίστροφα)*. Στην αρχική οθόνη, τα *Επόμενο σημείο πορείας* και *Προηγούμενο σημείο πορείας* μετακινούν το ηχητικό σήμα κατά μήκος της διαδρομής. Το *Διακοπή διαδρομής* την τερματίζει.
 
-**Sharing a route :**
+## Αλλαγή διαδρομής
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+Επιλέξτε τη διαδρομή στην οθόνη *Διαδρομές* και μετά επιλέξτε *Επεξεργασία διαδρομής*. Μπορείτε να προσθέσετε, να αφαιρέσετε και να αναδιατάξετε σημεία πορείας, να αλλάξετε το όνομα και την περιγραφή, ή να διαγράψετε τη διαδρομή.
+
+## Κοινή χρήση διαδρομής
+
+Επιλέξτε τη διαδρομή στην οθόνη *Διαδρομές* και μετά επιλέξτε *Κοινή χρήση*.
 

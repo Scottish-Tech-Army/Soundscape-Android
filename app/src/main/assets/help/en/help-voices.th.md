@@ -1,13 +1,14 @@
 ---
-title: Voices
+title: เสียงพูด
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 100
 lang: th
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# เสียงพูด
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape ใช้เสียงพูดใดก็ได้ที่ติดตั้งอยู่ในโทรศัพท์ของคุณ หากต้องการเพิ่มเสียงพูด ให้เปิดการตั้งค่าของโทรศัพท์แล้วหา *เอาต์พุตการอ่านออกเสียงข้อความ* หากต้องการเลือกเสียงพูดใน Soundscape ให้เปิดเมนูแล้วเลือก *การตั้งค่า* จากนั้น *เสียง* แล้วเลือก *เสียงพูด*
 

@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Markører
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 80
 lang: nb
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Markører
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+En markør er et sted du har lagret. Det kan være et hvilket som helst sted som betyr noe for deg: hjemmet ditt, et busstopp, en inngang til en bygning eller et fotgjengerfelt.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape leser opp markørene dine når du passerer dem. Du kan sette et lydsignal på en markør, legge den til i en rute eller høre de nærmeste med knappen *Markører i nærheten*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Opprett markører
+
+1. Velg *Markører* på startskjermen, og velg deretter *Ny*.
+
+2. Velg *Nåværende posisjon*, eller et sted fra *Steder i nærheten*.
+
+3. Endre navnet hvis du vil, og legg til notater. Soundscape leser opp notatene sammen med markøren.
+
+4. Velg *Ferdig*.
+
+Du kan også lagre et hvilket som helst sted du finner. Åpne *Posisjonsinformasjon* for stedet og velg *Lagre som markør*.
+
+## Tilpass markører
+
+Velg markøren på skjermen *Markører*, og velg deretter *Rediger markør*. Du kan endre navnet, notatene og posisjonen, eller velge *Slett markør*. Når du sletter en markør, fjernes den også fra rutene dine.
 

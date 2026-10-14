@@ -45,7 +45,7 @@ class BusStopTest {
         )
 
         // we can reuse the intersection code as bus stops are GeoJSON Points just like Intersections
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val fovBusStopFeatureCollection = busStopTree.getAllWithinTriangle(triangle)
         Assert.assertEquals(2, fovBusStopFeatureCollection.features.size)
         // we can detect the nearest bus stop and give a distance/direction but as mentioned above the OSM

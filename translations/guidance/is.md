@@ -1,0 +1,206 @@
+# Icelandic (is) — translation decisions
+
+| | |
+|---|---|
+| Weblate component | `androidkmp` |
+| Corpus at last sweep | 1522 units, 769 excluding `osm_*` (2026-09-24) |
+| Last native-speaker input | 2025-10-21 (Þorkell Steindal, direct Weblate edits to the legacy `android-app` component) |
+| Reporter platform | Weblate, legacy Android app |
+| Register | «þú», the only real option in Icelandic. Not a question |
+
+Read with [`_common.md`](_common.md).
+
+---
+
+## Status of this file
+
+Icelandic is between the French and Spanish cases. **One native speaker has
+worked on it**: Þorkell Jóhann Steindal (keli@sjonstodin.is; Sjónstöðin is
+Iceland's national centre for blind and visually impaired people). He made
+five translation commits to the *legacy* `app/src/main/res/values-is` between
+2025-09-05 and 2025-10-21, about 390 lines in total. That was before the KMP
+migration. His strings were carried into `androidkmp`, then corrected and
+extended by AI passes.
+
+His work reads as a fast first pass. It had frequent typos («tvisvr», «pukt»,
+«fjalægð», «leið lokiðleið lokið»), all of which have since been fixed, and
+nearly everything in lowercase (see IS-S1). His **term choices** are the
+valuable part. They still ship, consistently, and are the one thing here a
+native speaker actually chose. They are marked `confirmed` in the Spanish
+file's sense: "confirmed then, not re-checked since." Everything else is
+`unconfirmed`.
+
+The questions for reviewers are in `docs/translation-questions/questions-is.md`, numbered
+Q1…Q10 to match the Open questions below.
+
+---
+
+## Glossary
+
+| English | Icelandic | Status | Why |
+|---|---|---|---|
+| Audio Beacon | hljóðviti | `confirmed` | Þorkell's choice. 71 occurrences, consistent |
+| Marker | merki | `confirmed` | Þorkell's choice. 77 occurrences |
+| Waypoint | leiðarpunktur | `confirmed` | Þorkell's choice («næsti leiðarpunktur»). 26 occurrences |
+| Callout | tilkynning | `confirmed` | Þorkell's choice. 38 occurrences. But Android's Icelandic UI also uses «tilkynningar» for system notifications, the same collision flagged for fr/pl. See Q1 |
+| Callouts panel | lýsing á umhverfi | `confirmed` | Þorkell's `callouts_panel_title` |
+| Landmarks | kennileiti | `confirmed` | Þorkell's «staðir og kennileiti» |
+| Intersection | gatnamót | `confirmed` | Þorkell's choice. 22 occurrences |
+| Junction (motorway, with ref) | vegamót | `unconfirmed` | `directions_junction_with_ref` «Vegamót %1$s». AI pass |
+| Sleep | dvali (fara í dvala / í dvala) | `confirmed` | Þorkell's choice |
+| Snooze | lúr («Í lúra-ham») | `unconfirmed` | Þorkell wrote «Dvala eða Lúra» once in the FAQ, but «Í lúra-ham» is AI-built. See IS-T1 / Q3 |
+| Callout Detail | Nákvæmni tilkynninga | `unconfirmed` | AI pass, 2026-09-23 |
+| Detailed / Simplified / Essential / Silent | Ítarlegt / Einfaldað / Nauðsynlegt / Þögult | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Ítarlegt / Jafnvægi / Hljóðlátt / Þögult |
+| dead end | blindgata | `unconfirmed` | The word is fine. Case fixed 2026-09-24 («blindgötu»). See IS-G1 |
+
+---
+
+## Rules
+
+### IS-G1 — `confect_name_dead_end` must be in the genitive (`confirmed` fixed 2026-09-24)
+
+**Fixed 2026-09-24:** `confect_name_dead_end` is now «blindgötu», uploaded to Weblate and verified live.
+
+The same defect as PL-G1 and rule C9 in `_common.md`: `confect_name_dead_end`
+is only ever the `%2$s` of `confect_name_to` «%1$s til %2$s» and
+`confect_name_to_via` «%1$s til %2$s um %3$s» (see `WayGenerator.kt`). «til»
+governs the **genitive**, and the string is nominative, so the app says
+«Stígur til **blindgata**». It should be «til **blindgötu**». Icelandic was
+missing from C9's list, so add it there.
+
+The fix is one string, and the grammar is not a matter of opinion. The
+reviewers should still see it (Q6), in case they prefer a different
+construction altogether.
+
+### IS-G2 — Street and place names arrive in the nominative (`unconfirmed`, inventory only)
+
+This is the same issue as PL-G1's open side, but much wider in Icelandic,
+because Icelandic street names inflect and speakers hear it immediately. Every
+template that puts a map name after a preposition gets it wrong:
+`directions_on_road` «Á %1$s» → «Á **Laugavegur**» (should be «Á Laugavegi»,
+dative), `directions_near_name` «nærri %1$s», `directions_towards_settlement`
+«í átt að %1$s», `directions_along_*` «eftir %1$s», `confect_name_to` «til
+%1$s», and more.
+
+No string edit can inflect a runtime name. The options are restructuring the
+templates so the name stands alone («Gata: Laugavegur» / «Laugavegur, þú ert
+hér»), or accepting it. Ask how much it grates before touching the roughly 40
+templates involved. See Q5.
+
+### IS-G3 — The user's gender: three conventions in one corpus (`unconfirmed`)
+
+The corpus handles adjectives that agree with «þú» three different ways:
+
+- **slash forms**: «Þú ert tilbúin/n!» (`first_launch_prompt_title`,
+  `first_launch_prompt_message`, `tour_create_marker_done`) and «Velkomin/n»
+  (`tour_welcome`). **A speech synthesiser reads the slash aloud**, or reads
+  «tilbúin» and then a stray «n». This is the worst option for this app's
+  users
+- **feminine/plural only**: `first_launch_welcome_title` «Velkomin!»
+- **masculine only**: `faq_markers_function_answer` «…sem þú bættir við sjálfur»
+
+The fix is probably to rephrase all of these so they don't agree («Allt er
+tilbúið!», «Velkomið í…» / «Gott að sjá þig»), rather than picking a gender.
+That wording needs a speaker. See Q4.
+
+### IS-S1 — Labels start with a capital, like English (`agreed`, fixed 2026-09-25)
+
+147 strings started lowercase where the English is capitalised, a carry-over from
+the first pass («hætta við», «lokið», «upphaf leiðar», even full sentences like
+«illa gengur að finna staðsetningu.»). The maintainer confirmed this was a
+mistake, and all 147 were capitalised on Weblate on 2026-09-25. **New strings
+start with a capital wherever the English does.**
+
+Exceptions, deliberately left lowercase:
+- `directions_cardinal_*` («norður», «suðaustur»…): the app only ever appends
+  them after a comma («Kaffihús, 50 m, norður»), and Icelandic doesn't
+  capitalise compass points mid-sentence.
+- Hint strings (`*_hint`, `*_acc_hint`), which are lowercase in English too
+  because they follow «Tvíbankaðu til að…».
+
+### IS-T1 — Snooze is «Í lúra-ham» (`unconfirmed`)
+
+«lúra» is the verb (to doze), so «lúra-hamur» is an unusual compound. «lúr»
+(a nap) might give «Lúrhamur», or the reviewers may prefer to describe what
+it does, since it wakes automatically when you move off. Five strings. See Q3.
+
+### IS-T2 — Two different verbs for "double tap" (`unconfirmed`)
+
+`talkback_double_tap_template` is «Tvíbankaðu til að %1$s», and
+`faq_controlling_what_you_hear_answer` also says «Tvíbankaðu skjánum með tveimur
+fingrum». *(Corrected 2026-09-25: an earlier note said seventeen strings use
+«Ýttu tvisvar»; none do. The seventeen are plain «Ýttu á…», "press".)*
+«tvíbanka» is not a common verb, so «Ýttu tvisvar til að %1$s» is the candidate,
+but ask first. See Q8.
+
+(The missing space in this template was fixed in Weblate on 2026-09-24, see
+FR-B1 in `fr.md`. The local file catches up on the next Weblate merge.)
+
+### IS-C1 — Siri command phrases stay in English (`agreed`)
+
+There is no `is.lproj/AppShortcuts.strings`, and Siri does not support
+Icelandic as a language at all, so `help_text_assistant_*_ios` has to quote
+the English phrases (`*"Soundscape surroundings"*`). Do not translate them,
+for the same reasons as PL-C1.
+
+---
+
+## Rejected
+
+Nothing yet. Record anything turned down here with the evidence that made it
+attractive (rule C8).
+
+---
+
+## Open questions for the next native-speaker round
+
+These are the questions in `docs/translation-questions/questions-is.md`, in the same order.
+
+1. **Callout «tilkynning»:** does it get confused with phone notifications?
+   (glossary)
+2. **Waypoint «leiðarpunktur»:** still right? (glossary; checking an earlier choice)
+3. **Snooze name.** (IS-T1)
+4. **Gender:** how to rephrase «tilbúin/n», «Velkomin/n». (IS-G3)
+5. **Street names in the nominative** («Á Laugavegur»): how bad is it? (IS-G2)
+6. **«til blindgötu»:** confirm what now ships (applied 2026-09-24). (IS-G1)
+7. **The four detail levels** (Ítarlegt / Einfaldað / Nauðsynlegt / Þögult), renamed 2026-09-30 (C22), now all
+   adjectives: distinct by ear? Better names for the middle two?
+8. **«Tvíbankaðu» or «Ýttu tvisvar»?** (IS-T2)
+9. **Siri phrases stay English:** OK? (IS-C1)
+10. **Anything else.**
+
+*Settled 2026-09-25: labels start with a capital (IS-S1).*
+
+---
+
+## Provenance
+
+**2025-09-05 → 2025-10-21 — native speaker, legacy `android-app` component.**
+Þorkell Steindal (Sjónstöðin) translated about 390 lines directly in Weblate
+(commits `0e774f7d2`, `88372a500`, `c64fe8d03`, `dcf37fd87`, `e63fb8885`).
+He chose the core terminology recorded above as `confirmed`.
+
+**2026-04 → 2026-09 — KMP migration and AI passes.** Strings were carried into
+`androidkmp` and completed and corrected by AI passes. The two "Anonymous"
+commits (`63225c826`, `db573314c`) are mechanical: the plural conversion and
+quote escaping.
+
+**2026-09-24 — corpus sweep, no speaker involved.** Built this file and the
+question sheet. Found IS-G1 by checking `WayGenerator.kt`, and IS-G3 by
+looking for slashes, which a speech synthesiser reads aloud. Checked that
+Þorkell's terms still ship and that his typos are gone. Nothing uploaded.
+
+**2026-09-24 — dead-end case fix applied.** `confect_name_dead_end` → «blindgötu» (the C9 batch fix across ru, cs, sk, hr, sr, sl, pl and is).
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
+
+**2026-09-28 — Weblate checks pass.** Home-screen buttons showed a literal `\n`; they now have real line breaks and match the help text: «Mín\nstaðsetning», «Í kringum\nmig», «Fyrir\nframan mig», «Nálæg\nmerki». `osm_gambling` → «Fjárhættuspilastaður», `osm_dock` → «Skipakví», rugby → «Rugbývöllur (rugby league)» / «(rugby union)». Signal was «Merki», the same as Markers: beacon style → «Boð» (hægt / mjög hægt), `osm_signal` → «Merkjaljós». Uploaded live.
+
+**2026-09-29 — European batch review.** 4 hints capitalised or imperative («Fara», «Gera», «Stækka», «veldu») → lower-case infinitives. Help: «Ljúka leið» → «Stöðva leið» (2), «Þagga hljóðvita» → «Slökkva á hljóðvita». Rewritten in full (C16): `faq_supported_phones_answer` (was the old Android-only answer), and three shortened first-pass texts `faq_how_close_to_destination_answer`, `help_text_nearby_markers_when`, `help_text_around_me_when`, which had dropped the button names and that the beacon turns off. New wording `unconfirmed`. 10 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 79 flagged, 72 applied in `e7805f737`. Findings: `translations/review/2026-09-30-all-languages/is-findings.json`.
+Most serious fixed:
+- `osm_intersection`: Typo «Gatnamot» (missing ó) in a label spoken in callouts;
+- `route_detail_action_start_route`: «Upphaf leiðar» is the noun "start of the route", not the action "Start Route";
+- `route_detail_action_start_route_reverse`: Same as route_detail_action_start_route: noun «Upphaf leiðar» instead of the action
+Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text); `terms_of_use_message` (legal text).

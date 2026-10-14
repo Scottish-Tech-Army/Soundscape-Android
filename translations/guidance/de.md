@@ -1,0 +1,117 @@
+# German (de) — translation decisions
+
+| | |
+|---|---|
+| Weblate component | `androidkmp` |
+| Corpus at last sweep | 1522 units (2026-09-24) |
+| Baseline | Microsoft's professional de-DE iOS localisation (C14). 218 of 359 shared keys still verbatim, 20 drifted |
+| Last native-speaker input | **none recorded** since Microsoft |
+| Register | Formal «Sie», consistent with Microsoft, `confirmed` (baseline) |
+
+Read with [`_common.md`](_common.md).
+
+## Status of this file
+
+German started from Microsoft's professional translation, and its core
+terms are all still Microsoft's. Those are marked `confirmed` in the C14
+sense: a professional choice users have heard for years. Everything
+Microsoft never had (callout detail, confected way names, voice commands,
+travel mode, ~410 keys) is AI. The 20 drifted strings look like
+improvements: they fix Microsoft errors such as «Endpunkt» for "Done" and
+«Wie verwenden ich». The Siri phrases (`de.lproj`) match the help text.
+Questions: `docs/translation-questions/questions-de.md` (Q1…Q6).
+
+## Glossary
+
+| English | German | Status | Note |
+|---|---|---|---|
+| Callout | Hinweis | `confirmed` | Microsoft |
+| Audio Beacon | Audiobeacon | `confirmed` | Microsoft. An anglicism, but established |
+| Marker | Markierung | `confirmed` | Microsoft |
+| Waypoint | Wegpunkt | `confirmed` | Microsoft |
+| Intersection | Kreuzung | `confirmed` | Microsoft |
+| Sleep / Snooze | Ruhemodus / Standbymodus | `confirmed` | Microsoft. Button restored to «Ruhemodus aktivieren» 2026-09-25 (C14 parity) |
+| Traveling / Heading | Nach Norden fahrend / Richtung Norden | `confirmed` | Microsoft. Matches the vehicle/walking split |
+| Detailed / Simplified / Essential / Silent | Ausführlich / Vereinfacht / Wesentlich / Stumm | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Ausführlich / Ausgewogen / Leise / Stumm |
+| Landmarks | Orientierungspunkte | `unconfirmed` | AI |
+| dead end | Sackgasse | `unconfirmed` | AI. See DE-G1 |
+
+## Rules
+
+### DE-B1 — VoiceOver: «um» needs a zu-infinitive (`agreed` defect, `unconfirmed` wording)
+
+`talkback_double_tap_template` is «Doppeltippen, um %1$s», but ~37 of the
+43 hints are bare infinitives («Audiobeacon stummschalten»). VoiceOver says
+«Doppeltippen, um Audiobeacon stummschalten», which is ungrammatical. Fix the
+**template only** (C13): «Doppeltippen: %1$s» or «%1$s – doppeltippen».
+Microsoft's hints were full sentences («Doppeltippen, um das Audiobeacon
+stummzuschalten»), so this appeared when we split the hints into fragments
+(`de8a39bab`).
+
+### DE-G1 — «nach Sackgasse» has no article (`agreed` defect, `unconfirmed` wording)
+
+`confect_name_to` «%1$s nach %2$s» + «Sackgasse» gives «Fußweg nach
+Sackgasse». This is the French FR-G1 problem. «nach» also suits place names
+better than street names. Candidates: «%1$s zur %2$s» / «%1$s Richtung
+%2$s» with «Sackgasse», or a dead-end string that carries its own article
+(«einer Sackgasse»).
+
+### DE-C1 — Siri phrases are German and live outside Weblate (`agreed`)
+
+The same coupling as FR-C1.
+
+## Rejected
+
+«Endpunkt» for "Done" (Microsoft's original `first_launch_prompt_button`).
+It's a mistranslation, now «Fertig». Don't restore it when comparing against
+Microsoft's files.
+
+## Open questions
+
+1. VoiceOver: «Doppeltippen: Audiobeacon stummschalten» or «Audiobeacon
+   stummschalten – doppeltippen»? (DE-B1)
+2. «Fußweg nach Sackgasse»: better as «Fußweg zur Sackgasse» or «Fußweg
+   Richtung Moor Road»? (DE-G1)
+3. The four detail levels (Ausführlich / Vereinfacht / Wesentlich / Stumm), renamed 2026-09-30 (C22): clear by ear?
+   Better names for the middle two?
+4. Siri phrases «Soundscape Umgebung / Route / Beacon / stoppe Beacon…»: natural?
+5. The *Nearby Markers* button reads «Mark.⏎in Nähe» (Microsoft's wording). TalkBack
+   says "Mark", not "Markierungen". Should the label be spelled out, or should the
+   button get a separate spoken label in code? Unchanged until decided (2026-09-29).
+6. Anything else.
+
+## Provenance
+
+**2024-07 → 2024-09 — Microsoft baseline**, copied from `de-DE.lproj`.
+**2025 → 2026-09 — AI passes**, plus Weblate bulk operations ("Anonymous").
+**2026-09-24 — corpus sweep** including a comparison against Microsoft's
+file. Nothing uploaded.
+
+**2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_sleep` «Ruhemodus» → Microsoft's «Ruhemodus aktivieren». This closes Q4.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 11 were restored to Microsoft's wording and 6 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 11 uploaded and verified live.
+
+**2026-09-28 — JJ's English rewording (30 FAQ/help strings).** Existing German edited to follow the new English rather than retranslated: 24 changed, 6 already matched. `settings_help_section_home_screen_buttons` is «Standort‑ und Erkundungsschaltflächen», matching `faq_holding_phone_flat_answer`. `help_config_voices_content_ios` keeps «Gesprochene Inhalte» and drops JJ's "(In iOS versions prior to 26…)" note, because German iOS 26 guides still use that name (`unconfirmed`: check on a German iOS 26 device). Uploaded and verified live.
+
+**2026-09-28 — UI-name markup.** The 4 strings flagged again by 2842d5a00 were updated. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and verified live.
+
+**2026-09-28 — Weblate checks pass.** Loading indicator → «Wird geladen». Full stops removed from 10 descriptions/hints whose English has none. Uploaded live.
+
+**2026-09-29 — full review (1586 units).** 21 flagged, and 20 were uploaded and verified live.
+Help/FAQ now name the Sleep button *„Ruhemodus aktivieren“* (6 strings), matching the 2026-09-25 C14
+restore. Microsoft itself had mixed «Ruhemodus» and «Ruhemodus aktivieren». Also fixed: «Oberseite zum Himmel»
+→ «Bildschirm nach oben», missing «aus», «wenn Sie sich … entfernt sind», «dieser» → «dieses»
+(Audiobeacon), `confect_name_joins` «verbindet» → «zwischen» (keeps it a name inside callouts), lost
+`*„…“*` in the routes help, «Bildschirm „Startbildschirm“». Also the word order in 4 named
+stations/terminals («Bahnhof %1$s»), and 3 slashes read aloud. Held: Q5 («Mark.» label).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 33 flagged, 28 applied in `b6cd77f7e`. Findings: `translations/review/2026-09-30-all-languages/de-findings.json`.
+Most serious fixed:
+- `directions_on_road_and_settlement_since`: «seit» is temporal ("since a time");
+- `street_description_since`: Same as the train variant: «125 m seit 32nd Street» uses temporal «seit» for a distance;
+- `settings_voice_command_listening_prompt`: "Announce listening" means say that the app is now listening;
+Held for a person: `talkback_double_tap_template` (reviewer: open question); `confect_name_to_dead_end` (reviewer: open question); `confect_name_to_dead_end_via` (reviewer: Q2).
+Also changed the same day:
+- `ecf310fc7`: `relative_clock_direction` changed so it no longer sounds like a time of day (C20).
+
+**2026-10-01 — home-button names.** Nearby Markers button «Mark.\nin Nähe» → «Markierungen\nin der Nähe», the name everywhere else (C27).

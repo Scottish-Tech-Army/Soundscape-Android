@@ -32,6 +32,18 @@ jobs:
       - name: Check vendored Oboe matches the pinned version
         run: ./scripts/update-oboe.sh --check
 
+      # Compose Multiplatform Resources only unescapes \n, \t, \uXXXX and \\, so an
+      # Android-style \" or \' shows up as a literal backslash in the app (and in
+      # Weblate, whose cmp-resource format doesn't escape either). Quotes and
+      # apostrophes go into these files bare. Weblate's PRs run this too, so an
+      # escape typed into Weblate is caught before it merges.
+      - name: Check composeResources strings have no escaped quotes
+        run: |
+          if grep -nE "\\\\[\"']" shared/src/commonMain/composeResources/values*/strings.xml; then
+            echo "::error::Escaped quote in composeResources strings - write \" and ' without a backslash."
+            exit 1
+          fi
+
       - name: Setup JDK + Gradle
         uses: ./.github/actions/setup-jdk-gradle
 

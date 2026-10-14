@@ -1,33 +1,38 @@
 ---
-title: Routes
+title: المسارات
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 90
 lang: ar
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# المسارات
 
-## What is it?
+المسار قائمة من المواقع، تسمّى نقاط المسار، تزورها بالترتيب. يضبط Soundscape منارة على نقطة المسار الأولى. وعندما تصل، يخبرك وينقل المنارة إلى النقطة التالية.
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+استخدم مسارًا لتتعلّم رحلة جديدة، أو لتبقى على الطريق في رحلة تعرفها.
 
-## When would I use it?
+## إنشاء مسار
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. اختر *المسارات* في الشاشة الرئيسية، ثم اختر *جديد*.
 
-## How does it work?
+2. أعطِ المسار اسمًا. يمكنك إضافة وصف.
 
-**Creating a route :**
+3. اختر *إضافة نقاط المسار* واختر علامات. يمكنك أيضًا إضافة موقعك الحالي أو مكان قريب.
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. اختر *تم*.
 
-**Editing a route :**
+## اتّباع مسار
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+اختر المسار في شاشة *المسارات*، ثم اختر *بدء المسار*. لتتبعه بالاتجاه المعاكس، اختر *بدء المسار بالعكس*. في الشاشة الرئيسية، ينقل *نقطة المسار التالية* و*نقطة المسار السابقة* المنارة على طول المسار. و*إيقاف المسار* ينهيه.
 
-**Sharing a route :**
+## تغيير مسار
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+اختر المسار في شاشة *المسارات*، ثم اختر *تعديل المسار*. يمكنك إضافة نقاط المسار وإزالتها وإعادة ترتيبها، وتغيير الاسم والوصف، أو حذف المسار.
+
+## مشاركة مسار
+
+اختر المسار في شاشة *المسارات*، ثم اختر *مشاركة*.
 

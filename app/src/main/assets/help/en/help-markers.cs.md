@@ -1,17 +1,32 @@
 ---
-title: Markers
+title: Značky
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 80
 lang: cs
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Značky
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Značka je místo, které máte uložené. Může to být jakékoli místo, které je pro vás důležité: váš domov, autobusová zastávka, vchod do budovy nebo přechod.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Soundscape ohlašuje vaše značky, když je míjíte. Na značku můžete nastavit zvukový maják, přidat ji do trasy nebo si nejbližší značky poslechnout tlačítkem *Značky v okolí*.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+## Vytváření značek
+
+1. Na domovské obrazovce vyberte *Značky* a pak vyberte *Nová*.
+
+2. Zvolte *Aktuální poloha* nebo místo ze seznamu *Místa v okolí*.
+
+3. Pokud chcete, změňte název a přidejte poznámky. Soundscape přečte poznámky spolu se značkou.
+
+4. Vyberte *Hotovo*.
+
+Uložit můžete také jakékoli místo, které najdete. Otevřete jeho *Podrobnosti o místě* a vyberte *Uložit jako značku*.
+
+## Přizpůsobení značek
+
+Vyberte značku na obrazovce *Značky* a pak vyberte *Upravit značku*. Můžete změnit její název, poznámky a polohu nebo vybrat *Odstranit značku*. Odstraněním se značka odebere i z vašich tras.
 

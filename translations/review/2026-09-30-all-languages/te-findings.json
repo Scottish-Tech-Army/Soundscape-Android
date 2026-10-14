@@ -1,0 +1,322 @@
+[
+ {
+  "context": "beacon_styles_current",
+  "source": "Current",
+  "current": "ప్రస్తుతది (or ప్రస్తుత)",
+  "suggested": "ప్రస్తుతది",
+  "reason": "A translator's alternative was left in the string: «ప్రస్తుతది (or ప్రస్తుత)» shows and is spoken with the English word 'or'",
+  "category": "formatting"
+ },
+ {
+  "context": "settings_keep_value",
+  "source": "keep",
+  "current": "ఉంచు",
+  "suggested": "ఉంచడానికి",
+  "reason": "Passed to talkbackHint, so on iOS it becomes «ఉంచు రెండుసార్లు నొక్కండి». TE-B1: hints must use the -డానికి infinitive",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_use_value",
+  "source": "use",
+  "current": "ఉపయోగించు",
+  "suggested": "ఉపయోగించడానికి",
+  "reason": "Passed to talkbackHint, so on iOS it becomes «ఉపయోగించు రెండుసార్లు నొక్కండి». TE-B1: hints must use the -డానికి infinitive",
+  "category": "meaning"
+ },
+ {
+  "context": "route_detail_action_start_route_disabled_hint",
+  "source": "add waypoints before starting the route",
+  "current": "రూట్‌ను ప్రారంభించే ముందు వేపాయింట్‌లను జోడించడానికి",
+  "suggested": "రూట్‌ను ప్రారంభించే ముందు వేపాయింట్‌లను జోడించండి",
+  "reason": "Despite the _hint key this is shown as visible Text on the add/edit route screen (SharedAddAndEditRouteScreen.kt), not as a TalkBack hint, so the -డానికి fragment ('to add waypoints…') reads unfinished. Use the imperative. Other languages that used hint form may have the same problem",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_my_location_what",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "*నా స్థానం* బటన్, మీరు ప్రస్తుతం ఎక్కడ ఉన్నారో తెలుసుకోవడానికి సహాయపడే సమాచారాన్ని త్వరగా అందిస్తుంది. మీరు ఎదుర్కొంటున్న దిశ, సమీప రోడ్లు లేదా కూడళ్లు ఎక్కడ ఉన్నాయి, మరియు సమీప ఆసక్తికరమైన ప్రదేశాలు ఎక్కడ ఉన్నాయి వంటి వాటితో సహా మీ ప్రస్తుత స్థానం గురించి *నా స్థానం* తెలియజేస్తుంది.",
+  "suggested": "*నా స్థానం* బటన్, మీరు ప్రస్తుతం ఎక్కడ ఉన్నారో తెలుసుకోవడానికి సహాయపడే సమాచారాన్ని త్వరగా అందిస్తుంది. మీరు ముఖం పెట్టి ఉన్న దిశ, సమీప రోడ్లు లేదా కూడళ్లు ఎక్కడ ఉన్నాయి, మరియు సమీప ఆసక్తికరమైన ప్రదేశాలు ఎక్కడ ఉన్నాయి వంటి వాటితో సహా మీ ప్రస్తుత స్థానం గురించి *నా స్థానం* తెలియజేస్తుంది.",
+  "reason": "«ఎదుర్కొంటున్న దిశ» uses ఎదుర్కొను (to confront/face a problem), a calque of 'the direction you are facing'; the corpus's own directions_facing_* and ios_permission_motion say «ముఖం పెట్టి ఉన్న»",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *నా స్థానం* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ఎదుర్కొంటున్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *నా స్థానం* బటన్‌ను నొక్కి వినండి.",
+  "suggested": "హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *నా స్థానం* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ముఖం పెట్టి ఉన్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *నా స్థానం* బటన్‌ను నొక్కి వినండి.",
+  "reason": "«ఎదుర్కొంటున్న దిశ» uses ఎదుర్కొను (to confront/face a problem), a calque of 'the direction you are facing'; the corpus's own directions_facing_* and ios_permission_motion say «ముఖం పెట్టి ఉన్న»",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *సమీప మార్కర్‌లు* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ఎదుర్కొంటున్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *సమీప మార్కర్‌లు* బటన్‌ను నొక్కితే, మీకు సమీపంలో ఉన్న నాలుగు మార్కర్‌ల వరకు మీకు వినిపిస్తాయి.",
+  "suggested": "హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *సమీప మార్కర్‌లు* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ముఖం పెట్టి ఉన్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *సమీప మార్కర్‌లు* బటన్‌ను నొక్కితే, మీకు సమీపంలో ఉన్న నాలుగు మార్కర్‌ల వరకు మీకు వినిపిస్తాయి.",
+  "reason": "«ఎదుర్కొంటున్న దిశ» uses ఎదుర్కొను (to confront/face a problem), a calque of 'the direction you are facing'; the corpus's own directions_facing_* and ios_permission_motion say «ముఖం పెట్టి ఉన్న»",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *నా చుట్టూ* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ఎదుర్కొంటున్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *నా చుట్టూ* బటన్‌ను నొక్కితే, మీ చుట్టూ అమర్చిన నాలుగు ఆసక్తికరమైన ప్రదేశాలు మీకు వినిపిస్తాయి.",
+  "suggested": "హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *నా చుట్టూ* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ముఖం పెట్టి ఉన్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *నా చుట్టూ* బటన్‌ను నొక్కితే, మీ చుట్టూ అమర్చిన నాలుగు ఆసక్తికరమైన ప్రదేశాలు మీకు వినిపిస్తాయి.",
+  "reason": "«ఎదుర్కొంటున్న దిశ» uses ఎదుర్కొను (to confront/face a problem), a calque of 'the direction you are facing'; the corpus's own directions_facing_* and ios_permission_motion say «ముఖం పెట్టి ఉన్న»",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_why_does_beacon_disappear_answer",
+  "source": "Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.",
+  "current": "Soundscape యొక్క ఆడియో బీకాన్ ప్రాథమికంగా ఒక దిశాత్మక సూచన, మీరు ఎదుర్కొంటున్న దిశకు సంబంధించి మీ గమ్యస్థానం ఎక్కడ ఉందో ఇది తెలియజేస్తుంది. మీరు ఏ దిశలో ఉన్నారో Soundscape కు ఖచ్చితంగా తెలియనప్పుడు, అది బీకాన్ వాల్యూమ్‌ను తగ్గిస్తుంది. మీరు ఫోన్‌ను జేబులో లేదా బ్యాగ్‌లో పెట్టుకుని నడుస్తూ, వీధి దాటడం వంటి కారణాల వల్ల ఆగిపోయినప్పుడు ఇది ఎక్కువగా జరుగుతుంది. మీరు మళ్లీ కదలడం మొదలుపెట్టిన తర్వాత, లేదా మీరు ఫోన్‌ను చదునుగా పట్టుకుని మీరు ఎదుర్కొంటున్న దిశలో చూపినప్పుడు బీకాన్ మళ్లీ బిగ్గరగా వినిపిస్తుంది.",
+  "suggested": "Soundscape యొక్క ఆడియో బీకాన్ ప్రాథమికంగా ఒక దిశాత్మక సూచన, మీరు ముఖం పెట్టి ఉన్న దిశకు సంబంధించి మీ గమ్యస్థానం ఎక్కడ ఉందో ఇది తెలియజేస్తుంది. మీరు ఏ దిశలో ఉన్నారో Soundscape కు ఖచ్చితంగా తెలియనప్పుడు, అది బీకాన్ వాల్యూమ్‌ను తగ్గిస్తుంది. మీరు ఫోన్‌ను జేబులో లేదా బ్యాగ్‌లో పెట్టుకుని నడుస్తూ, వీధి దాటడం వంటి కారణాల వల్ల ఆగిపోయినప్పుడు ఇది ఎక్కువగా జరుగుతుంది. మీరు మళ్లీ కదలడం మొదలుపెట్టిన తర్వాత, లేదా మీరు ఫోన్‌ను చదునుగా పట్టుకుని మీరు ముఖం పెట్టి ఉన్న దిశలో చూపినప్పుడు బీకాన్ మళ్లీ బిగ్గరగా వినిపిస్తుంది.",
+  "reason": "«ఎదుర్కొంటున్న దిశ» uses ఎదుర్కొను (to confront/face a problem), a calque of 'the direction you are facing'; the corpus's own directions_facing_* and ios_permission_motion say «ముఖం పెట్టి ఉన్న»",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *నా ముందు* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ఎదుర్కొంటున్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *నా ముందు* బటన్‌ను నొక్కితే, మీ ముందు దాదాపు ఉన్న అనేక ఆసక్తికరమైన ప్రదేశాలు మీకు వినిపిస్తాయి.",
+  "suggested": "హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *నా ముందు* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ముఖం పెట్టి ఉన్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *నా ముందు* బటన్‌ను నొక్కితే, దాదాపు మీ ముందే ఉన్న అనేక ఆసక్తికరమైన ప్రదేశాలు మీకు వినిపిస్తాయి.",
+  "reason": "«ఎదుర్కొంటున్న దిశ» uses ఎదుర్కొను (to confront/face a problem), a calque of 'the direction you are facing'; the corpus's own directions_facing_* and ios_permission_motion say «ముఖం పెట్టి ఉన్న»; also «మీ ముందు దాదాపు ఉన్న» puts 'roughly' in the wrong place",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "లేదు! నడుస్తున్నప్పుడు మీరు ఫోన్‌ను బ్యాగ్‌లో లేదా జేబులో లేదా వీలైన ఎక్కడైనా పెట్టుకోవచ్చు. మీ ఎడమవైపు మరియు కుడివైపు ఏ కాలౌట్‌లను ప్రకటించాలో తెలుసుకోవడానికి Soundscape మీరు నడుస్తున్న దిశను ఉపయోగిస్తుంది. మీరు కదలడం ఆపినప్పుడు, మీరు ఏ దిశలో ఉన్నారో Soundscape కు తెలియదు. ఆడియో బీకాన్ ఆన్‌లో ఉంటే, మీరు మళ్లీ కదలడం మొదలుపెట్టే వరకు అది నిశ్శబ్దమవడాన్ని మీరు గమనిస్తారు. మీరు ఎప్పుడైనా హోమ్ స్క్రీన్ దిగువన ఉన్న లొకేషన్ మరియు ఎక్స్‌ప్లొరేషన్ బటన్లను నొక్కడానికి ఫోన్‌ను బయటకు తీయవచ్చు, కానీ ఫోన్ పైభాగం మీరు ఎదుర్కొంటున్న దిశలో మరియు స్క్రీన్ ఆకాశం వైపు ఉండేలా ఫోన్‌ను పట్టుకోవాలని నిర్ధారించుకోండి. ఈ *చదునైన* స్థితిలో, మీరు ఏ దిశలో ఉన్నారో నిర్ధారించడానికి మరియు ఖచ్చితమైన స్పేషియల్ కాలౌట్‌లను అందించడానికి Soundscape ఫోన్ దిక్సూచిని ఉపయోగిస్తుంది. బీకాన్ ఆన్‌లో ఉంటే, అది పూర్తి వాల్యూమ్‌కు తిరిగి రావడాన్ని కూడా మీరు గమనిస్తారు.",
+  "suggested": "లేదు! నడుస్తున్నప్పుడు మీరు ఫోన్‌ను బ్యాగ్‌లో లేదా జేబులో లేదా వీలైన ఎక్కడైనా పెట్టుకోవచ్చు. మీ ఎడమవైపు మరియు కుడివైపు ఏ కాలౌట్‌లను ప్రకటించాలో తెలుసుకోవడానికి Soundscape మీరు నడుస్తున్న దిశను ఉపయోగిస్తుంది. మీరు కదలడం ఆపినప్పుడు, మీరు ఏ దిశలో ఉన్నారో Soundscape కు తెలియదు. ఆడియో బీకాన్ ఆన్‌లో ఉంటే, మీరు మళ్లీ కదలడం మొదలుపెట్టే వరకు దాని శబ్దం తగ్గడాన్ని మీరు గమనిస్తారు. మీరు ఎప్పుడైనా హోమ్ స్క్రీన్ దిగువన ఉన్న లొకేషన్ మరియు ఎక్స్‌ప్లొరేషన్ బటన్లను నొక్కడానికి ఫోన్‌ను బయటకు తీయవచ్చు, కానీ ఫోన్ పైభాగం మీరు ముఖం పెట్టి ఉన్న దిశలో మరియు స్క్రీన్ ఆకాశం వైపు ఉండేలా ఫోన్‌ను పట్టుకోవాలని నిర్ధారించుకోండి. ఈ *చదునైన* స్థితిలో, మీరు ఏ దిశలో ఉన్నారో నిర్ధారించడానికి మరియు ఖచ్చితమైన స్పేషియల్ కాలౌట్‌లను అందించడానికి Soundscape ఫోన్ దిక్సూచిని ఉపయోగిస్తుంది. బీకాన్ ఆన్‌లో ఉంటే, అది పూర్తి వాల్యూమ్‌కు తిరిగి రావడాన్ని కూడా మీరు గమనిస్తారు.",
+  "reason": "«ఎదుర్కొంటున్న దిశ» uses ఎదుర్కొను (to confront/face a problem), a calque of 'the direction you are facing'; the corpus's own directions_facing_* and ios_permission_motion say «ముఖం పెట్టి ఉన్న»; also «అది నిశ్శబ్దమవడాన్ని» says the beacon goes silent, but it only gets quieter",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_head_tracking_description",
+  "source": "Position spatial audio relative to where your head is facing, using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.",
+  "current": "మద్దతు ఇచ్చే AirPods, Bose Frames లేదా బాహ్య బ్లూటూత్ IMU నుండి మోషన్ డేటాను ఉపయోగించి, మీ తల ఎదుర్కొంటున్న దిశకు సంబంధించి స్పేషియల్ ఆడియోను ఉంచుతుంది. మీరు నడుస్తున్నప్పుడు స్వయంచాలకంగా కాలిబ్రేట్ అవుతుంది.",
+  "suggested": "మద్దతు ఇచ్చే AirPods, Bose Frames లేదా బాహ్య బ్లూటూత్ IMU నుండి మోషన్ డేటాను ఉపయోగించి, మీ తల తిరిగి ఉన్న దిశకు సంబంధించి స్పేషియల్ ఆడియోను ఉంచుతుంది. మీరు నడుస్తున్నప్పుడు స్వయంచాలకంగా కాలిబ్రేట్ అవుతుంది.",
+  "reason": "«మీ తల ఎదుర్కొంటున్న దిశ» is a calque of 'where your head is facing' (ఎదుర్కొను = confront)",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_tip_beacon_quiet",
+  "source": "If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.",
+  "current": "మీరు మీ ఫోన్‌ను జేబులో పెట్టి కదలడం ఆపితే, మీరు ఏ దిశలో ఉన్నారో Soundscape గుర్తించలేదు కాబట్టి బీకాన్ శబ్దం నిశ్శబ్దమవుతుంది. దీన్ని పరిష్కరించడానికి మళ్లీ నడవడం మొదలుపెట్టండి, లేదా మీ ఫోన్‌ను బయటకు తీసి చదునుగా పట్టుకోండి.",
+  "suggested": "మీరు మీ ఫోన్‌ను జేబులో పెట్టి కదలడం ఆపితే, మీరు ఏ దిశలో ఉన్నారో Soundscape గుర్తించలేదు కాబట్టి బీకాన్ శబ్దం తగ్గుతుంది. దీన్ని పరిష్కరించడానికి మళ్లీ నడవడం మొదలుపెట్టండి, లేదా మీ ఫోన్‌ను బయటకు తీసి చదునుగా పట్టుకోండి.",
+  "reason": "«బీకాన్ శబ్దం నిశ్శబ్దమవుతుంది» says the beacon goes silent. The English says it gets quieter, and the app lowers the volume",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_how_to_use_beacon_answer",
+  "source": "You can think of the audible beacon like a *lighthouse for your ears*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *ring* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *ring*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.\\n\\nThis design has a few natural results:\\n\\n1. There is no *correct* direction to travel when using the beacon – with Soundscape, you choose how to get there;\\n\\n2. The higher-pitched *ring* only helps you pinpoint the direction of the destination – it does not tell you how to get there;\\n\\n3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.",
+  "current": "ఆడియో బీకాన్‌ను మీరు *మీ చెవులకు లైట్‌హౌస్* గా భావించవచ్చు: మీ ప్రస్తుత స్థానం నుండి సూటిగా మీ గమ్యస్థానం ఎక్కడ ఉందో ఇది మీకు తెలియజేస్తుంది. లైట్‌హౌస్ లాగే, అక్కడికి ఎలా చేరుకోవాలో ఇది చెప్పదు – అడ్డంకులను తప్పించుకోవడానికి దారిలో మీరు నావిగేషన్ ఎంపికలు చేసుకోవాల్సి రావచ్చు. ఆడియో బీకాన్ యొక్క నిరంతర లయబద్ధమైన శబ్దం గమ్యస్థానం దిశ నుండి వినిపిస్తుంది, మరియు మీరు నడుస్తున్నప్పుడు గమ్యస్థానం మీకు ఏ దిశలో ఉందో తెలుసుకోవడానికి సహాయపడుతుంది. మీరు గమ్యస్థానం వైపు నేరుగా నడుస్తున్నప్పుడు, లేదా ఫోన్‌ను గమ్యస్థానం వైపు చూపినప్పుడు, ఎక్కువ పిచ్ కలిగిన *రింగ్* శబ్దం వినిపిస్తుంది. శబ్దం గల వాతావరణాలలో లయబద్ధమైన శబ్దం దిశను గ్రహించడం కొన్నిసార్లు కష్టం కాబట్టి, ఇది గమ్యస్థానం దిశను ఖచ్చితంగా గుర్తించడానికి మీకు వీలు కల్పిస్తుంది. ఎక్కువ పిచ్ కలిగిన *రింగ్* కోసం వెతుకుతున్నప్పుడు, ఫోన్‌ను చదునుగా పట్టుకుని నెమ్మదిగా తిరగండి; ఫోన్‌తో పాటు అదే దిశలో మీ తలను తిప్పడం వలన ఉత్తమమైన స్పేషియల్ ఆడియో అనుభవం లభిస్తుంది.\\n\\nఈ రూపకల్పనకు కొన్ని సహజ అర్థాలు ఉన్నాయి:\\n\\n1. బీకాన్‌ను ఉపయోగిస్తున్నప్పుడు ప్రయాణించడానికి *సరైన* దిశ అంటూ ఏదీ లేదు – Soundscapeతో అక్కడికి ఎలా చేరుకోవాలో మీరే ఎంచుకుంటారు;\\n\\n2. ఎక్కువ పిచ్ కలిగిన *రింగ్* కేవలం గమ్యస్థానం దిశను ఖచ్చితంగా గుర్తించడంలో మాత్రమే సహాయపడుతుంది – అక్కడికి ఎలా చేరుకోవాలో అది సూచించదు;\\n\\n3. మీ గమ్యస్థానానికి ఎలా చేరుకోవాలో మీకు సాధారణంగా తెలిస్తే, మీ ప్రయాణంలో ఎక్కువ భాగం బీకాన్‌ను మ్యూట్ చేసి, గమ్యస్థానానికి దగ్గరవుతున్నప్పుడు మాత్రమే దాన్ని ఆన్ చేయాలని మీరు కోరుకోవచ్చు.",
+  "suggested": "ఆడియో బీకాన్‌ను మీరు *మీ చెవులకు లైట్‌హౌస్* గా భావించవచ్చు: మీ ప్రస్తుత స్థానం నుండి సూటిగా మీ గమ్యస్థానం ఎక్కడ ఉందో ఇది మీకు తెలియజేస్తుంది. లైట్‌హౌస్ లాగే, అక్కడికి ఎలా చేరుకోవాలో ఇది చెప్పదు – అడ్డంకులను తప్పించుకోవడానికి దారిలో మీరు నావిగేషన్ ఎంపికలు చేసుకోవాల్సి రావచ్చు. ఆడియో బీకాన్ యొక్క నిరంతర లయబద్ధమైన శబ్దం గమ్యస్థానం దిశ నుండి వినిపిస్తుంది, మరియు మీరు నడుస్తున్నప్పుడు గమ్యస్థానం మీకు ఏ దిశలో ఉందో తెలుసుకోవడానికి సహాయపడుతుంది. మీరు గమ్యస్థానం వైపు నేరుగా నడుస్తున్నప్పుడు, లేదా ఫోన్‌ను గమ్యస్థానం వైపు చూపినప్పుడు, ఎక్కువ పిచ్ కలిగిన *రింగ్* శబ్దం వినిపిస్తుంది. శబ్దం గల వాతావరణాలలో లయబద్ధమైన శబ్దం దిశను గ్రహించడం కొన్నిసార్లు కష్టం కాబట్టి, ఇది గమ్యస్థానం దిశను ఖచ్చితంగా గుర్తించడానికి మీకు వీలు కల్పిస్తుంది. ఎక్కువ పిచ్ కలిగిన *రింగ్* కోసం వెతుకుతున్నప్పుడు, ఫోన్‌ను చదునుగా పట్టుకుని నెమ్మదిగా తిరగండి; ఫోన్‌తో పాటు అదే దిశలో మీ తలను తిప్పడం వలన ఉత్తమమైన స్పేషియల్ ఆడియో అనుభవం లభిస్తుంది.\\n\\nఈ రూపకల్పనకు కొన్ని సహజ ఫలితాలు ఉన్నాయి:\\n\\n1. బీకాన్‌ను ఉపయోగిస్తున్నప్పుడు ప్రయాణించడానికి *సరైన* దిశ అంటూ ఏదీ లేదు – Soundscapeతో అక్కడికి ఎలా చేరుకోవాలో మీరే ఎంచుకుంటారు;\\n\\n2. ఎక్కువ పిచ్ కలిగిన *రింగ్* కేవలం గమ్యస్థానం దిశను ఖచ్చితంగా గుర్తించడంలో మాత్రమే సహాయపడుతుంది – అక్కడికి ఎలా చేరుకోవాలో అది సూచించదు;\\n\\n3. మీ గమ్యస్థానానికి ఎలా చేరుకోవాలో మీకు సాధారణంగా తెలిస్తే, మీ ప్రయాణంలో ఎక్కువ భాగం బీకాన్‌ను మ్యూట్ చేసి, గమ్యస్థానానికి దగ్గరవుతున్నప్పుడు మాత్రమే దాన్ని ఆన్ చేయాలని మీరు కోరుకోవచ్చు.",
+  "reason": "'This design has a few natural results' became «సహజ అర్థాలు» ('natural meanings')",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "మీడియా కంట్రోల్‌లకు 2 ఆపరేషన్ మోడ్‌లు ఉన్నాయి. మోడ్‌ను *సెట్టింగ్‌లు* *మీడియా కంట్రోల్‌లు* విభాగంలో ఎంచుకోవచ్చు. మోడ్‌లు:\\n\\n *ఒరిజినల్ మోడ్*. \\n\\n⏯ ప్లే/పాజ్: బీకాన్ ఆడియోను ఆన్ మరియు ఆఫ్ చేస్తుంది. \\n\\n⏭ తదుపరి: ఏదైనా రూట్ ప్లే అవుతుంటే, ఆడియో బీకాన్‌ను రూట్‌లోని తదుపరి వేపాయింట్‌కు తరలిస్తుంది. ఏ రూట్ ప్లే కాకపోతే *నా చుట్టూ* కాలౌట్ చేస్తుంది.\\n\\n⏮ మునుపటి: ఏదైనా రూట్ ప్లే అవుతుంటే, ఆడియో బీకాన్‌ను రూట్‌లోని మునుపటి వేపాయింట్‌కు తరలిస్తుంది. ఏ రూట్ ప్లే కాకపోతే, ప్రతి నొక్కుతోనూ *కాలౌట్ వివరాలు* ఒక అంచె నిశ్శబ్దంగా మారతాయి: *వివరణాత్మకం*, *సరళీకృతం*, *ముఖ్యం*, *నిశ్శబ్దం*, ఆపై తిరిగి *వివరణాత్మకం*.\\n\\n\\n\\n*ఆడియో మెనూ*. \\n\\n\\n\\n⏭ తదుపరి బటన్, యాప్ టెక్స్ట్-టు-స్పీచ్ ద్వారా వివరించే మెను ఎంపికల శ్రేణిలో కదులుతుంది, చివరిది దాటాక మళ్లీ మొదటిదానికి వస్తుంది. ఆ తర్వాత ⏯ ప్లే/పాజ్ నొక్కితే యాప్ ఆ వివరించిన ఎంపికను అమలు చేస్తుంది. అత్యున్నత స్థాయిలో ఒకే ఒక మెను ఉంటుంది, దానిలో ఎంపికలుగా ఉప-మెనూలు మాత్రమే ఉంటాయి. ప్రతి ఉప-మెనూలో ఒకే రకమైన చర్యల సమూహం ఉంటుంది.\\n\\n⏮ మునుపటి బటన్ మెనూలో కదలదు. బదులుగా అది అసలు మోడ్‌లో లాగానే *కాలౌట్ వివరాలు* ను మారుస్తుంది, కాబట్టి మీరు ఏ మోడ్ ఉపయోగించినా అదే బటన్ యాప్‌ను నిశ్శబ్దం చేస్తుంది.",
+  "suggested": "మీడియా కంట్రోల్‌లకు 2 ఆపరేషన్ మోడ్‌లు ఉన్నాయి. మోడ్‌ను *సెట్టింగ్‌లు* *మీడియా కంట్రోల్‌లు* విభాగంలో ఎంచుకోవచ్చు. మోడ్‌లు:\\n\\n *ఒరిజినల్ మోడ్*. \\n\\n⏯ ప్లే/పాజ్: బీకాన్ ఆడియోను ఆన్ మరియు ఆఫ్ చేస్తుంది. \\n\\n⏭ తదుపరి: ఏదైనా రూట్ ప్లే అవుతుంటే, ఆడియో బీకాన్‌ను రూట్‌లోని తదుపరి వేపాయింట్‌కు తరలిస్తుంది. ఏ రూట్ ప్లే కాకపోతే *నా చుట్టూ* కాలౌట్ చేస్తుంది.\\n\\n⏮ మునుపటి: ఏదైనా రూట్ ప్లే అవుతుంటే, ఆడియో బీకాన్‌ను రూట్‌లోని మునుపటి వేపాయింట్‌కు తరలిస్తుంది. ఏ రూట్ ప్లే కాకపోతే, ప్రతి నొక్కుతోనూ *కాలౌట్ వివరాలు* ఒక అంచె నిశ్శబ్దంగా మారతాయి: *వివరణాత్మకం*, *సరళీకృతం*, *ముఖ్యం*, *నిశ్శబ్దం*, ఆపై తిరిగి *వివరణాత్మకం*.\\n\\n\\n\\n*ఆడియో మెనూ*. \\n\\n\\n\\n⏭ తదుపరి బటన్, యాప్ టెక్స్ట్-టు-స్పీచ్ ద్వారా వివరించే మెనూ ఎంపికల శ్రేణిలో కదులుతుంది, చివరిది దాటాక మళ్లీ మొదటిదానికి వస్తుంది. ఆ తర్వాత ⏯ ప్లే/పాజ్ నొక్కితే యాప్ ఆ వివరించిన ఎంపికను అమలు చేస్తుంది. అత్యున్నత స్థాయిలో ఒకే ఒక మెనూ ఉంటుంది, దానిలో ఎంపికలుగా ఉప-మెనూలు మాత్రమే ఉంటాయి. ప్రతి ఉప-మెనూలో ఒకే రకమైన చర్యల సమూహం ఉంటుంది.\\n\\n⏮ మునుపటి బటన్ మెనూలో కదలదు. బదులుగా అది ఒరిజినల్ మోడ్‌లో లాగానే *కాలౌట్ వివరాలు* ను మారుస్తుంది, కాబట్టి మీరు ఏ మోడ్ ఉపయోగించినా అదే బటన్ యాప్‌ను నిశ్శబ్దం చేస్తుంది.",
+  "reason": "The same string names the mode «*ఒరిజినల్ మోడ్*» (the settings label) and then «అసలు మోడ్»; menu is spelt both «మెను» and «మెనూ»",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_markers_function_answer",
+  "source": "Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *Current Location* button on the home screen and then selecting *Save as Marker*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *Places Nearby* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *Location Details* screen. On this screen, select the button called *Save as Marker*.",
+  "current": "మార్కర్‌లు అంటే మీరు సేవ్ చేసిన ప్రదేశాలు. ఇవి యాప్‌లో కనుగొనగలిగే ప్రదేశాలు కావచ్చు, లేదా మీరే స్వయంగా జోడించిన పూర్తిగా కొత్త ప్రదేశాలు కావచ్చు. హోమ్ స్క్రీన్‌లో *ప్రస్తుత స్థానం* బటన్‌ను ఎంచుకుని, తర్వాత *మార్కర్‌గా సేవ్ చేయి* ఎంచుకోవడం ద్వారా మీరు మీ ప్రస్తుత స్థానాన్ని మార్కర్‌గా సేవ్ చేయవచ్చు. శోధన పట్టీని ఉపయోగించి మీరు సేవ్ చేయాలనుకున్న ప్రదేశం కోసం వెతకడం ద్వారా, లేదా *సమీప ప్రదేశాలు* బటన్‌ను ఉపయోగించి ఎక్కడైనా కనుగొనడం ద్వారా, ఈ రెండూ Soundscape హోమ్ స్క్రీన్‌లో లభిస్తాయి, మీరు ఇతర ప్రదేశాలను మార్కర్‌గా సేవ్ చేయవచ్చు. మీకు కావలసిన ప్రదేశాన్ని కనుగొన్న తర్వాత, దాన్ని ఎంచుకుంటే మిమ్మల్ని *స్థాన వివరాలు* స్క్రీన్‌కు తీసుకువెళ్తుంది. ఈ స్క్రీన్‌లో, *మార్కర్‌గా సేవ్ చేయి* అనే బటన్‌ను ఎంచుకోండి.",
+  "suggested": "మార్కర్‌లు అంటే మీరు సేవ్ చేసిన ప్రదేశాలు. ఇవి యాప్‌లో కనుగొనగలిగే ప్రదేశాలు కావచ్చు, లేదా మీరే స్వయంగా జోడించిన పూర్తిగా కొత్త ప్రదేశాలు కావచ్చు. హోమ్ స్క్రీన్‌లో *ప్రస్తుత స్థానం* బటన్‌ను ఎంచుకుని, తర్వాత *మార్కర్‌గా సేవ్ చేయి* ఎంచుకోవడం ద్వారా మీరు మీ ప్రస్తుత స్థానాన్ని మార్కర్‌గా సేవ్ చేయవచ్చు. శోధన పట్టీని ఉపయోగించి మీరు సేవ్ చేయాలనుకున్న ప్రదేశం కోసం వెతకడం ద్వారా, లేదా *సమీప స్థలాలు* బటన్‌ను ఉపయోగించి ఎక్కడైనా కనుగొనడం ద్వారా, ఈ రెండూ Soundscape హోమ్ స్క్రీన్‌లో లభిస్తాయి, మీరు ఇతర ప్రదేశాలను మార్కర్‌గా సేవ్ చేయవచ్చు. మీకు కావలసిన ప్రదేశాన్ని కనుగొన్న తర్వాత, దాన్ని ఎంచుకుంటే మిమ్మల్ని *స్థాన వివరాలు* స్క్రీన్‌కు తీసుకువెళ్తుంది. ఈ స్క్రీన్‌లో, *మార్కర్‌గా సేవ్ చేయి* అనే బటన్‌ను ఎంచుకోండి.",
+  "reason": "Names the button *సమీప ప్రదేశాలు*, but its label (search_nearby_screen_title) and every other help string say «సమీప స్థలాలు»",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_tip_finding_bus_stops",
+  "source": "You can find nearby bus stops by selecting the *Public Transit* filter in the *Places Nearby* list.",
+  "current": "*సమీప ప్రదేశాలు* జాబితాలో *ప్రజా రవాణా* ఫిల్టర్‌ను ఎంచుకోవడం ద్వారా మీరు సమీప బస్ స్టాప్‌లను కనుగొనవచ్చు.",
+  "suggested": "*సమీప స్థలాలు* జాబితాలో *ప్రజా రవాణా* ఫిల్టర్‌ను ఎంచుకోవడం ద్వారా మీరు సమీప బస్ స్టాప్‌లను కనుగొనవచ్చు.",
+  "reason": "Names the button *సమీప ప్రదేశాలు*, but its label (search_nearby_screen_title) and every other help string say «సమీప స్థలాలు»",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_stop_beacon",
+  "source": "When you're ready to stop the beacon, tap the Stop Route button.",
+  "current": "బీకాన్‌ను ఆపడానికి మీరు సిద్ధమైనప్పుడు, రూట్ ఆపు బటన్‌ను నొక్కండి.",
+  "suggested": "బీకాన్‌ను ఆపడానికి మీరు సిద్ధమైనప్పుడు, 'రూట్‌ను ఆపివేయి' బటన్‌ను నొక్కండి.",
+  "reason": "The tutorial tells the user to tap «రూట్ ఆపు», but the button is labelled «రూట్‌ను ఆపివేయి» (route_detail_action_stop_route). A blind user hunting by ear won't find it",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_start_beacon",
+  "source": "You're now on the Markers tab which lists all your saved markers. Select a marker, and when the Location Details screen appears, tap Start Audio Beacon.",
+  "current": "మీరు ఇప్పుడు మీ సేవ్ చేసిన మార్కర్లన్నింటినీ జాబితా చేసే మార్కర్లు ట్యాబ్‌లో ఉన్నారు. ఒక మార్కర్‌ను ఎంచుకోండి, స్థాన వివరాలు స్క్రీన్ కనిపించినప్పుడు, ఆడియో బీకాన్ ప్రారంభించు నొక్కండి.",
+  "suggested": "మీరు ఇప్పుడు మీ సేవ్ చేసిన మార్కర్లన్నింటినీ జాబితా చేసే మార్కర్లు ట్యాబ్‌లో ఉన్నారు. ఒక మార్కర్‌ను ఎంచుకోండి, స్థాన వివరాలు స్క్రీన్ కనిపించినప్పుడు, 'ఆడియో బీకాన్‌ను ప్రారంభించు' నొక్కండి.",
+  "reason": "The tutorial says «ఆడియో బీకాన్ ప్రారంభించు», but the button is labelled «ఆడియో బీకాన్‌ను ప్రారంభించు» (location_detail_action_beacon)",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_fire_extinguisher",
+  "source": "Fire Extinguisher",
+  "current": "అగ్నిమాపక యంత్రం",
+  "suggested": "అగ్నిమాపక సిలిండర్",
+  "reason": "«అగ్నిమాపక యంత్రం» usually means a fire engine, not a hand-held extinguisher",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_tower",
+  "source": "Tower",
+  "current": "గోపురం",
+  "suggested": "టవర్",
+  "reason": "«గోపురం» is a temple gateway tower or dome. A generic OSM tower is «టవర్», as in నీటి టవర్ and కమ్యూనికేషన్ టవర్",
+  "category": "meaning"
+ },
+ {
+  "context": "search_synonyms_pub",
+  "source": "pub, bar",
+  "current": "బార్, పబ్, మద్యం దుకాణం",
+  "suggested": "బార్, పబ్",
+  "reason": "«మద్యం దుకాణం» is a liquor shop (off-licence, osm_alcohol «మద్యం దుకాణం»), so a user searching for one gets pubs and bars",
+  "category": "meaning"
+ },
+ {
+  "context": "search_synonyms_restaurant",
+  "source": "restaurant, place to eat",
+  "current": "రెస్టారెంట్, భోజనశాల, హోటల్, మెస్",
+  "suggested": "రెస్టారెంట్, భోజనశాల, హోటల్, మెస్",
+  "reason": "«హోటల్» is in both the restaurant and the hotel synonym lists (in Telugu it often means an eatery). Check how the search resolves a word in two categories, and pick one for Telugu",
+  "category": "meaning"
+ },
+ {
+  "context": "search_synonyms_pub",
+  "source": "pub, bar",
+  "current": "బార్, పబ్, మద్యం దుకాణం",
+  "suggested": "బార్, పబ్, మద్యం దుకాణం",
+  "reason": "CROSS-LANGUAGE: every search_synonyms_* comment except pharmacy's still gives the pharmacy example ('e.g. \"pharmacy\" to find one called \"Boots\"'), which is misleading for pubs, hotels and so on. That's a rule C7 comment fix in values/strings.xml",
+  "category": "meaning"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "ఇది Soundscapeకు ఒక ప్రధాన అప్‌డేట్. ట్రావెల్ మోడ్ గణనీయంగా మెరుగుపరచబడింది. మీరు కారు లేదా బస్సులో ప్రయాణిస్తున్నప్పుడు, Soundscape ఇప్పుడు రోడ్డు నంబర్లు, మీ ప్రయాణ దిశ మరియు సమీప నివాస ప్రాంతాలను కాలౌట్ చేస్తుంది. మీరు నదులు, కాలువలు, నదీముఖద్వారాలు మరియు బేలను దాటినప్పుడు కూడా కాలౌట్ చేస్తుంది. ఈ కొత్త ఫీచర్లను పొందడానికి దయచేసి మీ ఆఫ్‌లైన్ మ్యాప్‌లను అప్‌డేట్ చేయండి. UKలోని వినియోగదారుల కోసం బస్ స్టాప్‌ల వివరణలు ఇప్పుడు చాలా మెరుగ్గా ఉన్నాయి. మీరు మళ్లీ కదులుతున్నట్లు గుర్తించినప్పుడు స్లీప్ మోడ్ ఇప్పుడు స్వయంచాలకంగా మేల్కొంటుంది. దాన్ని మీరే మేల్కొల్పాలని గుర్తుంచుకోవాల్సిన అవసరం లేదు. అదే కోడ్ నుండి iOS యాప్‌ను రూపొందించగలిగేలా మేము అంతర్లీన కోడ్‌ను పునర్వ్యవస్థీకరించాము. దీని అర్థం భవిష్యత్తులో మేము Android కోసం రూపొందించిన అన్ని ఫీచర్లతో iOS యాప్‌ను విడుదల చేయగలము. మీకు ఎదురయ్యే ఏవైనా సమస్యలను, అవి ఎంత చిన్నవైనా సరే, ప్రధాన మెనూలోని Contact Support ద్వారా దయచేసి నివేదిస్తూ ఉండండి.",
+  "suggested": "ఇది Soundscapeకు ఒక ప్రధాన అప్‌డేట్. ట్రావెల్ మోడ్ గణనీయంగా మెరుగుపరచబడింది. మీరు కారు లేదా బస్సులో ప్రయాణిస్తున్నప్పుడు, Soundscape ఇప్పుడు రోడ్డు నంబర్లు, మీ ప్రయాణ దిశ మరియు సమీప నివాస ప్రాంతాలను కాలౌట్ చేస్తుంది. మీరు నదులు, కాలువలు, నదీముఖద్వారాలు మరియు బేలను దాటినప్పుడు కూడా కాలౌట్ చేస్తుంది. ఈ కొత్త ఫీచర్లను పొందడానికి దయచేసి మీ ఆఫ్‌లైన్ మ్యాప్‌లను అప్‌డేట్ చేయండి. UKలోని వినియోగదారుల కోసం బస్ స్టాప్‌ల వివరణలు ఇప్పుడు చాలా మెరుగ్గా ఉన్నాయి. మీరు మళ్లీ కదులుతున్నట్లు గుర్తించినప్పుడు నిద్ర మోడ్ ఇప్పుడు స్వయంచాలకంగా మేల్కొంటుంది. దాన్ని మీరే మేల్కొల్పాలని గుర్తుంచుకోవాల్సిన అవసరం లేదు. అదే కోడ్ నుండి iOS యాప్‌ను రూపొందించగలిగేలా మేము అంతర్లీన కోడ్‌ను పునర్వ్యవస్థీకరించాము. దీని అర్థం భవిష్యత్తులో మేము Android కోసం రూపొందించిన అన్ని ఫీచర్లతో iOS యాప్‌ను విడుదల చేయగలము. మీకు ఎదురయ్యే ఏవైనా సమస్యలను, అవి ఎంత చిన్నవైనా సరే, ప్రధాన మెనూలోని 'సపోర్ట్‌ను సంప్రదించండి' ద్వారా దయచేసి నివేదిస్తూ ఉండండి.",
+  "reason": "Names the menu item in English, «Contact Support», when its Telugu label is «సపోర్ట్‌ను సంప్రదించండి». It also says «స్లీప్ మోడ్» where the rest of the corpus says «నిద్ర మోడ్»",
+  "category": "terminology"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "ఇది Soundscapeకు ఒక ప్రధాన అప్‌డేట్. ట్రావెల్ మోడ్ గణనీయంగా మెరుగుపరచబడింది. మీరు కారు లేదా బస్సులో ప్రయాణిస్తున్నప్పుడు, Soundscape ఇప్పుడు రోడ్డు నంబర్లు, మీ ప్రయాణ దిశ మరియు సమీప నివాస ప్రాంతాలను కాలౌట్ చేస్తుంది. మీరు నదులు, కాలువలు, నదీముఖద్వారాలు మరియు బేలను దాటినప్పుడు కూడా కాలౌట్ చేస్తుంది. ఈ కొత్త ఫీచర్లను పొందడానికి దయచేసి మీ ఆఫ్‌లైన్ మ్యాప్‌లను అప్‌డేట్ చేయండి. UKలోని వినియోగదారుల కోసం బస్ స్టాప్‌ల వివరణలు ఇప్పుడు చాలా మెరుగ్గా ఉన్నాయి. మీరు మళ్లీ కదులుతున్నట్లు గుర్తించినప్పుడు స్లీప్ మోడ్ ఇప్పుడు స్వయంచాలకంగా మేల్కొంటుంది. దాన్ని మీరే మేల్కొల్పాలని గుర్తుంచుకోవాల్సిన అవసరం లేదు. అదే కోడ్ నుండి iOS యాప్‌ను రూపొందించగలిగేలా మేము అంతర్లీన కోడ్‌ను పునర్వ్యవస్థీకరించాము. దీని అర్థం భవిష్యత్తులో మేము Android కోసం రూపొందించిన అన్ని ఫీచర్లతో iOS యాప్‌ను విడుదల చేయగలము. మీకు ఎదురయ్యే ఏవైనా సమస్యలను, అవి ఎంత చిన్నవైనా సరే, ప్రధాన మెనూలోని Contact Support ద్వారా దయచేసి నివేదిస్తూ ఉండండి.",
+  "suggested": "ఇది Soundscapeకు ఒక ప్రధాన అప్‌డేట్. ట్రావెల్ మోడ్ గణనీయంగా మెరుగుపరచబడింది. మీరు కారు లేదా బస్సులో ప్రయాణిస్తున్నప్పుడు, Soundscape ఇప్పుడు రోడ్డు నంబర్లు, మీ ప్రయాణ దిశ మరియు సమీప నివాస ప్రాంతాలను కాలౌట్ చేస్తుంది. మీరు నదులు, కాలువలు, నదీముఖద్వారాలు మరియు బేలను దాటినప్పుడు కూడా కాలౌట్ చేస్తుంది. ఈ కొత్త ఫీచర్లను పొందడానికి దయచేసి మీ ఆఫ్‌లైన్ మ్యాప్‌లను అప్‌డేట్ చేయండి. UKలోని వినియోగదారుల కోసం బస్ స్టాప్‌ల వివరణలు ఇప్పుడు చాలా మెరుగ్గా ఉన్నాయి. మీరు మళ్లీ కదులుతున్నట్లు గుర్తించినప్పుడు స్లీప్ మోడ్ ఇప్పుడు స్వయంచాలకంగా మేల్కొంటుంది. దాన్ని మీరే మేల్కొల్పాలని గుర్తుంచుకోవాల్సిన అవసరం లేదు. అదే కోడ్ నుండి iOS యాప్‌ను రూపొందించగలిగేలా మేము అంతర్లీన కోడ్‌ను పునర్వ్యవస్థీకరించాము. దీని అర్థం భవిష్యత్తులో మేము Android కోసం రూపొందించిన అన్ని ఫీచర్లతో iOS యాప్‌ను విడుదల చేయగలము. మీకు ఎదురయ్యే ఏవైనా సమస్యలను, అవి ఎంత చిన్నవైనా సరే, ప్రధాన మెనూలోని Contact Support ద్వారా దయచేసి నివేదిస్తూ ఉండండి.",
+  "reason": "CROSS-LANGUAGE: the English has paragraph breaks and the translation is one run-on paragraph. de is flattened the same way, so this looks like old Weblate import damage across languages. Now that release notes split on paragraph breaks (7ca86e582), check it corpus-wide",
+  "category": "formatting"
+ },
+ {
+  "context": "terms_of_use_medical_safety_disclaimer",
+  "source": "You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\\n\\nSafety Notice\\n\\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.",
+  "current": "Soundscape (1) వైద్య పరికరంగా రూపొందించబడలేదు, ఉద్దేశించబడలేదు లేదా అందుబాటులో లేదని, మరియు (2) వృత్తిపరమైన వైద్య సలహా, నిర్ధారణ, చికిత్స లేదా తీర్పుకు ప్రత్యామ్నాయంగా రూపొందించబడలేదు లేదా ఉద్దేశించబడలేదని మరియు వృత్తిపరమైన వైద్య సలహా, నిర్ధారణ, చికిత్స లేదా తీర్పుకు బదులుగా లేదా ప్రత్యామ్నాయంగా ఉపయోగించకూడదని మీరు అంగీకరిస్తున్నారు.\\n\\nభద్రతా నోటీసు\\n\\nSoundscape ఒక నావిగేషన్ సహాయకం మాత్రమే మరియు దీన్ని మొబిలిటీ నైపుణ్యాలకు, మీ చుట్టుపక్కల పరిస్థితులపై అవగాహనకు మరియు మంచి విచక్షణకు ప్రత్యామ్నాయంగా ఉపయోగించకూడదు. Soundscape ప్రోగ్రామ్‌లో చేర్చబడిన మ్యాపింగ్ డేటా మూడవ పక్షం ప్రోగ్రామ్ నుండి సేకరించబడినందున, మీ పరిసరాలలో నావిగేట్ చేసేటప్పుడు జాగ్రత్త వహించండి, అందువల్ల అందించిన సమాచారం యొక్క ఖచ్చితత్వంలో పరిమితులు ఉండవచ్చు.",
+  "suggested": "Soundscape (1) వైద్య పరికరంగా రూపొందించబడలేదు, ఉద్దేశించబడలేదు లేదా అందుబాటులో లేదని, మరియు (2) వృత్తిపరమైన వైద్య సలహా, నిర్ధారణ, చికిత్స లేదా తీర్పుకు ప్రత్యామ్నాయంగా రూపొందించబడలేదు లేదా ఉద్దేశించబడలేదని మరియు వృత్తిపరమైన వైద్య సలహా, నిర్ధారణ, చికిత్స లేదా తీర్పుకు బదులుగా లేదా ప్రత్యామ్నాయంగా ఉపయోగించకూడదని మీరు అంగీకరిస్తున్నారు.\\n\\nభద్రతా నోటీసు\\n\\nSoundscape ఒక నావిగేషన్ సహాయకం మాత్రమే మరియు దీన్ని మొబిలిటీ నైపుణ్యాలకు, మీ చుట్టుపక్కల పరిస్థితులపై అవగాహనకు మరియు మంచి విచక్షణకు ప్రత్యామ్నాయంగా ఉపయోగించకూడదు. మీ పరిసరాలలో నావిగేట్ చేసేటప్పుడు జాగ్రత్త వహించండి, ఎందుకంటే Soundscape ప్రోగ్రామ్‌లో చేర్చబడిన మ్యాపింగ్ డేటా మూడవ పక్షం ప్రోగ్రామ్ నుండి సేకరించబడింది, అందువల్ల అందించిన సమాచారం యొక్క ఖచ్చితత్వంలో పరిమితులు ఉండవచ్చు.",
+  "reason": "The last sentence's logic is garbled: 'since the data is third-party, be careful, therefore there may be accuracy limits'. It should be 'be careful, because the data is third-party and therefore may be inaccurate'. Legal text, so a human should confirm",
+  "category": "meaning"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "నేను మీతో ఒక Soundscape మార్కర్‌ను పంచుకున్నాను: %1$s.\\n\\nSoundscapeలో తెరవడానికి %2$s ఉపయోగించండి.\\n\\n Google Mapsలో తెరవడానికి %3$s ఉపయోగించండి.",
+  "suggested": "నేను మీతో ఒక Soundscape మార్కర్‌ను పంచుకున్నాను: “%1$s”.\\n\\nSoundscapeలో తెరవడానికి %2$s ఉపయోగించండి.\\n\\n Google Mapsలో తెరవడానికి %3$s ఉపయోగించండి.",
+  "reason": "The quotes around the marker name (%1$s) were dropped, so a multi-word name runs into the sentence. Use typographic quotes (bare \" is stripped)",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape వివిధ రకాల సందర్భాలు మరియు కాల వ్యవధులకు ఉపయోగపడే ఫీచర్లు మరియు ప్రయోజనాలను కలిగి ఉంది. Soundscape మీకు అందించే విలువ కాలక్రమేణా మారవచ్చు, కాబట్టి ఈరోజు మీరు దీన్ని ఉపయోగించే విధానం మూడు నెలల్లో మీరు దీన్ని ఉపయోగించే విధానానికి భిన్నంగా ఉండవచ్చు. ప్రజలు తరచుగా యాప్‌ల గురించి *ఈ యాప్ ఏ సమస్యను పరిష్కరించడంలో మంచిది?* అనే కోణంలో ఆలోచిస్తారు. నిర్దిష్ట అవసరాల కోసం Soundscapeను ఖచ్చితంగా ఉపయోగించవచ్చు – ఒక గమ్యస్థానానికి వెళ్తున్నప్పుడు దాన్ని ట్రాక్ చేయడం, మెట్రో స్టేషన్ నుండి బయటకు వచ్చినప్పుడు దిశ తెలుసుకోవడంలో సహాయపడటం, కారు నుండి దిగినప్పుడు మీ దిశను తెలుసుకోవడం, లేదా తదుపరి కూడలికి వీధి పేర్లను లేదా దూరాన్ని కనుగొనడం వంటివి. అయితే, Soundscape వెనుక ఉన్న తత్వం *మీ ప్రపంచాన్ని శబ్దంతో వెలిగించడం* – మీరు బయట ఉన్న ఏ సమయంలోనైనా ఉపయోగించడానికి ఇది రూపొందించబడింది, మీ పరిసరాల గురించి అవగాహనను అందిస్తూ: మీరు ఉన్న వీధుల పేర్లు, మీరు వెళ్తున్న దిశ, మరియు మీరు దాటుతున్న వ్యాపారాల పేర్లు వంటివి. ఈ వినియోగ విధానంలో, మా వినియోగదారులు Soundscapeను *మంచి తోడు యాప్* అని పేర్కొన్నారు, ఇది *అనుకోని మంచి అనుభవాలకు* తోడ్పడుతుంది, *మీ మానసిక పటంలోని ఖాళీలను పూరించడానికి* సహాయపడుతుంది, మరియు *నడిచేటప్పుడు మరింత ఆత్మవిశ్వాసాన్ని* అందిస్తుంది. మా వినియోగదారులు Soundscapeను వారి జీవితంలో ఎలా ఉపయోగిస్తున్నారో మరికొన్ని ఉదాహరణలు ఇక్కడ ఉన్నాయి:\\n\\nనేను బస్సు దిగి తప్పు దిశలో వెళ్లిన తర్వాత, Soundscape నన్ను తిరిగి సరైన దారిలోకి తీసుకురావడానికి సహాయపడింది.\\n\\nనేను 3 సంవత్సరాలుగా నివసిస్తున్న పట్టణంలో కూడా, [Soundscape తో] నా చుట్టూ ఏముందో దాని గురించి మెరుగైన చిత్రాన్ని నేను నిర్మించుకున్నాను.\\n\\n3D శబ్దం నా నడక అనుభవాన్ని పెంచుతుంది, ఎందుకంటే నేను నా పరిసరాలతో మరింత అనుసంధానమై ఉన్నట్లు అనిపిస్తుంది…ఇప్పుడు ఈ యాప్ నా వద్ద ఉన్నందున నేను కొత్త మార్గాన్ని ప్రయత్నించే అవకాశం ఎక్కువగా ఉంది.\\n\\nనేను చుట్టూ నడుస్తూ విషయాలను గమనించే అనుకోని అనుభవాన్ని మిస్ అవుతాను. Soundscape ఉండటం బాగుంది – నా చుట్టూ ఉన్న వాటి గురించి వినడానికి ఎలాంటి ప్రయత్నం అవసరం లేదు. సంబంధిత సమాచారం ఉపయోగకరంగా ఉంటుంది మరియు పరిస్థితుల అవగాహన మరియు వాణిజ్య కారిడార్‌లను అన్వేషించడానికి ఇది గొప్ప యాప్.\\n\\n[నేను Soundscape ను] యార్క్ మధ్యలో ఒక పబ్‌ను కనుగొనడానికి ఉపయోగించాను. ముందుగా దాన్ని గుర్తించి తర్వాత నిజంగా కనుగొనడానికి [నేను] దాని ఆప్షన్‌ల శ్రేణిని ఉపయోగించాను. ఇది నన్ను తలుపుకు 3 మీటర్ల లోపలికి తీసుకువెళ్లింది – అద్భుతం!",
+  "suggested": "Soundscape వివిధ రకాల సందర్భాలు మరియు కాల వ్యవధులకు ఉపయోగపడే ఫీచర్లు మరియు ప్రయోజనాలను కలిగి ఉంది. Soundscape మీకు అందించే విలువ కాలక్రమేణా మారవచ్చు, కాబట్టి ఈరోజు మీరు దీన్ని ఉపయోగించే విధానం మూడు నెలల్లో మీరు దీన్ని ఉపయోగించే విధానానికి భిన్నంగా ఉండవచ్చు. ప్రజలు తరచుగా యాప్‌ల గురించి *ఈ యాప్ ఏ సమస్యను పరిష్కరించడంలో మంచిది?* అనే కోణంలో ఆలోచిస్తారు. నిర్దిష్ట అవసరాల కోసం Soundscapeను ఖచ్చితంగా ఉపయోగించవచ్చు – ఒక గమ్యస్థానానికి వెళ్తున్నప్పుడు దాన్ని ట్రాక్ చేయడం, మెట్రో స్టేషన్ నుండి బయటకు వచ్చినప్పుడు దిశ తెలుసుకోవడంలో సహాయపడటం, కారు నుండి దిగినప్పుడు మీ దిశను తెలుసుకోవడం, లేదా తదుపరి కూడలికి వీధి పేర్లను లేదా దూరాన్ని కనుగొనడం వంటివి. అయితే, Soundscape వెనుక ఉన్న తత్వం *మీ ప్రపంచాన్ని శబ్దంతో వెలిగించడం* – మీరు బయట ఉన్న ఏ సమయంలోనైనా ఉపయోగించడానికి ఇది రూపొందించబడింది, మీ పరిసరాల గురించి అవగాహనను అందిస్తూ: మీరు ఉన్న వీధుల పేర్లు, మీరు వెళ్తున్న దిశ, మరియు మీరు దాటుతున్న వ్యాపారాల పేర్లు వంటివి. ఈ వినియోగ విధానంలో, మా వినియోగదారులు Soundscapeను *మంచి తోడు యాప్* అని పేర్కొన్నారు, ఇది *అనుకోని మంచి అనుభవాలకు* తోడ్పడుతుంది, *మీ మానసిక పటంలోని ఖాళీలను పూరించడానికి* సహాయపడుతుంది, మరియు *నడిచేటప్పుడు మరింత ఆత్మవిశ్వాసాన్ని* అందిస్తుంది. మా వినియోగదారులు Soundscapeను వారి జీవితంలో ఎలా ఉపయోగిస్తున్నారో మరికొన్ని ఉదాహరణలు ఇక్కడ ఉన్నాయి:\\n\\n“నేను బస్సు దిగి తప్పు దిశలో వెళ్లిన తర్వాత, Soundscape నన్ను తిరిగి సరైన దారిలోకి తీసుకురావడానికి సహాయపడింది.”\\n\\n“నేను 3 సంవత్సరాలుగా నివసిస్తున్న పట్టణంలో కూడా, [Soundscape తో] నా చుట్టూ ఏముందో దాని గురించి మెరుగైన చిత్రాన్ని నేను నిర్మించుకున్నాను.”\\n\\n“3D శబ్దం నా నడక అనుభవాన్ని పెంచుతుంది, ఎందుకంటే నేను నా పరిసరాలతో మరింత అనుసంధానమై ఉన్నట్లు అనిపిస్తుంది…ఇప్పుడు ఈ యాప్ నా వద్ద ఉన్నందున నేను కొత్త మార్గాన్ని ప్రయత్నించే అవకాశం ఎక్కువగా ఉంది.”\\n\\n“నేను చుట్టూ నడుస్తూ విషయాలను గమనించే అనుకోని అనుభవాన్ని మిస్ అవుతాను. Soundscape ఉండటం బాగుంది – నా చుట్టూ ఉన్న వాటి గురించి వినడానికి ఎలాంటి ప్రయత్నం అవసరం లేదు. సంబంధిత సమాచారం ఉపయోగకరంగా ఉంటుంది మరియు పరిస్థితుల అవగాహన మరియు వాణిజ్య కారిడార్‌లను అన్వేషించడానికి ఇది గొప్ప యాప్.”\\n\\n“[నేను Soundscape ను] యార్క్ మధ్యలో ఒక పబ్‌ను కనుగొనడానికి ఉపయోగించాను. ముందుగా దాన్ని గుర్తించి తర్వాత నిజంగా కనుగొనడానికి [నేను] దాని ఆప్షన్‌ల శ్రేణిని ఉపయోగించాను. ఇది నన్ను తలుపుకు 3 మీటర్ల లోపలికి తీసుకువెళ్లింది – అద్భుతం!”",
+  "reason": "The quotation marks around the five user testimonials were dropped, so they read as Soundscape speaking in the first person («నేను బస్సు దిగి…»). Restored as typographic quotes",
+  "category": "formatting"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "డెడ్ ఎండ్కు వెళ్ళే %1$s",
+  "suggested": "డెడ్ ఎండ్‌కు వెళ్ళే %1$s",
+  "reason": "«ఎండ్కు» lacks the ZWNJ the corpus uses on loanword stems (రూట్‌కు, మ్యాప్‌లో), so ండ్క renders as a conjunct",
+  "category": "formatting"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%2$s మీదుగా డెడ్ ఎండ్కు వెళ్ళే %1$s",
+  "suggested": "%2$s మీదుగా డెడ్ ఎండ్‌కు వెళ్ళే %1$s",
+  "reason": "«ఎండ్కు» lacks the ZWNJ the corpus uses on loanword stems, so ండ్క renders as a conjunct",
+  "category": "formatting"
+ },
+ {
+  "context": "settings_list_item_description",
+  "source": "%1$s is choice %2$s out of %3$s",
+  "current": "%1$s అనేది %3$s లో %2$s వ ఎంపిక",
+  "suggested": "%1$s అనేది %3$sలో %2$sవ ఎంపిక",
+  "reason": "The ordinal suffix is detached («%2$s వ») and the postposition is spaced («%3$s లో»). route_waypoint_progress writes «%3$sలో %2$sవ»",
+  "category": "formatting"
+ },
+ {
+  "context": "tour_continue_hint",
+  "source": "close the popup and continue the tutorial",
+  "current": "పాప్అప్‌ను మూసి ట్యుటోరియల్‌ను కొనసాగించడానికి",
+  "suggested": "పాప్‌అప్‌ను మూసి ట్యుటోరియల్‌ను కొనసాగించడానికి",
+  "reason": "«పాప్అప్‌ను» is missing the ZWNJ after ప్, so it spells an odd ప్అ sequence. The usual spelling is «పాప్‌అప్‌ను»",
+  "category": "formatting"
+ },
+ {
+  "context": "tour_finish",
+  "source": "That completes the tutorial. You can run it again from the main menu. We hope you find the app useful!",
+  "current": "ఇది ట్యుటోరియల్‌ను పూర్తి చేస్తుంది. మీరు దీన్ని ప్రధాన మెనూ నుండి మళ్లీ అమలు చేయవచ్చు. యాప్ మీకు ఉపయోగకరంగా ఉంటుందని మేము ఆశిస్తున్నాము!",
+  "suggested": "దీనితో ట్యుటోరియల్ పూర్తయింది. మీరు దీన్ని ప్రధాన మెనూ నుండి మళ్లీ అమలు చేయవచ్చు. యాప్ మీకు ఉపయోగకరంగా ఉంటుందని మేము ఆశిస్తున్నాము!",
+  "reason": "«ఇది ట్యుటోరియల్‌ను పూర్తి చేస్తుంది» is a literal calque of 'That completes the tutorial' ('this will complete the tutorial'). «దీనితో ట్యుటోరియల్ పూర్తయింది» is natural",
+  "category": "tone"
+ },
+ {
+  "context": "sleep_sleeping_message",
+  "source": "Soundscape is currently sleeping. Sleep mode stops Soundscape from using Location Services or downloading data. This saves battery when you are not using Soundscape. Tap the button below to wake up Soundscape.",
+  "current": "Soundscape ప్రస్తుతం నిద్రిస్తోంది. నిద్ర స్థితి Soundscape స్థాన సేవలను ఉపయోగించకుండా లేదా డేటాను డౌన్‌లోడ్ చేయకుండా నిరోధిస్తుంది. మీరు Soundscapeను ఉపయోగించనప్పుడు ఇది బ్యాటరీని ఆదా చేస్తుంది. Soundscapeను మేల్కొల్పడానికి క్రింద ఉన్న బటన్‌ను నొక్కండి.",
+  "suggested": "Soundscape ప్రస్తుతం నిద్రిస్తోంది. నిద్ర మోడ్ Soundscape స్థాన సేవలను ఉపయోగించకుండా లేదా డేటాను డౌన్‌లోడ్ చేయకుండా నిరోధిస్తుంది. మీరు Soundscapeను ఉపయోగించనప్పుడు ఇది బ్యాటరీని ఆదా చేస్తుంది. Soundscapeను మేల్కొల్పడానికి క్రింద ఉన్న బటన్‌ను నొక్కండి.",
+  "reason": "Sleep mode is «నిద్ర స్థితి» here but «నిద్ర మోడ్» in all five FAQ strings",
+  "category": "terminology"
+ },
+ {
+  "context": "settings_voice_command_listening_prompt_description",
+  "source": "Speak a listening prompt before voice recognition starts.",
+  "current": "వాయిస్ రికగ్నిషన్ ప్రారంభమయ్యే ముందు వినడం ప్రాంప్ట్‌ను మాట్లాడండి.",
+  "suggested": "వాయిస్ రికగ్నిషన్ ప్రారంభమయ్యే ముందు, యాప్ వింటోందని తెలిపే ప్రాంప్ట్‌ను వినిపిస్తుంది.",
+  "reason": "«…ప్రాంప్ట్‌ను మాట్లాడండి» is an imperative telling the user to speak the prompt. It's the app that speaks it",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_voice_command_listening_prompt",
+  "source": "Announce listening",
+  "current": "వినడం ప్రకటించండి",
+  "suggested": "వినడం ప్రకటించండి",
+  "reason": "«వినడం ప్రకటించండి» ('announce listening!') is an awkward literal toggle label, something like «వినడం ప్రారంభమైనట్లు ప్రకటించు». Needs a native speaker",
+  "category": "tone"
+ },
+ {
+  "context": "location_detail_full_screen_for_edit_hint",
+  "source": "Make the map full screen and edit the marker location",
+  "current": "మ్యాప్‌ను పూర్తి తెరగా చేసి మార్కర్ స్థానాన్ని సవరించడానికి",
+  "suggested": "మ్యాప్‌ను పూర్తి తెరగా చేసి మార్కర్ స్థానాన్ని సవరించడానికి",
+  "reason": "CROSS-LANGUAGE: this _hint (and location_detail_full_screen_hint in SharedHomeContent.kt) is used as a button contentDescription, not a talkbackHint. Languages that wrote them as hint infinitives («…సవరించడానికి») give the button a name like 'to make the map full screen'. Rename the keys or use separate label strings",
+  "category": "tone"
+ },
+ {
+  "context": "callouts_places_landmarks",
+  "source": "Landmarks",
+  "current": "మైలురాళ్లు",
+  "suggested": "మైలురాళ్లు",
+  "reason": "Landmark has three renderings: «మైలురాళ్లు» (this filter, callouts_verbosity_description), «ప్రముఖ స్థలం» (osm_generic_landmark) and «ల్యాండ్‌మార్క్» (help_text_destination_beacons_when). Glossary Q3 is open on whether «మైలురాళ్లు» sounds like achievements. Decide once and align",
+  "category": "terminology"
+ },
+ {
+  "context": "settings_help_section_home_screen_buttons",
+  "source": "Location and Exploration Buttons",
+  "current": "లొకేషన్ మరియు ఎక్స్‌ప్లొరేషన్ బటన్లు",
+  "suggested": "లొకేషన్ మరియు ఎక్స్‌ప్లొరేషన్ బటన్లు",
+  "reason": "«లొకేషన్ మరియు ఎక్స్‌ప్లొరేషన్ బటన్లు» is fully transliterated, while the corpus says «స్థానం» and «అన్వేషణ» elsewhere. «స్థానం మరియు అన్వేషణ బటన్లు» may read better (faq_holding_phone_flat_answer repeats the phrase). Human call (C12)",
+  "category": "tone"
+ }
+]
