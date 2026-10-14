@@ -36,8 +36,8 @@
 
 [Tips](help-tips.md)
 
-[Frequently Asked Questions](help-frequently-asked-questions.md)
+[Using Soundscape Offline](help-using-soundscape-offline.md)
 
 [GPS Accuracy](help-gps-accuracy.md)
 
-[Using Soundscape Offline](help-using-soundscape-offline.md)
+[Frequently Asked Questions](help-frequently-asked-questions.md)
