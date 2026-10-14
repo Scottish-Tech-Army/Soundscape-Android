@@ -425,6 +425,7 @@
     <string name="offline_maps_storage">வரைபடங்கள் %1$s இல் சேமிக்கப்படுகின்றன, இதில் %2$s காலியாக உள்ளது</string>
     <string name="offline_maps_already_downloaded">ஏற்கனவே பதிவிறக்கம் செய்யப்பட்ட வரைபடங்கள்</string>
     <string name="offline_maps_extract_damaged">சேதமடைந்துள்ளது - நீக்கிவிட்டு மீண்டும் பதிவிறக்கவும்</string>
+    <string name="offline_maps_extract_outdated">Soundscape இன் புதிய அம்சங்களைப் பயன்படுத்த இந்த வரைபடத்தைப் புதுப்பிக்கவும்.</string>
     <string name="offline_maps_nearby">அருகிலுள்ள ஆஃப்லைன் வரைபடங்கள்</string>
     <string name="offline_maps_loading_manifest">ஆஃப்லைன் வரைபடங்களின் பட்டியல் ஏற்றப்படுகிறது</string>
     <string name="offline_maps_manifest_failed">ஆஃப்லைன் வரைபட தரவைப் பதிவிறக்க முடியவில்லை</string>

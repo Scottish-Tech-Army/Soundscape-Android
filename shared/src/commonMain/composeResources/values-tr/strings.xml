@@ -1437,6 +1437,7 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="trademark_disclaimer">Tüm üçüncü taraf ürün, şirket adları ve logolar ticari marka veya tescilli ticari markalardır ve ilgili sahiplerinin mülkiyetinde kalır.</string>
     <string name="loading_indicator_content_description">Yükleniyor</string>
     <string name="offline_maps_extract_damaged">Hasarlı — silip yeniden indirin</string>
+    <string name="offline_maps_extract_outdated">Soundscape'in yeni özelliklerini kullanmak için bu haritayı güncelleyin.</string>
     <string name="offline_map_details_update">Çevrimdışı haritayı güncelle</string>
     <string name="menu_exit_app">Soundscape'ten Çık</string>
     <string name="talkback_default_activate">etkinleştirmek</string>

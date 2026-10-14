@@ -26,8 +26,10 @@ import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.formatBytes
+import org.scottishtecharmy.soundscape.utils.isExtractOutdated
 import org.scottishtecharmy.soundscape.utils.isPmtilesUsable
 import org.scottishtecharmy.soundscape.utils.logicalExtractName
+import org.scottishtecharmy.soundscape.utils.readExtractSchema
 
 /**
  * Cross-platform offline map manager. Handles:
@@ -80,8 +82,8 @@ class OfflineMapManager(
             for (path in paths) {
                 val baseName = path.substringAfterLast("/")
                 val logicalName = logicalExtractName(baseName)
-                val metadata = readExtractMetadata(path)
-                    ?: manifest.entryForLogicalName(logicalName)
+                val manifestEntry = manifest.entryForLogicalName(logicalName)
+                val metadata = readExtractMetadata(path) ?: manifestEntry
                 // Validate the extract so the UI can flag a damaged download. A damaged extract
                 // (its metadata won't decompress) would crash MapLibre if used, so it is excluded
                 // from the live map (see resolveTileSourceUrl); here we surface it via the
@@ -101,6 +103,10 @@ class OfflineMapManager(
                 feature.withSizeString()
                 val props = HashMap<String, Any?>(feature.properties ?: emptyMap())
                 props["usable"] = usable
+                // The schema the extract was built with is read from the file itself, not from
+                // its sidecar or manifest entry, which describe whatever the server had at the
+                // time.
+                props["outdated"] = isExtractOutdated(readExtractSchema(path), manifestEntry)
                 // The row is only rendered when it has a size string, so a feature with no
                 // "extract-size" to format still needs an (empty) one, or a downloaded extract
                 // would silently vanish from the list.
@@ -241,13 +247,14 @@ class OfflineMapManager(
      * network at all.
      *
      * The properties that are computed locally rather than served - the localised size strings and
-     * the "usable" flag - are dropped, so that a stale localisation can't outlive a language change.
+     * the "usable" and "outdated" flags - are dropped, so that a stale localisation can't outlive a
+     * language change.
      */
     private fun writeExtractMetadata(pmtilesPath: String, feature: Feature) {
         try {
             val stored = feature.copyOf()
             stored.properties?.keys?.removeAll(
-                setOf("extract-size-string", "extract-size-a11y-string", "usable")
+                setOf("extract-size-string", "extract-size-a11y-string", "usable", "outdated")
             )
             systemFileSystem.write("$pmtilesPath.geojson".toPath()) {
                 writeUtf8(GeoJsonParser.toJson(stored))

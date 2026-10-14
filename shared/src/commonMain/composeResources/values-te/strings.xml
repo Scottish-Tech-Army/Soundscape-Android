@@ -733,6 +733,7 @@
     <string name="offline_maps_storage">మ్యాప్‌లు %1$sలో సేవ్ చేయబడతాయి, దీనిలో %2$s ఖాళీ స్థలం ఉంది</string>
     <string name="offline_maps_already_downloaded">ఇప్పటికే డౌన్‌లోడ్ చేసిన మ్యాప్‌లు</string>
     <string name="offline_maps_extract_damaged">పాడైంది - తొలగించి మళ్లీ డౌన్‌లోడ్ చేయండి</string>
+    <string name="offline_maps_extract_outdated">Soundscape కొత్త ఫీచర్‌లను ఉపయోగించడానికి ఈ మ్యాప్‌ను నవీకరించండి.</string>
     <string name="offline_maps_nearby">సమీప ఆఫ్‌లైన్ మ్యాప్‌లు</string>
     <string name="offline_maps_loading_manifest">ఆఫ్‌లైన్ మ్యాప్‌ల జాబితా లోడ్ అవుతోంది</string>
     <string name="offline_maps_manifest_failed">ఆఫ్‌లైన్ మ్యాప్ డేటాను డౌన్‌లోడ్ చేయడంలో విఫలమైంది</string>

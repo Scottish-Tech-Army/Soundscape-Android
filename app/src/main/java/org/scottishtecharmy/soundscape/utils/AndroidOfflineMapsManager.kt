@@ -109,7 +109,8 @@ class AndroidOfflineMapsManager(
     private fun refreshDownloaded() {
         val dir = extractsDir()
         deleteOrphanedSidecars(dir)
-        _downloadedExtractsFc.value = findExtracts(dir.path) ?: FeatureCollection()
+        _downloadedExtractsFc.value =
+            findExtracts(dir.path, ::currentManifestEntryFor) ?: FeatureCollection()
     }
 
     fun getExtractsContaining(location: LngLatAlt): List<Feature> {

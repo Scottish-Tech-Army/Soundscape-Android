@@ -1447,6 +1447,7 @@
     <string name="trademark_disclaimer">Усі назви сторонніх продуктів, компаній та логотипи є торговельними марками або зареєстрованими торговельними марками й належать їхнім відповідним правовласникам.</string>
     <string name="loading_indicator_content_description">Завантаження</string>
     <string name="offline_maps_extract_damaged">Пошкоджено — видаліть і завантажте знову</string>
+    <string name="offline_maps_extract_outdated">Оновіть цю карту, щоб користуватися новими функціями Soundscape.</string>
     <string name="offline_map_details_update">Оновити офлайн‑карту</string>
     <string name="menu_exit_app">Вийти з Soundscape</string>
     <string name="talkback_default_activate">активувати</string>

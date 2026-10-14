@@ -1437,6 +1437,7 @@
     <string name="trademark_disclaimer">सभी तृतीय‑पक्ष उत्पाद, कंपनी नाम और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।</string>
     <string name="loading_indicator_content_description">लोड हो रहा है</string>
     <string name="offline_maps_extract_damaged">क्षतिग्रस्त - हटाएँ और फिर से डाउनलोड करें</string>
+    <string name="offline_maps_extract_outdated">Soundscape की नई सुविधाओं का उपयोग करने के लिए यह मानचित्र अपडेट करें।</string>
     <string name="offline_map_details_update">ऑफ़लाइन मानचित्र अपडेट करें</string>
     <string name="menu_exit_app">Soundscape से बाहर निकलें</string>
     <string name="talkback_default_activate">सक्रिय करें</string>

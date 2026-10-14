@@ -373,6 +373,7 @@
     <string name="offline_maps_storage">মানচিত্রগুলি %1$s-এ সংরক্ষিত হয়, যেখানে %2$s ফাঁকা আছে</string>
     <string name="offline_maps_already_downloaded">ইতিমধ্যে ডাউনলোড করা মানচিত্র</string>
     <string name="offline_maps_extract_damaged">ক্ষতিগ্রস্ত - মুছে ফেলুন এবং আবার ডাউনলোড করুন</string>
+    <string name="offline_maps_extract_outdated">Soundscape-এর নতুন ফিচারগুলো ব্যবহার করতে এই ম্যাপটি আপডেট করুন।</string>
     <string name="offline_maps_nearby">কাছাকাছি অফলাইন মানচিত্র</string>
     <string name="offline_maps_loading_manifest">অফলাইন মানচিত্রের তালিকা লোড হচ্ছে</string>
     <string name="offline_maps_manifest_failed">অফলাইন মানচিত্রের ডেটা ডাউনলোড করতে ব্যর্থ হয়েছে</string>

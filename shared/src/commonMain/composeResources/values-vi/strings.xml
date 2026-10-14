@@ -373,6 +373,7 @@
     <string name="offline_maps_storage">Bản đồ được lưu vào %1$s, nơi còn %2$s dung lượng trống</string>
     <string name="offline_maps_already_downloaded">Bản đồ đã tải xuống</string>
     <string name="offline_maps_extract_damaged">Bị hỏng - xóa và tải xuống lại</string>
+    <string name="offline_maps_extract_outdated">Hãy cập nhật bản đồ này để sử dụng các tính năng mới của Soundscape.</string>
     <string name="offline_maps_nearby">Bản đồ ngoại tuyến gần đây</string>
     <string name="offline_maps_loading_manifest">Đang tải danh sách bản đồ ngoại tuyến</string>
     <string name="offline_maps_manifest_failed">Tải dữ liệu bản đồ ngoại tuyến không thành công</string>

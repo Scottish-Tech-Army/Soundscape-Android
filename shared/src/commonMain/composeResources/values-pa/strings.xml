@@ -662,6 +662,7 @@
     <string name="offline_maps_storage">ਨਕਸ਼ੇ %1$s ਵਿੱਚ ਸੇਵ ਹੁੰਦੇ ਹਨ, ਜਿਸ ਵਿੱਚ %2$s ਖਾਲੀ ਹੈ</string>
     <string name="offline_maps_already_downloaded">ਪਹਿਲਾਂ ਡਾਊਨਲੋਡ ਕੀਤੇ ਨਕਸ਼ੇ</string>
     <string name="offline_maps_extract_damaged">ਖਰਾਬ - ਮਿਟਾਓ ਅਤੇ ਮੁੜ ਡਾਊਨਲੋਡ ਕਰੋ</string>
+    <string name="offline_maps_extract_outdated">Soundscape ਦੀਆਂ ਨਵੀਆਂ ਸਹੂਲਤਾਂ ਵਰਤਣ ਲਈ ਇਹ ਨਕਸ਼ਾ ਅੱਪਡੇਟ ਕਰੋ।</string>
     <string name="offline_maps_nearby">ਨੇੜਲੇ ਆਫ਼ਲਾਈਨ ਨਕਸ਼ੇ</string>
     <string name="offline_maps_loading_manifest">ਆਫ਼ਲਾਈਨ ਨਕਸ਼ਿਆਂ ਦੀ ਸੂਚੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ</string>
     <string name="offline_maps_manifest_failed">ਆਫ਼ਲਾਈਨ ਨਕਸ਼ੇ ਦਾ ਡਾਟਾ ਡਾਊਨਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ</string>

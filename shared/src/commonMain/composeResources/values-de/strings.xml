@@ -1437,6 +1437,7 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="trademark_disclaimer">Alle Produkt‑ und Firmennamen Dritter sowie deren Logos sind Marken oder eingetragene Marken und bleiben Eigentum ihrer jeweiligen Inhaber.</string>
     <string name="loading_indicator_content_description">Wird geladen</string>
     <string name="offline_maps_extract_damaged">Beschädigt – löschen und erneut herunterladen</string>
+    <string name="offline_maps_extract_outdated">Aktualisieren Sie diese Karte, um neue Funktionen von Soundscape zu nutzen.</string>
     <string name="offline_map_details_update">Offline-Karte aktualisieren</string>
     <string name="menu_exit_app">Soundscape beenden</string>
     <string name="talkback_default_activate">aktivieren</string>

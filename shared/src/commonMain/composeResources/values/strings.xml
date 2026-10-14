@@ -1276,6 +1276,8 @@
     <string name="offline_maps_already_downloaded">Maps already downloaded</string>
     <!-- Status shown on a downloaded offline map that is damaged and must be re-downloaded-->
     <string name="offline_maps_extract_damaged">Damaged - delete and download again</string>
+    <!-- Status shown on a downloaded offline map when a newer version of it adds information that new app features use (not just routine map data corrections). Opening the map and pressing *Update offline map* (`offline_map_details_update`) downloads it.-->
+    <string name="offline_maps_extract_outdated">Update this map to use new Soundscape features.</string>
     <!-- Offscreen maps title of list of nearby maps-->
     <string name="offline_maps_nearby">Nearby offline maps</string>
     <!-- Offscreen maps text shown whilst downloading offline map manifest -->

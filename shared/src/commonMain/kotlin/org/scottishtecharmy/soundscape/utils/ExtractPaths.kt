@@ -1,7 +1,12 @@
 package org.scottishtecharmy.soundscape.utils
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import okio.Path.Companion.toPath
+import org.scottishtecharmy.soundscape.geoengine.WANTED_EXTRACT_SCHEMA
 import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.platform.systemFileSystem
 
 fun findExtractPaths(path: String): List<String> {
@@ -39,26 +44,60 @@ fun findExtractPaths(path: String): List<String> {
  * the same unchanged extract (e.g. every time a map is created) don't re-validate. A re-downloaded
  * or deleted-and-replaced extract is re-validated automatically once its size or timestamp change.
  */
-fun isPmtilesUsable(path: String): Boolean {
+fun isPmtilesUsable(path: String): Boolean = validatePmtiles(path)?.usable ?: false
+
+/**
+ * The version of the Soundscape tile schema that a .pmtiles extract was built with, from the
+ * "soundscape:schema" entry that planetiler-openmaptiles writes into its JSON metadata. Extracts
+ * built before the version existed, and any that can't be read, count as 0.
+ *
+ * Shares [isPmtilesUsable]'s cache, so asking for both costs a single read of the file.
+ */
+fun readExtractSchema(path: String): Int = validatePmtiles(path)?.schema ?: 0
+
+/**
+ * Whether a downloaded extract should be flagged as needing an update. That is only the case when
+ * re-downloading it would bring in tile contents that this version of the app makes use of: the
+ * server has an extract with a newer schema than the one on the phone ([manifestEntry]'s "schema"),
+ * and the app wants at least that newer schema ([WANTED_EXTRACT_SCHEMA]). A newer schema that the
+ * app doesn't use yet, or fresh OSM data with the same schema, is not worth prompting for.
+ *
+ * With no manifest entry - manifest not fetched yet, fetch failed, or the extract withdrawn - there
+ * is nothing to update to, so nothing is flagged.
+ */
+fun isExtractOutdated(
+    localSchema: Int,
+    manifestEntry: Feature?,
+    wantedSchema: Int = WANTED_EXTRACT_SCHEMA,
+): Boolean {
+    val schemaProp = manifestEntry?.properties?.get("schema") ?: return false
+    val serverSchema = (schemaProp as? Number)?.toInt()
+        ?: (schemaProp as? String)?.toIntOrNull()
+        ?: return false
+    return localSchema < minOf(wantedSchema, serverSchema)
+}
+
+private fun validatePmtiles(path: String): PmtilesValidation? {
     val okioPath = path.toPath()
     val metadata = try {
         systemFileSystem.metadata(okioPath)
     } catch (_: Exception) {
-        return false
+        return null
     }
     val size = metadata.size
     val lastModified = metadata.lastModifiedAtMillis
 
     pmtilesUsableCache[path]?.let { cached ->
         if (cached.size == size && cached.lastModified == lastModified) {
-            return cached.usable
+            return cached
         }
     }
 
+    var schema = 0
     val usable = try {
         val reader = PmTilesReader(okioPath)
         try {
-            reader.readMetadata()
+            schema = parseSchema(reader.readMetadata())
             reader.validateIntegrity(size ?: 0L)
         } finally {
             reader.close()
@@ -67,11 +106,27 @@ fun isPmtilesUsable(path: String): Boolean {
     } catch (_: Exception) {
         false
     }
-    pmtilesUsableCache[path] = PmtilesValidation(size, lastModified, usable)
-    return usable
+    val validation = PmtilesValidation(size, lastModified, usable, schema)
+    pmtilesUsableCache[path] = validation
+    return validation
 }
 
-private class PmtilesValidation(val size: Long?, val lastModified: Long?, val usable: Boolean)
+private fun parseSchema(metadataJson: ByteArray): Int = try {
+    Json.parseToJsonElement(metadataJson.decodeToString())
+        .jsonObject["soundscape:schema"]
+        ?.jsonPrimitive
+        ?.content
+        ?.toIntOrNull() ?: 0
+} catch (_: Exception) {
+    0
+}
+
+private class PmtilesValidation(
+    val size: Long?,
+    val lastModified: Long?,
+    val usable: Boolean,
+    val schema: Int,
+)
 
 private val pmtilesUsableCache = mutableMapOf<String, PmtilesValidation>()
 

@@ -1331,6 +1331,7 @@
     <string name="offline_maps_storage">Karte se spremaju na %1$s koji ima %2$s slobodnog prostora</string>
     <string name="offline_maps_already_downloaded">Već preuzete karte</string>
     <string name="offline_maps_extract_damaged">Oštećeno - izbrišite i preuzmite ponovno</string>
+    <string name="offline_maps_extract_outdated">Ažurirajte ovu kartu kako biste koristili nove značajke Soundscapea.</string>
     <string name="offline_maps_nearby">Izvanmrežne karte u blizini</string>
     <string name="offline_maps_loading_manifest">Učitavanje popisa izvanmrežnih karata</string>
     <string name="offline_maps_manifest_failed">Preuzimanje podataka o izvanmrežnim kartama nije uspjelo</string>

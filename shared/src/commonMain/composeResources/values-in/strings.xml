@@ -189,6 +189,7 @@
     <string name="offline_maps_storage">Peta disimpan di %1$s yang memiliki %2$s tersisa</string>
     <string name="offline_maps_already_downloaded">Peta yang sudah diunduh</string>
     <string name="offline_maps_extract_damaged">Rusak - hapus dan unduh lagi</string>
+    <string name="offline_maps_extract_outdated">Perbarui peta ini untuk menggunakan fitur baru Soundscape.</string>
     <string name="offline_maps_nearby">Peta offline di sekitar</string>
     <string name="offline_maps_loading_manifest">Memuat daftar peta offline</string>
     <string name="offline_maps_manifest_failed">Gagal mengunduh data peta offline</string>

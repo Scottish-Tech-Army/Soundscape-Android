@@ -16,6 +16,7 @@ import okio.IOException
 import okio.Path
 import okio.Path.Companion.toPath
 import okio.buffer
+import org.scottishtecharmy.soundscape.geoengine.WANTED_EXTRACT_SCHEMA
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.platform.systemFileSystem
@@ -714,6 +715,50 @@ class OfflineMapManagerTest {
 
         assertEquals(false, manager.downloadedExtractsFc.value.features.single().properties?.get("usable"))
         assertNull(manager.manifest.value?.features?.single()?.properties?.get("usable"))
+    }
+
+    /**
+     * The test extract has no "soundscape:schema" in it (it isn't even a valid pmtiles file), so
+     * it counts as schema 0 - older than a manifest entry built with the schema the app wants.
+     */
+    @Test
+    fun downloadedExtractsFc_flagsExtractOlderThanTheManifestSchema() = runBlocking {
+        writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
+        val json = manifestJson(
+            squareFeatureJson("Glasgow", "20240202-def456-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9)
+                .replace("\"filename\"", "\"schema\": $WANTED_EXTRACT_SCHEMA, \"filename\""),
+        )
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip(json)),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.refresh()
+        waitUntil { manager.downloadedExtractsFc.value.features.isNotEmpty() }
+
+        assertEquals(true, manager.downloadedExtractsFc.value.features.single().properties?.get("outdated"))
+    }
+
+    /** A manifest from before the schema existed - i.e. just fresher OSM data - flags nothing. */
+    @Test
+    fun downloadedExtractsFc_doesNotFlagExtractWhenTheManifestHasNoSchema() = runBlocking {
+        writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
+        val json = manifestJson(
+            squareFeatureJson("Glasgow", "20240202-def456-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
+        )
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip(json)),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.refresh()
+        waitUntil { manager.downloadedExtractsFc.value.features.isNotEmpty() }
+
+        assertEquals(false, manager.downloadedExtractsFc.value.features.single().properties?.get("outdated"))
     }
 
     @Test

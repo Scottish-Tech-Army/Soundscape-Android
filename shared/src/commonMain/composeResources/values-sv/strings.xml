@@ -1437,6 +1437,7 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="trademark_disclaimer">Alla tredjepartsproduktnamn, företagsnamn och logotyper är varumärken eller registrerade varumärken och tillhör sina respektive innehavare.</string>
     <string name="loading_indicator_content_description">Läser in</string>
     <string name="offline_maps_extract_damaged">Skadad – ta bort och ladda ned igen</string>
+    <string name="offline_maps_extract_outdated">Uppdatera den här kartan för att använda nya funktioner i Soundscape.</string>
     <string name="offline_map_details_update">Uppdatera offlinekarta</string>
     <string name="menu_exit_app">Avsluta Soundscape</string>
     <string name="talkback_default_activate">aktivera</string>

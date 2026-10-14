@@ -1442,6 +1442,7 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="trademark_disclaimer">Tutti i nomi e i loghi di prodotti e aziende di terze parti sono marchi commerciali o marchi registrati e restano di proprietà dei rispettivi titolari.</string>
     <string name="loading_indicator_content_description">Caricamento</string>
     <string name="offline_maps_extract_damaged">Danneggiata - elimina e scarica di nuovo</string>
+    <string name="offline_maps_extract_outdated">Aggiorna questa mappa per usare le nuove funzioni di Soundscape.</string>
     <string name="offline_map_details_update">Aggiorna la mappa offline</string>
     <string name="menu_exit_app">Esci da Soundscape</string>
     <string name="talkback_default_activate">attivare</string>

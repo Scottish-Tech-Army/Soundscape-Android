@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
@@ -53,6 +54,7 @@ import org.scottishtecharmy.soundscape.resources.offline_maps_already_downloaded
 import org.scottishtecharmy.soundscape.resources.offline_maps_caching
 import org.scottishtecharmy.soundscape.resources.offline_maps_downloading
 import org.scottishtecharmy.soundscape.resources.offline_maps_extract_damaged
+import org.scottishtecharmy.soundscape.resources.offline_maps_extract_outdated
 import org.scottishtecharmy.soundscape.resources.offline_maps_loading_manifest
 import org.scottishtecharmy.soundscape.resources.offline_maps_manifest_failed
 import org.scottishtecharmy.soundscape.resources.offline_maps_nearby
@@ -436,6 +438,26 @@ private fun OfflineExtractRow(
             // extracts are never flagged. A damaged extract can't be used by the map (it would
             // crash MapLibre) and needs re-downloading.
             val usable = extract.properties?.get("usable") as? Boolean
+            // Flag downloaded extracts which the server has a newer build of with tile contents
+            // the app uses (see isExtractOutdated). Not shown on a damaged extract, which has the
+            // more urgent status above.
+            val outdated = extract.properties?.get("outdated") as? Boolean
+            if (usable != false && outdated == true) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Rounded.Download,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier.size(spacing.medium),
+                    )
+                    Text(
+                        text = stringResource(Res.string.offline_maps_extract_outdated),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier.padding(start = spacing.tiny),
+                    )
+                }
+            }
             if (usable == false) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(

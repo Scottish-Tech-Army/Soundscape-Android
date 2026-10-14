@@ -512,6 +512,7 @@
     <string name="offline_maps_storage">Kaardid salvestatakse asukohta %1$s, kus on vaba %2$s</string>
     <string name="offline_maps_already_downloaded">Juba allalaaditud kaardid</string>
     <string name="offline_maps_extract_damaged">Rikutud - kustuta ja laadi uuesti alla</string>
+    <string name="offline_maps_extract_outdated">Uuenda seda kaarti, et kasutada Soundscape'i uusi funktsioone.</string>
     <string name="offline_maps_nearby">Lähedal asuvad võrguühenduseta kaardid</string>
     <string name="offline_maps_loading_manifest">Võrguühenduseta kaartide loendi laadimine</string>
     <string name="offline_maps_manifest_failed">Võrguühenduseta kaardi andmete allalaadimine ebaõnnestus</string>
