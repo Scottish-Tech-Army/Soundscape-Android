@@ -1,18 +1,10 @@
 # Help and Tutorials
 
-## Configuring Soundscape
+## Getting Started
 
-[Voices](help-voices.md)
+[How Soundscape Works](help-how-soundscape-works.md)
 
-[Using Media Controls](help-using-media-controls.md)
-
-## Beacons and Callouts
-
-[Audio Beacon](help-audio-beacon.md)
-
-[Automatic Callouts](help-automatic-callouts.md)
-
-## Home Screen Buttons
+## Location and Exploration Buttons
 
 [My Location](help-my-location.md)
 
@@ -22,20 +14,30 @@
 
 [Nearby Markers](help-nearby-markers.md)
 
+## Beacons and Callouts
+
+[Audio Beacon](help-audio-beacon.md)
+
+[Automatic Callouts](help-automatic-callouts.md)
+
 ## Markers and Routes
 
 [Markers](help-markers.md)
 
 [Routes](help-routes.md)
 
-[Creating Markers](help-creating-markers.md)
+## Configuring Soundscape
 
-[Customizing Markers](help-customizing-markers.md)
+[Voices](help-voices.md)
+
+[Using Media Controls](help-using-media-controls.md)
 
 ## Frequently Asked Questions
 
-[Frequently Asked Questions](help-frequently-asked-questions.md)
-
 [Tips](help-tips.md)
 
-[Why is Soundscape working offline?](help-why-is-soundscape-working-offline-.md)
+[Frequently Asked Questions](help-frequently-asked-questions.md)
+
+[GPS Accuracy](help-gps-accuracy.md)
+
+[Using Soundscape Offline](help-using-soundscape-offline.md)
