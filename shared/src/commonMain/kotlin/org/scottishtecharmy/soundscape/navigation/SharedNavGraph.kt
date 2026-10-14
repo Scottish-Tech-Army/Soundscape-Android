@@ -623,7 +623,9 @@ fun SharedNavHost(
             if (showMarkdown) {
                 SharedMarkdownHelpScreen(
                     topic = topicParam,
-                    locationAccuracy = helpHomeState.locationAccuracy,
+                    // TODO 2026-10-14 HughG: This needs to be wired in to the Markdown help somehow,
+                    // with a way to "template in" the GPS accuracy value.
+                    // locationAccuracy = helpHomeState.locationAccuracy,
                     onNavigate = { dest -> navController.navigate(dest) },
                     onNavigateUp = { navController.popBackStack() },
                     onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {

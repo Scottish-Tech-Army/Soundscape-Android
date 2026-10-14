@@ -70,7 +70,6 @@ reorderable = "3.1.0"
 review = "2.0.2"
 reviewKtx = "2.0.2"
 media3 = "1.10.1"
-robolectric = "4.14.1"
 roomCompiler = "2.8.4"
 roomRuntime = "2.8.4"
 sqliteBundled = "2.7.0"
@@ -127,7 +126,6 @@ html-mermaid-dokka-plugin = { module = "com.glureau:html-mermaid-dokka-plugin", 
 json = { module = "org.json:json", version.ref = "json" }
 jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jtsCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 kable-core = { module = "com.juul.kable:kable-core", version.ref = "kable" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }

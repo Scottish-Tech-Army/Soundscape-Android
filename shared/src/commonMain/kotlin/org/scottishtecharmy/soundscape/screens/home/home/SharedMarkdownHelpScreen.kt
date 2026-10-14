@@ -38,6 +38,8 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 
+// TODO 2026-10-14 HughG: The Markdown help pages don't yet allow for the "siri" boolean and the GPS
+// accuracy value.
 @Composable
 fun SharedMarkdownHelpScreen(
     topic: String,
