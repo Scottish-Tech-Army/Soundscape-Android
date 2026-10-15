@@ -31,12 +31,32 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: "languageScreenContinueButton"
 
+# The Navigating (permissions) and Battery screens skip themselves when there is
+# nothing to grant. launchApp's permissions block above always grants the
+# Navigating screen's permissions, and the battery exemption can survive
+# clearState, so either screen may never show. The fixed wait gives a skipping
+# screen time to move on before checking whether it is still there.
 - runFlow:
     when:
       platform: Android
+    file: Wait.yaml
+    env:
+      timeout: 2000
+
+- runFlow:
+    when:
+      visible:
+        id: "navigatingScreenContinueButton"
     file: SwipeAndTap.yaml
     env:
       id: "navigatingScreenContinueButton"
+
+- runFlow:
+    when:
+      platform: Android
+    file: Wait.yaml
+    env:
+      timeout: 2000
 
 # Battery optimization screen. Tapping "Grant permission" launches a system
 # dialog (ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) which is not a runtime
@@ -44,31 +64,34 @@ appId: org.scottishtecharmy.soundscape
 # for the system dialog's positive button and tap it, then continue.
 - runFlow:
     when:
-      platform: Android
-    file: SwipeAndTap.yaml
-    env:
-      id: "batteryOptimizationGrantPermissionButton"
-
-- runFlow:
-    when:
-      platform: Android
-    file: Wait.yaml
-    env:
-      timeout: 3000
-
-# The system battery-optimisation dialog only appears if the app isn't already
-# exempt. Dismiss its "Allow" button if it shows; if it never appears, optional
-# lets the flow carry on instead of failing.
-- tapOn:
-    id: "android:id/button1"
-    optional: true
-
-- runFlow:
-    when:
-      platform: Android
-    file: SwipeAndTap.yaml
-    env:
-      id: "batteryOptimizationContinueButton"
+      visible:
+        id: "batteryOptimizationGrantPermissionButton"
+    commands:
+      - runFlow:
+          file: SwipeAndTap.yaml
+          env:
+            id: "batteryOptimizationGrantPermissionButton"
+      - runFlow:
+          file: Wait.yaml
+          env:
+            timeout: 3000
+      # The system dialog only appears if the app isn't already exempt.
+      - tapOn:
+          id: "android:id/button1"
+          optional: true
+      - runFlow:
+          file: Wait.yaml
+          env:
+            timeout: 2000
+      # Granting the exemption moves on to the next screen by itself; Continue
+      # is only left to tap if it was refused.
+      - runFlow:
+          when:
+            visible:
+              id: "batteryOptimizationContinueButton"
+          file: SwipeAndTap.yaml
+          env:
+            id: "batteryOptimizationContinueButton"
 
 - runFlow:
     file: SwipeAndTap.yaml

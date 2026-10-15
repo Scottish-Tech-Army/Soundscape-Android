@@ -1,6 +1,7 @@
 appId: org.scottishtecharmy.soundscape
 # Exercises the Markers screen: the sort controls, editing an existing marker,
-# and creating marker "C" at the current location with the New button.
+# and creating marker "C" at the current location with the New button, which
+# replaces "A" (saved at the same location).
 #
 # Depends on markers "A" and "B" having been created by LocationDetails.yaml, so
 # this flow must run after it in the suite.
@@ -63,6 +64,10 @@ appId: org.scottishtecharmy.soundscape
 - tapOn:
     id: flexibleAppBarRight
 
-# Saving returns to the Markers screen, which now lists C.
+# Saving returns to the Markers screen, which now lists C. A was also saved at
+# the current location (LocationDetails.yaml), and saveMarker merges a new
+# marker into an existing one at exactly the same coordinates, so C replaces A.
 - assertVisible:
     id: "LocationItem-C-.*"
+- assertNotVisible:
+    id: "LocationItem-A-.*"
