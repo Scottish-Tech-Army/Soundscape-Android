@@ -47,11 +47,8 @@ fun SharedMarkdownHelpScreen(
     onNavigateUp: () -> Unit,
     onOpenSourceLicenses: (() -> Unit)? = null,
     preferencesProvider: PreferencesProvider? = null,
-    modifier: Modifier = Modifier,
-    structureLog: StructureLog = StructureLog {}
+    modifier: Modifier = Modifier
 ) {
-    structureLog.start("HelpScreen")
-
     val helpTopic = HelpTopic.fromRouteParam(topic, preferencesProvider) as? HelpTopic.MarkdownHelpTopic
         ?: return
     val isFaqSubPage = helpTopic is HelpTopic.MarkdownFaq
@@ -69,20 +66,16 @@ fun SharedMarkdownHelpScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            structureLog.start("Scaffold topBar")
             CustomAppBar(
                 title = displayTitle,
                 navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
                 onNavigateUp = onNavigateUp,
             )
-            structureLog.end("Scaffold topBar")
         },
         content = { padding ->
-            structureLog.start("Scaffold content")
             Box(
                 modifier = Modifier.padding(padding)
             ) {
-                structureLog.start("Box")
                 // Help topic page
                 LazyColumn(
                     modifier = modifier
@@ -91,12 +84,9 @@ fun SharedMarkdownHelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
-                    structureLog.start("LazyColumn")
                     items(blocks) { block ->
-                        structureLog.start("LazyColumn item")
                         when (block) {
                             is MarkdownBlock.Heading -> {
-                                structureLog.unstructured("Text for Title: '${block.text}'")
                                 Text(
                                     text = block.text,
                                     style = when (block.level) {
@@ -113,7 +103,6 @@ fun SharedMarkdownHelpScreen(
                             }
                             is MarkdownBlock.Paragraphs -> {
                                 val text = parseHtmlToAnnotatedString(block.html)
-                                structureLog.unstructured("Text for HTML section: '${text.text}'")
                                 Text(
                                     text = text,
                                     style = MaterialTheme.typography.bodyMedium,
@@ -124,8 +113,7 @@ fun SharedMarkdownHelpScreen(
                                 LinkButton(
                                     text = block.text,
                                     route = if (block.destination.endsWith(".md")) "${SharedRoutes.HELP}/${block.destination}" else block.destination,
-                                    onNavigate = onNavigate,
-                                    structureLog = structureLog
+                                    onNavigate = onNavigate
                                 )
                             }
                             is MarkdownBlock.FaqQuestion -> {
@@ -133,12 +121,10 @@ fun SharedMarkdownHelpScreen(
                                 LinkButton(
                                     text = block.text,
                                     route = route,
-                                    onNavigate = onNavigate,
-                                    structureLog = structureLog
+                                    onNavigate = onNavigate
                                 )
                             }
                         }
-                        structureLog.end("LazyColumn item")
                     }
                     item {
                         if (helpTopic.getMarkdownFileName() == HelpTopic.ABOUT_SOUNDSCAPE_FILENAME
@@ -157,22 +143,17 @@ fun SharedMarkdownHelpScreen(
                             )
                         }
                     }
-                    structureLog.end("LazyColumn")
                 }
-                structureLog.end("Box")
             }
-            structureLog.end("Scaffold content")
         }
     )
-    structureLog.end("HelpScreen")
 }
 
 @Composable
 private fun LinkButton(
     text: String,
     route: String,
-    onNavigate: (String) -> Unit,
-    structureLog: StructureLog
+    onNavigate: (String) -> Unit
 ) {
     Button(
         onClick = { onNavigate(route) },
@@ -180,30 +161,23 @@ private fun LinkButton(
         shape = RoundedCornerShape(spacing.extraSmall),
         colors = currentAppButtonColors
     ) {
-        structureLog.start("Button")
         Box(
             Modifier.weight(6f)
         ) {
-            structureLog.start("Box for text")
-            structureLog.unstructured("Text for Button: '$text'")
             Text(
                 text = text,
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.titleMedium,
             )
-            structureLog.end("Box for text")
         }
         Box(
             Modifier.weight(1f)
         ) {
-            structureLog.start("Box for icon")
             Icon(
                 Icons.Rounded.ChevronRight,
                 null,
                 modifier = Modifier.align(Alignment.CenterEnd)
             )
-            structureLog.end("Box for icon")
         }
-        structureLog.end("Button")
     }
 }

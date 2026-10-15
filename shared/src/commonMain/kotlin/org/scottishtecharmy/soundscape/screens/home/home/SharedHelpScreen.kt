@@ -602,10 +602,7 @@ fun SharedHelpScreen(
     locationAccuracy: Float? = null,
     modifier: Modifier = Modifier,
     preferencesProvider: org.scottishtecharmy.soundscape.preferences.PreferencesProvider? = null,
-    structureLog: StructureLog = StructureLog {},
 ) {
-    structureLog.start("HelpScreen")
-
     // Find our page
     var sections = Sections(Res.string.menu_help, emptyList())
     val helpTopic = HelpTopic.fromRouteParam(topic, preferencesProvider)
@@ -642,20 +639,16 @@ fun SharedHelpScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            structureLog.start("Scaffold topBar")
             CustomAppBar(
                 title = stringResource(sections.titleId),
                 navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
                 onNavigateUp = onNavigateUp,
             )
-            structureLog.end("Scaffold topBar")
         },
         content = { padding ->
-            structureLog.start("Scaffold content")
             Box(
                 modifier = Modifier.padding(padding)
             ) {
-                structureLog.start("Box")
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
@@ -663,16 +656,12 @@ fun SharedHelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
-                    structureLog.start("LazyColumn")
                     items(sections.sections) { section ->
-                        structureLog.start("LazyColumn item")
                         Box(
                             modifier = Modifier.semantics(mergeDescendants = true) {}
                         ) {
                             when (section.type) {
                                 SectionType.Title -> {
-                                    val text = stringResource(section.textId)
-                                    structureLog.unstructured("Text for Title: '${text}'")
                                     Text(
                                         text = stringResource(section.textId),
                                         style = MaterialTheme.typography.titleMedium,
@@ -689,8 +678,6 @@ fun SharedHelpScreen(
 
                                 SectionType.Paragraph -> {
                                     val htmlText = markdownToHtml(stringResource(section.textId))
-                                    val text = parseHtmlToAnnotatedString(htmlText)
-                                    structureLog.unstructured("Text for HTML section: '${text}'")
                                     Text(
                                         text = parseHtmlToAnnotatedString(htmlText),
                                         style = MaterialTheme.typography.bodyMedium,
@@ -730,33 +717,24 @@ fun SharedHelpScreen(
                                         shape = RoundedCornerShape(spacing.extraSmall),
                                         colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                     ) {
-                                        structureLog.start("Button")
                                         Box(Modifier.weight(6f)) {
-                                            structureLog.start("Box for text")
-                                            val text = stringResource(section.textId)
-                                            structureLog.unstructured("Text for Button: '${text}'")
                                             Text(
-                                                text = text,
+                                                text = stringResource(section.textId),
                                                 textAlign = TextAlign.Start,
                                                 style = MaterialTheme.typography.titleMedium,
                                             )
-                                            structureLog.end("Box for text")
                                         }
                                         Box(Modifier.weight(1f)) {
-                                            structureLog.start("Box for icon")
                                             Icon(
                                                 Icons.Rounded.ChevronRight,
                                                 null,
                                                 modifier = Modifier.align(Alignment.CenterEnd)
                                             )
-                                            structureLog.end("Box for icon")
                                         }
-                                        structureLog.end("Button")
                                     }
                                 }
                             }
                         }
-                        structureLog.end("LazyColumn item")
                     }
                     item {
                         if (sections.titleId == Res.string.settings_about_app && onOpenSourceLicenses != null) {
@@ -773,14 +751,10 @@ fun SharedHelpScreen(
                             )
                         }
                     }
-                    structureLog.end("LazyColumn")
                 }
-                structureLog.end("Box")
             }
-            structureLog.end("Scaffold content")
         }
     )
-    structureLog.end("HelpScreen")
 }
 
 /**
