@@ -1,0 +1,40 @@
+appId: org.scottishtecharmy.soundscape
+# Run by the test farm straight after `adb install -r` of a newer release over a
+# phone that has just finished the suite (see test-farm/farm.py). Checks that
+# the upgraded app starts on the old data, and that the markers and the route
+# the suite created survived the upgrade.
+---
+- launchApp:
+    clearState: false
+
+# The release dialog shows on the first launch of a new major.minor version.
+- tapOn:
+    id: "newReleaseDialogDismiss"
+    optional: true
+
+- runFlow:
+    file: ../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home
+- runFlow:
+    file: ../../maestro/SwipeAndTap.yaml
+    env:
+      id: homeMarkers
+# Markers.yaml's C replaced A (same location), so B and C are what's left.
+- assertVisible:
+    id: "LocationItem-B-.*"
+- assertVisible:
+    id: "LocationItem-C-.*"
+
+- launchApp:
+    clearState: false
+- runFlow:
+    file: ../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home
+- runFlow:
+    file: ../../maestro/SwipeAndTap.yaml
+    env:
+      id: homeRoutes
+- assertVisible:
+    text: "Test Route.*"

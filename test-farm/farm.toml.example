@@ -1,0 +1,37 @@
+# Copy to farm.toml and edit. Every setting is optional; these are the defaults
+# except where noted. Paths are relative to this file.
+
+# Where release builds come from: the newest two successful runs of this
+# workflow, using the APK that goes to Play.
+release_repo = "Scottish-Tech-Army/Soundscape-Android"
+release_workflow = "build-app.yaml"
+release_artifact = "release-apk"
+poll_minutes = 15
+
+monkey_events = 5000          # several minutes; not every event waits the throttle
+monkey_throttle_ms = 250
+flow_timeout_minutes = 15
+keep_days = 14                # per-cycle logs/screenshots under runs/
+
+# Run one Maestro flow at a time across all phones, if parallel runs collide.
+serialize_maestro = false
+
+# If a phone has a Soundscape the farm didn't install (Play Store, debug build),
+# uninstall it, wiping its data. Off by default: the phone is reported as blocked.
+allow_reinstall = false
+
+include_emulators = false
+max_battery_temp_c = 42       # pause the phone for 10 minutes above this
+
+# Mock location: walk this GPX track at a constant speed, turning round at each
+# end. With no track, hold default_location (lat, lon).
+replay_speed_mps = 1.4
+default_location = [55.9474, -4.3058]
+default_gpx = "../local-pixel.gpx"   # (the default is no track)
+# Held while the Maestro suite runs; the flows assert distance order.
+suite_location = [55.955360, -3.223538]
+
+# Per-phone overrides, keyed by `adb devices` serial.
+# [devices."R5CW12345AB"]
+# gpx = "../local-cubot.gpx"
+# skip = true
