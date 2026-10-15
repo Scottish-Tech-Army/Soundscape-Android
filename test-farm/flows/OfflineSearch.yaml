@@ -1,0 +1,38 @@
+appId: org.scottishtecharmy.soundscape
+# Run by the test farm after Onboarding (which wipes the app's settings) to
+# switch Settings > Search > Search mode to Offline, so searches use the
+# offline map extract the farm pushes instead of the phones' unreliable Wi-Fi.
+#
+# The Settings screen has no testTags, so this matches the English labels
+# (settings_section / menu_manage_search, settings_section_search_network,
+# settings_search_offline): the farm phones must be set to English.
+---
+- launchApp:
+    clearState: false
+- runFlow:
+    file: ../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home
+- tapOn:
+    id: topBarMenu
+- runFlow:
+    file: ../../maestro/SwipeAndTap.yaml
+    env:
+      id: menuSettings
+- scrollUntilVisible:
+    element:
+      text: "Search"
+    direction: DOWN
+- tapOn:
+    text: "Search"
+- scrollUntilVisible:
+    element:
+      text: "Search mode"
+    direction: DOWN
+- tapOn:
+    text: "Search mode"
+- tapOn:
+    text: "Offline"
+# The summary under "Search mode" now names the chosen option.
+- assertVisible:
+    text: ".*Offline.*"

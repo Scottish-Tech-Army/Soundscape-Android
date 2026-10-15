@@ -36,6 +36,43 @@ python3 test-farm/farm.py        # Ctrl-C to stop; removes the mock GPS provider
   held at `suite_location` (CI's Edinburgh point), because the flows assert
   distance-sorted list order.
 - **Maestro:** `testTagsAsResourceId` is set in `Theme.kt` for every build type.
+- **Offline maps and search:** the phones' Wi-Fi can't be relied on, so the
+  farm keeps the current manifest extract (`extract_name`, default Glasgow,
+  which covers the suite point and the GPX walk) in `extracts/`, using
+  `extractProviderUrl` from `local.properties`. Onboarding wipes app storage,
+  so after it runs in each cycle the farm `adb push`es the extract into the
+  app's `files/Download`. That needs no root on the phones tried so far.
+  It then runs `flows/OfflineSearch.yaml` to set Settings › Search › Search
+  mode to Offline. Settings has no test tags, so that flow taps English labels
+  and the phones must be set to English. The suite passes with Wi-Fi off.
+
+## iPhones
+
+Maestro can't drive a physical iPhone. It drives iOS through an XCUITest
+driver that only Xcode on a Mac can build, sign and launch, and its CLI only
+targets simulators. So iPhones are **observed, not driven**.
+`pymobiledevice3` (`pipx install pymobiledevice3`) does everything from Linux
+without root, because `--userspace` builds the iOS 17+ developer tunnel
+in-process. Every `ios_poll_minutes` (10) the farm:
+
+- mounts the developer disk image (needed after a reboot);
+- records a TestFlight version change as an upgrade (TestFlight auto-update
+  installs releases; the App Store-signed IPA can't be sideloaded);
+- relaunches Soundscape if it isn't running, and records a PID change with no
+  crash report as a restart (killed by iOS or the user);
+- pulls new `Soundscape-*` crash and hang reports. bug_type 309 counts as a
+  crash; anything else is counted with the ANRs;
+- reads the battery.
+
+Throughout, it replays the GPX walk with `simulate-location play`. The app
+ignored a single fixed simulated point, so the walk has to move. It also keeps
+a daily Soundscape syslog (`--no-debug`, about 66 MB/day) in `runs/<udid>/`.
+
+Preparing an iPhone: Developer Mode on, paired with this PC ("Trust"), Soundscape
+from TestFlight with automatic updates on, and the battery charge limit set to
+80%. Keep it off USB hubs that lose disconnects. One VIA Labs hub here kept a
+ghost iPhone connection that hung usbmuxd until it was removed via
+`/sys/bus/usb/devices/<port>/remove` and usbmuxd was restarted.
 
 ## Preparing a phone
 
