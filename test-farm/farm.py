@@ -185,9 +185,13 @@ def run(cmd, timeout=120):
     """subprocess.run, except that the farm can stop the process when it stops.
     A Maestro run left behind by a stopped farm keeps hold of the phone's
     driver, and every flow after a restart then fails with gRPC UNAVAILABLE."""
-    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                            text=True, errors="replace")
     with children_lock:
+        # Once the farm is stopping, start nothing new: stop_children() may
+        # already have run, and anything started now would be orphaned.
+        if stop_event.is_set():
+            return subprocess.CompletedProcess(cmd, -1, "", "farm stopping")
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                text=True, errors="replace")
         children.add(proc)
     try:
         out, err = proc.communicate(timeout=timeout)
