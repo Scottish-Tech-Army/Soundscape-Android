@@ -21,6 +21,8 @@ serialize_maestro = false
 allow_reinstall = false
 
 include_emulators = false
+include_ios = true            # observe USB iPhones via pymobiledevice3 (see README)
+ios_poll_minutes = 10
 max_battery_temp_c = 42       # pause the phone for 10 minutes above this
 
 # Mock location: walk this GPX track at a constant speed, turning round at each
@@ -30,6 +32,12 @@ default_location = [55.9474, -4.3058]
 default_gpx = "../local-pixel.gpx"   # (the default is no track)
 # Held while the Maestro suite runs; the flows assert distance order.
 suite_location = [55.955360, -3.223538]
+
+# Offline map pushed to every phone, by manifest name; must cover
+# suite_location and the GPX track. URL defaults to local.properties'
+# extractProviderUrl.
+extract_name = "Glasgow"
+# extract_provider_url = ""
 
 # Per-phone overrides, keyed by `adb devices` serial.
 # [devices."R5CW12345AB"]

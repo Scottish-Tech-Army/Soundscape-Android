@@ -21,6 +21,8 @@ import argparse
 import contextlib
 import datetime as dt
 import glob
+import gzip
+import json
 import html
 import math
 import os
@@ -39,12 +41,17 @@ REPO_DIR = os.path.dirname(FARM_DIR)
 MAESTRO_DIR = os.path.join(REPO_DIR, "maestro")
 POST_UPGRADE_FLOW = os.path.join(FARM_DIR, "flows", "PostUpgrade.yaml")
 APK_DIR = os.path.join(FARM_DIR, "apks")
+EXTRACT_DIR = os.path.join(FARM_DIR, "extracts")
+OFFLINE_SEARCH_FLOW = os.path.join(FARM_DIR, "flows", "OfflineSearch.yaml")
 RUNS_DIR = os.path.join(FARM_DIR, "runs")
 DB_PATH = os.path.join(FARM_DIR, "farm.db")
 REPORT_PATH = os.path.join(FARM_DIR, "report.html")
 
 PACKAGE = "org.scottishtecharmy.soundscape"
 MOCK_PROVIDERS = ("gps", "network")
+# GeoEngine reads extracts from <selected storage>/Download, which defaults to
+# the app's external files dir (as CI's push in run-maestro-tests.yaml).
+DEVICE_EXTRACT_DIR = f"/storage/emulated/0/Android/data/{PACKAGE}/files/Download"
 
 DEFAULTS = {
     "release_repo": "Scottish-Tech-Army/Soundscape-Android",
@@ -58,12 +65,20 @@ DEFAULTS = {
     "serialize_maestro": False,
     "allow_reinstall": False,
     "include_emulators": False,
+    # iPhones (via pymobiledevice3) are observed, not driven: see IosWorker.
+    "include_ios": True,
+    "ios_poll_minutes": 10,
     "max_battery_temp_c": 42,
     "replay_speed_mps": 1.4,
     "default_location": [55.9474, -4.3058],
     # Held while the Maestro suite runs: the flows assert distance-sorted list
     # order, so they need the fixed point CI pins with `adb emu geo fix`.
     "suite_location": [55.955360, -3.223538],
+    # The offline map pushed to every phone, by its manifest "name". It has to
+    # cover suite_location and the GPX track. The manifest URL is read from
+    # local.properties' extractProviderUrl unless set here.
+    "extract_name": "Glasgow",
+    "extract_provider_url": "",
     "default_gpx": "",
     "devices": {},
 }
@@ -239,7 +254,65 @@ def release_watcher(cfg, db):
                        (int(run_id), int(m.group(1)), m.group(2), created, apks[0]))
             known.add(int(run_id))
             log(None, f"new release {m.group(2)} ({m.group(1)}) cached")
+        sync_extract(cfg)
         stop_event.wait(cfg["poll_minutes"] * 60)
+
+
+# --------------------------------------------------------------------------- offline map
+
+current_extract = None  # local path of the cached .pmtiles; its sidecar is path + ".geojson"
+
+
+def extract_provider_url(cfg):
+    if cfg["extract_provider_url"]:
+        return cfg["extract_provider_url"]
+    try:
+        with open(os.path.join(REPO_DIR, "local.properties")) as f:
+            m = re.search(r"^extractProviderUrl=(.+)$", f.read(), re.M)
+        return m.group(1).strip() if m else ""
+    except OSError:
+        return ""
+
+
+def sync_extract(cfg):
+    """Keeps the manifest's current extract for cfg["extract_name"] cached locally.
+
+    Downloads only when the manifest names a new file, so the monthly rebuild
+    is picked up and nothing else is fetched.
+    """
+    global current_extract
+    base = extract_provider_url(cfg)
+    if not base:
+        log(None, "no extractProviderUrl in local.properties; phones will use the network")
+        return
+    res = subprocess.run(["curl", "-sfL", f"{base.rstrip('/')}/manifest.geojson.gz"],
+                         capture_output=True, timeout=120)
+    try:
+        manifest = json.loads(gzip.decompress(res.stdout))
+        feature = next(f for f in manifest["features"]
+                       if f["properties"].get("name") == cfg["extract_name"])
+    except Exception as e:  # manifest unreachable or no such extract; keep what we have
+        log(None, f"extract manifest unusable ({e!r}); keeping {current_extract}")
+        if not current_extract:
+            cached = sorted(glob.glob(os.path.join(EXTRACT_DIR, "*.pmtiles")))
+            current_extract = cached[-1] if cached else None
+        return
+    filename = feature["properties"]["filename"]
+    path = os.path.join(EXTRACT_DIR, filename)
+    if not os.path.exists(path):
+        log(None, f"downloading offline map {filename}")
+        part = path + ".part"
+        dl = run(["curl", "-sfL", "-o", part, f"{base.rstrip('/')}/{filename}"], timeout=3600)
+        if dl.returncode != 0:
+            log(None, f"offline map download failed: {dl.stderr.strip()}")
+            return
+        os.replace(part, path)
+        with open(path + ".geojson", "w") as f:
+            json.dump(feature, f)
+        for old in glob.glob(os.path.join(EXTRACT_DIR, "*")):
+            if not old.startswith(path):
+                os.remove(old)
+    current_extract = path
 
 
 # --------------------------------------------------------------------------- location
@@ -261,22 +334,19 @@ def haversine(a, b):
     return 2 * 6371000 * math.asin(math.sqrt(h))
 
 
-class LocationFeeder(threading.Thread):
-    """Feeds mock fixes to the phone once a second over adb.
+class Track:
+    """Walks a GPX track at a constant speed, turning round at each end rather
+    than jumping back to the start. With no track, holds one fixed point."""
 
-    Walks the GPX track at a constant speed and turns round at each end rather
-    than jumping back to the start. With no track, holds one fixed point.
-    Setting `hold` to a (lat, lon) pins the phone there until it's set to None.
-    """
-
-    def __init__(self, serial, gpx, fixed, speed, db, alive):
-        super().__init__(daemon=True)
-        self.serial, self.speed, self.db, self.alive = serial, speed, db, alive
-        self.hold = None
+    def __init__(self, gpx, fixed, speed):
+        self.speed = speed
         self.points = load_track(gpx) if gpx else [tuple(fixed), tuple(fixed)]
         self.cumulative = [0.0]
         for a, b in zip(self.points, self.points[1:]):
             self.cumulative.append(self.cumulative[-1] + haversine(a, b))
+
+    def round_trip_seconds(self):
+        return max(60, int(2 * self.cumulative[-1] / self.speed))
 
     def position(self, t):
         total = self.cumulative[-1]
@@ -293,10 +363,22 @@ class LocationFeeder(threading.Thread):
         (la, lo), (lb, lob) = self.points[i], self.points[i + 1]
         return la + (lb - la) * f, lo + (lob - lo) * f
 
+
+class LocationFeeder(threading.Thread):
+    """Feeds the Track's position to an Android phone once a second over adb.
+    Setting `hold` to a (lat, lon) pins the phone there until it's set to None.
+    """
+
+    def __init__(self, serial, gpx, fixed, speed, db, alive):
+        super().__init__(daemon=True)
+        self.serial, self.db, self.alive = serial, db, alive
+        self.hold = None
+        self.track = Track(gpx, fixed, speed)
+
     def run(self):
         start = time.time()
         while not stop_event.is_set() and self.alive.is_set():
-            lat, lon = self.hold or self.position(time.time() - start)
+            lat, lon = self.hold or self.track.position(time.time() - start)
             cmd = "; ".join(
                 f"cmd location providers set-test-provider-location {p} "
                 f"--location {lat:.7f},{lon:.7f} --accuracy 5" for p in MOCK_PROVIDERS)
@@ -406,6 +488,23 @@ class Worker(threading.Thread):
         # because Soundscape is playing, so the keys adjust the media stream.
         if "volume is 0 " not in shell(s, "cmd media_session volume --stream 3 --get"):
             shell(s, "for i in $(seq 1 16); do input keyevent KEYCODE_VOLUME_DOWN; done")
+
+    def push_extract(self):
+        """Copies the cached offline map and its metadata sidecar into the app's
+        extracts directory, named as CI does (without the build-date prefix)."""
+        if not current_extract:
+            self.db.event(self.serial, "error", None, "no offline map cached; using the network")
+            return
+        set_state(self.serial, "pushing offline map")
+        name = re.sub(r"^\d{8}-\d{4}-", "", os.path.basename(current_extract))
+        shell(self.serial, f"rm -f {DEVICE_EXTRACT_DIR}/*.pmtiles {DEVICE_EXTRACT_DIR}/*.geojson; "
+                           f"mkdir -p {DEVICE_EXTRACT_DIR}")
+        for src, dest in ((current_extract, name), (current_extract + ".geojson", name + ".geojson")):
+            res = adb(self.serial, "push", src, f"{DEVICE_EXTRACT_DIR}/{dest}", timeout=900)
+            if res.returncode != 0:
+                self.db.event(self.serial, "error", None,
+                              f"offline map push failed:\n{res.stdout}{res.stderr}")
+                return
 
     def repair(self):
         """Undoes things the monkey can do from the notification shade."""
@@ -579,6 +678,14 @@ class Worker(threading.Thread):
                     passed += 1
                 else:
                     failed += 1
+                if flow == "Onboarding.yaml":
+                    # Onboarding cleared the app's storage and settings, so put the
+                    # offline map back and switch search to offline.
+                    self.push_extract()
+                    if self.run_flow(cycle_id, OFFLINE_SEARCH_FLOW, cycle_dir, kind="setup"):
+                        passed += 1
+                    else:
+                        failed += 1
 
         with open(os.path.join(cycle_dir, "logcat.txt"), "w") as f:
             f.write(adb(s, "logcat", "-d", timeout=120).stdout)
@@ -620,6 +727,214 @@ class Worker(threading.Thread):
             set_state(self.serial, "disconnected")
 
 
+# --------------------------------------------------------------------------- iPhone
+
+
+IOS_BUNDLE = "org.scottishtecharmy.soundscape"
+PMD3 = os.path.expanduser("~/.local/bin/pymobiledevice3")
+
+
+def pmd3(udid, *args, timeout=120, tunnel=False):
+    """Runs pymobiledevice3 against one iPhone. Developer services (location,
+    launch, process list, screenshots) go over the iOS 17+ tunnel, which
+    --userspace builds in-process, so nothing here needs root."""
+    extra = ["--userspace"] if tunnel else []
+    return run([PMD3, *args, *extra, "--udid", udid], timeout=timeout)
+
+
+def ios_devices():
+    """UDIDs of USB-connected iPhones. --simple skips lockdown, so a phone that
+    isn't answering can't hang discovery."""
+    if not os.path.exists(PMD3):
+        return []
+    res = run([PMD3, "usbmux", "list", "--usb", "--simple"], timeout=20)
+    try:
+        return json.loads(res.stdout or "[]")
+    except json.JSONDecodeError:
+        return []
+
+
+class IosWorker(threading.Thread):
+    """Observes Soundscape on an iPhone. Maestro can't drive a physical iPhone,
+    so there is no UI testing: the app (installed and upgraded by TestFlight)
+    is kept running on a replayed GPX walk while the farm records upgrades,
+    restarts, crash and hang reports, battery and a Soundscape syslog."""
+
+    def __init__(self, udid, cfg, db):
+        super().__init__(daemon=True, name=udid)
+        self.udid, self.cfg, self.db = udid, cfg, db
+        self.dev_cfg = cfg["devices"].get(udid, {})
+        self.dir = os.path.join(RUNS_DIR, udid)
+        self.player = self.syslog = None
+        self.syslog_day = None
+        self.version = self.pid = None
+        info = {}
+        res = run([PMD3, "usbmux", "list", "--usb"], timeout=60)
+        try:
+            info = next(d for d in json.loads(res.stdout) if d.get("UniqueDeviceID") == udid)
+        except Exception:
+            pass
+        self.model = f"{info.get('DeviceName', 'iPhone')} ({info.get('ProductType', '?')})"
+        self.os = f"iOS {info.get('ProductVersion', '?')}"
+
+    # ----- background processes
+
+    def write_walk(self):
+        """One there-and-back of the GPX track as a timestamped GPX at 1 Hz,
+        which `simulate-location play` replays in real time. A moving track
+        matters: the app ignored a single fixed simulated point."""
+        track = Track(self.dev_cfg.get("gpx", self.cfg["default_gpx"]),
+                      self.cfg["default_location"], self.cfg["replay_speed_mps"])
+        t0 = dt.datetime.now(dt.timezone.utc)
+        pts = []
+        for i in range(track.round_trip_seconds()):
+            lat, lon = track.position(i)
+            stamp = (t0 + dt.timedelta(seconds=i)).strftime("%Y-%m-%dT%H:%M:%SZ")
+            pts.append(f'<trkpt lat="{lat:.7f}" lon="{lon:.7f}"><time>{stamp}</time></trkpt>')
+        path = os.path.join(self.dir, "walk.gpx")
+        with open(path, "w") as f:
+            f.write('<?xml version="1.0"?><gpx version="1.1" creator="soundscape-test-farm">'
+                    f'<trk><trkseg>{"".join(pts)}</trkseg></trk></gpx>')
+        return path
+
+    def keep_processes_running(self):
+        if self.player is None or self.player.poll() is not None:
+            self.player = subprocess.Popen(
+                [PMD3, "developer", "dvt", "simulate-location", "play", "--userspace",
+                 "--udid", self.udid, self.write_walk()],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        day = dt.date.today().strftime("%Y%m%d")
+        if self.syslog_day != day or self.syslog is None or self.syslog.poll() is not None:
+            if self.syslog and self.syslog.poll() is None:
+                self.syslog.terminate()
+            self.syslog = subprocess.Popen(
+                # DEBUG is mostly CoreMotion sensor fusion: ~1.7 GB a day.
+                [PMD3, "syslog", "live", "--udid", self.udid, "-pn", "Soundscape", "--no-debug",
+                 "-o", os.path.join(self.dir, f"syslog-{day}.txt")],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            self.syslog_day = day
+
+    def stop_processes(self):
+        for p in (self.player, self.syslog):
+            if p and p.poll() is None:
+                p.terminate()
+        pmd3(self.udid, "developer", "dvt", "simulate-location", "clear", tunnel=True, timeout=60)
+
+    # ----- one observation
+
+    def installed_version(self):
+        res = pmd3(self.udid, "apps", "list", timeout=120)
+        try:
+            app = json.loads(res.stdout)[IOS_BUNDLE]
+            return f"{app['CFBundleShortVersionString']} ({app['CFBundleVersion']})"
+        except Exception:
+            return None
+
+    def app_pid(self):
+        res = pmd3(self.udid, "developer", "dvt", "process-id-for-bundle-id", IOS_BUNDLE,
+                   tunnel=True, timeout=60)
+        m = re.search(r"^\s*(\d+)\s*$", res.stdout, re.M)
+        return int(m.group(1)) if m and int(m.group(1)) > 0 else None
+
+    def new_reports(self, obs_dir):
+        """Pulls Soundscape crash/hang reports not seen before. Returns
+        (kind, name, text); bug_type 309 is a crash, anything else (hangs,
+        resource reports) is counted as an ANR."""
+        res = pmd3(self.udid, "crash", "ls", timeout=120)
+        names = [n.strip().strip('",') for n in res.stdout.splitlines()]
+        names = [n for n in names if re.search(r"(^|/)Soundscape[-_.]", n)]
+        seen = {r["detail"] for r in self.db.query(
+            "SELECT detail FROM events WHERE serial=? AND kind='ios-report'", (self.udid,))}
+        found = []
+        for name in names:
+            if name in seen:
+                continue
+            base = os.path.basename(name)
+            os.makedirs(obs_dir, exist_ok=True)
+            pmd3(self.udid, "crash", "pull", obs_dir, "--match", re.escape(base), timeout=300)
+            text = ""
+            for path in glob.glob(os.path.join(obs_dir, "**", base), recursive=True):
+                with open(path, errors="replace") as f:
+                    text = f.read()
+            m = re.search(r'"bug_type"\s*:\s*"?(\d+)', text[:2000])
+            kind = "crash" if m and m.group(1) == "309" else "anr"
+            self.db.execute("INSERT INTO events(serial, ts, kind, version_code, detail) "
+                            "VALUES(?,?,?,?,?)", (self.udid, time.time(), "ios-report", None, name))
+            found.append((kind, base, f"{base} (bug_type {m.group(1) if m else '?'})\n{text[:4000]}"))
+        return found
+
+    def battery(self):
+        res = pmd3(self.udid, "diagnostics", "battery", "single", timeout=60)
+        level = re.search(r'"CurrentCapacity":\s*(\d+)', res.stdout)
+        temp = re.search(r'"Temperature":\s*(\d+)', res.stdout)
+        return (int(level.group(1)) if level else None,
+                int(temp.group(1)) / 100 if temp else None)
+
+    def observe(self):
+        u = self.udid
+        started = time.time()
+        obs_dir = os.path.join(self.dir, dt.datetime.now().strftime("%Y%m%d-%H%M%S"))
+        set_state(u, "checking")
+        # Needed after every reboot; succeeds immediately when already mounted.
+        mount = pmd3(u, "mounter", "auto-mount", tunnel=True, timeout=300)
+        if mount.returncode != 0:
+            self.db.event(u, "error", None, "developer disk image mount failed (is Developer "
+                                            "Mode on?)\n" + (mount.stdout + mount.stderr)[-1500:])
+        self.keep_processes_running()
+
+        version = self.installed_version()
+        if version and self.version and version != self.version:
+            self.db.event(u, "upgrade", None, f"TestFlight upgrade {self.version} -> {version}")
+        self.version = version or self.version
+
+        problems = self.new_reports(obs_dir)
+        for kind, name, text in problems:
+            self.db.event(u, kind, None, text)
+        pid = self.app_pid()
+        if pid is None:
+            if version:
+                self.db.event(u, "relaunch", None, "Soundscape wasn't running; relaunching it")
+                pmd3(u, "developer", "dvt", "launch", "--no-kill-existing", IOS_BUNDLE,
+                     tunnel=True, timeout=60)
+                pid = self.app_pid()
+            else:
+                self.db.event(u, "error", None, "Soundscape isn't installed (TestFlight)")
+        elif self.pid and pid != self.pid and not problems:
+            self.db.event(u, "restart", None, f"Soundscape restarted (pid {self.pid} -> {pid}) "
+                                              "with no crash report: killed by iOS or the user")
+        self.pid = pid
+
+        level, temp = battery = self.battery()
+        crashes = sum(1 for k, _, _ in problems if k == "crash")
+        anrs = len(problems) - crashes
+        status = "pass" if pid and not problems else "fail"
+        self.db.execute(
+            "INSERT INTO cycles(serial, model, android, version_code, started, ended, status, "
+            "flows_passed, flows_failed, crashes, anrs, battery_level, battery_temp, dir) "
+            "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (u, self.model, self.os, None, started, time.time(), status, 0, 0, crashes, anrs,
+             level, temp, obs_dir))
+        set_state(u, f"observing Soundscape {version or '?'} (pid {pid or 'none'}); "
+                     f"{crashes} crashes, {anrs} hang/other reports",
+                  model=self.model, android=self.os, app=version)
+
+    def run(self):
+        os.makedirs(self.dir, exist_ok=True)
+        set_state(self.udid, "preparing", model=self.model, android=self.os)
+        try:
+            while not stop_event.is_set():
+                if self.udid not in ios_devices():
+                    break
+                try:
+                    self.observe()
+                except Exception as e:  # keep observing; record and retry
+                    self.db.event(self.udid, "error", None, f"iPhone worker exception: {e!r}")
+                stop_event.wait(self.cfg["ios_poll_minutes"] * 60)
+        finally:
+            self.stop_processes()
+            set_state(self.udid, "disconnected")
+
+
 # --------------------------------------------------------------------------- report
 
 
@@ -643,7 +958,7 @@ def write_report(db):
         last = last[0] if last else None
         ver = last["version_code"] if last else None
         rows.append(f"""<tr><td>{e(serial)}</td><td>{e(st.get('model', ''))}</td>
-            <td>{e(st.get('android', ''))}</td><td>{e(versions.get(ver, str(ver or '')))}</td>
+            <td>{e(st.get('android', ''))}</td><td>{e(versions.get(ver, str(ver or st.get('app', ''))))}</td>
             <td>{e(st['state'])}<div class=dim>since {fmt_time(st['since'])}</div></td>
             <td class="{last['status'] if last else ''}">{e(last['status']) if last else ''}</td>
             <td>{day['ok'] or 0}/{day['n']}</td><td>{day['c'] or 0}</td><td>{day['a'] or 0}</td>
@@ -673,7 +988,7 @@ td,th{{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;verti
 pre{{margin:0;white-space:pre-wrap;font-size:12px;max-width:70ch}} a{{color:inherit}}
 .wrap{{overflow-x:auto}}</style></head><body>
 <h1>Soundscape test farm</h1><p class=dim>Updated {fmt_time(time.time())}. Cached releases: {builds or 'none yet'}</p>
-<h2>Devices</h2><div class=wrap><table><tr><th>Serial</th><th>Model</th><th>Android</th><th>App</th>
+<h2>Devices</h2><div class=wrap><table><tr><th>Serial</th><th>Model</th><th>OS</th><th>App</th>
 <th>Now</th><th>Last cycle</th><th>Passed 24h</th><th>Crashes 24h</th><th>ANRs 24h</th>
 <th>PSS</th><th>Battery</th></tr>{''.join(rows)}</table></div>
 <h2>Recent failures</h2><div class=wrap><table><tr><th>When</th><th>Device</th><th>Kind</th>
@@ -711,6 +1026,8 @@ def main():
     signal.signal(signal.SIGINT, handle_signal)
     signal.signal(signal.SIGTERM, handle_signal)
 
+    os.makedirs(EXTRACT_DIR, exist_ok=True)
+    sync_extract(cfg)  # before any phone starts, so the first cycle has it
     threading.Thread(target=release_watcher, args=(cfg, db), daemon=True).start()
     workers = {}
     last_prune = 0
@@ -719,14 +1036,21 @@ def main():
             if serial not in workers or not workers[serial].is_alive():
                 workers[serial] = Worker(serial, cfg, db)
                 workers[serial].start()
+        for udid in ios_devices() if cfg["include_ios"] else []:
+            if udid not in workers or not workers[udid].is_alive():
+                workers[udid] = IosWorker(udid, cfg, db)
+                workers[udid].start()
         write_report(db)
         if time.time() - last_prune > 86400:
             prune_runs(cfg["keep_days"])
             last_prune = time.time()
         stop_event.wait(30)
 
-    for serial in workers:
-        disable_mock_location(serial)
+    for serial, worker in workers.items():
+        if isinstance(worker, IosWorker):
+            worker.stop_processes()
+        else:
+            disable_mock_location(serial)
     write_report(db)
 
 
