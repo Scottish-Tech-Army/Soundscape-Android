@@ -28,13 +28,23 @@ python3 test-farm/farm.py        # Ctrl-C to stop; removes the mock GPS provider
 
 - **Analytics:** the farm sets `settings put system firebase.test.lab true`, which
   makes `MainActivity` use dummy analytics, as it does in Firebase Test Lab.
-- **Location:** release builds don't have the debug `REPLAY_GPX` intent, so the
-  farm adds shell mock providers for `gps` and `network`
-  (`cmd location providers ...`) and feeds them a GPX track once a second.
-  This reaches both the fused provider (phones with Play services) and plain
-  `LocationManager` (AOSP phones). While the Maestro suite runs, the phone is
-  held at `suite_location` (CI's Edinburgh point), because the flows assert
-  distance-sorted list order.
+- **Location:** release builds don't have the debug `REPLAY_GPX` intent, so
+  the farm installs a small mock location helper (`mock-location/`, built by
+  its `build.sh` with plain SDK tools; it isn't Soundscape) and grants it the
+  mock location app-op. It feeds the helper's `gps` and `network` test
+  providers a fix once a second, with **speed and bearing**. Soundscape only
+  takes its direction from travel when a fix says the user is moving.
+  Without them (all that `cmd location providers` can set), callouts follow
+  the compass of a phone lying on a desk. This reaches both the fused provider
+  (phones with Play services) and plain `LocationManager` (AOSP phones). The
+  helper's receiver requires `android.permission.DUMP`, so only adb can feed it.
+  Tracks are thinned to points 15 m apart,
+  because a phone recording that starts with its owner standing still
+  begins with minutes of on-the-spot GPS jitter. While the Maestro suite runs, the phone is
+  held still (speed 0) at `suite_location` (CI's Edinburgh point), because
+  the flows assert distance-sorted list order.
+  iPhones can't get the same fix: `simulate-location` sets latitude and
+  longitude only. Whether iOS adds a course to simulated fixes is untested.
 - **Maestro:** `testTagsAsResourceId` is set in `Theme.kt` for every build type.
 - **Offline maps and search:** the phones' Wi-Fi can't be relied on, so the
   farm keeps the current manifest extract (`extract_name`, default Glasgow,

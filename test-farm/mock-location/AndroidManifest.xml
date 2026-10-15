@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Test-farm mock location provider. Not part of Soundscape: the farm installs
+     it next to the release build so that mock fixes can carry speed and bearing,
+     which `cmd location providers set-test-provider-location` can't set. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.scottishtecharmy.farmlocation">
+
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35" />
+
+    <application android:label="Soundscape farm location" android:hasCode="true">
+        <!-- android.permission.DUMP is held by adb's shell, not by ordinary apps,
+             so only the farm can feed this phone fake locations. -->
+        <receiver
+            android:name=".FixReceiver"
+            android:exported="true"
+            android:permission="android.permission.DUMP" />
+    </application>
+</manifest>

@@ -177,12 +177,40 @@ class Db:
 # --------------------------------------------------------------------------- adb
 
 
+children = set()  # running subprocesses, stopped when the farm stops
+children_lock = threading.Lock()
+
+
 def run(cmd, timeout=120):
+    """subprocess.run, except that the farm can stop the process when it stops.
+    A Maestro run left behind by a stopped farm keeps hold of the phone's
+    driver, and every flow after a restart then fails with gRPC UNAVAILABLE."""
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                            text=True, errors="replace")
+    with children_lock:
+        children.add(proc)
     try:
-        return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout,
-                              errors="replace")
-    except subprocess.TimeoutExpired as e:
-        return subprocess.CompletedProcess(cmd, -1, e.stdout or "", f"timeout after {timeout}s")
+        out, err = proc.communicate(timeout=timeout)
+        return subprocess.CompletedProcess(cmd, proc.returncode, out, err)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        out, _ = proc.communicate()
+        return subprocess.CompletedProcess(cmd, -1, out or "", f"timeout after {timeout}s")
+    finally:
+        with children_lock:
+            children.discard(proc)
+
+
+def stop_children():
+    with children_lock:
+        procs = list(children)
+    for proc in procs:
+        proc.terminate()
+    for proc in procs:
+        try:
+            proc.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            proc.kill()
 
 
 def adb(serial, *args, timeout=120):
@@ -318,12 +346,23 @@ def sync_extract(cfg):
 # --------------------------------------------------------------------------- location
 
 
+TRACK_MIN_STEP_M = 15
+
+
 def load_track(path):
+    """The track's points, keeping only those at least TRACK_MIN_STEP_M from the
+    last one kept. A phone recording that starts with its owner standing still
+    is minutes of GPS jitter (local-pixel.gpx: ~700 m of "path" within 15 m of
+    the start), which a constant-speed replay would otherwise walk on the spot."""
     root = ET.parse(path).getroot()
-    points = [(float(p.get("lat")), float(p.get("lon")))
-              for p in root.iter() if p.tag.split("}")[-1] in ("trkpt", "rtept")]
+    raw = [(float(p.get("lat")), float(p.get("lon")))
+           for p in root.iter() if p.tag.split("}")[-1] in ("trkpt", "rtept")]
+    points = raw[:1]
+    for p in raw[1:]:
+        if haversine(points[-1], p) >= TRACK_MIN_STEP_M:
+            points.append(p)
     if len(points) < 2:
-        raise ValueError(f"{path}: need at least 2 track points")
+        raise ValueError(f"{path}: need at least 2 track points {TRACK_MIN_STEP_M} m apart")
     return points
 
 
@@ -375,31 +414,94 @@ class LocationFeeder(threading.Thread):
         self.hold = None
         self.track = Track(gpx, fixed, speed)
 
+    def fix(self, t):
+        """(lat, lon, speed, bearing) at t seconds. Speed and bearing matter:
+        Soundscape only takes its direction from travel when a fix says the
+        user is moving, and otherwise uses the compass of a phone on a desk."""
+        if self.hold:
+            return (*self.hold, 0.0, None)
+        here, ahead = self.track.position(t), self.track.position(t + 1)
+        if here == ahead:
+            return (*here, 0.0, None)
+        return (*here, self.track.speed, initial_bearing(here, ahead))
+
     def run(self):
         start = time.time()
+        failures = 0
         while not stop_event.is_set() and self.alive.is_set():
-            lat, lon = self.hold or self.track.position(time.time() - start)
-            cmd = "; ".join(
-                f"cmd location providers set-test-provider-location {p} "
-                f"--location {lat:.7f},{lon:.7f} --accuracy 5" for p in MOCK_PROVIDERS)
-            out = shell(self.serial, cmd, timeout=10)
-            if "Exception" in out:
-                self.db.event(self.serial, "error", None, f"mock location rejected:\n{out}")
-                return
+            lat, lon, speed, bearing = self.fix(time.time() - start)
+            extras = f"--es lat {lat:.7f} --es lon {lon:.7f} --es speed {speed:.2f}"
+            if bearing is not None:
+                extras += f" --es bearing {bearing:.1f}"
+            out = shell(self.serial, f"am broadcast -n {HELPER_PKG}/.FixReceiver "
+                                     f"-a {HELPER_PKG}.FIX {extras}", timeout=10)
+            if 'data="ok"' in out:
+                failures = 0
+            else:
+                # Keep going: if the feed stops, the phone falls back to its real
+                # position mid-suite, which breaks flows in confusing ways.
+                failures += 1
+                if failures in (1, 60) or failures % 600 == 0:
+                    self.db.event(self.serial, "error", None,
+                                  f"mock location rejected ({failures} in a row):\n{out}")
+                allow_helper(self.serial)
             time.sleep(1)
 
 
+def initial_bearing(a, b):
+    lat1, lon1, lat2, lon2 = map(math.radians, (*a, *b))
+    y = math.sin(lon2 - lon1) * math.cos(lat2)
+    x = math.cos(lat1) * math.sin(lat2) - math.sin(lat1) * math.cos(lat2) * math.cos(lon2 - lon1)
+    return (math.degrees(math.atan2(y, x)) + 360) % 360
+
+
+# The mock location helper in mock-location/. `cmd location providers` can only
+# set a position, so fixes from it have no speed or bearing; the helper sets
+# both. It isn't Soundscape, so the farm still tests only release builds.
+# Deliberately not under org.scottishtecharmy.soundscape: as
+# org.scottishtecharmy.soundscape.farmlocation, Maestro's launchApp stopped
+# granting Soundscape's permissions on the AOSP Samsung (it worked again as soon
+# as the helper was uninstalled or renamed), and Onboarding failed every cycle.
+HELPER_PKG = "org.scottishtecharmy.farmlocation"
+HELPER_DIR = os.path.join(FARM_DIR, "mock-location")
+HELPER_APK = os.path.join(HELPER_DIR, "build", "farm-location.apk")
+
+
+def build_helper():
+    if not os.path.exists(HELPER_APK):
+        res = run([os.path.join(HELPER_DIR, "build.sh")], timeout=600)
+        if res.returncode != 0:
+            sys.exit("mock location helper build failed:\n" + res.stdout + res.stderr)
+
+
 def enable_mock_location(serial):
-    cmds = ["appops set com.android.shell android:mock_location allow"]
-    for p in MOCK_PROVIDERS:
-        cmds += [f"cmd location providers add-test-provider {p}",
-                 f"cmd location providers set-test-provider-enabled {p} true"]
-    return shell(serial, "; ".join(cmds))
+    # Shell test providers from older farm runs would sit beside the helper's.
+    disable_mock_location(serial, shell_providers=True)
+    out = adb(serial, "install", "-r", HELPER_APK, timeout=300)
+    if "Success" not in out.stdout + out.stderr:
+        return "helper install failed: " + out.stdout + out.stderr
+    return allow_helper(serial)
 
 
-def disable_mock_location(serial):
-    shell(serial, "; ".join(f"cmd location providers remove-test-provider {p}"
-                             for p in MOCK_PROVIDERS), timeout=20)
+def allow_helper(serial):
+    """Grants the helper the mock location app-op. Straight after a fresh
+    install the grant can be lost (seen on the AOSP Samsung), so it's read back
+    and repeated until it sticks."""
+    for _ in range(5):
+        shell(serial, f"appops set {HELPER_PKG} android:mock_location allow")
+        if "allow" in shell(serial, f"appops get {HELPER_PKG} android:mock_location"):
+            return ""
+        time.sleep(2)
+    return "failed to allow mock location for " + HELPER_PKG
+
+
+def disable_mock_location(serial, shell_providers=False):
+    if shell_providers:
+        shell(serial, "; ".join(f"cmd location providers remove-test-provider {p}"
+                                 for p in MOCK_PROVIDERS), timeout=20)
+    else:
+        shell(serial, f"am broadcast -n {HELPER_PKG}/.FixReceiver -a {HELPER_PKG}.STOP",
+              timeout=20)
 
 
 # --------------------------------------------------------------------------- crashes
@@ -470,7 +572,7 @@ class Worker(threading.Thread):
         adb(s, "logcat", "-G", "16M")
         self.quieten()
         out = enable_mock_location(s)
-        if "Exception" in out:
+        if "Exception" in out or "failed" in out:
             self.db.event(s, "error", None, f"could not enable mock location:\n{out}")
         else:
             gpx = self.dev_cfg.get("gpx", self.cfg["default_gpx"])
@@ -602,14 +704,20 @@ class Worker(threading.Thread):
             else:
                 res = run(cmd, timeout=timeout)
             output = res.stdout + res.stderr
-            try:
-                with open(report) as f:
-                    output += f.read()
-            except OSError:
-                pass
+            # The driver errors that decide a retry only reach the debug log.
+            for extra in (report, os.path.join(out_dir, "debug", "maestro.log")):
+                try:
+                    with open(extra, errors="replace") as f:
+                        output += f.read()
+                except OSError:
+                    pass
             if res.returncode == 0 or not MAESTRO_RETRY_RE.search(output) or attempt:
                 break
             log(self.serial, f"{name}: transient launch failure, retrying once")
+            if "gRPC" in output:
+                # Maestro's on-device driver is unreachable (seen after a phone
+                # sat on its lock screen); a fresh install brings it back.
+                cmd = cmd[:2] + ["--reinstall-driver"] + cmd[2:]
         with open(os.path.join(out_dir, "maestro.log"), "w") as f:
             f.write(res.stdout + res.stderr)
         status = "pass" if res.returncode == 0 else "fail"
@@ -650,6 +758,15 @@ class Worker(threading.Thread):
             return
         stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
         cycle_dir = os.path.join(RUNS_DIR, s, stamp)
+
+        if "isKeyguardShowing=true" in shell(s, "dumpsys window | grep isKeyguardShowing"):
+            shell(s, "input keyevent KEYCODE_WAKEUP; wm dismiss-keyguard")
+            if "isKeyguardShowing=true" in shell(s, "dumpsys window | grep isKeyguardShowing"):
+                # A PIN or pattern: Maestro can't get past it, and every flow
+                # fails in under a second with the driver unreachable.
+                set_state(s, "locked: set Screen lock to None on this phone")
+                stop_event.wait(300)
+                return
 
         version = self.ensure_version(cycle_dir)
         if version is None:
@@ -799,10 +916,11 @@ class IosWorker(threading.Thread):
 
     def keep_processes_running(self):
         if self.player is None or self.player.poll() is not None:
-            self.player = subprocess.Popen(
-                [PMD3, "developer", "dvt", "simulate-location", "play", "--userspace",
-                 "--udid", self.udid, self.write_walk()],
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            with open(os.path.join(self.dir, "player.log"), "w") as out:
+                self.player = subprocess.Popen(
+                    [PMD3, "developer", "dvt", "simulate-location", "play", "--userspace",
+                     "--udid", self.udid, self.write_walk()],
+                    stdin=subprocess.DEVNULL, stdout=out, stderr=subprocess.STDOUT)
         day = dt.date.today().strftime("%Y%m%d")
         if self.syslog_day != day or self.syslog is None or self.syslog.poll() is not None:
             if self.syslog and self.syslog.poll() is None:
@@ -1026,6 +1144,7 @@ def main():
     signal.signal(signal.SIGINT, handle_signal)
     signal.signal(signal.SIGTERM, handle_signal)
 
+    build_helper()
     os.makedirs(EXTRACT_DIR, exist_ok=True)
     sync_extract(cfg)  # before any phone starts, so the first cycle has it
     threading.Thread(target=release_watcher, args=(cfg, db), daemon=True).start()
@@ -1046,6 +1165,7 @@ def main():
             last_prune = time.time()
         stop_event.wait(30)
 
+    stop_children()
     for serial, worker in workers.items():
         if isinstance(worker, IosWorker):
             worker.stop_processes()
