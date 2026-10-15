@@ -1,0 +1,8 @@
+farm.toml
+farm.db
+report.html
+report.html.tmp
+apks/
+runs/
+__pycache__/
+farm.log
