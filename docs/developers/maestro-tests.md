@@ -103,8 +103,8 @@ flows, so they must run in this order:
 | 2 | `HomePage.yaml` | Exercises the home screen controls (My Location, Around Me, Ahead of Me, menu, sleep). |
 | 3 | `LocationDetails.yaml` | Creates markers **A** and **B** that later flows rely on. |
 | 4 | `PlacesNearby.yaml` | Scrolls and opens entries in the Places Nearby list. |
-| 5 | `Markers.yaml` | Sorting, editing marker **A**, and creating marker **C** with the New button. |
-| 6 | `RouteCreation.yaml` | Builds a route from markers **A** and **B**. |
+| 5 | `Markers.yaml` | Sorting, editing marker **A**, and creating marker **C** at the current location with the New button. A was saved there too, and markers at the same coordinates merge, so C replaces A. |
+| 6 | `RouteCreation.yaml` | Builds a route from markers **B** and **C**. |
 | 7 | `FullScreenMap.yaml` | Toggles the full-screen map on the home screen. |
 
 `Onboarding.yaml` is the only flow that uses `launchApp: clearState: true`;
@@ -426,3 +426,18 @@ always run; a final step re-raises the failure to mark the workflow red.
 
 When you add a new flow, add its name (without the `.yaml` extension) to the
 `for flow in …` list in the correct position so CI runs it.
+
+## On physical phones: the test farm
+
+The same flows also run continuously on physical phones against **release
+builds** in the [test farm]({% link developers/test-farm.md %}). The farm runs
+them in `maestro/Master.yaml` order. It holds the phone at the same Edinburgh
+point CI uses, and adds two flows of its own from `test-farm/flows/`:
+`OfflineSearch.yaml` after Onboarding, and `PostUpgrade.yaml` after each release
+upgrade. Two things matter when changing flows:
+
+- A flow that only passes on an emulator (for example, by relying on `adb root`
+  or a debug-only screen) will fail there.
+- Changing what the suite leaves behind (markers **B** and **C** and
+  **Test Route**) needs a matching change to `test-farm/flows/PostUpgrade.yaml`,
+  which checks they survive an upgrade.
