@@ -50,6 +50,36 @@ jobs:
       - name: Run lint over the repo
         run: ./gradlew lint
 
+  # The test farm (test-farm/) runs on phones at home, not here, so this only
+  # checks what can break without a device: farm.py compiles, its flows' paths
+  # into maestro/ resolve, the settings it shares with run-maestro-tests.yaml
+  # still agree, and its adb-output parsers work (test-farm/test_farm.py). It
+  # also builds the mock location helper. The runner image already has the
+  # Python (3.11+ for tomllib), JDK and Android SDK these need.
+  test-farm:
+    name: Check test farm
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Compile farm scripts
+        run: python3 -m py_compile test-farm/farm.py test-farm/usb_proxy.py
+
+      - name: Unit-test farm.py
+        run: python3 -m unittest discover -s test-farm -v
+
+      # build.sh signs with ~/.android/debug.keystore, which a fresh runner lacks.
+      - name: Build mock location helper
+        run: |
+          if [ ! -f ~/.android/debug.keystore ]; then
+            mkdir -p ~/.android
+            keytool -genkeypair -keystore ~/.android/debug.keystore -storepass android -keypass android \
+              -alias androiddebugkey -keyalg RSA -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          fi
+          test-farm/mock-location/build.sh
+
   # The unit tests and the instrumentation tests are independent of each other,
   # so they run as separate parallel jobs rather than one long serial job. Both
   # need the offline map fixtures (the unit tests read them out of the test
