@@ -125,13 +125,19 @@ fun LocationItem(
                     decoration.index != -1 ->
                         "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
 
-                    else -> item.description?.takeIf { it.startsWith(item.name) }
-                        ?: listOfNotNull(
-                            item.name,
+                    else -> {
+                        // A road or address description already starts with the name, so it
+                        // replaces the name rather than repeating it. The type and distance
+                        // are still read out.
+                        val description = item.description ?: item.street
+                        val namedDescription = description?.takeIf { it.startsWith(item.name) }
+                        listOfNotNull(
+                            namedDescription ?: item.name,
                             item.typeDescription?.additionalText,
-                            item.description ?: item.street,
+                            description.takeIf { namedDescription == null },
                             distanceStringA11y
                         ).joinToString(", ")
+                    }
                 }
 
                 if (decoration.editRoute.enabled) {
