@@ -59,8 +59,8 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
         targetSdk = 37
-        versionCode = 1082
-        versionName = "2.0.82"
+        versionCode = 1083
+        versionName = "2.0.83"
 
 
         // Retrieve the tile provider URL and API key from local.properties. This is not under
