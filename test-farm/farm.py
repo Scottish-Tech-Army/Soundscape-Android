@@ -18,6 +18,7 @@ Results go into farm.db and report.html next to this script. See README.md.
 """
 
 import argparse
+import bisect
 import contextlib
 import datetime as dt
 import glob
@@ -88,7 +89,9 @@ DEFAULTS = {
     # local.properties' extractProviderUrl unless set here.
     "extract_name": "Glasgow",
     "extract_provider_url": "",
-    "default_gpx": "",
+    # A day out on foot, by bus and by train around central Glasgow, made by
+    # app/src/test/.../FarmTrackGenerator.kt and replayed by its timestamps.
+    "default_gpx": os.path.join(FARM_DIR, "tracks", "glasgow-multimodal.gpx"),
     "devices": {},
 }
 
@@ -372,6 +375,29 @@ def sync_extract(cfg):
 
 
 TRACK_MIN_STEP_M = 15
+# FarmTrackGenerator marks its tracks with this keyword, to be replayed by their
+# timestamps. Real recordings have timestamps too, but they start with minutes
+# of a phone standing still, so those are replayed at a constant speed.
+TIMED_TRACK_KEYWORD = "farm-timed-replay"
+
+
+def load_timed_track(path):
+    """(times, points) of a track marked for timed replay, with times in
+    seconds from its first point, or None for any other track."""
+    root = ET.parse(path).getroot()
+    if not any(e.tag.split("}")[-1] == "keywords" and TIMED_TRACK_KEYWORD in (e.text or "")
+               for e in root.iter()):
+        return None
+    times, points = [], []
+    for p in root.iter():
+        if p.tag.split("}")[-1] != "trkpt":
+            continue
+        stamp = next(c.text for c in p if c.tag.split("}")[-1] == "time")
+        times.append(dt.datetime.fromisoformat(stamp.replace("Z", "+00:00")).timestamp())
+        points.append((float(p.get("lat")), float(p.get("lon"))))
+    if len(points) < 2:
+        raise ValueError(f"{path}: need at least 2 track points")
+    return [t - times[0] for t in times], points
 
 
 def load_track(path):
@@ -400,19 +426,35 @@ def haversine(a, b):
 
 class Track:
     """Walks a GPX track at a constant speed, turning round at each end rather
-    than jumping back to the start. With no track, holds one fixed point."""
+    than jumping back to the start. With no track, holds one fixed point.
+
+    A track marked for timed replay (see load_timed_track) is played by its
+    timestamps instead, stops and all, and then played backwards."""
 
     def __init__(self, gpx, fixed, speed):
         self.speed = speed
+        timed = load_timed_track(gpx) if gpx else None
+        self.times = timed[0] if timed else None
+        if timed:
+            self.points = timed[1]
+            return
         self.points = load_track(gpx) if gpx else [tuple(fixed), tuple(fixed)]
         self.cumulative = [0.0]
         for a, b in zip(self.points, self.points[1:]):
             self.cumulative.append(self.cumulative[-1] + haversine(a, b))
 
     def round_trip_seconds(self):
+        if self.times:
+            return max(60, int(2 * self.times[-1]))
         return max(60, int(2 * self.cumulative[-1] / self.speed))
 
+    def speed_between(self, here, ahead):
+        """Speed while moving from `here` to `ahead`, a second later."""
+        return haversine(here, ahead) if self.times else self.speed
+
     def position(self, t):
+        if self.times:
+            return self.timed_position(t)
         total = self.cumulative[-1]
         if total == 0:
             return self.points[0]
@@ -425,6 +467,19 @@ class Track:
         seg = self.cumulative[i + 1] - self.cumulative[i]
         f = (d - self.cumulative[i]) / seg if seg else 0
         (la, lo), (lb, lob) = self.points[i], self.points[i + 1]
+        return la + (lb - la) * f, lo + (lob - lo) * f
+
+    def timed_position(self, t):
+        total = self.times[-1]
+        t %= 2 * total
+        if t > total:
+            t = 2 * total - t
+        i = min(bisect.bisect_right(self.times, t) - 1, len(self.points) - 2)
+        seg = self.times[i + 1] - self.times[i]
+        f = (t - self.times[i]) / seg if seg else 0
+        (la, lo), (lb, lob) = self.points[i], self.points[i + 1]
+        if (la, lo) == (lb, lob):
+            return la, lo
         return la + (lb - la) * f, lo + (lob - lo) * f
 
 
@@ -448,7 +503,7 @@ class LocationFeeder(threading.Thread):
         here, ahead = self.track.position(t), self.track.position(t + 1)
         if here == ahead:
             return (*here, 0.0, None)
-        return (*here, self.track.speed, initial_bearing(here, ahead))
+        return (*here, self.track.speed_between(here, ahead), initial_bearing(here, ahead))
 
     def run(self):
         start = time.time()

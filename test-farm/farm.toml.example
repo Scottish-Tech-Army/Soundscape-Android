@@ -26,11 +26,13 @@ include_ios = true            # observe USB iPhones via pymobiledevice3 (see REA
 ios_poll_minutes = 10
 max_battery_temp_c = 42       # pause the phone for 10 minutes above this
 
-# Mock location: walk this GPX track at a constant speed, turning round at each
-# end. With no track, hold default_location (lat, lon).
+# Mock location: follow this GPX track, turning round at each end. The default
+# is the synthetic walk/bus/train track, replayed by its timestamps (see the
+# README). Any other track, such as a real recording, is walked at
+# replay_speed_mps. With default_gpx = "", hold default_location (lat, lon).
 replay_speed_mps = 1.4
 default_location = [55.9474, -4.3058]
-default_gpx = "../local-pixel.gpx"   # (the default is no track)
+default_gpx = "tracks/glasgow-multimodal.gpx"
 # Held while the Maestro suite runs; the flows assert distance order.
 suite_location = [55.955360, -3.223538]
 

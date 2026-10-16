@@ -212,5 +212,58 @@ class TrackTest(unittest.TestCase):
             self.assertEqual(track.position(t), self.START)
 
 
+class TimedTrackTest(unittest.TestCase):
+    START = (55.8642, -4.2518)
+
+    def write_gpx(self, points, keyword=farm.TIMED_TRACK_KEYWORD):
+        f = tempfile.NamedTemporaryFile("w", suffix=".gpx", delete=False)
+        self.addCleanup(os.unlink, f.name)
+        pts = "".join(f'<trkpt lat="{lat}" lon="{lon}"><time>2026-01-01T09:00:{s:02d}Z</time></trkpt>'
+                      for s, (lat, lon) in points)
+        f.write('<gpx xmlns="http://www.topografix.com/GPX/1/1">'
+                f"<metadata><keywords>{keyword}</keywords></metadata>"
+                f"<trk><trkseg>{pts}</trkseg></trk></gpx>")
+        f.close()
+        return f.name
+
+    def north(self, metres):
+        return self.START[0] + metres / 111_195, self.START[1]
+
+    def track(self):
+        # Stands still for 10 s, then moves 100 m north in 10 s.
+        gpx = self.write_gpx([(0, self.START), (10, self.START), (20, self.north(100))])
+        return farm.Track(gpx, None, speed=1.4)
+
+    def test_stands_still_then_moves(self):
+        track = self.track()
+        self.assertEqual(track.position(3), self.START)
+        self.assertEqual(track.position(3), track.position(4))
+        self.assertAlmostEqual(track.position(15)[0], self.north(50)[0], places=7)
+        here, ahead = track.position(12), track.position(13)
+        self.assertAlmostEqual(track.speed_between(here, ahead), 10, delta=0.1)
+
+    def test_plays_backwards_after_the_end(self):
+        track = self.track()
+        self.assertAlmostEqual(track.position(20)[0], self.north(100)[0], places=7)
+        self.assertAlmostEqual(track.position(25)[0], self.north(50)[0], places=7)
+        self.assertEqual(track.position(35), self.START)
+        self.assertEqual(track.round_trip_seconds(), 60)
+
+    def test_unmarked_recording_keeps_constant_speed(self):
+        gpx = self.write_gpx([(0, self.START), (10, self.north(50)), (20, self.north(100))], keyword="")
+        track = farm.Track(gpx, None, speed=2.0)
+        self.assertIsNone(track.times)
+        self.assertEqual(track.speed_between(track.position(0), track.position(1)), 2.0)
+
+    def test_committed_track(self):
+        # The default track exists, replays by time, and never jumps further in
+        # a second than a train travels.
+        track = farm.Track(farm.DEFAULTS["default_gpx"], None, speed=1.4)
+        self.assertIsNotNone(track.times)
+        self.assertGreater(track.times[-1], 3600)
+        steps = [farm.haversine(a, b) for a, b in zip(track.points, track.points[1:])]
+        self.assertLess(max(steps), 30)
+
+
 if __name__ == "__main__":
     unittest.main()

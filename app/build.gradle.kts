@@ -514,6 +514,15 @@ tasks.withType<Test>().configureEach {
         "--add-opens=java.base/java.io=ALL-UNNAMED",
     )
 
+    // FarmTrackGenerator only runs when -PfarmTrack names the GPX to write (relative to the repo).
+    (project.findProperty("farmTrack") as String?)?.let {
+        systemProperty("farmTrack", rootProject.file(it).absolutePath)
+        outputs.upToDateWhen { false }
+    }
+    for (property in listOf("farmTrackSeed", "farmTrackJourneys")) {
+        (project.findProperty(property) as String?)?.let { systemProperty(property, it) }
+    }
+
     // Matches the AGP-generated testDebugUnitTest/testReleaseUnitTest/testReleaseTestUnitTest
     // tasks, but not nightlyUnitTest below (that one includes the category instead).
     if (name.startsWith("test") && name.endsWith("UnitTest")) {
