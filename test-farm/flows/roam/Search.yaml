@@ -1,0 +1,82 @@
+appId: org.scottishtecharmy.soundscape
+# Roaming flow: an offline search for a random common word, then a beacon on
+# the first result for half a minute. Search mode was set to Offline when the
+# farm set the phone up, so this searches the pushed extract.
+---
+- runFlow: ../LaunchHome.yaml
+
+- evalScript: |
+    ${
+      const words = ['Station', 'Park', 'Church', 'School', 'Road', 'Library', 'Bank', 'Cafe'];
+      output.searchWord = words[Math.floor(Math.random() * words.length)];
+    }
+- tapOn:
+    id: mainSearchBarCollapsed
+# The search field takes focus as it opens.
+- inputText: ${output.searchWord}
+- pressKey: Enter
+# Offline search takes a few seconds, longer on slow phones.
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 15000
+# Releases before searchResult-* (the results are in a Dialog, whose testTags
+# weren't exposed) need the result found by its text: by a distance in its
+# accessibility text, or failing that by the searched word. A road's text is
+# just its address, with no distance. Index 1 skips the search field, which
+# holds the word too.
+- evalScript: ${output.tapped = false}
+- runFlow:
+    when:
+      visible:
+        id: searchResult-0
+    commands:
+      - evalScript: ${output.tapped = true}
+      - tapOn:
+          id: searchResult-0
+- runFlow:
+    when:
+      true: ${!output.tapped}
+      visible:
+        text: "(?s).*(metres|km|kilometres|miles|feet).*"
+    commands:
+      - evalScript: ${output.tapped = true}
+      - tapOn:
+          text: "(?s).*(metres|km|kilometres|miles|feet).*"
+          index: 0
+- runFlow:
+    when:
+      true: ${!output.tapped}
+      visible:
+        text: "(?s).*${output.searchWord}.*"
+        index: 1
+    commands:
+      - evalScript: ${output.tapped = true}
+      - tapOn:
+          text: "(?s).*${output.searchWord}.*"
+          index: 1
+# Nothing called that nearby: the search still ran, so that's not a failure.
+- runFlow:
+    when:
+      true: ${!output.tapped}
+    commands:
+      - back
+- runFlow:
+    when:
+      true: ${output.tapped}
+    commands:
+      - runFlow:
+          file: ../../../maestro/WaitForScreen.yaml
+          env:
+            screen: LocationDetails
+      - tapOn:
+          id: locationDetailsStartBeacon
+      - runFlow:
+          file: ../../../maestro/WaitForScreen.yaml
+          env:
+            screen: Home
+      - runFlow:
+          file: ../../../maestro/Wait.yaml
+          env:
+            timeout: 30000
+      - runFlow: ../StopBeacon.yaml

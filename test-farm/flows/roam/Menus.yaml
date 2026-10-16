@@ -1,0 +1,83 @@
+appId: org.scottishtecharmy.soundscape
+# Roaming flow: looks around the menu's screens without changing anything
+# (help topics, offline maps, settings, about) and puts the app to sleep and
+# wakes it again. Uses testTags only, so it doesn't depend on the language.
+---
+- runFlow: ../LaunchHome.yaml
+
+# Help: open three topics.
+- tapOn:
+    id: topBarMenu
+- tapOn:
+    id: menuHelpAndTutorials
+- tapOn:
+    id: "helpScreenTopic.*"
+    index: 0
+- back
+- tapOn:
+    id: "helpScreenTopic.*"
+    index: 2
+- back
+- tapOn:
+    id: "helpScreenTopic.*"
+    index: 4
+- back
+- back
+
+# Offline maps: the list of extracts covering the current location.
+- tapOn:
+    id: topBarMenu
+- tapOn:
+    id: menuOfflineMaps
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 5000
+- back
+
+# Settings: scroll to the bottom and back out without touching anything.
+- tapOn:
+    id: topBarMenu
+- tapOn:
+    id: menuSettings
+# Settings has no testTags (WaitForScreen's Settings anchor no longer exists).
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 3000
+- repeat:
+    times: 4
+    commands:
+      - swipe:
+          start: 50%, 80%
+          end: 50%, 30%
+- back
+
+- tapOn:
+    id: topBarMenu
+- runFlow:
+    file: ../../../maestro/SwipeAndTap.yaml
+    env:
+      id: menuAboutSoundscape
+- back
+# Some screens come back to the open menu drawer rather than Home.
+- tapOn:
+    id: menuDrawerBack
+    optional: true
+
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home
+- tapOn:
+    id: topBarSleep
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 30000
+- tapOn:
+    id: sleepWakeUpNow
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home

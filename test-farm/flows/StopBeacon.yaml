@@ -1,0 +1,17 @@
+appId: org.scottishtecharmy.soundscape
+# Stops the audio beacon if one is still playing. A beacon on a nearby place
+# ends by itself when the walk reaches it, so there may be nothing to stop.
+# The beacon card can sit below the fold, so look further down the home
+# screen before deciding it has gone.
+---
+- runFlow:
+    when:
+      notVisible:
+        id: routeStop
+    commands:
+      - swipe:
+          start: 50%, 70%
+          end: 50%, 40%
+- tapOn:
+    id: routeStop
+    optional: true

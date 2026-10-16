@@ -1,0 +1,42 @@
+appId: org.scottishtecharmy.soundscape
+# Roaming flow: flips the Markers list's sort order and opens each of the
+# suite's markers (B and C) as the walk moves away from them. Changes nothing.
+---
+- runFlow: ../LaunchHome.yaml
+
+- runFlow:
+    file: ../../../maestro/SwipeAndTap.yaml
+    env:
+      id: homeMarkers
+- tapOn:
+    id: SortOption
+- tapOn:
+    id: SortOption
+
+- tapOn:
+    id: "LocationItem-B-.*"
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: LocationDetails
+- back
+- tapOn:
+    id: "LocationItem-C-.*"
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: LocationDetails
+- runFlow:
+    when:
+      true: ${SHOW_MAP !== 'false'}
+    commands:
+      - tapOn:
+          id: locationDetailsFullScreenMapFab
+      - runFlow:
+          file: ../../../maestro/Wait.yaml
+          env:
+            timeout: 5000
+      - tapOn:
+          id: locationDetailsFullScreenMapFab
+- back
+- back

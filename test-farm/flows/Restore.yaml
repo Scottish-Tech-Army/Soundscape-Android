@@ -1,0 +1,125 @@
+appId: org.scottishtecharmy.soundscape
+# Run by the test farm after the monkey soak, held at suite_location, without
+# restarting the app. Puts back what the roaming flows and the next upgrade's
+# PostUpgrade.yaml rely on and the monkey may have changed:
+# - search mode Offline (FarmSettings.yaml);
+# - markers B and C and "Test Route" (B -> C), recreated the way the suite
+#   made them if they've gone;
+# - the map as the farm wants it for roaming (SHOW_MAP, the phone's show_map).
+# Fails if they can't be restored, and the farm then sets the phone up again.
+#
+# Recreating is idempotent: B is saved from the nearest place and C at the
+# held location, the same spots the suite used, and saving a marker where one
+# already is (say one the monkey renamed) updates that marker.
+---
+- runFlow: FarmSettings.yaml
+# The markers are made with the map off, as in the suite: on a small screen
+# the map pushes controls under the bottom bar.
+- runFlow:
+    file: ShowMap.yaml
+    env:
+      SHOW: "false"
+
+# Marker B: the first place nearby.
+- runFlow:
+    file: ../../maestro/SwipeAndTap.yaml
+    env:
+      id: homeMarkers
+- evalScript: ${output.haveB = false}
+- runFlow:
+    when:
+      visible:
+        id: "LocationItem-B-.*"
+    commands:
+      - evalScript: ${output.haveB = true}
+- runFlow: LaunchHome.yaml
+- runFlow:
+    when:
+      true: ${!output.haveB}
+    commands:
+      - runFlow:
+          file: ../../maestro/SwipeAndTap.yaml
+          env:
+            id: homePlacesNearby
+            direction: down
+      - tapOn:
+          id: placesNearby-0
+      - tapOn:
+          id: placesNearby-0
+      - tapOn:
+          id: locationDetailsSaveAsMarker
+          optional: true
+      - tapOn:
+          id: locationDetailsEditMarker
+          optional: true
+      - tapOn:
+          id: name-clearTextField
+          optional: true
+      - tapOn:
+          id: markerName
+      - inputText: "B"
+      - tapOn:
+          id: flexibleAppBarRight
+      - runFlow: LaunchHome.yaml
+
+# Marker C: the current (held) location, from the Markers screen's New button.
+- runFlow:
+    file: ../../maestro/SwipeAndTap.yaml
+    env:
+      id: homeMarkers
+- runFlow:
+    when:
+      notVisible:
+        id: "LocationItem-C-.*"
+    commands:
+      - tapOn:
+          id: appBarRight
+      - tapOn:
+          id: addMarkerCurrentLocation
+      - tapOn:
+          id: name-clearTextField
+          optional: true
+      - tapOn:
+          id: markerName
+      - inputText: "C"
+      - tapOn:
+          id: flexibleAppBarRight
+- assertVisible:
+    id: "LocationItem-B-.*"
+- assertVisible:
+    id: "LocationItem-C-.*"
+- runFlow: LaunchHome.yaml
+
+# The route, B then C.
+- runFlow:
+    file: ../../maestro/SwipeAndTap.yaml
+    env:
+      id: homeRoutes
+- runFlow:
+    when:
+      notVisible:
+        text: "Test Route.*"
+    commands:
+      - tapOn:
+          id: appBarRight
+      - tapOn:
+          id: routeName
+      - inputText: "Test Route"
+      - pressKey: Enter
+      - tapOn:
+          id: addWaypointsButton
+      - tapOn:
+          id: "LocationItem-B-.*"
+      - tapOn:
+          id: "LocationItem-C-.*"
+      - tapOn:
+          id: flexibleAppBarRight
+      - tapOn:
+          id: flexibleAppBarRight
+- assertVisible:
+    text: "Test Route.*"
+
+- runFlow:
+    file: ShowMap.yaml
+    env:
+      SHOW: ${SHOW_MAP}

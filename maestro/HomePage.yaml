@@ -36,8 +36,11 @@ appId: org.scottishtecharmy.soundscape
     id: sleepWakeUpNow
 - tapOn:
     id: topBarMenu
-- tapOn:
-    id: menuAboutSoundscape
+# Below the bottom of the drawer on small screens (480x854).
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: menuAboutSoundscape
 - tapOn:
     id: appBarLeft
 - tapOn:
