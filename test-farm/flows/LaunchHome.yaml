@@ -1,0 +1,47 @@
+appId: org.scottishtecharmy.soundscape
+# Brings the app to the front and gets it back to Home, dismissing the release
+# notes dialog if it shows. It appears on the first launch of a new release
+# and can turn up after Onboarding; while it's up, Home's anchor isn't visible
+# to Maestro.
+#
+# The app isn't restarted (stopApp: false), so one process runs through all
+# the roam rounds and soaks for hours. The previous flow may have left it on
+# any screen, or with the search or a dialog open, so it backs out to Home.
+#
+# Releases before the dialog's testTags were exposed (a dialog is its own
+# window, outside the theme's testTagsAsResourceId) need its English button
+# text.
+---
+- launchApp:
+    clearState: false
+    stopApp: false
+- runFlow:
+    file: ../../maestro/Wait.yaml
+    env:
+      timeout: 3000
+- tapOn:
+    id: newReleaseDialogDismiss
+    optional: true
+- tapOn:
+    text: "Close Release Notes"
+    optional: true
+- repeat:
+    while:
+      notVisible:
+        id: mainSearchBarCollapsed
+    times: 6
+    commands:
+      - back
+      - runFlow:
+          file: ../../maestro/Wait.yaml
+          env:
+            timeout: 1000
+# Backing out of Home closes the activity (the process and service keep
+# running), so bring it back if that happened.
+- launchApp:
+    clearState: false
+    stopApp: false
+- runFlow:
+    file: ../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home

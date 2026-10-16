@@ -10,6 +10,7 @@ poll_minutes = 15
 
 monkey_events = 5000          # several minutes; not every event waits the throttle
 monkey_throttle_ms = 250
+roam_rounds = 2               # rounds of flows/roam/ (shuffled) per cycle
 flow_timeout_minutes = 15
 keep_days = 14                # per-cycle logs/screenshots under runs/
 
@@ -43,3 +44,4 @@ extract_name = "Glasgow"
 # [devices."R5CW12345AB"]
 # gpx = "../local-cubot.gpx"
 # skip = true
+# show_map = false   # keep the map off (low-memory phones); default true

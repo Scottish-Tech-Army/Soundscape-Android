@@ -26,6 +26,7 @@ import json
 import html
 import math
 import os
+import random
 import re
 import signal
 import sqlite3
@@ -36,13 +37,19 @@ import time
 import tomllib
 import xml.etree.ElementTree as ET
 
+import usb_proxy
+
 FARM_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_DIR = os.path.dirname(FARM_DIR)
 MAESTRO_DIR = os.path.join(REPO_DIR, "maestro")
 POST_UPGRADE_FLOW = os.path.join(FARM_DIR, "flows", "PostUpgrade.yaml")
 APK_DIR = os.path.join(FARM_DIR, "apks")
 EXTRACT_DIR = os.path.join(FARM_DIR, "extracts")
-OFFLINE_SEARCH_FLOW = os.path.join(FARM_DIR, "flows", "OfflineSearch.yaml")
+FARM_SETTINGS_FLOW = os.path.join(FARM_DIR, "flows", "FarmSettings.yaml")
+DOWNLOAD_EXTRACT_FLOW = os.path.join(FARM_DIR, "flows", "DownloadExtract.yaml")
+SHOW_MAP_FLOW = os.path.join(FARM_DIR, "flows", "ShowMap.yaml")
+RESTORE_FLOW = os.path.join(FARM_DIR, "flows", "Restore.yaml")
+ROAM_DIR = os.path.join(FARM_DIR, "flows", "roam")
 RUNS_DIR = os.path.join(FARM_DIR, "runs")
 DB_PATH = os.path.join(FARM_DIR, "farm.db")
 REPORT_PATH = os.path.join(FARM_DIR, "report.html")
@@ -59,6 +66,8 @@ DEFAULTS = {
     "release_artifact": "release-apk",
     "poll_minutes": 15,
     "monkey_events": 5000,
+    # Rounds of the roaming flows (flows/roam/, shuffled each round) per cycle.
+    "roam_rounds": 2,
     "monkey_throttle_ms": 250,
     "flow_timeout_minutes": 15,
     "keep_days": 14,
@@ -150,10 +159,20 @@ class Db:
                 kind TEXT, name TEXT, status TEXT, duration_s REAL, detail TEXT, dir TEXT);
             CREATE TABLE IF NOT EXISTS installs(
                 serial TEXT PRIMARY KEY, last_update TEXT);
+            CREATE TABLE IF NOT EXISTS setups(
+                serial TEXT PRIMARY KEY, version_code INTEGER);
             CREATE TABLE IF NOT EXISTS events(
                 id INTEGER PRIMARY KEY, serial TEXT, ts REAL, kind TEXT,
                 version_code INTEGER, detail TEXT);
         """)
+        try:  # added after the table: whether the set-up suite all passed
+            self.conn.execute("ALTER TABLE setups ADD COLUMN complete INTEGER DEFAULT 1")
+        except sqlite3.OperationalError:
+            pass
+        try:  # added after the table: how long the app process had been running
+            self.conn.execute("ALTER TABLE cycles ADD COLUMN app_uptime_s INTEGER")
+        except sqlite3.OperationalError:
+            pass
 
     def execute(self, sql, args=()):
         with self.lock:
@@ -181,7 +200,7 @@ children = set()  # running subprocesses, stopped when the farm stops
 children_lock = threading.Lock()
 
 
-def run(cmd, timeout=120):
+def run(cmd, timeout=120, env=None):
     """subprocess.run, except that the farm can stop the process when it stops.
     A Maestro run left behind by a stopped farm keeps hold of the phone's
     driver, and every flow after a restart then fails with gRPC UNAVAILABLE."""
@@ -191,7 +210,8 @@ def run(cmd, timeout=120):
         if stop_event.is_set():
             return subprocess.CompletedProcess(cmd, -1, "", "farm stopping")
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                text=True, errors="replace")
+                                text=True, errors="replace",
+                                env={**os.environ, **env} if env else None)
         children.add(proc)
     try:
         out, err = proc.communicate(timeout=timeout)
@@ -334,9 +354,10 @@ def sync_extract(cfg):
     if not os.path.exists(path):
         log(None, f"downloading offline map {filename}")
         part = path + ".part"
-        dl = run(["curl", "-sfL", "-o", part, f"{base.rstrip('/')}/{filename}"], timeout=3600)
+        dl = run(["curl", "-sSfL", "-o", part, f"{base.rstrip('/')}/{filename}"], timeout=3600)
         if dl.returncode != 0:
-            log(None, f"offline map download failed: {dl.stderr.strip()}")
+            log(None, f"offline map download failed (exit {dl.returncode}): {dl.stderr.strip()}; "
+                      "retrying at the next release poll")
             return
         os.replace(part, path)
         with open(path + ".geojson", "w") as f:
@@ -437,7 +458,7 @@ class LocationFeeder(threading.Thread):
             extras = f"--es lat {lat:.7f} --es lon {lon:.7f} --es speed {speed:.2f}"
             if bearing is not None:
                 extras += f" --es bearing {bearing:.1f}"
-            out = shell(self.serial, f"am broadcast -n {HELPER_PKG}/.FixReceiver "
+            out = shell(self.serial, f"am broadcast -f 0x10000000 -n {HELPER_PKG}/.FixReceiver "
                                      f"-a {HELPER_PKG}.FIX {extras}", timeout=10)
             if 'data="ok"' in out:
                 failures = 0
@@ -459,6 +480,10 @@ def initial_bearing(a, b):
     return (math.degrees(math.atan2(y, x)) + 360) % 360
 
 
+# Broadcasts to the helper go on the foreground queue (-f 0x10000000,
+# FLAG_RECEIVER_FOREGROUND): on the Android 11 A50 the background queue backed
+# up behind other apps' broadcasts and a fix took over 15 s to land.
+#
 # The mock location helper in mock-location/. `cmd location providers` can only
 # set a position, so fixes from it have no speed or bearing; the helper sets
 # both. It isn't Soundscape, so the farm still tests only release builds.
@@ -504,7 +529,7 @@ def disable_mock_location(serial, shell_providers=False):
         shell(serial, "; ".join(f"cmd location providers remove-test-provider {p}"
                                  for p in MOCK_PROVIDERS), timeout=20)
     else:
-        shell(serial, f"am broadcast -n {HELPER_PKG}/.FixReceiver -a {HELPER_PKG}.STOP",
+        shell(serial, f"am broadcast -f 0x10000000 -n {HELPER_PKG}/.FixReceiver -a {HELPER_PKG}.STOP",
               timeout=20)
 
 
@@ -536,6 +561,27 @@ def pss_kb(serial):
     return int(m.group(1)) if m else None
 
 
+def app_uptime_s(serial):
+    """Seconds the app's main process has been running, or None if it isn't."""
+    pid = shell(serial, f"pidof {PACKAGE}").split()
+    if not pid:
+        return None
+    # ps prints ELAPSED as [[dd-]hh:]mm:ss.
+    out = shell(serial, f"ps -o ETIME= -p {pid[0]}").strip()
+    m = re.fullmatch(r"(?:(?:(\d+)-)?(\d+):)?(\d+):(\d+)", out)
+    if not m:
+        return None
+    d, h, mins, secs = (int(g or 0) for g in m.groups())
+    return ((d * 24 + h) * 60 + mins) * 60 + secs
+
+
+def format_uptime(seconds):
+    if seconds is None:
+        return "app not running"
+    h, rem = divmod(seconds, 3600)
+    return f"app up {h}h{rem // 60:02d}m" if h else f"app up {rem // 60}m"
+
+
 def battery(serial):
     out = shell(serial, "dumpsys battery")
     level = re.search(r"level: (\d+)", out)
@@ -553,6 +599,10 @@ def suite_flows():
         return re.findall(r"^- runFlow: (\S+\.yaml)", f.read(), re.M)
 
 
+def roam_flows():
+    return sorted(f for f in os.listdir(ROAM_DIR) if f.endswith(".yaml"))
+
+
 class Worker(threading.Thread):
     def __init__(self, serial, cfg, db):
         super().__init__(daemon=True, name=serial)
@@ -564,12 +614,19 @@ class Worker(threading.Thread):
         self.android = shell(serial, "getprop ro.build.version.release")
         self.last_cycle_ok = False
         self.feeder = None
+        self.adopt_tried = set()  # versions of a foreign install already tried
+        self.reinstall_driver = False  # set after a Maestro run had to be killed
 
     # ----- setup
 
     def prepare(self):
         s = self.serial
         shell(s, "svc power stayon usb")
+        # Everything the farm tests works offline, and the farm's Wi-Fi is
+        # unreliable. It also keeps Wi-Fi scans out of Google's fused location,
+        # which would otherwise mix the phone's real position into the mock one.
+        shell(s, "svc wifi disable")
+        self.clear_usb_proxy()  # in case the farm stopped mid-download
         # MainActivity uses dummy analytics when this is set, which keeps the
         # farm's traffic out of the production Firebase numbers.
         shell(s, "settings put system firebase.test.lab true")
@@ -597,24 +654,49 @@ class Worker(threading.Thread):
 
     def push_extract(self):
         """Copies the cached offline map and its metadata sidecar into the app's
-        extracts directory, named as CI does (without the build-date prefix)."""
+        extracts directory, named as CI does (without the build-date prefix).
+        Returns False if the phone won't allow it."""
         if not current_extract:
             self.db.event(self.serial, "error", None, "no offline map cached; using the network")
-            return
+            return True
         set_state(self.serial, "pushing offline map")
         name = re.sub(r"^\d{8}-\d{4}-", "", os.path.basename(current_extract))
         shell(self.serial, f"rm -f {DEVICE_EXTRACT_DIR}/*.pmtiles {DEVICE_EXTRACT_DIR}/*.geojson; "
                            f"mkdir -p {DEVICE_EXTRACT_DIR}")
         for src, dest in ((current_extract, name), (current_extract + ".geojson", name + ".geojson")):
             res = adb(self.serial, "push", src, f"{DEVICE_EXTRACT_DIR}/{dest}", timeout=900)
-            if res.returncode != 0:
+            if res.returncode != 0 and not stop_event.is_set():
+                if "Permission denied" in res.stdout + res.stderr:
+                    return False
                 self.db.event(self.serial, "error", None,
                               f"offline map push failed:\n{res.stdout}{res.stderr}")
-                return
+                return True
+        return True
+
+    def download_extract(self, cycle_id, cycle_dir):
+        """For phones whose shell can't write to the app's Android/data (the
+        Cubot J10): the app downloads the extract itself from its Offline maps
+        screen, through this PC's network. usb_proxy's port is reversed onto
+        the phone and set as its global HTTP proxy for the download only, so
+        Wi-Fi stays off (the Cubot's barely reaches the access point)."""
+        s = self.serial
+        set_state(s, "downloading the offline map over USB")
+        adb(s, "reverse", f"tcp:{usb_proxy.PORT}", f"tcp:{usb_proxy.PORT}")
+        shell(s, f"settings put global http_proxy 127.0.0.1:{usb_proxy.PORT}")
+        try:
+            return self.run_flow(cycle_id, DOWNLOAD_EXTRACT_FLOW, cycle_dir, kind="setup",
+                                 env={"EXTRACT": self.cfg["extract_name"]},
+                                 timeout_minutes=70)
+        finally:
+            self.clear_usb_proxy()
+
+    def clear_usb_proxy(self):
+        shell(self.serial, "settings put global http_proxy :0")
+        adb(self.serial, "reverse", "--remove", f"tcp:{usb_proxy.PORT}")
 
     def repair(self):
         """Undoes things the monkey can do from the notification shade."""
-        shell(self.serial, "cmd connectivity airplane-mode disable; svc wifi enable; "
+        shell(self.serial, "cmd connectivity airplane-mode disable; svc wifi disable; "
                            "cmd statusbar collapse; input keyevent KEYCODE_WAKEUP")
         self.quieten()
 
@@ -654,6 +736,18 @@ class Worker(threading.Thread):
             return None
         latest = builds[-1]
         current = installed_version(self.serial)
+        if (current is not None and not self.farm_installed()
+                and current <= latest["version_code"] and current not in self.adopt_tried):
+            self.adopt_tried.add(current)
+            # A sideloaded release (same signing key) accepts the latest release
+            # over the top, keeping its data, just as a user's update would. Play
+            # Store and debug installs are signed differently and refuse it.
+            set_state(self.serial, f"adopting Soundscape {current}")
+            if self.install(latest, upgrade=True):
+                self.db.event(self.serial, "adopt", latest["version_code"],
+                              f"adopted a sideloaded release {current} by installing "
+                              f"{latest['version_name']} over it")
+                return installed_version(self.serial)
         if current is not None and not self.farm_installed():
             if not self.cfg["allow_reinstall"]:
                 set_state(self.serial, f"blocked: Soundscape {current} on the phone wasn't "
@@ -689,24 +783,50 @@ class Worker(threading.Thread):
 
     # ----- tests
 
-    def run_flow(self, cycle_id, path, cycle_dir, kind="flow", note=""):
+    def run_flow(self, cycle_id, path, cycle_dir, kind="flow", note="", record=True, env=None,
+                 timeout_minutes=None):
+        """Runs one Maestro flow and records its result. Returns True or False,
+        or None if the farm stopped it (which isn't recorded)."""
         name = os.path.splitext(os.path.basename(path))[0]
         out_dir = os.path.join(cycle_dir, name)
+        n = 1
+        while os.path.exists(out_dir):  # the roaming flows run more than once
+            n += 1
+            out_dir = os.path.join(cycle_dir, f"{name}-{n}")
         os.makedirs(out_dir, exist_ok=True)
         report = os.path.join(out_dir, "report.xml")
+        # Whether the phone roams with the map on (show_map in its [devices]
+        # entry). ShowMap.yaml sets it, and the roaming flows skip the map
+        # without it. Suite flows ignore it.
+        env = {"SHOW_MAP": "true" if self.dev_cfg.get("show_map", True) else "false",
+               **(env or {})}
         cmd = [os.path.expanduser("~/.maestro/bin/maestro"), "test", "--device", self.serial,
                "--format", "junit", "--output", report, "--test-output-dir", out_dir,
                "--debug-output", os.path.join(out_dir, "debug"), "--flatten-debug-output",
-               "--no-ansi", path]
-        timeout = self.cfg["flow_timeout_minutes"] * 60
+               "--no-ansi", *[a for k, v in env.items() for a in ("-e", f"{k}={v}")], path]
+        if self.reinstall_driver:
+            # A Maestro run killed at the timeout leaves the phone's driver
+            # unreachable, and the next flows fail at launch until it's
+            # reinstalled.
+            cmd = cmd[:2] + ["--reinstall-driver"] + cmd[2:]
+            self.reinstall_driver = False
+        timeout = (timeout_minutes or self.cfg["flow_timeout_minutes"]) * 60
+        # Each Maestro run keeps its debug log in $XDG_CACHE_HOME/maestro/logs
+        # (else ~/.cache) and prunes all but the newest few runs' logs there.
+        # Shared between phones, a long run had its log folder deleted by
+        # another phone's run; its main thread then died at exit while the
+        # driver's threads kept the JVM alive, until the flow timeout.
+        own = os.path.join(RUNS_DIR, self.serial, "maestro-home")
+        maestro_env = {"XDG_CACHE_HOME": os.path.join(own, "cache"),
+                       "XDG_STATE_HOME": os.path.join(own, "state")}
         start = time.time()
         for attempt in range(2):
             set_state(self.serial, f"running {name}")
             if self.cfg["serialize_maestro"]:
                 with maestro_lock:
-                    res = run(cmd, timeout=timeout)
+                    res = run(cmd, timeout=timeout, env=maestro_env)
             else:
-                res = run(cmd, timeout=timeout)
+                res = run(cmd, timeout=timeout, env=maestro_env)
             output = res.stdout + res.stderr
             # The driver errors that decide a retry only reach the debug log.
             for extra in (report, os.path.join(out_dir, "debug", "maestro.log")):
@@ -718,13 +838,24 @@ class Worker(threading.Thread):
             if res.returncode == 0 or not MAESTRO_RETRY_RE.search(output) or attempt:
                 break
             log(self.serial, f"{name}: transient launch failure, retrying once")
-            if "gRPC" in output:
+            if "gRPC" in output and "--reinstall-driver" not in cmd:
                 # Maestro's on-device driver is unreachable (seen after a phone
                 # sat on its lock screen); a fresh install brings it back.
                 cmd = cmd[:2] + ["--reinstall-driver"] + cmd[2:]
         with open(os.path.join(out_dir, "maestro.log"), "w") as f:
             f.write(res.stdout + res.stderr)
+        if "timeout after" in res.stderr:
+            self.reinstall_driver = True
+        if stop_event.is_set():
+            return None
         status = "pass" if res.returncode == 0 else "fail"
+        if status == "fail" and "timeout after" in res.stderr and "Flow Passed" in res.stdout:
+            # Maestro reported the pass and then hung on the way out until the
+            # flow timeout killed it (see maestro_env above).
+            status = "pass"
+            note = "\n".join(filter(None, [note, "Maestro hung after the flow passed; killed"]))
+        if not record:
+            return status == "pass"
         detail = "\n".join(filter(None, [note, "" if status == "pass" else
                                          (res.stderr or res.stdout)[-2000:]]))
         self.db.execute(
@@ -752,6 +883,54 @@ class Worker(threading.Thread):
              "" if ok else res.stdout[-2000:], cycle_dir))
         self.repair()
         return ok
+
+    def set_up_version(self):
+        rows = self.db.query("SELECT version_code FROM setups WHERE serial=?", (self.serial,))
+        return rows[0]["version_code"] if rows else None
+
+    def set_up(self, cycle_id, cycle_dir, version, tally):
+        """Onboards from scratch and builds the state the roaming flows and
+        PostUpgrade use: runs the Maestro suite in Master.yaml order, held at
+        suite_location, with the offline map pushed and the farm's settings
+        applied after Onboarding. Done once per release on each phone."""
+        # Onboarding wipes whatever an earlier set-up made, so until this one
+        # finishes the phone isn't set up (a farm stopped mid-way redoes it).
+        self.db.execute("DELETE FROM setups WHERE serial=?", (self.serial,))
+        failed_before = tally[False]
+        with self.suite_location():
+            for flow in suite_flows():
+                if stop_event.is_set():
+                    return
+                result = self.run_flow(cycle_id, os.path.join(MAESTRO_DIR, flow), cycle_dir)
+                if result is not None:
+                    tally[result] += 1
+                if flow == "Onboarding.yaml":
+                    if not result:
+                        return  # tried again next cycle
+                    # Onboarding cleared the app's storage and settings, so put the
+                    # offline map back and switch search to offline.
+                    if not self.push_extract():
+                        result = self.download_extract(cycle_id, cycle_dir)
+                        if result is not None:
+                            tally[result] += 1
+                        if not result:
+                            return
+                    result = self.run_flow(cycle_id, FARM_SETTINGS_FLOW, cycle_dir, kind="setup")
+                    if result is not None:
+                        tally[result] += 1
+                    if not result:
+                        return
+        if stop_event.is_set():
+            return
+        # The suite runs with the map off, as in CI; roaming has it on.
+        result = self.run_flow(cycle_id, SHOW_MAP_FLOW, cycle_dir, kind="setup")
+        if result is None:
+            return
+        tally[result] += 1
+        # Recorded even if a later suite flow failed: that's a result, and a
+        # missing marker or route is caught by the check after the monkey.
+        self.db.execute("INSERT OR REPLACE INTO setups VALUES(?,?,?)",
+                        (self.serial, version, int(tally[False] == failed_before)))
 
     def cycle(self):
         s = self.serial
@@ -787,26 +966,62 @@ class Worker(threading.Thread):
             "VALUES(?,?,?,?,?,?,?)",
             (s, self.model, self.android, version, time.time(), "running", cycle_dir))
 
-        # Monkey first: Onboarding wipes whatever it leaves behind, and the suite
-        # then ends with the markers and route that PostUpgrade checks for.
-        self.run_monkey(cycle_id, cycle_dir)
-        passed = failed = 0
-        with self.suite_location():
-            for flow in suite_flows():
+        tally = {True: 0, False: 0}
+        if self.set_up_version() != version:
+            self.set_up(cycle_id, cycle_dir, version, tally)
+        # The roaming flows only look around and don't assert what's nearby, so
+        # they run on the moving walk rather than held at suite_location.
+        # Without a finished set-up there's no offline map, settings, markers
+        # or route to roam with; the monkey still runs and set-up is retried
+        # next cycle.
+        flows = roam_flows() if self.set_up_version() == version else []
+        complete = self.db.query("SELECT complete FROM setups WHERE serial=?", (s,))
+        if flows and not complete[0]["complete"] and not stop_event.is_set():
+            # A suite flow failed during set-up; build what it missed first.
+            with self.suite_location():
+                restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
+            if restored is not None:
+                tally[restored] += 1
+            if restored:
+                self.db.execute("UPDATE setups SET complete=1 WHERE serial=?", (s,))
+        for _ in range(self.cfg["roam_rounds"]):
+            random.shuffle(flows)
+            for flow in flows:
                 if stop_event.is_set():
                     break
-                if self.run_flow(cycle_id, os.path.join(MAESTRO_DIR, flow), cycle_dir):
-                    passed += 1
-                else:
-                    failed += 1
-                if flow == "Onboarding.yaml":
-                    # Onboarding cleared the app's storage and settings, so put the
-                    # offline map back and switch search to offline.
-                    self.push_extract()
-                    if self.run_flow(cycle_id, OFFLINE_SEARCH_FLOW, cycle_dir, kind="setup"):
-                        passed += 1
-                    else:
-                        failed += 1
+                result = self.run_flow(cycle_id, os.path.join(ROAM_DIR, flow), cycle_dir,
+                                       kind="roam")
+                if result is not None:
+                    tally[result] += 1
+        if not stop_event.is_set():
+            self.run_monkey(cycle_id, cycle_dir)
+        # The monkey can delete the markers or route, or change settings, and
+        # roaming and the next upgrade's PostUpgrade check need them. Restore
+        # puts them back without restarting the app; only if it can't is the
+        # phone set up again, now rather than at the start of the next cycle,
+        # which may begin with an upgrade.
+        # Restore also runs when a suite flow failed during set-up, and builds
+        # what that flow didn't; otherwise every roam round fails for want of
+        # a marker or the route until the next release. A reset only follows
+        # a set-up that completed: after one that didn't, it would most likely
+        # fail the same way and onboard again every cycle.
+        complete = self.db.query("SELECT complete FROM setups WHERE serial=?", (s,))
+        if not stop_event.is_set() and self.set_up_version() == version:
+            with self.suite_location():
+                restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
+            if restored is not None:
+                tally[restored] += 1
+            if restored and not complete[0]["complete"]:
+                self.db.execute("UPDATE setups SET complete=1 WHERE serial=?", (s,))
+            if restored is False and complete[0]["complete"]:
+                self.db.event(s, "reset", version, "couldn't restore the markers, route or "
+                                                   "settings after the monkey soak; setting up again")
+                self.set_up(cycle_id, cycle_dir, version, tally)
+        passed, failed = tally[True], tally[False]
+        if stop_event.is_set():
+            self.db.execute("UPDATE cycles SET ended=?, status=? WHERE id=?",
+                            (time.time(), "stopped", cycle_id))
+            return
 
         with open(os.path.join(cycle_dir, "logcat.txt"), "w") as f:
             f.write(adb(s, "logcat", "-d", timeout=120).stdout)
@@ -820,12 +1035,14 @@ class Worker(threading.Thread):
         level, temp = battery(s)
         status = "pass" if failed == 0 and not problems else "fail"
         self.last_cycle_ok = failed == 0
+        uptime = app_uptime_s(s)
         self.db.execute(
             "UPDATE cycles SET ended=?, status=?, flows_passed=?, flows_failed=?, crashes=?, anrs=?, "
-            "pss_kb=?, battery_level=?, battery_temp=? WHERE id=?",
-            (time.time(), status, passed, failed, crashes, anrs, pss_kb(s), level, temp, cycle_id))
+            "pss_kb=?, battery_level=?, battery_temp=?, app_uptime_s=? WHERE id=?",
+            (time.time(), status, passed, failed, crashes, anrs, pss_kb(s), level, temp, uptime,
+             cycle_id))
         set_state(s, f"cycle {status}: {passed} passed, {failed} failed, "
-                     f"{crashes} crashes, {anrs} ANRs")
+                     f"{crashes} crashes, {anrs} ANRs, {format_uptime(uptime)}")
 
     def run(self):
         set_state(self.serial, "preparing", model=self.model, android=self.android)
@@ -1125,7 +1342,10 @@ pre{{margin:0;white-space:pre-wrap;font-size:12px;max-width:70ch}} a{{color:inhe
 
 def prune_runs(keep_days):
     cutoff = time.time() - keep_days * 86400
-    for path in glob.glob(os.path.join(RUNS_DIR, "*", "*")):
+    # Per-cycle folders (named by timestamp) and iPhone syslogs; not the
+    # per-phone Maestro home or the iPhone's walk and player log.
+    for path in (glob.glob(os.path.join(RUNS_DIR, "*", "[0-9]*"))
+                 + glob.glob(os.path.join(RUNS_DIR, "*", "syslog-*"))):
         if os.path.getmtime(path) < cutoff:
             subprocess.run(["rm", "-rf", path])
 
@@ -1152,6 +1372,7 @@ def main():
     os.makedirs(EXTRACT_DIR, exist_ok=True)
     sync_extract(cfg)  # before any phone starts, so the first cycle has it
     threading.Thread(target=release_watcher, args=(cfg, db), daemon=True).start()
+    usb_proxy.start()  # network over USB for in-app map downloads
     workers = {}
     last_prune = 0
     while not stop_event.is_set():

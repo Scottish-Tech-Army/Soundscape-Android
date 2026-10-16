@@ -22,6 +22,12 @@ appId: org.scottishtecharmy.soundscape
 # reverse the nudge to put it back - a partially-clipped target stays visible and
 # is left as nudged.
 #
+# Swipes that move content up start no lower than 60% of the screen height: on
+# a small screen (480x854) the home screen's fixed bottom bar starts at about
+# 68%, and a swipe starting on it scrolls nothing. Each step moves 30%, less
+# than the scrollable area between the top and bottom bars there (about 43%),
+# so a target can't jump from below the fold to above the top in one step.
+#
 # Note: swipe start/end coordinates can't be supplied via ${} variables (Maestro
 # parses them as literals and throws a number-format error), so the per-direction
 # coordinates are hard-coded below and selected with `when` conditions.
@@ -60,8 +66,8 @@ appId: org.scottishtecharmy.soundscape
             true: "${output.swipeDir == 'up'}"
           commands:
             - swipe:
-                start: 50%, 80%
-                end: 50%, 50%
+                start: 50%, 60%
+                end: 50%, 30%
       # 'down' reveals items above (swipe the finger down).
       - runFlow:
           when:
@@ -85,8 +91,8 @@ appId: org.scottishtecharmy.soundscape
       true: "${output.swipeFound == 1 && output.swipeDir == 'up'}"
     commands:
       - swipe:
-          start: 50%, 75%
-          end: 50%, 60%
+          start: 50%, 55%
+          end: 50%, 40%
 - runFlow:
     when:
       true: "${output.swipeFound == 1 && output.swipeDir == 'down'}"
@@ -106,8 +112,8 @@ appId: org.scottishtecharmy.soundscape
         id: ${id}
     commands:
       - swipe:
-          start: 50%, 60%
-          end: 50%, 75%
+          start: 50%, 40%
+          end: 50%, 55%
 - runFlow:
     when:
       true: "${output.swipeFound == 1 && output.swipeDir == 'down'}"
@@ -115,8 +121,8 @@ appId: org.scottishtecharmy.soundscape
         id: ${id}
     commands:
       - swipe:
-          start: 50%, 75%
-          end: 50%, 60%
+          start: 50%, 55%
+          end: 50%, 40%
 
 - tapOn:
     id: ${id}

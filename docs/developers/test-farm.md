@@ -25,13 +25,23 @@ Each Android phone loops through a **cycle**:
    data (`adb install -r`), then runs `test-farm/flows/PostUpgrade.yaml` to
    check that the app starts and the suite's markers and route survived the
    upgrade.
-2. A `monkey` soak: random input inside the app, logged with its seed so a
-   failure can be reproduced.
-3. The Maestro suite, in `maestro/Master.yaml` order. After `Onboarding.yaml`
-   it pushes an offline map and runs `test-farm/flows/OfflineSearch.yaml`, so
-   every flow runs offline.
-4. It collects crashes and ANRs (from Android's dropbox), logcat, memory (PSS)
-   and battery.
+2. Once for each release on each phone, it sets the phone up with the Maestro
+   suite, in `maestro/Master.yaml` order. After `Onboarding.yaml` it pushes an
+   offline map and runs `test-farm/flows/FarmSettings.yaml`, which sets search
+   to Offline. The suite runs with the map off, as in CI; `ShowMap.yaml` then
+   turns it on for roaming.
+3. The roaming flows in `test-farm/flows/roam/`, shuffled, while the phone
+   walks a GPX track: callouts, beacons on nearby places and search results,
+   playing a route, the markers, the menus' screens, sleep and wake. They
+   look around without asserting what's nearby, because that changes as the
+   phone walks. They bring the app to the front rather than restarting it,
+   so one process runs for hours across rounds and cycles.
+4. A `monkey` soak: random input inside the app, logged with its seed so a
+   failure can be reproduced. Then `Restore.yaml` puts back the search mode,
+   the map setting and any markers or route it deleted, without restarting
+   the app. The phone is only set up again if that fails.
+5. It collects crashes and ANRs (from Android's dropbox), logcat, memory (PSS),
+   battery and the app process's uptime.
 
 Results go into `test-farm/farm.db`, with a summary page at
 `test-farm/report.html` that refreshes every minute.
@@ -51,8 +61,9 @@ because its iOS driver needs Xcode on a Mac. Instead the farm uses
 | Devices | Emulators | Physical phones, including an AOSP phone without Play services |
 | Build | Debug | The release APK from the `Tag and build release` workflow |
 | Upgrades | Not tested | Each release is installed over the previous one, keeping the data |
-| Map data | Glasgow extract pushed as root | The current extract from the manifest, pushed without root, with search set to Offline |
+| Map data | Glasgow extract pushed as root | The current extract from the manifest, pushed without root, with search set to Offline and Wi-Fi turned off |
 | Location | `adb emu geo fix` | A replayed GPX walk with speed and bearing, held at CI's Edinburgh point while the suite runs |
+| Map | Off (Onboarding turns it off) | On |
 | Duration | One run | Continuous |
 
 ## Making release builds testable
@@ -73,8 +84,8 @@ The farm doesn't use any debug-only hooks:
 
 - Phones need **Screen lock: None**. Maestro can't get past a PIN, and the farm
   reports a locked phone instead of testing it.
-- Phones must be in **English**. The Settings screen has no testTags, so
-  `OfflineSearch.yaml` taps its English labels.
+- Phones must be in **English** for now. Releases before the Settings and
+  search result testTags are driven by English labels.
 - Remove any Play Store or debug copy of Soundscape first. The farm only tests a
   build it installed itself, and reports anything else as blocked.
 - Keep phones off USB hubs that lose disconnects. One here kept a ghost iPhone

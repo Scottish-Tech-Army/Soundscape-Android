@@ -1,0 +1,51 @@
+appId: org.scottishtecharmy.soundscape
+# Downloads the offline map ${EXTRACT} from Menu > Offline maps. The farm runs
+# this on phones where it can't adb push the extract (the Cubot J10's shell
+# can't write to other apps' Android/data), with the phone's HTTP proxy set to
+# the farm's usb_proxy over adb reverse, as Wi-Fi is off. The extract's name
+# is map data rather than UI text, so it's matched by name.
+---
+- runFlow: LaunchHome.yaml
+- tapOn:
+    id: topBarMenu
+- runFlow:
+    file: ../../maestro/SwipeAndTap.yaml
+    env:
+      id: menuOfflineMaps
+# The nearby extracts come from the manifest, which needs the network.
+- extendedWaitUntil:
+    visible:
+      text: ${EXTRACT}
+    timeout: 60000
+# Onboarding's clearState doesn't always remove a downloaded extract (it
+# survived on the Cubot), so it may already be in "Maps already downloaded",
+# which is listed first. Its details then offer Delete rather than Download.
+- tapOn:
+    text: ${EXTRACT}
+    index: 0
+- runFlow:
+    when:
+      visible:
+        id: offlineMapDownload
+    commands:
+      - tapOn:
+          id: offlineMapDownload
+      # The progress screen shows a percentage until the download finishes
+      # and the list comes back, now with the extract in the downloaded
+      # section. 177 MB for Glasgow; minutes to half an hour over USB.
+      - extendedWaitUntil:
+          visible:
+            text: ".*%"
+          timeout: 30000
+          optional: true
+      - extendedWaitUntil:
+          notVisible:
+            text: ".*%"
+          timeout: 3600000
+      - tapOn:
+          text: ${EXTRACT}
+          index: 0
+- assertVisible:
+    id: offlineMapDelete
+- back
+- back

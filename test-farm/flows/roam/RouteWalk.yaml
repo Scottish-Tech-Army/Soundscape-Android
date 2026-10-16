@@ -1,0 +1,33 @@
+appId: org.scottishtecharmy.soundscape
+# Roaming flow: plays the suite's "Test Route" for two minutes of the walk,
+# then stops it. The route's markers are at the suite point, so the beacon is
+# a long way off, which is fine for exercising route playback.
+---
+- runFlow: ../LaunchHome.yaml
+
+- runFlow:
+    file: ../../../maestro/SwipeAndTap.yaml
+    env:
+      id: homeRoutes
+- tapOn:
+    id: "LocationItem-Test Route-.*"
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: RouteDetails
+- tapOn:
+    id: routeDetailsStartButton
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home
+- assertVisible:
+    id: routeBeaconTitle
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 120000
+- runFlow:
+    file: ../../../maestro/SwipeAndTap.yaml
+    env:
+      id: routeStop

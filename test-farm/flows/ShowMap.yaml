@@ -1,0 +1,104 @@
+appId: org.scottishtecharmy.soundscape
+# Sets Settings > Accessibility > Show maps on screen to SHOW ("true" or
+# "false"), or if that isn't given to SHOW_MAP, the phone's show_map, which
+# the farm passes to every flow (default "true"). Run by the
+# test farm after the set-up suite, to turn the map on for roaming, and by
+# Restore.yaml. Onboarding.yaml turns the
+# map off and the suite's flows expect it off (on a small screen the map
+# pushes controls under the bottom bar), but the farm wants the map drawing
+# on real phones while it roams.
+#
+# Releases before the settingsSectionAccessibility and settingsShowMap
+# testTags are driven by their English labels.
+---
+- runFlow: LaunchHome.yaml
+# Whether the map is on is read from Home (its full screen button only shows
+# with the map), because Maestro's checked: matches the switch's label as well
+# as the switch.
+- evalScript: ${output.mapOn = false}
+- evalScript: |
+    ${
+      const show = typeof SHOW !== 'undefined' ? SHOW
+                 : typeof SHOW_MAP !== 'undefined' ? SHOW_MAP : 'true';
+      output.want = show !== 'false';
+    }
+- runFlow:
+    when:
+      visible:
+        id: homeFullScreenMap
+    commands:
+      - evalScript: ${output.mapOn = true}
+- tapOn:
+    id: topBarMenu
+# Second in the drawer, so never off-screen; SwipeAndTap's nudge scrolled it
+# away on the slow Cubot.
+- tapOn:
+    id: menuSettings
+- runFlow:
+    file: ../../maestro/Wait.yaml
+    env:
+      timeout: 2000
+- evalScript: ${output.tagged = false}
+- runFlow:
+    when:
+      visible:
+        id: settingsSectionCallouts
+    commands:
+      - evalScript: ${output.tagged = true}
+- runFlow:
+    when:
+      true: ${output.tagged}
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: settingsSectionAccessibility
+          direction: DOWN
+      - tapOn:
+          id: settingsSectionAccessibility
+      - scrollUntilVisible:
+          element:
+            id: settingsShowMap
+          direction: DOWN
+      - runFlow:
+          when:
+            true: ${output.mapOn !== output.want}
+          commands:
+            - tapOn:
+                id: settingsShowMap
+- runFlow:
+    when:
+      true: ${!output.tagged}
+    commands:
+      - scrollUntilVisible:
+          element:
+            text: "Accessibility"
+          direction: DOWN
+      - tapOn:
+          text: "Accessibility"
+      - scrollUntilVisible:
+          element:
+            text: "Show maps on screen"
+          direction: DOWN
+      - runFlow:
+          when:
+            true: ${output.mapOn !== output.want}
+          commands:
+            - tapOn:
+                text: "Show maps on screen"
+- back
+- runFlow:
+    file: ../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home
+- runFlow:
+    when:
+      true: ${output.want}
+    commands:
+      - assertVisible:
+          id: homeFullScreenMap
+- runFlow:
+    when:
+      true: ${!output.want}
+    commands:
+      - assertNotVisible:
+          id: homeFullScreenMap

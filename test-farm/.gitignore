@@ -7,3 +7,4 @@ runs/
 __pycache__/
 farm.log
 extracts/
+backup-*/

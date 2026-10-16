@@ -1,0 +1,75 @@
+appId: org.scottishtecharmy.soundscape
+# Run by the test farm after Onboarding (which wipes the app's settings):
+# - Settings > Search > Search mode: Offline, so searches use the offline map
+#   extract the farm pushes instead of the phones' unreliable Wi-Fi.
+#
+# The map is turned on separately (ShowMap.yaml) once the set-up suite is done,
+# because the suite's flows expect the map off, as in CI.
+#
+# Releases before the Settings testTags (settingsSection*, settingsSearchMode,
+# settingsOption-*) are driven by their English labels
+# instead, so the farm phones must be set to English until every release in
+# apks/ has the tags. Then the label fallbacks can go.
+---
+- runFlow: LaunchHome.yaml
+- tapOn:
+    id: topBarMenu
+# Second in the drawer, so never off-screen; SwipeAndTap's nudge scrolled it
+# away on the slow Cubot.
+- tapOn:
+    id: menuSettings
+- runFlow:
+    file: ../../maestro/Wait.yaml
+    env:
+      timeout: 2000
+# The first section header is always on screen, so it says which kind of
+# release this is.
+- evalScript: ${output.tagged = false}
+- runFlow:
+    when:
+      visible:
+        id: settingsSectionCallouts
+    commands:
+      - evalScript: ${output.tagged = true}
+
+# Search mode: Offline.
+- runFlow:
+    when:
+      true: ${output.tagged}
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: settingsSectionSearch
+          direction: DOWN
+      - tapOn:
+          id: settingsSectionSearch
+      - scrollUntilVisible:
+          element:
+            id: settingsSearchMode
+          direction: DOWN
+      - tapOn:
+          id: settingsSearchMode
+      - tapOn:
+          id: settingsOption-Offline
+- runFlow:
+    when:
+      true: ${!output.tagged}
+    commands:
+      - scrollUntilVisible:
+          element:
+            text: "Search"
+          direction: DOWN
+      - tapOn:
+          text: "Search"
+      - scrollUntilVisible:
+          element:
+            text: "Search mode"
+          direction: DOWN
+      - tapOn:
+          text: "Search mode"
+      - tapOn:
+          text: "Offline"
+      # The summary under "Search mode" now names the chosen option.
+      - assertVisible:
+          text: ".*Offline.*"
+- back

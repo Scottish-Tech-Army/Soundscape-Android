@@ -1,0 +1,49 @@
+appId: org.scottishtecharmy.soundscape
+# Roaming flow (see test-farm/README.md): the home screen's callout buttons and
+# the full screen map, while the farm walks the phone along its GPX track. The
+# waits give the callouts time to play and the walk time to move on, so the
+# automatic callouts run in between.
+---
+- runFlow: ../LaunchHome.yaml
+
+- tapOn:
+    id: homeMyLocation
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 15000
+- tapOn:
+    id: homeAroundMe
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 30000
+- tapOn:
+    id: homeAheadOfMe
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 30000
+- tapOn:
+    id: homeNearbyMarkers
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 10000
+
+# Watch the map follow the walk for a while, then put the controls back.
+# Phones with show_map = false (the Cubot) have no map.
+- runFlow:
+    when:
+      true: ${SHOW_MAP !== 'false'}
+    commands:
+      - tapOn:
+          id: homeFullScreenMap
+      - runFlow:
+          file: ../../../maestro/Wait.yaml
+          env:
+            timeout: 60000
+      - tapOn:
+          id: homeFullScreenMap
+- assertVisible:
+    id: homeMyLocation

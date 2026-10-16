@@ -429,15 +429,19 @@ When you add a new flow, add its name (without the `.yaml` extension) to the
 
 ## On physical phones: the test farm
 
-The same flows also run continuously on physical phones against **release
-builds** in the [test farm]({% link developers/test-farm.md %}). The farm runs
-them in `maestro/Master.yaml` order. It holds the phone at the same Edinburgh
-point CI uses, and adds two flows of its own from `test-farm/flows/`:
-`OfflineSearch.yaml` after Onboarding, and `PostUpgrade.yaml` after each release
-upgrade. Two things matter when changing flows:
+The same flows also run on physical phones against **release builds** in the
+[test farm]({% link developers/test-farm.md %}), once for each release on each
+phone, to set it up. The farm runs them in `maestro/Master.yaml` order, holding
+the phone at the same Edinburgh point CI uses, with `FarmSettings.yaml` from
+`test-farm/flows/` after Onboarding. After that the farm runs its own roaming
+flows from `test-farm/flows/roam/` while the phone walks a GPX track, and
+`PostUpgrade.yaml` after each release upgrade. Things that matter when
+changing flows:
 
 - A flow that only passes on an emulator (for example, by relying on `adb root`
   or a debug-only screen) will fail there.
 - Changing what the suite leaves behind (markers **B** and **C** and
   **Test Route**) needs a matching change to `test-farm/flows/PostUpgrade.yaml`,
-  which checks they survive an upgrade.
+  which checks they survive an upgrade, and `test-farm/flows/Restore.yaml`,
+  which recreates them after the farm's monkey soak. The roaming flows use the markers and
+  the route too.

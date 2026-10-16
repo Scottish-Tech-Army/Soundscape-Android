@@ -1,0 +1,47 @@
+appId: org.scottishtecharmy.soundscape
+# Roaming flow: picks a place from Places Nearby, looks at its details and map,
+# then walks with an audio beacon on it for a minute before stopping it.
+# The walk reorders the list, so the flow doesn't care which place it gets.
+---
+- runFlow: ../LaunchHome.yaml
+
+- tapOn:
+    id: homePlacesNearby
+# The first folder is "All", then the places in distance order.
+- tapOn:
+    id: placesNearby-0
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: PlacesNearby
+- tapOn:
+    id: placesNearby-0
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: LocationDetails
+
+- runFlow:
+    when:
+      true: ${SHOW_MAP !== 'false'}
+    commands:
+      - tapOn:
+          id: locationDetailsFullScreenMapFab
+      - runFlow:
+          file: ../../../maestro/Wait.yaml
+          env:
+            timeout: 5000
+      - tapOn:
+          id: locationDetailsFullScreenMapFab
+
+- tapOn:
+    id: locationDetailsStartBeacon
+- runFlow:
+    file: ../../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home
+- runFlow:
+    file: ../../../maestro/Wait.yaml
+    env:
+      timeout: 60000
+- runFlow: ../StopBeacon.yaml

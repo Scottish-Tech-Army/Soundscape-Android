@@ -4,18 +4,9 @@ appId: org.scottishtecharmy.soundscape
 # the upgraded app starts on the old data, and that the markers and the route
 # the suite created survived the upgrade.
 ---
-- launchApp:
-    clearState: false
-
-# The release dialog shows on the first launch of a new major.minor version.
-- tapOn:
-    id: "newReleaseDialogDismiss"
-    optional: true
-
-- runFlow:
-    file: ../../maestro/WaitForScreen.yaml
-    env:
-      screen: Home
+# The release dialog shows on the first launch of a new major.minor version;
+# LaunchHome dismisses it.
+- runFlow: LaunchHome.yaml
 - runFlow:
     file: ../../maestro/SwipeAndTap.yaml
     env:
@@ -26,12 +17,7 @@ appId: org.scottishtecharmy.soundscape
 - assertVisible:
     id: "LocationItem-C-.*"
 
-- launchApp:
-    clearState: false
-- runFlow:
-    file: ../../maestro/WaitForScreen.yaml
-    env:
-      screen: Home
+- runFlow: LaunchHome.yam
 - runFlow:
     file: ../../maestro/SwipeAndTap.yaml
     env:
