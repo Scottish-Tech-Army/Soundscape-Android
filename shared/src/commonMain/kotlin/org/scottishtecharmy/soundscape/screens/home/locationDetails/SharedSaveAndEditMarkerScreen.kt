@@ -33,6 +33,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
@@ -105,6 +106,8 @@ fun SharedSaveAndEditMarkerScreen(
 
     if (showDeleteDialog && onDelete != null) {
         AlertDialog(
+            // A dialog is its own window, outside the theme's testTagsAsResourceId.
+            modifier = Modifier.testTagsAsResourceId(),
             onDismissRequest = { showDeleteDialog = false },
             title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
             text = { Text(stringResource(Res.string.markers_action_delete_alert_message)) },

@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.advanced_markers_and_routes_clear_all_alert_message
 import org.scottishtecharmy.soundscape.resources.advanced_markers_and_routes_clear_all_button
@@ -97,6 +98,8 @@ fun SharedAdvancedMarkersAndRoutesSettingsScreen(
 
     if (showConfirmationDialog.value) {
         AlertDialog(
+            // A dialog is its own window, outside the theme's testTagsAsResourceId.
+            modifier = Modifier.testTagsAsResourceId(),
             onDismissRequest = { showConfirmationDialog.value = false },
             title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
             text = { Text(stringResource(Res.string.advanced_markers_and_routes_clear_all_alert_message)) },

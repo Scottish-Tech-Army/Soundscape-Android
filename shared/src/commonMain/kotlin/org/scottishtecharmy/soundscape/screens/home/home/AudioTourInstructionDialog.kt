@@ -10,6 +10,7 @@ import androidx.compose.ui.semantics.paneTitle
 import androidx.compose.ui.semantics.semantics
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
+import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.menu_audio_tutorial
 import org.scottishtecharmy.soundscape.resources.tour_continue_button
@@ -24,7 +25,8 @@ fun AudioTourInstructionDialog(
     val dialogTitle = stringResource(Res.string.menu_audio_tutorial)
     AlertDialog(
         onDismissRequest = { /* Don't dismiss on outside click for accessibility */ },
-        modifier = Modifier.semantics { paneTitle = dialogTitle },
+        // A dialog is its own window, outside the theme's testTagsAsResourceId.
+        modifier = Modifier.testTagsAsResourceId().semantics { paneTitle = dialogTitle },
         text = {
             Text(text = instruction.text)
         },

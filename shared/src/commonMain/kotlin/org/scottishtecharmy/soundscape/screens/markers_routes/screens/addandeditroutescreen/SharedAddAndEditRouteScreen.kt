@@ -51,6 +51,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.general_alert_cancel
 import org.scottishtecharmy.soundscape.resources.general_alert_done
@@ -160,6 +161,8 @@ fun SharedAddAndEditRouteScreen(
 
     if (showDeleteDialog) {
         AlertDialog(
+            // A dialog is its own window, outside the theme's testTagsAsResourceId.
+            modifier = Modifier.testTagsAsResourceId(),
             onDismissRequest = { showDeleteDialog = false },
             title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
             text = { Text(stringResource(Res.string.route_detail_edit_delete_alert_message)) },
@@ -187,6 +190,8 @@ fun SharedAddAndEditRouteScreen(
 
     waypointToRemove?.let { waypoint ->
         AlertDialog(
+            // A dialog is its own window, outside the theme's testTagsAsResourceId.
+            modifier = Modifier.testTagsAsResourceId(),
             onDismissRequest = { waypointToRemove = null },
             title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
             text = {

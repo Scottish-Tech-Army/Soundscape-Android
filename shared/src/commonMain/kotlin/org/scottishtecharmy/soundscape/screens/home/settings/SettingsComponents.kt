@@ -26,9 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.semantics
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.settings_collapse_section
 import org.scottishtecharmy.soundscape.resources.settings_collapsed
@@ -51,6 +53,9 @@ fun ListPreferenceItem(
 ) {
     Row(
         modifier = Modifier
+            // The choices are shown in a dialog, outside the theme's testTagsAsResourceId.
+            .testTagsAsResourceId()
+            .testTag("settingsOption-$value")
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .extraSmallPadding()
             .defaultMinSize(minHeight = spacing.targetSize)
@@ -119,9 +124,10 @@ fun ExpandableSectionHeader(
     expanded: Boolean,
     onToggle: () -> Unit,
     textColor: Color,
+    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable(
                 role = Role.Button,
