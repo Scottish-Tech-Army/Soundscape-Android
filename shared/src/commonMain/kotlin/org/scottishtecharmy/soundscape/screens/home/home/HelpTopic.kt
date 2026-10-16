@@ -86,10 +86,9 @@ sealed class HelpTopic {
             val lang = getDefaultLanguage()
 
             val candidatePaths = listOf(
-                "help/$localeTag/$fileName",
-                "help/$lang/$fileName",
-                "help/en-GB/$fileName",
-                "help/en/$fileName",
+                "help/$fileName.$localeTag",
+                "help/$fileName.$lang",
+                "help/$fileName",
             ).distinct()
 
             for (path in candidatePaths) {

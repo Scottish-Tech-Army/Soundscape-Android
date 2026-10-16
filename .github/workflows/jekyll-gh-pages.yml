@@ -101,7 +101,7 @@ jobs:
       - name: Sync assets to docs
         run: |
           mkdir -p users
-          cp ../app/src/main/assets/help/en/*.md users
+          cp ../app/src/main/assets/help/*.md users
         working-directory: docs
 
       - name: Build with Jekyll
