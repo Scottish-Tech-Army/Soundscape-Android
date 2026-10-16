@@ -51,6 +51,15 @@ cp farm.toml.example farm.toml   # optional
 python3 test-farm/farm.py        # Ctrl-C to stop; removes the mock GPS providers
 ```
 
+`test_farm.py` checks the parts that need no phone: the config, the flows'
+paths into `maestro/`, the settings shared with `run-maestro-tests.yaml`
+(suite location, launch-failure retries) and the parsers of adb output.
+`run-tests.yaml` runs it on every PR and builds the mock location helper.
+
+```bash
+python3 -m unittest discover -s test-farm -v
+```
+
 ## How release builds are made testable
 
 - **Analytics:** the farm sets `settings put system firebase.test.lab true`, which
