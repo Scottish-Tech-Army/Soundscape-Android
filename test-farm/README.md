@@ -16,7 +16,7 @@ plugged into this PC. Each phone loops forever:
    roaming flows then skip the map steps on). A phone whose Onboarding or
    settings fail is set up again next cycle.
 3. **Roam**: `roam_rounds` rounds of `flows/roam/*.yaml`, shuffled each round,
-   while the phone walks its GPX track. These look around (callouts, beacons on
+   while the phone follows its GPX track (see Tracks below). These look around (callouts, beacons on
    places and search results, the route, markers, menus, sleep) and assert
    only that the screens work, not what's nearby. They use the markers and
    route the set-up made, and change nothing that later flows rely on.
@@ -74,9 +74,7 @@ python3 -m unittest discover -s test-farm -v
   the compass of a phone lying on a desk. This reaches both the fused provider
   (phones with Play services) and plain `LocationManager` (AOSP phones). The
   helper's receiver requires `android.permission.DUMP`, so only adb can feed it.
-  Tracks are thinned to points 15 m apart,
-  because a phone recording that starts with its owner standing still
-  begins with minutes of on-the-spot GPS jitter. While the Maestro suite runs, the phone is
+  While the Maestro suite runs, the phone is
   held still (speed 0) at `suite_location` (CI's Edinburgh point), because
   the flows assert distance-sorted list order.
   iPhones can't get the same fix: `simulate-location` sets latitude and
@@ -101,6 +99,36 @@ python3 -m unittest discover -s test-farm -v
   offline. That also stops Google's fused location (on phones with Play
   services) mixing the phone's real Wi-Fi position into the mock fixes.
 
+## Tracks
+
+The default track, `tracks/glasgow-multimodal.gpx`, is a synthetic day out
+around central Glasgow: it walks to a bus stop, waits, rides a bus that stops
+at the stops it passes, gets off and walks to a station, takes a train that
+stops at each station on the way, and so on. That's six journeys, about 3
+hours. It's sampled once a second with the speed and bearing a phone would
+report, so the app sees walking pace, bus and train speeds and standing still.
+The farm replays it by its timestamps, then plays it backwards so that the
+phone never jumps back to the start. The round trip takes about 6 hours.
+
+`FarmTrackGenerator` (`app/src/test/java/org/scottishtecharmy/soundscape/`)
+makes it from the Glasgow extract that the unit tests use. It routes walks over
+roads and paths and buses over main roads, using the stops the tiles give.
+Trains follow railway lines that never turn more than 40° (a train can't take a
+junction backwards). The tiles have no bus routes, so a bus is just the
+quickest road path between two stops. The same seed always gives the same track:
+
+```bash
+./gradlew :app:testDebugUnitTest --tests '*FarmTrackGenerator*' \
+    -PfarmTrack=test-farm/tracks/glasgow-multimodal.gpx -PfarmTrackSeed=1 -PfarmTrackJourneys=6
+```
+
+The generator marks its tracks with `<keywords>farm-timed-replay</keywords>`.
+A track without that mark, such as a real recording set as `default_gpx` or as a
+phone's `gpx`, is walked at `replay_speed_mps`. Its points are thinned to 15 m
+apart, because a phone recording that starts with its owner standing still
+begins with minutes of on-the-spot GPS jitter. Real recordings carry timestamps
+too, so the farm can't use timestamps alone to decide.
+
 ## iPhones
 
 Maestro can't drive a physical iPhone. It drives iOS through an XCUITest
@@ -119,7 +147,7 @@ in-process. Every `ios_poll_minutes` (10) the farm:
   crash; anything else is counted with the ANRs;
 - reads the battery.
 
-Throughout, it replays the GPX walk with `simulate-location play`. The app
+Throughout, it replays the GPX track with `simulate-location play`. The app
 ignored a single fixed simulated point, so the walk has to move. It also keeps
 a daily Soundscape syslog (`--no-debug`, about 66 MB/day) in `runs/<udid>/`.
 

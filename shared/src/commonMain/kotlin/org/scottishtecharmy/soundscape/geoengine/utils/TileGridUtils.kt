@@ -14,16 +14,19 @@ class TileGrid(
 
     companion object {
         /**
-         * Given a location it calculates the set of tiles (VectorTiles) that cover a
-         * 3 x 3 grid around the specified location.
+         * Given a location it calculates the set of tiles (VectorTiles) that cover an
+         * n x n grid (n odd) centred on the tile containing the specified location. The app only
+         * uses 3 x 3; larger grids are for tests that route across a whole city.
          * @param currentLocation
          * The current location of the device.
          * @return  A TileGrid describing the new grid
          */
-        private fun get3x3TileGrid(
+        private fun getOddTileGrid(
             currentLocation: LngLatAlt,
-            zoomLevel: Int
+            zoomLevel: Int,
+            n: Int
         ): TileGrid {
+            val radius = n / 2
 
             // Get tile that contains current location
             val tileXY = getXYTile(currentLocation, zoomLevel)
@@ -31,10 +34,12 @@ class TileGrid(
             // Center of grid is at the center of this tile
             val centerX = (tileXY.first * 256) + 128
             val centerY = (tileXY.second * 256) + 128
+            // 192 pixels for a 3 x 3 grid: the central tile plus a quarter of each neighbour
+            val margin = 256 * radius - 64
             val southWest =
-                pixelXYToLatLon((centerX - 192).toDouble(), (centerY + 192).toDouble(), zoomLevel)
+                pixelXYToLatLon((centerX - margin).toDouble(), (centerY + margin).toDouble(), zoomLevel)
             val northEast =
-                pixelXYToLatLon((centerX + 192).toDouble(), (centerY - 192).toDouble(), zoomLevel)
+                pixelXYToLatLon((centerX + margin).toDouble(), (centerY - margin).toDouble(), zoomLevel)
             val centralBoundingBox = BoundingBox(
                 southWest.second,
                 southWest.first,
@@ -42,16 +47,10 @@ class TileGrid(
                 northEast.first
             )
 
-            // And build 3x3 grid around it ensuring that we wrap at the edges
+            // And build the grid around it ensuring that we wrap at the edges
             val maxCoordinate = mapSize(zoomLevel) / 256
-            val xValues = IntArray(3)
-            xValues[0] = (tileXY.first - 1).mod(maxCoordinate)
-            xValues[1] = tileXY.first
-            xValues[2] = (tileXY.first + 1).mod(maxCoordinate)
-            val yValues = IntArray(3)
-            yValues[0] = (tileXY.second - 1).mod(maxCoordinate)
-            yValues[1] = tileXY.second
-            yValues[2] = (tileXY.second + 1).mod(maxCoordinate)
+            val xValues = IntArray(n) { (tileXY.first - radius + it).mod(maxCoordinate) }
+            val yValues = IntArray(n) { (tileXY.second - radius + it).mod(maxCoordinate) }
 
             val tiles: MutableList<Tile> = mutableListOf()
             for (y in yValues) {
@@ -67,8 +66,8 @@ class TileGrid(
                 zoomLevel
             )
             val gridSouthEast = pixelXYToLatLon(
-                ((xValues[2] + 1).mod(maxCoordinate) * 256).toDouble(),
-                ((yValues[2] + 1).mod(maxCoordinate) * 256).toDouble(),
+                ((xValues[n - 1] + 1).mod(maxCoordinate) * 256).toDouble(),
+                ((yValues[n - 1] + 1).mod(maxCoordinate) * 256).toDouble(),
                 zoomLevel
             )
             val totalBoundingBox = BoundingBox(
@@ -213,7 +212,7 @@ class TileGrid(
         }
 
         /**
-         * Given a location and a grid size it creates either a 1x1, 2x2 or a 3x3 grid of tiles
+         * Given a location and a grid size it creates a 1x1, 2x2, 3x3 (or larger odd) grid of tiles
          * (VectorTiles) to cover that location.
          * @param currentLocation
          * The current location of the device.
@@ -229,10 +228,9 @@ class TileGrid(
             when (gridSize) {
                 1 -> return get1x1TileGrid(currentLocation, zoomLevel)
                 2 -> return get2x2TileGrid(currentLocation, zoomLevel)
-                3 -> return get3x3TileGrid(currentLocation, zoomLevel)
             }
-            require(false)
-            return TileGrid(mutableListOf(), BoundingBox(), BoundingBox())
+            require(gridSize >= 3 && gridSize % 2 == 1)
+            return getOddTileGrid(currentLocation, zoomLevel, gridSize)
         }
     }
 }
