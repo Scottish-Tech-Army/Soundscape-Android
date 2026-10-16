@@ -1,6 +1,9 @@
+import com.android.build.gradle.internal.tasks.AndroidTestTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
+import kotlin.io.path.Path
+import kotlin.io.path.createDirectories
 
 plugins {
     alias(libs.plugins.android.application)
@@ -20,12 +23,14 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
         // Must stay off. Enabling prefab makes AGP validate the prefab metadata of every
         // AAR on the classpath, not just the ones the native build consumes, and MapLibre
         // 13.4.0+ declares stl=c++_static which is rejected against our c++_shared build
         // (CXX1211). Oboe was the only reason this was on; it is vendored instead - see
         // scripts/update-oboe.sh and app/src/main/cpp/CMakeLists.txt.
         prefab = false
+
     }
 
     bundle {
@@ -493,7 +498,9 @@ dependencies {
     implementation(libs.commonmark)
 
     testImplementation(libs.json)
+    testImplementation(libs.robolectric)
 }
+
 
 // Some JVM unit tests (e.g. MvtTileTest.testCallouts, which replays every GPX fixture through
 // the full grid/callout engine) are too slow to run on every PR. They're tagged with the

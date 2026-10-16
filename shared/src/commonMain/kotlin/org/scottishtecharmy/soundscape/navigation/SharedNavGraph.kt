@@ -27,6 +27,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.intents.IncomingIntent
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
@@ -35,10 +36,12 @@ import org.scottishtecharmy.soundscape.resources.universal_links_marker_share_me
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.screens.home.home.OpenSourceLicensesViewModel
 import org.scottishtecharmy.soundscape.screens.home.home.SharedAdvancedMarkersAndRoutesSettingsScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
+import org.scottishtecharmy.soundscape.screens.home.home.SharedMarkdownHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenEffect
@@ -606,20 +609,46 @@ fun SharedNavHost(
         }
 
         composable(SharedRoutes.HELP + "/{topic}") { backStackEntry ->
-            val topic = backStackEntry.arguments?.read { getString("topic") } ?: ""
+            val topicParam = backStackEntry.arguments?.read { getString("topic") } ?: ""
+            val helpTopic = HelpTopic.fromRouteParam(topicParam, preferencesProvider)
+            val useMarkdownHelp = preferencesProvider?.getBoolean(
+                PreferenceKeys.MARKDOWN_HELP,
+                PreferenceDefaults.MARKDOWN_HELP
+            ) ?: false
+            val showMarkdown = useMarkdownHelp
+                    || helpTopic is HelpTopic.MarkdownPage
+                    || helpTopic is HelpTopic.MarkdownFaq
             val helpHomeState by flows.homeState?.collectAsState()
                 ?: remember { mutableStateOf(HomeState()) }
-            SharedHelpScreen(
-                topic = topic,
-                locationAccuracy = helpHomeState.locationAccuracy,
-                onNavigate = { dest -> navController.navigate(dest) },
-                onNavigateUp = { navController.popBackStack() },
-                onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
-                    { navController.navigate(SharedRoutes.OPEN_SOURCE_LICENSES) }
-                } else {
-                    null
-                },
-            )
+            if (showMarkdown) {
+                SharedMarkdownHelpScreen(
+                    topic = topicParam,
+                    // TODO 2026-10-14 HughG: This needs to be wired in to the Markdown help somehow,
+                    // with a way to "template in" the GPS accuracy value.
+                    // locationAccuracy = helpHomeState.locationAccuracy,
+                    onNavigate = { dest -> navController.navigate(dest) },
+                    onNavigateUp = { navController.popBackStack() },
+                    onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
+                        { navController.navigate(SharedRoutes.OPEN_SOURCE_LICENSES) }
+                    } else {
+                        null
+                    },
+                    preferencesProvider = preferencesProvider,
+                )
+            } else {
+                SharedHelpScreen(
+                    topic = topicParam,
+                    locationAccuracy = helpHomeState.locationAccuracy,
+                    onNavigate = { dest -> navController.navigate(dest) },
+                    onNavigateUp = { navController.popBackStack() },
+                    onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
+                        { navController.navigate(SharedRoutes.OPEN_SOURCE_LICENSES) }
+                    } else {
+                        null
+                    },
+                    preferencesProvider = preferencesProvider,
+                )
+            }
         }
 
         composable(SharedRoutes.OPEN_SOURCE_LICENSES) {

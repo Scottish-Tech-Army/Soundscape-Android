@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.audio
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
@@ -110,16 +111,19 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
     private var isActive = true
 
     init {
-        if (service == null) {
-            geometryUpdateJob = engineCoroutineScope.launch {
-                while (isActive) { // Loop while the coroutine is active
-                    updateGeometry(
-                        0.0, 0.0, 0.0,
-                        focusGained = true,
-                        duckingAllowed = true,
-                        proximityNear = 15.0
-                    )
-                    delay(100L) // Wait for 100 milliseconds
+        // Skip calls to native/external code in unit tests which run on Windows, rather than Android.
+        if (Build.FINGERPRINT != "robolectric") {
+            if (service == null) {
+                geometryUpdateJob = engineCoroutineScope.launch {
+                    while (isActive) { // Loop while the coroutine is active
+                        updateGeometry(
+                            0.0, 0.0, 0.0,
+                            focusGained = true,
+                            duckingAllowed = true,
+                            proximityNear = 15.0
+                        )
+                        delay(100L) // Wait for 100 milliseconds
+                    }
                 }
             }
         }

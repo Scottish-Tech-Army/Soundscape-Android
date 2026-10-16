@@ -69,7 +69,7 @@ preferenceKtx = "1.2.1"
 reorderable = "3.1.0"
 review = "2.0.2"
 reviewKtx = "2.0.2"
-media3Session = "1.10.1"
+media3 = "1.10.1"
 roomCompiler = "2.8.4"
 roomRuntime = "2.8.4"
 sqliteBundled = "2.7.0"
@@ -126,7 +126,6 @@ html-mermaid-dokka-plugin = { module = "com.glureau:html-mermaid-dokka-plugin", 
 json = { module = "org.json:json", version.ref = "json" }
 jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jtsCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 kable-core = { module = "com.juul.kable:kable-core", version.ref = "kable" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -166,6 +165,7 @@ moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 reorderable = { module = "sh.calvin.reorderable:reorderable", version.ref = "reorderable" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
@@ -178,7 +178,8 @@ ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 maplibre = { module = "org.maplibre.gl:android-sdk-opengl", version.ref = "mapLibre" }
-androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3Session" }
+androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
+androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3" }
 maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshotValidationApi" }

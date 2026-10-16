@@ -6,6 +6,8 @@ _site/
 .bundle/
 vendor/
 Gemfile.lock
+/_site
+/users
 # Generated locally before the Jekyll build (committed copies live elsewhere / are CI-generated)
 _includes/beacon-styles.md
 dokka/

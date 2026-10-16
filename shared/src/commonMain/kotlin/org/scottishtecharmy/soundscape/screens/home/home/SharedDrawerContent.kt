@@ -37,6 +37,9 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.platform.appVersionName
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.menu_audio_tutorial
 import org.scottishtecharmy.soundscape.resources.menu_audio_tutorial_cancel
@@ -64,9 +67,12 @@ fun SharedDrawerContent(
     tutorialRunning: Boolean,
     recordingEnabled: Boolean,
     newReleaseDialog: MutableState<Boolean>?,
-    exitApp: (() -> Unit)? = null,
+    preferencesProvider: PreferencesProvider?,
+    exitApp: (() -> Unit)? = null
 ) {
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
+    val useMarkdownHelp =
+        preferencesProvider?.getBoolean(PreferenceKeys.MARKDOWN_HELP, PreferenceDefaults.MARKDOWN_HELP) == true
 
     BoxWithConstraints {
         val screenWidth = maxWidth
@@ -128,7 +134,12 @@ fun SharedDrawerContent(
                         modifier = Modifier.testTag("menuSettings"),
                     )
                     DrawerMenuItem(
-                        onClick = { onNavigate(SharedRoutes.HELP + "/page${Res.string.menu_help.key}") },
+                        onClick = {
+                            val route =
+                                if (useMarkdownHelp) "page:${HelpTopic.HELP_AND_TUTORIALS_FILENAME}"
+                                else "page${Res.string.menu_help.key}"
+                            onNavigate(SharedRoutes.HELP + "/${route}")
+                        },
                         label = stringResource(Res.string.menu_help),
                         icon = Icons.AutoMirrored.Rounded.HelpOutline,
                         modifier = Modifier.testTag("menuHelpAndTutorials"),
@@ -165,7 +176,12 @@ fun SharedDrawerContent(
                         modifier = Modifier.testTag("menuOfflineMaps"),
                     )
                     DrawerMenuItem(
-                        onClick = { onNavigate(SharedRoutes.HELP + "/page${Res.string.settings_about_app.key}") },
+                        onClick = {
+                            val route =
+                                if (useMarkdownHelp) "page:${HelpTopic.ABOUT_SOUNDSCAPE_FILENAME}"
+                                else "page${Res.string.menu_help.key}"
+                            onNavigate(SharedRoutes.HELP + "/${route}")
+                        },
                         label = stringResource(Res.string.settings_about_app),
                         icon = Icons.AutoMirrored.Rounded.HelpOutline,
                         modifier = Modifier.testTag("menuAboutSoundscape"),

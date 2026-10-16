@@ -601,32 +601,37 @@ fun SharedHelpScreen(
     /** Horizontal accuracy of the current position in metres, for the GPS accuracy page. */
     locationAccuracy: Float? = null,
     modifier: Modifier = Modifier,
+    preferencesProvider: org.scottishtecharmy.soundscape.preferences.PreferencesProvider? = null,
 ) {
+    // Find our page
     var sections = Sections(Res.string.menu_help, emptyList())
-    if (topic.startsWith("page")) {
-        val key = topic.substring(4)
-        for (page in helpPages) {
-            if (page.titleId.key == key) {
-                sections = page
+    val helpTopic = HelpTopic.fromRouteParam(topic, preferencesProvider)
+    when (helpTopic) {
+        is HelpTopic.ResourcePage -> {
+            for (page in helpPages) {
+                if (page.titleId == helpTopic.titleId) {
+                    sections = page
+                }
             }
         }
-    } else if (topic.startsWith("faq")) {
-        val keys = topic.substring(3).split(".")
-        val questionRes = findStringResourceByKey(keys[0])
-        val answerRes = if (keys.size > 1) findStringResourceByKey(keys[1]) else null
-        if (questionRes != null && answerRes != null) {
+
+        is HelpTopic.ResourceFaq -> {
+            // We want to display the question and answer
             sections = Sections(
                 Res.string.faq_title_abbreviated,
                 listOf(
-                    Section(questionRes, SectionType.Title),
-                    Section(answerRes, SectionType.Paragraph)
+                    Section(helpTopic.questionId, SectionType.Title),
+                    Section(helpTopic.answerId, SectionType.Paragraph)
                 )
             )
         }
-    } else {
-        for (page in helpPages) {
-            if (page.titleId == Res.string.menu_help) {
-                sections = page
+
+        else -> {
+            // Default to home
+            for (page in helpPages) {
+                if (page.titleId == Res.string.menu_help) {
+                    sections = page
+                }
             }
         }
     }
@@ -695,11 +700,16 @@ fun SharedHelpScreen(
                                 SectionType.Link, SectionType.Faq -> {
                                     Button(
                                         onClick = {
-                                            if (section.type == SectionType.Faq) {
-                                                onNavigate("${SharedRoutes.HELP}/faq${section.textId.key}.${section.faqAnswer?.key}")
+                                            // TODO 2016-10-01 HughG: Make a FaqSection subclass so we can't have null faqAnswer.
+                                            val routeParam = if (section.type == SectionType.Faq && section.faqAnswer != null) {
+                                                HelpTopic.ResourceFaq(
+                                                    section.textId,
+                                                    section.faqAnswer
+                                                ).toRouteParam()
                                             } else {
-                                                onNavigate("${SharedRoutes.HELP}/page${section.textId.key}")
+                                                HelpTopic.ResourcePage(section.textId).toRouteParam()
                                             }
+                                            onNavigate("${SharedRoutes.HELP}/$routeParam")
                                         },
                                         modifier = Modifier
                                             .fillMaxWidth()
