@@ -545,7 +545,10 @@ def collect_dropbox(serial, since):
     `since` is a device-local "YYYY-MM-DD HH:MM:SS" string, which is also the
     format dropbox prints entries with, so plain string comparison works.
     """
-    out = shell(serial, "dumpsys dropbox --print " + " ".join(DROPBOX_TAGS), timeout=60)
+    # One tag per call: dumpsys dropbox only prints entries that match every
+    # argument, so several tags in one call print nothing.
+    out = "\n".join(shell(serial, f"dumpsys dropbox --print {tag}", timeout=60)
+                    for tag in DROPBOX_TAGS)
     found = []
     for entry in re.split(r"^={10,}\s*$", out, flags=re.M):
         m = re.search(r"^(\d{4}-\d\d-\d\d \d\d:\d\d:\d\d) (\S+)", entry.strip(), re.M)
