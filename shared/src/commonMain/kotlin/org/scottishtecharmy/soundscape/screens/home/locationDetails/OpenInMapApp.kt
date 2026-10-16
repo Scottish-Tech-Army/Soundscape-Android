@@ -36,6 +36,7 @@ import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.platform.isIos
+import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
@@ -189,6 +190,8 @@ private fun MapAppChooserDialog(
 ) {
     var rememberChoice by remember { mutableStateOf(initiallyRemember) }
     AlertDialog(
+        // A dialog is its own window, outside the theme's testTagsAsResourceId.
+        modifier = Modifier.testTagsAsResourceId(),
         onDismissRequest = onDismiss,
         title = { Text(stringResource(Res.string.open_in_app_dialog_title)) },
         text = {

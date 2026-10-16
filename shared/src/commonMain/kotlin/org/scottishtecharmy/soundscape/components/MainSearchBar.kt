@@ -59,6 +59,7 @@ import org.scottishtecharmy.soundscape.resources.ui_back_button_title
 import org.scottishtecharmy.soundscape.platform.FullScreenDialogWindow
 import org.scottishtecharmy.soundscape.platform.fullScreenDialogProperties
 import org.scottishtecharmy.soundscape.platform.fullScreenDialogSystemBarsPadding
+import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackLive
@@ -143,6 +144,7 @@ fun MainSearchBar(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .testTagsAsResourceId()
                     .background(colors.background)
             ) {
                 Column(modifier = Modifier.fillMaxSize().fullScreenDialogSystemBarsPadding()) {
@@ -236,7 +238,7 @@ fun MainSearchBar(
                         ) {
                             itemsIndexed(results) { index, item ->
                                 Column(
-                                    modifier = Modifier.semantics {
+                                    modifier = Modifier.testTag("searchResult-$index").semantics {
                                         collectionItemInfo = CollectionItemInfo(
                                             rowSpan = 1, columnSpan = 1,
                                             rowIndex = index, columnIndex = 0,

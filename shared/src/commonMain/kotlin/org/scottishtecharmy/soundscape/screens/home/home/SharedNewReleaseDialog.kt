@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.platform.appVersionMinorTrimmed
+import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
@@ -45,7 +46,7 @@ fun SharedNewReleaseDialog(
     val uriHandler = LocalUriHandler.current
 
     AlertDialog(
-        modifier = Modifier.padding(innerPadding),
+        modifier = Modifier.testTagsAsResourceId().padding(innerPadding),
         title = { Text(text = stringResource(Res.string.new_version_info_text)) },
         text = {
             LazyColumn(modifier = Modifier.padding(top = spacing.medium)) {

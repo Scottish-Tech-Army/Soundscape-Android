@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -301,6 +302,7 @@ fun SharedSettingsScreen(
                             if (expandedSection.value == "callouts") null else "callouts"
                     },
                     textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionCallouts"),
                 )
             }
             if (expandedSection.value == "callouts") {
@@ -416,6 +418,7 @@ fun SharedSettingsScreen(
                             if (expandedSection.value == "search") null else "search"
                     },
                     textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionSearch"),
                 )
             }
             if (expandedSection.value == "search") {
@@ -423,7 +426,7 @@ fun SharedSettingsScreen(
                     key = PreferenceKeys.GEOCODER_MODE,
                     defaultValue = PreferenceDefaults.GEOCODER_MODE,
                     values = geocoderValues,
-                    modifier = expandedSectionModifier,
+                    modifier = expandedSectionModifier.testTag("settingsSearchMode"),
                     title = { SettingTitle(Res.string.settings_section_search_network, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
@@ -485,6 +488,7 @@ fun SharedSettingsScreen(
                                 if (expandedSection.value == "accessibility") null else "accessibility"
                         },
                         textColor = textColor,
+                        modifier = Modifier.testTag("settingsSectionAccessibility"),
                     )
                 }
                 if (expandedSection.value == "accessibility") {
@@ -503,7 +507,7 @@ fun SharedSettingsScreen(
                                         color = textColor,
                                     )
                                 },
-                                modifier = expandedSectionModifier,
+                                modifier = expandedSectionModifier.testTag("settingsShowMap"),
                             )
                         }
                     }
@@ -524,6 +528,7 @@ fun SharedSettingsScreen(
                                 if (expandedSection.value == "storage") null else "storage"
                         },
                         textColor = textColor,
+                        modifier = Modifier.testTag("settingsSectionStorage"),
                     )
                 }
                 if (expandedSection.value == "storage") {
@@ -541,6 +546,7 @@ fun SharedSettingsScreen(
                             if (expandedSection.value == "audio") null else "audio"
                     },
                     textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionAudio"),
                 )
             }
             if (expandedSection.value == "audio") {
@@ -591,6 +597,7 @@ fun SharedSettingsScreen(
                             if (expandedSection.value == "language") null else "language"
                     },
                     textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionLanguage"),
                 )
             }
             if (expandedSection.value == "language") {
@@ -632,6 +639,7 @@ fun SharedSettingsScreen(
                             if (expandedSection.value == "media_controls") null else "media_controls"
                     },
                     textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionMediaControls"),
                 )
             }
             if (expandedSection.value == "media_controls") {
@@ -673,6 +681,7 @@ fun SharedSettingsScreen(
                             if (expandedSection.value == "debug") null else "debug"
                     },
                     textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionDebug"),
                 )
             }
             if (expandedSection.value == "debug") {
