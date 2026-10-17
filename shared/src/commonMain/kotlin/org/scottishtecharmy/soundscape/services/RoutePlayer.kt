@@ -97,6 +97,8 @@ class RoutePlayer(
     fun startRoute(routeId: Long, reverse: Boolean = false, startWaypoint: Int = 0) {
         coroutineScope.launch {
             val route = routeDao.getRouteWithMarkers(routeId) ?: return@launch
+            // A route with no waypoints has nothing to play
+            if (route.markers.isEmpty()) return@launch
             val routeData = if (reverse) {
                 val reverseName = getString(Res.string.route_reverse_name, route.route.name)
                 RouteWithMarkers(
