@@ -1546,7 +1546,7 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="street_description_relative_near">{Kadulla %1$s} lähellä kohdetta %2$s</string>
     <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
     <string name="oboe_copyright">Ääni toistetaan pienellä viiveellä [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) -kirjastolla, joka on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/google/oboe/blob/main/LICENSE) nojalla.</string>
-    <string name="directions_entering_tunnel">Ajetaan tunneliin</string>
+    <string name="directions_entering_tunnel">Menet tunneliin</string>
     <string name="directions_entering_tunnel_named">Siirryt kohteeseen %1$s</string>
     <string name="directions_entering_tunnel_vehicle">Ajetaan tunneliin</string>
     <string name="directions_entering_tunnel_named_vehicle">Siirryt kohteeseen %1$s</string>
