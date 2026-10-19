@@ -77,7 +77,13 @@ class OfflineMapManager(
      * server published a new build.
      */
     val downloadedExtractsFc: StateFlow<FeatureCollection> =
-        combine(_manifest, _downloadedExtracts) { manifest, paths ->
+        combine(_manifest, _downloadedExtracts) { _, _ ->
+            // Both are read afresh rather than taken from combine, whose collectors run
+            // independently: it could hand over the newly found paths with the manifest from
+            // before, so an extract briefly showed with no manifest entry - not outdated, say.
+            // refresh() sets the manifest before the paths, so whoever sees one sees both.
+            val manifest = _manifest.value
+            val paths = _downloadedExtracts.value
             val fc = FeatureCollection()
             for (path in paths) {
                 val baseName = path.substringAfterLast("/")
