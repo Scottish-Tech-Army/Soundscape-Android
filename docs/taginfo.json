@@ -1,10 +1,10 @@
 {
     "data_format": 1,
     "data_url": "https://scottish-tech-army.github.io/Soundscape-Android/taginfo.json",
-    "data_updated": "20240730T110000Z",
-    "project": {         
+    "data_updated": "20261019T120000Z",
+    "project": {
         "name": "Soundscape for Android",
-        "description": "An Android app to help people with visual impairments explore and navigate.",   
+        "description": "An Android app to help people with visual impairments explore and navigate.",
         "project_url": "https://scottish-tech-army.github.io/Soundscape-Android",
         "icon_url": "https://scottish-tech-army.github.io/Soundscape-Android/assets/SOUNDSCAPE-logo.png",
         "contact_name": "Scottish Tech Army",
@@ -12,81 +12,393 @@
     },
     "tags": [
         {
-            "key": "place",
-            "description": "To callout when a user is near a village, hamlet, town etc. This happens when moving faster than walking speed e.g. by bus or train."
-        },
-        {
-            "key": "amenity",
-            "description": "These are called out when users get close to them."
-        },
-        {
-            "key": "shop",
-            "description": "These are called out when users get close to them."
-        },
-        {
-            "key": "crossing",
-            "description": "These are called out when users get close to them."
+            "key": "name",
+            "description": "The name of roads, paths, places, points of interest, buildings, water and settlements, used in every callout and in search."
         },
         {
             "key": "highway",
-            "description": "The app uses highways to describe a user's location and intersections ahead of them."
+            "object_types": [
+                "way"
+            ],
+            "description": "Roads and paths make up the network the app uses to describe where the user is, which way they are facing and the intersections ahead."
         },
         {
-            "key": "railway",
-            "description": "The app uses railways to add context to a user's location e.g. on path next to railway."
+            "key": "highway",
+            "value": "crossing",
+            "object_types": [
+                "node"
+            ],
+            "description": "Pedestrian crossings are called out as the user approaches them."
         },
         {
-            "key": "water",
-            "description": "The app uses water tags to add context to a user's location e.g. on path next to River Dee."
+            "key": "crossing",
+            "object_types": [
+                "node"
+            ],
+            "description": "Type of a pedestrian crossing. Unmarked crossings are only called out if they have tactile paving."
         },
         {
-            "key": "name",
-            "description": "The app uses names wherever possible when describing nearby features."
+            "key": "tactile_paving",
+            "object_types": [
+                "node"
+            ],
+            "description": "Whether a crossing has tactile paving. An unmarked crossing without it is not called out."
+        },
+        {
+            "key": "highway",
+            "value": "bus_stop",
+            "object_types": [
+                "node"
+            ],
+            "description": "Bus stops are called out, and only those serving the direction of travel when riding a bus."
+        },
+        {
+            "key": "highway",
+            "value": "motorway_junction",
+            "object_types": [
+                "node"
+            ],
+            "description": "Motorway junctions are called out by number and name when travelling by car, bus or coach."
+        },
+        {
+            "key": "ref",
+            "object_types": [
+                "node",
+                "way"
+            ],
+            "description": "Road numbers (e.g. M8, A82) are used to name roads, and junction numbers to name motorway junctions."
+        },
+        {
+            "key": "junction",
+            "value": "roundabout",
+            "object_types": [
+                "way"
+            ],
+            "description": "Roundabouts are described as roundabouts at intersections."
         },
         {
             "key": "footway",
             "value": "sidewalk",
-            "description": "The sidewalk tag is crucial for trying to simplify complex urban data. If a user is on a sidewalk, then unless it's named, they are described as traveling along the adjacent highway."
+            "object_types": [
+                "way"
+            ],
+            "description": "Sidewalks are described as the sidewalk of the road they run beside rather than as separate paths."
         },
         {
-            "key": "building",
-            "value": "yes",
-            "description": "The app changes behaviour when it is inside a building, it won't callout roads and places that are outside the building."
+            "key": "footway",
+            "value": "crossing",
+            "object_types": [
+                "way"
+            ],
+            "description": "Crossing ways are treated like sidewalks: the user is described as crossing the road rather than being on a separate path."
         },
         {
-            "key": "entrance",
-            "description": "The app uses the entrance tag to better describe the location of a building."
-        },
-        {
-            "key": "tunnel",
-            "value": "yes",
-            "description": "The app adds context to paths e.g. path via tunnel to park."
+            "key": "bicycle",
+            "value": "designated",
+            "object_types": [
+                "way"
+            ],
+            "description": "Designated cycle ways alongside a road are treated like sidewalks rather than as separate paths."
         },
         {
             "key": "bridge",
+            "object_types": [
+                "way"
+            ],
+            "description": "Used to describe a road or path as passing over another road, railway or water."
+        },
+        {
+            "key": "tunnel",
+            "object_types": [
+                "way"
+            ],
+            "description": "Used to describe a road or path as passing under something, and to call out entering a tunnel."
+        },
+        {
+            "key": "tunnel:name",
+            "object_types": [
+                "way"
+            ],
+            "description": "Called out when entering a named tunnel."
+        },
+        {
+            "key": "railway",
+            "object_types": [
+                "way"
+            ],
+            "description": "Railway lines add context to the user's location, e.g. a path next to a railway, and are matched while travelling by train."
+        },
+        {
+            "key": "railway",
+            "value": "station",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Train stations are called out as points of interest."
+        },
+        {
+            "key": "railway",
+            "value": "stop",
+            "object_types": [
+                "node"
+            ],
+            "description": "Stop positions on the line are how the app tells which stations a train actually serves, rather than every station it passes."
+        },
+        {
+            "key": "railway",
+            "value": "tram_stop",
+            "object_types": [
+                "node"
+            ],
+            "description": "Tram stops are called out, and stop positions on the line are used while travelling by tram."
+        },
+        {
+            "key": "public_transport",
+            "value": "stop_position",
+            "object_types": [
+                "node"
+            ],
+            "description": "Combined with train=yes or tram=yes, used as a stop on the line in the same way as railway=stop and railway=tram_stop."
+        },
+        {
+            "key": "train",
             "value": "yes",
-            "description": "The app adds context to paths e.g. path via bridge to park."
+            "object_types": [
+                "node"
+            ],
+            "description": "Identifies a public_transport=stop_position as a railway stop."
         },
         {
-            "key": "highway",
-            "value": "steps",
-            "description": "The app adds context to paths e.g. path via steps to park."
+            "key": "tram",
+            "value": "yes",
+            "object_types": [
+                "node"
+            ],
+            "description": "Identifies a public_transport=stop_position as a tram stop."
         },
         {
-            "key": "destination:forward",
-            "description": "The destination tag is used to add context to unnamed highways e.g. path to park."
+            "key": "amenity",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
         },
         {
-            "key": "destination:backward",
-            "description": "The destination tag is used to add context to unnamed highways e.g. path from park."
+            "key": "shop",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
         },
         {
-            "key": "roundabout",
-            "description": "Special consideration is given to roundabouts when describing them as intersections."
+            "key": "tourism",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
         },
         {
-            "key": "tactile_paving",
-            "description": "If there's no tactile_paving tag, and a crossing is tagged as unmarked then we don't call it out to users."
+            "key": "leisure",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+        },
+        {
+            "key": "historic",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+        },
+        {
+            "key": "office",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+        },
+        {
+            "key": "sport",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Unnamed sports pitches are called out by their sport, e.g. Football Pitch or Skate Park, rather than as a Sports Field."
+        },
+        {
+            "key": "artwork_type",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Unnamed artworks are called out by their type, e.g. Mural or Statue, rather than as Artwork."
+        },
+        {
+            "key": "information",
+            "object_types": [
+                "node"
+            ],
+            "description": "Unnamed tourism=information features are called out by their type, e.g. Signpost, Information Board or Tactile Map, rather than as Information."
+        },
+        {
+            "key": "entrance",
+            "object_types": [
+                "node"
+            ],
+            "description": "Entrances are matched to the building or point of interest they belong to, so the app can guide the user to the door rather than the middle of the building."
+        },
+        {
+            "key": "layer",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Used to match an entrance to the right building or point of interest when several overlap."
+        },
+        {
+            "key": "building",
+            "object_types": [
+                "area"
+            ],
+            "description": "Named buildings are called out and can be searched for; the building type is used when the building has no other description."
+        },
+        {
+            "key": "addr:housenumber",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "House numbers are used to describe the user's location and for offline address search."
+        },
+        {
+            "key": "addr:street",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "The street a house number belongs to."
+        },
+        {
+            "key": "addr:block_number",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Block numbers, used for Japanese style block addresses."
+        },
+        {
+            "key": "addr:neighbourhood",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Used with block numbers to describe Japanese style block addresses."
+        },
+        {
+            "key": "addr:quarter",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Used with block numbers to describe Japanese style block addresses."
+        },
+        {
+            "key": "addr:suburb",
+            "object_types": [
+                "node",
+                "area"
+            ],
+            "description": "Used to describe addresses, particularly Japanese style block addresses."
+        },
+        {
+            "key": "naptan:CommonName",
+            "object_types": [
+                "node"
+            ],
+            "description": "For UK bus stops, the stop name used on timetables and signs is preferred when calling out the stop."
+        },
+        {
+            "key": "naptan:Street",
+            "object_types": [
+                "node"
+            ],
+            "description": "For UK bus stops, the street the stop is actually on."
+        },
+        {
+            "key": "naptan:Landmark",
+            "object_types": [
+                "node"
+            ],
+            "description": "For UK bus stops, a nearby landmark used to describe the stop."
+        },
+        {
+            "key": "naptan:LocalityName",
+            "object_types": [
+                "node"
+            ],
+            "description": "For UK bus stops, the locality used to describe the stop."
+        },
+        {
+            "key": "naptan:Bearing",
+            "object_types": [
+                "node"
+            ],
+            "description": "For UK bus stops, the direction of travel the stop serves."
+        },
+        {
+            "key": "naptan:AtcoCode",
+            "object_types": [
+                "node"
+            ],
+            "description": "Identifies a bus stop as carrying NaPTAN data."
+        },
+        {
+            "key": "natural",
+            "value": "water",
+            "object_types": [
+                "area"
+            ],
+            "description": "Named water is used to add context to the user's location, e.g. a path next to River Dee, and to call out crossing it."
+        },
+        {
+            "key": "natural",
+            "value": "bay",
+            "object_types": [
+                "way",
+                "area"
+            ],
+            "description": "Named bays are called out when crossing them, e.g. by ferry."
+        },
+        {
+            "key": "natural",
+            "value": "strait",
+            "object_types": [
+                "way",
+                "area"
+            ],
+            "description": "Named straits are called out when crossing them, e.g. by ferry."
+        },
+        {
+            "key": "waterway",
+            "object_types": [
+                "way"
+            ],
+            "description": "Named rivers, canals and streams add context to the user's location and are called out when crossed."
+        },
+        {
+            "key": "place",
+            "object_types": [
+                "node"
+            ],
+            "description": "Settlements are called out when the user enters or approaches them while travelling, e.g. by bus or train."
         }
     ]
 }
