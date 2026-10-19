@@ -37,6 +37,14 @@ fun mergePolygons(polygon1: Feature, polygon2: Feature): Feature {
         // The JTS implementation cast unconditionally. polygon1 is always an MvtFeature in
         // production, but the tests pass a plain Feature, so degrade rather than throw.
         (polygon1 as? MvtFeature)?.let { feature.copyProperties(it) }
+        // The two are the same OSM way, and so have the same name - unless only one of them was
+        // given one, as a farmyard is by the place=farm within it, in the one tile the farm is in
+        if (feature.name == null) {
+            (polygon2 as? MvtFeature)?.let {
+                feature.name = it.name
+                feature.translatedName = it.translatedName
+            }
+        }
         feature.geometry = Polygon().also { polygon ->
             polygon.coordinates = merged[0].mapTo(ArrayList()) { ring ->
                 ring.mapTo(ArrayList<LngLatAlt>()) { it }

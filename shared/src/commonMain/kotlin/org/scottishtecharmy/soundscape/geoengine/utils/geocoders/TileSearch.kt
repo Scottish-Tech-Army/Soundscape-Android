@@ -16,6 +16,11 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometryAndClipLineToTile
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.classTag
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.farmClass
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.featureName
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.placeFarmsInFarmyards
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.hasTag
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.parseGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.pointIsOffTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.translateProperties
@@ -384,13 +389,31 @@ class TileSearch(
         (string[index] == ' ') && (index > 0) && (index + 1 < string.length) &&
             isUnspacedScript(codePointBefore(string, index)) && isUnspacedScript(codePointAt(string, index + 1))
 
-    /** A layer of a tile which the search looks in, with its strings normalized to compare with a match. */
+    /**
+     * A layer of a tile which the search looks in, with its strings normalized to compare with a
+     * match. Only the features with [requiredTag], if there is one, and not in [excluded], are
+     * looked at.
+     */
     private class SearchedLayer(
         val layer: Tile.Layer,
         val nameTagIndices: Set<Int>,
         val normalizedValues: List<String?>,
         val joinedValues: List<String?>,
+        val requiredTag: Pair<Int, Int>? = null,
+        val excluded: Set<Tile.Feature> = emptySet(),
     )
+
+    /**
+     * The place=farm points in [tile] which are within a farmyard with a name of its own, and so
+     * are found as that farmyard - see placeFarmsInFarmyards. One within an unnamed farmyard is
+     * how the farm is found by name, and so is kept.
+     */
+    private fun farmsFoundAsFarmyards(tile: Tile): Set<Tile.Feature> {
+        val farmsInFarmyards = placeFarmsInFarmyards(tile)
+        if (farmsInFarmyards.isEmpty()) return emptySet()
+        val landuseLayer = tile.layers.first { it.name == "landuse" }
+        return farmsInFarmyards.filterValues { featureName(landuseLayer, it) != null }.keys
+    }
 
     /** The tile at [tileX], [tileY], or null if it can't be read. */
     private fun readTile(reader: PmTilesReader?, tileX: Int, tileY: Int): Tile? {
@@ -402,17 +425,52 @@ class TileSearch(
     /** The layers of [tile] which the search looks in - none if it couldn't be read. */
     private fun searchedLayers(tile: Tile?): List<SearchedLayer> {
         if (tile == null) return emptyList()
+        val farmsFoundAsFarmyards = farmsFoundAsFarmyards(tile)
         return tile.layers
-            .filter { (it.name == "transportation") || (it.name == "poi") }
-            .map { layer ->
+            .mapNotNull { layer ->
+                // Of the landuse and place layers, only the farms are searched
+                val requiredTag = when (layer.name) {
+                    "transportation", "poi" -> null
+                    else -> {
+                        val farmClass = farmClass(layer.name) ?: return@mapNotNull null
+                        classTag(layer, farmClass) ?: return@mapNotNull null
+                    }
+                }
                 val normalizedValues = layer.values.map { value -> value.string_value?.let { normalizeForSearch(it) } }
                 SearchedLayer(
                     layer,
                     layer.keys.withIndex().filter { (_, key) -> isNameKey(key) }.map { it.index }.toSet(),
                     normalizedValues,
                     normalizedValues.map { value -> value?.let { joinUnspacedWords(it) } },
+                    requiredTag,
+                    if (layer.name == "place") farmsFoundAsFarmyards else emptySet(),
                 )
             }
+    }
+
+    /**
+     * The names of the farms in [layer], one of those [farmClass] picks them out of, in every
+     * language they have them in, leaving out [farmsFoundAsFarmyards]. Not every name in the layer:
+     * those of housing estates, quarries and settlements aren't wanted. A place=farm is a point, which is in the tiles around its own
+     * as well, where it's only there to draw its label - and taking its name in those would fill up
+     * the results the search can take with tiles it can't be found in.
+     */
+    private fun farmNames(layer: Tile.Layer, farmsFoundAsFarmyards: Set<Tile.Feature>): List<String> {
+        val farmClass = farmClass(layer.name) ?: return emptyList()
+        val farmTag = classTag(layer, farmClass) ?: return emptyList()
+        val nameKeys = layer.keys.withIndex().filter { (_, key) -> isNameKey(key) }.map { it.index }.toSet()
+        val names = mutableListOf<String>()
+        for (feature in layer.features) {
+            if (!hasTag(feature, farmTag) || (feature in farmsFoundAsFarmyards)) continue
+            if ((feature.type == Tile.GeomType.POINT) &&
+                parseGeometry(true, feature.geometry).none { it.isNotEmpty() }
+            ) continue
+            val tags = feature.tags
+            for (i in 0 until tags.size - 1 step 2) {
+                if (tags[i] in nameKeys) layer.values[tags[i + 1]].string_value?.let { names.add(it) }
+            }
+        }
+        return names
     }
 
     /** Whether [feature] has the string at [stringKey] in its layer's values as one of its names. */
@@ -1020,6 +1078,7 @@ class TileSearch(
                     // Load the tile and add all of its String to a cache
                     cache = mutableListOf()
                     if (tile != null) {
+                        val farmsFoundAsFarmyards = farmsFoundAsFarmyards(tile)
                         for (layer in tile.layers) {
                             if ((layer.name == "transportation") || (layer.name == "poi")) {
                                 for (value in layer.values) {
@@ -1028,6 +1087,8 @@ class TileSearch(
                                         cache.add(normalizeForSearch(sv))
                                     }
                                 }
+                            } else {
+                                for (name in farmNames(layer, farmsFoundAsFarmyards)) cache.add(normalizeForSearch(name))
                             }
                         }
                         // A name is in a tile's values once for each tag it's under, and it only
@@ -1119,6 +1180,9 @@ class TileSearch(
                     // Take the first feature with this name that's within the tile
                     for (feature in layer.features) {
                         if (!featureHasName(feature, searchedLayer.nameTagIndices, stringKey)) continue
+                        if ((searchedLayer.requiredTag != null) && !hasTag(feature, searchedLayer.requiredTag))
+                            continue
+                        if (feature in searchedLayer.excluded) continue
                         val featureLocation =
                             featureLocation(feature, result.tileX, result.tileY, location, ruler)
                                 ?: continue
