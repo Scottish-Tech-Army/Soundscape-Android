@@ -33,7 +33,7 @@ class DijkstraTest {
 
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream("shortest-route.geojson")
+        val mapMatchingOutput = FileOutputStream(testOutputFile("shortest-route.geojson"))
 
         val shortestRoutes = FeatureCollection()
 
@@ -111,7 +111,7 @@ class DijkstraTest {
 
         // Visualise the shortest routes
         val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream("shortest-route.geojson")
+        val mapMatchingOutput = FileOutputStream(testOutputFile("shortest-route.geojson"))
         mapMatchingOutput.write(adapter.toJson(shortestRoute).toByteArray())
         mapMatchingOutput.close()
     }
@@ -163,7 +163,7 @@ class DijkstraTest {
 
         // Visualise the shortest routes
         val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream("shortest-route.geojson")
+        val mapMatchingOutput = FileOutputStream(testOutputFile("shortest-route.geojson"))
         mapMatchingOutput.write(adapter.toJson(shortestRouteAsSingleLine).toByteArray())
         mapMatchingOutput.close()
     }
