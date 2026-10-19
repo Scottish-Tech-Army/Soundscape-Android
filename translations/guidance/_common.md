@@ -648,9 +648,9 @@ The English help and FAQ were rewritten against the code in `67e99c61b` (short s
 
 ## C29 — Tunnel callouts have a walking and a vehicle variant (code, 2026-10-19)
 
-`directions_entering_tunnel` / `_named` are spoken on foot. `directions_entering_tunnel_vehicle` / `_named_vehicle` are spoken in a vehicle, when matched to a railway, or just after being in a vehicle. The English is the same for both ("Entering a tunnel"). The split came from the Polish reviewer («Wchodzisz» / «Wjeżdżasz», pl.md PL-T2). Each language had picked one verb for both cases, so:
+`directions_entering_tunnel` / `_named` are spoken on foot. `directions_entering_tunnel_vehicle` / `_named_vehicle` are spoken in a vehicle, when matched to a railway, or just after being in a vehicle. Trains are probably the most common case, so the vehicle verb must suit a **passenger**, not just a driver: a riding or travelling verb (sv «åker», cs «Vjezd», pl «Wjeżdżasz», which a train passenger says too). Never use a verb that only means operating a car. The English is the same for both ("Entering a tunnel"). The split came from the Polish reviewer («Wchodzisz» / «Wjeżdżasz», pl.md PL-T2). Each language had picked one verb for both cases, so:
 
-- driving verbs moved to the vehicle keys only: da «kører», nb «kjører», sv «åker», fi «Ajetaan», uk «В’їзд». The walking keys now say «går», «Menet», «Вхід».
+- riding verbs moved to the vehicle keys only: da «kører», nb «kjører», sv «åker», fi «Ajetaan», uk «В’їзд». The walking keys now say «går», «Menet», «Вхід».
 - walking nouns moved to the walking keys only: cs/sk «Vstup», ru «Вход», sl «Vstop». The vehicle keys now say «Vjezd», «Vjazd», «Въезд», «Vožnja v».
 - left as they were, because the verb is neutral: is «Þú ferð», hr «Ulazak», sr «Улазак», and the "entering" forms in most other languages.
 
