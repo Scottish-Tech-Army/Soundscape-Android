@@ -1050,6 +1050,25 @@ open class GridState(
      * This makes it somewhat performance critical. However, by doing this it allows us to
      * disconnect and reconnect the tile grid
      */
+    /**
+     * Just enough of [processGridState] to follow a street along its ways and place a house
+     * number on it, for a grid made from only the tiles a street runs through: the ROADS and
+     * ROADS_AND_PATHS rtrees, and the ways joined across the tile edges. None of the POIs are
+     * classified or attached to ways, and no names are confected, as only the callouts use them.
+     */
+    fun processStreetGrid(
+        featureCollections: Array<FeatureCollection>,
+        newGridIntersections: List<HashMap<LngLatAlt, Intersection>>,
+        grid: TileGrid,
+    ) {
+        for (id in listOf(TreeId.ROADS, TreeId.ROADS_AND_PATHS)) {
+            featureTrees[id.id] = FeatureTree(featureCollections[id.id])
+        }
+        if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
+            joinTileEdgeIntersections(grid, newGridIntersections)
+        }
+    }
+
     fun processGridState(
         featureCollections: Array<FeatureCollection>,
         selection: CalloutPoiSelection,

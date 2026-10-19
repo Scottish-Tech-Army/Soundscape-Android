@@ -10,7 +10,6 @@ import org.scottishtecharmy.soundscape.dto.Tile as GridTile
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -939,12 +938,10 @@ class TileSearch(
     ): StreetDescription? {
         val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
         val intersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
-        val transitIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
         val streetNumbers = hashMapOf<String, FeatureCollection>()
         for ((x, y) in tiles) {
             val mvt = tile(x, y) ?: continue
             val intersectionMap = hashMapOf<LngLatAlt, Intersection>()
-            val transitIntersectionMap = hashMapOf<LngLatAlt, Intersection>()
             val tileStreetNumbers = hashMapOf<String, FeatureCollection>()
             val collections = vectorTileToGeoJson(
                 tileX = x,
@@ -952,42 +949,38 @@ class TileSearch(
                 mvt = mvt,
                 intersectionMap = intersectionMap,
                 streetNumberMap = tileStreetNumbers,
-                transitIntersectionMap = transitIntersectionMap,
+                transitIntersectionMap = hashMapOf(),
                 nameKeys = gridState.nameKeys
             )
-            for ((index, collection) in collections.withIndex()) {
-                featureCollections[index] += collection
+            for (id in listOf(TreeId.ROADS, TreeId.ROADS_AND_PATHS)) {
+                featureCollections[id.id] += collections[id.id]
             }
             intersections.add(intersectionMap)
-            transitIntersections.add(transitIntersectionMap)
             for ((key, collection) in tileStreetNumbers) {
                 streetNumbers.getOrPut(key) { FeatureCollection() }.plusAssign(collection)
             }
         }
 
         // Only this search uses it, so it shares the grid's treeContext rather than starting a
-        // thread of its own, and isn't held to it
+        // thread of its own, and isn't held to it. It has only what placing a house number on the
+        // street needs - its ways, joined across the tile edges, and the houses on it and those
+        // with no street, which may be too - and none of the POIs or other trees which describing
+        // the street to someone walking along it would use.
         val streetGrid = GridState(passedInTreeContext = gridState.treeContext)
         streetGrid.validateContext = false
         streetGrid.ruler = CheapRuler(location.latitude)
         streetGrid.nameKeys = gridState.nameKeys
-        streetGrid.processGridState(
+        streetGrid.processStreetGrid(
             featureCollections,
-            CalloutPoiSelection.EVERYTHING,
             intersections,
-            transitIntersections,
-            streetGrid.featureTrees,
-            streetGrid.gridIntersections,
-            streetGrid.gridTransitIntersections,
             TileGrid(
                 tiles.map { (x, y) -> GridTile(x, y, MAX_ZOOM_LEVEL) }.toMutableList(),
                 BoundingBox(),
                 BoundingBox()
-            ),
-            localizedStrings
+            )
         )
-        for ((key, collection) in streetNumbers) {
-            streetGrid.gridStreetNumberTreeMap[key] = FeatureTree(collection)
+        for (key in listOf(street, "null")) {
+            streetNumbers[key]?.let { streetGrid.gridStreetNumberTreeMap[key] = FeatureTree(it) }
         }
 
         val way = findNearestNamedWay(location, street, streetGrid) ?: return null
