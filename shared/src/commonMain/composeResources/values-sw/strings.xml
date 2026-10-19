@@ -1548,6 +1548,8 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="oboe_copyright">[Maktaba ya Oboe ©The Android Open Source Project](https://github.com/google/oboe) inatumika kucheza sauti kwa ucheleweshaji mdogo, na inapatikana kwa matumizi chini ya [leseni ya Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Unaingia kwenye handaki</string>
     <string name="directions_entering_tunnel_named">Unaingia %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Unaingia kwenye handaki</string>
+    <string name="directions_entering_tunnel_named_vehicle">Unaingia %1$s</string>
     <string name="help_assistant_page_title">Amri za Sauti za Siri</string>
     <string name="help_assistant_how_heading">Jinsi ya Kuomba</string>
     <string name="help_assistant_commands_heading">Unachoweza Kuomba</string>

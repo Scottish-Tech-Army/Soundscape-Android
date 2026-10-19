@@ -1548,6 +1548,8 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) wird zur Wiedergabe des Audios mit geringer Latenz verwendet und steht unter der [Apache‑2.0‑Lizenz](https://github.com/google/oboe/blob/main/LICENSE) zur Nutzung bereit.</string>
     <string name="directions_entering_tunnel">Tunnel wird betreten</string>
     <string name="directions_entering_tunnel_named">%1$s wird betreten</string>
+    <string name="directions_entering_tunnel_vehicle">Tunnel wird betreten</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s wird betreten</string>
     <string name="help_assistant_page_title">Sprachbefehle mit Siri</string>
     <string name="help_assistant_how_heading">So fragen Sie</string>
     <string name="help_assistant_commands_heading">Wonach Sie fragen können</string>

@@ -1564,6 +1564,8 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) viene utilizzata per riprodurre l'audio con bassa latenza ed è resa disponibile per l'uso sotto la [licenza Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Ingresso in una galleria</string>
     <string name="directions_entering_tunnel_named">Ingresso {it:in %1$s}</string>
+    <string name="directions_entering_tunnel_vehicle">Ingresso in una galleria</string>
+    <string name="directions_entering_tunnel_named_vehicle">Ingresso {it:in %1$s}</string>
     <string name="help_assistant_page_title">Comandi vocali con Siri</string>
     <string name="help_assistant_how_heading">Come chiedere</string>
     <string name="help_assistant_commands_heading">Che cosa puoi chiedere</string>

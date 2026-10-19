@@ -1564,6 +1564,8 @@ Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, pute
     <string name="oboe_copyright">[Biblioteka Oboe ©The Android Open Source Project](https://github.com/google/oboe) koristi se za reprodukciju zvuka s niskom latencijom i dostupna je za korištenje pod [Apache 2.0 licencom](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Ulazak u tunel</string>
     <string name="directions_entering_tunnel_named">Ulazak u %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Ulazak u tunel</string>
+    <string name="directions_entering_tunnel_named_vehicle">Ulazak u %1$s</string>
     <string name="help_assistant_page_title">Glasovne naredbe za Siri</string>
     <string name="help_assistant_how_heading">Kako zatražiti</string>
     <string name="help_assistant_commands_heading">Što možete zatražiti</string>

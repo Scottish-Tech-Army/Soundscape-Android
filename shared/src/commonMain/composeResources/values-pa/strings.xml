@@ -264,6 +264,8 @@
     <string name="directions_going_under_railway_generic">ਰੇਲਵੇ ਲਾਈਨ ਦੇ ਹੇਠੋਂ ਲੰਘਦੇ ਹੋਏ</string>
     <string name="directions_entering_tunnel">ਸੁਰੰਗ ਵਿੱਚ ਦਾਖਲ ਹੋ ਰਹੇ ਹੋ</string>
     <string name="directions_entering_tunnel_named">%1$s ਵਿੱਚ ਦਾਖਲ ਹੋ ਰਹੇ ਹੋ</string>
+    <string name="directions_entering_tunnel_vehicle">ਸੁਰੰਗ ਵਿੱਚ ਦਾਖਲ ਹੋ ਰਹੇ ਹੋ</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s ਵਿੱਚ ਦਾਖਲ ਹੋ ਰਹੇ ਹੋ</string>
     <string name="directions_traveling_n">ਉੱਤਰ ਵੱਲ ਸਫ਼ਰ</string>
     <string name="directions_traveling_ne">ਉੱਤਰ-ਪੂਰਬ ਵੱਲ ਸਫ਼ਰ</string>
     <string name="directions_traveling_e">ਪੂਰਬ ਵੱਲ ਸਫ਼ਰ</string>

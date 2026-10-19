@@ -1548,6 +1548,8 @@
     <string name="oboe_copyright">कमी विलंबाने ऑडिओ प्ले करण्यासाठी [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) वापरले जाते, आणि ते [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE) अंतर्गत वापरासाठी उपलब्ध करून दिले आहे.</string>
     <string name="directions_entering_tunnel">बोगद्यात प्रवेश</string>
     <string name="directions_entering_tunnel_named">%1$s मध्ये प्रवेश</string>
+    <string name="directions_entering_tunnel_vehicle">बोगद्यात प्रवेश</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s मध्ये प्रवेश</string>
     <string name="help_assistant_page_title">Siri व्हॉइस आदेश</string>
     <string name="help_assistant_how_heading">कसे सांगायचे</string>
     <string name="help_assistant_commands_heading">तुम्ही काय सांगू शकता</string>

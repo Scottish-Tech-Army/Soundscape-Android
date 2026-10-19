@@ -1532,6 +1532,8 @@
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) は低遅延でのオーディオ再生に使用されており、[Apache 2.0 ライセンス](https://github.com/google/oboe/blob/main/LICENSE) のもとで利用可能です。</string>
     <string name="directions_entering_tunnel">トンネルに入ります</string>
     <string name="directions_entering_tunnel_named">%1$s に入ります</string>
+    <string name="directions_entering_tunnel_vehicle">トンネルに入ります</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s に入ります</string>
     <string name="help_assistant_page_title">Siri の音声コマンド</string>
     <string name="help_assistant_how_heading">頼み方</string>
     <string name="help_assistant_commands_heading">頼めること</string>

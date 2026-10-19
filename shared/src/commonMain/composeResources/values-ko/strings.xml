@@ -1532,6 +1532,8 @@
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe)는 낮은 지연 시간으로 오디오를 재생하는 데 사용되며, [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE)에 따라 사용할 수 있습니다.</string>
     <string name="directions_entering_tunnel">터널에 진입합니다</string>
     <string name="directions_entering_tunnel_named">%1$s에 진입합니다</string>
+    <string name="directions_entering_tunnel_vehicle">터널에 진입합니다</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s에 진입합니다</string>
     <string name="help_assistant_page_title">Siri 음성 명령</string>
     <string name="help_assistant_how_heading">요청하는 방법</string>
     <string name="help_assistant_commands_heading">요청할 수 있는 것</string>

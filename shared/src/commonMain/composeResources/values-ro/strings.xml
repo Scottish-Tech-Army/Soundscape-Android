@@ -1564,6 +1564,8 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) este folosită pentru redarea audio cu latență redusă și este pusă la dispoziție pentru utilizare sub [licența Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Intri într-un tunel</string>
     <string name="directions_entering_tunnel_named">Intri în %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Intri într-un tunel</string>
+    <string name="directions_entering_tunnel_named_vehicle">Intri în %1$s</string>
     <string name="help_assistant_page_title">Comenzi vocale Siri</string>
     <string name="help_assistant_how_heading">Cum să ceri</string>
     <string name="help_assistant_commands_heading">Ce poți cere</string>

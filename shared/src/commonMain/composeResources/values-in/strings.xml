@@ -1532,6 +1532,8 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="oboe_copyright">[Pustaka Oboe ©The Android Open Source Project](https://github.com/google/oboe) digunakan untuk memutar audio dengan latensi rendah, dan disediakan untuk digunakan di bawah [lisensi Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Memasuki terowongan</string>
     <string name="directions_entering_tunnel_named">Memasuki %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Memasuki terowongan</string>
+    <string name="directions_entering_tunnel_named_vehicle">Memasuki %1$s</string>
     <string name="help_assistant_page_title">Perintah Suara Siri</string>
     <string name="help_assistant_how_heading">Cara Meminta</string>
     <string name="help_assistant_commands_heading">Yang Bisa Anda Minta</string>

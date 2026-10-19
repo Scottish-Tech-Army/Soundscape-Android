@@ -1564,6 +1564,8 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) é usado para reproduzir o áudio com baixa latência e está disponível para uso sob a [licença Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Entrando em um túnel</string>
     <string name="directions_entering_tunnel_named">Entrando {pt:em %1$s}</string>
+    <string name="directions_entering_tunnel_vehicle">Entrando em um túnel</string>
+    <string name="directions_entering_tunnel_named_vehicle">Entrando {pt:em %1$s}</string>
     <string name="help_assistant_page_title">Comandos de Voz da Siri</string>
     <string name="help_assistant_how_heading">Como Pedir</string>
     <string name="help_assistant_commands_heading">O Que Você Pode Pedir</string>

@@ -1549,6 +1549,8 @@
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) برای پخش صدا با تأخیر کم استفاده می‌شود و تحت [مجوز Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE) برای استفاده در دسترس قرار گرفته است.</string>
     <string name="directions_entering_tunnel">ورود به یک تونل</string>
     <string name="directions_entering_tunnel_named">ورود به %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">ورود به یک تونل</string>
+    <string name="directions_entering_tunnel_named_vehicle">ورود به %1$s</string>
     <string name="help_assistant_page_title">فرمان‌های صوتی Siri</string>
     <string name="help_assistant_how_heading">چطور درخواست کنید</string>
     <string name="help_assistant_commands_heading">چه چیزهایی می‌توانید بخواهید</string>

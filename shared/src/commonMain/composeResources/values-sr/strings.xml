@@ -1564,6 +1564,8 @@
     <string name="oboe_copyright">[Oboe библиотека ©The Android Open Source Project](https://github.com/google/oboe) се користи за репродукцију звука са малим кашњењем и доступна је за коришћење под [Apache 2.0 лиценцом](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Улазак у тунел</string>
     <string name="directions_entering_tunnel_named">Улазак у %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Улазак у тунел</string>
+    <string name="directions_entering_tunnel_named_vehicle">Улазак у %1$s</string>
     <string name="help_assistant_page_title">Гласовне команде за Siri</string>
     <string name="help_assistant_how_heading">Како да затражите</string>
     <string name="help_assistant_commands_heading">Шта можете да затражите</string>

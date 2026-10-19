@@ -1548,6 +1548,8 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 licence](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Entering a tunnel</string>
     <string name="directions_entering_tunnel_named">Entering %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Entering a tunnel</string>
+    <string name="directions_entering_tunnel_named_vehicle">Entering %1$s</string>
     <string name="help_assistant_page_title">Siri Voice Commands</string>
     <string name="help_assistant_how_heading">How to Ask</string>
     <string name="help_assistant_commands_heading">What You Can Ask For</string>

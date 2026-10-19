@@ -1612,6 +1612,8 @@
     <string name="oboe_copyright">تُستخدم [مكتبة Oboe ©The Android Open Source Project](https://github.com/google/oboe) لتشغيل الصوت بزمن استجابة منخفض، وهي متاحة للاستخدام بموجب [ترخيص Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">الدخول إلى نفق</string>
     <string name="directions_entering_tunnel_named">الدخول إلى %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">الدخول إلى نفق</string>
+    <string name="directions_entering_tunnel_named_vehicle">الدخول إلى %1$s</string>
     <string name="help_assistant_page_title">أوامر Siri الصوتية</string>
     <string name="help_assistant_how_heading">كيف تطلب</string>
     <string name="help_assistant_commands_heading">ما يمكنك طلبه</string>

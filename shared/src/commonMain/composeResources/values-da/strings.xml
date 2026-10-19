@@ -1548,6 +1548,8 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) bruges til at afspille lyden med lav latenstid og stilles til rådighed under [Apache 2.0-licensen](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Du kører ind i en tunnel</string>
     <string name="directions_entering_tunnel_named">Du kører ind i %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Du kører ind i en tunnel</string>
+    <string name="directions_entering_tunnel_named_vehicle">Du kører ind i %1$s</string>
     <string name="help_assistant_page_title">Stemmekommandoer med Siri</string>
     <string name="help_assistant_how_heading">Sådan spørger du</string>
     <string name="help_assistant_commands_heading">Det kan du bede om</string>

@@ -54,7 +54,7 @@ A review pack was prepared for the first reviewer:
 | Beacon (OSM map feature, `osm_beacon`) | Znak nawigacyjny | `agreed` | Reviewer (Q9). Not «znacznik», which is Marker |
 | Form of address | ty | `confirmed` | Reviewer (Q4). See PL-R1 |
 | Facing (direction) | jesteś zwrócony / stoisz zwrócony | `confirmed` | Reviewer, round 2 Q5. Never «patrzysz» for the facing sense. Generic masculine is fine. See PL-F1 |
-| Entering (tunnel) | Wchodzisz do / Wjeżdżasz do | `unconfirmed` | Reviewer, round 2 Q6. Needs walking and vehicle variants in code. See PL-T2 |
+| Entering (tunnel) | Wchodzisz do (on foot) / Wjeżdżasz do (vehicle, train) | `agreed` | Reviewer, round 2 Q6. Vehicle keys added 2026-10-19. See PL-T2 |
 | Beacon style *Drop* | Upuszczanie | `agreed` | Reviewer, round 2 Q7: «Upadek» suggests a person falling. See PL-S1 |
 | Clock position | na godzinie dziewiątej | `confirmed` | Reviewer, round 2 Q3: better than «na dziewiątej». See PL-D1 |
 | Trunk Road / Highway / Motorway | Droga główna / Droga główna / Autostrada | `provisional` | Reviewer, round 2 Q8, couldn't judge. See PL-R2 |
@@ -276,7 +276,9 @@ Reviewer (round 2 Q5), quoted: «Określenie „patrzysz" jest mocno nienaturaln
 
 Rejected options from the same question: «Patrzysz na północ», «Stoisz twarzą na północ», «Kierunek: północ».
 
-### PL-T2 — Tunnel callouts need a walking and a vehicle verb (`unconfirmed`: blocked on code)
+### PL-T2 — Tunnel callouts need a walking and a vehicle verb (`agreed`; applied 2026-10-19)
+
+**Done 2026-10-19:** `directions_entering_tunnel_vehicle` and `directions_entering_tunnel_named_vehicle` were added and are used in a vehicle, when matched to a railway, or inside the sticky vehicle window. Polish: «Wchodzisz do tunelu» / «Wchodzisz do %1$s» on foot, «Wjeżdżasz do tunelu» / «Wjeżdżasz do %1$s» in a vehicle. Every other language got its existing translation copied into the vehicle keys, so nothing regressed. The text from here down is the reasoning from before the change.
 
 Reviewer (round 2 Q6): «Wejście do tunelu» / «Wjazd do tunelu» name the *entrance* as a place (English *entrance*). The callout means *entering*, so say «**Wchodzisz** do tunelu» on foot and «**Wjeżdżasz** do tunelu» in a vehicle. Their example also declines the name («do Tunelu pod Martwą Wisłą»), but the app can't decline runtime names (PL-G2), so `_named` stays «… do %1$s».
 

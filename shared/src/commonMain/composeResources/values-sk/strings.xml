@@ -1580,6 +1580,8 @@ Ak narazíte na akýkoľvek problém, aj keď sa zdá byť malý, dajte nám o �
     <string name="oboe_copyright">Knižnica [Oboe © The Android Open Source Project](https://github.com/google/oboe) sa používa na prehrávanie zvuku s nízkou latenciou a je dostupná na použitie pod [licenciou Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Vstup do tunela</string>
     <string name="directions_entering_tunnel_named">Vstup do %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Vstup do tunela</string>
+    <string name="directions_entering_tunnel_named_vehicle">Vstup do %1$s</string>
     <string name="help_assistant_page_title">Hlasové príkazy pre Siri</string>
     <string name="help_assistant_how_heading">Ako požiadať</string>
     <string name="help_assistant_commands_heading">O čo môžete požiadať</string>

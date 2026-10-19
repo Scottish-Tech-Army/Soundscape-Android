@@ -1548,6 +1548,8 @@
     <string name="oboe_copyright">[Библиотеката Oboe ©The Android Open Source Project](https://github.com/google/oboe) се използва за възпроизвеждане на звука с ниска латентност и е предоставена за използване съгласно [лиценз Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Влизане в тунел</string>
     <string name="directions_entering_tunnel_named">Влизане в %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Влизане в тунел</string>
+    <string name="directions_entering_tunnel_named_vehicle">Влизане в %1$s</string>
     <string name="help_assistant_page_title">Гласови команди със Siri</string>
     <string name="help_assistant_how_heading">Как да поискате</string>
     <string name="help_assistant_commands_heading">Какво можете да поискате</string>
