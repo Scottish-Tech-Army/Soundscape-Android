@@ -507,6 +507,14 @@ tasks.withType<Test>().configureEach {
     // 512 MB test heap holds.
     maxHeapSize = "2g"
 
+    // The test classes are shared out between several test JVMs, each with that heap: half the
+    // cores, so a 4-core CI runner has two, and no more than four. Gradle hands the classes out
+    // without knowing how long each takes, and on a 32-core machine six JVMs took 126s to four's
+    // 87s - by then it's the longest classes, MvtTileTest and MvtCalloutTraceTest, which set how
+    // long they take. -PtestForks=N overrides it.
+    maxParallelForks = (project.findProperty("testForks") as String?)?.toInt()
+        ?: (Runtime.getRuntime().availableProcessors() / 2).coerceIn(1, 4)
+
     // Robolectric (HomeScreenTextFitTest) reaches into FileDescriptor internals, which newer
     // JDKs only allow when the package is explicitly opened to it.
     jvmArgs(

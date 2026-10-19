@@ -19,7 +19,6 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
-import org.scottishtecharmy.soundscape.geoengine.callouts.forceLegacyIntersectionSearch
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.toPreference
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
@@ -4818,42 +4817,6 @@ class MvtTileTest {
                 .mapNotNull { junction.find(it)?.value?.trim() }
                 .toSet()
             assertEquals("Junctions announced on $drive", junctions, announced)
-        }
-    }
-
-    /**
-     * One trace through the whole callout path, written out as text and as GeoJSON for eyeballing
-     * on geojson.io - each callout is the field-of-view triangle that produced it, carrying its
-     * spoken lines as properties.
-     *
-     * A walk rather than a journey: AutoCallout suppresses intersection callouts in a vehicle and
-     * for a while afterwards, so a drive or a train exercises everything here except the
-     * pedestrian callouts, which are most of them. CentralToBuchananStreet walks through the
-     * middle of Glasgow and produces getting on for two hundred callouts, around a quarter of
-     * them about junctions.
-     *
-     * testCallouts below still covers every trace, vehicles and trains included, nightly.
-     */
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @Test
-    fun testCalloutsSingleTest  () {
-        val testFile = "bristol-bus"
-        testMovingGrid(
-            "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
-            "gpxFiles/$testFile.txt",
-            "gpxFiles/$testFile.geojson"
-        )
-
-        // And again through the old tree-search + Dijkstra intersection path, to diff against.
-        forceLegacyIntersectionSearch = true
-        try {
-            testMovingGrid(
-                "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
-                "gpxFiles/$testFile-legacy.txt",
-                "gpxFiles/$testFile-legacy.geojson"
-            )
-        } finally {
-            forceLegacyIntersectionSearch = false
         }
     }
 
