@@ -4,8 +4,8 @@
 |---|---|
 | Weblate component | `androidkmp` |
 | Corpus at last sweep | 1598 units (2026-09-30) |
-| Last native-speaker input | 2026-09-30: answers to all ten questions on `questions-pl.md` (Q1–Q10). Earlier: 2026-09-29 written feedback on *beacon*, plus two Weblate edits by `trc695`, probably the same person |
-| Reporter platform | — |
+| Last native-speaker input | 2026-10-19: answers to round 2 of `questions-pl.md` (Q1–Q9). 2026-09-30: round 1 (Q1–Q10). Earlier: 2026-09-29 written feedback on *beacon*, plus two Weblate edits by `trc695`, probably the same person |
+| Reporter platform | Android, Google speech synthesis (round 2, Q3) |
 
 Read with [`_common.md`](_common.md).
 
@@ -38,7 +38,7 @@ A review pack was prepared for the first reviewer:
 | Callout (noun) | powiadomienie | `confirmed` | Reviewer 2026-09-30: the right word in both phone-OS and navigation UI (Q2) |
 | Call out (verb) | powiadamiać o (+ locative) | `agreed` | Not «ogłaszać», which "sounds a bit artificial" (Q2). See PL-V1 |
 | Beacon: **sound** | dźwięk naprowadzający | `confirmed` | Only for the audio signal. Reviewer: accurate, not too long, don't shorten it (Q3c). Never for the place or the feature, see PL-B1 and C19 |
-| Beacon: **place/target** | cel | `agreed` | Reviewer: «cel» is the Polish for *destination*, and «punkt docelowy» is needlessly long. Dave chose «cel» for the beacon place over «punkt trasy» on 2026-09-30, so the Waypoint collision is gone (Q3a) |
+| Beacon: **place/target** | cel | `confirmed` | Reviewer: «cel» is the Polish for *destination*, and «punkt docelowy» is needlessly long. Dave chose «cel» for the beacon place over «punkt trasy» on 2026-09-30, so the Waypoint collision is gone (Q3a). Round 2: «Do celu: 105 metrów» is "short but understandable", and the scavenger-hunt strings should match (Q1) |
 | Beacon: **feature** | naprowadzanie | `confirmed` | Reviewer: "the exact equivalent of *guidance*" (Q3b). For docs and tutorial prose they suggest «adaptacyjne naprowadzanie dźwiękowe» as the full descriptive name. Not swept |
 | Marker | znacznik | `agreed` | The reviewer called «znacznik» the professional word and «pinezka» the colloquial one. Dave chose «znacznik» on 2026-09-30. Never «(pinezka)» as a gloss (PL-I1) |
 | Waypoint | punkt trasy | `confirmed` | Reviewer: the usual Polish navigation term for an intermediate point. «punkt pośredni» is an acceptable stylistic alternative, but Dave kept «punkt trasy» on 2026-09-30. Not for the beacon place |
@@ -46,13 +46,18 @@ A review pack was prepared for the first reviewer:
 | Intersection / Junction | skrzyżowanie | `unconfirmed` | — |
 | Sleep / Snooze | Tryb uśpienia / Tryb drzemki | `unconfirmed` | The pair is distinct, which is the main requirement |
 | Callout Detail | Szczegółowość powiadomień | `unconfirmed` | Coined 2026-09-23 with the new setting |
-| Detailed / Simplified / Essential / Silent | Szczegółowy / Uproszczony / Podstawowy / Wyciszony | `agreed` (Dave), `unconfirmed` (speaker) | English renamed 2026-09-30 (C22). Literal names on Dave's call; the reviewer had put «Uproszczony» on level 3. See PL-T1 |
+| Detailed / Simplified / Essential / Silent | Szczegółowy / Uproszczony / Podstawowy / Wyciszony | `confirmed` | Reviewer, round 2 Q4: «Uproszczony» says simpler without meaning the minimum; «Podstawowy» ≈ *Basic*, close to *Essential*. See PL-T1 |
 | Streets and Junctions | Ulice i skrzyżowania | `unconfirmed` | Coined 2026-09-23 |
-| Places to Call Out | Powiadamiaj o miejscach | `unconfirmed` | AI rewording 2026-09-30 to drop «ogłaszać» (PL-V1). Mirrors «Uwzględniaj odległość…». Not seen by the reviewer |
+| Places to Call Out | Powiadomienia o miejscach | `agreed` | Reviewer, round 2 Q2: «Powiadamiaj…» sounds like a yes/no switch rather than a list of categories. Never «Miejsca do ogłaszania» (a podium or a noticeboard). See PL-V1 |
 | Everything / No Places | Wszystko / Brak miejsc | `unconfirmed` | Distinct from `filter_all` «Wszystkie miejsca», which is a different setting |
 | dead end | ślepa ulica | `agreed` | Reviewer: drop the diminutive, which sounds more professional. «droga bez przejazdu» is correct but too long (Q6) |
 | Beacon (OSM map feature, `osm_beacon`) | Znak nawigacyjny | `agreed` | Reviewer (Q9). Not «znacznik», which is Marker |
 | Form of address | ty | `confirmed` | Reviewer (Q4). See PL-R1 |
+| Facing (direction) | jesteś zwrócony / stoisz zwrócony | `confirmed` | Reviewer, round 2 Q5. Never «patrzysz» for the facing sense. Generic masculine is fine. See PL-F1 |
+| Entering (tunnel) | Wchodzisz do / Wjeżdżasz do | `unconfirmed` | Reviewer, round 2 Q6. Needs walking and vehicle variants in code. See PL-T2 |
+| Beacon style *Drop* | Upuszczanie | `agreed` | Reviewer, round 2 Q7: «Upadek» suggests a person falling. See PL-S1 |
+| Clock position | na godzinie dziewiątej | `confirmed` | Reviewer, round 2 Q3: better than «na dziewiątej». See PL-D1 |
+| Trunk Road / Highway / Motorway | Droga główna / Droga główna / Autostrada | `provisional` | Reviewer, round 2 Q8, couldn't judge. See PL-R2 |
 
 ---
 
@@ -169,7 +174,9 @@ The corpus addresses the user as «ty» — «możesz», «twoje trasy», impera
 drift, but no speaker has endorsed it. Polish accessibility apps are split between
 this and formal «Pan/Pani». See Q4.
 
-### PL-T1 — The four detail levels must be distinguishable by ear (`agreed` 2026-09-30)
+### PL-T1 — The four detail levels must be distinguishable by ear (`confirmed` 2026-10-19)
+
+**2026-10-19 (round 2 Q4):** the reviewer approved Szczegółowy / Uproszczony / Podstawowy / Wyciszony as shipped. Guard it.
 
 **Later on 2026-09-30:** the English levels were renamed Simplified / Essential (C22). Dave chose literal names: level 2 «Uproszczony», level 3 **«Podstawowy»**. The reviewer's «Uproszczony» therefore moved up one level. That goes against the answer below, so it's round-2 question 4.
 
@@ -217,6 +224,8 @@ Where it is where a sound plays («które powiadomienia ogłaszać po lewej»), 
 «odtwarzać». `callouts_places_to_call_out` «Miejsca do ogłaszania» became
 «Powiadamiaj o miejscach» (`unconfirmed` wording, see the questions below).
 
+**2026-10-19 (round 2 Q2):** the setting title becomes «Powiadomienia o miejscach», a noun phrase like a standard UI section heading. The reviewer, quoted: «Powiadamiaj…» brzmi trochę jakby był tam wybór Tak/Nie zamiast wyboru kategorii POI. Two help strings quote the label (C26) and change with it. The historical `docs/release-notes.pl.md` mentions are left alone.
+
 Not swept: generic «komunikat» in help prose ("messages"). The reviewer only
 ruled on the noun «powiadomienie» and the verb.
 
@@ -228,7 +237,9 @@ understanding the callout. C17's label form was **not** adopted for Polish.
 Leave `directions_along_*`, `confect_name_to*` and friends in their
 preposition form.
 
-### PL-D1 — Spoken distances and clock positions come out misdeclined (clock: code fixed 2026-09-30, words pending; distance: `unconfirmed`)
+### PL-D1 — Spoken distances and clock positions come out misdeclined (clock: `confirmed` 2026-10-19; distance: `unconfirmed`)
+
+**2026-10-19 (round 2 Q3):** the reviewer uses **Google** speech synthesis. «na godzinie dziewiątej» sounds better than «na dziewiątej». They add that clock positions sound "aviation/military, like for a fighter pilot": fine as an option, but «po lewej» / «po prawej» are more intuitive for a typical user. That matches the current default (left/right, with clock positions an option), so nothing changes. The «piętnastu metrów» case is still unexplained. Reproduce it with Google TTS, Polish voice, on «Przejście dla pieszych, 15 metrów, na godzinie dziewiątej» before touching any strings.
 
 Reviewer (Q10): callouts like «Przejście dla pieszych piętnastu metrów na
 godzinie dziewięciu» sound "quite nonsensical". The app builds
@@ -252,8 +263,34 @@ The speech engine then declines the bare numbers:
 - **Related, found in the sweep:** «w odległości %1$s» templates get the
   nominative 2–4 plural («w odległości 2 metry» should be «2 metrów»).
   `callouts_audio_beacon_distance` is fixed by PL-B1's «Do celu: %1$s». The two
-  `behavior_scavenger_hunt_callout_next_flag*` strings are inventoried with the
-  same rewording and are not applied.
+  `behavior_scavenger_hunt_callout_next_flag*` strings take the same form
+  («…, do celu: %2$s»), `agreed` by the reviewer 2026-10-19 (round 2 Q1).
+
+### PL-F1 — "Facing" is «jesteś zwrócony», not «patrzysz»; generic masculine is acceptable (`confirmed` 2026-10-19)
+
+Reviewer (round 2 Q5), quoted: «Określenie „patrzysz" jest mocno nienaturalne ponieważ po polsku odnosi się głównie do patrzenia wzrokiem a niekoniecznie do kierunku w którym ktoś jest zwrócony, można być zwróconym w kierunku północnym a patrzeć w swoją lewą czyli na zachód.» They also wrote that Polish conventionally uses the masculine as a generic form that does not refer to the user's gender («użytkownik» is itself an example), and asked: «Proszę o przywrócenie całości poprzedniego tłumaczenia».
+
+- The 16 `directions_facing_*` / `directions_along_facing_*` callouts were never changed, so there is nothing to revert. Guard them.
+- Every *facing* «patrzysz» goes back to «jesteś zwrócony» (9 units: the help basics heading and paragraph, `help_text_buttons_direction`, `help_text_my_location_what`, `help_text_destination_beacons_when`, three FAQ answers, `ios_permission_motion`). The 2026-09-30 C15 pass introduced it. Most of those strings have since been rewritten for C28, so the old text can't be restored as a whole. The verb is swapped in the current text instead.
+- **C15 for Polish:** a masculine form addressed to the user is **not** a defect in Polish. Don't flag it, and don't rewrite for neutrality. The impersonal rewrites already shipped (e.g. «Wszystko gotowe», «zapisane przez ciebie miejsca») read naturally and are left alone unless the reviewer asks for them back (round 3 question). «(-a)» brackets are still wrong: a screen reader reads them aloud.
+
+Rejected options from the same question: «Patrzysz na północ», «Stoisz twarzą na północ», «Kierunek: północ».
+
+### PL-T2 — Tunnel callouts need a walking and a vehicle verb (`unconfirmed`: blocked on code)
+
+Reviewer (round 2 Q6): «Wejście do tunelu» / «Wjazd do tunelu» name the *entrance* as a place (English *entrance*). The callout means *entering*, so say «**Wchodzisz** do tunelu» on foot and «**Wjeżdżasz** do tunelu» in a vehicle. Their example also declines the name («do Tunelu pod Martwą Wisłą»), but the app can't decline runtime names (PL-G2), so `_named` stays «… do %1$s».
+
+`directions_entering_tunnel` / `_named` are single strings, but `AutoCallout.kt` already knows `userGeometry.inVehicle()` / `onTrain` at that point. The fix is a code change: a vehicle variant of both keys, with English identical ("Entering a tunnel"), which lets Polish and other inflected languages pick the verb. Until then the strings stay as they are. Don't pick one verb for both cases.
+
+### PL-S1 — Beacon style *Drop* is «Upuszczanie» (`agreed` 2026-10-19)
+
+Reviewer (round 2 Q7): the sound is like three small objects dropped into a vessel, so «Upuszczanie» (dropping). «Upadek» suggests a person falling. It stays distinct from «Stukot» (Tactile). The reviewer also noticed the style names show in **English** after switching language. That is a code bug, not a translation one: the Settings picker (`BeaconStylePreference` in `SharedSettingsScreen.kt`) shows the raw style keys and never calls `getBeaconResourceId`, though onboarding does. It affects every language.
+
+### PL-R2 — Road types: Trunk / Highway / Motorway (`provisional`)
+
+Reviewer (round 2 Q8): too many nuances (colloquial, navigation, technical and legal names) to give a definite answer. They passed on AI suggestions, labelled "to verify": Trunk Road → «Droga tranzytowa», Highway → «Droga», and a warning that Polish OSM tags most dual-carriageway expressways (S) as `motorway`, so «Autostrada» may mislead too. Their AI also argued *against* «Droga ekspresowa» for trunk, since trunk ≠ class S.
+
+Code facts: `ResourceMapper` maps OpenMapTiles class `motorway` → `osm_motorway` and `trunk` → `osm_trunk`. `primary`/`secondary`/`tertiary`/`minor`/`service` all → `osm_road` «Droga». `highway` → `osm_highway` is a generic fallback. Nothing applied. Needs someone who knows Polish OSM tagging. Not swept.
 
 ### PL-Q1 — Quote convention (`unconfirmed`, cosmetic)
 
@@ -290,6 +327,12 @@ normalising eventually, but it is invisible to a listener and low priority.
 - **«poruszasz się» for walking too** (Q8, the reviewer's optional
   simplification). Dave kept the distinction on 2026-09-30. The code already
   picks walking or vehicle strings, and «idziesz» is shorter and natural.
+- **«patrzysz» for *facing*** (introduced by the 2026-09-30 C15 pass). Attractive because it is gender-neutral. Rejected 2026-10-19: it means looking with the eyes (PL-F1).
+- **«Stoisz twarzą na północ» / «Kierunek: północ»** for facing callouts (round 2 Q5). Not needed once generic masculine is accepted.
+- **«Miejsca w powiadomieniach»** and **«Miejsca do ogłaszania»** for *Places to Call Out* (round 2 Q2).
+- **«Upadek», «Stuknięcie», «Stuk», «Kropla»** for *Drop* (round 2 Q7). The reviewer chose «Upuszczanie».
+- **«Wjazd do tunelu» always / «Tunel: …»** (round 2 Q6). These name the entrance as a place, not the act of entering.
+- **«na dziewiątej»** for clock positions (round 2 Q3).
 - **C17 label form for map names** (Q7). The reviewer prefers the robotic
   nominative. Declining names with AI at runtime isn't feasible offline, and
   the reviewer accepts the occasional error either way.
@@ -306,42 +349,22 @@ Q1 → PL-T1, Q2 → PL-V1, Q3 → PL-B1, Q4 → PL-R1, Q5 → PL-I1, Q6 → PL-
 Q7 → PL-G2, Q8 → rejected (no change), Q9 → PL-B1 (`osm_beacon`),
 Q10 → PL-D1.
 
-## Open questions for round 2
+## Questionnaire round 2 — answered 2026-10-19
 
-Numbered as on `questions-pl.md` (round 2, 2026-09-30); Q9 is "anything else". Q5–Q8 were added after the 2026-09-30 full review.
+Q1 → PL-B1/PL-D1 (scavenger hunt «do celu:»), Q2 → PL-V1, Q3 → PL-D1, Q4 → PL-T1,
+Q5 → PL-F1, Q6 → PL-T2, Q7 → PL-S1, Q8 → PL-R2, Q9 → PL-S1 (English style names, code).
+The reviewer offered to check everything again in the app once it ships.
 
-1. **«Do celu: 105 metrów»** (`callouts_audio_beacon_distance`, spoken while
-   walking to a beacon). Natural? Should the scavenger-hunt «Ustawiono
-   naprowadzanie na %1$s, w odległości %2$s» change the same way, to «…, do
-   celu: %2$s»?
-2. **«Powiadamiaj o miejscach»** for the *Places to Call Out* setting (was
-   «Miejsca do ogłaszania»). Would «Miejsca w powiadomieniach» be better?
-3. **Q10 detail.** Which speech engine and voice (Google, Samsung, eSpeak,
-   Vocalizer…)? Does «na godzinie dziewiątej» sound right, or is «na
-   dziewiątej» more natural for clock positions? Did the engine say
-   «piętnastu metrów» even with a comma before «na godzinie»?
-4. **Detail levels after the English rename**: Szczegółowy / Uproszczony / Podstawowy / Wyciszony. You chose «Uproszczony» for the third level, which now says only the essentials. Is «Podstawowy» right there, with «Uproszczony» one level up?
-5. **Facing callouts are masculine only** (C15). `directions_facing_*`
-   «Jesteś zwrócony na północ» and `directions_along_facing_*` «Stoisz
-   zwrócony na północ wzdłuż %1$s», 16 strings heard every time the user
-   stands still. The help texts were changed to «patrzysz» in the same
-   review, but these callouts were left for a speaker. Options: «Patrzysz
-   na północ (wzdłuż …)», «Stoisz twarzą na północ (wzdłuż …)», «Kierunek:
-   północ», or keep. Walking («Idziesz na…») and vehicle («Poruszasz się
-   na…») forms are already neutral.
-6. **Tunnels** (`directions_entering_tunnel`, `_named`): «Wejście do
-   tunelu» reads as a noun, like a sign. Mostly heard in a vehicle, where
-   «Wjazd do tunelu» is natural, but the string also covers footpath and
-   railway tunnels. Options: «Wjazd do…» always, «Tunel» / «Tunel: %1$s», or
-   keep. The named form puts the OSM name after «do» undeclined, which PL-G2
-   accepts.
-7. **Beacon style «Upadek»** (`beacon_styles_drop`): "a fall", for the sound
-   of an object dropped on a hard floor. May suggest a person falling.
-   Candidates «Stuknięcie», «Stuk», «Kropla». Must stay distinct from
-   «Stukot» (Tactile).
-8. **«Droga główna» twice**: `osm_trunk` (Trunk Road) and `osm_highway`
-   (Highway) both say it. OSM Poland tags expressways (S roads) as
-   highway=trunk, so «Droga ekspresowa» may be right for trunk.
+## Open questions for round 3
+
+1. **Gender beyond "facing"** (PL-F1). "Restore the whole previous translation" was
+   about the facing strings. Should the other 2026-09-30 neutral rewrites also go back
+   to the masculine, e.g. «Wszystko gotowe na pierwszy spacer» (was «Jesteś gotowy…»),
+   «Gdy zechcesz zatrzymać naprowadzanie» (was «Gdy będziesz gotowy…»), «Udostępniam
+   Ci znacznik» (was «Udostępniłem»)? Or are they fine as they are?
+2. **Distances with Google TTS** (PL-D1). After the update, do you still hear
+   «piętnastu metrów» in «Przejście dla pieszych, 15 metrów, na godzinie dziewiątej»?
+3. **Road types** (PL-R2): only if you know someone who maps Poland in OpenStreetMap.
 
 ## Provenance
 
@@ -445,3 +468,5 @@ Most serious fixed:
 Held for a person: `terms_of_use_message` (legal text).
 
 **2026-09-30 — missed-callout FAQ brought into line with PL-V1.** The retranslated `faq_miss_a_callout_answer` had said «komunikatów» and «ogłaszają» without checking this file. It now says «powiadomień» and «powiadamiają o miejscach». `faq_miss_a_callout_question` also used «komunikat» for a callout and now says «Co jeśli nie zrozumiem powiadomienia lub przegapię je…».
+
+**2026-10-19 — questionnaire round 2 answered (Q1–Q9).** Accepted: «do celu:» for the two scavenger-hunt strings, «Powiadomienia o miejscach» (plus the two help strings that quote it), «Upuszczanie», and «jesteś zwrócony» back in place of facing-sense «patrzysz» (9 units). Confirmed: detail-level names, «na godzinie dziewiątej», «Do celu: …». Reviewer uses Google TTS. Blocked on code: tunnel walking/vehicle verbs (PL-T2), and beacon style names shown in English in Settings (PL-S1, all languages). Road types `provisional` (PL-R2). Findings: `/tmp/translation-review/pl-findings.json` (15 to apply, 5 inventory). The 2026-09-30 file was kept as `pl-findings.2026-09-30.json`.
