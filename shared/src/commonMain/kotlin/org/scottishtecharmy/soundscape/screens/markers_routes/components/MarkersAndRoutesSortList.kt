@@ -31,6 +31,7 @@ import org.scottishtecharmy.soundscape.resources.markers_sort_distance_ascending
 import org.scottishtecharmy.soundscape.resources.markers_sort_distance_descending
 import org.scottishtecharmy.soundscape.resources.markers_sort_name_ascending
 import org.scottishtecharmy.soundscape.resources.markers_sort_name_descending
+import org.scottishtecharmy.soundscape.screens.activationHint
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.nextSort
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -48,7 +49,7 @@ fun MarkersAndRoutesListSort(
 ) {
     val sortState = stringResource(sortStateString(isSortByName, isAscending))
     val (nextByName, nextAscending) = nextSort(isSortByName, isAscending)
-    val sortAction = stringResource(sortActionString(nextByName, nextAscending))
+    val sortAction = activationHint(stringResource(sortActionString(nextByName, nextAscending)))
 
     Row(
         modifier = Modifier

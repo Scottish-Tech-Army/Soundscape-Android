@@ -43,6 +43,7 @@ import org.scottishtecharmy.soundscape.resources.location_detail_add_waypoint_ne
 import org.scottishtecharmy.soundscape.resources.places_nearby_selection_description
 import org.scottishtecharmy.soundscape.resources.search_nearby_screen_title
 import org.scottishtecharmy.soundscape.resources.search_use_current_location
+import org.scottishtecharmy.soundscape.screens.activationHint
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.Folder
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
@@ -229,8 +230,8 @@ fun AddWaypointsList(
                                 onToggleMember(locationDescription)
                             },
                             value = currentState,
-                            hintWhenOn = stringResource(Res.string.location_detail_add_waypoint_existing_hint),
-                            hintWhenOff = stringResource(Res.string.location_detail_add_waypoint_new_hint)
+                            hintWhenOn = activationHint(stringResource(Res.string.location_detail_add_waypoint_existing_hint)),
+                            hintWhenOff = activationHint(stringResource(Res.string.location_detail_add_waypoint_new_hint))
                         )
                     ),
                     userLocation = userLocation

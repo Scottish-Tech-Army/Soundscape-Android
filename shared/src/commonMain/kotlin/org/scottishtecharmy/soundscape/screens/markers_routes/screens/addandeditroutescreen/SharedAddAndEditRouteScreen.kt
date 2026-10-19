@@ -74,6 +74,7 @@ import org.scottishtecharmy.soundscape.resources.routes_action_deleted
 import org.scottishtecharmy.soundscape.resources.settings_reset_dialog_title
 import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.resources.waypoint_title
+import org.scottishtecharmy.soundscape.screens.activationHint
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
@@ -121,7 +122,7 @@ fun SharedAddAndEditRouteScreen(
         return true
     }
     val waypointTitle = stringResource(Res.string.waypoint_title)
-    val removeHint = stringResource(Res.string.route_detail_edit_remove_waypoint_hint)
+    val removeHint = activationHint(stringResource(Res.string.route_detail_edit_remove_waypoint_hint))
     val moveUpLabel = stringResource(Res.string.location_item_move_up)
     val moveDownLabel = stringResource(Res.string.location_item_move_down)
 

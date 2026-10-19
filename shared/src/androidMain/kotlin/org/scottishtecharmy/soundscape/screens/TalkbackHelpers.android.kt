@@ -15,6 +15,9 @@ actual fun Modifier.talkbackHint(hint: String): Modifier =
     }
 
 @Composable
+actual fun activationHint(hint: String): String = hint
+
+@Composable
 actual fun Modifier.talkbackPasteAction(onPaste: (String) -> Unit): Modifier {
     val context = LocalContext.current
     val clipboard = LocalClipboard.current.nativeClipboard

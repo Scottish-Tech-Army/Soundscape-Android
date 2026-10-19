@@ -11,6 +11,18 @@ import androidx.compose.ui.semantics.semantics
 @Composable
 expect fun Modifier.talkbackHint(hint: String): Modifier
 
+/**
+ * The label to give a click action ([androidx.compose.foundation.clickable]'s onClickLabel, or
+ * an onClick in semantics) from a bare hint fragment such as "expand section".
+ *
+ * TalkBack composes "Double tap to expand section" itself from the label, but VoiceOver reads
+ * the label verbatim as the hint, so on iOS this phrases the fragment in full. Android returns
+ * the fragment unchanged. [talkbackHint] already does this; use this wherever the label is set
+ * directly instead.
+ */
+@Composable
+expect fun activationHint(hint: String): String
+
 @Composable
 fun Modifier.talkbackDescription(contentDescription: String) =
     semantics {
