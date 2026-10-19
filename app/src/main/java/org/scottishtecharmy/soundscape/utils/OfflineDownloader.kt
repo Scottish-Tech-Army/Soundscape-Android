@@ -206,15 +206,16 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
                     throw Exception("Extract was not ready after $maxRetries attempts")
                 }
             } catch (e: CancellationException) {
-                // Handle coroutine cancellation
+                // Handle coroutine cancellation. The partial file is cleaned up before the state
+                // changes, so that nothing watching the state sees it still there.
+                tempFile.delete()
                 _downloadState.value = DownloadState.Canceled
-                tempFile.delete() // Clean up partial file
                 Log.i(TAG, "Download was canceled $e")
             } catch (e: Exception) {
                 // Handle other errors (network, file I/O, etc.)
+                tempFile.delete()
                 _downloadState.value =
                     DownloadState.Error(e.message ?: "An unknown error occurred")
-                tempFile.delete() // Clean up partial file
                 Log.e(TAG, "Download failed", e)
             }
         }
