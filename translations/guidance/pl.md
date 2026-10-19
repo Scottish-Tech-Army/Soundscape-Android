@@ -22,7 +22,7 @@ nobody has looked at are still `unconfirmed`.
 A review pack was prepared for the first reviewer:
 
 - `docs/translation-questions/questions-pl.md` — the numbered open questions below
-  (Q1…Q9, round 2 since 2026-09-30), in the same layout as every other language.
+  (Q1…Q4, round 3 since 2026-10-19), in the same layout as every other language.
 - `translations/review/pl-full/07-nowe-teksty.md` — the per-text review of the 27
   strings added 2026-09-23, which was the published sheet until 2026-09-25.
 - `translations/review/pl-full/` — the whole corpus split by area, plus
@@ -367,6 +367,7 @@ The reviewer offered to check everything again in the app once it ships.
 2. **Distances with Google TTS** (PL-D1). After the update, do you still hear
    «piętnastu metrów» in «Przejście dla pieszych, 15 metrów, na godzinie dziewiątej»?
 3. **Road types** (PL-R2): only if you know someone who maps Poland in OpenStreetMap.
+4. **Anything else**, including notes from using the updated app (the reviewer offered to check it in practice).
 
 ## Provenance
 
