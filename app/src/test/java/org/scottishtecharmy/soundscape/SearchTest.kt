@@ -326,8 +326,9 @@ class SearchTest {
                 currentLocation,
                 null
             )!!
-            assertEquals("Dirleton Gate", results[0].name)
-            assertEquals("Dirleton Gate, Netherton", results[0].description)
+            // Outside the grid, so it's found from the house numbers in the tiles the street is in
+            assertEquals("20 Dirleton Gate", results[0].name)
+            assertEquals("20 Dirleton Gate, Netherton", results[0].description)
 
             results =
                 offlineGeocoder.getAddressFromLocationName("craigton road", currentLocation, null)!!
@@ -593,6 +594,41 @@ class SearchTest {
             results =
                 offlineGeocoder.getAddressFromLocationName("Эдинбург қамалы", currentLocation, null)!!
             assertEquals("Эдинбург қамалы", results[0].name)
+        }
+    }
+
+    @Test
+    fun houseNumberSearchOutsideTheGrid() {
+        runBlocking {
+            // Craigdhu Road is a couple of kilometres west of here, well outside the grid
+            val currentLocation = LngLatAlt(-4.3060165, 55.9475021)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
+            val offlineGeocoder = OfflineGeocoder(
+                gridState,
+                settlementState,
+                tileSearch,
+                processor = { it.process() })
+
+            // 112 is in the map, in the housenumber layer of one of the tiles the road runs through
+            var results = offlineGeocoder.getAddressFromLocationName(
+                "112 craigdhu road milngavie",
+                currentLocation,
+                null
+            )!!
+            for (result in results) println("${result.name} / ${result.description} ${result.location}")
+            assertEquals("112 Craigdhu Road", results[0].name)
+            assertEquals("112 Craigdhu Road, Milngavie", results[0].description)
+
+            // 56 isn't, and the even numbers either side of it, 24 and 60, are in different tiles
+            results = offlineGeocoder.getAddressFromLocationName(
+                "56 craigdhu road milngavie",
+                currentLocation,
+                null
+            )!!
+            for (result in results) println("${result.name} / ${result.description} ${result.location}")
+            assertEquals("56 Craigdhu Road", results[0].name)
         }
     }
 

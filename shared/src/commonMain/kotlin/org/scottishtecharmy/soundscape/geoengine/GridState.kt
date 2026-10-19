@@ -177,22 +177,22 @@ open class GridState(
     ) {
         if (grid.tiles.size <= 1) return
 
-        // The boundaries between tiles inside the grid, as opposed to around its outside. The tiles
-        // are listed row by row from the top left, so the left edges of the first row's tiles after
-        // the first are the grid's internal lines of longitude, and the top edges of the first
-        // column's tiles after the first are its internal lines of latitude. A 2x2 grid has one of
-        // each, through its centre, but a 3x3 grid has two - and joining only the pair through the
-        // corner of the first tile left every road and railway stopping dead at the other two.
-        val columns = grid.tiles.count { it.tileY == grid.tiles[0].tileY }
-        val rows = grid.tiles.size / columns
-        val internalLongitudes = (1 until columns).map { column ->
-            val tile = grid.tiles[column]
-            getLatLonTileWithOffset(tile.tileX, tile.tileY, zoomLevel, 0.0, 0.0).longitude
-        }.toSet()
-        val internalLatitudes = (1 until rows).map { row ->
-            val tile = grid.tiles[row * columns]
-            getLatLonTileWithOffset(tile.tileX, tile.tileY, zoomLevel, 0.0, 0.0).latitude
-        }.toSet()
+        // The boundaries between tiles inside the grid, as opposed to around its outside: the left
+        // edge of each tile with a tile of the grid to its left, and the top edge of each with one
+        // above it. A 2x2 grid has one of each, through its centre, but a 3x3 grid has two - and
+        // joining only the pair through the corner of the first tile left every road and railway
+        // stopping dead at the other two. The tiles needn't make a rectangle: an offline search
+        // builds a grid from only the tiles a street runs through.
+        val tilesPerSide = 1 shl zoomLevel
+        val tileSet = grid.tiles.map { Pair(it.tileX, it.tileY) }.toSet()
+        val internalLongitudes = grid.tiles
+            .filter { Pair((it.tileX - 1).mod(tilesPerSide), it.tileY) in tileSet }
+            .map { getLatLonTileWithOffset(it.tileX, it.tileY, zoomLevel, 0.0, 0.0).longitude }
+            .toSet()
+        val internalLatitudes = grid.tiles
+            .filter { Pair(it.tileX, (it.tileY - 1).mod(tilesPerSide)) in tileSet }
+            .map { getLatLonTileWithOffset(it.tileX, it.tileY, zoomLevel, 0.0, 0.0).latitude }
+            .toSet()
 
         val tileEdgeList = mutableListOf<Intersection>()
         for (intersectionList in newGridIntersections) {
