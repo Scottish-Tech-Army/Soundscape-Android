@@ -1304,6 +1304,16 @@ Continua informant-nos de qualsevol problema, per petit que sigui, mitjançant �
     <string name="osm_artwork_mosaic">Mosaic</string>
     <string name="osm_artwork_graffiti">Grafit</string>
     <string name="osm_artwork_installation">Instal·lació artística</string>
+    <string name="osm_information_guidepost">Pal indicador</string>
+    <string name="osm_information_board">Plafó informatiu</string>
+    <string name="osm_information_map">Plafó amb mapa</string>
+    <string name="osm_information_route_marker">Senyal d'itinerari</string>
+    <string name="osm_information_trail_blaze">Senyal de sender</string>
+    <string name="osm_information_office">Oficina de turisme</string>
+    <string name="osm_information_terminal">Terminal d'informació</string>
+    <string name="osm_information_tactile_map">Mapa tàctil</string>
+    <string name="osm_information_tactile_model">Maqueta tàctil</string>
+    <string name="osm_information_audioguide">Audioguia</string>
     <string name="osm_alpine_hut">Refugi de muntanya</string>
     <string name="osm_plant">Planta industrial</string>
     <string name="osm_insurance">Oficina d'assegurances</string>

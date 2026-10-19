@@ -469,6 +469,16 @@
     <string name="osm_artwork_mosaic">Mozaika</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Umělecká instalace</string>
+    <string name="osm_information_guidepost">Rozcestník</string>
+    <string name="osm_information_board">Informační tabule</string>
+    <string name="osm_information_map">Mapová tabule</string>
+    <string name="osm_information_route_marker">Značení trasy</string>
+    <string name="osm_information_trail_blaze">Turistické značení</string>
+    <string name="osm_information_office">Turistické informační centrum</string>
+    <string name="osm_information_terminal">Informační terminál</string>
+    <string name="osm_information_tactile_map">Hmatová mapa</string>
+    <string name="osm_information_tactile_model">Hmatový model</string>
+    <string name="osm_information_audioguide">Audioprůvodce</string>
     <string name="osm_alpine_hut">Horská chata</string>
     <string name="osm_plant">Průmyslový podnik</string>
     <string name="osm_insurance">Pojišťovna</string>

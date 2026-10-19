@@ -1274,6 +1274,16 @@
     <string name="osm_artwork_mosaic">모자이크</string>
     <string name="osm_artwork_graffiti">그라피티</string>
     <string name="osm_artwork_installation">설치 미술</string>
+    <string name="osm_information_guidepost">이정표</string>
+    <string name="osm_information_board">안내판</string>
+    <string name="osm_information_map">지도 안내판</string>
+    <string name="osm_information_route_marker">경로 표지</string>
+    <string name="osm_information_trail_blaze">등산로 표식</string>
+    <string name="osm_information_office">관광 안내소</string>
+    <string name="osm_information_terminal">정보 단말기</string>
+    <string name="osm_information_tactile_map">촉지도</string>
+    <string name="osm_information_tactile_model">촉각 모형</string>
+    <string name="osm_information_audioguide">오디오 가이드</string>
     <string name="osm_alpine_hut">산장</string>
     <string name="osm_plant">산업 플랜트</string>
     <string name="osm_insurance">보험 사무소</string>

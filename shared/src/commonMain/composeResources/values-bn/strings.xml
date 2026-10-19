@@ -113,6 +113,16 @@
     <string name="osm_artwork_mosaic">মোজাইক</string>
     <string name="osm_artwork_graffiti">গ্রাফিতি</string>
     <string name="osm_artwork_installation">শিল্প স্থাপনা</string>
+    <string name="osm_information_guidepost">পথনির্দেশক ফলক</string>
+    <string name="osm_information_board">তথ্য বোর্ড</string>
+    <string name="osm_information_map">মানচিত্র বোর্ড</string>
+    <string name="osm_information_route_marker">পথ চিহ্ন</string>
+    <string name="osm_information_trail_blaze">ট্রেইল চিহ্ন</string>
+    <string name="osm_information_office">পর্যটন তথ্য অফিস</string>
+    <string name="osm_information_terminal">তথ্য টার্মিনাল</string>
+    <string name="osm_information_tactile_map">স্পর্শযোগ্য মানচিত্র</string>
+    <string name="osm_information_tactile_model">স্পর্শযোগ্য মডেল</string>
+    <string name="osm_information_audioguide">অডিও গাইড</string>
     <string name="osm_alpine_hut">পার্বত্য কুটির</string>
     <string name="osm_plant">শিল্প প্ল্যান্ট</string>
     <string name="osm_insurance">বীমা অফিস</string>

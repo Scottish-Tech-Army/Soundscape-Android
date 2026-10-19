@@ -1147,6 +1147,16 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="osm_artwork_mosaic">Mozaik</string>
     <string name="osm_artwork_graffiti">Grafiti</string>
     <string name="osm_artwork_installation">Sanat Enstalasyonu</string>
+    <string name="osm_information_guidepost">Yön Tabelası</string>
+    <string name="osm_information_board">Bilgi Panosu</string>
+    <string name="osm_information_map">Harita Panosu</string>
+    <string name="osm_information_route_marker">Rota İşareti</string>
+    <string name="osm_information_trail_blaze">Patika İşareti</string>
+    <string name="osm_information_office">Turizm Danışma Bürosu</string>
+    <string name="osm_information_terminal">Bilgi Kiosku</string>
+    <string name="osm_information_tactile_map">Dokunsal Harita</string>
+    <string name="osm_information_tactile_model">Dokunsal Maket</string>
+    <string name="osm_information_audioguide">Sesli Rehber</string>
     <string name="osm_alpine_hut">Dağ Kulübesi</string>
     <string name="osm_plant">Endüstriyel Tesis</string>
     <string name="osm_insurance">Sigorta Ofisi</string>

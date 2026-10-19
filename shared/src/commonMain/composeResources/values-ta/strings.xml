@@ -1119,6 +1119,16 @@
     <string name="osm_artwork_mosaic">மொசைக்</string>
     <string name="osm_artwork_graffiti">கிராஃபிட்டி</string>
     <string name="osm_artwork_installation">கலை நிறுவல்</string>
+    <string name="osm_information_guidepost">வழிகாட்டிக் கம்பம்</string>
+    <string name="osm_information_board">தகவல் பலகை</string>
+    <string name="osm_information_map">வரைபடப் பலகை</string>
+    <string name="osm_information_route_marker">பாதைக் குறி</string>
+    <string name="osm_information_trail_blaze">நடைபாதைக் குறி</string>
+    <string name="osm_information_office">சுற்றுலாத் தகவல் அலுவலகம்</string>
+    <string name="osm_information_terminal">தகவல் முனையம்</string>
+    <string name="osm_information_tactile_map">தொடு வரைபடம்</string>
+    <string name="osm_information_tactile_model">தொடு மாதிரி</string>
+    <string name="osm_information_audioguide">ஒலி வழிகாட்டி</string>
     <string name="osm_alpine_hut">மலை குடில்</string>
     <string name="osm_plant">தொழிற்சாலை</string>
     <string name="osm_insurance">காப்பீட்டு அலுவலகம்</string>

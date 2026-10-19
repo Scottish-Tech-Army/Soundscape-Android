@@ -1100,6 +1100,16 @@
     <string name="osm_artwork_mosaic">Ψηφιδωτό</string>
     <string name="osm_artwork_graffiti">Γκράφιτι</string>
     <string name="osm_artwork_installation">Καλλιτεχνική εγκατάσταση</string>
+    <string name="osm_information_guidepost">Πινακίδα κατεύθυνσης</string>
+    <string name="osm_information_board">Πίνακας πληροφοριών</string>
+    <string name="osm_information_map">Πίνακας με χάρτη</string>
+    <string name="osm_information_route_marker">Σήμανση διαδρομής</string>
+    <string name="osm_information_trail_blaze">Σήμανση μονοπατιού</string>
+    <string name="osm_information_office">Γραφείο τουριστικών πληροφοριών</string>
+    <string name="osm_information_terminal">Τερματικό πληροφοριών</string>
+    <string name="osm_information_tactile_map">Απτικός χάρτης</string>
+    <string name="osm_information_tactile_model">Απτικό ομοίωμα</string>
+    <string name="osm_information_audioguide">Ηχητική ξενάγηση</string>
     <string name="osm_alpine_hut">Ορεινό καταφύγιο</string>
     <string name="osm_plant">Βιομηχανική μονάδα</string>
     <string name="osm_insurance">Γραφείο ασφάλισης</string>

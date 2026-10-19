@@ -1104,6 +1104,16 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="osm_artwork_mosaic">Mosaico</string>
     <string name="osm_artwork_graffiti">Grafite</string>
     <string name="osm_artwork_installation">Instalação Artística</string>
+    <string name="osm_information_guidepost">Placa de direção</string>
+    <string name="osm_information_board">Painel informativo</string>
+    <string name="osm_information_map">Painel com mapa</string>
+    <string name="osm_information_route_marker">Sinalização de rota</string>
+    <string name="osm_information_trail_blaze">Marca de trilha</string>
+    <string name="osm_information_office">Centro de informações turísticas</string>
+    <string name="osm_information_terminal">Totem de informações</string>
+    <string name="osm_information_tactile_map">Mapa tátil</string>
+    <string name="osm_information_tactile_model">Maquete tátil</string>
+    <string name="osm_information_audioguide">Audioguia</string>
     <string name="osm_alpine_hut">Refúgio Alpino</string>
     <string name="osm_plant">Instalação Industrial</string>
     <string name="osm_insurance">Escritório de Seguros</string>

@@ -1108,6 +1108,16 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="osm_artwork_mosaic">Mozaika</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Instalacja artystyczna</string>
+    <string name="osm_information_guidepost">Drogowskaz</string>
+    <string name="osm_information_board">Tablica informacyjna</string>
+    <string name="osm_information_map">Tablica z mapą</string>
+    <string name="osm_information_route_marker">Oznaczenie trasy</string>
+    <string name="osm_information_trail_blaze">Znak szlaku</string>
+    <string name="osm_information_office">Informacja turystyczna</string>
+    <string name="osm_information_terminal">Infokiosk</string>
+    <string name="osm_information_tactile_map">Mapa dotykowa</string>
+    <string name="osm_information_tactile_model">Makieta dotykowa</string>
+    <string name="osm_information_audioguide">Audioprzewodnik</string>
     <string name="osm_alpine_hut">Schronisko alpejskie</string>
     <string name="osm_plant">Zakład przemysłowy</string>
     <string name="osm_insurance">Biuro ubezpieczeń</string>

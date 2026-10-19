@@ -1100,6 +1100,16 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="osm_artwork_mosaic">Mosaik</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Konstinstallation</string>
+    <string name="osm_information_guidepost">Vägvisare</string>
+    <string name="osm_information_board">Informationstavla</string>
+    <string name="osm_information_map">Karttavla</string>
+    <string name="osm_information_route_marker">Ledmarkering</string>
+    <string name="osm_information_trail_blaze">Stigmarkering</string>
+    <string name="osm_information_office">Turistbyrå</string>
+    <string name="osm_information_terminal">Informationsskärm</string>
+    <string name="osm_information_tactile_map">Taktil karta</string>
+    <string name="osm_information_tactile_model">Taktil modell</string>
+    <string name="osm_information_audioguide">Ljudguide</string>
     <string name="osm_alpine_hut">Fjällstuga</string>
     <string name="osm_plant">Industrianläggning</string>
     <string name="osm_insurance">Försäkringskontor</string>

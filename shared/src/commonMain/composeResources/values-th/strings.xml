@@ -113,6 +113,16 @@
     <string name="osm_artwork_mosaic">ภาพโมเสก</string>
     <string name="osm_artwork_graffiti">กราฟฟิตี</string>
     <string name="osm_artwork_installation">งานศิลปะจัดวาง</string>
+    <string name="osm_information_guidepost">ป้ายบอกทาง</string>
+    <string name="osm_information_board">บอร์ดข้อมูล</string>
+    <string name="osm_information_map">ป้ายแผนที่</string>
+    <string name="osm_information_route_marker">ป้ายเส้นทาง</string>
+    <string name="osm_information_trail_blaze">สัญลักษณ์เส้นทางเดินป่า</string>
+    <string name="osm_information_office">สำนักงานข้อมูลท่องเที่ยว</string>
+    <string name="osm_information_terminal">ตู้ข้อมูล</string>
+    <string name="osm_information_tactile_map">แผนที่สัมผัส</string>
+    <string name="osm_information_tactile_model">แบบจำลองสัมผัส</string>
+    <string name="osm_information_audioguide">ออดิโอไกด์</string>
     <string name="osm_alpine_hut">กระท่อมบนเขา</string>
     <string name="osm_plant">โรงงานอุตสาหกรรม</string>
     <string name="osm_insurance">สำนักงานประกันภัย</string>

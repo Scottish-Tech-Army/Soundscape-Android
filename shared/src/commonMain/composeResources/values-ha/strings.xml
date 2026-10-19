@@ -887,6 +887,16 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="osm_artwork_mosaic">Mosaic</string>
     <string name="osm_artwork_graffiti">Rubuce-rubucen Bango</string>
     <string name="osm_artwork_installation">Kayan Fasaha na Nuni</string>
+    <string name="osm_information_guidepost">Allon Nuna Hanya</string>
+    <string name="osm_information_board">Allon Bayani</string>
+    <string name="osm_information_map">Allon Taswira</string>
+    <string name="osm_information_route_marker">Shaidar Hanya</string>
+    <string name="osm_information_trail_blaze">Shaidar Hanyar Tafiya</string>
+    <string name="osm_information_office">Ofishin Bayanan Yawon Buɗe Ido</string>
+    <string name="osm_information_terminal">Na'urar Bayani</string>
+    <string name="osm_information_tactile_map">Taswirar Taɓawa</string>
+    <string name="osm_information_tactile_model">Samfurin Taɓawa</string>
+    <string name="osm_information_audioguide">Jagorar Sauti</string>
     <string name="osm_alpine_hut">Bukkar Dutse</string>
     <string name="osm_plant">Cibiyar Masana'antu</string>
     <string name="osm_insurance">Ofishin Inshora</string>

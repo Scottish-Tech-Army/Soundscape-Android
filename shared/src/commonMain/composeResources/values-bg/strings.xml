@@ -976,6 +976,16 @@
     <string name="osm_artwork_mosaic">Мозайка</string>
     <string name="osm_artwork_graffiti">Графити</string>
     <string name="osm_artwork_installation">Арт инсталация</string>
+    <string name="osm_information_guidepost">Пътепоказател</string>
+    <string name="osm_information_board">Информационно табло</string>
+    <string name="osm_information_map">Табло с карта</string>
+    <string name="osm_information_route_marker">Маршрутна маркировка</string>
+    <string name="osm_information_trail_blaze">Туристическа маркировка</string>
+    <string name="osm_information_office">Туристически информационен център</string>
+    <string name="osm_information_terminal">Информационен терминал</string>
+    <string name="osm_information_tactile_map">Тактилна карта</string>
+    <string name="osm_information_tactile_model">Тактилен макет</string>
+    <string name="osm_information_audioguide">Аудиогид</string>
     <string name="osm_alpine_hut">Планинска хижа</string>
     <string name="osm_plant">Завод</string>
     <string name="osm_insurance">Застрахователен офис</string>

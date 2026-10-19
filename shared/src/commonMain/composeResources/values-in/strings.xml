@@ -705,6 +705,16 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="osm_artwork_mosaic">Mosaik</string>
     <string name="osm_artwork_graffiti">Grafiti</string>
     <string name="osm_artwork_installation">Instalasi Seni</string>
+    <string name="osm_information_guidepost">Papan Penunjuk Arah</string>
+    <string name="osm_information_board">Papan Informasi</string>
+    <string name="osm_information_map">Papan Peta</string>
+    <string name="osm_information_route_marker">Tanda Rute</string>
+    <string name="osm_information_trail_blaze">Tanda Jalur Pendakian</string>
+    <string name="osm_information_office">Kantor Informasi Wisata</string>
+    <string name="osm_information_terminal">Kios Informasi</string>
+    <string name="osm_information_tactile_map">Peta Taktil</string>
+    <string name="osm_information_tactile_model">Maket Taktil</string>
+    <string name="osm_information_audioguide">Panduan Audio</string>
     <string name="osm_alpine_hut">Pondok Gunung</string>
     <string name="osm_plant">Instalasi Industri</string>
     <string name="osm_insurance">Kantor Asuransi</string>

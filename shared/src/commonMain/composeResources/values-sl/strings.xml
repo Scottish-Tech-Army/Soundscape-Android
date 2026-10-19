@@ -990,6 +990,16 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="osm_artwork_mosaic">Mozaik</string>
     <string name="osm_artwork_graffiti">Grafit</string>
     <string name="osm_artwork_installation">Umetniška inštalacija</string>
+    <string name="osm_information_guidepost">Smerokaz</string>
+    <string name="osm_information_board">Informacijska tabla</string>
+    <string name="osm_information_map">Tabla z zemljevidom</string>
+    <string name="osm_information_route_marker">Znak poti</string>
+    <string name="osm_information_trail_blaze">Planinska markacija</string>
+    <string name="osm_information_office">Turistično informacijski center</string>
+    <string name="osm_information_terminal">Informacijski terminal</string>
+    <string name="osm_information_tactile_map">Tipni zemljevid</string>
+    <string name="osm_information_tactile_model">Tipna maketa</string>
+    <string name="osm_information_audioguide">Zvočni vodnik</string>
     <string name="osm_alpine_hut">Planinska koča</string>
     <string name="osm_plant">Proizvodni obrat</string>
     <string name="osm_insurance">Zavarovalnica</string>

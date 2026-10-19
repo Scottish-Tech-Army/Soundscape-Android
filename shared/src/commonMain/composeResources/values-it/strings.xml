@@ -1104,6 +1104,16 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="osm_artwork_mosaic">Mosaico</string>
     <string name="osm_artwork_graffiti">Graffito</string>
     <string name="osm_artwork_installation">Installazione artistica</string>
+    <string name="osm_information_guidepost">Cartello indicatore</string>
+    <string name="osm_information_board">Pannello informativo</string>
+    <string name="osm_information_map">Pannello con mappa</string>
+    <string name="osm_information_route_marker">Segnale di percorso</string>
+    <string name="osm_information_trail_blaze">Segnavia</string>
+    <string name="osm_information_office">Ufficio turistico</string>
+    <string name="osm_information_terminal">Totem informativo</string>
+    <string name="osm_information_tactile_map">Mappa tattile</string>
+    <string name="osm_information_tactile_model">Plastico tattile</string>
+    <string name="osm_information_audioguide">Audioguida</string>
     <string name="osm_alpine_hut">Rifugio alpino</string>
     <string name="osm_plant">Impianto industriale</string>
     <string name="osm_insurance">Agenzia assicurativa</string>
