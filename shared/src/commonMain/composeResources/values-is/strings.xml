@@ -1100,6 +1100,16 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="osm_artwork_mosaic">Mósaík</string>
     <string name="osm_artwork_graffiti">Veggjakrot</string>
     <string name="osm_artwork_installation">Listinnsetning</string>
+    <string name="osm_information_guidepost">Vegvísir</string>
+    <string name="osm_information_board">Upplýsingaskilti</string>
+    <string name="osm_information_map">Kortaskilti</string>
+    <string name="osm_information_route_marker">Leiðarmerking</string>
+    <string name="osm_information_trail_blaze">Gönguleiðarmerking</string>
+    <string name="osm_information_office">Upplýsingamiðstöð ferðamanna</string>
+    <string name="osm_information_terminal">Upplýsingaskjár</string>
+    <string name="osm_information_tactile_map">Snertikort</string>
+    <string name="osm_information_tactile_model">Snertilíkan</string>
+    <string name="osm_information_audioguide">Hljóðleiðsögn</string>
     <string name="osm_alpine_hut">Fjallaskáli</string>
     <string name="osm_plant">Iðnaðarverksmiðja</string>
     <string name="osm_insurance">Tryggingaskrifstofa</string>

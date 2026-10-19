@@ -469,6 +469,16 @@
     <string name="osm_artwork_mosaic">Mozaik</string>
     <string name="osm_artwork_graffiti">Grafit</string>
     <string name="osm_artwork_installation">Umjetnička instalacija</string>
+    <string name="osm_information_guidepost">Putokaz</string>
+    <string name="osm_information_board">Informativna ploča</string>
+    <string name="osm_information_map">Ploča s kartom</string>
+    <string name="osm_information_route_marker">Znak rute</string>
+    <string name="osm_information_trail_blaze">Planinarska markacija</string>
+    <string name="osm_information_office">Turistički informativni centar</string>
+    <string name="osm_information_terminal">Informativni terminal</string>
+    <string name="osm_information_tactile_map">Taktilna karta</string>
+    <string name="osm_information_tactile_model">Taktilna maketa</string>
+    <string name="osm_information_audioguide">Audiovodič</string>
     <string name="osm_alpine_hut">Planinarski dom</string>
     <string name="osm_plant">Industrijsko postrojenje</string>
     <string name="osm_insurance">Ured za osiguranje</string>

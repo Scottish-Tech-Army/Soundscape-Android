@@ -887,6 +887,16 @@
     <string name="osm_artwork_mosaic">موزیک</string>
     <string name="osm_artwork_graffiti">گرافیٹی</string>
     <string name="osm_artwork_installation">آرٹ انسٹالیشن</string>
+    <string name="osm_information_guidepost">سمت نما کھمبا</string>
+    <string name="osm_information_board">معلوماتی بورڈ</string>
+    <string name="osm_information_map">نقشہ بورڈ</string>
+    <string name="osm_information_route_marker">راستے کا نشان</string>
+    <string name="osm_information_trail_blaze">پگڈنڈی کا نشان</string>
+    <string name="osm_information_office">سیاحتی معلوماتی دفتر</string>
+    <string name="osm_information_terminal">معلوماتی ٹرمینل</string>
+    <string name="osm_information_tactile_map">لمسی نقشہ</string>
+    <string name="osm_information_tactile_model">لمسی ماڈل</string>
+    <string name="osm_information_audioguide">آڈیو گائیڈ</string>
     <string name="osm_alpine_hut">پہاڑی جھونپڑا</string>
     <string name="osm_plant">صنعتی پلانٹ</string>
     <string name="osm_insurance">انشورنس کا دفتر</string>

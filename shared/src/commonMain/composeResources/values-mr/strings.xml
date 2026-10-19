@@ -285,6 +285,16 @@
     <string name="osm_artwork_mosaic">मोझेक</string>
     <string name="osm_artwork_graffiti">ग्राफिटी</string>
     <string name="osm_artwork_installation">कला मांडणी</string>
+    <string name="osm_information_guidepost">दिशादर्शक फलक</string>
+    <string name="osm_information_board">माहिती फलक</string>
+    <string name="osm_information_map">नकाशा फलक</string>
+    <string name="osm_information_route_marker">मार्ग खूण</string>
+    <string name="osm_information_trail_blaze">पायवाट खूण</string>
+    <string name="osm_information_office">पर्यटन माहिती कार्यालय</string>
+    <string name="osm_information_terminal">माहिती टर्मिनल</string>
+    <string name="osm_information_tactile_map">स्पर्शक्षम नकाशा</string>
+    <string name="osm_information_tactile_model">स्पर्शक्षम प्रतिकृती</string>
+    <string name="osm_information_audioguide">ऑडिओ मार्गदर्शक</string>
     <string name="osm_alpine_hut">पर्वतीय निवारा</string>
     <string name="osm_wetland">पाणथळ जागा</string>
     <string name="osm_mud">चिखल</string>

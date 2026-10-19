@@ -1101,6 +1101,16 @@
     <string name="osm_artwork_mosaic">موزاییک</string>
     <string name="osm_artwork_graffiti">گرافیتی</string>
     <string name="osm_artwork_installation">چیدمان هنری</string>
+    <string name="osm_information_guidepost">تابلوی راهنما</string>
+    <string name="osm_information_board">تابلوی اطلاعات</string>
+    <string name="osm_information_map">تابلوی نقشه</string>
+    <string name="osm_information_route_marker">علامت مسیر</string>
+    <string name="osm_information_trail_blaze">علامت مسیر پیاده‌روی</string>
+    <string name="osm_information_office">دفتر اطلاعات گردشگری</string>
+    <string name="osm_information_terminal">کیوسک اطلاعات</string>
+    <string name="osm_information_tactile_map">نقشه لمسی</string>
+    <string name="osm_information_tactile_model">ماکت لمسی</string>
+    <string name="osm_information_audioguide">راهنمای صوتی</string>
     <string name="osm_alpine_hut">پناهگاه کوهستانی</string>
     <string name="osm_plant">کارخانهٔ صنعتی</string>
     <string name="osm_insurance">دفتر بیمه</string>

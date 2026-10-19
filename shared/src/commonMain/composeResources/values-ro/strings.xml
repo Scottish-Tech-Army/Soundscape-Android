@@ -1141,6 +1141,16 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="osm_artwork_mosaic">Mozaic</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Instalație artistică</string>
+    <string name="osm_information_guidepost">Indicator de direcție</string>
+    <string name="osm_information_board">Panou informativ</string>
+    <string name="osm_information_map">Panou cu hartă</string>
+    <string name="osm_information_route_marker">Semn de traseu</string>
+    <string name="osm_information_trail_blaze">Semn de potecă</string>
+    <string name="osm_information_office">Centru de informare turistică</string>
+    <string name="osm_information_terminal">Terminal de informare</string>
+    <string name="osm_information_tactile_map">Hartă tactilă</string>
+    <string name="osm_information_tactile_model">Machetă tactilă</string>
+    <string name="osm_information_audioguide">Ghid audio</string>
     <string name="osm_alpine_hut">Cabană alpină</string>
     <string name="osm_plant">Uzină industrială</string>
     <string name="osm_insurance">Birou de asigurări</string>

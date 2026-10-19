@@ -1100,6 +1100,16 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="osm_artwork_mosaic">Mozaïek</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Kunstinstallatie</string>
+    <string name="osm_information_guidepost">Wegwijzer</string>
+    <string name="osm_information_board">Informatiebord</string>
+    <string name="osm_information_map">Kaartbord</string>
+    <string name="osm_information_route_marker">Routebordje</string>
+    <string name="osm_information_trail_blaze">Routeteken</string>
+    <string name="osm_information_office">Toeristeninformatie</string>
+    <string name="osm_information_terminal">Informatiezuil</string>
+    <string name="osm_information_tactile_map">Tactiele kaart</string>
+    <string name="osm_information_tactile_model">Tactiele maquette</string>
+    <string name="osm_information_audioguide">Audiogids</string>
     <string name="osm_alpine_hut">Alpenhut</string>
     <string name="osm_plant">Fabriek</string>
     <string name="osm_insurance">Verzekeringskantoor</string>

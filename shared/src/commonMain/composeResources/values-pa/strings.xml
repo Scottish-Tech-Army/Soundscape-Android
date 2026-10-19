@@ -1363,6 +1363,16 @@
     <string name="osm_artwork_mosaic">ਮੋਜ਼ੇਕ</string>
     <string name="osm_artwork_graffiti">ਗ੍ਰੈਫ਼ਿਟੀ</string>
     <string name="osm_artwork_installation">ਕਲਾ ਸਥਾਪਨਾ</string>
+    <string name="osm_information_guidepost">ਦਿਸ਼ਾ-ਸੂਚਕ ਖੰਭਾ</string>
+    <string name="osm_information_board">ਜਾਣਕਾਰੀ ਬੋਰਡ</string>
+    <string name="osm_information_map">ਨਕਸ਼ਾ ਬੋਰਡ</string>
+    <string name="osm_information_route_marker">ਰੂਟ ਨਿਸ਼ਾਨ</string>
+    <string name="osm_information_trail_blaze">ਪਗਡੰਡੀ ਨਿਸ਼ਾਨ</string>
+    <string name="osm_information_office">ਸੈਲਾਨੀ ਜਾਣਕਾਰੀ ਦਫ਼ਤਰ</string>
+    <string name="osm_information_terminal">ਜਾਣਕਾਰੀ ਟਰਮੀਨਲ</string>
+    <string name="osm_information_tactile_map">ਛੋਹ ਵਾਲਾ ਨਕਸ਼ਾ</string>
+    <string name="osm_information_tactile_model">ਛੋਹ ਵਾਲਾ ਮਾਡਲ</string>
+    <string name="osm_information_audioguide">ਆਡੀਓ ਗਾਈਡ</string>
     <string name="osm_alpine_hut">ਪਹਾੜੀ ਆਸਰਾ</string>
     <string name="osm_plant">ਉਦਯੋਗਿਕ ਪਲਾਂਟ</string>
     <string name="osm_insurance">ਬੀਮਾ ਦਫ਼ਤਰ</string>

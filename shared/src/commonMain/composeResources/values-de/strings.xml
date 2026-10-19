@@ -1100,6 +1100,16 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="osm_artwork_mosaic">Mosaik</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Kunstinstallation</string>
+    <string name="osm_information_guidepost">Wegweiser</string>
+    <string name="osm_information_board">Informationstafel</string>
+    <string name="osm_information_map">Kartentafel</string>
+    <string name="osm_information_route_marker">Routenschild</string>
+    <string name="osm_information_trail_blaze">Wegzeichen</string>
+    <string name="osm_information_office">Touristeninformation</string>
+    <string name="osm_information_terminal">Infoterminal</string>
+    <string name="osm_information_tactile_map">Tastplan</string>
+    <string name="osm_information_tactile_model">Tastmodell</string>
+    <string name="osm_information_audioguide">Audioguide</string>
     <string name="osm_alpine_hut">Berghütte</string>
     <string name="osm_plant">Industrieanlage</string>
     <string name="osm_insurance">Versicherungsbüro</string>

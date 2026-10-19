@@ -651,6 +651,16 @@
     <string name="osm_artwork_mosaic">మొజాయిక్</string>
     <string name="osm_artwork_graffiti">గ్రాఫిటీ</string>
     <string name="osm_artwork_installation">కళా ప్రతిష్ఠాపన</string>
+    <string name="osm_information_guidepost">దారి సూచిక స్తంభం</string>
+    <string name="osm_information_board">సమాచార బోర్డు</string>
+    <string name="osm_information_map">మ్యాప్ బోర్డు</string>
+    <string name="osm_information_route_marker">మార్గ సూచిక</string>
+    <string name="osm_information_trail_blaze">కాలిబాట గుర్తు</string>
+    <string name="osm_information_office">పర్యాటక సమాచార కార్యాలయం</string>
+    <string name="osm_information_terminal">సమాచార టెర్మినల్</string>
+    <string name="osm_information_tactile_map">స్పర్శ మ్యాప్</string>
+    <string name="osm_information_tactile_model">స్పర్శ నమూనా</string>
+    <string name="osm_information_audioguide">ఆడియో గైడ్</string>
     <string name="osm_alpine_hut">పర్వత గుడిసె</string>
     <string name="osm_plant">పారిశ్రామిక ప్లాంట్</string>
     <string name="osm_insurance">బీమా కార్యాలయం</string>

@@ -1098,6 +1098,16 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="osm_artwork_mosaic">Mosaik</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Kunstinstallation</string>
+    <string name="osm_information_guidepost">Vejviser</string>
+    <string name="osm_information_board">Informationstavle</string>
+    <string name="osm_information_map">Oversigtskort</string>
+    <string name="osm_information_route_marker">Rutemarkering</string>
+    <string name="osm_information_trail_blaze">Stimarkering</string>
+    <string name="osm_information_office">Turistinformation</string>
+    <string name="osm_information_terminal">Informationsskærm</string>
+    <string name="osm_information_tactile_map">Taktilt kort</string>
+    <string name="osm_information_tactile_model">Taktil model</string>
+    <string name="osm_information_audioguide">Audioguide</string>
     <string name="osm_alpine_hut">Alpehytte</string>
     <string name="osm_plant">Industrianlæg</string>
     <string name="osm_insurance">Forsikringskontor</string>

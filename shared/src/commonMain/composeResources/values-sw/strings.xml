@@ -469,6 +469,16 @@
     <string name="osm_artwork_mosaic">Mozaiki</string>
     <string name="osm_artwork_graffiti">Grafiti</string>
     <string name="osm_artwork_installation">Usakinishaji wa Sanaa</string>
+    <string name="osm_information_guidepost">Kibao cha Kuelekeza Njia</string>
+    <string name="osm_information_board">Ubao wa Taarifa</string>
+    <string name="osm_information_map">Ubao wa Ramani</string>
+    <string name="osm_information_route_marker">Ishara ya Njia</string>
+    <string name="osm_information_trail_blaze">Ishara ya Njia ya Matembezi</string>
+    <string name="osm_information_office">Ofisi ya Taarifa za Utalii</string>
+    <string name="osm_information_terminal">Skrini ya Taarifa</string>
+    <string name="osm_information_tactile_map">Ramani ya Kugusa</string>
+    <string name="osm_information_tactile_model">Kielelezo cha Kugusa</string>
+    <string name="osm_information_audioguide">Mwongozo wa Sauti</string>
     <string name="osm_alpine_hut">Kibanda cha Mlimani</string>
     <string name="osm_plant">Kiwanda cha Uzalishaji</string>
     <string name="osm_insurance">Ofisi ya Bima</string>

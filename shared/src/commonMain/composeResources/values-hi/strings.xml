@@ -1137,6 +1137,16 @@
     <string name="osm_artwork_mosaic">मोज़ेक</string>
     <string name="osm_artwork_graffiti">ग्रैफ़िटी</string>
     <string name="osm_artwork_installation">कला इंस्टॉलेशन</string>
+    <string name="osm_information_guidepost">दिशासूचक खंभा</string>
+    <string name="osm_information_board">सूचना पट्ट</string>
+    <string name="osm_information_map">मानचित्र पट्ट</string>
+    <string name="osm_information_route_marker">मार्ग चिह्न</string>
+    <string name="osm_information_trail_blaze">पगडंडी चिह्न</string>
+    <string name="osm_information_office">पर्यटन सूचना कार्यालय</string>
+    <string name="osm_information_terminal">सूचना टर्मिनल</string>
+    <string name="osm_information_tactile_map">स्पर्शनीय नक्शा</string>
+    <string name="osm_information_tactile_model">स्पर्शनीय मॉडल</string>
+    <string name="osm_information_audioguide">ऑडियो गाइड</string>
     <string name="osm_alpine_hut">पर्वतीय शरणस्थल</string>
     <string name="osm_plant">औद्योगिक संयंत्र</string>
     <string name="osm_insurance">बीमा कार्यालय</string>

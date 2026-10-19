@@ -1104,6 +1104,16 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="osm_artwork_mosaic">Mosaïque</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Installation artistique</string>
+    <string name="osm_information_guidepost">Poteau indicateur</string>
+    <string name="osm_information_board">Panneau d'information</string>
+    <string name="osm_information_map">Panneau avec carte</string>
+    <string name="osm_information_route_marker">Balise d'itinéraire</string>
+    <string name="osm_information_trail_blaze">Balisage de sentier</string>
+    <string name="osm_information_office">Office de tourisme</string>
+    <string name="osm_information_terminal">Borne d'information</string>
+    <string name="osm_information_tactile_map">Carte tactile</string>
+    <string name="osm_information_tactile_model">Maquette tactile</string>
+    <string name="osm_information_audioguide">Audioguide</string>
     <string name="osm_alpine_hut">Refuge alpin</string>
     <string name="osm_plant">Usine industrielle</string>
     <string name="osm_insurance">Agence d'assurance</string>

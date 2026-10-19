@@ -1100,6 +1100,16 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="osm_artwork_mosaic">Mosaiikki</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Taideinstallaatio</string>
+    <string name="osm_information_guidepost">Viitta</string>
+    <string name="osm_information_board">Infotaulu</string>
+    <string name="osm_information_map">Karttataulu</string>
+    <string name="osm_information_route_marker">Reittimerkki</string>
+    <string name="osm_information_trail_blaze">Polun merkintä</string>
+    <string name="osm_information_office">Matkailuneuvonta</string>
+    <string name="osm_information_terminal">Infopääte</string>
+    <string name="osm_information_tactile_map">Kosketeltava kartta</string>
+    <string name="osm_information_tactile_model">Kosketeltava pienoismalli</string>
+    <string name="osm_information_audioguide">Ääniopas</string>
     <string name="osm_alpine_hut">Vuorimaja</string>
     <string name="osm_plant">Teollisuuslaitos</string>
     <string name="osm_insurance">Vakuutustoimisto</string>

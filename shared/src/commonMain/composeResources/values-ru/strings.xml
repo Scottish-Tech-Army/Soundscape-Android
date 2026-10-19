@@ -1108,6 +1108,16 @@
     <string name="osm_artwork_mosaic">Мозаика</string>
     <string name="osm_artwork_graffiti">Граффити</string>
     <string name="osm_artwork_installation">Арт-инсталляция</string>
+    <string name="osm_information_guidepost">Указатель</string>
+    <string name="osm_information_board">Информационный стенд</string>
+    <string name="osm_information_map">Стенд с картой</string>
+    <string name="osm_information_route_marker">Знак маршрута</string>
+    <string name="osm_information_trail_blaze">Маркировка тропы</string>
+    <string name="osm_information_office">Туристический информационный центр</string>
+    <string name="osm_information_terminal">Информационный терминал</string>
+    <string name="osm_information_tactile_map">Тактильная карта</string>
+    <string name="osm_information_tactile_model">Тактильный макет</string>
+    <string name="osm_information_audioguide">Аудиогид</string>
     <string name="osm_alpine_hut">Альпийская хижина</string>
     <string name="osm_plant">Промышленное предприятие</string>
     <string name="osm_insurance">Страховая компания</string>

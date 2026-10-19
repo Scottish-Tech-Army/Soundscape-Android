@@ -898,6 +898,16 @@
     <string name="osm_artwork_mosaic">Мозаик</string>
     <string name="osm_artwork_graffiti">Графит</string>
     <string name="osm_artwork_installation">Уметничка инсталација</string>
+    <string name="osm_information_guidepost">Путоказ</string>
+    <string name="osm_information_board">Информативна табла</string>
+    <string name="osm_information_map">Табла са мапом</string>
+    <string name="osm_information_route_marker">Ознака руте</string>
+    <string name="osm_information_trail_blaze">Планинарска маркација</string>
+    <string name="osm_information_office">Туристички информативни центар</string>
+    <string name="osm_information_terminal">Информативни терминал</string>
+    <string name="osm_information_tactile_map">Тактилна мапа</string>
+    <string name="osm_information_tactile_model">Тактилна макета</string>
+    <string name="osm_information_audioguide">Аудио-водич</string>
     <string name="osm_alpine_hut">Планинарски дом</string>
     <string name="osm_plant">Индустријски погон</string>
     <string name="osm_insurance">Осигуравајуће друштво</string>

@@ -113,6 +113,16 @@
     <string name="osm_artwork_mosaic">Tranh khảm</string>
     <string name="osm_artwork_graffiti">Tranh graffiti</string>
     <string name="osm_artwork_installation">Tác phẩm sắp đặt</string>
+    <string name="osm_information_guidepost">Cột chỉ đường</string>
+    <string name="osm_information_board">Bảng thông tin</string>
+    <string name="osm_information_map">Bảng bản đồ</string>
+    <string name="osm_information_route_marker">Biển báo tuyến đường</string>
+    <string name="osm_information_trail_blaze">Dấu đường mòn</string>
+    <string name="osm_information_office">Văn phòng thông tin du lịch</string>
+    <string name="osm_information_terminal">Ki-ốt thông tin</string>
+    <string name="osm_information_tactile_map">Bản đồ xúc giác</string>
+    <string name="osm_information_tactile_model">Mô hình xúc giác</string>
+    <string name="osm_information_audioguide">Hướng dẫn bằng âm thanh</string>
     <string name="osm_alpine_hut">Nhà trú trên núi</string>
     <string name="osm_plant">Nhà máy</string>
     <string name="osm_insurance">Văn phòng bảo hiểm</string>

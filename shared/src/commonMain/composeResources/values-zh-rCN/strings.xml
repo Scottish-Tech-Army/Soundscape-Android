@@ -642,6 +642,16 @@
     <string name="osm_artwork_mosaic">马赛克</string>
     <string name="osm_artwork_graffiti">涂鸦</string>
     <string name="osm_artwork_installation">艺术装置</string>
+    <string name="osm_information_guidepost">路标</string>
+    <string name="osm_information_board">信息板</string>
+    <string name="osm_information_map">地图牌</string>
+    <string name="osm_information_route_marker">路线标志</string>
+    <string name="osm_information_trail_blaze">步道标识</string>
+    <string name="osm_information_office">旅游咨询处</string>
+    <string name="osm_information_terminal">信息查询终端</string>
+    <string name="osm_information_tactile_map">触觉地图</string>
+    <string name="osm_information_tactile_model">触觉模型</string>
+    <string name="osm_information_audioguide">语音导览</string>
     <string name="osm_alpine_hut">高山木屋</string>
     <string name="osm_plant">工业厂房</string>
     <string name="osm_insurance">保险公司</string>

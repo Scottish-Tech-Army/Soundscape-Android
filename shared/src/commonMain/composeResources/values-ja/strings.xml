@@ -1096,6 +1096,16 @@
     <string name="osm_artwork_mosaic">モザイク</string>
     <string name="osm_artwork_graffiti">グラフィティ</string>
     <string name="osm_artwork_installation">アートインスタレーション</string>
+    <string name="osm_information_guidepost">道標</string>
+    <string name="osm_information_board">案内板</string>
+    <string name="osm_information_map">案内地図</string>
+    <string name="osm_information_route_marker">ルート標識</string>
+    <string name="osm_information_trail_blaze">山道の目印</string>
+    <string name="osm_information_office">観光案内所</string>
+    <string name="osm_information_terminal">情報端末</string>
+    <string name="osm_information_tactile_map">触地図</string>
+    <string name="osm_information_tactile_model">触知模型</string>
+    <string name="osm_information_audioguide">音声ガイド</string>
     <string name="osm_alpine_hut">山小屋</string>
     <string name="osm_plant">工場</string>
     <string name="osm_insurance">保険事務所</string>

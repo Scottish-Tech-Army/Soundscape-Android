@@ -777,6 +777,16 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="osm_artwork_mosaic">Mosaiik</string>
     <string name="osm_artwork_graffiti">Grafiti</string>
     <string name="osm_artwork_installation">Kunstiinstallatsioon</string>
+    <string name="osm_information_guidepost">Teeviit</string>
+    <string name="osm_information_board">Infotahvel</string>
+    <string name="osm_information_map">Kaarditahvel</string>
+    <string name="osm_information_route_marker">Marsruudi tähis</string>
+    <string name="osm_information_trail_blaze">Matkaraja tähis</string>
+    <string name="osm_information_office">Turismiinfokeskus</string>
+    <string name="osm_information_terminal">Infoterminal</string>
+    <string name="osm_information_tactile_map">Taktiilne kaart</string>
+    <string name="osm_information_tactile_model">Taktiilne makett</string>
+    <string name="osm_information_audioguide">Audiogiid</string>
     <string name="osm_alpine_hut">Mägionn</string>
     <string name="osm_plant">Tehas</string>
     <string name="osm_insurance">Kindlustusbüroo</string>

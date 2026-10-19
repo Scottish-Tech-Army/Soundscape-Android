@@ -371,6 +371,16 @@
     <string name="osm_artwork_mosaic">فسيفساء</string>
     <string name="osm_artwork_graffiti">غرافيتي</string>
     <string name="osm_artwork_installation">عمل فني تركيبي</string>
+    <string name="osm_information_guidepost">لافتة إرشادية</string>
+    <string name="osm_information_board">لوحة معلومات</string>
+    <string name="osm_information_map">لوحة خريطة</string>
+    <string name="osm_information_route_marker">إشارة مسار</string>
+    <string name="osm_information_trail_blaze">إشارة درب</string>
+    <string name="osm_information_office">مكتب معلومات سياحية</string>
+    <string name="osm_information_terminal">كشك معلومات</string>
+    <string name="osm_information_tactile_map">خريطة لمسية</string>
+    <string name="osm_information_tactile_model">مجسم لمسي</string>
+    <string name="osm_information_audioguide">دليل صوتي</string>
     <string name="osm_alpine_hut">كوخ جبلي</string>
     <string name="osm_plant">منشأة صناعية</string>
     <string name="osm_insurance">مكتب تأمين</string>
