@@ -890,7 +890,12 @@ fun vectorTileToGeoJson(
                 } else
                     firstInPair = false
             }
-            if ((name == null) && (farmTag != null)) name = farmyardNamesFromFarms[feature]
+            if (farmTag != null) {
+                if (name == null) name = farmyardNamesFromFarms[feature]
+                // A farm's only tags are its class and name, which aren't kept as properties, but
+                // every other POI has some and code that works with POIs expects them
+                if (properties == null) properties = HashMap()
+            }
             val translatedName = translation.translationOf(name)
 
             if (layer.name == "building") {

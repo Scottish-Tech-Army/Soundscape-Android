@@ -69,13 +69,13 @@ class PmtilesValidationTest {
     }
 
     /**
-     * The fixture predates the "soundscape:schema" metadata entry, so it reads as schema 0. Update
-     * this once the fixtures are rebuilt with a versioned planetiler-openmaptiles.
+     * The fixture was built by a planetiler-openmaptiles which writes the "soundscape:schema"
+     * metadata entry, at schema 1.
      */
     @Test
-    fun unversionedExtractHasSchemaZero() {
+    fun versionedExtractHasItsSchema() {
         assumeTrue("fixture not present", fixture.exists())
-        assertEquals(0, readExtractSchema(fixture.path))
+        assertEquals(1, readExtractSchema(fixture.path))
     }
 
     /** An unmodified copy must also pass (guards the copy/corrupt machinery itself). */
