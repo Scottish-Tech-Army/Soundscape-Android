@@ -359,7 +359,17 @@ import org.scottishtecharmy.soundscape.resources.osm_ice_skating
 import org.scottishtecharmy.soundscape.resources.osm_ice_stock
 import org.scottishtecharmy.soundscape.resources.osm_industrial
 import org.scottishtecharmy.soundscape.resources.osm_information
+import org.scottishtecharmy.soundscape.resources.osm_information_audioguide
+import org.scottishtecharmy.soundscape.resources.osm_information_board
+import org.scottishtecharmy.soundscape.resources.osm_information_guidepost
+import org.scottishtecharmy.soundscape.resources.osm_information_map
+import org.scottishtecharmy.soundscape.resources.osm_information_office
 import org.scottishtecharmy.soundscape.resources.osm_information_point
+import org.scottishtecharmy.soundscape.resources.osm_information_route_marker
+import org.scottishtecharmy.soundscape.resources.osm_information_tactile_map
+import org.scottishtecharmy.soundscape.resources.osm_information_tactile_model
+import org.scottishtecharmy.soundscape.resources.osm_information_terminal
+import org.scottishtecharmy.soundscape.resources.osm_information_trail_blaze
 import org.scottishtecharmy.soundscape.resources.osm_insulation
 import org.scottishtecharmy.soundscape.resources.osm_insurance
 import org.scottishtecharmy.soundscape.resources.osm_interior_decoration
@@ -1637,6 +1647,19 @@ class ResourceMapper {
                 put("artwork_mosaic", Res.string.osm_artwork_mosaic)
                 put("artwork_graffiti", Res.string.osm_artwork_graffiti)
                 put("artwork_installation", Res.string.osm_artwork_installation)
+                put("information_guidepost", Res.string.osm_information_guidepost)
+                put("information_board", Res.string.osm_information_board)
+                put("information_map", Res.string.osm_information_map)
+                put("information_route_marker", Res.string.osm_information_route_marker)
+                put("information_trail_blaze", Res.string.osm_information_trail_blaze)
+                put("information_office", Res.string.osm_information_office)
+                put("information_terminal", Res.string.osm_information_terminal)
+                put("information_tactile_map", Res.string.osm_information_tactile_map)
+                put("information_tactile_model", Res.string.osm_information_tactile_model)
+                put("information_audioguide", Res.string.osm_information_audioguide)
+                put("information_hikingmap", Res.string.osm_information_map)
+                put("information_map_board", Res.string.osm_information_map)
+                put("information_visitor_centre", Res.string.osm_information_office)
             }
         }
 

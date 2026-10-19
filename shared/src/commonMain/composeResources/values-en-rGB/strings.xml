@@ -1100,6 +1100,16 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="osm_artwork_mosaic">Mosaic</string>
     <string name="osm_artwork_graffiti">Graffiti</string>
     <string name="osm_artwork_installation">Art Installation</string>
+    <string name="osm_information_guidepost">Signpost</string>
+    <string name="osm_information_board">Information Board</string>
+    <string name="osm_information_map">Map Board</string>
+    <string name="osm_information_route_marker">Route Marker</string>
+    <string name="osm_information_trail_blaze">Trail Marker</string>
+    <string name="osm_information_office">Tourist Information Office</string>
+    <string name="osm_information_terminal">Information Terminal</string>
+    <string name="osm_information_tactile_map">Tactile Map</string>
+    <string name="osm_information_tactile_model">Tactile Model</string>
+    <string name="osm_information_audioguide">Audio Guide</string>
     <string name="osm_alpine_hut">Alpine Hut</string>
     <string name="osm_plant">Industrial Plant</string>
     <string name="osm_insurance">Insurance Office</string>

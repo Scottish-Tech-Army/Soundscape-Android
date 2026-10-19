@@ -303,8 +303,9 @@ open class MvtFeature : Feature() {
      * A name more specific than the class's, for the classes whose subclass says more. The
      * class names are broad - every pitch is a "Sports Field", and OpenMapTiles puts artworks,
      * galleries and arts centres all in "art_gallery" - so a skate park and a mural would
-     * otherwise be called out as a Sports Field and a Gallery. Other classes keep their class
-     * name first: a subclass such as a place of worship's religion isn't a name for the place.
+     * otherwise be called out as a Sports Field and a Gallery, and a guidepost and a tactile map
+     * both as Information. Other classes keep their class name first: a subclass such as a
+     * place of worship's religion isn't a name for the place.
      */
     private fun specificTypeKey(): String? = when (featureClass) {
         // planetiler puts the pitch's sport in its subclass, sometimes several ("soccer;rugby")
@@ -319,6 +320,9 @@ open class MvtFeature : Feature() {
                 ) ?: featureSubClass
             else
                 featureSubClass
+        // planetiler puts the information tag in the subclass. Values without a name of their own
+        // stay "Information": a raw "office" or "terminal" would be mistaken for something else.
+        "information" -> ResourceMapper.qualifiedKey("information", featureSubClass)
         else -> null
     }
 }
