@@ -106,6 +106,7 @@ import org.scottishtecharmy.soundscape.resources.search_button_routes_accessibil
 import org.scottishtecharmy.soundscape.resources.search_button_nearby_accessibility_hint
 import org.scottishtecharmy.soundscape.resources.search_nearby_screen_title
 import org.scottishtecharmy.soundscape.resources.search_use_current_location
+import org.scottishtecharmy.soundscape.screens.activationHint
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackHint
@@ -409,7 +410,7 @@ fun SharedHomeContent(
                                 }
                                 val (distanceString, distanceStringA11y) = distanceStrings
 
-                                val calloutLabel = stringResource(Res.string.beacon_action_callout_beacon)
+                                val calloutLabel = activationHint(stringResource(Res.string.beacon_action_callout_beacon))
                                 val moreInfoLabel = stringResource(Res.string.callouts_action_more_info)
                                 val addToMarkersLabel =
                                     stringResource(Res.string.markers_action_add_to_markers)

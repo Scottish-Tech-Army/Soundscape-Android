@@ -38,6 +38,7 @@ import org.scottishtecharmy.soundscape.resources.settings_expand_section
 import org.scottishtecharmy.soundscape.resources.settings_expanded
 import org.scottishtecharmy.soundscape.resources.settings_keep_value
 import org.scottishtecharmy.soundscape.resources.settings_use_value
+import org.scottishtecharmy.soundscape.screens.activationHint
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -131,8 +132,9 @@ fun ExpandableSectionHeader(
             .fillMaxWidth()
             .clickable(
                 role = Role.Button,
-                onClickLabel = if (expanded) stringResource(Res.string.settings_collapse_section) else stringResource(
-                    Res.string.settings_expand_section
+                onClickLabel = activationHint(
+                    if (expanded) stringResource(Res.string.settings_collapse_section)
+                    else stringResource(Res.string.settings_expand_section)
                 ),
             ) { onToggle() }
             .extraSmallPadding()
