@@ -171,6 +171,12 @@
             "value": "Soundscape gebruikt Bluetooth om koptelefoons met hoofdtracking en andere audioapparaten te vinden en er verbinding mee te maken."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ਸਿਰ ਦੀ ਟਰੈਕਿੰਗ ਵਾਲੇ ਹੈੱਡਫ਼ੋਨ ਅਤੇ ਹੋਰ ਆਡੀਓ ਡਿਵਾਈਸਾਂ ਲੱਭਣ ਅਤੇ ਉਨ੍ਹਾਂ ਨਾਲ ਜੁੜਨ ਲਈ ਬਲੂਟੁੱਥ ਵਰਤਦਾ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -451,6 +457,12 @@
             "value": "Soundscape gebruikt Bluetooth om koptelefoons met hoofdtracking en andere audioapparaten te vinden en er verbinding mee te maken."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ਸਿਰ ਦੀ ਟਰੈਕਿੰਗ ਵਾਲੇ ਹੈੱਡਫ਼ੋਨ ਅਤੇ ਹੋਰ ਆਡੀਓ ਡਿਵਾਈਸਾਂ ਲੱਭਣ ਅਤੇ ਉਨ੍ਹਾਂ ਨਾਲ ਜੁੜਨ ਲਈ ਬਲੂਟੁੱਥ ਵਰਤਦਾ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -656,7 +668,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape a besoin de votre position pour fournir la navigation audio même lorsque l’application est en arrière-plan."
+            "value": "Soundscape a besoin de votre position pour fournir la navigation audio même lorsque l’appli est en arrière-plan."
           }
         },
         "ha": {
@@ -729,6 +741,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape heeft uw locatie nodig om audio-navigatie te bieden, zelfs wanneer de app op de achtergrond draait."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਐਪ ਪਿਛੋਕੜ ਵਿੱਚ ਹੋਣ 'ਤੇ ਵੀ ਆਵਾਜ਼ੀ ਨੈਵੀਗੇਸ਼ਨ ਦੇਣ ਲਈ Soundscape ਨੂੰ ਤੁਹਾਡੇ ਟਿਕਾਣੇ ਦੀ ਲੋੜ ਹੈ।"
           }
         },
         "pl": {
@@ -1011,6 +1029,12 @@
             "value": "Soundscape heeft uw locatie nodig om audio-navigatie te bieden en uw omgeving te beschrijven."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਵਾਜ਼ੀ ਨੈਵੀਗੇਸ਼ਨ ਦੇਣ ਅਤੇ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਦਾ ਵਰਣਨ ਕਰਨ ਲਈ Soundscape ਨੂੰ ਤੁਹਾਡੇ ਟਿਕਾਣੇ ਦੀ ਲੋੜ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -1210,7 +1234,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les notifications audio par rapport à votre environnement."
+            "value": "Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les annonces audio par rapport à votre environnement."
           }
         },
         "fr-CA": {
@@ -1240,7 +1264,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, és a hangos bejelentéseket a környezetéhez igazítsa."
+            "value": "A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, és a bemondásokat a környezetéhez igazítsa."
           }
         },
         "id": {
@@ -1289,6 +1313,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape gebruikt bewegingsgegevens om te bepalen welke richting u op kijkt en om de audio-aankondigingen op uw omgeving af te stemmen."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ਹਰਕਤ ਡਾਟਾ ਵਰਤ ਕੇ ਪਤਾ ਕਰਦਾ ਹੈ ਕਿ ਤੁਹਾਡਾ ਮੂੰਹ ਕਿਸ ਦਿਸ਼ਾ ਵੱਲ ਹੈ, ਅਤੇ ਘੋਸ਼ਣਾਵਾਂ ਨੂੰ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਮੁਤਾਬਕ ਦਿਸ਼ਾ ਦਿੰਦਾ ਹੈ।"
           }
         },
         "pl": {
