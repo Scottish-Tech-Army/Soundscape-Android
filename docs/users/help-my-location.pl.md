@@ -10,7 +10,7 @@ permalink: /users/help-my-location.html
 
 # Moja lokalizacja
 
-*Moja lokalizacja* mówi ci, gdzie jesteś. Podaje, w którą stronę patrzysz lub się poruszasz, a potem ulicę lub adres, przy którym jesteś. Użyj tego przycisku, gdy wysiadasz z autobusu, wychodzisz z budynku albo tracisz orientację.
+*Moja lokalizacja* mówi ci, gdzie jesteś. Podaje, w którą stronę jesteś zwrócony lub się poruszasz, a potem ulicę lub adres, przy którym jesteś. Użyj tego przycisku, gdy wysiadasz z autobusu, wychodzisz z budynku albo tracisz orientację.
 
-Jeśli stoisz w miejscu, najpierw skieruj górną krawędź telefonu w stronę, w którą patrzysz. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
+Jeśli stoisz w miejscu, najpierw skieruj górną krawędź telefonu w stronę, w którą jesteś zwrócony. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
 

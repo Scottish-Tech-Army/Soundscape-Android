@@ -30,7 +30,7 @@ Otwórz menu i wybierz *Ustawienia*, a potem *Zarządzaj powiadomieniami*. *Szcz
 
 ## Co słyszysz
 
-*Zarządzaj powiadomieniami* ma jeszcze dwa ustawienia. *Ulice i skrzyżowania* włącza lub wyłącza powiadomienia o ulicach i skrzyżowaniach. *Powiadamiaj o miejscach* pozwala wybrać, o jakich rodzajach miejsc słyszysz, na przykład *Transport publiczny* albo *Jedzenie i napoje*. O twoich znacznikach Soundscape powiadamia zawsze.
+*Zarządzaj powiadomieniami* ma jeszcze dwa ustawienia. *Ulice i skrzyżowania* włącza lub wyłącza powiadomienia o ulicach i skrzyżowaniach. *Powiadomienia o miejscach* pozwala wybrać, o jakich rodzajach miejsc słyszysz, na przykład *Transport publiczny* albo *Jedzenie i napoje*. O twoich znacznikach Soundscape powiadamia zawsze.
 
 ## Jak sprawić, by Soundscape mówił mniej
 

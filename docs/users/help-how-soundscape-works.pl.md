@@ -24,9 +24,9 @@ Cztery przyciski na dole ekranu głównego opisują twoje otoczenie, kiedy tylko
 
 Dźwięk naprowadzający to dźwięk dobiegający z kierunku miejsca, które wybierzesz. Pokazuje, gdzie jest to miejsce, a ty decydujesz, jak tam dotrzeć. Zobacz stronę pomocy *Dźwięk naprowadzający*.
 
-## W którą stronę patrzysz
+## W którą stronę jesteś zwrócony
 
-Gdy idziesz, Soundscape korzysta z kierunku twojego ruchu. Telefon może więc zostać w kieszeni lub torbie. Gdy stoisz w miejscu, skieruj górną krawędź telefonu w stronę, w którą patrzysz. Soundscape używa wtedy telefonu jako kompasu. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
+Gdy idziesz, Soundscape korzysta z kierunku twojego ruchu. Telefon może więc zostać w kieszeni lub torbie. Gdy stoisz w miejscu, skieruj górną krawędź telefonu w stronę, w którą jesteś zwrócony. Soundscape używa wtedy telefonu jako kompasu. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
 
 ## Słuchawki
 

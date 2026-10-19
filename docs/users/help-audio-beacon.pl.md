@@ -24,7 +24,7 @@ Soundscape wraca do ekranu głównego i naprowadzanie się zaczyna. Ekran głów
 
 ## Znajdowanie kierunku
 
-Dźwięk naprowadzający zmienia się, gdy patrzysz w stronę miejsca albo idziesz prosto do niego. Aby znaleźć ten dźwięk, trzymaj telefon poziomo i powoli się obracaj. Inny dźwięk naprowadzający możesz wybrać w *Ustawienia*.
+Dźwięk naprowadzający zmienia się, gdy jesteś zwrócony w stronę miejsca albo idziesz prosto do niego. Aby znaleźć ten dźwięk, trzymaj telefon poziomo i powoli się obracaj. Inny dźwięk naprowadzający możesz wybrać w *Ustawienia*.
 
 ## Wyciszanie dźwięku naprowadzającego
 

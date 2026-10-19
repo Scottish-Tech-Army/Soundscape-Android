@@ -12,5 +12,5 @@ permalink: /users/help-nearby-markers.html
 
 *Bliskie znaczniki* powiadamia o maksymalnie czterech twoich znacznikach, tych najbliżej ciebie. Każdy słyszysz z jego własnego kierunku, razem z odległością. Użyj tego przycisku, aby zorientować się według miejsc, które już znasz. Znaczniki oddalone o więcej niż około 2 kilometry są pomijane.
 
-Jeśli stoisz w miejscu, najpierw skieruj górną krawędź telefonu w stronę, w którą patrzysz. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
+Jeśli stoisz w miejscu, najpierw skieruj górną krawędź telefonu w stronę, w którą jesteś zwrócony. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
 
