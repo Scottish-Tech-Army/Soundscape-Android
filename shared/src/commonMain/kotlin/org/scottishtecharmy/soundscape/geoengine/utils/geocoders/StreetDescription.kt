@@ -93,11 +93,9 @@ class StreetDescription(
     fun parseHouseNumber(houseNumber: String): Int? {
         val numericPart = houseNumber.takeWhile { it.isDigit() }
 
-        // Check if we actually found any digits before trying to parse.
-        if (numericPart.isNotEmpty()) {
-            return numericPart.toInt()
-        }
-        return null
+        // Null when there are no digits, or more than an Int holds - a search can be typed with any
+        // number at all
+        return numericPart.toIntOrNull()
     }
 
     fun parseHouseNumberRange(houseNumber: String): Pair<Int, Int>? {
@@ -110,9 +108,11 @@ class StreetDescription(
 
             val numericPart = remaining.takeWhile { it.isDigit() }
             if (numericPart.isNotEmpty()) {
-                val number = numericPart.toInt()
-                if (number < lowest) lowest = number
-                if (number > highest) highest = number
+                // A number too big for an Int isn't a house number, and is passed over
+                numericPart.toIntOrNull()?.let { number ->
+                    if (number < lowest) lowest = number
+                    if (number > highest) highest = number
+                }
 
                 remaining = remaining.drop(numericPart.length)
             }
