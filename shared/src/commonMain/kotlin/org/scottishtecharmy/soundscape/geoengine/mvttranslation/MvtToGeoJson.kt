@@ -746,10 +746,10 @@ fun vectorTileToGeoJson(
     val entranceMatching = EntranceMatching()
 
     // The main TileGrid is at the MAX_ZOOM_LEVEL and we parse transportation, poi and building
-    // layers. However, we also create TileGrids at lower zoom levels to get towns, cities etc. from
-    // the place layer.
+    // layers, and the farms from the landuse and place layers. However, we also create TileGrids
+    // at lower zoom levels to get towns, cities etc. from the place layer.
     val layerIds = if (tileZoom >= MIN_MAX_ZOOM_LEVEL) {
-        arrayOf("transportation", "poi", "building", "housenumber")
+        arrayOf("transportation", "poi", "building", "housenumber", "landuse", "place")
     } else {
         arrayOf("place")
     }
@@ -760,6 +760,18 @@ fun vectorTileToGeoJson(
         } else {
             hashMapOf()
         }
+    // The farms mapped as a place within a farmyard are the farmyard - see placeFarmsInFarmyards -
+    // and a farmyard without a name of its own is called by the farm within it
+    val farmsInFarmyards =
+        if (tileZoom >= MIN_MAX_ZOOM_LEVEL) placeFarmsInFarmyards(mvt) else emptyMap()
+    val farmyardNamesFromFarms = hashMapOf<Tile.Feature, String>()
+    mvt.layers.firstOrNull { it.name == "place" }?.let { placeLayer ->
+        for ((farm, farmyard) in farmsInFarmyards) {
+            val name = featureName(placeLayer, farm) ?: continue
+            farmyardNamesFromFarms.getOrPut(farmyard) { name }
+        }
+    }
+
     if (tileZoom >= MIN_MAX_ZOOM_LEVEL) {
         for (junction in extractHighwayJunctions(mvt, tileX, tileY, tileZoom, nameKeys)) {
             collection.addFeature(junction)
@@ -784,9 +796,21 @@ fun vectorTileToGeoJson(
         }
         //println("Process layer: " + layer.name)
 
+        // Of some layers only the farms are wanted - see farmClass - and the rest is turned away
+        // on its tags before anything else is read
+        var farmTag: Pair<Int, Int>? = null
+        if (tileZoom >= MIN_MAX_ZOOM_LEVEL) {
+            val farmClass = farmClass(layer.name)
+            if (farmClass != null) {
+                farmTag = classTag(layer, farmClass) ?: continue
+            }
+        }
+
         val mapInterpolatedNodes: HashMap<Long, Feature> = hashMapOf()
         val translation = NameTranslationPicker(layer.keys, nameKeys)
         for (feature in layer.features) {
+            if ((farmTag != null) && !hasTag(feature, farmTag)) continue
+            if (feature in farmsInFarmyards) continue
 
             var entrance = false
             val id = feature.id ?: 0L
@@ -866,6 +890,7 @@ fun vectorTileToGeoJson(
                 } else
                     firstInPair = false
             }
+            if ((name == null) && (farmTag != null)) name = farmyardNamesFromFarms[feature]
             val translatedName = translation.translationOf(name)
 
             if (layer.name == "building") {
@@ -1226,6 +1251,100 @@ fun vectorTileToGeoJson(
 }
 
 /**
+ * In the country a farm is as often as not the only place there is to say you're near, and it's
+ * mapped as a farmyard - the buildings and the yard around them - in the landuse layer, or as a
+ * named place=farm in the place layer, or both. The class of the farms in the max zoom layer
+ * called [layerName], if it's one of those, of which nothing else is wanted: not the housing
+ * estates and quarries in landuse, nor the settlements in place, which are read from the lower
+ * zoom settlement grid.
+ */
+fun farmClass(layerName: String): String? = when (layerName) {
+    "landuse" -> "farmyard"
+    "place" -> "farm"
+    else -> null
+}
+
+/**
+ * The key and value indices of class=[value] in [layer], or null if there are no features of that
+ * class in it.
+ */
+fun classTag(layer: Tile.Layer, value: String): Pair<Int, Int>? {
+    val classKey = layer.keys.indexOf("class")
+    val classValue = layer.values.indexOfFirst { it.string_value == value }
+    return if ((classKey < 0) || (classValue < 0)) null else Pair(classKey, classValue)
+}
+
+/**
+ * The place=farm points in [tile] which are within one of its farmyards, each with the farmyard
+ * it's within. A farm is often mapped both ways - the place as a point and its buildings and yard
+ * as a farmyard - and it's one farm, so the point isn't wanted as a place of its own. The point and
+ * the part of the farmyard around it are always in the same tile, so the two can be matched up
+ * there, in the tile's own coordinates.
+ */
+fun placeFarmsInFarmyards(tile: Tile): Map<Tile.Feature, Tile.Feature> {
+    val placeLayer = tile.layers.firstOrNull { it.name == "place" } ?: return emptyMap()
+    val farmTag = classTag(placeLayer, "farm") ?: return emptyMap()
+    val landuseLayer = tile.layers.firstOrNull { it.name == "landuse" } ?: return emptyMap()
+    val farmyardTag = classTag(landuseLayer, "farmyard") ?: return emptyMap()
+    val farmyards = landuseLayer.features
+        .filter { (it.type == Tile.GeomType.POLYGON) && hasTag(it, farmyardTag) }
+        .map { Pair(it, parseGeometry(false, it.geometry)) }
+    if (farmyards.isEmpty()) return emptyMap()
+
+    val result = mutableMapOf<Tile.Feature, Tile.Feature>()
+    for (farm in placeLayer.features) {
+        if ((farm.type != Tile.GeomType.POINT) || !hasTag(farm, farmTag)) continue
+        // A point in the tile next door, there only to draw its label, is left to that tile
+        val point = parseGeometry(true, farm.geometry).firstOrNull { it.isNotEmpty() }?.first() ?: continue
+        val farmyard = farmyards.firstOrNull { (_, rings) -> ringsContain(rings, point) } ?: continue
+        result[farm] = farmyard.first
+    }
+    return result
+}
+
+/**
+ * Whether [point] is within the polygon made of [rings]. Counted across all of the rings at once,
+ * so that crossing into a hole takes the point back out again.
+ */
+private fun ringsContain(rings: List<List<Pair<Int, Int>>>, point: Pair<Int, Int>): Boolean {
+    var inside = false
+    for (ring in rings) {
+        var previous = ring.lastIndex
+        for (index in ring.indices) {
+            val (x1, y1) = ring[index]
+            val (x2, y2) = ring[previous]
+            if (((y1 > point.second) != (y2 > point.second)) &&
+                (point.first < (x2 - x1).toDouble() * (point.second - y1) / (y2 - y1) + x1)
+            ) {
+                inside = !inside
+            }
+            previous = index
+        }
+    }
+    return inside
+}
+
+/** The name of [feature] in [layer], or null if it hasn't one. */
+fun featureName(layer: Tile.Layer, feature: Tile.Feature): String? {
+    val nameKey = layer.keys.indexOf("name")
+    if (nameKey < 0) return null
+    val tags = feature.tags
+    for (i in 0 until tags.size - 1 step 2) {
+        if (tags[i] == nameKey) return layer.values[tags[i + 1]].string_value
+    }
+    return null
+}
+
+/** Whether [feature] has the tag whose key and value indices are [tag]. */
+fun hasTag(feature: Tile.Feature, tag: Pair<Int, Int>): Boolean {
+    val tags = feature.tags
+    for (i in 0 until tags.size - 1 step 2) {
+        if ((tags[i] == tag.first) && (tags[i + 1] == tag.second)) return true
+    }
+    return false
+}
+
+/**
  * translateProperties takes the properties stored in the MVT and translates them into a set of
  * foreign properties that nearer matches those returned by the soundscape-backend.
  *
@@ -1288,6 +1407,18 @@ fun translateProperties(feature: MvtFeature): Boolean {
         "bus" -> {
             feature.featureType = "highway"
             feature.featureValue = "bus_stop"
+        }
+
+        // landuse=farmyard is the farm buildings and the yard around them - the farm itself, as
+        // far as anyone looking for it is concerned - so it's called a Farm, as place=farm is
+        "farmyard" -> {
+            feature.featureType = "landuse"
+            feature.featureValue = "farm"
+        }
+
+        "farm" -> {
+            feature.featureType = "place"
+            feature.featureValue = "farm"
         }
 
         // These are the features which we don't add to POI (for now at least)
