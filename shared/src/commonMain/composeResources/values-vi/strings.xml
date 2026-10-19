@@ -1532,6 +1532,8 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="oboe_copyright">[Thư viện Oboe ©The Android Open Source Project](https://github.com/google/oboe) được sử dụng để phát âm thanh với độ trễ thấp, và được cung cấp để sử dụng theo [giấy phép Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Đang vào một đường hầm</string>
     <string name="directions_entering_tunnel_named">Đang vào %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Đang vào một đường hầm</string>
+    <string name="directions_entering_tunnel_named_vehicle">Đang vào %1$s</string>
     <string name="help_assistant_page_title">Lệnh thoại Siri</string>
     <string name="help_assistant_how_heading">Cách yêu cầu</string>
     <string name="help_assistant_commands_heading">Những gì bạn có thể yêu cầu</string>

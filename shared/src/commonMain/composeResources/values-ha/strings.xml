@@ -1548,6 +1548,8 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="oboe_copyright">Ana amfani da [Laburaren Oboe na ©The Android Open Source Project](https://github.com/google/oboe) don sake kunna sauti da ƙarancin jinkiri, kuma an samar da shi don amfani ƙarƙashin [lasisin Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Shiga rami</string>
     <string name="directions_entering_tunnel_named">Shiga %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Shiga rami</string>
+    <string name="directions_entering_tunnel_named_vehicle">Shiga %1$s</string>
     <string name="help_assistant_page_title">Umarnin Murya na Siri</string>
     <string name="help_assistant_how_heading">Yadda Ake Nema</string>
     <string name="help_assistant_commands_heading">Abin da Za Ku Iya Nema</string>

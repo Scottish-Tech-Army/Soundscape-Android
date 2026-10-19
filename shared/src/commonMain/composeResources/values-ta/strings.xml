@@ -1548,6 +1548,8 @@
     <string name="oboe_copyright">[Oboe நூலகம் ©The Android Open Source Project](https://github.com/google/oboe) குறைந்த தாமதத்துடன் ஆடியோவை இயக்கப் பயன்படுத்தப்படுகிறது, மேலும் இது [Apache 2.0 உரிமத்தின்](https://github.com/google/oboe/blob/main/LICENSE) கீழ் பயன்பாட்டிற்குக் கிடைக்கிறது.</string>
     <string name="directions_entering_tunnel">சுரங்கப்பாதைக்குள் நுழைகிறீர்கள்</string>
     <string name="directions_entering_tunnel_named">%1$s இல் நுழைகிறீர்கள்</string>
+    <string name="directions_entering_tunnel_vehicle">சுரங்கப்பாதைக்குள் நுழைகிறீர்கள்</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s இல் நுழைகிறீர்கள்</string>
     <string name="help_assistant_page_title">Siri குரல் கட்டளைகள்</string>
     <string name="help_assistant_how_heading">எப்படிக் கேட்பது</string>
     <string name="help_assistant_commands_heading">நீங்கள் கேட்கக்கூடியவை</string>

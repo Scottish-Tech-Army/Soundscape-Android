@@ -1548,6 +1548,8 @@
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) का उपयोग कम विलंबता के साथ ऑडियो चलाने के लिए किया जाता है, और इसे उपयोग के लिए [Apache 2.0 लाइसेंस](https://github.com/google/oboe/blob/main/LICENSE) के अंतर्गत उपलब्ध कराया गया है।</string>
     <string name="directions_entering_tunnel">सुरंग में प्रवेश</string>
     <string name="directions_entering_tunnel_named">%1$s में प्रवेश</string>
+    <string name="directions_entering_tunnel_vehicle">सुरंग में प्रवेश</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s में प्रवेश</string>
     <string name="help_assistant_page_title">Siri वॉइस कमांड</string>
     <string name="help_assistant_how_heading">कैसे कहें</string>
     <string name="help_assistant_commands_heading">आप क्या कह सकते हैं</string>

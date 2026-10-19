@@ -1532,6 +1532,8 @@
     <string name="oboe_copyright">[ไลบรารี Oboe ©The Android Open Source Project](https://github.com/google/oboe) ถูกใช้ในการเล่นเสียงโดยมีความหน่วงต่ำ และเปิดให้ใช้งานได้ภายใต้ [ใบอนุญาต Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE)</string>
     <string name="directions_entering_tunnel">กำลังเข้าสู่อุโมงค์</string>
     <string name="directions_entering_tunnel_named">กำลังเข้าสู่ %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">กำลังเข้าสู่อุโมงค์</string>
+    <string name="directions_entering_tunnel_named_vehicle">กำลังเข้าสู่ %1$s</string>
     <string name="help_assistant_page_title">คำสั่งเสียง Siri</string>
     <string name="help_assistant_how_heading">วิธีขอ</string>
     <string name="help_assistant_commands_heading">สิ่งที่คุณขอได้</string>

@@ -1548,6 +1548,8 @@
     <string name="oboe_copyright">తక్కువ లేటెన్సీతో ఆడియోను ప్లే చేయడానికి [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) ఉపయోగించబడుతుంది, మరియు ఇది [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE) కింద ఉపయోగం కోసం అందుబాటులో ఉంచబడింది.</string>
     <string name="directions_entering_tunnel">సొరంగంలోకి ప్రవేశిస్తున్నారు</string>
     <string name="directions_entering_tunnel_named">%1$s లోకి ప్రవేశిస్తున్నారు</string>
+    <string name="directions_entering_tunnel_vehicle">సొరంగంలోకి ప్రవేశిస్తున్నారు</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s లోకి ప్రవేశిస్తున్నారు</string>
     <string name="help_assistant_page_title">Siri వాయిస్ కమాండ్‌లు</string>
     <string name="help_assistant_how_heading">ఎలా అడగాలి</string>
     <string name="help_assistant_commands_heading">మీరు ఏమి అడగవచ్చు</string>

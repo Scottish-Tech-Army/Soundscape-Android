@@ -1548,6 +1548,8 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) er notað til að spila hljóðið með lítilli töf og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Þú ferð inn í göng</string>
     <string name="directions_entering_tunnel_named">Þú ferð inn í %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Þú ferð inn í göng</string>
+    <string name="directions_entering_tunnel_named_vehicle">Þú ferð inn í %1$s</string>
     <string name="help_assistant_page_title">Raddskipanir með Siri</string>
     <string name="help_assistant_how_heading">Hvernig á að biðja</string>
     <string name="help_assistant_commands_heading">Hvað þú getur beðið um</string>

@@ -1548,6 +1548,8 @@ Kérjük, továbbra is jelezze nekünk a felmerülő problémákat, bármilyen k
     <string name="oboe_copyright">Az [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) szolgál a hang alacsony késleltetésű lejátszására, és az [Apache 2.0 licenc](https://github.com/google/oboe/blob/main/LICENSE) alapján érhető el használatra.</string>
     <string name="directions_entering_tunnel">Belépés egy alagútba</string>
     <string name="directions_entering_tunnel_named">Belépés ide: %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Belépés egy alagútba</string>
+    <string name="directions_entering_tunnel_named_vehicle">Belépés ide: %1$s</string>
     <string name="help_assistant_page_title">Siri hangparancsok</string>
     <string name="help_assistant_how_heading">Hogyan kérjen</string>
     <string name="help_assistant_commands_heading">Mit kérhet</string>

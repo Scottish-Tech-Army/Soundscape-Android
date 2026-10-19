@@ -1548,6 +1548,8 @@
     <string name="oboe_copyright">কম লেটেন্সিতে অডিও চালাতে [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) ব্যবহার করা হয়, এবং এটি [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।</string>
     <string name="directions_entering_tunnel">একটি টানেলে ঢোকা হচ্ছে</string>
     <string name="directions_entering_tunnel_named">%1$s-এ ঢোকা হচ্ছে</string>
+    <string name="directions_entering_tunnel_vehicle">একটি টানেলে ঢোকা হচ্ছে</string>
+    <string name="directions_entering_tunnel_named_vehicle">%1$s-এ ঢোকা হচ্ছে</string>
     <string name="help_assistant_page_title">Siri ভয়েস কমান্ড</string>
     <string name="help_assistant_how_heading">কীভাবে বলবেন</string>
     <string name="help_assistant_commands_heading">আপনি যা চাইতে পারেন</string>

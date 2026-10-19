@@ -1548,6 +1548,8 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) används för att spela upp ljudet med låg latens och görs tillgänglig för användning under [Apache 2.0-licensen](https://github.com/google/oboe/blob/main/LICENSE).</string>
     <string name="directions_entering_tunnel">Du åker in i en tunnel</string>
     <string name="directions_entering_tunnel_named">Du åker in i %1$s</string>
+    <string name="directions_entering_tunnel_vehicle">Du åker in i en tunnel</string>
+    <string name="directions_entering_tunnel_named_vehicle">Du åker in i %1$s</string>
     <string name="help_assistant_page_title">Röstkommandon med Siri</string>
     <string name="help_assistant_how_heading">Så frågar du</string>
     <string name="help_assistant_commands_heading">Det här kan du be om</string>
