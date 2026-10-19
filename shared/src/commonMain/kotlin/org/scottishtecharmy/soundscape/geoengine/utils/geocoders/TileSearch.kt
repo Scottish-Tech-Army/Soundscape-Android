@@ -821,13 +821,16 @@ class TileSearch(
         val streetTiles = streetTiles(normalizeForSearch(street), tileX, tileY)
         val houses = housesOnStreet(street, streetTiles, tile)
 
-        houses.firstOrNull { it.housenumber.equals(houseNumber, ignoreCase = true) }
+        // The number in the map may be typed full width - ７ - as much as the one searched for
+        houses.firstOrNull { foldHouseNumber(it.housenumber).equals(houseNumber, ignoreCase = true) }
             ?.let { return Pair(it.location, it.housenumber) }
 
         // The numbers either side of it, nearest first
         fun leadingNumber(string: String) = string.takeWhile { it.isDigit() }.toIntOrNull()
         val number = leadingNumber(houseNumber) ?: return null
-        val numbered = houses.mapNotNull { house -> leadingNumber(house.housenumber)?.let { Pair(it, house) } }
+        val numbered = houses.mapNotNull { house ->
+            leadingNumber(foldHouseNumber(house.housenumber))?.let { Pair(it, house) }
+        }
         fun bracket(candidates: List<Pair<Int, StreetHouse>>): Pair<StreetHouse, StreetHouse>? {
             val below = candidates.filter { it.first < number }.maxByOrNull { it.first } ?: return null
             val above = candidates.filter { it.first > number }.minByOrNull { it.first } ?: return null
@@ -934,19 +937,29 @@ class TileSearch(
         // Can we decode this into a street number and a street? A word starting with a digit may be
         // a house number ("21 Kersland Drive", "Avenida Corrientes 1155"), but it may just as well
         // be part of the name ("Avenida 9 de Julio", "4a Avenida Sur"), so when there is one the
-        // search is made both ways: without the number, and with the string as a whole.
+        // search is made both ways: without the number, and with the string as a whole. Chinese,
+        // Japanese, Korean and Thai often have no space before the number - "七松線29" - so it's
+        // taken off the end of a name written in one of them too.
         var housenumber = ""
         val needleBuilder = StringBuilder()
-        val words = searchString.split(" ")
+        // The space bar on a Japanese keyboard types the full-width U+3000
+        val words = searchString.split(' ', '\u3000')
         for (word in words) {
             if (word.isEmpty()) continue
-            if (word.first().isDigit()) {
-                housenumber = word
+            // Before the word is taken for a number for starting with one, as 4-11-12近鉄今里駅前通
+            // does
+            val split = splitUnspacedHouseNumber(word)
+            if (split != null) {
+                housenumber = foldHouseNumber(split.second)
+                needleBuilder.append(split.first)
+            } else if (word.first().isDigit()) {
+                housenumber = foldHouseNumber(word)
+                continue
             } else {
                 // All other parts we use as the needle
                 needleBuilder.append(word)
-                needleBuilder.append(" ")
             }
+            needleBuilder.append(" ")
         }
         val normalizedNeedle = normalizeForSearch(needleBuilder.toString())
         val wholeNeedle = if (housenumber.isEmpty()) null else normalizeForSearch(searchString)

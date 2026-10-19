@@ -324,7 +324,17 @@ class WorldCitiesTest {
         // two on 近鉄今里駅前通 have its name as their street and no block number. The street is
         // a few tiles south east of Osaka station, beyond the grid, so the house is found from the
         // housenumber layer of the tiles the street runs through.
-        for (typed in listOf("近鉄今里駅前通 4-11-12", "4-11-12 近鉄今里駅前通")) {
+        for (typed in listOf(
+            "近鉄今里駅前通 4-11-12",
+            "4-11-12 近鉄今里駅前通",
+            // Typed as Japanese usually is, without a space before the number - and with the
+            // number full width, or the dash key's long vowel mark between its parts
+            "近鉄今里駅前通4-11-12",
+            "4-11-12近鉄今里駅前通",
+            "近鉄今里駅前通４－１１－１２",
+            "近鉄今里駅前通4ー11ー12",
+            "近鉄今里駅前通　4-11-12",
+        )) {
             val result = osaka.search(typed).first()
             assertEquals(typed, "近鉄今里駅前通 4-11-12", result.name)
             assertEquals(typed, "生野区, 近鉄今里駅前通, 4-11-12", result.description)
@@ -338,6 +348,7 @@ class WorldCitiesTest {
         // nothing about where it is along the street, so a search for number 29 on the street
         // finds only the street, and it's the block address that finds the building.
         assertEquals("七松線", osaka.search("七松線 29").first().name)
+        assertEquals("七松線", osaka.search("七松線29").first().name)
         val building = osaka.search("西難波町6-4-29").first()
         assertEquals("西難波町6丁目4-29", building.name)
     }

@@ -233,3 +233,89 @@ fun normalizeForSearch(input: String): String {
     val normalized = sb.toString().trim()
     return if (hasLetterBeyondBmp) normalized.lowercase() else normalized
 }
+
+// The dashes typed between the numbers of an address: the ASCII hyphen-minus, its full-width form,
+// the hyphen, the minus sign and the dashes - and the katakana long vowel mark, which a Japanese
+// keyboard types for the dash key and which is often what's in 4ー11ー12
+private fun isAddressDash(ch: Char) = when (ch) {
+    '-', '－', '‐', '‑', '−', '–', '—', 'ー', 'ｰ' -> true
+    else -> false
+}
+
+/**
+ * [houseNumber] with its digits, from whatever script they were typed in, as ASCII, and the dashes
+ * between them as hyphens - so that "４－１１－１２" is the 4-11-12 in the map.
+ */
+fun foldHouseNumber(houseNumber: String): String {
+    if (houseNumber.all { it.code < 0x80 }) return houseNumber
+    val sb = StringBuilder(houseNumber.length)
+    for (ch in houseNumber) {
+        sb.append(
+            when {
+                ch.isDigit() -> '0' + ch.digitToInt()
+                isAddressDash(ch) -> '-'
+                else -> ch
+            }
+        )
+    }
+    return sb.toString()
+}
+
+/**
+ * The length of the house number at the start of [word] - digits with dashes between them, as in
+ * 4-11-12 - or 0 if it doesn't start with one.
+ */
+private fun houseNumberLengthAtStart(word: String): Int {
+    var end = 0
+    var index = 0
+    while (index < word.length) {
+        val ch = word[index]
+        if (ch.isDigit()) {
+            end = index + 1
+        } else if (!(isAddressDash(ch) && (end == index) && (end > 0))) {
+            break
+        }
+        index++
+    }
+    return end
+}
+
+/**
+ * The length of the house number at the end of [word], or 0 if it doesn't end with one. A dash
+ * before it is left with the name, as it doesn't come between two numbers.
+ */
+private fun houseNumberLengthAtEnd(word: String): Int {
+    var start = word.length
+    var index = word.length - 1
+    while (index >= 0) {
+        val ch = word[index]
+        if (ch.isDigit()) {
+            start = index
+        } else if (!(isAddressDash(ch) && (start == index + 1) && (start < word.length))) {
+            break
+        }
+        index--
+    }
+    return word.length - start
+}
+
+/**
+ * Chinese, Japanese, Korean and Thai don't put a space before a house number any more than between
+ * their words, so a number written straight after - or before - a name in one of them, as in
+ * "近鉄今里駅前通4-11-12", is taken off it. Returns the name and the house number, or null if
+ * [word] isn't a name in one of those scripts with a number at one end of it.
+ */
+fun splitUnspacedHouseNumber(word: String): Pair<String, String>? {
+    val atEnd = houseNumberLengthAtEnd(word)
+    if ((atEnd > 0) && (atEnd < word.length)) {
+        val nameEnd = word.length - atEnd
+        if (isUnspacedScript(codePointBefore(word, nameEnd)))
+            return Pair(word.substring(0, nameEnd), word.substring(nameEnd))
+    }
+    val atStart = houseNumberLengthAtStart(word)
+    if ((atStart > 0) && (atStart < word.length)) {
+        if (isUnspacedScript(codePointAt(word, atStart)))
+            return Pair(word.substring(atStart), word.substring(0, atStart))
+    }
+    return null
+}
