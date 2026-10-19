@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class SearchNormalizationTest {
 
@@ -255,5 +256,46 @@ class SearchNormalizationTest {
         assertEquals(normalizeForSearch("کوچه"), normalizeForSearch("كوچه"))
         // "حقوقی" (legal)
         assertEquals(normalizeForSearch("حقوقی"), normalizeForSearch("حقوقى"))
+    }
+
+    @Test
+    fun foldsAHouseNumberTypedFullWidth() {
+        assertEquals("4-11-12", foldHouseNumber("４－１１－１２"))
+        assertEquals("29", foldHouseNumber("２９"))
+        // A Japanese keyboard's dash key types the katakana long vowel mark
+        assertEquals("4-11-12", foldHouseNumber("4ー11ー12"))
+        assertEquals("21A", foldHouseNumber("21A"))
+    }
+
+    @Test
+    fun splitsAHouseNumberOffTheEndOfAJapaneseName() {
+        assertEquals(Pair("七松線", "29"), splitUnspacedHouseNumber("七松線29"))
+        assertEquals(Pair("七松線", "２９"), splitUnspacedHouseNumber("七松線２９"))
+        assertEquals(Pair("近鉄今里駅前通", "4-11-12"), splitUnspacedHouseNumber("近鉄今里駅前通4-11-12"))
+        assertEquals(Pair("近鉄今里駅前通", "４－１１－１２"), splitUnspacedHouseNumber("近鉄今里駅前通４－１１－１２"))
+        // The long vowel mark in a name isn't taken for a dash in the number
+        assertEquals(Pair("センター", "12"), splitUnspacedHouseNumber("センター12"))
+        assertEquals(Pair("센터", "12"), splitUnspacedHouseNumber("센터12"))
+    }
+
+    @Test
+    fun splitsAHouseNumberOffTheStartOfAJapaneseName() {
+        assertEquals(Pair("近鉄今里駅前通", "4-11-12"), splitUnspacedHouseNumber("4-11-12近鉄今里駅前通"))
+    }
+
+    @Test
+    fun leavesANameWithoutANumberAtEitherEndAlone() {
+        assertNull(splitUnspacedHouseNumber("七松線"))
+        assertNull(splitUnspacedHouseNumber("29"))
+        // The number is part of the name, not at either end of it
+        assertNull(splitUnspacedHouseNumber("大阪2号線"))
+    }
+
+    @Test
+    fun leavesANumberOnALatinNameAlone() {
+        // A space goes before a house number in a script with spaces, so one without it is part of
+        // the name - as in "A82" or "M8"
+        assertNull(splitUnspacedHouseNumber("A82"))
+        assertNull(splitUnspacedHouseNumber("Kersland21"))
     }
 }
