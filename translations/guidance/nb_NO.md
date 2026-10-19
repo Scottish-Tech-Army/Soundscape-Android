@@ -74,7 +74,7 @@ Nothing yet.
 - **`ui_action_button_nearby_markers`:** «Markører⏎I nærhet» → «Markører⏎i nærheten».
 - **Typos and parse errors:** «en knappene» → «en av knappene»; «alternativet for å *Del*» → «alternativet *Del*».
 - **Markup:** *…* restored in `help_text_routes_content_how_1`.
-- **Tunnel callouts:** «går inn» → «kjører inn» (travel mode).
+- **Tunnel callouts:** «går inn» → «kjører inn» (travel mode). Since 2026-10-19 there are walking and vehicle keys (C29): walking «Du går inn i…», `_vehicle` keeps «Du kjører inn i…».
 - **`menu_open_source_licenses`:** «Lisenser for åpen kildekode» (it read as a command).
 - **`osm_deli`:** «Delikatessebutikk».
 

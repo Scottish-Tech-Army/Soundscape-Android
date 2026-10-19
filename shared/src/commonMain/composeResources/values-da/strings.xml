@@ -1546,8 +1546,8 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="street_description_relative_near">På %1$s nær %2$s</string>
     <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
     <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) bruges til at afspille lyden med lav latenstid og stilles til rådighed under [Apache 2.0-licensen](https://github.com/google/oboe/blob/main/LICENSE).</string>
-    <string name="directions_entering_tunnel">Du kører ind i en tunnel</string>
-    <string name="directions_entering_tunnel_named">Du kører ind i %1$s</string>
+    <string name="directions_entering_tunnel">Du går ind i en tunnel</string>
+    <string name="directions_entering_tunnel_named">Du går ind i %1$s</string>
     <string name="directions_entering_tunnel_vehicle">Du kører ind i en tunnel</string>
     <string name="directions_entering_tunnel_named_vehicle">Du kører ind i %1$s</string>
     <string name="help_assistant_page_title">Stemmekommandoer med Siri</string>

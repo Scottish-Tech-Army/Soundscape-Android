@@ -101,7 +101,7 @@ Numbered as on the questionnaire.
 - **Other:**
   - `faq_supported_phones_answer`: a stale Android-only sentence, now with iOS 16 (C16).
   - `relative_clock_direction` «på klockan %1$s».
-  - The two travel-mode tunnel callouts: «går in» → «åker in».
+  - The two travel-mode tunnel callouts: «går in» → «åker in». Since 2026-10-19 the tunnel callout has walking and vehicle keys (C29): the walking pair is «Du går in i…», the `_vehicle` pair keeps «Du åker in i…».
   - 9 imperative hints (SV-B1).
   - 7 neuter «ljudfyr» slips (SV-G1).
   - Two OSM name capitals.
