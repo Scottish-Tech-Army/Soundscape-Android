@@ -4416,6 +4416,9 @@ class MvtTileTest {
         )
     }
 
+    private fun gpxTimestampsAdvance(gps: FeatureCollection) =
+        gps.features.mapNotNull { it.properties?.get("time") as? Double? }.distinct().size > 1
+
     fun testMovingGrid(
         gpxFilename: String,
         calloutFilename: String,
@@ -4459,6 +4462,9 @@ class MvtTileTest {
         // journey it recorded if it uses the journey's own clock. Recordings made by the app carry
         // a timestamp on every track point; GPX exported from elsewhere (RideWithGPS routes, for
         // instance) carries none, so those fall back to one point per second.
+        // Some older recordings stamp every point with the same time, which would freeze the
+        // replay clock and leave everything throttled forever - treat those as having no clock.
+        val gpxHasClock = gpxTimestampsAdvance(gps)
         var fallbackTime = 0L
         var lastLocation: LngLatAlt? = null
         // The other half of mirroring the accuracy gate below: the time it swallows. GeoEngine
@@ -4498,7 +4504,7 @@ class MvtTileTest {
 
             // Hoisted above the matchers to match GeoEngine's ordering: the stationary detector
             // needs the timestamp, and RailMatchArbiter needs the detector's verdict.
-            val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
+            val timestamp = (position.properties?.get("time") as? Double?)?.toLong()?.takeIf { gpxHasClock }
                 ?: fallbackTime
             fallbackTime = timestamp + 1000L
             // Every fix past the accuracy gate, unfiltered, as GeoEngine feeds it.
@@ -4893,6 +4899,9 @@ class MvtTileTest {
         // journey it recorded if it uses the journey's own clock. Recordings made by the app carry
         // a timestamp on every track point; GPX exported from elsewhere (RideWithGPS routes, for
         // instance) carries none, so those fall back to one point per second.
+        // Some older recordings stamp every point with the same time, which would freeze the
+        // replay clock and leave everything throttled forever - treat those as having no clock.
+        val gpxHasClock = gpxTimestampsAdvance(gps)
         var fallbackTime = 0L
         var lastLocation: LngLatAlt? = null
         gps.features.filterIndexed { index, _ ->
@@ -4941,7 +4950,7 @@ class MvtTileTest {
                     speed > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS
                 )
 
-                val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
+                val timestamp = (position.properties?.get("time") as? Double?)?.toLong()?.takeIf { gpxHasClock }
                     ?: fallbackTime
                 fallbackTime = timestamp + 1000L
                 travelHeadingEstimator.addFix(
