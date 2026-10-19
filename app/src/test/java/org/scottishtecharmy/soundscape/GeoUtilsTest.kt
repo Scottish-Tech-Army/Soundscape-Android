@@ -699,7 +699,7 @@ class GeoUtilsTest {
         fc.addFeature(lineFeature)
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream("cheap-ruler.geojson")
+        val mapMatchingOutput = FileOutputStream(testOutputFile("cheap-ruler.geojson"))
         mapMatchingOutput.write(adapter.toJson(fc).toByteArray())
         mapMatchingOutput.close()
     }
@@ -733,7 +733,7 @@ class GeoUtilsTest {
         }
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream("relative-left-right.geojson")
+        val mapMatchingOutput = FileOutputStream(testOutputFile("relative-left-right.geojson"))
         mapMatchingOutput.write(adapter.toJson(fc).toByteArray())
         mapMatchingOutput.close()
     }

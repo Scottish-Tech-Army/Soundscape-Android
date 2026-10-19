@@ -3887,7 +3887,7 @@ class MvtTileTest {
         for (collection in geojson)
             outputCollection += collection
 
-        val outputFile = FileOutputStream("greggs.geojson")
+        val outputFile = FileOutputStream(testOutputFile("greggs.geojson"))
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
     }
@@ -3904,7 +3904,7 @@ class MvtTileTest {
         for (collection in geojson)
             outputCollection += collection
 
-        val outputFile = FileOutputStream("milngavie.geojson")
+        val outputFile = FileOutputStream(testOutputFile("milngavie.geojson"))
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
     }
@@ -3921,7 +3921,7 @@ class MvtTileTest {
         for (collection in geojson)
             outputCollection += collection
 
-        val outputFile = FileOutputStream("edinburgh.geojson")
+        val outputFile = FileOutputStream(testOutputFile("edinburgh.geojson"))
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
     }
@@ -3938,7 +3938,7 @@ class MvtTileTest {
         for (collection in geojson)
             outputCollection += collection
 
-        val outputFile = FileOutputStream("byresroad.geojson")
+        val outputFile = FileOutputStream(testOutputFile("byresroad.geojson"))
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
     }
@@ -3989,7 +3989,7 @@ class MvtTileTest {
                     }
                 }
             }
-            val outputFile = FileOutputStream("glasgow-queen-street-${treeId.description}.geojson")
+            val outputFile = FileOutputStream(testOutputFile("glasgow-queen-street-${treeId.description}.geojson"))
             outputFile.write(adapter.toJson(collection).toByteArray())
             outputFile.close()
         }
@@ -4051,7 +4051,7 @@ class MvtTileTest {
             outputCollection.addFeature(intersection.value)
         }
 
-        val outputFile = FileOutputStream("2x2-14.geojson")
+        val outputFile = FileOutputStream(testOutputFile("2x2-14.geojson"))
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
     }
@@ -4075,10 +4075,10 @@ class MvtTileTest {
 
             if (treeId == TreeId.WAYS_SELECTION) {
                 val adapter = GeoJsonObjectMoshiAdapter()
-                val outputFile14 = FileOutputStream("2x2-14.geojson")
+                val outputFile14 = FileOutputStream(testOutputFile("2x2-14.geojson"))
                 outputFile14.write(adapter.toJson(featureCollection14).toByteArray())
                 outputFile14.close()
-                val outputFile15 = FileOutputStream("2x2-15.geojson")
+                val outputFile15 = FileOutputStream(testOutputFile("2x2-15.geojson"))
                 outputFile15.write(adapter.toJson(featureCollection15).toByteArray())
                 outputFile15.close()
             }
@@ -4126,7 +4126,7 @@ class MvtTileTest {
 
         roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
         val adapter = GeoJsonObjectMoshiAdapter()
-        val outputFile = FileOutputStream("confected-names.geojson")
+        val outputFile = FileOutputStream(testOutputFile("confected-names.geojson"))
         outputFile.write(adapter.toJson(roads).toByteArray())
         outputFile.close()
     }
@@ -4188,7 +4188,7 @@ class MvtTileTest {
         println(mvtFeature.name)
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val outputFile = FileOutputStream("rtree.geojson")
+        val outputFile = FileOutputStream(testOutputFile("rtree.geojson"))
         outputFile.write(adapter.toJson(distanceFc).toByteArray())
         outputFile.close()
     }
@@ -4354,7 +4354,7 @@ class MvtTileTest {
             latitude += 0.00001
         }
         val adapter = GeoJsonObjectMoshiAdapter()
-        val outputFile = FileOutputStream("nearest.geojson")
+        val outputFile = FileOutputStream(testOutputFile("nearest.geojson"))
         outputFile.write(adapter.toJson(geojson).toByteArray())
         outputFile.close()
     }
@@ -4440,7 +4440,7 @@ class MvtTileTest {
         val startIndex = 0
         val endIndex = gps.features.size
         val autoCallout = AutoCallout(null, preferences)
-        val callOutText = FileOutputStream(calloutFilename)
+        val callOutText = FileOutputStream(testOutputFile(calloutFilename))
         var calloutCount = 0
 
 
@@ -4703,7 +4703,7 @@ class MvtTileTest {
         callOutText.close()
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream(geojsonFilename)
+        val mapMatchingOutput = FileOutputStream(testOutputFile(geojsonFilename))
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
         return calloutCount
@@ -4714,7 +4714,7 @@ class MvtTileTest {
      * Milngavie town centre to the station, and to and from Tesco in Milngavie, which goes along
      * the footpaths through the precinct and Lennox Park - and a bus from Buchanan Bus Station to
      * Milngavie, for the travel callouts, at each CalloutVerbosity level, writing the callouts to
-     * gpxFiles/<walk>-<level>.txt for comparison. Each level must say no more than the one above
+     * build/test-output/gpxFiles/<walk>-<level>.txt for comparison. Each level must say no more than the one above
      * it, and Silent must say nothing.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -4723,8 +4723,6 @@ class MvtTileTest {
     @Category(NightlyOnlyTest::class)
     @Test
     fun testCalloutVerbosityLevels() {
-        val resultsStorageDir = File("gpxFiles/")
-        if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
         for (walk in listOf(
             "CentralToBuchananStreet", "ToTown", "WalkToTesco-samsung", "WalkFromTesco-pixel",
             "BusTripToMilngavie"
@@ -4763,8 +4761,6 @@ class MvtTileTest {
      */
     @Test
     fun testMotorwayJunctionsAnnounced() {
-        val resultsStorageDir = File("gpxFiles/")
-        if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
         val expected = mapOf(
             "Motorway" to setOf(
                 "Junction 1, Checkbar",
@@ -4832,8 +4828,6 @@ class MvtTileTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testCalloutsSingleTest  () {
-        val resultsStorageDir = File("gpxFiles/")
-        if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
         val testFile = "bristol-bus"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
@@ -4859,12 +4853,6 @@ class MvtTileTest {
     @Test
     fun testCallouts() {
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
-
-        val resultsStoragePath = "gpxFiles/"
-        val resultsStorageDir = File(resultsStoragePath)
-        if (!resultsStorageDir.exists()) {
-            resultsStorageDir.mkdirs()
-        }
 
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
         for (file in directoryEntries) {
@@ -4894,7 +4882,7 @@ class MvtTileTest {
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
-        val callOutText = FileOutputStream(calloutFilename)
+        val callOutText = FileOutputStream(testOutputFile(calloutFilename))
 
 
         // Callout throttling is all elapsed-time arithmetic (CalloutHistory's expiry, AutoCallout's
@@ -5030,7 +5018,7 @@ class MvtTileTest {
         callOutText.close()
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream(geojsonFilename)
+        val mapMatchingOutput = FileOutputStream(testOutputFile(geojsonFilename))
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
     }
@@ -5040,12 +5028,6 @@ class MvtTileTest {
     @Test
     fun replayStreetNumbers() {
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
-
-        val resultsStoragePath = "gpxFiles/"
-        val resultsStorageDir = File(resultsStoragePath)
-        if (!resultsStorageDir.exists()) {
-            resultsStorageDir.mkdirs()
-        }
 
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
         for (file in directoryEntries) {
@@ -5086,7 +5068,7 @@ class MvtTileTest {
                     if (false) {
                         // This code is useful for comparing before and after changes of grid parsing
                         val adapter = GeoJsonObjectMoshiAdapter()
-                        val tileOutput = FileOutputStream("cache-test2/output-$x-$y.geojson")
+                        val tileOutput = FileOutputStream(testOutputFile("cache-test2/output-$x-$y.geojson"))
 
                         // Output the GeoJson and check that there's no data left from other tiles.
                         val collection = FeatureCollection()
@@ -5147,7 +5129,7 @@ class MvtTileTest {
         outputCollection += townCollection
         outputCollection += villageCollection
         outputCollection += hamletCollection
-        val outputFile = FileOutputStream("low-zoom.geojson")
+        val outputFile = FileOutputStream(testOutputFile("low-zoom.geojson"))
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
     }

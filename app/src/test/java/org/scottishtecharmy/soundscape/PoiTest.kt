@@ -100,7 +100,7 @@ class PoiTest {
         }
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val outputFile = FileOutputStream("poi.geojson")
+        val outputFile = FileOutputStream(testOutputFile("poi.geojson"))
         outputFile.write(adapter.toJson(featuresToDraw).toByteArray())
         outputFile.close()
     }
@@ -150,7 +150,7 @@ class PoiTest {
         }
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val outputFile = FileOutputStream("poi.geojson")
+        val outputFile = FileOutputStream(testOutputFile("poi.geojson"))
         outputFile.write(adapter.toJson(featuresToDraw).toByteArray())
         outputFile.close()
     }
@@ -181,7 +181,7 @@ class PoiTest {
         featuresToDraw.addFeature(circle)
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val outputFile = FileOutputStream("poi.geojson")
+        val outputFile = FileOutputStream(testOutputFile("poi.geojson"))
         outputFile.write(adapter.toJson(features).toByteArray())
         outputFile.close()
     }

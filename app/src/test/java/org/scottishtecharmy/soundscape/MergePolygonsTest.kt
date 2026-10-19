@@ -373,7 +373,7 @@ class MergePolygonsTest {
         }
         val adapter = GeoJsonObjectMoshiAdapter()
         val outputFile =
-            FileOutputStream("${grid.tiles[0].tileX}-${grid.tiles[1].tileX}x${grid.tiles[0].tileY}-${grid.tiles[3].tileY}.geojson")
+            FileOutputStream(testOutputFile("${grid.tiles[0].tileX}-${grid.tiles[1].tileX}x${grid.tiles[0].tileY}-${grid.tiles[3].tileY}.geojson"))
         outputFile.write(adapter.toJson(featureCollection).toByteArray())
         outputFile.close()
 
