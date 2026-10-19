@@ -166,18 +166,20 @@ class RTree<T, G : Geometry> private constructor(
             val sliceCount = ceil(sqrt(leafCount.toDouble())).toInt().coerceAtLeast(1)
             val perSlice = sliceCount * capacity
 
-            val sortedByX = entries.sortedBy { it.geometry.mbr().centerX }
+            // Each entry's mbr is made once, rather than on every comparison of the sorts - a Line
+            // makes a new Rectangle each time it's asked for one
+            val sortedByX = entries.map { Pair(it, it.geometry.mbr()) }.sortedBy { it.second.centerX }
             val leaves = mutableListOf<Leaf<T, G>>()
             var i = 0
             while (i < sortedByX.size) {
                 val sliceEnd = minOf(i + perSlice, sortedByX.size)
-                val slice = sortedByX.subList(i, sliceEnd).sortedBy { it.geometry.mbr().centerY }
+                val slice = sortedByX.subList(i, sliceEnd).sortedBy { it.second.centerY }
                 var j = 0
                 while (j < slice.size) {
                     val end = minOf(j + capacity, slice.size)
                     val group = slice.subList(j, end)
-                    val mbr = Rectangle.of(group.map { it.geometry })
-                    leaves.add(Leaf(group.toList(), mbr))
+                    val mbr = Rectangle.of(group.map { it.second })
+                    leaves.add(Leaf(group.map { it.first }, mbr))
                     j = end
                 }
                 i = sliceEnd
