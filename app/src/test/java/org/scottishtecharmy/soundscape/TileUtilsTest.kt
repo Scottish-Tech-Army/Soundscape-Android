@@ -102,41 +102,41 @@ class TileUtilsTest {
             CityTile(
                 "Tehran", tehranTestLocation,
                 TileCounts(
-                    crossings = 288, paths = 799, intersections = 1978, entrances = 12,
-                    pois = 1426, mobility = 470, objects = 11, information = 1, places = 678,
-                    landmarks = 223, safety = 12,
+                    crossings = 288, paths = 799, intersections = 1982, entrances = 12,
+                    pois = 1437, mobility = 472, objects = 11, information = 1, places = 684,
+                    landmarks = 224, safety = 12,
                 )
             ),
             CityTile(
                 "San Salvador", sanSalvadorTestLocation,
                 TileCounts(
                     crossings = 159, paths = 1007, intersections = 2532, entrances = 53,
-                    pois = 1451, mobility = 309, objects = 130, information = 1, places = 575,
-                    landmarks = 266, safety = 87,
+                    pois = 1451, mobility = 309, objects = 131, information = 1, places = 574,
+                    landmarks = 267, safety = 86,
                 )
             ),
             CityTile(
                 "Paris", parisTestLocation,
                 TileCounts(
-                    crossings = 962, paths = 7015, intersections = 6694, entrances = 285,
-                    pois = 8148, mobility = 1392, objects = 740, information = 150, places = 4178,
-                    landmarks = 1167, safety = 296,
+                    crossings = 962, paths = 7001, intersections = 6680, entrances = 284,
+                    pois = 8159, mobility = 1392, objects = 743, information = 150, places = 4183,
+                    landmarks = 1168, safety = 297,
                 )
             ),
             CityTile(
                 "Buenos Aires", buenosAiresTestLocation,
                 TileCounts(
-                    crossings = 86, paths = 740, intersections = 1045, entrances = 86,
-                    pois = 2959, mobility = 559, objects = 43, information = 1, places = 1491,
-                    landmarks = 619, safety = 135,
+                    crossings = 86, paths = 963, intersections = 1277, entrances = 89,
+                    pois = 3057, mobility = 557, objects = 114, information = 1, places = 1510,
+                    landmarks = 620, safety = 140,
                 )
             ),
             CityTile(
                 "Osaka", osakaTestLocation,
                 TileCounts(
-                    crossings = 686, paths = 5349, intersections = 5983, entrances = 338,
-                    pois = 6883, mobility = 1037, objects = 362, information = 147, places = 4073,
-                    landmarks = 676, safety = 403,
+                    crossings = 688, paths = 5363, intersections = 5997, entrances = 338,
+                    pois = 7039, mobility = 1043, objects = 385, information = 149, places = 4198,
+                    landmarks = 677, safety = 403,
                 )
             ),
         )
@@ -526,17 +526,14 @@ class TileUtilsTest {
         val ruler = CheapRuler(userGeometry.location.latitude)
         val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
-        val fc = poiTree.getAllCollection()
-        for (feature in fc) {
-            if (feature.geometry.type == "Polygon") {
-                val mvtFeature = feature as MvtFeature
-                println("${mvtFeature.name}")
-                val nearestPoint = getDistanceToFeature(userGeometry.location, feature, ruler).point
-                val offset = ruler.distance(nearestPoint, expectedNearestPoint)
-                assert(offset < 1.0)
-                break
-            }
+        // The car park next to Northleaze Primary School - picked out by its id, as the first
+        // polygon in the tree is whichever the tiles happen to list first
+        val carPark = poiTree.getAllCollection().first {
+            ((it as MvtFeature).osmId == 3427516852L) && (it.geometry.type == "Polygon")
         }
+        val nearestPoint = getDistanceToFeature(userGeometry.location, carPark, ruler).point
+        val offset = ruler.distance(nearestPoint, expectedNearestPoint)
+        Assert.assertTrue("Nearest point is $offset m from where it should be", offset < 1.0)
     }
 
     @Test

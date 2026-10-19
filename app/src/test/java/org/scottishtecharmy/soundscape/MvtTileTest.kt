@@ -778,7 +778,7 @@ class MvtTileTest {
      * ref ("M8") instead of the generic class-based description ("Motorway") it used to produce,
      * phrased as "On M8" since we're confirmed to be on the road, not just near it.
      *
-     * The settlement is Glasgow rather than the much nearer Cowcaddens because a motorway only
+     * The settlement is Glasgow rather than the much nearer Port Dundas because a motorway only
      * names towns and cities - see [testTravelCalloutSettlementSizeVariesWithRoadClass].
      */
     @Test
@@ -868,13 +868,13 @@ class MvtTileTest {
         assertNotNull(trunkResult)
         assertEquals("On A8 (Glasgow and Edinburgh Road) and close to Carnbroe", trunkResult!!.text)
 
-        // Motorway: Cowcaddens is a suburb, still too small to be worth naming on the M8, which
+        // Motorway: Port Dundas is part of Glasgow, too small to be worth naming on the M8, which
         // goes all the way up to Glasgow itself.
         val motorwayLocation = LngLatAlt(-4.254034459590912, 55.87014482990583)
         val motorwayGridState = getGridStateForLocation(motorwayLocation, MAX_ZOOM_LEVEL, 3)
         val motorwaySettlementGrid = getGridStateForLocation(motorwayLocation, 12, 3)
         assertEquals(
-            "Cowcaddens", nearestSettlement(motorwaySettlementGrid, motorwayLocation).name
+            "Port Dundas", nearestSettlement(motorwaySettlementGrid, motorwayLocation).name
         )
         val motorwayResult = describeReverseGeocode(
             UserGeometry(location = motorwayLocation, speed = 25.0), motorwayGridState,
@@ -2236,11 +2236,13 @@ class MvtTileTest {
      * is absent from parts of OSM. With nothing attached, namedStationWithin has nothing to
      * find and the approaching-station callout never fires at all. See attachStationsAsRailwayStops,
      * which decides this per station rather than per grid, so a mixture of the two works - which
-     * is what central Glasgow now is: ten of its stations carry stop nodes and Bellgrove does not.
+     * is what central Bristol is: the main line stations carry stop nodes and the Bristol Harbour
+     * Railway's do not.
      */
     @Test
     fun testStationStandsInAsARailStopWhenThereAreNoStopNodes() {
-        val location = LngLatAlt(-4.25057977437973, 55.85762197620575)
+        // Princes Wharf, on the Bristol Harbour Railway
+        val location = LngLatAlt(-2.5975, 51.4481)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
 
         // Identity, not name: a station stood in for carries the station feature itself, while a
@@ -2253,17 +2255,17 @@ class MvtTileTest {
         }
         val stoodIn = stops.filter { (_, stop) -> stopNodes.none { it === stop.feature } }
 
-        // Bellgrove has no stop node on the North Clyde Line past it, so the station stands in.
-        // Not because OSM doesn't record one: it is tagged public_transport=stop_position with
-        // train=yes rather than railway=stop, which is the newer scheme and which the tile
-        // pipeline has since been taught to emit as well. So a rebuild will give Bellgrove a stop
-        // node like the rest, and this test will need a station that still doesn't have one - and
-        // if none is left, the fallback has nothing to cover and both this test and
+        // The Bristol Harbour Railway's stations have no stop node, either railway=stop or
+        // public_transport=stop_position, so the stations stand in. Central Glasgow's did too until
+        // the tile pipeline learned public_transport=stop_position, which gave Bellgrove - the
+        // last of them - a stop node like the rest. If the harbour railway's are ever mapped, this
+        // test will need a station that still has none - and if none is left anywhere in the test
+        // extracts, the fallback has nothing to cover and both this test and
         // attachStationsAsRailwayStops can go.
         assertTrue(
-            "Expected Bellgrove stood in for, got: ${stoodIn.mapNotNull { it.second.name }
+            "Expected Princes Wharf stood in for, got: ${stoodIn.mapNotNull { it.second.name }
                 .distinct()}",
-            stoodIn.any { it.second.name == "Bellgrove" }
+            stoodIn.any { it.second.name == "Princes Wharf" }
         )
 
         // The other half of "per station": a station that does have stop nodes is left alone, or
@@ -2271,12 +2273,12 @@ class MvtTileTest {
         assertTrue(
             "Expected the stations carrying stop nodes not to be stood in for as well, got: " +
                 "${stoodIn.mapNotNull { it.second.name }.distinct()}",
-            stoodIn.none { it.second.name == "Argyle Street" }
+            stoodIn.none { it.second.name == "Bristol Temple Meads" }
         )
         assertTrue(
-            "Expected Argyle Street's own stop nodes attached to the lines past it",
+            "Expected Bristol Temple Meads' own stop nodes attached to the lines past it",
             stops.any { (_, stop) ->
-                (stop.name == "Argyle Street") && stopNodes.any { it === stop.feature }
+                (stop.name == "Bristol Temple Meads") && stopNodes.any { it === stop.feature }
             }
         )
 
@@ -3313,15 +3315,16 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        // A road carrying a bridge over the Milngavie Branch, as recorded by
-        // GridState.attachRailwayCrossings.
+        // The A81 where it bridges the Milngavie Branch, as recorded by
+        // GridState.attachRailwayCrossings - picked out by its ref, as the A809 bridges the line
+        // too and which comes first is down to the order of the tiles
         val bridge = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
             .filterIsInstance<Way>()
             .firstOrNull {
                 it.crossingNamed("Milngavie Branch")?.position == AlongWayPosition.OVER &&
-                    it.name != null
+                    it.ref == "A81"
             }
-        assertNotNull("Expected a named road bridging the Milngavie Branch", bridge)
+        assertNotNull("Expected the A81 bridging the Milngavie Branch", bridge)
 
         val crossingPoint = bridge!!.crossingNamed("Milngavie Branch")!!.point
 
@@ -3403,7 +3406,7 @@ class MvtTileTest {
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
-        assertEquals("On Fake Railway Line and close to Cowcaddens", result!!.text)
+        assertEquals("On Fake Railway Line and close to Port Dundas", result!!.text)
         // The settlement is spoken but deliberately kept out of the dedup key: at line speed the
         // nearest settlement changes almost every location update, and keying on it re-announced
         // the same line over and over (see the rail dedupText comments in
@@ -3497,7 +3500,7 @@ class MvtTileTest {
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
-        assertEquals("On train and close to Cowcaddens", result!!.text)
+        assertEquals("On train and close to Port Dundas", result!!.text)
     }
 
     /**
@@ -3527,7 +3530,7 @@ class MvtTileTest {
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
-        assertEquals("On tram and close to Cowcaddens", result!!.text)
+        assertEquals("On tram and close to Port Dundas", result!!.text)
 
         // ...and a light rail line, which shares the transit type, still says train.
         val unnamedLightRail = Way().apply {
@@ -3539,7 +3542,7 @@ class MvtTileTest {
             gridState, settlementGrid, null
         )
         assertNotNull(lightRailResult)
-        assertEquals("On train and close to Cowcaddens", lightRailResult!!.text)
+        assertEquals("On train and close to Port Dundas", lightRailResult!!.text)
     }
 
     /**

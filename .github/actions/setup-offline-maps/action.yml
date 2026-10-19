@@ -24,7 +24,7 @@ runs:
           ${{ inputs.output_dir }}/buenos-aires-ar.pmtiles
           ${{ inputs.output_dir }}/osaka-prefecture-jp.pmtiles
           ${{ inputs.output_dir }}/manifest.geojson.gz
-        key: pmtiles-v7-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
+        key: pmtiles-v8-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
 
     - name: Download pmtiles + manifest
       if: steps.cache.outputs.cache-hit != 'true'
@@ -34,7 +34,7 @@ runs:
       run: |
         mkdir -p "$OUTPUT_DIR"
         base=https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev
-        current_version=August2026-update
+        current_version=October2026-update
         # --timeout aborts a stalled connection after 30s, --tries retries on failure,
         # --waitretry backs off between retries. Without these, wget can silently hang
         # for an hour at <50 KB/s when R2 connections drop.
@@ -46,4 +46,4 @@ runs:
         wget $WGET_OPTS "$base/$current_version/paris-fr.pmtiles"        -O "$OUTPUT_DIR/paris-fr.pmtiles"
         wget $WGET_OPTS "$base/$current_version/buenos-aires-ar.pmtiles" -O "$OUTPUT_DIR/buenos-aires-ar.pmtiles"
         wget $WGET_OPTS "$base/$current_version/osaka-prefecture-jp.pmtiles" -O "$OUTPUT_DIR/osaka-prefecture-jp.pmtiles"
-        wget $WGET_OPTS "$base/manifest.geojson.gz"                     -O "$OUTPUT_DIR/manifest.geojson.gz"
+        wget $WGET_OPTS "$base/$current_version/manifest.geojson.gz" -O "$OUTPUT_DIR/manifest.geojson.gz"
