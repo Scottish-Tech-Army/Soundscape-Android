@@ -375,6 +375,12 @@ puts brackets in front of a screen reader. it «Salve!» is the model. Existing
 translations aren't re-flagged by a comment change, so fix them through each
 language's reviewer.
 
+**Polish opt-out (2026-10-19, pl.md PL-F1):** the Polish reviewer says the
+generic masculine is the normal convention and doesn't address the user as a
+man, and that the neutral «patrzysz» was wrong for *facing* (it means looking with
+the eyes). Don't apply C15 to Polish. Other languages haven't said this, so the rule
+stands for them. Do ask each one, though: a neutral workaround can cost meaning.
+
 ## C16 — A pass must translate the whole string, not the part that changed
 
 When an English string is edited, Weblate flags every translation of it.
@@ -637,5 +643,5 @@ The English help and FAQ were rewritten against the code in `67e99c61b` (short s
 - **Units:** the base English is US English (feet and miles). Every other language, including en_GB, uses metres and kilometres: 30 ft = 10 m, 40 ft = 12 m, 60 ft = 20 m, 100 ft = 30 m, about a mile = about 2 km.
 - **No Android assistant is named.** Voice commands are Siri only for now: the page is titled "Siri Voice Commands", is linked from the help index on iOS only, and uses the `*_ios` strings on both platforms (the docs site is generated from them). The Android-variant strings were removed.
 - **Siri phrases** stay as each language's `AppShortcuts.strings` has them, in typographic quotes inside the asterisks. Where a language has no Siri phrases, the English phrase is quoted.
-- **Avoid gendering the user** (C15). "The way you are facing", "when you are standing still" and "a place you have saved" were all reworded where the literal translation needs a gendered participle (fr «à laquelle vous faites face», es «cuando no te muevas», it «in cui guardi», pl «w którą patrzysz», pt «para a sua frente»). FAQ questions in the first person were made impersonal in hi, ur, pa, mr, bn, ta and te for the same reason. Hausa uses the plural «ku» forms throughout these strings.
+- **Avoid gendering the user** (C15). "The way you are facing", "when you are standing still" and "a place you have saved" were all reworded where the literal translation needs a gendered participle (fr «à laquelle vous faites face», es «cuando no te muevas», it «in cui guardi», pl «w którą patrzysz» (reverted for Polish 2026-10-19, see C15), pt «para a sua frente»). FAQ questions in the first person were made impersonal in hi, ur, pa, mr, bn, ta and te for the same reason. Hausa uses the plural «ku» forms throughout these strings.
 - **iOS menu names** («Read & Speak», formerly «Spoken Content») were translated only for languages that already used a localised name; they are unverified against a device.
