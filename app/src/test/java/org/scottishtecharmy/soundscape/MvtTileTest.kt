@@ -4805,7 +4805,7 @@ class MvtTileTest {
                 calloutFile,
                 "gpxFiles/$drive-junctions.geojson"
             )
-            val announced = File(calloutFile).readLines()
+            val announced = testOutputFile(calloutFile).readLines()
                 .mapNotNull { junction.find(it)?.value?.trim() }
                 .toSet()
             assertEquals("Junctions announced on $drive", junctions, announced)
