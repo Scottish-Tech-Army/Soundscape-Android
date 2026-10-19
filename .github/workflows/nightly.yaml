@@ -77,7 +77,7 @@ jobs:
 
       # Run Tests Build
       - name: Run gradle tests
-        run: ./gradlew test
+        run: ./gradlew test :shared:testAndroidHostTest
 
       # Slow JVM unit tests (tagged @Category(NightlyOnlyTest::class)) that are excluded from
       # the regular `test` task run in run-tests.yaml, e.g. because they just replay every GPX
