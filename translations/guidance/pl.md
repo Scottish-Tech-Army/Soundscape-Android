@@ -284,7 +284,7 @@ Reviewer (round 2 Q6): «Wejście do tunelu» / «Wjazd do tunelu» name the *en
 
 ### PL-S1 — Beacon style *Drop* is «Upuszczanie» (`agreed` 2026-10-19)
 
-Reviewer (round 2 Q7): the sound is like three small objects dropped into a vessel, so «Upuszczanie» (dropping). «Upadek» suggests a person falling. It stays distinct from «Stukot» (Tactile). The reviewer also noticed the style names show in **English** after switching language. That is a code bug, not a translation one: the Settings picker (`BeaconStylePreference` in `SharedSettingsScreen.kt`) shows the raw style keys and never calls `getBeaconResourceId`, though onboarding does. It affects every language.
+Reviewer (round 2 Q7): the sound is like three small objects dropped into a vessel, so «Upuszczanie» (dropping). «Upadek» suggests a person falling. It stays distinct from «Stukot» (Tactile). The reviewer also noticed the style names show in **English** after switching language. That is a code bug, not a translation one: the Settings picker (`BeaconStylePreference` in `SharedSettingsScreen.kt`) shows the raw style keys and never calls `getBeaconResourceId`, though onboarding does. It affects every language. **Fixed 2026-10-19** (`b8a8a47c2`).
 
 ### PL-R2 — Road types: Trunk / Highway / Motorway (`provisional`)
 
