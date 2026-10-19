@@ -2665,6 +2665,26 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="osm_artwork_graffiti">Graffiti</string>
     <!-- OpenStreetMap artwork type. Called out for a large artwork, often in several parts, designed for a particular space. -->
     <string name="osm_artwork_installation">Art Installation</string>
+    <!-- OpenStreetMap information type. Called out for a post with signs pointing the way to nearby places, usually on a footpath or hiking route. -->
+    <string name="osm_information_guidepost">Signpost</string>
+    <!-- OpenStreetMap information type. Called out for a board giving information about the area, such as its history or wildlife. -->
+    <string name="osm_information_board">Information Board</string>
+    <!-- OpenStreetMap information type. Called out for a board showing a map of the area. -->
+    <string name="osm_information_map">Map Board</string>
+    <!-- OpenStreetMap information type. Called out for a small sign or plaque marking a hiking, cycling or other route. -->
+    <string name="osm_information_route_marker">Route Marker</string>
+    <!-- OpenStreetMap information type. Called out for a painted mark or small sign on a tree, rock or post that marks a hiking trail. -->
+    <string name="osm_information_trail_blaze">Trail Marker</string>
+    <!-- OpenStreetMap information type. Called out for a staffed office giving tourist information. -->
+    <string name="osm_information_office">Tourist Information Office</string>
+    <!-- OpenStreetMap information type. Called out for an electronic screen or kiosk giving information. -->
+    <string name="osm_information_terminal">Information Terminal</string>
+    <!-- OpenStreetMap information type. Called out for a map with raised lines and symbols, designed to be read by touch by blind and partially sighted people. -->
+    <string name="osm_information_tactile_map">Tactile Map</string>
+    <!-- OpenStreetMap information type. Called out for a raised model of a building or area, designed to be explored by touch by blind and partially sighted people. -->
+    <string name="osm_information_tactile_model">Tactile Model</string>
+    <!-- OpenStreetMap information type. Called out for a point where recorded spoken information about the place can be played. -->
+    <string name="osm_information_audioguide">Audio Guide</string>
     <!-- OpenStreetMap term alpine_hut. Mountain shelter for hikers and climbers-->
     <string name="osm_alpine_hut">Alpine Hut</string>
     <!-- OpenStreetMap term plant. Industrial plant or production facility-->

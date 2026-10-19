@@ -20,8 +20,9 @@ private class ResourceNameLocalizedStrings : LocalizedStrings {
 }
 
 /**
- * Unnamed pitches are called out by their sport and artworks by their artwork_type, rather than
- * as the "Sports Field" and "Gallery" of their OpenMapTiles class.
+ * Unnamed pitches are called out by their sport, artworks by their artwork_type and information
+ * POIs by their information tag, rather than as the "Sports Field", "Gallery" and "Information" of
+ * their OpenMapTiles class.
  */
 class MvtFeatureTypeTextTest {
     private val localized = ResourceNameLocalizedStrings()
@@ -88,6 +89,23 @@ class MvtFeatureTypeTextTest {
     fun otherArtGallerySubclassesKeepTheirOwnName() {
         assertEquals("Osm_gallery", text("art_gallery", "gallery"))
         assertEquals("Osm_arts_centre", text("art_gallery", "arts_centre"))
+    }
+
+    @Test
+    fun informationIsCalledOutByType() {
+        assertEquals("Osm_information_guidepost", text("information", "guidepost"))
+        assertEquals("Osm_information_board", text("information", "board"))
+        assertEquals("Osm_information_tactile_map", text("information", "tactile_map"))
+        assertEquals("Osm_information_tactile_model", text("information", "tactile_model"))
+        assertEquals("Osm_information_map", text("information", "hikingmap"))
+        assertEquals("Osm_information_office", text("information", "visitor_centre"))
+    }
+
+    @Test
+    fun informationWithoutKnownTypeIsInformation() {
+        assertEquals("Osm_information", text("information", null))
+        // a subclass without its own name isn't used raw: "stele" has no string at all
+        assertEquals("Osm_information", text("information", "stele"))
     }
 
     @Test
