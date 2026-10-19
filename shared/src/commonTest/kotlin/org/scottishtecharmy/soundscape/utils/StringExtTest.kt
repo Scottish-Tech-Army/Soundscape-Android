@@ -152,4 +152,26 @@ class StringExtTest {
     fun fuzzyCompare_completelyDifferentStrings_scoresMax() {
         assertEquals(1.0, "abc".fuzzyCompare("xyz", false))
     }
+
+    @Test
+    fun fuzzyComparer_reusedAcrossComparisonsAndRanges_scoresAsFuzzyCompare() {
+        // One comparer through many comparisons of different lengths, longer and shorter than the
+        // last, must score each as a fresh fuzzyCompare of the same strings would
+        val random = kotlin.random.Random(7)
+        val comparer = FuzzyComparer()
+        fun randomString() = (0 until random.nextInt(0, 14)).map { "abcde梅田 "[random.nextInt(8)] }.joinToString("")
+        repeat(5000) {
+            val needle = randomString()
+            val haystack = randomString()
+            val canBeShorter = random.nextBoolean()
+            assertEquals(needle.fuzzyCompare(haystack, canBeShorter), comparer.compare(needle, haystack, canBeShorter), "'$needle' '$haystack'")
+            val start = random.nextInt(0, haystack.length + 1)
+            val end = random.nextInt(start, haystack.length + 1)
+            assertEquals(
+                needle.fuzzyCompare(haystack.substring(start, end), canBeShorter),
+                comparer.compare(needle, haystack, canBeShorter, start, end),
+                "'$needle' '$haystack' $start..$end"
+            )
+        }
+    }
 }

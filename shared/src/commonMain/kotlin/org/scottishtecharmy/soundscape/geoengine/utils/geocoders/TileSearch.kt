@@ -43,6 +43,7 @@ import org.scottishtecharmy.soundscape.network.featureContainsLocation
 import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
+import org.scottishtecharmy.soundscape.utils.FuzzyComparer
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import vector_tile.Tile
@@ -126,12 +127,13 @@ class TileSearch(
         searchResultLimit: Int,
         tileX: Int, tileY: Int,
         houseNumber: String = "",
+        comparer: FuzzyComparer = FuzzyComparer(),
     ): Boolean {
         // A haystack a quarter shorter than the needle is at least a quarter of the needle's length
         // from it, which is too far to match - and that's cheaper to see than the distance
         if (normalizedNeedle.isNotEmpty() && (haystackString.length * 4 <= normalizedNeedle.length * 3))
             return false
-        val fuzzyScore = normalizedNeedle.fuzzyCompare(haystackString, true)
+        val fuzzyScore = comparer.compare(normalizedNeedle, haystackString, true)
         if (fuzzyScore < 0.25) {
             // Taking a house number out of the search string makes the rest of it easier to match,
             // so a match made that way loses a tie with one made from the whole string - otherwise
@@ -178,8 +180,9 @@ class TileSearch(
         searchResults: MutableList<TileSearchResult>,
         searchResultLimit: Int,
         tileX: Int, tileY: Int,
+        comparer: FuzzyComparer,
     ) {
-        if (compareAndAddToResults(needle, string, searchResults, searchResultLimit, tileX, tileY, houseNumber))
+        if (compareAndAddToResults(needle, string, searchResults, searchResultLimit, tileX, tileY, houseNumber, comparer))
             return
         if (string.length > needle.length) {
             if (compareAndAddToResults(
@@ -188,7 +191,8 @@ class TileSearch(
                     searchResults,
                     searchResultLimit,
                     tileX, tileY,
-                    houseNumber
+                    houseNumber,
+                    comparer
                 )
             )
                 return
@@ -197,9 +201,9 @@ class TileSearch(
             // so a word can start anywhere in a run of them - "梅田" in "大阪梅田". Only worth
             // looking for when the needle is written that way too.
             if (needle.isNotEmpty() && isUnspacedScript(codePointAt(needle, 0))) {
-                val bestEnd = closestEndWithinWords(needle, string)
+                val bestEnd = closestEndWithinWords(needle, string, comparer)
                 if ((bestEnd != null) &&
-                    compareAndAddToResults(needle, bestEnd, searchResults, searchResultLimit, tileX, tileY, houseNumber)
+                    compareAndAddToResults(needle, bestEnd, searchResults, searchResultLimit, tileX, tileY, houseNumber, comparer)
                 )
                     return
             }
@@ -212,11 +216,11 @@ class TileSearch(
             val joinedNeedle = joinUnspacedWords(needle)
             val joinedString = joinUnspacedWords(string)
             if ((joinedNeedle != needle) || (joinedString != string)) {
-                if (compareAndAddToResults(joinedNeedle, joinedString, searchResults, searchResultLimit, tileX, tileY, houseNumber))
+                if (compareAndAddToResults(joinedNeedle, joinedString, searchResults, searchResultLimit, tileX, tileY, houseNumber, comparer))
                     return
-                val bestEnd = closestEndWithinWords(joinedNeedle, joinedString)
+                val bestEnd = closestEndWithinWords(joinedNeedle, joinedString, comparer)
                 if ((bestEnd != null) &&
-                    compareAndAddToResults(joinedNeedle, bestEnd, searchResults, searchResultLimit, tileX, tileY, houseNumber)
+                    compareAndAddToResults(joinedNeedle, bestEnd, searchResults, searchResultLimit, tileX, tileY, houseNumber, comparer)
                 )
                     return
             }
@@ -228,7 +232,8 @@ class TileSearch(
                 searchResults,
                 searchResultLimit,
                 tileX, tileY,
-                houseNumber
+                houseNumber,
+                comparer
             )
         }
     }
@@ -347,13 +352,13 @@ class TileSearch(
      * each, so that's all that's taken to compare - as long as the needle, and a character more to
      * tell an end which goes on beyond it from one which doesn't.
      */
-    private fun closestEndWithinWords(needle: String, normalizedString: String): String? {
+    private fun closestEndWithinWords(needle: String, normalizedString: String, comparer: FuzzyComparer): String? {
         var bestStart = -1
         var bestScore = Double.MAX_VALUE
         for (start in 1..(normalizedString.length - needle.length)) {
             if (!startsWithinWord(normalizedString, start)) continue
-            val compared = normalizedString.substring(start, minOf(normalizedString.length, start + needle.length + 1))
-            val score = needle.fuzzyCompare(compared, true)
+            val end = minOf(normalizedString.length, start + needle.length + 1)
+            val score = comparer.compare(needle, normalizedString, true, start, end)
             if (score < bestScore) {
                 bestScore = score
                 bestStart = start
@@ -1049,6 +1054,9 @@ class TileSearch(
 
         val searchResults = mutableListOf<TileSearchResult>()
         val searchResultLimit = 8
+        // Every string in every tile is compared with the needle, often more than once, and the
+        // comparisons share the rows of their tables rather than each making its own
+        val comparer = FuzzyComparer()
         val needleWithoutSettlement = generateWithoutSettlement(normalizedNeedle, settlementNames)
         val wholeNeedleWithoutSettlement = wholeNeedle?.let { generateWithoutSettlement(it, settlementNames) }
         val tilesUsed = mutableSetOf<Long>()
@@ -1103,7 +1111,8 @@ class TileSearch(
                     string,
                     searchResults,
                     searchResultLimit,
-                    x, y
+                    x, y,
+                    comparer
                 )
                 // The number can only be part of the name if the name has a number in it
                 if ((wholeNeedle != null) && string.any { it.isDigit() }) {
@@ -1114,7 +1123,8 @@ class TileSearch(
                         string,
                         searchResults,
                         searchResultLimit,
-                        x, y
+                        x, y,
+                        comparer
                     )
                 }
             }
