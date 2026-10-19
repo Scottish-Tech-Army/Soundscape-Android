@@ -44,6 +44,7 @@ import me.zhanghai.compose.preference.rememberPreferenceState
 import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.platform.isDebugBuild
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
@@ -788,6 +789,17 @@ fun SharedSettingsScreen(
  * Preview callbacks are optional: iOS leaves them null and gets a silent
  * picker; Android wires them through SoundscapeService.
  */
+/**
+ * The localized name of a beacon style. The engine and the preference store the English
+ * key ("Drop", "Mallet Slow"); a key with no string resource (e.g. the "Classic" default)
+ * is shown as is rather than crashing the settings screen.
+ */
+@Composable
+private fun beaconStyleLabel(beaconType: String): String {
+    val resource = runCatching { getBeaconResourceId(beaconType) }.getOrNull()
+    return if (resource != null) stringResource(resource) else beaconType
+}
+
 @Composable
 private fun BeaconStylePreference(
     beaconTypes: List<String>,
@@ -825,7 +837,7 @@ private fun BeaconStylePreference(
                 Res.string.beacon_settings_style_description,
                 textColor,
             )
-            ClickableOption(savedValue, textColor)
+            ClickableOption(beaconStyleLabel(savedValue), textColor)
         }
     }
 
@@ -858,7 +870,7 @@ private fun BeaconStylePreference(
                     items(beaconTypes.size) { index ->
                         val value = beaconTypes[index]
                         ListPreferenceItem(
-                            description = value,
+                            description = beaconStyleLabel(value),
                             value = value,
                             currentValue = selectedInDialog,
                             onClick = {
