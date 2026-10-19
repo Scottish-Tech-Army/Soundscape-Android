@@ -4,7 +4,7 @@
 |---|---|
 | Weblate component | `androidkmp` |
 | Corpus at last sweep | 1522 units, 769 excluding `osm_*` (2026-09-24) |
-| Last native-speaker input | 2026-10-01: the same reviewer's round-2 answers (Q1–Q5). Before that, 2026-09-30: one reviewer's answers to `questions-fr.md` Q1–Q11 (received 2026-09-28, applied 2026-09-30 without waiting for more reviewers, Dave's call) |
+| Last native-speaker input | 2026-10-19: a **second reviewer, JMB**, answered round 3 and commented on every round-1/2 decision. Dave trusts JMB's judgement well above the first reviewer's: where they conflict, JMB wins. Before that, 2026-10-01: the first reviewer's round-2 answers (Q1–Q5). Before that, 2026-09-30: one reviewer's answers to `questions-fr.md` Q1–Q11 (received 2026-09-28, applied 2026-09-30 without waiting for more reviewers, Dave's call) |
 | Reporter platform | — |
 | Register | Formal «vous», consistent across the corpus (`confirmed`, see FR-R1) |
 
@@ -20,7 +20,9 @@ covers (courriel, magasiner, and the tu/vous balance). Give it its own
 
 ## Status of this file
 
-**One native speaker has reviewed French** (2026-09-30, the questionnaire). Dave chose to act on that single reviewer rather than wait for more. Where the reviewer's suggestion conflicted with how the app works, Dave decided, and the rule says so. The paragraphs below are the pre-review state.
+**Two native speakers have reviewed French.** JMB (2026-10-19) outranks the first reviewer, by Dave's call: JMB reversed «croisement», «Minimal», the Snooze labels and «impasse», and confirmed «annonce», «balise sonore» and «Vous vous déplacez». Each decision below says which reviewer settled it.
+
+**The first native speaker reviewed French** on 2026-09-30, through the questionnaire. Dave chose to act on that single reviewer rather than wait for more. Where the reviewer's suggestion conflicted with how the app works, Dave decided, and the rule says so. The paragraphs below are the pre-review state.
 
 ~~No native speaker has reviewed French.~~ *Correction (2026-09-24):* an
 earlier draft said every French string came from AI passes. That's wrong.
@@ -53,28 +55,31 @@ cite its numbered questions (round 3 since 2026-10-01, Q1…Q3 with "anything el
 
 | English | French | Status | Why |
 |---|---|---|---|
-| Callout | annonce | `agreed` | Reviewer (Q1): «annonce» is best for messages spoken aloud. Replaces Microsoft's «notification», which now means only real system notifications (`first_launch_permissions_notification`). Same gender, so the swap was mechanical, except «de notifications» → «d’annonces» |
+| Callout | annonce | `confirmed` (JMB, 2026-10-19: *"Notification is more for written announcement whereas 'Annonce' is more of a verbal announcement"*) | Reviewer (Q1): «annonce» is best for messages spoken aloud. Replaces Microsoft's «notification», which now means only real system notifications (`first_launch_permissions_notification`). Same gender, so the swap was mechanical, except «de notifications» → «d’annonces» |
 | Callout (verb, "call out") | annoncer | `agreed` | Pairs with the noun (FR-T1) |
-| Audio Beacon | balise sonore; «balise» after the first mention and in action labels | `agreed` (round 2, Q3) | Full form where nothing else says it's a sound (titles, status, first mention in a text); bare «balise» with a verb («Désactiver le son de la balise») or once named. See FR-B2 |
+| Audio Beacon | balise sonore; «balise» after the first mention and in action labels | `confirmed` (JMB, round 3 Q1: *"Balise sonore. Definitely."*) | Full form where nothing else says it's a sound (titles, status, first mention in a text); bare «balise» with a verb («Désactiver le son de la balise») or once named. Never «balise audio», which reads as an HTML/programming tag (JMB). See FR-B2 |
+| Start Audio Beacon | Démarrer la balise (current) | `unconfirmed` (JMB objected) | See FR-B3. Unmute is «Réactiver le son de la balise» (`confirmed`, JMB) |
 | Marker | marqueur | `unconfirmed` | 84 occurrences, consistent |
 | Waypoint | étape | `confirmed` (round 2, Q1: «cela se suffit à lui même») | Reviewer (Q2): their apps use «étape de parcours». Dave chose the short «étape» («Étape suivante»), which also ends the Landmark collision. Feminine: «l’étape suivante», «la première étape». See FR-T2 |
 | Landmarks | repères / point de repère | `unconfirmed` | No longer collides with Waypoint. `osm_generic_landmark` «Point de repère» stays |
-| Traveling (vehicle) | Vous vous déplacez vers… | `agreed` | See FR-S2 |
+| Traveling (vehicle) | Vous vous déplacez vers… | `confirmed` (JMB, 2026-10-19) | See FR-S2 |
 | Route | itinéraire | `unconfirmed` | Often capitalised mid-sentence. See FR-S1 |
-| Intersection | croisement | `agreed` | Reviewer (Q6): more common and general than «carrefour», less formal than «intersection». Masculine: «le croisement suivant», «au croisement le plus proche». See FR-I1 |
+| Intersection (and Junction, as in «Rues et intersections») | intersection | `agreed` (JMB, 2026-10-19, reverses round 1) | The general term, the one the French highway code uses: any place where roads join or cross, a T junction included. «croisement» is only an X-shaped crossing. Feminine: «l’intersection suivante», «à l’intersection la plus proche», «d’une intersection». See FR-I1 |
 | Junction (motorway, with ref) | sortie | `unconfirmed` | `directions_junction_with_ref` «Sortie %1$s». Correct for French motorways, where junctions are numbered exits |
-| Sleep | pause (Mettre en pause / En pause / Reprendre maintenant); mode pause | `confirmed` (round 2, Q2) | See FR-T3 |
-| Snooze | pause jusqu’au départ (En pause jusqu’au départ / Reprendre au déplacement) | `agreed` (round 2, Q2) | See FR-T3 |
+| Sleep | pause (Mettre en pause / En pause / Reprendre); mode pause | `confirmed` (round 2 Q2; JMB 2026-10-19 dropped «maintenant») | See FR-T3 |
+| Snooze | pause à l’arrêt (En pause à l’arrêt / Reprise dès le mouvement) | `agreed` (JMB, 2026-10-19) | See FR-T3. «en pause jusqu’à votre départ» stays acceptable in prose |
 | Callout Detail | Détail des annonces | `agreed` | Moved with FR-T1 |
-| Detailed / Simplified / Essential / Silent | Détaillé / Simplifié / Minimal / Silencieux | `agreed` (round 2, Q4) | «Essentiel» didn't rank against «Simplifié». See FR-L1 |
+| Detailed / Simplified / Essential / Silent | Détaillé / Simplifié / Essentiel / Silencieux | `agreed` (JMB, 2026-10-19, reverses round 2 Q4) | «Minimal» reads as "minimalist"; «Essentiel» gives «les détails essentiels». See FR-L1 |
 | (superseded) | Détaillé / Synthétique / Simplifié / Silencieux | — | Reviewer (Q9): «Équilibré» doesn't work as a translation, and «Discret» is too close to «Silencieux». See FR-L1 |
-| dead end | une impasse (in «%1$s menant à %2$s») | `agreed` | Reviewer (Q8): «Chemin menant à une impasse»; «sans issue» may sound anxiety-inducing. See FR-G1 |
+| dead end | un cul-de-sac («Sentier menant à un cul-de-sac») | `agreed` (JMB, 2026-10-19) | *"Voie sans issue in French is much better known as: un cul-de-sac"*. Replaces «une impasse». See FR-G1 |
 
 ---
 
 ## Rules
 
 ### FR-G1 — `confect_name_to` produces «Sentier à impasse» (`agreed`, wording decided 2026-09-30)
+
+**2026-10-19, JMB:** *"No, Voie sans issue in French is much better known as: 'un cul-de-sac'. That is a typical French expression."* The templates are now `confect_name_to_dead_end` and `_via` («%1$s menant {fr:à une impasse}»), with the article in the template. Swap to «{fr:à un cul-de-sac}». The article code leaves «un» alone, as it does «une». The structure «menant à» stays, and «Sentier en cul-de-sac» is an open question. `GrammarMarkersTest.frenchLeadingToKeepsAnIndefiniteArticle` should then assert the new wording.
 
 **2026-09-30:** reviewer (Q8): «Chemin menant à une impasse», *"« Sans issue » pourrait être un peu anxiogène."* `confect_name_to` → «%1$s menant {fr:à %2$s}», `_to_via` → «%1$s menant {fr:à %2$s} via %3$s», `confect_name_dead_end` → «une impasse». The article code leaves an indefinite article alone and still adds one to map names («Sentier menant à la rue de Rivoli»). `GrammarMarkersTest.frenchLeadingToKeepsAnIndefiniteArticle` covers both. The text below is the original diagnosis.
 
@@ -180,7 +185,16 @@ generally use for intermediate stops, and «point de passage». Apply rule C1:
 ask what the reviewers' own navigation apps call it, rather than picking from
 our English glosses. 28 strings would move, plus the Siri route choices (FR-C1). See Q2.
 
-### FR-T3 — Sleep/Snooze are «pause» / «pause jusqu’au départ» (Sleep `confirmed`, Snooze button changed, 2026-10-01)
+### FR-T3 — Sleep/Snooze are «pause» / «pause à l’arrêt» (Sleep `confirmed`, Snooze `agreed` from JMB, 2026-10-19)
+
+**2026-10-19, JMB:** *"'Mettre en pause' or simply 'Pause'. 'Reprendre' is better than 'Reprendre maintenant'. The now (maintenant) is already implied. « En pause jusqu’au départ » is ok but it's better to say « En pause jusqu’à votre départ ». Or simply « En pause à l'arrêt », which sounds better and means paused while you are stopped. « Reprise dès le mouvement » is better than « Reprendre au déplacement ». It means it restarts as soon as you move."* So:
+
+| | Button / status | Mode name in prose |
+|---|---|---|
+| Sleep | Mettre en pause / En pause / **Reprendre** | le mode pause |
+| Snooze | **Reprise dès le mouvement** / **En pause à l’arrêt** | «la pause à l’arrêt»; «en pause jusqu’à votre départ» is fine in a sentence |
+
+«Mettre en pause» stays: JMB accepted it, and «Pause» alone collides with the headset's ⏯ Lecture/Pause. «Reprise dès le mouvement» is a noun phrase on a button, unlike the verb labels around it. JMB chose it knowingly over the verb form. 6 strings, plus the release notes. The round-2 text follows.
 
 **Round 2 (Q2):** *"“Mettre en pause” et “en pause” OK et j’aime le fait que les notions soient complémentaires. « Reprendre quand je pars » est très wordy et non naturel en français, on dirait plutôt « Reprendre au déplacement » qui est fluide et qui complémente bien « Reprendre maintenant »."* So `sleep_wake_on_leave` → «Reprendre au déplacement», and the FAQ that quotes it (`faq_snooze_mode_battery_answer`). «En pause jusqu’au départ» stays; the reviewer didn't comment on it.
 
@@ -210,7 +224,7 @@ Itinéraires*), where keeping the label's form is defensible. Invisible to
 TTS, so low priority. Sweep only after FR-T2 settles, since both touch the
 same strings.
 
-### FR-S2 — «Vous vous déplacez vers le nord» (`agreed` 2026-09-30)
+### FR-S2 — «Vous vous déplacez vers le nord» (`confirmed` 2026-10-19, JMB: *"Yes agreed."*)
 
 The reviewer agreed that the participle sounds like "a descriptive translation" and suggested «Vous marchez vers le nord». `directions_traveling_*` is only spoken **in a vehicle**, where the user is a passenger ([[travel-mode-user-is-passenger]]), so Dave chose «Vous vous déplacez…» (16 strings). The walking strings `directions_heading_*` stay «En direction du nord». The text below is the pre-review analysis.
 
@@ -221,7 +235,9 @@ expects. Keep it distinct from `directions_heading_*` «En direction du nord»,
 though, since it's a different string with a different trigger. These are
 spoken often. See Q7.
 
-### FR-L1 — Detail levels: Détaillé / Simplifié / Minimal / Silencieux (`agreed` 2026-10-01)
+### FR-L1 — Detail levels: Détaillé / Simplifié / Essentiel / Silencieux (`agreed` 2026-10-19, JMB)
+
+**2026-10-19, JMB:** *"I am not sure why you opted for 'Minimal' for the Essential option. Minimal in French is mostly used in the context of being minimalist. 'Essentiel' is definitely a better word in this context. It provides: les détails essentiels."* This reverses round 2. Dave ranks JMB above the first reviewer, whose worry was that «Essentiel» doesn't rank against «Simplifié»; that worry is now C22's (the English names), not French's. 7 strings. Regenerate the Siri choice with `scripts/generate-ios-siri-strings.py` (never hand-edit `Localizable.xcstrings`), and update the release notes. The round-2 text follows.
 
 **Round 2 (Q4):** *"Beaucoup mieux concernant le niveau de détail, moins confus. Mon seul doute concerne « essentiel » qui ne se distingue pas facilement de simplifié (on ne sait pas lequel donne plus d’information). Vous pourriez remplacer essentiel par « minimal » par exemple, qui fait clairement référence au niveau le plus bas avant « Silencieux »."* The doubt is firm and «Minimal» ranks itself, so it's taken. 7 strings, including the help texts and voice/Siri lists that recite the levels. The Siri choice in `Localizable.xcstrings` comes from `callouts_verbosity_level_quiet` through `scripts/generate-ios-siri-strings.py`: regenerate, don't hand-edit.
 
@@ -242,9 +258,18 @@ Reviewer (Q9): *"Équilibré ne fonctionne pas en termes de traduction"*, and «
 - **Bare «balise»** with an action verb (buttons, hints, voice commands: «Désactiver le son de la balise», «Démarrer la balise») and on every later mention in the same text. A help text quoting a button uses the button's new label.
 - The Siri phrase «Soundscape arrête la balise sonore» (`fr.lproj/AppShortcuts.strings`) is left alone: changing it moves three files together (FR-C1), and nothing asked for it.
 
-The reviewer wrote «balise audio» for the introduction; we read that as our «balise sonore» (open question). 34 strings, all mechanical. The 2026-09-30 text follows.
+The reviewer wrote «balise audio» for the introduction; we read that as our «balise sonore». **Settled 2026-10-19 by JMB:** «balise sonore», *"Definitely. A Balise sonore usually refers to a physical accessibility device for blind or visually impaired people whereas a 'Balise audio' is an audio tag used in programming such as a tag in HTML."* JMB also approved «Désactiver le son de la balise» and gave «Réactiver le son de la balise» for turning it back on, which is what Unmute already says. JMB rejected «Démarrer la balise»: see FR-B3. 34 strings, all mechanical. The 2026-09-30 text follows.
 
 Reviewer (Q10/Q11): «balise» alone is *"pas le plus commun en référence à un son. Si vous faites référence à une balise de détresse c’est plus courant"*. They suggested «repère sonore». Dave kept Microsoft's «balise sonore» (Rejected, below), with the full form everywhere. 54 strings swept, and «balise audible/audio» were normalised too. The exceptions: `osm_beacon` «Balise» (a physical map beacon, which is the everyday sense), and the Siri group word «Soundscape balise» (spoken, and must match `AppShortcuts.strings`). The stop phrase is now «Soundscape arrête la balise sonore», changed in `fr.lproj/AppShortcuts.strings` and the Siri help texts together.
+
+### FR-B3 — "Start Audio Beacon" is not «Démarrer la balise» (`unconfirmed`, JMB 2026-10-19)
+
+JMB: *"« Désactiver le son de la balise »: this is good but « Démarrer la balise » is not. This translates as 'Start the beacon', not as start the sound of the beacon. In this context, if you are activating the sound for the very first time use 'Activer le son de la balise', and if you want to turn the sound back on after it was turned off, you'd say 'Réactiver le son de la balise'."*
+
+Our questionnaire listed «Démarrer la balise» next to the mute label as if it were a sound toggle. In the app, though, Start Audio Beacon **places a new beacon on a chosen place** (Location Details, the marker voice command, Siri «Start Beacon»). It doesn't unmute anything. So «Activer le son de la balise» would mislead, since it says the same as Unmute. JMB's objection still stands: «démarrer» suits a machine, not a sound. Candidates to put to JMB with the real context: «Activer la balise sonore», «Lancer la balise sonore», «Placer une balise sonore ici». Nothing is swept until JMB answers. 8 strings depend on it:
+- labels: `location_detail_action_beacon`, `location_detail_action_beacon_from_markers`, `voice_cmd_start_beacon_at_marker_with_name`, `siri_title_start_beacon`;
+- texts that quote the label: `help_text_destination_beacons_how_1`, `help_text_remote_control_audio_menu`, `faq_beacon_on_address_answer`, `tour_start_beacon`. That last one says «Démarrer la balise sonore», which doesn't match the label: resync it whatever the decision;
+- the Siri `Start Beacon` choice in `Localizable.xcstrings` and the phrase «Soundscape balise» (FR-C1 coupling).
 
 ### FR-C1 — Siri phrases are French, and live outside Weblate (`agreed`)
 
@@ -276,7 +301,13 @@ couplings:
 - **«Vous marchez vers le nord»** for `directions_traveling_*`: those strings are only spoken in a vehicle.
 - **Sleep «Désactiver» / Snooze «Suspendre jusqu’au prochain lieu»**: see FR-T3.
 - **«Sentier sans issue»** for dead end: *"pourrait être un peu anxiogène"* (reviewer, Q8).
-- **«carrefour»** (Q6): less general than «croisement».
+- **«carrefour»** (Q6): narrower than «intersection».
+- **«croisement»** for Intersection (first reviewer Q6, 2026-09-30, used 2026-09-30 → 2026-10-19). It was attractive as the less formal word. JMB rejected it: it means only an X-shaped crossing, while the app also calls out T junctions. See FR-I1.
+- **«Minimal»** for Essential (first reviewer round 2 Q4). It was attractive because it ranks itself below «Simplifié». JMB rejected it: it reads as "minimalist". See FR-L1.
+- **«Reprendre maintenant», «Reprendre au déplacement», «En pause jusqu’au départ»** for Sleep/Snooze (round 2). JMB said «maintenant» is implied, and the snooze labels have smoother forms. See FR-T3.
+- **«une impasse»** for dead end (first reviewer Q8). JMB: «cul-de-sac» is the expression French speakers know. «sans issue» stays rejected as anxiogène.
+- **«balise audio»**: JMB says it reads as an HTML/programming tag.
+- **«Activer le son de la balise»** for Start Audio Beacon (JMB's own suggestion, made without seeing the screen): it would say the same as Unmute. See FR-B3.
 
 When a reviewer turns something down, record it here **with the evidence that made it attractive**. Otherwise the next pass reinstates it (rule C8).
 
@@ -286,7 +317,9 @@ When a reviewer turns something down, record it here **with the evidence that ma
 
 Q1 → FR-T1, Q2 → FR-T2, Q3 → FR-T3, Q4 → FR-R1, Q5 (articles before names) → FR-G2 `confirmed` (*"Ça sonne juste"*), Q6 → FR-I1, Q7 → FR-S2, Q8 → FR-G1, Q9 → FR-L1, Q10/Q11 → FR-B2. Q12 had no answer.
 
-### FR-I1 — Intersection is «croisement» (`agreed` 2026-09-30)
+### FR-I1 — Intersection is «intersection» (`agreed` 2026-10-19, JMB; reverses 2026-09-30)
+
+JMB: *"I would revert that. 'Intersection' is the most general and technical term and is what is used in the French highway code. It describes a place where two or more roadways join or cross, so it would describe a T junction as well, whereas croisement is very specific: it describes a place where two roads cross each other, typically in the shape of an X, a cross (une croix), hence the derived word croisement."* The app calls out T junctions and forks, so «intersection» is correct and «croisement» actually misdescribes them. 22 strings, with the gender change undone (m → f): «l’intersection suivante», «à l’intersection la plus proche», «d’une intersection», «de l’intersection», «Rues et intersections». «Une rue qui croise la vôtre» (verb) in `faq_road_names_answer` stays: there it is literally a crossing. Also `docs/release-notes.fr.md` (9 lines). The 2026-09-30 text follows.
 
 Reviewer (Q6): *"un mot plus commun et généralisable que carrefour et moins formel qu’intersection."* 24 strings swept, including the label «Rues et croisements». The gender change (f → m) was rewritten throughout: «le croisement suivant», «au croisement le plus proche», «d’un croisement», «jusqu’au croisement suivant».
 
@@ -298,15 +331,23 @@ Reviewer (Q6): *"un mot plus commun et généralisable que carrefour et moins fo
 
 Q1 → FR-T2 `confirmed`, Q2 → FR-T3, Q3 → FR-B2 relaxed, Q4 → FR-L1 «Minimal», Q5 → FR-S3.
 
-## Open questions for round 3
+## Questionnaire round 3 — answered 2026-10-19 by JMB
 
-1. Introduction term: you wrote «balise audio»; the app says «balise sonore». Is «balise sonore» fine, or do you prefer «balise audio»?
-2. «Minimal» as level 3 (Détaillé / Simplifié / Minimal / Silencieux): does it now sound clearly ranked?
-3. Anything else.
+Q1 → FR-B2 «balise sonore» `confirmed`; Q2 → FR-L1 «Essentiel» (reverses «Minimal»); Q3 (anything else) → comments on every item in «Ce que nous avons décidé»: FR-T1 and FR-S2 `confirmed`, FR-I1 reverted, FR-T3 relabelled, FR-G1 «cul-de-sac», FR-B3 opened.
+
+JMB couldn't parse our sheet's «Étape … sans « de parcours »»: they read it as possibly «sens de parcours» (direction of travel). We meant «étape», without the words «de parcours». They raised no objection to «étape», so FR-T2 stays `confirmed`. The sheet's wording was at fault: say it positively next time («Étape», as in «Étape suivante»).
+
+## Open questions for round 4 (JMB)
+
+1. FR-B3: on a place's details screen, the button *Start Audio Beacon* puts a new audio beacon on that place. It doesn't unmute one: that's «Réactiver le son de la balise». Which label: «Activer la balise sonore», «Lancer la balise sonore», «Placer une balise sonore ici», or another?
+2. FR-G1: «Sentier menant à un cul-de-sac», or «Sentier en cul-de-sac»? The second needs a template change.
+3. FR-T3: the Wake On Leave button «Reprise dès le mouvement» is a noun phrase, next to verb buttons «Mettre en pause» and «Reprendre». Is that fine on a button, or would «Reprendre dès le mouvement» be better?
 
 ## fr_CA is derived from this file
 
 Since 2026-09-25, Canadian French is built from our French plus a Canadian layer (see `fr_CA.md`). Any change decided here (FR-T1, FR-T2, FR-G1) should be carried to fr_CA in the same pass. **Not yet done for the 2026-09-30 decisions**: fr_CA already had its own «annonces» and «point de cheminement», so each decision needs checking against `fr_CA.md` first.
+
+**JMB's 2026-10-19 decisions:** fr_CA copied two of the reversed choices, «croisement» (22 lines) and «Minimal» (7). «Intersection» is also the standard term in Quebec (the Code de la sécurité routière), so FR-I1 very likely carries over. «Essentiel», «cul-de-sac» and the Snooze labels need a Canadian ear, so record them in `fr_CA.md` before sweeping.
 
 ## Provenance
 
@@ -360,5 +401,7 @@ Also changed the same day:
 - `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).
 
 **2026-10-01 — round-2 answers (Q1–Q5).** Confirmed «étape» and the Sleep labels; changed Wake On Leave, the third detail level and the bare-«balise» rule; FR-S3 is about our questionnaire, not the app. Swept into 43 units in `/tmp/translation-review/fr-findings.json` (FR-B2 34, FR-L1 7, FR-T3 2, with overlaps). Nothing applied. fr_CA not yet checked against these.
+
+**2026-10-19 — JMB's answers (round 3 plus comments on every decision), on `main`.** Swept the strings.xml corpus (1655 units; the help text is still `help_text_*`/`faq_*` on main): 43 units in `/tmp/translation-review/fr-findings.json`, 35 to apply (FR-I1 22, FR-L1 7, FR-T3 6, FR-G1 2, with overlaps) and 8 FR-B3 held with `suggested = current`. Nothing applied. Still to carry in the apply step: `docs/release-notes.fr.md`, a Siri regeneration for «Essentiel», the GrammarMarkersTest wording, and the questionnaire's «Ce que nous avons décidé». fr_CA not checked.
 
 **2026-10-01 — release notes (C26).** `docs/release-notes.fr.md`: «Minimal», «balise» after the first mention, *Annoncer la balise*, and the sleep passage quotes *Reprendre au déplacement*.
