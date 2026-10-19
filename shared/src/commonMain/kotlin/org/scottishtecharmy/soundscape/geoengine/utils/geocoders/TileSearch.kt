@@ -5,9 +5,13 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import okio.Path.Companion.toPath
 import org.scottishtecharmy.soundscape.components.LocationSource
+import org.scottishtecharmy.soundscape.dto.BoundingBox
+import org.scottishtecharmy.soundscape.dto.Tile as GridTile
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometry
@@ -15,13 +19,17 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometryA
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.parseGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.pointIsOffTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.translateProperties
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
@@ -71,13 +79,13 @@ class TileSearch(
         addressCache.keys.removeAll { !keepSet.contains(it) }
     }
 
-    fun findNearestNamedWay(location: LngLatAlt, name: String?): Way? {
+    fun findNearestNamedWay(location: LngLatAlt, name: String?, grid: GridState = gridState): Way? {
         val nearestWays =
-            gridState.getFeatureTree(TreeId.ROADS).getNearestCollection(
+            grid.getFeatureTree(TreeId.ROADS).getNearestCollection(
                 location,
                 100.0,
                 10,
-                gridState.ruler,
+                grid.ruler,
 
                 )
         for (way in nearestWays) {
@@ -371,11 +379,16 @@ class TileSearch(
         val joinedValues: List<String?>,
     )
 
-    /** The layers of the tile at [tileX], [tileY] which the search looks in - none if it can't be read. */
-    private fun searchedLayers(reader: PmTilesReader?, tileX: Int, tileY: Int): List<SearchedLayer> {
+    /** The tile at [tileX], [tileY], or null if it can't be read. */
+    private fun readTile(reader: PmTilesReader?, tileX: Int, tileY: Int): Tile? {
         val tileData = try { reader?.getTile(MAX_ZOOM_LEVEL, tileX, tileY) } catch (_: Exception) { null }
-        if ((reader == null) || (tileData == null)) return emptyList()
-        val tile = decompressTile(reader.tileCompression, tileData) ?: return emptyList()
+        if ((reader == null) || (tileData == null)) return null
+        return decompressTile(reader.tileCompression, tileData)
+    }
+
+    /** The layers of [tile] which the search looks in - none if it couldn't be read. */
+    private fun searchedLayers(tile: Tile?): List<SearchedLayer> {
+        if (tile == null) return emptyList()
         return tile.layers
             .filter { (it.name == "transportation") || (it.name == "poi") }
             .map { layer ->
@@ -689,6 +702,224 @@ class TileSearch(
         }
     }
 
+    /**
+     * The tiles the street called [normalizedName] runs through, out from the tile at [tileX],
+     * [tileY] where it was found: those joined to it, edge to edge, by tiles which all have the
+     * name among their strings. Only the tiles the search looked through are known.
+     */
+    private fun streetTiles(normalizedName: String, tileX: Int, tileY: Int): Set<Pair<Int, Int>> {
+        val found = mutableSetOf(Pair(tileX, tileY))
+        val queue = ArrayDeque(found)
+        while (queue.isNotEmpty() && (found.size < MAX_STREET_TILES)) {
+            val (x, y) = queue.removeFirst()
+            for (next in listOf(Pair(x - 1, y), Pair(x + 1, y), Pair(x, y - 1), Pair(x, y + 1))) {
+                if (next in found) continue
+                if (stringCache[cacheIndex(next.first, next.second)]?.contains(normalizedName) != true)
+                    continue
+                found.add(next)
+                queue.add(next)
+            }
+        }
+        return found
+    }
+
+    /** A house with a number on the street being looked along, in the tile at [tileX], [tileY]. */
+    private class StreetHouse(
+        val housenumber: String,
+        val location: LngLatAlt,
+        val tileX: Int,
+        val tileY: Int,
+    )
+
+    /**
+     * The houses in [tiles] whose address is on [street], from the housenumber layer. A building
+     * numbered within its block isn't numbered along the street, even when it has one in its
+     * address - see JapaneseAddress - so it isn't one of them.
+     */
+    private fun housesOnStreet(
+        street: String,
+        tiles: Set<Pair<Int, Int>>,
+        tile: (Int, Int) -> Tile?
+    ): List<StreetHouse> {
+        val houses = mutableListOf<StreetHouse>()
+        val origin = LngLatAlt()
+        val ruler = CheapRuler(0.0)
+        for ((x, y) in tiles) {
+            val layer = tile(x, y)?.layers?.firstOrNull { it.name == "housenumber" } ?: continue
+            val streetKey = layer.keys.indexOf("street")
+            val houseNumberKey = layer.keys.indexOf("housenumber")
+            val blockNumberKey = layer.keys.indexOf("block_number")
+            // Most tiles the street runs through have no house on it, and are passed over on
+            // their values without looking at a single house
+            val streetValue = layer.values.indexOfFirst { it.string_value == street }
+            if ((streetKey < 0) || (houseNumberKey < 0) || (streetValue < 0)) continue
+            for (feature in layer.features) {
+                var onStreet = false
+                var numberedInBlock = false
+                var housenumber: String? = null
+                val tags = feature.tags
+                for (i in 0 until tags.size - 1 step 2) {
+                    when (tags[i]) {
+                        streetKey -> onStreet = (tags[i + 1] == streetValue)
+                        houseNumberKey -> housenumber = layer.values[tags[i + 1]].string_value
+                        blockNumberKey -> numberedInBlock = true
+                    }
+                }
+                if (!onStreet || numberedInBlock || (housenumber == null)) continue
+                val location = featureLocation(feature, x, y, origin, ruler)?.location ?: continue
+                houses.add(StreetHouse(housenumber, location, x, y))
+            }
+        }
+        return houses
+    }
+
+    /** The tiles of [streetTiles] on the way from [from] to [to], both included. */
+    private fun tilesBetween(
+        from: Pair<Int, Int>,
+        to: Pair<Int, Int>,
+        streetTiles: Set<Pair<Int, Int>>
+    ): Set<Pair<Int, Int>> {
+        val previous = mutableMapOf<Pair<Int, Int>, Pair<Int, Int>?>(from to null)
+        val queue = ArrayDeque(listOf(from))
+        while (queue.isNotEmpty()) {
+            val current = queue.removeFirst()
+            if (current == to) break
+            val (x, y) = current
+            for (next in listOf(Pair(x - 1, y), Pair(x + 1, y), Pair(x, y - 1), Pair(x, y + 1))) {
+                if ((next !in streetTiles) || previous.containsKey(next)) continue
+                previous[next] = current
+                queue.add(next)
+            }
+        }
+        if (!previous.containsKey(to)) return setOf(from, to)
+        val path = mutableSetOf<Pair<Int, Int>>()
+        var step: Pair<Int, Int>? = to
+        while (step != null) {
+            path.add(step)
+            step = previous[step]
+        }
+        return path
+    }
+
+    /**
+     * Where [houseNumber] is on [street], found from the tiles the street runs through rather
+     * than from the grid, which a search can reach well beyond. The housenumber layer of each of
+     * them says which numbers on the street it has: a house with the number is where it is, and
+     * otherwise the houses numbered either side of it say which few tiles to describe the street
+     * from, to place it between them. A street can run through a great many tiles, and a
+     * description of only the few around the houses is cheap enough to make for a search.
+     */
+    private fun locateHouseNumber(
+        street: String,
+        houseNumber: String,
+        tileX: Int,
+        tileY: Int,
+        tile: (Int, Int) -> Tile?,
+        streetDescriptions: MutableMap<Pair<String, Set<Pair<Int, Int>>>, StreetDescription?>,
+        localizedStrings: LocalizedStrings?
+    ): Pair<LngLatAlt, String>? {
+        val streetTiles = streetTiles(normalizeForSearch(street), tileX, tileY)
+        val houses = housesOnStreet(street, streetTiles, tile)
+
+        houses.firstOrNull { it.housenumber.equals(houseNumber, ignoreCase = true) }
+            ?.let { return Pair(it.location, it.housenumber) }
+
+        // The numbers either side of it, nearest first
+        fun leadingNumber(string: String) = string.takeWhile { it.isDigit() }.toIntOrNull()
+        val number = leadingNumber(houseNumber) ?: return null
+        val numbered = houses.mapNotNull { house -> leadingNumber(house.housenumber)?.let { Pair(it, house) } }
+        fun bracket(candidates: List<Pair<Int, StreetHouse>>): Pair<StreetHouse, StreetHouse>? {
+            val below = candidates.filter { it.first < number }.maxByOrNull { it.first } ?: return null
+            val above = candidates.filter { it.first > number }.minByOrNull { it.first } ?: return null
+            return Pair(below.second, above.second)
+        }
+        // Where odd numbers are on one side of the street and even on the other, the houses either
+        // side of it are those numbered two away, and they can be tiles apart from the houses
+        // opposite numbered one away
+        val (below, above) = bracket(numbered.filter { (it.first - number) % 2 == 0 })
+            ?: bracket(numbered)
+            ?: return null
+
+        val tiles = tilesBetween(
+            Pair(below.tileX, below.tileY),
+            Pair(above.tileX, above.tileY),
+            streetTiles
+        )
+        if (tiles.size > MAX_DESCRIBED_TILES) return null
+        val description = streetDescriptions.getOrPut(Pair(street, tiles)) {
+            describeStreet(street, tiles, below.location, tile, localizedStrings)
+        }
+        return description?.getLocationFromStreetNumber(houseNumber)
+    }
+
+    /**
+     * A [StreetDescription] of [street] made from only [tiles], following the street from where it
+     * is nearest to [location]. It has a GridState of its own, which nothing else sees.
+     */
+    private fun describeStreet(
+        street: String,
+        tiles: Set<Pair<Int, Int>>,
+        location: LngLatAlt,
+        tile: (Int, Int) -> Tile?,
+        localizedStrings: LocalizedStrings?
+    ): StreetDescription? {
+        val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+        val intersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
+        val transitIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
+        val streetNumbers = hashMapOf<String, FeatureCollection>()
+        for ((x, y) in tiles) {
+            val mvt = tile(x, y) ?: continue
+            val intersectionMap = hashMapOf<LngLatAlt, Intersection>()
+            val transitIntersectionMap = hashMapOf<LngLatAlt, Intersection>()
+            val tileStreetNumbers = hashMapOf<String, FeatureCollection>()
+            val collections = vectorTileToGeoJson(
+                tileX = x,
+                tileY = y,
+                mvt = mvt,
+                intersectionMap = intersectionMap,
+                streetNumberMap = tileStreetNumbers,
+                transitIntersectionMap = transitIntersectionMap,
+                nameKeys = gridState.nameKeys
+            )
+            for ((index, collection) in collections.withIndex()) {
+                featureCollections[index] += collection
+            }
+            intersections.add(intersectionMap)
+            transitIntersections.add(transitIntersectionMap)
+            for ((key, collection) in tileStreetNumbers) {
+                streetNumbers.getOrPut(key) { FeatureCollection() }.plusAssign(collection)
+            }
+        }
+
+        // Only this search uses it, so it shares the grid's treeContext rather than starting a
+        // thread of its own, and isn't held to it
+        val streetGrid = GridState(passedInTreeContext = gridState.treeContext)
+        streetGrid.validateContext = false
+        streetGrid.ruler = CheapRuler(location.latitude)
+        streetGrid.nameKeys = gridState.nameKeys
+        streetGrid.processGridState(
+            featureCollections,
+            CalloutPoiSelection.EVERYTHING,
+            intersections,
+            transitIntersections,
+            streetGrid.featureTrees,
+            streetGrid.gridIntersections,
+            streetGrid.gridTransitIntersections,
+            TileGrid(
+                tiles.map { (x, y) -> GridTile(x, y, MAX_ZOOM_LEVEL) }.toMutableList(),
+                BoundingBox(),
+                BoundingBox()
+            ),
+            localizedStrings
+        )
+        for ((key, collection) in streetNumbers) {
+            streetGrid.gridStreetNumberTreeMap[key] = FeatureTree(collection)
+        }
+
+        val way = findNearestNamedWay(location, street, streetGrid) ?: return null
+        return StreetDescription(street, streetGrid).apply { createDescription(way, localizedStrings) }
+    }
+
     override fun search(
         location: LngLatAlt,
         searchString: String,
@@ -732,6 +963,8 @@ class TileSearch(
             val layer: String,
             val houseNumber: String,
             val distance: Double,
+            val tileX: Int,
+            val tileY: Int,
         )
 
         val searchResults = mutableListOf<TileSearchResult>()
@@ -817,10 +1050,12 @@ class TileSearch(
         val detailedResults = mutableListOf<DetailedSearchResult>()
         // Results are often in the same tile, so each tile is read, and the strings in its layers
         // normalized, only once
+        val tiles = mutableMapOf<Long, Tile?>()
+        fun tile(x: Int, y: Int) = tiles.getOrPut(cacheIndex(x, y)) { readTile(reader, x, y) }
         val searchedLayersByTile = mutableMapOf<Long, List<SearchedLayer>>()
         for (result in searchResults) {
             val searchedLayers = searchedLayersByTile.getOrPut(cacheIndex(result.tileX, result.tileY)) {
-                searchedLayers(reader, result.tileX, result.tileY)
+                searchedLayers(tile(result.tileX, result.tileY))
             }
             for (searchedLayer in searchedLayers) {
                 val layer = searchedLayer.layer
@@ -863,7 +1098,9 @@ class TileSearch(
                                 featureProperties(layer, feature),
                                 layer.name,
                                 result.houseNumber,
-                                featureLocation.distance
+                                featureLocation.distance,
+                                result.tileX,
+                                result.tileY
                             )
                         )
                         featuresFound++
@@ -909,6 +1146,9 @@ class TileSearch(
                 accumulator
             }
 
+        // The descriptions of streets beyond the grid built so far by locateHouseNumber, as a
+        // street is often found more than once
+        val streetDescriptions = mutableMapOf<Pair<String, Set<Pair<Int, Int>>>, StreetDescription?>()
         val streetResults = whittledResults.map { result ->
             val mvt = MvtFeature()
 
@@ -923,6 +1163,15 @@ class TileSearch(
             translateProperties(mvt)
 
             // We've got results, see if we can improve the description from our GridState
+            fun setHouseNumber(numberResult: Pair<LngLatAlt, String>) {
+                mvt.properties?.set("housenumber", numberResult.second)
+                result.location = numberResult.first
+                mvt.geometry = Point(result.location)
+                // We want the housenumber to appear in the LocationDescription,
+                // so unset the name on the feature
+                mvt.name = null
+            }
+            var numberFound = false
             runBlocking {
                 withContext(gridState.treeContext) {
                     if (gridState.isLocationWithinGrid(result.location)) {
@@ -937,30 +1186,38 @@ class TileSearch(
                             if (result.layer == "transportation") {
                                 val sd = StreetDescription(result.string, gridState)
                                 sd.createDescription(nearestWay, localizedStrings)
-                                val numberResult = sd.getLocationFromStreetNumber(result.houseNumber)
-                                if (numberResult != null) {
-                                    mvt.properties?.set("housenumber", numberResult.second)
-                                    result.location = numberResult.first
-                                    mvt.geometry = Point(result.location)
-                                    // We want the housenumber to appear in the LocationDescription,
-                                    // so unset the name on the feature
-                                    mvt.name = null
+                                sd.getLocationFromStreetNumber(result.houseNumber)?.let {
+                                    setHouseNumber(it)
+                                    numberFound = true
                                 }
                             }
                         }
                     } else {
-                        // We could go a step further here and decode the grids around each result,
-                        // but that's a lot more work for the phone as it would have to do it for
-                        // each result that's outside the current grid. It could likely be easily
-                        // run in parallel, and we could perhaps make the results flow back and
-                        // update dynamically which would mean that the time taken was less
-                        // important.
                         if (result.layer == "transportation") {
                             if (mvt.name != null) {
                                 mvt.properties?.set("street", mvt.name)
                             }
                         }
                     }
+                }
+            }
+            // The house may be beyond the grid even when the part of the street that was found is
+            // within it, so it's looked for in the tiles the street runs through. That's done
+            // outside the treeContext, as it reads and decodes tiles of its own.
+            if (!numberFound && (result.layer == "transportation") && result.houseNumber.isNotEmpty()) {
+                val streetName = result.properties["name"] as? String ?: result.string
+                locateHouseNumber(
+                    streetName,
+                    result.houseNumber,
+                    result.tileX,
+                    result.tileY,
+                    ::tile,
+                    streetDescriptions,
+                    localizedStrings
+                )?.let { setHouseNumber(it) }
+            }
+            runBlocking {
+                withContext(gridState.treeContext) {
                     nearestSettlementName(result.location)?.let { mvt.properties?.set("city", it) }
                 }
             }
@@ -1139,6 +1396,11 @@ class TileSearch(
 
         // How many tiles out from the search location's tile a search looks
         private const val MAX_SEARCH_RADIUS = 10
+
+        // How many tiles a street is followed through to find the houses on it, and how many of
+        // those around the houses a street is described from to place one between them
+        private const val MAX_STREET_TILES = 64
+        private const val MAX_DESCRIBED_TILES = 6
 
         // How close a name has to be to the name given to a category search - the same threshold
         // MultiGeocoder uses for markers
