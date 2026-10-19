@@ -1158,10 +1158,24 @@ class AutoCallout(
         }
         tunnelAnnounced = true
 
+        // English says "Entering" either way, but languages such as Polish need a walking verb
+        // or a driving one ("Wchodzisz" / "Wjeżdżasz"), so each callout has a vehicle variant.
+        // Matched to a railway counts as riding even when stopped, and the sticky vehicle window
+        // covers a car or bus slowing at the tunnel mouth.
+        val inVehicle = userGeometry.inVehicle() ||
+            (userGeometry.mapMatchedRailway != null) ||
+            recentlyInVehicle(userGeometry)
         val text = if (name != null) {
-            localized?.get(StringKey.DirectionsEnteringTunnelNamed, name) ?: "Entering $name"
+            localized?.get(
+                if (inVehicle) StringKey.DirectionsEnteringTunnelNamedVehicle
+                else StringKey.DirectionsEnteringTunnelNamed,
+                name
+            ) ?: "Entering $name"
         } else {
-            localized?.get(StringKey.DirectionsEnteringTunnel) ?: "Entering a tunnel"
+            localized?.get(
+                if (inVehicle) StringKey.DirectionsEnteringTunnelVehicle
+                else StringKey.DirectionsEnteringTunnel
+            ) ?: "Entering a tunnel"
         }
 
         return TrackedCallout(
