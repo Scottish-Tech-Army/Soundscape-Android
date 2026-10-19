@@ -423,6 +423,35 @@ class TileSearchTest {
         assertEquals(true, results.zipWithNext().all { (a, b) -> a.score <= b.score })
     }
 
+    @Test
+    fun compareAndAddToResults_sameStringInTheSameTile_takesOneResult() {
+        val tileSearch = newTileSearch()
+        val results = mutableListOf<TileSearch.TileSearchResult>()
+        val limit = 2
+
+        // A POI has its name under several tags, so the same string is found several times in a
+        // tile - but it's one match, and the copies mustn't crowd out the name in another tile
+        assertTrue(tileSearch.compareAndAddToResults("house", "house", results, limit, 0, 0))
+        assertTrue(tileSearch.compareAndAddToResults("house", "house", results, limit, 0, 0))
+        assertTrue(tileSearch.compareAndAddToResults("house", "house", results, limit, 1, 0))
+
+        assertEquals(listOf(0, 1), results.map { it.tileX })
+    }
+
+    @Test
+    fun compareAndAddToResults_sameStringInTheSameTile_keepsTheBetterScore() {
+        val tileSearch = newTileSearch()
+        val results = mutableListOf<TileSearch.TileSearchResult>()
+
+        // A worse score for the string, from comparing it with the needle without its settlement,
+        // say, then a better one
+        assertTrue(tileSearch.compareAndAddToResults("houze", "house", results, 8, 0, 0))
+        assertTrue(tileSearch.compareAndAddToResults("house", "house", results, 8, 0, 0))
+
+        assertEquals(1, results.size)
+        assertEquals(0.0, results[0].score)
+    }
+
     // ============================================================================================
     // findNearestNamedWay
     // ============================================================================================

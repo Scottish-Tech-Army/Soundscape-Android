@@ -342,6 +342,15 @@ class WorldCitiesTest {
     }
 
     @Test
+    fun osakaHouseNumberOnAStreetNamedLikeABusStop() {
+        // 道頓堀 is a pedestrian street, with houses numbered along it, but it's also the name of
+        // the bus stops on Sakaisuji nearer Osaka station. A search for a house on it is for the
+        // street, not for the bus stop.
+        val result = osaka.search("道頓堀 1-4-17").first()
+        assertEquals("道頓堀 1-4-17", result.name)
+    }
+
+    @Test
     fun osakaBuildingNumberedWithinItsBlockIsNotAStreetNumber() {
         // Every house on 七松線 is numbered within its block, though they have the street in
         // their address too: 29 is building 29 of block 4 in 西難波町6丁目. Its number says

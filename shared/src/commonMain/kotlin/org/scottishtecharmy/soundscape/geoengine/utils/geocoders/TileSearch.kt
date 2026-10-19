@@ -134,6 +134,19 @@ class TileSearch(
             // "4a Avenida Sur" finds number 4a on 5a Avenida Sur.
             val score = if (houseNumber.isEmpty()) fuzzyScore else fuzzyScore + HOUSE_NUMBER_PENALTY
 
+            // The same string in the same tile is the one match, however many times it's found -
+            // a POI has its name under several tags, and "堺筋道頓堀" ends with "道頓堀" - and the
+            // results the search can take mustn't be filled up with copies of it, hiding the same
+            // name in other tiles
+            val same = searchResults.firstOrNull {
+                (it.string == haystackString) && (it.tileX == tileX) && (it.tileY == tileY) &&
+                    (it.houseNumber == houseNumber)
+            }
+            if (same != null) {
+                if (same.score <= score) return true
+                searchResults.remove(same)
+            }
+
             // If we already have better search results, discard this one
             val countOfBetter = searchResults.count { it.score < score }
             if (countOfBetter < searchResultLimit) {
@@ -978,7 +991,10 @@ class TileSearch(
             val distance: Double,
             val tileX: Int,
             val tileY: Int,
-        )
+        ) {
+            // Whether the house with houseNumber was found on the street
+            var housePlaced = false
+        }
 
         val searchResults = mutableListOf<TileSearchResult>()
         val searchResultLimit = 8
@@ -1014,6 +1030,9 @@ class TileSearch(
                                 }
                             }
                         }
+                        // A name is in a tile's values once for each tag it's under, and it only
+                        // needs comparing once
+                        cache = cache.distinct()
                         stringCache[tileIndex] = cache
                     }
                 }
@@ -1178,6 +1197,7 @@ class TileSearch(
             // We've got results, see if we can improve the description from our GridState
             fun setHouseNumber(numberResult: Pair<LngLatAlt, String>) {
                 mvt.properties?.set("housenumber", numberResult.second)
+                result.housePlaced = true
                 result.location = numberResult.first
                 mvt.geometry = Point(result.location)
                 // We want the housenumber to appear in the LocationDescription,
@@ -1235,19 +1255,24 @@ class TileSearch(
                 }
             }
             Pair(mvt, result)
-        }.fold(mutableListOf<Pair<MvtFeature, DetailedSearchResult>>()) { accumulator, result ->
-            // Check if we already have this exact name at approximately the same location
-            val isDuplicate = accumulator.any {
-                it.second.string == result.second.string && ruler.distance(
-                    it.second.location,
-                    result.second.location
-                ) < 100.0
-            }
-            if (!isDuplicate) {
-                accumulator.add(result)
-            }
-            accumulator
         }
+            // A street with the house on it comes before a place which only has the street's name -
+            // a search for "道頓堀 1-4-17" is for the house on 道頓堀, not the bus stop called 道頓堀
+            // nearer by. The sort keeps the nearest first otherwise.
+            .sortedWith(compareBy({ it.second.score }, { !it.second.housePlaced }))
+            .fold(mutableListOf<Pair<MvtFeature, DetailedSearchResult>>()) { accumulator, result ->
+                // Check if we already have this exact name at approximately the same location
+                val isDuplicate = accumulator.any {
+                    it.second.string == result.second.string && ruler.distance(
+                        it.second.location,
+                        result.second.location
+                    ) < 100.0
+                }
+                if (!isDuplicate) {
+                    accumulator.add(result)
+                }
+                accumulator
+            }
         try { reader?.close() } catch (_: Exception) {}
 
         // The buildings which have the address come before the blocks which do, nearest first. A
