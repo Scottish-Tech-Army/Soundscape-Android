@@ -50,7 +50,7 @@
             "object_types": [
                 "node"
             ],
-            "description": "Bus stops are called out, and only those serving the direction of travel when riding a bus."
+            "description": "Bus stops are called out, and only those serving the direction of travel when riding a bus. They can be searched for by type, e.g. bus stop."
         },
         {
             "key": "highway",
@@ -135,7 +135,7 @@
                 "node",
                 "area"
             ],
-            "description": "Train stations are called out as points of interest."
+            "description": "Train stations are called out as points of interest, and can be searched for by name or by type, e.g. train station."
         },
         {
             "key": "railway",
@@ -151,7 +151,7 @@
             "object_types": [
                 "node"
             ],
-            "description": "Tram stops are called out, and stop positions on the line are used while travelling by tram."
+            "description": "Tram stops are called out and can be searched for by type. Stop positions on the line are used while travelling by tram."
         },
         {
             "key": "public_transport",
@@ -183,7 +183,7 @@
                 "node",
                 "area"
             ],
-            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can be searched for by name or by type (e.g. pharmacy, cafe, bench), including unnamed ones in the offline maps, and used as audio beacon destinations."
         },
         {
             "key": "shop",
@@ -191,7 +191,7 @@
                 "node",
                 "area"
             ],
-            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can be searched for by name or by type (e.g. pharmacy, cafe, bench), including unnamed ones in the offline maps, and used as audio beacon destinations."
         },
         {
             "key": "tourism",
@@ -199,7 +199,7 @@
                 "node",
                 "area"
             ],
-            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can be searched for by name or by type (e.g. pharmacy, cafe, bench), including unnamed ones in the offline maps, and used as audio beacon destinations."
         },
         {
             "key": "leisure",
@@ -207,7 +207,7 @@
                 "node",
                 "area"
             ],
-            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can be searched for by name or by type (e.g. pharmacy, cafe, bench), including unnamed ones in the offline maps, and used as audio beacon destinations."
         },
         {
             "key": "historic",
@@ -215,7 +215,7 @@
                 "node",
                 "area"
             ],
-            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can be searched for by name or by type (e.g. pharmacy, cafe, bench), including unnamed ones in the offline maps, and used as audio beacon destinations."
         },
         {
             "key": "office",
@@ -223,7 +223,7 @@
                 "node",
                 "area"
             ],
-            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can also be searched for and used as audio beacon destinations."
+            "description": "Points of interest are called out by name, or by their type when unnamed, as the user gets close to them. They can be searched for by name or by type (e.g. pharmacy, cafe, bench), including unnamed ones in the offline maps, and used as audio beacon destinations."
         },
         {
             "key": "sport",
@@ -231,7 +231,7 @@
                 "node",
                 "area"
             ],
-            "description": "Unnamed sports pitches are called out by their sport, e.g. Football Pitch or Skate Park, rather than as a Sports Field."
+            "description": "Unnamed sports pitches are called out by their sport, e.g. Football Pitch or Skate Park, rather than as a Sports Field. Searching for a sport's pitch, e.g. football pitch, finds just those pitches."
         },
         {
             "key": "artwork_type",
@@ -239,14 +239,14 @@
                 "node",
                 "area"
             ],
-            "description": "Unnamed artworks are called out by their type, e.g. Mural or Statue, rather than as Artwork."
+            "description": "Unnamed artworks are called out by their type, e.g. Mural or Statue, rather than as Artwork. Searching for a type, e.g. mural or sculpture, finds just those artworks."
         },
         {
             "key": "information",
             "object_types": [
                 "node"
             ],
-            "description": "Unnamed tourism=information features are called out by their type, e.g. Signpost, Information Board or Tactile Map, rather than as Information."
+            "description": "Unnamed tourism=information features are called out by their type, e.g. Signpost, Information Board or Tactile Map, rather than as Information. Searching for a type, e.g. map board or tactile map, finds just those features."
         },
         {
             "key": "entrance",
