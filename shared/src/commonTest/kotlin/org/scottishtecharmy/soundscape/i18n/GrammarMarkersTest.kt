@@ -490,8 +490,9 @@ class GrammarMarkersTest {
         assertEquals("Sentier à l’impasse", fr("Sentier {fr:à impasse}"))
     }
 
-    // The French strings say «menant à une impasse» (reviewer, 2026-09-30): an indefinite article
-    // already in the substituted text must be left alone, while a map name still gets its own.
+    // An indefinite article already in the substituted text must be left alone, while a map name
+    // still gets its own. (The French dead-end strings said «menant à une impasse» until 2026-10-20;
+    // they are now «%1$s sans issue», with no marker, but «menant {fr:à …}» is still used for names.)
     @Test
     fun frenchLeadingToKeepsAnIndefiniteArticle() {
         assertEquals("Sentier menant à une impasse", fr("Sentier menant {fr:à une impasse}"))
