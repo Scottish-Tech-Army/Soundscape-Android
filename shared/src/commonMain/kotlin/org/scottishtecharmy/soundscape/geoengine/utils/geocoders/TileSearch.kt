@@ -934,6 +934,7 @@ class TileSearch(
      * A [StreetDescription] of [street] made from only [tiles], following the street from where it
      * is nearest to [location]. It has a GridState of its own, which nothing else sees.
      */
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun describeStreet(
         street: String,
         tiles: Set<Pair<Int, Int>>,
@@ -992,6 +993,7 @@ class TileSearch(
         return StreetDescription(street, streetGrid).apply { createDescription(way, localizedStrings) }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun search(
         location: LngLatAlt,
         searchString: String,
@@ -1386,6 +1388,7 @@ class TileSearch(
         val distance: Double,
     )
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun searchByCategory(
         location: LngLatAlt,
         values: Set<String>,
