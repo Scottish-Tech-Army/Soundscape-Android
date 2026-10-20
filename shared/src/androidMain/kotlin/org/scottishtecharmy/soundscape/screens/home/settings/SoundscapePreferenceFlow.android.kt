@@ -1,7 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.settings
 
+import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -21,11 +21,13 @@ import me.zhanghai.compose.preference.Preferences
  * it writes only the keys that actually changed - see [preferenceEdits].
  */
 @Composable
-@Suppress("DEPRECATION")
 internal actual fun rememberSoundscapePreferenceFlow(): MutableStateFlow<Preferences> {
     val context = LocalContext.current
-    val sharedPreferences =
-        remember(context) { PreferenceManager.getDefaultSharedPreferences(context) }
+    // The file androidx.preference's getDefaultSharedPreferences() opens, which the app uses.
+    // shared doesn't depend on androidx.preference, so the name is spelled out here.
+    val sharedPreferences = remember(context) {
+        context.getSharedPreferences("${context.packageName}_preferences", Context.MODE_PRIVATE)
+    }
     val flow = remember(sharedPreferences) {
         MutableStateFlow(sharedPreferences.asPreferences())
     }

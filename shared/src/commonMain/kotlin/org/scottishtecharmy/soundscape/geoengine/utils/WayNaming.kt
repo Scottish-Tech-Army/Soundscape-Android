@@ -236,7 +236,7 @@ fun addPoiDestinations(
                 way.setProperty("destination:backward", startName)
                 way.setProperty(
                     "$DESTINATION_KIND:backward",
-                    (startPoi as MvtFeature).superCategory.name
+                    startPoi.superCategory.name
                 )
                 addedDestinations = true
             }
@@ -247,7 +247,7 @@ fun addPoiDestinations(
                 way.setProperty("destination:forward", endName)
                 way.setProperty(
                     "$DESTINATION_KIND:forward",
-                    (endPoi as MvtFeature).superCategory.name
+                    endPoi.superCategory.name
                 )
                 addedDestinations = true
             }
