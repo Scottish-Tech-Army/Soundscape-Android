@@ -119,8 +119,8 @@ class TileUtilsTest {
                 "Paris", parisTestLocation,
                 TileCounts(
                     crossings = 962, paths = 7001, intersections = 6680, entrances = 284,
-                    pois = 8159, mobility = 1392, objects = 743, information = 150, places = 4183,
-                    landmarks = 1168, safety = 297,
+                    pois = 8037, mobility = 1392, objects = 743, information = 150, places = 4183,
+                    landmarks = 1168, safety = 175,
                 )
             ),
             CityTile(
@@ -213,6 +213,18 @@ class TileUtilsTest {
             val testPoiCollection = city.gridState.getFeatureCollection(TreeId.POIS)
 
             Assert.assertEquals(city.name, city.counts.pois, testPoiCollection.features.size)
+        }
+    }
+
+    @Test
+    fun parkingSpacesAreNotPois() {
+        // amenity=parking_space is each individual bay in a car park - often dozens of them, all
+        // unnamed, and nothing a pedestrian needs to hear about
+        for (city in cityTiles) {
+            val parkingSpaces = city.gridState.getFeatureCollection(TreeId.POIS).features.filter {
+                (it as MvtFeature).featureClass == "parking_space"
+            }
+            Assert.assertEquals(city.name, 0, parkingSpaces.size)
         }
     }
 

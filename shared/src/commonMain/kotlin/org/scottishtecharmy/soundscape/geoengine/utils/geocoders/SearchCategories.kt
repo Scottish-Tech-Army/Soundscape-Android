@@ -208,7 +208,7 @@ object SearchCategories {
         "primary_construction", "secondary_construction", "tertiary_construction",
         "minor_construction", "path_construction", "service_construction", "track_construction",
         "raceway_construction", "city", "town", "village", "hamlet", "quarter", "locality",
-        "neighbourhood", "yes", "no", "unclassified", "building", "sport",
+        "neighbourhood", "yes", "no", "unclassified", "building", "sport", "parking_space",
     )
 
     /**

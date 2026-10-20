@@ -1433,6 +1433,8 @@ fun translateProperties(feature: MvtFeature): Boolean {
         "grit_bin",
         "vacant",
         "bollard",
+        // Each bay in a car park, often dozens together and all unnamed
+        "parking_space",
         "gate" -> {
             return false
         }
