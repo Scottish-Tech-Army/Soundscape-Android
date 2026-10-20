@@ -63,7 +63,7 @@ cite its numbered questions (round 5 since 2026-10-20, Q1…Q3 with "anything el
 | Waypoint | étape | `confirmed` (round 2, Q1: «cela se suffit à lui même») | Reviewer (Q2): their apps use «étape de parcours». Dave chose the short «étape» («Étape suivante»), which also ends the Landmark collision. Feminine: «l’étape suivante», «la première étape». See FR-T2 |
 | Landmarks | repères / point de repère | `unconfirmed` | No longer collides with Waypoint. `osm_generic_landmark` «Point de repère» stays |
 | Traveling (vehicle) | Vous vous déplacez vers… | `confirmed` (JMB, 2026-10-19) | See FR-S2 |
-| Route | itinéraire | `unconfirmed` | Often capitalised mid-sentence. See FR-S1 |
+| Route | itinéraire | `unconfirmed` | No reviewer objected. Mid-sentence capitals are gone (FR-S1) |
 | Intersection (and Junction, as in «Rues et intersections») | intersection | `agreed` (JMB, 2026-10-19, reverses round 1) | The general term, the one the French highway code uses: any place where roads join or cross, a T junction included. «croisement» is only an X-shaped crossing. Feminine: «l’intersection suivante», «à l’intersection la plus proche», «d’une intersection». See FR-I1 |
 | Junction (motorway, with ref) | sortie | `unconfirmed` | `directions_junction_with_ref` «Sortie %1$s». Correct for French motorways, where junctions are numbered exits |
 | Sleep | pause (Mettre en pause / En pause / Reprendre); mode pause | `confirmed` (round 2 Q2; JMB 2026-10-19 dropped «maintenant») | See FR-T3 |
@@ -219,7 +219,9 @@ noun. «Désactivation temporaire» for Snooze is also long and doesn't say
 veille» / «veille automatique», but the pair has to stay clearly distinct.
 See Q3.
 
-### FR-S1 — English title case leaking mid-sentence (`unconfirmed`, cosmetic)
+### FR-S1 — English title case leaking mid-sentence (resolved, checked 2026-10-20)
+
+**2026-10-20:** only 3 strings still capitalise these words mid-sentence (`tour_nearby_markers`, `tour_markers_and_routes`, `tour_start_beacon`), and each names a real button or screen (*Marqueurs à proximité*, the *Marqueurs* screen): the defensible case below. Nothing left to sweep. The original note follows.
 
 «Nouvel Itinéraire», «Démarrer la Balise sonore», «Créez un Itinéraire…
 Marqueurs», «Arrêter l'Itinéraire». French doesn't capitalise common nouns
@@ -254,7 +256,7 @@ The earlier history follows.
 
 Reviewer (Q9): *"Équilibré ne fonctionne pas en termes de traduction"*, and «Discret» vs «Silencieux» may not be distinct enough. 8 strings swept. The Polish reviewer independently renamed Quiet «Uproszczony» ("simplified"), and the Dutch reviewer also rejected Balanced/Quiet. Three languages have now had trouble with them, which suggests the English names themselves are the problem (not changed).
 
-**Gap found, not fixed:** the iOS Siri choices for detail level (`CalloutDetailLevel.caseDisplayRepresentations` in `SoundscapeIntents.swift`) have **no French entries** in `Localizable.xcstrings`, so Siri only knows the English names. `help_text_assistant_commands_ios` tells French users to say «Simplifié». This affects every language, not just French.
+**Resolved by 2026-10-20** (the Siri generator now emits French detail-level choices: «Essentiel» etc. are in `Localizable.xcstrings`). Original note: **Gap found, not fixed:** the iOS Siri choices for detail level (`CalloutDetailLevel.caseDisplayRepresentations` in `SoundscapeIntents.swift`) have **no French entries** in `Localizable.xcstrings`, so Siri only knows the English names. `help_text_assistant_commands_ios` tells French users to say «Simplifié». This affects every language, not just French.
 
 ### FR-B2 — «balise sonore» first, then «balise» (`agreed` 2026-10-01, relaxes the 2026-09-30 rule)
 
