@@ -190,6 +190,13 @@ jobs:
         with:
           command: mogrify -path docs/documentationScreens -crop 1080x2130+0+140 docs/documentationScreens/*.*
 
+      # mogrify runs as root in the action's container, and since Alpine's
+      # imagemagick 7.1.2.34 it writes files the runner user can't read.
+      - name: Restore screenshot ownership
+        run: |
+          sudo chown -R "$(id -u):$(id -g)" docs/documentationScreens
+          chmod -R u+rwX,go+rX docs/documentationScreens
+
       - name: Commit new screenshots and help pages
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
