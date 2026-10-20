@@ -31,6 +31,10 @@
          foregroundServiceType below, when the feature ships. -->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
+    <!-- UnusedTranslation is ignored because lint doesn't know that Indonesian's resource folder,
+         values-in (the shortcut strings generateShortcutStrings writes), is the language
+         locales_config declares as "id". Resources still match on the old ISO code, so the
+         folder stays values-in; declaring "in" as well would list Indonesian twice. -->
     <application
         android:name=".SoundscapeApplication"
         android:allowBackup="true"
@@ -43,7 +47,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SoundscapeAlpha"
         tools:targetApi="31"
-        tools:ignore="UnusedAttribute">
+        tools:ignore="UnusedAttribute,UnusedTranslation">
         <activity
             android:name=".OnboardingActivity"
             android:exported="false"

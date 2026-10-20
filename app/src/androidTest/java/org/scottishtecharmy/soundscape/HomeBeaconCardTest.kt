@@ -62,7 +62,7 @@ class HomeBeaconCardTest {
     )
 
     @Composable
-    private fun content(
+    private fun HomeWithBeacon(
         route: RouteWithMarkers,
         onSaveMarker: ((LocationDescription) -> Unit)? = {},
         routeFunctions: RouteFunctions = RouteFunctions(),
@@ -104,7 +104,7 @@ class HomeBeaconCardTest {
 
     @Test
     fun beaconPanel_showsDistanceAndDirection() {
-        composeTestRule.setContent { content(beaconRoute()) }
+        composeTestRule.setContent { HomeWithBeacon(beaconRoute()) }
 
         // ~390 m south east of the user location above, shown abbreviated ("390 m, SE").
         composeTestRule.onNodeWithTag("routeBeaconDistance", useUnmergedTree = true).assertIsDisplayed()
@@ -141,7 +141,7 @@ class HomeBeaconCardTest {
         var moreInfo = 0
         var saved: LocationDescription? = null
         composeTestRule.setContent {
-            content(
+            HomeWithBeacon(
                 beaconRoute(),
                 onSaveMarker = { saved = it },
                 routeFunctions = RouteFunctions(
@@ -190,7 +190,7 @@ class HomeBeaconCardTest {
 
     @Test
     fun beaconPanel_omitsAddToMarkers_whenTheBeaconIsAlreadyAMarker() {
-        composeTestRule.setContent { content(beaconRoute(markerId = 42L)) }
+        composeTestRule.setContent { HomeWithBeacon(beaconRoute(markerId = 42L)) }
 
         val labels = composeTestRule
             .onNodeWithTag("routeBeaconTitle", useUnmergedTree = true)
