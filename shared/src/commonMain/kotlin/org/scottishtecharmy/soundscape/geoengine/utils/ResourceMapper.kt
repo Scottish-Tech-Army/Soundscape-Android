@@ -1682,6 +1682,13 @@ class ResourceMapper {
         /** Every OSM value which has a translated name, with that name. */
         fun entries(): Map<String, StringResource> = resourceMap
 
+        /**
+         * The names more specific than an OSM value's - "pitch_soccer", "artwork_mural",
+         * "information_map" - keyed by what MvtFeature.specificTypeKey returns. Each key starts
+         * with the OSM value it's a kind of.
+         */
+        fun qualifiedEntries(): Map<String, StringResource> = qualifiedResourceMap
+
         fun getUnfoundKeys(): Set<String> {
             return unfoundKeys
         }

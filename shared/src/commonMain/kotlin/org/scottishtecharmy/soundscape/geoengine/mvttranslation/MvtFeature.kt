@@ -306,8 +306,11 @@ open class MvtFeature : Feature() {
      * otherwise be called out as a Sports Field and a Gallery, and a guidepost and a tactile map
      * both as Information. Other classes keep their class name first: a subclass such as a
      * place of worship's religion isn't a name for the place.
+     *
+     * Category search uses the same key, so that searching for "Map Board" finds exactly the
+     * places that are called out as one.
      */
-    private fun specificTypeKey(): String? = when (featureClass) {
+    fun specificTypeKey(): String? = when (featureClass) {
         // planetiler puts the pitch's sport in its subclass, sometimes several ("soccer;rugby")
         "pitch" -> featureSubClass?.substringBefore(';')?.let { sport ->
             ResourceMapper.qualifiedKey("pitch", sport) ?: sport

@@ -58,8 +58,18 @@ data class OsmTag(val key: String?, val value: String) {
     fun toPhoton() = "${key ?: ""}:$value"
 }
 
-/** A type of place that can be searched for - every OSM tag which means that type of place. */
-data class SearchCategory(val id: String, val tags: List<OsmTag>) {
+/**
+ * A type of place that can be searched for - every OSM tag which means that type of place, and
+ * every [specificTypes] key. Those are the kinds of place which OSM tags only with a second tag -
+ * a map board is tourism=information plus information=map, a mural tourism=artwork plus
+ * artwork_type=mural - and which the offline search matches with MvtFeature.specificTypeKey.
+ * Photon can't search for them, as it only filters on a place's main tag.
+ */
+data class SearchCategory(
+    val id: String,
+    val tags: List<OsmTag>,
+    val specificTypes: Set<String> = emptySet(),
+) {
     /** The OSM values, which is all the offline tiles' class and subclass have to match against */
     val values: Set<String> get() = tags.map { it.value }.toSet()
 }
@@ -157,7 +167,8 @@ class SearchCategoryMatcher(phrases: List<Pair<String, SearchCategory>>) {
         1 -> categories[0]
         else -> SearchCategory(
             categories.joinToString("+") { it.id },
-            categories.flatMap { it.tags }.distinct()
+            categories.flatMap { it.tags }.distinct(),
+            categories.flatMap { it.specificTypes }.toSet()
         )
     }
 
@@ -178,9 +189,9 @@ class SearchCategoryMatcher(phrases: List<Pair<String, SearchCategory>>) {
 }
 
 /**
- * Builds the [SearchCategoryMatcher] for the app's current language from two sources: the
- * translated name of every OSM value in [ResourceMapper], and the translated synonym lists for the
- * most commonly searched for types of place.
+ * Builds the [SearchCategoryMatcher] for the app's current language from three sources: the
+ * translated name of every OSM value in [ResourceMapper], the more specific names it has for some
+ * of them, and the translated synonym lists for the most commonly searched for types of place.
  */
 object SearchCategories {
 
@@ -276,6 +287,15 @@ object SearchCategories {
             .groupBy({ it.value }, { it.key })
             .forEach { (resource, values) ->
                 val category = SearchCategory(resource.key, values.sorted().map { OsmTag(null, it) })
+                phrases.add(getString(resource) to category)
+            }
+
+        // The kinds of place named from a second tag - "Map Board", "Mural", "Football Pitch"
+        ResourceMapper.qualifiedEntries()
+            .entries
+            .groupBy({ it.value }, { it.key })
+            .forEach { (resource, keys) ->
+                val category = SearchCategory(resource.key, emptyList(), keys.toSet())
                 phrases.add(getString(resource) to category)
             }
 

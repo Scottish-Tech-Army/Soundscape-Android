@@ -1389,10 +1389,14 @@ class TileSearch(
     override fun searchByCategory(
         location: LngLatAlt,
         values: Set<String>,
+        specificTypes: Set<String>,
         name: String?,
         localizedStrings: LocalizedStrings?,
         limit: Int
     ): List<LocationDescription> {
+        // A specific type is a kind of the OSM value its key starts with - "information_map" of
+        // "information" - so features with that value are the candidates for it
+        val specificTypeValues = specificTypes.map { it.substringBefore('_') }.toSet()
         val tileLocation = getXYTile(location, MAX_ZOOM_LEVEL)
         val reader = openReader(tileLocation) ?: return emptyList()
         val ruler = CheapRuler(location.latitude)
@@ -1425,25 +1429,39 @@ class TileSearch(
             val matchingValues = layer.values.withIndex()
                 .filter { (_, value) -> value.string_value in values }
                 .map { it.index }.toSet()
-            if (classKeys.isEmpty() || matchingValues.isEmpty()) continue
+            val candidateValues = layer.values.withIndex()
+                .filter { (_, value) -> value.string_value in specificTypeValues }
+                .map { it.index }.toSet()
+            if (classKeys.isEmpty() || (matchingValues.isEmpty() && candidateValues.isEmpty())) continue
             val nameKeys = layer.keys.withIndex().filter { (_, key) -> isNameKey(key) }.map { it.index }.toSet()
 
             for (feature in layer.features) {
                 val tags = feature.tags
                 var isMatch = false
+                var isCandidate = false
                 var nameMatches = (nameNeedle == null)
                 for (i in 0 until tags.size - 1 step 2) {
                     if ((tags[i] in classKeys) && (tags[i + 1] in matchingValues)) isMatch = true
+                    if ((tags[i] in classKeys) && (tags[i + 1] in candidateValues)) isCandidate = true
                     if (!nameMatches && (tags[i] in nameKeys)) {
                         val featureName = layer.values[tags[i + 1]].string_value ?: continue
                         nameMatches = normalizeForSearch(featureName)
                             .fuzzyCompare(nameNeedle!!, true) < NAME_MATCH_THRESHOLD
                     }
                 }
-                if (!isMatch || !nameMatches) continue
+                if ((!isMatch && !isCandidate) || !nameMatches) continue
+
+                val properties = featureProperties(layer, feature)
+                if (!isMatch) {
+                    val specificType = MvtFeature().apply {
+                        featureClass = properties["class"] as? String
+                        featureSubClass = properties["subclass"] as? String
+                        this.properties = properties
+                    }.specificTypeKey()
+                    if (specificType !in specificTypes) continue
+                }
 
                 val featureLocation = featureLocation(feature, x, y, location, ruler) ?: continue
-                val properties = featureProperties(layer, feature)
                 // A polygon which crosses tiles is found in each of them. Its rank is an ordinal
                 // within each tile, so it's the one property which differs between them.
                 if (results.any {

@@ -49,6 +49,9 @@ class PhotonGeocoder(
         nearbyLocation: LngLatAlt,
         localizedStrings: LocalizedStrings?
     ): List<LocationDescription>? {
+        // Photon has no way to search for a kind of place named by a second tag
+        if (category.tags.isEmpty()) return emptyList()
+
         // A value-only tag - ":school" - would also find every building=school, which is the
         // same school again
         val osmTags = category.tags.map { it.toPhoton() } + "!building"

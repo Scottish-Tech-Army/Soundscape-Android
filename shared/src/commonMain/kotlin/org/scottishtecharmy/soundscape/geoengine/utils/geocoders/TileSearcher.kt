@@ -13,12 +13,14 @@ interface TileSearcher {
     ): List<LocationDescription>
 
     /**
-     * The places with a class or subclass in [values] nearest to [location], nearest first. When
-     * [name] isn't null, only those which it matches the name of.
+     * The places with a class or subclass in [values], or with an MvtFeature.specificTypeKey in
+     * [specificTypes], nearest to [location], nearest first. When [name] isn't null, only those
+     * which it matches the name of.
      */
     fun searchByCategory(
         location: LngLatAlt,
         values: Set<String>,
+        specificTypes: Set<String>,
         name: String?,
         localizedStrings: LocalizedStrings?,
         limit: Int
