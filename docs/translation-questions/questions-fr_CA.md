@@ -75,8 +75,8 @@ c'était « Notification ».
 **Ce qui nous fait hésiter :** une personne de langue maternelle française
 (de France) a choisi « annonce », parce que « notification » désigne aussi les
 notifications du téléphone. Nous l'avons repris pour le Canada, ainsi que
-« étape » pour les points d'un itinéraire et « croisement » pour
-« intersection ».
+« étape » pour les points d'un itinéraire et « intersection » (le terme général,
+qui couvre aussi les intersections en T).
 
 **La question :** ces mots conviennent-ils au Québec, ou diriez-vous autre chose?
 
@@ -90,7 +90,8 @@ guidée, par exemple « Vous pouvez maintenant entendre la balise sonore. Elle e
 
 **Ce que dit l'application :** « Balise sonore » à la première mention et dans
 les titres; ensuite, et avec une action, simplement « balise » (« Désactiver le
-son de la balise », « Démarrer la balise »).
+son de la balise »). Pour créer une balise sur un lieu : « Placer la balise
+sonore ».
 
 **Ce qui nous fait hésiter :** le terme vient d'une traduction automatique; nous
 ne savons pas s'il évoque naturellement un son qui indique une direction. La
@@ -98,20 +99,22 @@ version d'origine de Microsoft pour le Canada disait « balise audio ».
 
 **La question :** est-ce naturel? Sinon, que diriez-vous?
 
-### Q3 — « Sentier vers une impasse » *(Dead-end way description)*
+### Q3 — « Sentier sans issue » *(Dead-end way description)*
 
 **Quand on l'entend :** en marchant, quand on passe devant un embranchement.
 L'application dit où mène ce chemin.
 
 **En anglais :** « Path to Moor Road », « Path to dead end ».
 
-**Ce que dit l'application :** « Sentier vers Moor Road », « Sentier vers
-une impasse ».
+**Ce que dit l'application :** « Sentier vers Moor Road », « Sentier sans
+issue ».
 
-**Ce qui nous fait hésiter :** en France, on a retenu « Sentier menant à une
-impasse », et « sans issue » a été jugé un peu anxiogène.
+**Ce qui nous fait hésiter :** c'est la formulation retenue en France
+(« Chemin sans issue »). Avant, l'application disait « Sentier vers une
+impasse ». On nous a aussi proposé « cul-de-sac ».
 
-**La question :** lequel préférez-vous ?
+**La question :** « sans issue » est-il naturel au Québec, ou diriez-vous
+plutôt « cul-de-sac » ou autre chose?
 
 ### Q4 — « Vous êtes prêt! » *(Gendered "you're ready")*
 
@@ -151,14 +154,15 @@ l'application dit en chemin.
 
 **En anglais :** « Detailed / Simplified / Essential / Silent ».
 
-**Ce que dit l'application :** Détaillé / Simplifié / Minimal / Silencieux.
+**Ce que dit l'application :** Détaillé / Simplifié / Essentiel / Silencieux.
 « Le mode Simplifié laisse de côté les chemins secondaires et les voies de
-service, et se répète moins souvent. Le mode Minimal n’annonce que les rues, les
-croisements et les repères. »
+service, et se répète moins souvent. Le mode Essentiel n’annonce que les rues, les
+intersections et les repères. »
 
-**Ce qui nous fait hésiter :** en France, « Essentiel » ne permettait pas de
-savoir s'il disait plus ou moins que « Simplifié »; il a été remplacé par
-« Minimal ». Nous l'avons repris pour le Canada.
+**Ce qui nous fait hésiter :** en France, on a d'abord essayé « Minimal », mais il
+évoque plutôt le minimalisme; « Essentiel » a été retenu (« les détails
+essentiels »). Nous l'avons repris pour le Canada. On peut se demander s'il dit
+plus ou moins que « Simplifié ».
 
 **La question :** les quatre niveaux se distinguent-ils bien à l'oreille, dans
 le bon ordre?
