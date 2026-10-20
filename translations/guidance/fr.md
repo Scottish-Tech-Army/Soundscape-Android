@@ -47,7 +47,7 @@ space that turned two words into one, and is now fixed. In FR-G1 the *replacemen
 `unconfirmed`.
 
 The questions for reviewers are in `docs/translation-questions/questions-fr.md`. Feedback will
-cite its numbered questions (round 3 since 2026-10-01, Q1…Q3 with "anything else" last), which match the round-3 list below.
+cite its numbered questions (round 5 since 2026-10-20, Q1…Q3 with "anything else" last), which match the round-5 list below.
 
 ---
 
@@ -356,6 +356,14 @@ Q1 → FR-B2 «balise sonore» `confirmed`; Q2 → FR-L1 «Essentiel» (reverses
 
 JMB couldn't parse our sheet's «Étape … sans « de parcours »»: they read it as possibly «sens de parcours» (direction of travel). We meant «étape», without the words «de parcours». They raised no objection to «étape», so FR-T2 stays `confirmed`. The sheet's wording was at fault: say it positively next time («Étape», as in «Étape suivante»).
 
+## Open questions for round 5
+
+The sheet was rewritten 2026-10-20 with these, and its «Ce que nous avons décidé» brought up to date.
+
+1. FR-B3: are our derived forms natural? «Placer la balise sonore sur ce marqueur», «Placer la balise sonore sur %1$s» (voice command), and «choisissez une destination proche et placez-y la balise sonore» (`first_launch_prompt_message`).
+2. FR-G1: the long form «%1$s sans issue via %2$s» comes out as «Chemin sans issue via Marches» (`%2$s` is `osm_steps`/`osm_bridge`/`osm_tunnel`, capitalised). Understandable, or «Chemin sans issue, par des marches» or similar? The capital also affects `confect_name_via` and `_to_via`.
+3. Anything else.
+
 ## Questionnaire round 4 — answered 2026-10-20 by JMB
 
 Q1 → FR-B3 «Placer la balise sonore ici», used without «ici»; Q2 → FR-G1 «Chemin sans issue»; Q3 → FR-T3 «Reprendre au déplacement». Unprompted: FR-D1, compass directions in lowercase.
@@ -431,6 +439,6 @@ Also changed the same day:
 
 **2026-10-19 — JMB's answers (round 3 plus comments on every decision), on `main`.** Swept the strings.xml corpus (1655 units; the help text is still `help_text_*`/`faq_*` on main): 43 units in `/tmp/translation-review/fr-findings.json`, 35 to apply (FR-I1 22, FR-L1 7, FR-T3 6, FR-G1 2, with overlaps) and 8 FR-B3 held with `suggested = current`. Nothing applied. Still to carry in the apply step: `docs/release-notes.fr.md`, a Siri regeneration for «Essentiel», the GrammarMarkersTest wording, and the questionnaire's «Ce que nous avons décidé». fr_CA not checked.
 
-**2026-10-20 — JMB's round-4 answers plus FR-D1.** Updated `/tmp/translation-review/fr-findings.json` (old copy: `fr-findings.2026-10-19.bak.json`): 52 units, 50 to apply (FR-I1 22, FR-B3 9, FR-D1 8, FR-L1 7, FR-T3 4, FR-G1 2, with overlaps). FR-T3's Wake On Leave rows were set back to `suggested = current`. Nothing applied. «ici» was then dropped from the FR-B3 label (Dave) because the audio menu reuses it.
+**2026-10-20 — JMB's round-4 answers plus FR-D1.** Updated `/tmp/translation-review/fr-findings.json` (old copy: `fr-findings.2026-10-19.bak.json`): 52 units, 50 to apply (FR-I1 22, FR-B3 9, FR-D1 8, FR-L1 7, FR-T3 4, FR-G1 2, with overlaps). FR-T3's Wake On Leave rows were set back to `suggested = current`. Nothing applied. «ici» was then dropped from the FR-B3 label (Dave) because the audio menu reuses it. **Applied the same day** (`29c865375`): all 50, with the French Siri choices regenerated and the GrammarMarkersTest comment updated. `docs/release-notes.fr.md` follows FR-I1 and FR-L1, and the questionnaire moved to round 5. fr_CA still not checked; `docs/users/help-*.fr.md` regenerate at release.
 
 **2026-10-01 — release notes (C26).** `docs/release-notes.fr.md`: «Minimal», «balise» after the first mention, *Annoncer la balise*, and the sleep passage quotes *Reprendre au déplacement*.
