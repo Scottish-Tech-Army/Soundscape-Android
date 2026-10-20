@@ -33,15 +33,18 @@ translators had made them differ. The rule now:
    ville», «Guichet automatique bancaire», «Centre de jardinage»).
 4. **Terms follow French** (Dave): since the French reviewer's answers
    (2026-09-30) that means «annonce» (Callout), «étape» (Waypoint),
-   «croisement» (Intersection), Beacon «balise sonore» on first mention and
-   «balise» after it or with an action (FR-B2, 2026-10-01), and the
-   Simplifié / Minimal level names (FR-L1, 2026-10-01). «balise sonore» is unified even where
+   «intersection» (FR-I1, 2026-10-19), Beacon «balise sonore» on first mention and
+   «balise» after it or with an action (FR-B2, 2026-10-01), Start Audio Beacon
+   «Placer la balise sonore» (FR-B3), the Simplifié / Essentiel level names
+   (FR-L1, 2026-10-19), dead end «%1$s sans issue» (FR-G1) and lowercase
+   compass points (FR-D1). «balise sonore» is unified even where
    Microsoft's fr-CA said «balise audio», matching what French did.
    **Two exceptions, both earlier decisions of Dave's that the French change
    did not override:** Sleep/Snooze keep Microsoft parity («Mettre en veille»,
    «Désactivé temporairement», FRCA-T1) rather than French's «pause», and the
-   vehicle directions keep Microsoft's «Voyageant vers le Nord» /
+   vehicle directions keep Microsoft's «Voyageant vers le nord» /
    «Se déplaçant vers l'est» rather than French's «Vous vous déplacez» (rule 1).
+   Microsoft's capital in «vers le Nord» was an error, though, and FR-D1 fixed it.
 
 **Rule for future passes:** translate fr first, then derive fr_CA by the
 layer above. Don't translate fr_CA independently, or the two drift apart
@@ -67,7 +70,9 @@ collision as Serbian SR-T1. Microsoft had «Désactivé temporairement» for
 Snooze. Something like «En veille automatique» / «En pause jusqu'au
 départ» is needed.
 
-### FRCA-G1 — «vers impasse» (`agreed` defect; «vers une impasse» applied 2026-09-30, wording `unconfirmed`)
+### FRCA-G1 — «vers impasse» (`agreed` defect; «%1$s sans issue» applied 2026-10-20, wording `unconfirmed`)
+
+**2026-10-20:** follows French FR-G1 (JMB): `confect_name_to_dead_end` «%1$s sans issue», `_via` «%1$s sans issue via %2$s». fr_CA's `osm_path` is «Sentier», so it says «Sentier sans issue». Quebec road signs also use «Cul-de-sac», so it's questionnaire Q3. `confect_name_to` keeps fr_CA's «vers».
 
 **2026-09-30:** dead ends now have their own template (C21), which says «%1$s {fr:vers une impasse}», keeping fr_CA's «vers». French chose «menant à une impasse». The questionnaire (Q3) mentions both.
 
@@ -91,15 +96,14 @@ Nothing yet.
 
 Numbered as on the questionnaire.
 
-1. «annonce» (Callout), «étape» (Waypoint), «croisement» (Intersection): all
-   carried over from the French reviewer's answers. Right for Quebec?
+1. «annonce» (Callout), «étape» (Waypoint), «intersection» (Intersection): all
+   carried over from French. Right for Quebec?
 2. Beacon «balise sonore», «balise» once named or with an action: natural? Also from French, AI-only. Microsoft's fr-CA said «balise audio».
-3. «Sentier vers une impasse» (applied 2026-09-30), or French's «menant à une
-   impasse»? (FRCA-G1)
+3. «Sentier sans issue» (French's choice, 2026-10-20), or «cul-de-sac»? (FRCA-G1)
 4. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
 5. Articles now added before street names («sur la rue Sainte-Catherine», «le long
    du boulevard Saint-Laurent»). Right for Quebec? (FR-G2)
-6. **The four detail levels** (Détaillé / Simplifié / Minimal / Silencieux, «Minimal» from French FR-L1): distinct by ear, in the right order?
+6. **The four detail levels** (Détaillé / Simplifié / Essentiel / Silencieux, «Essentiel» from French FR-L1 as revised 2026-10-19): distinct by ear, in the right order?
 7. **Sleep/Snooze (FRCA-T1):** keep Microsoft's «Mettre en veille» / «Sortir de veille quand je m’éloigne», or take French's «Mettre en pause» / «Reprendre au déplacement»? The French reviewer found «Reprendre quand je pars» too long; the Microsoft label is longer still.
 8. Anything else.
 
@@ -136,3 +140,5 @@ Also changed the same day:
 **2026-10-01 — French round-2 decisions carried over.** 41 strings: «Essentiel» → «Minimal» (7) and the relaxed «balise» rule (34), changed in place on fr_CA's own text. For the 35 that matched the old French, the result equals the new French plus the Canadian layer (checked). Not carried over: «Reprendre au déplacement» (FRCA-T1 keeps Microsoft's Sleep wording); asked as questionnaire Q7 instead. Siri catalog regenerated.
 
 **2026-10-01 — release notes rebuilt (C26).** `docs/release-notes.fr-CA.md` still said «notification», «intersection», «point de repère» and «Essentiel». It was rebuilt from the fr notes plus the Canadian layer, with Microsoft's labels (*Renseignements supplémentaires*, *Sortir de veille quand je m’éloigne*), and «autobus»/«tramway» kept in prose.
+
+**2026-10-20 — French round-3/4 decisions carried over (Dave's request).** 70 strings. 33 matched the old French plus the Canadian layer exactly and took the new French plus the layer; the rest were changed in place on fr_CA's own text: «intersection» (FR-I1), «Essentiel» (FR-L1), «Placer la balise sonore» and the texts quoting it (FR-B3), «%1$s sans issue» (FR-G1), and lowercase compass points (FR-D1), which also covers Microsoft's 24 «Voyageant vers le Nord» / «Vers le Nord» strings. Not carried over: French's Sleep/Snooze changes («Reprendre», «En pause à l’arrêt»), since FRCA-T1 keeps Microsoft's wording. Siri catalog regenerated; `docs/release-notes.fr-CA.md` and the questionnaire (Q1, Q2, Q3, Q6) updated to match.

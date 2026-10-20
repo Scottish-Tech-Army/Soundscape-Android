@@ -30,7 +30,7 @@ Les notes des versions précédentes se trouvent sur la page
   Soundscape plus discret dans les endroits animés, et *Lieux à annoncer* vous permet de choisir les
   types de lieux dont vous entendez parler. Vous pouvez changer le niveau de détail avec les boutons
   de vos écouteurs en marchant.
-* **Savoir à quelle distance se trouve le prochain croisement.** Les croisements sont annoncés
+* **Savoir à quelle distance se trouve la prochaine intersection.** Les intersections sont annoncées
   à une distance régulière quand vous approchez, et l’annonce indique maintenant la distance
   jusqu’au bord du trottoir.
 * **Rechercher un type de lieu, ou des coordonnées.** Cherchez « pharmacie » ou « arrêt de bus » pour
@@ -107,15 +107,15 @@ Les annonces habituelles pour la marche – commerces à proximité, traversées
 volontairement mises en retrait pendant le trajet, et les distances auxquelles les éléments sont
 annoncés sont nettement allongées afin que vous en soyez informé avant de les avoir dépassés.
 
-### Croisements
+### Intersections
 
-La question la plus fréquente sur les annonces de croisement était de savoir à quelle distance
-se trouve vraiment le croisement. Soundscape vous le dit maintenant : « Croisement à 30 mètres ».
+La question la plus fréquente sur les annonces d’intersection était de savoir à quelle distance
+se trouve vraiment l’intersection. Soundscape vous le dit maintenant : « Intersection à 30 mètres ».
 La distance est mesurée jusqu’au bord du trottoir de la rue que vous allez traverser, et non
-jusqu’au milieu du croisement, car c’est là que vous vous arrêtez réellement.
+jusqu’au milieu de l’intersection, car c’est là que vous vous arrêtez réellement.
 
 L’annonce arrive aussi à un moment plus régulier. Auparavant, elle pouvait venir à 45 mètres
-ou à 10 mètres, sans rien pour les distinguer. Elle attend maintenant que le croisement soit à
+ou à 10 mètres, sans rien pour les distinguer. Elle attend maintenant que l’intersection soit à
 environ 30 mètres, pour que la distance veuille dire à peu près la même chose à chaque fois.
 
 ### Franchissement des cours d'eau et des voies ferrées
@@ -131,14 +131,14 @@ Ce que l’on nous dit le plus souvent au sujet de Soundscape, c’est qu’il p
 animés comme un centre-ville. La section *Gérer les annonces* des *Réglages* propose maintenant
 trois réglages à la place de l’ancienne liste d’interrupteurs :
 
-* **Détail des annonces** vaut Silencieux, Minimal, Simplifié ou Détaillé. *Détaillé* est ce que
+* **Détail des annonces** vaut Silencieux, Essentiel, Simplifié ou Détaillé. *Détaillé* est ce que
   Soundscape a toujours fait, et c’est la valeur de départ. *Simplifié* laisse de côté les petits
-  chemins et les voies de service et se répète moins souvent. *Minimal* n’annonce que les rues, les
-  croisements et les repères. *Silencieux* ne fait plus aucune annonce automatique, tandis que
+  chemins et les voies de service et se répète moins souvent. *Essentiel* n’annonce que les rues, les
+  intersections et les repères. *Silencieux* ne fait plus aucune annonce automatique, tandis que
   les balises sonores, les itinéraires et les boutons de l’écran d’accueil continuent de fonctionner. Il
   remplace l’ancien interrupteur *Autoriser les annonces* : si vous l’aviez désactivé, vous
-  trouverez le Détail des annonces réglé sur Silencieux. Les niveaux s'appliquent aussi pendant vos déplacements : *Simplifié* annonce moins souvent la route sur laquelle vous êtes, et *Minimal* ne nomme que les routes principales et numérotées, sans les arrêts de bus.
-* **Rues et croisements** active ou désactive les annonces sur les croisements et sur la
+  trouverez le Détail des annonces réglé sur Silencieux. Les niveaux s'appliquent aussi pendant vos déplacements : *Simplifié* annonce moins souvent la route sur laquelle vous êtes, et *Essentiel* ne nomme que les routes principales et numérotées, sans les arrêts de bus.
+* **Rues et intersections** active ou désactive les annonces sur les intersections et sur la
   rue où vous êtes.
 * **Lieux à annoncer** est une liste à cocher : Tout, Repères, Transport public, Alimentation et
   boissons, Épiceries et dépanneurs, Banques et guichets automatiques bancaires, ou Aucun lieu. Cochez-en
@@ -147,7 +147,7 @@ trois réglages à la place de l’ancienne liste d’interrupteurs :
 
 Le bon niveau de détail change au fil de la marche, et vous n’avez donc pas à passer par les
 Réglages pour le modifier. Appuyer sur *précédent* sur vos écouteurs baisse le Détail des
-annonces d’un niveau à la fois, de Détaillé à Simplifié, Minimal puis Silencieux, avant de
+annonces d’un niveau à la fois, de Détaillé à Simplifié, Essentiel puis Silencieux, avant de
 revenir à Détaillé. Le nouveau niveau est annoncé à chaque fois. Cela fonctionne dans les deux modes
 des contrôles multimédias, ce qui change un peu les boutons des écouteurs :
 
