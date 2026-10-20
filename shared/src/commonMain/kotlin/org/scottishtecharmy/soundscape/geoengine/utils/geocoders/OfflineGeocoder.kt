@@ -138,6 +138,7 @@ class OfflineGeocoder(
         return tileSearch?.searchByCategory(
             nearbyLocation,
             category.values,
+            category.specificTypes,
             name,
             localizedStrings,
             CATEGORY_SEARCH_LIMIT

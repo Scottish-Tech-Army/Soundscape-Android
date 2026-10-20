@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.process
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -679,6 +680,47 @@ class SearchTest {
             val boots = offlineGeocoder.searchByCategory(pharmacy, "boots", currentLocation, null)
             assertTrue(boots.isNotEmpty())
             assertTrue(boots.all { it.name == "Boots" })
+        }
+    }
+
+    @Test
+    fun categorySearchFindsKindsOfPlaceNamedBySecondTag() {
+        runBlocking {
+            // A map board is tourism=information plus information=map, and a football pitch is
+            // leisure=pitch plus sport=soccer. Searching for one used to find nothing, because
+            // only the broad "Information" and "Sports Field" were categories.
+            val currentLocation = LngLatAlt(-4.3159285, 55.9420645)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val offlineGeocoder = OfflineGeocoder(
+                gridState,
+                settlementState,
+                TileSearch(offlineExtractPath, gridState, settlementState)
+            )
+
+            val information = offlineGeocoder.searchByCategory(
+                SearchCategory("information", listOf(OsmTag(null, "information"))),
+                null, currentLocation, null
+            )
+            val boards = offlineGeocoder.searchByCategory(
+                SearchCategory(
+                    "osm_information_board",
+                    emptyList(),
+                    setOf("information_board")
+                ),
+                null, currentLocation, null
+            )
+            val pitches = offlineGeocoder.searchByCategory(
+                SearchCategory("osm_pitch_soccer", emptyList(), setOf("pitch_soccer")),
+                null, currentLocation, null
+            )
+
+            // With no localized strings, an unnamed place is named "OSM Feature <class> <subclass>"
+            fun List<LocationDescription>.unnamedTypes() =
+                filter { it.name.startsWith("OSM Feature ") }.map { it.name.removePrefix("OSM Feature ") }.toSet()
+            assertTrue(information.unnamedTypes().containsAll(setOf("information map", "information guidepost")))
+            assertEquals(setOf("information board"), boards.unnamedTypes())
+            assertEquals(setOf("pitch soccer"), pitches.unnamedTypes())
         }
     }
 

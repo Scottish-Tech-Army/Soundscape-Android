@@ -99,4 +99,28 @@ class SearchCategoryMatcherTest {
         assertEquals(CategoryMatch(pharmacy, null), cjk.match("약국"))
         assertNull(cjk.match("ab"))
     }
+
+    @Test
+    fun kindsOfPlaceNamedBySecondTagAreCategories() {
+        val information = SearchCategory("information", listOf(OsmTag(null, "information")))
+        val mapBoard = SearchCategory("map_board", emptyList(), setOf("information_map"))
+        val infoBoard = SearchCategory("info_board", emptyList(), setOf("information_board"))
+        val mural = SearchCategory("mural", emptyList(), setOf("artwork_mural"))
+        val matcher = SearchCategoryMatcher(
+            listOf(
+                "Information" to information,
+                "Map Board" to mapBoard,
+                "Information Board" to infoBoard,
+                "Mural" to mural,
+            )
+        )
+        assertEquals(CategoryMatch(mapBoard, null), matcher.match("map board"))
+        assertEquals(CategoryMatch(mural, null), matcher.match("mural"))
+        assertEquals(CategoryMatch(information, null), matcher.match("information"))
+
+        // "board" ends both board names, and searches for both
+        val boards = matcher.match("board")?.category
+        assertEquals(setOf("information_map", "information_board"), boards?.specificTypes)
+        assertEquals(emptyList(), boards?.tags)
+    }
 }
