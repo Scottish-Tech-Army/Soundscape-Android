@@ -14,7 +14,7 @@ Soundscape décrit le monde qui vous entoure avec des sons. Vous entendez chaque
 
 ## Annonces automatiques
 
-Pendant que vous marchez, Soundscape annonce les rues, les croisements et les lieux proches de vous. Vous n’avez rien à faire. Consultez la page d’aide *Annonces automatiques*.
+Pendant que vous marchez, Soundscape annonce les rues, les intersections et les lieux proches de vous. Vous n’avez rien à faire. Consultez la page d’aide *Annonces automatiques*.
 
 ## Boutons de localisation et d’exploration
 

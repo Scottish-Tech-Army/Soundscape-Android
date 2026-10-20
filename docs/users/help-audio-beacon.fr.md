@@ -18,7 +18,7 @@ Une balise sonore est un son qui vient de la direction d’un lieu que vous choi
 
 2. Sélectionnez le lieu pour ouvrir *Détails de l’emplacement*.
 
-3. Sélectionnez *Démarrer la balise*.
+3. Sélectionnez *Placer la balise sonore*.
 
 Soundscape revient à l’écran d’accueil et la balise démarre. L’écran d’accueil affiche le nom du lieu et sa distance.
 

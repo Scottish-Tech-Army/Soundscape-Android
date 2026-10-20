@@ -36,7 +36,7 @@ Vous pouvez aussi vous arrêter après le groupe, et Siri vous demande quel choi
 
 *« Soundscape arrête la balise sonore »*.
 
-*« Soundscape détails »* — puis *Silencieux*, *Minimal*, *Simplifié* ou *Détaillé*. *Silencieux* désactive les annonces automatiques.
+*« Soundscape détails »* — puis *Silencieux*, *Essentiel*, *Simplifié* ou *Détaillé*. *Silencieux* désactive les annonces automatiques.
 
 *« Soundscape liste »* — puis *Itinéraires*, *Marqueurs* ou *Commandes*. *Commandes* vous relit cette liste.
 

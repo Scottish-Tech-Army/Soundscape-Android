@@ -26,7 +26,7 @@ Non. Pendant que vous marchez, Soundscape utilise votre direction de déplacemen
 ## Balises et annonces
 
 ### Puis-je placer une balise sur une adresse, par exemple mon domicile ?
-Oui. Saisissez l’adresse dans la barre de recherche de l’écran d’accueil et sélectionnez-la dans les résultats. Sélectionnez ensuite *Démarrer la balise*. Pour garder l’adresse pour la prochaine fois, sélectionnez *Enregistrer en tant que marqueur*.
+Oui. Saisissez l’adresse dans la barre de recherche de l’écran d’accueil et sélectionnez-la dans les résultats. Sélectionnez ensuite *Placer la balise sonore*. Pour garder l’adresse pour la prochaine fois, sélectionnez *Enregistrer en tant que marqueur*.
 
 ### Comment tirer le meilleur parti d’une balise sonore ?
 Imaginez la balise comme un phare pour vos oreilles. Elle montre où se trouve le lieu en ligne droite, pas le chemin pour y aller. C’est toujours vous qui choisissez comment contourner les bâtiments et traverser les rues.
@@ -41,14 +41,14 @@ Quand vous êtes à environ 12 mètres, Soundscape vous le dit et retire la bali
 ### Pourquoi le son de la balise change-t-il quand je m’arrête de marcher ?
 Quand votre téléphone est dans une poche ou un sac, Soundscape déduit votre orientation de votre direction de déplacement. Quand vous vous arrêtez, il ne peut plus la connaître. La balise sonne alors comme si vous tourniez le dos au lieu. Remettez-vous en marche, ou pointez le haut de votre téléphone dans la direction à laquelle vous faites face. Si votre téléphone est verrouillé, ou si Soundscape n’est pas à l’écran, tenez aussi votre téléphone à plat.
 
-### Pourquoi est-ce que j’entends deux fois le nom d’une rue à un croisement ?
-Soundscape nomme chaque voie qui part du croisement, depuis la direction où elle va. Une rue qui croise la vôtre part à gauche et à droite. Vous entendez donc son nom deux fois. Si vous n’entendez qu’une gauche et une droite, votre rue se termine devant vous.
+### Pourquoi est-ce que j’entends deux fois le nom d’une rue à une intersection ?
+Soundscape nomme chaque voie qui part de l’intersection, depuis la direction où elle va. Une rue qui croise la vôtre part à gauche et à droite. Vous entendez donc son nom deux fois. Si vous n’entendez qu’une gauche et une droite, votre rue se termine devant vous.
 
 ### Pourquoi Soundscape n’annonce-t-il pas chaque commerce devant lequel je passe ?
 Soundscape tire ses lieux d’OpenStreetMap, une carte construite par des bénévoles. Si un commerce manque sur cette carte, Soundscape ne peut pas l’annoncer. Soundscape limite aussi les annonces pour que vous n’en entendiez pas trop. Pour en entendre plus, réglez *Détail des annonces* sur *Détaillé* et vérifiez *Lieux à annoncer*.
 
 ### Qu’est-ce qui change quand je suis dans un véhicule ?
-Soundscape cesse d’annoncer les croisements et les commerces proches, car ils défilent trop vite. À la place, il annonce la route sur laquelle vous êtes, les repères, les arrêts et les gares, les rivières et les tunnels.
+Soundscape cesse d’annoncer les intersections et les commerces proches, car ils défilent trop vite. À la place, il annonce la route sur laquelle vous êtes, les repères, les arrêts et les gares, les rivières et les tunnels.
 
 ### Que faire si je manque une annonce ?
 Soundscape ne garde pas de liste des annonces passées. Redemandez avec les boutons en bas de l’écran d’accueil : *Mon emplacement*, *Autour de moi* ou *Devant moi*.

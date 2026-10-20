@@ -24,7 +24,7 @@ Les boutons peuvent fonctionner de deux façons : *Mode original* ou *Menu audi
 
 *Suivant* déplace la balise vers l’étape suivante quand vous suivez un itinéraire. Sinon, il annonce *Autour de moi*.
 
-*Précédent* déplace la balise vers l’étape précédente quand vous suivez un itinéraire. Sinon, il modifie le *Détail des annonces*. Chaque appui descend d’un niveau : *Détaillé*, *Simplifié*, *Minimal*, puis *Silencieux*. Un appui de plus revient à *Détaillé*. Soundscape dit le nom du nouveau niveau.
+*Précédent* déplace la balise vers l’étape précédente quand vous suivez un itinéraire. Sinon, il modifie le *Détail des annonces*. Chaque appui descend d’un niveau : *Détaillé*, *Simplifié*, *Essentiel*, puis *Silencieux*. Un appui de plus revient à *Détaillé*. Soundscape dit le nom du nouveau niveau.
 
 ## Menu audio
 
@@ -36,5 +36,5 @@ Le menu audio vous donne accès à plus d’actions avec les trois mêmes bouton
 
 *Précédent* modifie le *Détail des annonces*, comme en *Mode original*.
 
-Le menu commence par quatre groupes : *Écouter mon environnement*, *Contrôle de l’itinéraire*, *Démarrer l’itinéraire* et *Démarrer la balise*. Sélectionnez un groupe pour entendre ses actions. *Écouter mon environnement* et *Contrôle de l’itinéraire* se terminent par *Menu principal*, qui vous ramène aux quatre groupes.
+Le menu commence par quatre groupes : *Écouter mon environnement*, *Contrôle de l’itinéraire*, *Démarrer l’itinéraire* et *Placer la balise sonore*. Sélectionnez un groupe pour entendre ses actions. *Écouter mon environnement* et *Contrôle de l’itinéraire* se terminent par *Menu principal*, qui vous ramène aux quatre groupes.
 
