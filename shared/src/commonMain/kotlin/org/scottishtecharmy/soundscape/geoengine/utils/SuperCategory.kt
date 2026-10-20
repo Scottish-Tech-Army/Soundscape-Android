@@ -177,7 +177,7 @@ val superCategoryMap: Map<String, SuperCategoryId> = buildMap {
             "nuclear_explosion_site", "dyke", "sump_buster", "rope", "debris", "road_works",
             "lock_gate", "sinkhole", "range", "ambulance_station", "spikes", "cattle_grid",
             "generic_hazard", "contact_line", "danger_area", "chain", "parking_entrance",
-            "parking_space", "parking", "motorcycle_parking"
+            "parking", "motorcycle_parking"
         )
     )
 }
