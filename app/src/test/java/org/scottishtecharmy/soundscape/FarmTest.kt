@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import okio.Path.Companion.toPath
 import org.junit.Assume.assumeTrue
@@ -59,6 +60,7 @@ class FarmTest {
     }
 
     @Test
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun aFarmyardIsAPlace() {
         val gridState = getGridStateForLocation(kettlehillFarm, MAX_ZOOM_LEVEL, GRID_SIZE)
         val farm = runBlocking {
@@ -73,6 +75,7 @@ class FarmTest {
         assertEquals("farm", farm.featureValue)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun placesNamed(location: LngLatAlt, vararg names: String): List<MvtFeature> {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, GRID_SIZE)
         return runBlocking {

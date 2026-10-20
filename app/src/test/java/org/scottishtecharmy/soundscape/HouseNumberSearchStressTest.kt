@@ -164,7 +164,7 @@ class HouseNumberSearchStressTest {
         repeat(3) { round() }
         val baseline = snapshot("baseline")
         val allocation = ManagementFactory.getThreadMXBean() as com.sun.management.ThreadMXBean
-        val threadId = Thread.currentThread().id
+        val threadId = Thread.currentThread().threadId()
 
         val rounds = 60
         var after: Map<String, Long> = baseline

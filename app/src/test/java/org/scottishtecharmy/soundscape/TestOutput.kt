@@ -7,4 +7,4 @@ import java.io.File
  * build/test-output rather than the module root, so they stay out of the project view.
  */
 fun testOutputFile(name: String): File =
-    File("build/test-output", name).apply { parentFile.mkdirs() }
+    File("build/test-output", name).apply { parentFile?.mkdirs() }

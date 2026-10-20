@@ -495,6 +495,7 @@ class MvtTileTest {
      * it's near the university, and with a heading the university is what it's measured from.
      */
     @Test
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun testReverseGeocodeDoesNotDescribeAStreetByItsOwnPavement() {
         val location = LngLatAlt(-2.54373, 51.50155)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
@@ -524,6 +525,7 @@ class MvtTileTest {
      * Filton Road just before Harry Stoke Road" and then got it right every time after.
      */
     @Test
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun testReverseGeocodeOnAPavementNamesTheStreetFirstTime() {
         val location = LngLatAlt(-2.544861137866974, 51.50496446342322)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
@@ -557,6 +559,7 @@ class MvtTileTest {
      * not "Pavement next to Coldharbour Lane".
      */
     @Test
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun testReverseGeocodeLastResortNamesTheStreetNotItsPavement() {
         val location = LngLatAlt(-2.54553, 51.50275)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
