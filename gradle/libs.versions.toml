@@ -1,7 +1,7 @@
 [versions]
 agp = "9.4.0"
 commonmark = "0.29.0"
-intellijMarkdown = "0.7.8"
+intellijMarkdown = "0.7.18"
 json = "20260719"
 kotlin = "2.3.10" # 2.4.10 exists but kept back: dependent libs (e.g. kable) don't yet ship Kotlin-2.4-ABI builds
 maplibreCompose = "0.13.1"
