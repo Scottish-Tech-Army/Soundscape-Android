@@ -725,6 +725,26 @@ class SearchTest {
     }
 
     @Test
+    fun parkingSpacesAreNotPoisOrSearchable() {
+        runBlocking {
+            // Every bay in the Marks & Spencer car park in Milngavie is mapped individually as
+            // amenity=parking_space. They're in the tiles, but not something to call out.
+            val currentLocation = LngLatAlt(-4.3159285, 55.9420645)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
+
+            val inTiles = tileSearch.searchByCategory(
+                currentLocation, setOf("parking_space"), emptySet(), null, null, 50
+            )
+            assertTrue(inTiles.size > 20)
+
+            val pois = gridState.getFeatureCollection(TreeId.POIS).features
+            assertTrue(pois.none { (it as MvtFeature).featureClass == "parking_space" })
+        }
+    }
+
+    @Test
     fun categorySearchNamesAnUnnamedPlaceByItsType() {
         runBlocking {
             // The toilets near the James Gale Memorial in Milngavie (OSM way 218224201) are an
