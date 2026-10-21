@@ -1277,6 +1277,40 @@ class AutoCallout(
         )
     }
 
+    /**
+     * An area POI - a park, a university campus - is only forgotten by time, because there's no
+     * fixed point to measure the user's distance from. On its own that meant walking around Lennox
+     * Park or St Andrews brought "At Lennox Park" back every time the history expired, though the
+     * user hadn't left. So while the user is still within the category's proximity range of an
+     * area that has been announced, its history entry is kept fresh: it can be announced again
+     * once they've been away from it for the whole expiry period, and not before.
+     *
+     * Matching is by name, the same as the history's, so this also covers every part of an area
+     * recorded as several polygons: the University of St Andrews is 22 separate outlines across
+     * the town, and the MVT tiles cut any large one into a piece per tile.
+     */
+    private fun refreshAreasInProximity(features: Iterable<Feature>, userGeometry: UserGeometry) {
+        for (feature in features) {
+            val mvtFeature = feature as MvtFeature
+            if (feature.geometry.type == "Point") continue
+            val name = mvtFeature.getText(localized)
+            if (name.text.isEmpty()) continue
+            val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
+            if (nearestPoint.distance > userGeometry.getProximityRange(mvtFeature.superCategory))
+                continue
+            poiCalloutHistory.refresh(
+                TrackedCallout(
+                    userGeometry,
+                    name.text,
+                    nearestPoint.point,
+                    isPoint = false,
+                    isGeneric = name.generic
+                ),
+                userGeometry.timestampMilliseconds
+            )
+        }
+    }
+
     private fun buildCalloutForNearbyPOI(
         userGeometry: UserGeometry,
         gridState: GridState
@@ -1291,9 +1325,6 @@ class AutoCallout(
         if (!poiFilter.shouldUpdateActivity(userGeometry)) {
             return null
         }
-
-        // Trim history based on location and current time
-        poiCalloutHistory.trim(userGeometry)
 
         val verbosity = verbosity()
         // Too soon after the last POI callout for anything but a marker - see
@@ -1343,6 +1374,13 @@ class AutoCallout(
             userGeometry.ruler,
             poiStrategy()
         )
+
+        // Before the trim, so that an area the user has stayed in since the last pass - sitting on
+        // a bench doesn't move them the 5m poiFilter needs - isn't dropped on the way back in.
+        refreshAreasInProximity(pois.features, userGeometry)
+
+        // Trim history based on location and current time
+        poiCalloutHistory.trim(userGeometry)
 
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         ordered.map { it.feature }.filter { feature ->
