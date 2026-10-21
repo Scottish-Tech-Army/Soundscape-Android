@@ -1,0 +1,12 @@
+{
+  "name": "docs-accessibility",
+  "private": true,
+  "description": "axe-core accessibility check of the built docs site (see check.js)",
+  "scripts": {
+    "check": "node check.js"
+  },
+  "dependencies": {
+    "axe-core": "4.14.0",
+    "puppeteer-core": "25.15.0"
+  }
+}

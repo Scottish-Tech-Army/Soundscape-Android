@@ -15,6 +15,8 @@
 #     no aria-current on the current page's nav link.
 #   * Search results that appear silently: nothing tells a screen reader user
 #     how many results there were, or that there were none.
+#   * Wide tables and code blocks that scroll sideways but can't be reached
+#     with a keyboard.
 #
 # The site is built with whatever just-the-docs release bundler resolves
 # (Gemfile.lock is not committed), so rather than copying theme templates that
@@ -181,6 +183,23 @@ module SoundscapeA11y
             : String(soundscapeI18n('results', 'Search results: %d')).replace('%d', count);
         }, 700);
       }
+
+      // A table or code block wider than the page scrolls sideways; keyboard
+      // users can only scroll it if it can take focus. Only boxes that really
+      // scroll get a tab stop.
+      function soundscapeFocusableScrollers() {
+        document.querySelectorAll('.table-wrapper, .highlight').forEach(function(box) {
+          var overflowX = getComputedStyle(box).overflowX;
+          var scrolls = (overflowX == 'auto' || overflowX == 'scroll') && box.scrollWidth > box.clientWidth;
+          if (scrolls) {
+            box.setAttribute('tabindex', '0');
+          } else {
+            box.removeAttribute('tabindex');
+          }
+        });
+      }
+      jtd.onReady(soundscapeFocusableScrollers);
+      window.addEventListener('resize', soundscapeFocusableScrollers);
 
       function soundscapeSyncNav() {
         var nav = document.getElementById('site-nav');
