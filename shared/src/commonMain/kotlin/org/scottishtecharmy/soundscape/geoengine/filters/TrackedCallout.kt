@@ -42,7 +42,9 @@ class TrackedCallout(
      */
     val matchRadiusMetres: Double = 10.0,
 ) {
-    val time = userGeometry?.timestampMilliseconds ?: 0L
+    /** When this was last relevant - set when made, and moved on by [CalloutHistory.refresh]. */
+    var time = userGeometry?.timestampMilliseconds ?: 0L
+        internal set
     val ruler = location.createCheapRuler()
     private val comparableText = dedupText ?: trackedText
 
@@ -123,6 +125,21 @@ class CalloutHistory(
                 ) > trimRadiusMetres)
 //            if(result)  println("Trim ${it.callout} - ${now - it.time} ${userGeometry.location.distance(it.location)}")
             result
+        }
+    }
+
+    /**
+     * Restarts the expiry period of every recorded callout matching [callout], as though it had
+     * been made again at [timestampMilliseconds] - without making it. This is for something the
+     * user is still in or beside, so that it's only announced again once they have been away from
+     * it for the whole expiry period, rather than every time the period runs out while they're
+     * still there.
+     */
+    fun refresh(callout: TrackedCallout, timestampMilliseconds: Long) {
+        for (tc in history) {
+            if (tc == callout) {
+                tc.time = maxOf(tc.time, timestampMilliseconds)
+            }
         }
     }
 
