@@ -187,8 +187,13 @@ service, that shows up as a failure, which is a real user problem.
   data a release upgrades over is whatever the previous release's cycles left.
 - The monkey can change other settings (language, voice, callouts).
   Restore only puts back search mode, the map and the markers and route.
-- The monkey can open the notification shade. After each soak the farm turns
-  off airplane mode, turns off Wi-Fi and collapses the shade.
+- The notification shade is locked shut while the farm runs (`cmd statusbar
+  send-disable-flag statusbar-expansion`, cleared when it stops). The monkey
+  used to swipe it open, and on the A50 a shade the farm then collapsed kept
+  key focus while invisible, so every Back went to it and the next flows
+  couldn't leave the screen underneath. Before each flow the farm also checks
+  that the shade doesn't have focus. After each soak the farm still turns off
+  airplane mode and Wi-Fi in case they were changed some other way.
 - Phones lie flat on a desk, so Soundscape would use their compass even in
   the background, unlike a phone in a pocket. With `sensors = false` the farm
   puts the sensor service into restricted mode (`dumpsys sensorservice
