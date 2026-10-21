@@ -38,6 +38,13 @@ appId: org.scottishtecharmy.soundscape
 # Settings: scroll to the bottom and back out without touching anything.
 - tapOn:
     id: topBarMenu
+# The drawer keeps its scroll position, and on a short screen (the Cubot) it
+# can be left scrolled past Settings, the second item; scroll back up to it.
+# (SwipeAndTap's nudge scrolled it away on the slow Cubot, so not that.)
+- scrollUntilVisible:
+    element:
+      id: menuSettings
+    direction: UP
 - tapOn:
     id: menuSettings
 # Settings has no testTags (WaitForScreen's Settings anchor no longer exists).

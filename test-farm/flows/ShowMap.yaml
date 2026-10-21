@@ -32,8 +32,13 @@ appId: org.scottishtecharmy.soundscape
       - evalScript: ${output.mapOn = true}
 - tapOn:
     id: topBarMenu
-# Second in the drawer, so never off-screen; SwipeAndTap's nudge scrolled it
-# away on the slow Cubot.
+# The drawer keeps its scroll position, and on a short screen (the Cubot) it
+# can be left scrolled past Settings, the second item; scroll back up to it.
+# (SwipeAndTap's nudge scrolled it away on the slow Cubot, so not that.)
+- scrollUntilVisible:
+    element:
+      id: menuSettings
+    direction: UP
 - tapOn:
     id: menuSettings
 - runFlow:

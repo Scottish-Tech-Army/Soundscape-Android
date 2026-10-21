@@ -596,6 +596,15 @@ def disable_mock_location(serial, shell_providers=False):
 # --------------------------------------------------------------------------- crashes
 
 
+def lock_shade(serial):
+    """Stops the notification shade being pulled down. The monkey's swipes
+    from the top edge opened it, and on the A50 a shade the farm then
+    collapsed was left invisible but holding key focus: every Back went to
+    it, so LaunchHome couldn't leave the screen underneath and Restore failed.
+    Lasts until reset (the farm does when it stops) or SystemUI restarts."""
+    shell(serial, "cmd statusbar collapse; cmd statusbar send-disable-flag statusbar-expansion")
+
+
 # The allowlist for SensorService's restricted mode when a phone's sensors are
 # off: apps whose package name contains it keep their sensors, and none does.
 SENSORS_OFF = "test-farm-sensors-off"
@@ -704,6 +713,7 @@ class Worker(threading.Thread):
         adb(s, "logcat", "-G", "16M")
         self.quieten()
         self.set_sensors()
+        lock_shade(s)
         out = enable_mock_location(s)
         if "Exception" in out or "failed" in out:
             self.db.event(s, "error", None, f"could not enable mock location:\n{out}")
@@ -797,6 +807,7 @@ class Worker(threading.Thread):
                            "cmd statusbar collapse; input keyevent KEYCODE_WAKEUP")
         self.quieten()
         self.set_sensors()
+        lock_shade(self.serial)
 
     # ----- install / upgrade
 
@@ -895,6 +906,11 @@ class Worker(threading.Thread):
         report = os.path.join(out_dir, "report.xml")
         # Every flow expects the screen on; this is a backstop for stayon.
         shell(self.serial, "input keyevent KEYCODE_WAKEUP")
+        # And the app, not an invisible notification shade, to have key focus
+        # (see lock_shade); Home moves focus whatever holds it, and the flows'
+        # launchApp brings the app back.
+        if "NotificationShade" in shell(self.serial, "dumpsys window | grep -m1 mCurrentFocus"):
+            shell(self.serial, "cmd statusbar collapse; input keyevent KEYCODE_HOME")
         # Whether the phone roams with the map on (show_map in its [devices]
         # entry). ShowMap.yaml sets it, and the roaming flows skip the map
         # without it. Suite flows ignore it.
@@ -1498,9 +1514,10 @@ def main():
             worker.stop_processes()
         else:
             disable_mock_location(serial)
-            # Give the phone its sensors back.
+            # Give the phone its sensors and its notification shade back.
             if SENSORS_OFF in shell(serial, SENSOR_MODE):
                 shell(serial, "dumpsys sensorservice enable > /dev/null")
+            shell(serial, "cmd statusbar send-disable-flag none")
     write_report(db)
 
 
