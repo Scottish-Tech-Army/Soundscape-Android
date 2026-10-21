@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-sw/
+content_lang: sw
 ---
 
 # Tafsiri ya Kiswahili ya Soundscape — maswali machache

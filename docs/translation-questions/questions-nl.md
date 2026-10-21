@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-nl/
+content_lang: nl
 ---
 
 # Nederlandse vertaling van Soundscape — een paar vragen

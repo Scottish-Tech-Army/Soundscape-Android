@@ -8,6 +8,8 @@ permalink: /users/user.html
 machine-translated: true
 ---
 
+# {{ page.title }}
+
 A documentação aqui é da versão mais recente do aplicativo. No aplicativo, você pode acessá-la clicando no botão de menu (canto superior esquerdo) e selecionando Ajuda e Tutoriais.
 
 Para aqueles que têm interesse em saber como o aplicativo funciona, dê uma olhada [nesta página]({{ "/users/how-it-works.html" | relative_url }}).

@@ -207,6 +207,123 @@
     panel.scrollTop = 0;
   }
 
+  // ----- Text search -----------------------------------------------------------
+  //
+  // The map can only be used by pointing at it, so this is the way in for
+  // screen reader and keyboard users (and a quicker one for everybody else):
+  // type a place name and every extract whose name, or list of towns, matches
+  // is listed with the same details the map panel shows. City and region
+  // extracts also say which larger extracts cover them, since a user looking
+  // for their city usually also wants to know about its region and country.
+
+  const searchBox = document.getElementById('offline-extracts-search');
+  const searchInput = document.getElementById('offline-extracts-query');
+  const searchStatus = document.getElementById('offline-extracts-search-status');
+  const searchResults = document.getElementById('offline-extracts-results');
+  const MAX_SEARCH_RESULTS = 50;
+
+  // Lower-case and strip accents so "zurich" finds "Zürich" and "sao paulo"
+  // finds "São Paulo".
+  function fold(text) {
+    return String(text || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+  }
+
+  function initSearch(features) {
+    if (!searchBox) return;
+    const countryByIso = {};
+    const regionsByIso = {};
+    const records = features.map(function (f) {
+      const p = f.properties || {};
+      const names = [p.name, p.name_local].filter(Boolean).map(fold);
+      const towns = (asArray(p.city_names) || []).concat(asArray(p.city_local_names) || []).map(fold);
+      const rec = { feature: f, type: p.feature_type, iso: p.iso_a2, names: names, towns: towns,
+                    bbox: f.geometry ? bboxOfGeometry(f.geometry) : null };
+      if (rec.type === 'country' && rec.iso) countryByIso[rec.iso] = rec;
+      if (rec.type === 'admin1' && rec.iso) (regionsByIso[rec.iso] = regionsByIso[rec.iso] || []).push(rec);
+      return rec;
+    });
+
+    // The larger extracts covering a city or region: the country with the same
+    // ISO code, and for a city the region its centre falls in.
+    function coveringExtracts(rec) {
+      const out = [];
+      if (rec.type === 'city_cluster' && rec.bbox) {
+        const lng = (rec.bbox[0] + rec.bbox[2]) / 2, lat = (rec.bbox[1] + rec.bbox[3]) / 2;
+        const region = (regionsByIso[rec.iso] || []).filter(function (r) {
+          return pointInGeometry(lng, lat, r.feature.geometry);
+        })[0];
+        if (region) out.push(region);
+      }
+      if (rec.type !== 'country' && countryByIso[rec.iso]) out.push(countryByIso[rec.iso]);
+      return out;
+    }
+
+    function displayName(props) {
+      return props.name_local || props.name || '';
+    }
+
+    function run() {
+      const query = fold(searchInput.value);
+      searchResults.innerHTML = '';
+      if (query.length < 2) {
+        searchStatus.textContent = '';
+        return;
+      }
+      // Rank: exact name, name starting with the query, name containing it,
+      // then a town inside a city extract. Within a rank, countries first.
+      const hits = [];
+      records.forEach(function (rec) {
+        let rank = -1;
+        if (rec.names.indexOf(query) !== -1) rank = 0;
+        else if (rec.names.some(function (n) { return n.indexOf(query) === 0; })) rank = 1;
+        else if (rec.names.some(function (n) { return n.indexOf(query) !== -1; })) rank = 2;
+        else if (rec.towns.some(function (n) { return n.indexOf(query) !== -1; })) rank = 3;
+        if (rank >= 0) hits.push({ rec: rec, rank: rank });
+      });
+      hits.sort(function (a, b) {
+        return (a.rank - b.rank)
+          || ((TYPE_RANK[a.rec.type] || 0) - (TYPE_RANK[b.rec.type] || 0))
+          || displayName(a.rec.feature.properties).localeCompare(displayName(b.rec.feature.properties));
+      });
+
+      if (!hits.length) {
+        searchStatus.textContent = fill(s('searchNone', 'No extract matches “%s”. Try the region or country it is in.'), searchInput.value.trim());
+        return;
+      }
+      let status = fill(s('searchCount', 'Matching extracts: %d'), hits.length);
+      if (hits.length > MAX_SEARCH_RESULTS) {
+        status += ' ' + fill(s('searchFirst', 'Showing the first %d. Type more of the name to narrow the list.'), MAX_SEARCH_RESULTS);
+      }
+      searchStatus.textContent = status;
+
+      searchResults.innerHTML = hits.slice(0, MAX_SEARCH_RESULTS).map(function (hit) {
+        let row = featureRowHtml(hit.rec.feature.properties);
+        const covering = coveringExtracts(hit.rec).map(function (c) {
+          return displayName(c.feature.properties) + ' (' + (FEATURE_TYPE_LABEL[c.type] || c.type) + ')';
+        });
+        if (covering.length) {
+          row = row.replace(/<\/li>$/, ' <span class="extract-covered">'
+            + escapeHtml(fill(s('coveredBy', 'Also covered by %s.'), formatList(covering))) + '</span></li>');
+        }
+        return row;
+      }).join('');
+    }
+
+    // Wait for a pause in typing, so a screen reader announces one result
+    // count rather than one per keystroke.
+    let timer = null;
+    searchInput.addEventListener('input', function () {
+      clearTimeout(timer);
+      timer = setTimeout(run, 400);
+    });
+    searchBox.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearTimeout(timer);
+      run();
+    });
+    searchBox.hidden = false;
+  }
+
   // ----- Boot -----------------------------------------------------------------
 
   app.classList.add('loading');
@@ -216,6 +333,32 @@
     panel.innerHTML = '<p class="placeholder">' + escapeHtml(message) + '</p>';
     console.error('[offline-extracts]', message);
   }
+
+  // The manifest drives both the text search and the map. It is fetched before
+  // the map libraries are checked so that the search, which is how screen
+  // reader and keyboard users find an extract, works even if the map can't.
+  const manifestLoaded = fetch(manifestUrl)
+    .then(function (resp) {
+      if (!resp.ok) throw new Error('Failed to load manifest: ' + resp.status);
+      return resp.json();
+    })
+    .then(function (data) {
+      // Identify placeholder sizes: any exact byte value shared by more than
+      // PLACEHOLDER_MIN_REPEATS extracts is a generator default, not a real size.
+      const sizeCounts = new Map();
+      (data.features || []).forEach(function (f) {
+        const s = Number(f.properties && f.properties['extract-size']);
+        if (s) sizeCounts.set(s, (sizeCounts.get(s) || 0) + 1);
+      });
+      sizeCounts.forEach(function (count, size) {
+        if (count > PLACEHOLDER_MIN_REPEATS) placeholderSizes.add(size);
+      });
+      initSearch(data.features || []);
+      return data;
+    });
+  manifestLoaded.catch(function (err) {
+    fail(fill(s('errManifest', 'Could not load the list of map extracts: %s'), (err && err.message ? err.message : err)));
+  });
 
   if (typeof L === 'undefined') {
     fail(s('errLibrary', 'Map library failed to load. Check your network connection and reload the page.'));
@@ -421,23 +564,8 @@
     showExtractsAt(entriesAt(e.latlng).map(function (en) { return en.feature; }));
   });
 
-  fetch(manifestUrl)
-    .then(function (resp) {
-      if (!resp.ok) throw new Error('Failed to load manifest: ' + resp.status);
-      return resp.json();
-    })
+  manifestLoaded
     .then(function (data) {
-      // Identify placeholder sizes: any exact byte value shared by more than
-      // PLACEHOLDER_MIN_REPEATS extracts is a generator default, not a real size.
-      const sizeCounts = new Map();
-      (data.features || []).forEach(function (f) {
-        const s = Number(f.properties && f.properties['extract-size']);
-        if (s) sizeCounts.set(s, (sizeCounts.get(s) || 0) + 1);
-      });
-      sizeCounts.forEach(function (count, size) {
-        if (count > PLACEHOLDER_MIN_REPEATS) placeholderSizes.add(size);
-      });
-
       const byType = { country: [], admin1: [], city_cluster: [] };
       (data.features || []).forEach(function (f) {
         const t = f.properties && f.properties.feature_type;
@@ -455,7 +583,5 @@
 
       app.classList.remove('loading');
     })
-    .catch(function (err) {
-      fail(fill(s('errManifest', 'Could not load the list of map extracts: %s'), (err && err.message ? err.message : err)));
-    });
+    .catch(function () { /* already reported by manifestLoaded.catch */ });
 })();

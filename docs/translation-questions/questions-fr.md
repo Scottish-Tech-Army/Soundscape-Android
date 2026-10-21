@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-fr/
+content_lang: fr
 ---
 
 # Traduction française de Soundscape — quelques questions

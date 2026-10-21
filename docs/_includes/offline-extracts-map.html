@@ -8,8 +8,26 @@ language, falling back to English, so the one map markup serves all languages.
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="{{ '/assets/offline-extracts.css' | relative_url }}" />
 
+{%- assign en = site.data.offline_extracts[site.default_lang] -%}
+<div id="offline-extracts-search" hidden>
+  <form role="search" aria-label="{{ t.searchLabel | default: en.searchLabel | escape }}">
+    <label for="offline-extracts-query">{{ t.searchLabel | default: en.searchLabel | escape }}</label>
+    <input type="search" id="offline-extracts-query" autocomplete="off" aria-describedby="offline-extracts-search-hint">
+    <button type="submit">{{ t.searchButton | default: en.searchButton | escape }}</button>
+  </form>
+  <p id="offline-extracts-search-hint">{{ t.searchHint | default: en.searchHint | escape }}</p>
+  <p id="offline-extracts-search-status" role="status"></p>
+  <ul id="offline-extracts-results" class="extract-list"></ul>
+</div>
+
+{%- comment -%}
+  The map is for pointing at; the search above is the keyboard and screen
+  reader route to the same information. It is a labelled region rather than
+  role="application", which would switch screen readers out of their reading
+  mode on entry for a map that does nothing with the keyboard beyond panning.
+{%- endcomment %}
 <div id="offline-extracts-app" class="loading">
-  <div id="offline-extracts-map" role="application" aria-label="{{ t.mapLabel | escape }}">
+  <div id="offline-extracts-map" role="region" aria-label="{{ t.mapLabel | escape }}">
     <p class="offline-extracts-loading">{{ t.loading | escape }}</p>
   </div>
   <aside id="offline-extracts-panel" aria-live="polite">

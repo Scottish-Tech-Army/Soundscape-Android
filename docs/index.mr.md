@@ -22,14 +22,14 @@ Soundscape हे मोफत, खुल्या स्रोताचे अ�
 
 Soundscape मूळतः iOS वर [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) ने विकसित केले होते आणि २०२२ मध्ये ते खुल्या स्रोताचे होण्यापूर्वी त्याचा व्यापक वापर होत असे. [Scottish Tech Army](https://www.scottishtecharmy.org) ने ते iOS वर उपलब्ध ठेवले आहे आणि त्याचबरोबर खुल्या स्रोताचे अँड्रॉइड अ‍ॅप म्हणून नव्याने लिहिले आहे.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play वर Soundscape मिळवा" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store वरून Soundscape डाउनलोड करा" height=80></a>
 
-# Soundscape ची मदत
+## Soundscape ची मदत
 <soundscapeAndroid@scottishtecharmy.support> हा ईमेल पत्ता थेट आमच्या मदत यंत्रणेशी जोडलेला आहे. कृपया तुमचा कोणताही अभिप्राय पाठवा, मग ती नव्या सुविधेची मागणी असो किंवा दोषाची नोंद. उत्तरादाखल तुम्हाला स्वयंचलित ईमेल मिळेल, आम्हाला नवी नोंद आल्याची सूचना मिळेल आणि आम्ही शक्य तितक्या लवकर उत्तर देण्याचा प्रयत्न करू.
 
-# Soundscape कसे वापरावे
+## Soundscape कसे वापरावे
 [Soundscape कसे वापरावे]({{ "/users/user.html" | relative_url }})
 
-# तुमच्या भाषेत Soundscape
+## तुमच्या भाषेत Soundscape
 Soundscape ४६ भाषांमध्ये उपलब्ध आहे, पण बहुतेक भाषांतरे अजून कोणत्याही मातृभाषिकाने तपासलेली नाहीत. तुम्ही यांपैकी एखादी भाषा बोलत असाल, तर तुमची मदत आम्हाला खूप आवडेल: सर्वात सोपा मार्ग म्हणजे [तुमच्या भाषेची छोटी प्रश्नावली]({{ "/help-translate/" | relative_url }}) भरणे, ज्याला सुमारे दहा मिनिटे लागतात. जिथे भाषांतरांचे व्यवस्थापन होते त्या [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) वर तुम्ही थेट सुधारणा सुचवू शकता ([Weblate कसे काम करते](https://docs.weblate.org/en/latest/user/translating.html))।

@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-ro/
+content_lang: ro
 ---
 
 # Traducerea în română a Soundscape — câteva întrebări

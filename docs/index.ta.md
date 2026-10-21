@@ -22,14 +22,14 @@ Soundscape என்பது இலவசமான, திறந்த மூ�
 
 Soundscape-ஐ முதலில் iOS-இல் [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) உருவாக்கியது; 2022-இல் திறந்த மூலமாக வெளியிடப்படும் முன் அது பரவலாகப் பயன்படுத்தப்பட்டது. [Scottish Tech Army](https://www.scottishtecharmy.org) அதை iOS-இல் தொடர்ந்து கிடைக்கச் செய்துள்ளது; மேலும் திறந்த மூல Android செயலியாக மீண்டும் எழுதியுள்ளது.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play-இல் Soundscape-ஐப் பெறுக" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store-இலிருந்து Soundscape-ஐப் பதிவிறக்குக" height=80></a>
 
-# Soundscape ஆதரவு
+## Soundscape ஆதரவு
 <soundscapeAndroid@scottishtecharmy.support> என்ற மின்னஞ்சல் முகவரி நேரடியாக எங்கள் உதவி மையத்துடன் இணைக்கிறது. வசதிக்கான கோரிக்கையோ பிழை அறிக்கையோ — எந்தக் கருத்தையும் அனுப்புங்கள். பதிலாக உங்களுக்குத் தானியங்கு மின்னஞ்சல் வரும்; புதிய கோரிக்கை வந்துள்ளதாக எங்களுக்கு அறிவிப்பு வரும்; முடிந்தவரை விரைவாகப் பதிலளிக்க முயல்வோம்.
 
-# Soundscape-ஐ எப்படிப் பயன்படுத்துவது
+## Soundscape-ஐ எப்படிப் பயன்படுத்துவது
 [Soundscape-ஐ எப்படிப் பயன்படுத்துவது]({{ "/users/user.html" | relative_url }})
 
-# உங்கள் மொழியில் Soundscape
+## உங்கள் மொழியில் Soundscape
 Soundscape 46 மொழிகளில் கிடைக்கிறது, ஆனால் பெரும்பாலான மொழிபெயர்ப்புகள் இன்னும் தாய்மொழியாளர் ஒருவரால் சரிபார்க்கப்படவில்லை. அவற்றில் ஏதேனும் ஒரு மொழியை நீங்கள் பேசினால், உங்கள் உதவியை மிகவும் வரவேற்கிறோம்: உங்கள் மொழிக்கான சிறிய [கேள்வித்தாளுக்குப்]({{ "/help-translate/" | relative_url }}) பதிலளிப்பதே எளிய வழி, இதற்குச் சுமார் பத்து நிமிடங்கள் ஆகும். மொழிபெயர்ப்புகள் நிர்வகிக்கப்படும் [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) தளத்தில் நேரடியாகவும் மேம்பாடுகளைப் பரிந்துரைக்கலாம் ([Weblate எப்படி வேலை செய்கிறது](https://docs.weblate.org/en/latest/user/translating.html))।

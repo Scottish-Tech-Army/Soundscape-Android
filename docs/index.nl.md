@@ -22,14 +22,14 @@ De app blijft op de achtergrond werken wanneer de telefoon in een zak of tas zit
 
 Soundscape is oorspronkelijk op iOS ontwikkeld door [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) en werd op grote schaal gebruikt voordat het in 2022 als open source werd vrijgegeven. Het [Scottish Tech Army](https://www.scottishtecharmy.org) heeft het op iOS beschikbaar gehouden en het ook herschreven als een open-source Android-app.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Download Soundscape via Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Download Soundscape in de App Store" height=80></a>
 
-# Soundscape-ondersteuning
+## Soundscape-ondersteuning
 Het e-mailadres <soundscapeAndroid@scottishtecharmy.support> leidt rechtstreeks naar ons helpdesksysteem. Stuur ons gerust alle feedback die u hebt, of het nu een functieverzoek of een foutmelding is. U ontvangt een automatisch e-mailbericht als antwoord en wij krijgen een melding dat er een nieuw ticket is om naar te kijken, dat we zo snel mogelijk proberen te beantwoorden.
 
-# Hoe gebruikt u Soundscape
+## Hoe gebruikt u Soundscape
 [Hoe gebruikt u Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape in uw taal
+## Soundscape in uw taal
 Soundscape is beschikbaar in 46 talen, maar de meeste vertalingen zijn nog niet nagekeken door een moedertaalspreker. Spreekt u een van deze talen, dan stellen we uw hulp zeer op prijs: het snelst is het korte [vragenformulier voor uw taal]({{ "/help-translate/" | relative_url }}), dat ongeveer tien minuten kost. U kunt ook rechtstreeks verbeteringen voorstellen in [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), waar de vertalingen worden beheerd ([hoe Weblate werkt](https://docs.weblate.org/en/latest/user/translating.html)).

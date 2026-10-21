@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-th/
+content_lang: th
 ---
 
 # คำแปลภาษาไทยของ Soundscape — คำถามบางข้อ

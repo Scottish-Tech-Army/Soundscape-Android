@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-ur/
+content_lang: ur
 ---
 
 <div dir="rtl" markdown="1">

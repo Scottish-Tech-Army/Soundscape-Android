@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-fi/
+content_lang: fi
 ---
 
 # Soundscapen suomennos — muutama kysymys

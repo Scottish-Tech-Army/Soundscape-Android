@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-bn/
+content_lang: bn
 ---
 
 # Soundscape-এর বাংলা অনুবাদ — কয়েকটি প্রশ্ন

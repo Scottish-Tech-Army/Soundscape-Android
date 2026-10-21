@@ -23,6 +23,13 @@
   errRenderer: "Map renderer failed to load. Check your network connection and reload the page."
   errBasemap: "Could not initialise the basemap (%s)."
   errManifest: "Could not load the list of map extracts: %s"
+  searchLabel: "Find an extract by place name"
+  searchButton: "Search"
+  searchHint: "Type the name of a country, region, city or town. If your town isn't found, try the region or country it is in."
+  searchCount: "Matching extracts: %d"
+  searchFirst: "Showing the first %d. Type more of the name to narrow the list."
+  searchNone: "No extract matches “%s”. Try the region or country it is in."
+  coveredBy: "Also covered by %s."
 
 "da":
   mapLabel: "Verdenskort over offline kortudsnit"
@@ -42,6 +49,13 @@
   errRenderer: "Kort-rendereren kunne ikke indlæses. Kontrollér din netværksforbindelse, og genindlæs siden."
   errBasemap: "Baggrundskortet kunne ikke initialiseres (%s)."
   errManifest: "Listen over kortudsnit kunne ikke indlæses: %s"
+  searchLabel: "Find et kortudsnit efter stednavn"
+  searchButton: "Søg"
+  searchHint: "Skriv navnet på et land, en region eller en by. Hvis din by ikke findes, så prøv den region eller det land, den ligger i."
+  searchCount: "Matchende udsnit: %d"
+  searchFirst: "Viser de første %d. Skriv mere af navnet for at indsnævre listen."
+  searchNone: "Intet udsnit matcher “%s”. Prøv den region eller det land, stedet ligger i."
+  coveredBy: "Dækkes også af %s."
 
 "de":
   mapLabel: "Weltkarte der Offline-Kartenausschnitte"
@@ -61,6 +75,13 @@
   errRenderer: "Der Karten-Renderer konnte nicht geladen werden. Prüfen Sie Ihre Netzwerkverbindung und laden Sie die Seite neu."
   errBasemap: "Die Basiskarte konnte nicht initialisiert werden (%s)."
   errManifest: "Die Liste der Kartenausschnitte konnte nicht geladen werden: %s"
+  searchLabel: "Kartenausschnitt nach Ortsnamen suchen"
+  searchButton: "Suchen"
+  searchHint: "Geben Sie den Namen eines Landes, einer Region, einer Stadt oder eines Ortes ein. Wenn Ihr Ort nicht gefunden wird, versuchen Sie es mit der Region oder dem Land, in dem er liegt."
+  searchCount: "Passende Ausschnitte: %d"
+  searchFirst: "Die ersten %d werden angezeigt. Geben Sie mehr vom Namen ein, um die Liste einzugrenzen."
+  searchNone: "Kein Ausschnitt passt zu „%s“. Versuchen Sie es mit der Region oder dem Land, in dem der Ort liegt."
+  coveredBy: "Ebenfalls abgedeckt durch %s."
 
 "el":
   mapLabel: "Παγκόσμιος χάρτης αποσπασμάτων χάρτη εκτός σύνδεσης"
@@ -80,6 +101,13 @@
   errRenderer: "Η μηχανή απόδοσης χάρτη απέτυχε να φορτώσει. Ελέγξτε τη σύνδεση δικτύου και επαναφορτώστε τη σελίδα."
   errBasemap: "Δεν ήταν δυνατή η αρχικοποίηση του βασικού χάρτη (%s)."
   errManifest: "Δεν ήταν δυνατή η φόρτωση της λίστας αποσπασμάτων χάρτη: %s"
+  searchLabel: "Εύρεση αποσπάσματος με όνομα τοποθεσίας"
+  searchButton: "Αναζήτηση"
+  searchHint: "Πληκτρολογήστε το όνομα μιας χώρας, περιφέρειας, πόλης ή κωμόπολης. Αν η πόλη σας δεν βρεθεί, δοκιμάστε την περιφέρεια ή τη χώρα στην οποία βρίσκεται."
+  searchCount: "Αποσπάσματα που ταιριάζουν: %d"
+  searchFirst: "Εμφανίζονται τα πρώτα %d. Πληκτρολογήστε περισσότερο από το όνομα για να περιορίσετε τη λίστα."
+  searchNone: "Κανένα απόσπασμα δεν ταιριάζει με «%s». Δοκιμάστε την περιφέρεια ή τη χώρα στην οποία βρίσκεται."
+  coveredBy: "Καλύπτεται επίσης από: %s."
 
 "en-GB":
   mapLabel: "World map of offline map extracts"
@@ -99,6 +127,13 @@
   errRenderer: "Map renderer failed to load. Check your network connection and reload the page."
   errBasemap: "Could not initialise the basemap (%s)."
   errManifest: "Could not load the list of map extracts: %s"
+  searchLabel: "Find an extract by place name"
+  searchButton: "Search"
+  searchHint: "Type the name of a country, region, city or town. If your town isn't found, try the region or country it is in."
+  searchCount: "Matching extracts: %d"
+  searchFirst: "Showing the first %d. Type more of the name to narrow the list."
+  searchNone: "No extract matches “%s”. Try the region or country it is in."
+  coveredBy: "Also covered by %s."
 
 "es":
   mapLabel: "Mapa mundial de extractos de mapa sin conexión"
@@ -118,6 +153,13 @@
   errRenderer: "No se pudo cargar el renderizador del mapa. Comprueba tu conexión de red y vuelve a cargar la página."
   errBasemap: "No se pudo inicializar el mapa base (%s)."
   errManifest: "No se pudo cargar la lista de extractos de mapa: %s"
+  searchLabel: "Buscar un extracto por nombre de lugar"
+  searchButton: "Buscar"
+  searchHint: "Escribe el nombre de un país, región, ciudad o pueblo. Si no aparece tu localidad, prueba con la región o el país en el que está."
+  searchCount: "Extractos coincidentes: %d"
+  searchFirst: "Se muestran los primeros %d. Escribe más del nombre para acotar la lista."
+  searchNone: "Ningún extracto coincide con «%s». Prueba con la región o el país en el que está."
+  coveredBy: "También lo cubre: %s."
 
 "fa":
   mapLabel: "نقشهٔ جهانی بخش‌های نقشهٔ آفلاین"
@@ -137,6 +179,13 @@
   errRenderer: "بارگذاری موتور رندر نقشه ناموفق بود. اتصال شبکه را بررسی کرده و صفحه را دوباره بارگذاری کنید."
   errBasemap: "مقداردهی اولیهٔ نقشهٔ پایه ممکن نشد (%s)."
   errManifest: "بارگذاری فهرست بخش‌های نقشه ممکن نشد: %s"
+  searchLabel: "یافتن بخش نقشه با نام مکان"
+  searchButton: "جستجو"
+  searchHint: "نام یک کشور، منطقه، شهر یا شهرک را بنویسید. اگر شهر شما پیدا نشد، منطقه یا کشوری را که در آن قرار دارد امتحان کنید."
+  searchCount: "بخش‌های مطابق: %d"
+  searchFirst: "%d مورد نخست نمایش داده می‌شود. برای محدود کردن فهرست، بخش بیشتری از نام را بنویسید."
+  searchNone: "هیچ بخشی با «%s» مطابقت ندارد. منطقه یا کشوری را که در آن قرار دارد امتحان کنید."
+  coveredBy: "همچنین تحت پوشش: %s."
 
 "fi":
   mapLabel: "Maailmankartta offline-karttaotteista"
@@ -156,6 +205,13 @@
   errRenderer: "Kartan renderöijän lataaminen epäonnistui. Tarkista verkkoyhteytesi ja lataa sivu uudelleen."
   errBasemap: "Peruskartan alustaminen epäonnistui (%s)."
   errManifest: "Karttaotteiden luettelon lataaminen epäonnistui: %s"
+  searchLabel: "Etsi karttaote paikan nimellä"
+  searchButton: "Hae"
+  searchHint: "Kirjoita maan, alueen, kaupungin tai taajaman nimi. Jos paikkakuntaasi ei löydy, kokeile aluetta tai maata, jossa se sijaitsee."
+  searchCount: "Vastaavia otteita: %d"
+  searchFirst: "Näytetään ensimmäiset %d. Kirjoita nimeä pidemmälle rajataksesi luetteloa."
+  searchNone: "Mikään ote ei vastaa hakua ”%s”. Kokeile aluetta tai maata, jossa paikka sijaitsee."
+  coveredBy: "Kattaa myös: %s."
 
 "fr":
   mapLabel: "Carte du monde des extraits de carte hors ligne"
@@ -175,6 +231,13 @@
   errRenderer: "Le chargement du moteur de rendu de la carte a échoué. Vérifiez votre connexion réseau et rechargez la page."
   errBasemap: "Impossible d’initialiser le fond de carte (%s)."
   errManifest: "Impossible de charger la liste des extraits de carte : %s"
+  searchLabel: "Trouver un extrait par nom de lieu"
+  searchButton: "Rechercher"
+  searchHint: "Saisissez le nom d’un pays, d’une région, d’une ville ou d’une localité. Si votre ville est introuvable, essayez la région ou le pays où elle se trouve."
+  searchCount: "Extraits correspondants : %d"
+  searchFirst: "Affichage des %d premiers. Saisissez une plus grande partie du nom pour affiner la liste."
+  searchNone: "Aucun extrait ne correspond à « %s ». Essayez la région ou le pays où il se trouve."
+  coveredBy: "Également couvert par %s."
 
 "fr-CA":
   mapLabel: "Carte du monde des extraits de carte hors ligne"
@@ -194,6 +257,13 @@
   errRenderer: "Le chargement du moteur de rendu de la carte a échoué. Vérifiez votre connexion réseau et rechargez la page."
   errBasemap: "Impossible d’initialiser le fond de carte (%s)."
   errManifest: "Impossible de charger la liste des extraits de carte : %s"
+  searchLabel: "Trouver un extrait par nom de lieu"
+  searchButton: "Rechercher"
+  searchHint: "Saisissez le nom d’un pays, d’une région, d’une ville ou d’une localité. Si votre ville est introuvable, essayez la région ou le pays où elle se trouve."
+  searchCount: "Extraits correspondants : %d"
+  searchFirst: "Affichage des %d premiers. Saisissez une plus grande partie du nom pour affiner la liste."
+  searchNone: "Aucun extrait ne correspond à « %s ». Essayez la région ou le pays où il se trouve."
+  coveredBy: "Également couvert par %s."
 
 "hi":
   mapLabel: "ऑफ़लाइन मानचित्र अंशों का विश्व मानचित्र"
@@ -213,6 +283,13 @@
   errRenderer: "मानचित्र रेंडरर लोड नहीं हो सका। अपना नेटवर्क कनेक्शन जाँचें और पृष्ठ पुनः लोड करें।"
   errBasemap: "आधार मानचित्र आरंभ नहीं किया जा सका (%s)।"
   errManifest: "मानचित्र अंशों की सूची लोड नहीं हो सकी: %s"
+  searchLabel: "स्थान के नाम से अंश खोजें"
+  searchButton: "खोजें"
+  searchHint: "किसी देश, क्षेत्र, शहर या कस्बे का नाम लिखें। यदि आपका कस्बा नहीं मिलता, तो वह जिस क्षेत्र या देश में है उसे आज़माएँ।"
+  searchCount: "मेल खाने वाले अंश: %d"
+  searchFirst: "पहले %d दिखाए जा रहे हैं। सूची छोटी करने के लिए नाम का और हिस्सा लिखें।"
+  searchNone: "कोई अंश “%s” से मेल नहीं खाता। वह जिस क्षेत्र या देश में है उसे आज़माएँ।"
+  coveredBy: "इनमें भी शामिल: %s।"
 
 "is":
   mapLabel: "Heimskort yfir ónettengd kortabrot"
@@ -232,6 +309,13 @@
   errRenderer: "Ekki tókst að hlaða kortateiknaranum. Athugaðu nettenginguna og endurhladdu síðuna."
   errBasemap: "Ekki tókst að frumstilla grunnkortið (%s)."
   errManifest: "Ekki tókst að hlaða lista yfir kortabrot: %s"
+  searchLabel: "Finna kortabrot eftir staðarheiti"
+  searchButton: "Leita"
+  searchHint: "Sláðu inn heiti lands, svæðis, borgar eða bæjar. Ef bærinn þinn finnst ekki skaltu prófa svæðið eða landið sem hann er í."
+  searchCount: "Samsvarandi brot: %d"
+  searchFirst: "Sýni fyrstu %d. Sláðu inn meira af heitinu til að þrengja listann."
+  searchNone: "Ekkert brot samsvarar „%s“. Prófaðu svæðið eða landið sem staðurinn er í."
+  coveredBy: "Einnig innifalið í: %s."
 
 "it":
   mapLabel: "Mappa mondiale degli estratti di mappa offline"
@@ -251,6 +335,13 @@
   errRenderer: "Impossibile caricare il renderer della mappa. Controlla la connessione di rete e ricarica la pagina."
   errBasemap: "Impossibile inizializzare la mappa di base (%s)."
   errManifest: "Impossibile caricare l'elenco degli estratti di mappa: %s"
+  searchLabel: "Trova un estratto per nome di luogo"
+  searchButton: "Cerca"
+  searchHint: "Digita il nome di un paese, una regione, una città o un centro abitato. Se la tua località non viene trovata, prova con la regione o il paese in cui si trova."
+  searchCount: "Estratti corrispondenti: %d"
+  searchFirst: "Vengono mostrati i primi %d. Digita più lettere del nome per restringere l’elenco."
+  searchNone: "Nessun estratto corrisponde a «%s». Prova con la regione o il paese in cui si trova."
+  coveredBy: "Coperto anche da %s."
 
 "ja":
   mapLabel: "オフライン地図エクストラクトの世界地図"
@@ -270,6 +361,13 @@
   errRenderer: "地図レンダラーの読み込みに失敗しました。ネットワーク接続を確認してページを再読み込みしてください。"
   errBasemap: "ベースマップを初期化できませんでした (%s)。"
   errManifest: "地図エクストラクトの一覧を読み込めませんでした: %s"
+  searchLabel: "地名でエクストラクトを探す"
+  searchButton: "検索"
+  searchHint: "国、地域、都市、町の名前を入力してください。町が見つからない場合は、その町がある地域や国で検索してください。"
+  searchCount: "一致するエクストラクト: %d 件"
+  searchFirst: "最初の %d 件を表示しています。名前をさらに入力すると一覧を絞り込めます。"
+  searchNone: "「%s」に一致するエクストラクトはありません。その場所がある地域や国で検索してください。"
+  coveredBy: "%s にも含まれています。"
 
 "nb":
   mapLabel: "Verdenskart over frakoblede kartutsnitt"
@@ -289,6 +387,13 @@
   errRenderer: "Kartgjengiveren kunne ikke lastes. Sjekk nettverksforbindelsen og last siden på nytt."
   errBasemap: "Kunne ikke initialisere grunnkartet (%s)."
   errManifest: "Kunne ikke laste listen over kartutsnitt: %s"
+  searchLabel: "Finn et kartutsnitt etter stedsnavn"
+  searchButton: "Søk"
+  searchHint: "Skriv navnet på et land, en region, en by eller et tettsted. Hvis stedet ditt ikke blir funnet, kan du prøve regionen eller landet det ligger i."
+  searchCount: "Treff: %d utsnitt"
+  searchFirst: "Viser de første %d. Skriv mer av navnet for å snevre inn listen."
+  searchNone: "Ingen utsnitt samsvarer med «%s». Prøv regionen eller landet stedet ligger i."
+  coveredBy: "Dekkes også av %s."
 
 "nl":
   mapLabel: "Wereldkaart van offline kaartfragmenten"
@@ -308,6 +413,13 @@
   errRenderer: "De kaartrenderer kon niet worden geladen. Controleer je netwerkverbinding en herlaad de pagina."
   errBasemap: "De basiskaart kon niet worden geïnitialiseerd (%s)."
   errManifest: "De lijst met kaartfragmenten kon niet worden geladen: %s"
+  searchLabel: "Een kaartfragment zoeken op plaatsnaam"
+  searchButton: "Zoeken"
+  searchHint: "Typ de naam van een land, regio, stad of dorp. Als je woonplaats niet wordt gevonden, probeer dan de regio of het land waarin die ligt."
+  searchCount: "Overeenkomende fragmenten: %d"
+  searchFirst: "De eerste %d worden getoond. Typ meer van de naam om de lijst te verkleinen."
+  searchNone: "Geen fragment komt overeen met ‘%s’. Probeer de regio of het land waarin het ligt."
+  coveredBy: "Ook gedekt door %s."
 
 "pl":
   mapLabel: "Mapa świata wycinków map offline"
@@ -327,6 +439,13 @@
   errRenderer: "Nie udało się załadować mechanizmu renderowania mapy. Sprawdź połączenie sieciowe i odśwież stronę."
   errBasemap: "Nie udało się zainicjować mapy podkładowej (%s)."
   errManifest: "Nie udało się załadować listy wycinków map: %s"
+  searchLabel: "Znajdź wycinek po nazwie miejsca"
+  searchButton: "Szukaj"
+  searchHint: "Wpisz nazwę kraju, regionu, miasta lub miejscowości. Jeśli Twojej miejscowości nie ma, spróbuj regionu lub kraju, w którym leży."
+  searchCount: "Pasujące wycinki: %d"
+  searchFirst: "Wyświetlono pierwsze %d. Wpisz więcej liter nazwy, aby zawęzić listę."
+  searchNone: "Żaden wycinek nie pasuje do „%s”. Spróbuj regionu lub kraju, w którym leży to miejsce."
+  coveredBy: "Obejmuje je także: %s."
 
 "pt":
   mapLabel: "Mapa-múndi dos extratos de mapa offline"
@@ -346,6 +465,13 @@
   errRenderer: "Não foi possível carregar o renderizador do mapa. Verifique a sua ligação de rede e recarregue a página."
   errBasemap: "Não foi possível inicializar o mapa base (%s)."
   errManifest: "Não foi possível carregar a lista de extratos de mapa: %s"
+  searchLabel: "Encontrar um extrato pelo nome do local"
+  searchButton: "Pesquisar"
+  searchHint: "Escreva o nome de um país, região, cidade ou localidade. Se a sua localidade não for encontrada, experimente a região ou o país onde se situa."
+  searchCount: "Extratos correspondentes: %d"
+  searchFirst: "A mostrar os primeiros %d. Escreva mais do nome para restringir a lista."
+  searchNone: "Nenhum extrato corresponde a «%s». Experimente a região ou o país onde se situa."
+  coveredBy: "Também abrangido por %s."
 
 "pt-BR":
   mapLabel: "Mapa-múndi dos extratos de mapa off-line"
@@ -365,6 +491,13 @@
   errRenderer: "Não foi possível carregar o renderizador do mapa. Verifique sua conexão de rede e recarregue a página."
   errBasemap: "Não foi possível inicializar o mapa base (%s)."
   errManifest: "Não foi possível carregar a lista de extratos de mapa: %s"
+  searchLabel: "Encontrar um extrato pelo nome do lugar"
+  searchButton: "Pesquisar"
+  searchHint: "Digite o nome de um país, região, cidade ou município. Se sua cidade não for encontrada, tente a região ou o país onde ela fica."
+  searchCount: "Extratos correspondentes: %d"
+  searchFirst: "Mostrando os primeiros %d. Digite mais do nome para restringir a lista."
+  searchNone: "Nenhum extrato corresponde a “%s”. Tente a região ou o país onde ele fica."
+  coveredBy: "Também coberto por %s."
 
 "ro":
   mapLabel: "Harta lumii a extraselor de hartă offline"
@@ -384,6 +517,13 @@
   errRenderer: "Motorul de randare a hărții nu a putut fi încărcat. Verifică conexiunea la rețea și reîncarcă pagina."
   errBasemap: "Harta de bază nu a putut fi inițializată (%s)."
   errManifest: "Lista extraselor de hartă nu a putut fi încărcată: %s"
+  searchLabel: "Găsește un extras după numele locului"
+  searchButton: "Caută"
+  searchHint: "Scrie numele unei țări, regiuni, al unui oraș sau al unei localități. Dacă localitatea ta nu este găsită, încearcă regiunea sau țara în care se află."
+  searchCount: "Extrase potrivite: %d"
+  searchFirst: "Se afișează primele %d. Scrie mai mult din nume pentru a restrânge lista."
+  searchNone: "Niciun extras nu se potrivește cu „%s”. Încearcă regiunea sau țara în care se află."
+  coveredBy: "Acoperit și de %s."
 
 "ru":
   mapLabel: "Карта мира офлайн-фрагментов карты"
@@ -403,6 +543,13 @@
   errRenderer: "Не удалось загрузить модуль отрисовки карты. Проверьте подключение к сети и перезагрузите страницу."
   errBasemap: "Не удалось инициализировать базовую карту (%s)."
   errManifest: "Не удалось загрузить список фрагментов карты: %s"
+  searchLabel: "Найти фрагмент по названию места"
+  searchButton: "Найти"
+  searchHint: "Введите название страны, региона, города или населённого пункта. Если ваш город не найден, попробуйте регион или страну, где он находится."
+  searchCount: "Найдено фрагментов: %d"
+  searchFirst: "Показаны первые %d. Введите больше букв названия, чтобы сузить список."
+  searchNone: "Ни один фрагмент не соответствует запросу «%s». Попробуйте регион или страну, где находится это место."
+  coveredBy: "Также входит в: %s."
 
 "sv":
   mapLabel: "Världskarta över offline-kartutdrag"
@@ -422,6 +569,13 @@
   errRenderer: "Kartrenderaren kunde inte laddas. Kontrollera din nätverksanslutning och ladda om sidan."
   errBasemap: "Det gick inte att initiera baskartan (%s)."
   errManifest: "Det gick inte att ladda listan över kartutdrag: %s"
+  searchLabel: "Hitta ett kartutdrag efter ortnamn"
+  searchButton: "Sök"
+  searchHint: "Skriv namnet på ett land, en region, en stad eller en ort. Om din ort inte hittas kan du prova regionen eller landet den ligger i."
+  searchCount: "Matchande utdrag: %d"
+  searchFirst: "Visar de första %d. Skriv mer av namnet för att begränsa listan."
+  searchNone: "Inget utdrag matchar ”%s”. Prova regionen eller landet orten ligger i."
+  coveredBy: "Täcks även av %s."
 
 "tr":
   mapLabel: "Çevrimdışı harita bölümlerinin dünya haritası"
@@ -441,6 +595,13 @@
   errRenderer: "Harita işleyici yüklenemedi. Ağ bağlantınızı kontrol edip sayfayı yeniden yükleyin."
   errBasemap: "Temel harita başlatılamadı (%s)."
   errManifest: "Harita bölümlerinin listesi yüklenemedi: %s"
+  searchLabel: "Yer adına göre harita bölümü bul"
+  searchButton: "Ara"
+  searchHint: "Bir ülkenin, bölgenin, şehrin veya kasabanın adını yazın. Kasabanız bulunamazsa, bulunduğu bölgeyi veya ülkeyi deneyin."
+  searchCount: "Eşleşen bölümler: %d"
+  searchFirst: "İlk %d gösteriliyor. Listeyi daraltmak için adın daha fazlasını yazın."
+  searchNone: "“%s” ile eşleşen bölüm yok. Bulunduğu bölgeyi veya ülkeyi deneyin."
+  coveredBy: "Şunlar da kapsıyor: %s."
 
 "uk":
   mapLabel: "Карта світу офлайн-фрагментів карти"
@@ -460,6 +621,13 @@
   errRenderer: "Не вдалося завантажити рушій відтворення карти. Перевірте підключення до мережі та перезавантажте сторінку."
   errBasemap: "Не вдалося ініціалізувати базову карту (%s)."
   errManifest: "Не вдалося завантажити список фрагментів карти: %s"
+  searchLabel: "Знайти фрагмент за назвою місця"
+  searchButton: "Знайти"
+  searchHint: "Введіть назву країни, регіону, міста чи населеного пункту. Якщо ваше місто не знайдено, спробуйте регіон або країну, де воно розташоване."
+  searchCount: "Знайдено фрагментів: %d"
+  searchFirst: "Показано перші %d. Введіть більше літер назви, щоб звузити список."
+  searchNone: "Жоден фрагмент не відповідає запиту «%s». Спробуйте регіон або країну, де розташоване це місце."
+  coveredBy: "Також входить до: %s."
 
 "zh-CN":
   mapLabel: "离线地图区块的世界地图"
@@ -479,3 +647,10 @@
   errRenderer: "地图渲染器加载失败。请检查网络连接并重新加载页面。"
   errBasemap: "无法初始化底图 (%s)。"
   errManifest: "无法加载地图区块列表：%s"
+  searchLabel: "按地名查找区块"
+  searchButton: "搜索"
+  searchHint: "输入国家、地区、城市或城镇的名称。如果找不到你的城镇，请尝试它所在的地区或国家。"
+  searchCount: "匹配的区块：%d 个"
+  searchFirst: "仅显示前 %d 个。输入更多名称以缩小列表范围。"
+  searchNone: "没有与“%s”匹配的区块。请尝试它所在的地区或国家。"
+  coveredBy: "也包含在 %s 中。"

@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-te/
+content_lang: te
 ---
 
 # Soundscape తెలుగు అనువాదం — కొన్ని ప్రశ్నలు

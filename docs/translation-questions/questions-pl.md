@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-pl/
+content_lang: pl
 ---
 
 # Tłumaczenie na polski — prośba o opinię

@@ -10,7 +10,7 @@ has_toc: false
 This document describes the basic architecture of the app and the various UI screens. The main purpose of the app is to provide audio cues to aid navigation and improve awareness of surroundings for the visually impaired. The screen UI is important for setting up the location of audio markers and creating routes, but the audio UI is at least as important. Because the audio has to continue running when the phone is locked, the audio UI is all driven from a foreground service which carries on running when other apps are in use and when the phone is locked.
 
 ## Soundscape foreground service
-The foreground service (`SoundscapeService`) needs to know the current location and the direction that the phone is pointing. It uses those in conjunction with Mapbox Vector Tile data — fetched from our protomaps tile server when online, or read from a downloaded `.pmtiles` extract when offline — to generate strings that describe the current location (known as callouts). Tile parsing and the searchable `FeatureTree`s are described in the [GeoEngine document]({% link developers/geoengine.md %}). Audio beacons and speech are played out via the `AudioEngine` described [here]({% link developers/audio-API.md %}).
+The foreground service (`SoundscapeService`) needs to know the current location and the direction that the phone is pointing. It uses those in conjunction with Mapbox Vector Tile data — fetched from our protomaps tile server when online, or read from a downloaded `.pmtiles` extract when offline — to generate strings that describe the current location (known as callouts). Tile parsing and the searchable `FeatureTree`s are described in the [GeoEngine document]({% link developers/geoengine.md %}). Audio beacons and speech are played out via the `AudioEngine` described in the [audio API document]({% link developers/audio-API.md %}).
 
 The location and direction are provided by the `LocationProvider` and `DirectionProvider` classes. During normal operation these use the Android `FusedLocationProvider`, and `FusedOrientationProvider` APIs. However, in Street preview mode the `LocationProvider` can use a fixed location, effectively teleporting the user so that they can hear the callouts for somewhere they are planning on traveling to.
 
@@ -34,7 +34,7 @@ The onboarding screens have been given their own activity. Onboarding screens gu
 ## Main Activity
 This is where the app normally spends its time. The `Home` screen looks like this:
 
-<img src="HomeScreen.png" height="400"/>
+<img src="HomeScreen.png" height="400" alt="Screenshot of the Home screen. From top to bottom: a menu button and the Soundscape title, a search box, buttons for Places Nearby, Markers &amp; Routes and Current Location, a map centred on the current location with a compass, and the Hear my surroundings buttons: My Location, Around Me, Ahead of Me and Nearby Markers."/>
 
 The map is zoomed around the current location and rotated based on the direction that the phone is pointing in. Here's what can be accessed from the Home screen:
 

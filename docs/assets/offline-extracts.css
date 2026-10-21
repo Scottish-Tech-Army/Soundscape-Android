@@ -49,40 +49,48 @@
 
 /* The extracts covering the clicked point are listed one per row below the
    full-width map. */
-#offline-extracts-panel .extract-list {
+#offline-extracts-panel .extract-list,
+#offline-extracts-results {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#offline-extracts-panel .extract-row {
+#offline-extracts-panel .extract-row,
+#offline-extracts-results .extract-row {
   padding: 8px 0;
   border-top: 1px solid #e3e7eb;
   line-height: 1.5;
 }
 
-#offline-extracts-panel .extract-row:first-child {
+#offline-extracts-panel .extract-row:first-child,
+#offline-extracts-results .extract-row:first-child {
   border-top: none;
   padding-top: 0;
 }
 
-#offline-extracts-panel .extract-name {
+#offline-extracts-panel .extract-name,
+#offline-extracts-results .extract-name {
   font-weight: 600;
 }
 
-#offline-extracts-panel .extract-alt {
+#offline-extracts-panel .extract-alt,
+#offline-extracts-results .extract-alt {
   color: #57606a;
 }
 
-#offline-extracts-panel .extract-type {
+#offline-extracts-panel .extract-type,
+#offline-extracts-results .extract-type {
   font-weight: 600;
 }
 
-#offline-extracts-panel .extract-type.country      { color: #3b8de4; }
-#offline-extracts-panel .extract-type.admin1       { color: #8a4fbf; }
-#offline-extracts-panel .extract-type.city_cluster { color: #dc6b1f; }
+/* Text versions of the map colours, darkened to reach 4.5:1 contrast. */
+.extract-type.country      { color: #1f69b8; }
+.extract-type.admin1       { color: #7a3fae; }
+.extract-type.city_cluster { color: #a84a0c; }
 
-#offline-extracts-panel .extract-includes {
+#offline-extracts-panel .extract-includes,
+#offline-extracts-results .extract-includes {
   color: #3a3a3a;
 }
 
@@ -129,4 +137,58 @@
   #offline-extracts-map {
     height: 420px;
   }
+}
+
+/* ----- Text search (the keyboard / screen reader route to the extracts) ----- */
+
+#offline-extracts-search {
+  margin-bottom: 24px;
+}
+
+#offline-extracts-search form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+#offline-extracts-search label {
+  flex-basis: 100%;
+  font-weight: 600;
+}
+
+#offline-extracts-query {
+  flex: 1 1 16rem;
+  padding: 6px 10px;
+  font: inherit;
+  border: 1px solid #6e7781;
+  border-radius: 6px;
+}
+
+#offline-extracts-search button {
+  padding: 6px 14px;
+  font: inherit;
+  border: 1px solid #6e7781;
+  border-radius: 6px;
+  background: #f6f8fa;
+  cursor: pointer;
+}
+
+#offline-extracts-search-hint {
+  margin: 6px 0 0;
+  color: #57606a;
+  font-size: 0.9rem;
+}
+
+#offline-extracts-search-status {
+  margin: 12px 0 4px;
+  font-weight: 600;
+}
+
+#offline-extracts-search-status:empty {
+  display: none;
+}
+
+#offline-extracts-results .extract-covered {
+  color: #57606a;
 }

@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-en_GB/
+content_lang: en-GB
 ---
 
 # Soundscape in UK English — a few questions

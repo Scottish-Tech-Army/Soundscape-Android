@@ -22,14 +22,14 @@ Az alkalmazás a háttérben is tovább működik, amikor a telefon zsebben vagy
 
 A Soundscape-et eredetileg iOS-re a [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) fejlesztette, és széles körben használták, mielőtt 2022-ben nyílt forráskódúvá vált. A [Scottish Tech Army](https://www.scottishtecharmy.org) fenntartotta az elérhetőségét iOS-en, és nyílt forráskódú Android-alkalmazásként is újraírta.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Soundscape letöltése a Google Playről" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Soundscape letöltése az App Store-ból" height=80></a>
 
-# Soundscape támogatás
+## Soundscape támogatás
 A <soundscapeAndroid@scottishtecharmy.support> e-mail-cím közvetlenül az ügyfélszolgálati rendszerünkbe vezet. Kérjük, küldjön bármilyen visszajelzést, legyen az funkciókérés vagy hibajelentés. Automatikus e-mailt kap válaszul, minket pedig értesítünk, hogy új jegy érkezett, és igyekszünk a lehető leggyorsabban válaszolni.
 
-# A Soundscape használata
+## A Soundscape használata
 [A Soundscape használata]({{ "/users/user.html" | relative_url }})
 
-# A Soundscape az Ön nyelvén
+## A Soundscape az Ön nyelvén
 A Soundscape 46 nyelven érhető el, de a fordítások többségét még nem ellenőrizte anyanyelvi beszélő. Ha Ön beszéli valamelyiket, örömmel fogadjuk a segítségét: a leggyorsabb, ha kitölti a rövid [kérdőívet az Ön nyelvén]({{ "/help-translate/" | relative_url }}), ami körülbelül tíz percet vesz igénybe. Javításokat közvetlenül a [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) oldalon is javasolhat, ahol a fordításokat kezeljük ([hogyan működik a Weblate](https://docs.weblate.org/en/latest/user/translating.html)).

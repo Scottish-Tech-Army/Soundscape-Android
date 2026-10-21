@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-sr/
+content_lang: sr
 ---
 
 # Српски превод Soundscape-а — неколико питања

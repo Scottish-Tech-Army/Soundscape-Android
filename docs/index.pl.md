@@ -22,14 +22,14 @@ Aplikacja działa nadal w tle, gdy telefon jest w kieszeni lub torbie - nie trze
 
 Soundscape zostało pierwotnie opracowane na iOS przez [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) i było szeroko używane, zanim w 2022 roku zostało udostępnione jako oprogramowanie open source. [Scottish Tech Army](https://www.scottishtecharmy.org) utrzymał jego dostępność na iOS, a także przepisał je jako aplikację open source na Androida.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Pobierz Soundscape z Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Pobierz Soundscape z App Store" height=80></a>
 
-# Pomoc techniczna Soundscape
+## Pomoc techniczna Soundscape
 Adres e-mail <soundscapeAndroid@scottishtecharmy.support> prowadzi prosto do naszego systemu pomocy technicznej. Prześlij wszelkie opinie, jakie masz, niezależnie od tego, czy jest to prośba o nową funkcję, czy zgłoszenie błędu. Otrzymasz automatyczną odpowiedź e-mail, a my dostaniemy powiadomienie, że pojawiło się nowe zgłoszenie do obejrzenia, i postaramy się odpowiedzieć na nie tak szybko, jak to możliwe.
 
-# Jak korzystać z Soundscape
+## Jak korzystać z Soundscape
 [Jak korzystać z Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape w Twoim języku
+## Soundscape w Twoim języku
 Soundscape jest dostępny w 46 językach, ale większości tłumaczeń nie sprawdził jeszcze rodzimy użytkownik języka. Jeśli mówisz którymś z nich, bardzo chętnie skorzystamy z Twojej pomocy: najszybciej jest odpowiedzieć na krótką [ankietę dla Twojego języka]({{ "/help-translate/" | relative_url }}), co zajmuje około dziesięciu minut. Poprawki możesz też zgłaszać bezpośrednio w [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), gdzie zarządzamy tłumaczeniami ([jak działa Weblate](https://docs.weblate.org/en/latest/user/translating.html)).

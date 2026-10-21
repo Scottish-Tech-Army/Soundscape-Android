@@ -22,14 +22,14 @@ Soundscape একটি বিনামূল্যের, উন্মুক্
 
 Soundscape প্রথমে iOS-এ তৈরি করেছিল [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/), এবং ২০২২ সালে উন্মুক্ত উৎস হওয়ার আগে এটি ব্যাপকভাবে ব্যবহৃত হতো। [Scottish Tech Army](https://www.scottishtecharmy.org) এটিকে iOS-এ সচল রেখেছে এবং পাশাপাশি উন্মুক্ত উৎসের অ্যান্ড্রয়েড অ্যাপ হিসেবে নতুন করে লিখেছে।
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play থেকে Soundscape নিন" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store থেকে Soundscape ডাউনলোড করুন" height=80></a>
 
-# Soundscape সহায়তা
+## Soundscape সহায়তা
 <soundscapeAndroid@scottishtecharmy.support> ইমেল ঠিকানাটি সরাসরি আমাদের হেল্প ডেস্ক ব্যবস্থায় যুক্ত। আপনার যেকোনো মতামত পাঠান, তা বৈশিষ্ট্যের অনুরোধ হোক বা ত্রুটির প্রতিবেদন। উত্তরে আপনি একটি স্বয়ংক্রিয় ইমেল পাবেন, আমাদের কাছে বার্তা যাবে যে নতুন একটি টিকিট এসেছে, আর আমরা যত দ্রুত সম্ভব উত্তর দেওয়ার চেষ্টা করব।
 
-# Soundscape কীভাবে ব্যবহার করবেন
+## Soundscape কীভাবে ব্যবহার করবেন
 [Soundscape কীভাবে ব্যবহার করবেন]({{ "/users/user.html" | relative_url }})
 
-# আপনার ভাষায় Soundscape
+## আপনার ভাষায় Soundscape
 Soundscape ৪৬টি ভাষায় পাওয়া যায়, তবে বেশিরভাগ অনুবাদ এখনও কোনো মাতৃভাষী যাচাই করেননি। আপনি যদি এর কোনো একটি ভাষায় কথা বলেন, আমরা আপনার সাহায্য পেলে খুশি হব: সবচেয়ে সহজ উপায় হলো [আপনার ভাষার ছোট প্রশ্নাবলীর]({{ "/help-translate/" | relative_url }}) উত্তর দেওয়া, যাতে প্রায় দশ মিনিট লাগে। আপনি সরাসরি [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/)-এও উন্নতির পরামর্শ দিতে পারেন, যেখানে অনুবাদগুলো পরিচালিত হয় ([Weblate কীভাবে কাজ করে](https://docs.weblate.org/en/latest/user/translating.html))।

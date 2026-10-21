@@ -8,6 +8,8 @@ permalink: /users/user.html
 machine-translated: true
 ---
 
+# {{ page.title }}
+
 Az itt található dokumentáció az alkalmazás legújabb verziójából származik. Az alkalmazásban a menü gombra (bal felül) kattintva, majd a Súgó és oktatóanyagok kiválasztásával érheti el.
 
 Ha érdekli, hogyan működik az alkalmazás, tekintse meg [ezt az oldalt]({{ "/users/how-it-works.html" | relative_url }}).

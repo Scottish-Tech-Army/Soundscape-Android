@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-is/
+content_lang: is
 ---
 
 # Íslensk þýðing Soundscape — nokkrar spurningar

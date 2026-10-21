@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-uk/
+content_lang: uk
 ---
 
 # Український переклад Soundscape — ще кілька запитань

@@ -22,14 +22,14 @@ Soundscape는 3D 공간 음향을 사용해 시각장애가 있는 분들이 주
 
 Soundscape는 원래 [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/)가 iOS용으로 개발했고 2022년 오픈소스로 공개되기 전까지 널리 쓰였습니다. [Scottish Tech Army](https://www.scottishtecharmy.org)는 iOS에서 계속 이용할 수 있도록 유지해 왔으며, 오픈소스 Android 앱으로 새로 작성하기도 했습니다.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play에서 Soundscape 받기" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store에서 Soundscape 다운로드" height=80></a>
 
-# Soundscape 지원
+## Soundscape 지원
 <soundscapeAndroid@scottishtecharmy.support> 이메일 주소는 저희 헬프데스크 시스템으로 바로 연결됩니다. 기능 요청이든 버그 신고든 어떤 의견이라도 보내 주세요. 자동 회신 메일을 받으시게 되고, 저희에게는 새 티켓이 있다는 알림이 도착하며, 가능한 한 빨리 답변드리도록 하겠습니다.
 
-# Soundscape 사용법
+## Soundscape 사용법
 [Soundscape 사용법]({{ "/users/user.html" | relative_url }})
 
-# 사용자의 언어로 만나는 Soundscape
+## 사용자의 언어로 만나는 Soundscape
 Soundscape는 46개 언어로 제공되지만, 대부분의 번역은 아직 원어민의 검토를 받지 못했습니다. 이 중 한 언어를 사용하신다면 도움을 주시면 정말 감사하겠습니다. 가장 빠른 방법은 [사용하시는 언어의 짧은 설문]({{ "/help-translate/" | relative_url }})에 답해 주시는 것으로, 약 10분 정도 걸립니다. 번역을 관리하는 [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/)에서 직접 개선 사항을 제안하실 수도 있습니다([Weblate 사용 방법](https://docs.weblate.org/en/latest/user/translating.html)).

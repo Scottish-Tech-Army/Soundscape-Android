@@ -22,14 +22,14 @@ Soundscape ایک مفت، کھلے مآخذ والی ایپ ہے جو تھری 
 
 Soundscape کو ابتدا میں [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) نے iOS پر تیار کیا تھا اور 2022 میں کھلے مآخذ ہونے سے پہلے یہ بڑے پیمانے پر استعمال ہوتی رہی۔ [Scottish Tech Army](https://www.scottishtecharmy.org) نے اسے iOS پر دستیاب رکھا اور ساتھ ہی اسے کھلے مآخذ والی اینڈرائیڈ ایپ کے طور پر نئے سرے سے لکھا۔
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play سے Soundscape حاصل کریں" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store سے Soundscape ڈاؤن لوڈ کریں" height=80></a>
 
-# Soundscape کی معاونت
+## Soundscape کی معاونت
 ای میل پتہ <soundscapeAndroid@scottishtecharmy.support> سیدھا ہمارے ہیلپ ڈیسک نظام سے جا ملتا ہے۔ براہِ کرم کوئی بھی رائے بھیجیں، خواہ وہ کسی خصوصیت کی درخواست ہو یا خرابی کی اطلاع۔ آپ کو جواب میں خودکار ای میل موصول ہوگی، ہمیں اطلاع مل جائے گی کہ کوئی نیا ٹکٹ آیا ہے، اور ہم جلد از جلد جواب دینے کی کوشش کریں گے۔
 
-# Soundscape کیسے استعمال کریں
+## Soundscape کیسے استعمال کریں
 [Soundscape کیسے استعمال کریں]({{ "/users/user.html" | relative_url }})
 
-# آپ کی زبان میں Soundscape
+## آپ کی زبان میں Soundscape
 Soundscape ۴۶ زبانوں میں دستیاب ہے، لیکن زیادہ تر تراجم کا ابھی تک کسی مقامی بولنے والے نے جائزہ نہیں لیا۔ اگر آپ ان میں سے کوئی زبان بولتے ہیں تو ہمیں آپ کی مدد سے بہت خوشی ہوگی: سب سے آسان طریقہ اپنی زبان کے مختصر [سوالنامے]({{ "/help-translate/" | relative_url }}) کا جواب دینا ہے، جس میں تقریباً دس منٹ لگتے ہیں۔ آپ براہِ راست [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) پر بھی بہتری کی تجاویز دے سکتے ہیں، جہاں تراجم کا انتظام کیا جاتا ہے ([Weblate کیسے کام کرتا ہے](https://docs.weblate.org/en/latest/user/translating.html))۔

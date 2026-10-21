@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-nb_NO/
+content_lang: nb
 ---
 
 # Norsk oversettelse av Soundscape — noen spørsmål

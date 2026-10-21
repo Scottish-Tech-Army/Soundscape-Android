@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-es/
+content_lang: es
 ---
 
 # Traducción al español de Soundscape — lo que hemos decidido

@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-ru/
+content_lang: ru
 ---
 
 # Русский перевод Soundscape — несколько вопросов

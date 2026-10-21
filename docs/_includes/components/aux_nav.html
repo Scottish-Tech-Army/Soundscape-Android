@@ -3,9 +3,11 @@
   The label in _config.yml `aux_links` (e.g. "Soundscape on GitHub") is used as
   the lookup key into _data/ui_strings.yml `aux_links`; if there is a translation
   for the current jekyll-polyglot render language we use it, otherwise we fall
-  back to the config label itself. Everything else matches the theme component.
+  back to the config label itself. The landmark is labelled "GitHub" rather than
+  the theme's English "Auxiliary", which screen readers spoke untranslated on
+  every language. Everything else matches the theme component.
 {%- endcomment -%}
-<nav aria-label="Auxiliary" class="aux-nav">
+<nav aria-label="GitHub" class="aux-nav">
   <ul class="aux-nav-list">
     {% for link in site.aux_links %}
       {%- assign link_translations = site.data.ui_strings.aux_links[link.first] -%}

@@ -22,14 +22,14 @@ Forritið heldur áfram að virka í bakgrunni þegar síminn er í vasa eða t�
 
 Soundscape var upphaflega þróað á iOS af [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) og var víða notað áður en það var gert að opnum hugbúnaði árið 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) hefur haldið því aðgengilegu á iOS og einnig endurskrifað það sem Android-forrit með opnum kóða.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Sæktu Soundscape á Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Sæktu Soundscape í App Store" height=80></a>
 
-# Aðstoð við Soundscape
+## Aðstoð við Soundscape
 Netfangið <soundscapeAndroid@scottishtecharmy.support> tengist beint inn í aðstoðarkerfið okkar. Vinsamlegast sendu inn allar athugasemdir sem þú hefur, hvort sem það er ósk um eiginleika eða villutilkynning. Þú færð sjálfvirkan tölvupóst til baka og við fáum tilkynningu um að það sé nýtt mál til að skoða og við reynum að svara því eins fljótt og auðið er.
 
-# Hvernig á að nota Soundscape
+## Hvernig á að nota Soundscape
 [Hvernig á að nota Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape á þínu tungumáli
+## Soundscape á þínu tungumáli
 Soundscape er fáanlegt á 46 tungumálum, en fæstar þýðingarnar hafa enn verið yfirfarnar af fólki sem hefur tungumálið að móðurmáli. Ef þú talar eitt þeirra væri hjálp þín vel þegin: fljótlegast er að svara stuttum [spurningalista fyrir þitt tungumál]({{ "/help-translate/" | relative_url }}), sem tekur um tíu mínútur. Þú getur líka stungið upp á endurbótum beint á [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), þar sem þýðingunum er stýrt ([svona virkar Weblate](https://docs.weblate.org/en/latest/user/translating.html)).

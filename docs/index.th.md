@@ -22,14 +22,14 @@ Soundscape เป็นแอปฟรีแบบโอเพนซอร์ส
 
 Soundscape พัฒนาขึ้นครั้งแรกบน iOS โดย [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) และมีผู้ใช้อย่างกว้างขวางก่อนจะเปิดเป็นโอเพนซอร์สในปี 2022 [Scottish Tech Army](https://www.scottishtecharmy.org) ได้ดูแลให้ยังคงใช้งานได้บน iOS และยังเขียนขึ้นใหม่เป็นแอป Android แบบโอเพนซอร์สด้วย
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="ดาวน์โหลด Soundscape บน Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="ดาวน์โหลด Soundscape บน App Store" height=80></a>
 
-# การสนับสนุน Soundscape
+## การสนับสนุน Soundscape
 ที่อยู่อีเมล <soundscapeAndroid@scottishtecharmy.support> เชื่อมตรงเข้าสู่ระบบศูนย์ช่วยเหลือของเรา กรุณาส่งความคิดเห็นใด ๆ เข้ามา ไม่ว่าจะเป็นคำขอฟีเจอร์หรือการรายงานข้อบกพร่อง คุณจะได้รับอีเมลตอบกลับอัตโนมัติ ส่วนเราจะได้รับแจ้งว่ามีเรื่องใหม่เข้ามา และเราจะพยายามตอบให้เร็วที่สุด
 
-# วิธีใช้ Soundscape
+## วิธีใช้ Soundscape
 [วิธีใช้ Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape ในภาษาของคุณ
+## Soundscape ในภาษาของคุณ
 Soundscape มีให้ใช้งาน 46 ภาษา แต่คำแปลส่วนใหญ่ยังไม่เคยได้รับการตรวจสอบจากเจ้าของภาษา หากคุณพูดภาษาใดภาษาหนึ่งในนั้น เรายินดีมากที่จะได้รับความช่วยเหลือจากคุณ วิธีที่เร็วที่สุดคือการตอบ[แบบสอบถามสั้น ๆ สำหรับภาษาของคุณ]({{ "/help-translate/" | relative_url }}) ซึ่งใช้เวลาประมาณสิบนาที คุณยังสามารถเสนอการปรับปรุงได้โดยตรงใน [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) ซึ่งเป็นที่จัดการคำแปล ([Weblate ทำงานอย่างไร](https://docs.weblate.org/en/latest/user/translating.html))

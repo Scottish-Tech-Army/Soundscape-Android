@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-pt_BR/
+content_lang: pt-BR
 ---
 
 # Tradução do Soundscape para o português do Brasil — algumas perguntas
