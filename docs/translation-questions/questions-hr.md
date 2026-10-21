@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-hr/
+content_lang: hr
 ---
 
 # Hrvatski prijevod Soundscapea — nekoliko pitanja

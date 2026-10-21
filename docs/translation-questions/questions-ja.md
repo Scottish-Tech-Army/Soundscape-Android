@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-ja/
+content_lang: ja
 ---
 
 # Soundscape 日本語訳についてのご質問

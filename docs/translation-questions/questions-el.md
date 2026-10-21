@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-el/
+content_lang: el
 ---
 
 # Η ελληνική μετάφραση του Soundscape — μερικές ερωτήσεις

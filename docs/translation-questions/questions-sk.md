@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-sk/
+content_lang: sk
 ---
 
 # Slovenský preklad Soundscape — niekoľko otázok

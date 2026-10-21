@@ -25,11 +25,11 @@ Soundscape was originally developed on iOS by [Microsoft Research](https://www.m
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
 
-# Soundscape support
+## Soundscape support
 The email address <soundscapeAndroid@scottishtecharmy.support> links straight into our help desk system. Please send in any feedback you have, whether it's a feature request or a bug report. You'll receive an automated email in response and we'll get pinged that there's a new ticket to look at and we'll try and answer it as quickly as possible.
 
-# How to use Soundscape
+## How to use Soundscape
 [How to use Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape in your language
+## Soundscape in your language
 Soundscape is available in 46 languages, but most of the translations have not yet been checked by a native speaker. If you speak one of them, we'd love your help: the quickest way is to answer the short [questionnaire for your language]({{ "/help-translate/" | relative_url }}), which takes about ten minutes. You can also suggest improvements directly on [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), where the translations are managed ([how Weblate works](https://docs.weblate.org/en/latest/user/translating.html)).

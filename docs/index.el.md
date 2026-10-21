@@ -22,14 +22,14 @@ machine-translated: true
 
 Το Soundscape αναπτύχθηκε αρχικά σε iOS από τη [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) και χρησιμοποιήθηκε ευρέως πριν γίνει ανοιχτού κώδικα το 2022. Ο [Scottish Tech Army](https://www.scottishtecharmy.org) το έχει διατηρήσει διαθέσιμο σε iOS και το έχει επίσης ξαναγράψει ως εφαρμογή ανοιχτού κώδικα για Android.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Αποκτήστε το Soundscape στο Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Κατεβάστε το Soundscape από το App Store" height=80></a>
 
-# Υποστήριξη Soundscape
+## Υποστήριξη Soundscape
 Η διεύθυνση email <soundscapeAndroid@scottishtecharmy.support> οδηγεί απευθείας στο σύστημα υποστήριξής μας. Στείλτε μας οποιοδήποτε σχόλιο έχετε, είτε πρόκειται για αίτημα λειτουργίας είτε για αναφορά σφάλματος. Θα λάβετε ένα αυτοματοποιημένο email ως απάντηση και εμείς θα ειδοποιηθούμε ότι υπάρχει ένα νέο αίτημα προς εξέταση και θα προσπαθήσουμε να το απαντήσουμε όσο το δυνατόν πιο γρήγορα.
 
-# Πώς να χρησιμοποιήσετε το Soundscape
+## Πώς να χρησιμοποιήσετε το Soundscape
 [Πώς να χρησιμοποιήσετε το Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Το Soundscape στη γλώσσα σας
+## Το Soundscape στη γλώσσα σας
 Το Soundscape είναι διαθέσιμο σε 46 γλώσσες, αλλά οι περισσότερες μεταφράσεις δεν έχουν ακόμη ελεγχθεί από φυσικό ομιλητή. Αν μιλάτε κάποια από αυτές, θα χαρούμε πολύ να μας βοηθήσετε: ο πιο γρήγορος τρόπος είναι να απαντήσετε στο σύντομο [ερωτηματολόγιο για τη γλώσσα σας]({{ "/help-translate/" | relative_url }}), που διαρκεί περίπου δέκα λεπτά. Μπορείτε επίσης να προτείνετε βελτιώσεις απευθείας στο [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), όπου γίνεται η διαχείριση των μεταφράσεων ([πώς λειτουργεί το Weblate](https://docs.weblate.org/en/latest/user/translating.html)).

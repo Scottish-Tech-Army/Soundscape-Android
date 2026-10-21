@@ -33,7 +33,7 @@ The `google-services.json` file is not super secret so long as the server is con
 * GOOGLE_SERVICES_PATH - not really secret, always set to `google-services.json`
 
 There's a mock `google-services.json` file checked in to GitHub to allow builds without access to secrets to complete.
-Authenticate for talking to the Firebase servers is done using [google-github-actions/auth@v2](https://github.com/google-github-actions/auth). We pass in the `credentials_json`, see [this page](https://github.com/google-github-actions/auth?tab=readme-ov-file#inputs-service-account-key-json) for details of what this is and how to format it. (To remove line breaks run `cat soundscape-android-CREDENTIALS-NAME.json | tr -d '\012\015'`).  
+Authenticate for talking to the Firebase servers is done using [google-github-actions/auth@v2](https://github.com/google-github-actions/auth). We pass in the `credentials_json`, see the [auth action's service account key documentation](https://github.com/google-github-actions/auth?tab=readme-ov-file#inputs-service-account-key-json) for details of what this is and how to format it. (To remove line breaks run `cat soundscape-android-CREDENTIALS-NAME.json | tr -d '\012\015'`).  
 * GCLOUD_CREDENTIALS_JSON - the value passed in to  `credentials_json`.
 * FIREBASE_PROJECT_ID - This is the Project ID from Firebase. 
 
@@ -55,7 +55,7 @@ These are the secrets that are used with the search server.
 * SEARCH_PROVIDER_API_KEY - the API key required to access the photon server
 
 ### Repo commit without pull request
-The `run-test.yaml` action bumps the version number, committing the change back into the repo. The repo has branch protection enabled which requires a pull request for any commits. We pass in a token as described [here](https://github.com/stefanzweifel/git-auto-commit-action?tab=readme-ov-file#push-to-protected-branches) to allow the pull request to be bypassed:
+The `run-test.yaml` action bumps the version number, committing the change back into the repo. The repo has branch protection enabled which requires a pull request for any commits. We pass in a token as described in the [git-auto-commit-action protected branches documentation](https://github.com/stefanzweifel/git-auto-commit-action?tab=readme-ov-file#push-to-protected-branches) to allow the pull request to be bypassed:
 * PAT_TOKEN - token generated on an admin account which allows write access to public repos.
 
 ### iOS code signing

@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-ko/
+content_lang: ko
 ---
 
 # Soundscape 한국어 번역 — 몇 가지 질문

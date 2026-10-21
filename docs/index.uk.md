@@ -22,14 +22,14 @@ Soundscape — це безкоштовний застосунок з відкр�
 
 Soundscape спочатку був розроблений для iOS компанією [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) і широко використовувався до того, як був переведений у відкритий код у 2022 році. [Scottish Tech Army](https://www.scottishtecharmy.org) підтримує його доступність на iOS, а також переписав його як застосунок з відкритим кодом для Android.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Завантажити Soundscape з Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Завантажити Soundscape з App Store" height=80></a>
 
-# Підтримка Soundscape
+## Підтримка Soundscape
 Адреса електронної пошти <soundscapeAndroid@scottishtecharmy.support> веде безпосередньо до нашої системи служби підтримки. Будь ласка, надсилайте будь-які відгуки, які у вас є, чи то запит на функцію, чи повідомлення про помилку. Ви отримаєте автоматичну відповідь електронною поштою, а нам надійде сповіщення про нову заявку, яку треба розглянути, і ми намагатимемося відповісти якомога швидше.
 
-# Як користуватися Soundscape
+## Як користуватися Soundscape
 [Як користуватися Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape вашою мовою
+## Soundscape вашою мовою
 Soundscape доступний 46 мовами, але більшість перекладів ще не перевірили носії мови. Якщо ви володієте однією з них, ми будемо дуже раді вашій допомозі: найшвидше — відповісти на коротку [анкету для вашої мови]({{ "/help-translate/" | relative_url }}), це займе близько десяти хвилин. Пропонувати покращення можна й безпосередньо у [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), де ведуться переклади ([як працює Weblate](https://docs.weblate.org/en/latest/user/translating.html)).

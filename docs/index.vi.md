@@ -22,14 +22,14 @@ Thay vì đưa ra chỉ dẫn từng khúc rẽ, Soundscape hoạt động như 
 
 Soundscape ban đầu được [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) phát triển trên iOS và được dùng rộng rãi trước khi trở thành mã nguồn mở vào năm 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) đã duy trì ứng dụng trên iOS và đồng thời viết lại thành ứng dụng Android mã nguồn mở.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Tải Soundscape trên Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Tải Soundscape trên App Store" height=80></a>
 
-# Hỗ trợ Soundscape
+## Hỗ trợ Soundscape
 Địa chỉ email <soundscapeAndroid@scottishtecharmy.support> dẫn thẳng vào hệ thống hỗ trợ của chúng tôi. Hãy gửi cho chúng tôi mọi phản hồi, dù là đề xuất tính năng hay báo lỗi. Bạn sẽ nhận được email trả lời tự động, còn chúng tôi sẽ được báo là có phiếu yêu cầu mới và sẽ cố gắng trả lời sớm nhất có thể.
 
-# Cách dùng Soundscape
+## Cách dùng Soundscape
 [Cách dùng Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape bằng ngôn ngữ của bạn
+## Soundscape bằng ngôn ngữ của bạn
 Soundscape có sẵn bằng 46 ngôn ngữ, nhưng phần lớn bản dịch vẫn chưa được người bản ngữ kiểm tra. Nếu bạn nói một trong những ngôn ngữ đó, chúng tôi rất mong nhận được sự giúp đỡ của bạn: cách nhanh nhất là trả lời [bảng câu hỏi ngắn cho ngôn ngữ của bạn]({{ "/help-translate/" | relative_url }}), chỉ mất khoảng mười phút. Bạn cũng có thể đề xuất cải thiện trực tiếp trên [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), nơi quản lý các bản dịch ([cách Weblate hoạt động](https://docs.weblate.org/en/latest/user/translating.html)).

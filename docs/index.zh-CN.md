@@ -22,14 +22,14 @@ Soundscape 不会提供逐步转向的导航指引，而是像一座为耳朵服
 
 Soundscape 最初由 [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) 在 iOS 上开发，并在 2022 年开源之前得到了广泛使用。[Scottish Tech Army](https://www.scottishtecharmy.org) 一直在 iOS 上保持其可用性，并将其重新编写为一款开源 Android 应用。
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="在 Google Play 上获取 Soundscape" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="在 App Store 下载 Soundscape" height=80></a>
 
-# Soundscape 支持
+## Soundscape 支持
 电子邮件地址 <soundscapeAndroid@scottishtecharmy.support> 直接连接到我们的帮助台系统。无论是功能请求还是错误报告，请随时发送您的任何反馈。您将收到一封自动回复邮件，同时我们会收到有新工单需要查看的提醒，我们将尽快予以回复。
 
-# 如何使用 Soundscape
+## 如何使用 Soundscape
 [如何使用 Soundscape]({{ "/users/user.html" | relative_url }})
 
-# 用您的语言使用 Soundscape
+## 用您的语言使用 Soundscape
 Soundscape 支持 46 种语言，但大多数译文还没有经过母语者检查。如果您会说其中一种语言，我们非常欢迎您的帮助：最快的方式是填写[您所用语言的简短问卷]({{ "/help-translate/" | relative_url }})，大约需要十分钟。您也可以直接在管理这些译文的 [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) 上提出改进建议（[Weblate 的使用方法](https://docs.weblate.org/en/latest/user/translating.html)）。

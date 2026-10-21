@@ -22,14 +22,14 @@ Soundscape ఒక ఉచిత, ఓపెన్ సోర్స్ యాప్.
 
 Soundscape ను మొదట iOS లో [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) అభివృద్ధి చేసింది; 2022లో ఓపెన్ సోర్స్ కాకముందు ఇది విస్తృతంగా వాడబడేది. [Scottish Tech Army](https://www.scottishtecharmy.org) దీన్ని iOS లో అందుబాటులో ఉంచింది, అలాగే ఓపెన్ సోర్స్ Android యాప్‌గా కొత్తగా రాసింది.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Playలో Soundscape పొందండి" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store నుండి Soundscape డౌన్‌లోడ్ చేయండి" height=80></a>
 
-# Soundscape మద్దతు
+## Soundscape మద్దతు
 <soundscapeAndroid@scottishtecharmy.support> ఈమెయిల్ చిరునామా నేరుగా మా సహాయ కేంద్ర వ్యవస్థకు కలుపుతుంది. ఫీచర్ కోరికైనా, లోపం నివేదికైనా — మీ అభిప్రాయాన్ని పంపండి. బదులుగా మీకు స్వయంచాలక ఈమెయిల్ వస్తుంది, కొత్త టికెట్ వచ్చిందని మాకు సూచన అందుతుంది, మేము వీలైనంత త్వరగా సమాధానం ఇవ్వడానికి ప్రయత్నిస్తాము.
 
-# Soundscape ఎలా ఉపయోగించాలి
+## Soundscape ఎలా ఉపయోగించాలి
 [Soundscape ఎలా ఉపయోగించాలి]({{ "/users/user.html" | relative_url }})
 
-# మీ భాషలో Soundscape
+## మీ భాషలో Soundscape
 Soundscape 46 భాషల్లో అందుబాటులో ఉంది, కానీ చాలా అనువాదాలను ఇంకా ఏ మాతృభాషీయుడూ తనిఖీ చేయలేదు. వీటిలో ఏదైనా భాష మీరు మాట్లాడితే, మీ సహాయం మాకు ఎంతో విలువైనది: మీ భాషకు సంబంధించిన చిన్న [ప్రశ్నావళికి]({{ "/help-translate/" | relative_url }}) జవాబివ్వడమే సులువైన మార్గం, దీనికి సుమారు పది నిమిషాలు పడుతుంది. అనువాదాలను నిర్వహించే [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) లో నేరుగా మెరుగుదలలను కూడా సూచించవచ్చు ([Weblate ఎలా పనిచేస్తుంది](https://docs.weblate.org/en/latest/user/translating.html))।

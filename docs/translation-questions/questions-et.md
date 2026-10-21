@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-et/
+content_lang: et
 ---
 
 # Soundscape'i eestikeelne tõlge — mõned küsimused

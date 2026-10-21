@@ -22,14 +22,14 @@ Soundscape は、ターン・バイ・ターンの道案内をするのではな
 
 Soundscape はもともと [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) によって iOS 向けに開発され、2022 年にオープンソース化される前から広く利用されていました。[Scottish Tech Army](https://www.scottishtecharmy.org) は、iOS での提供を継続するとともに、オープンソースの Android アプリとして書き直しました。
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play で Soundscape を入手" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store から Soundscape をダウンロード" height=80></a>
 
-# Soundscape のサポート
+## Soundscape のサポート
 メール アドレス <soundscapeAndroid@scottishtecharmy.support> は、当社のヘルプデスク システムに直接つながっています。機能の要望でもバグの報告でも、どのようなフィードバックでもお寄せください。自動返信メールが届き、当社には新しいチケットがあることが通知されますので、できるだけ早く対応するよう努めます。
 
-# Soundscape の使い方
+## Soundscape の使い方
 [Soundscape の使い方]({{ "/users/user.html" | relative_url }})
 
-# Soundscape をあなたの言語で
+## Soundscape をあなたの言語で
 Soundscape は 46 の言語で利用できますが、ほとんどの翻訳はまだネイティブスピーカーによる確認を受けていません。いずれかの言語を話す方は、ぜひご協力ください。いちばん手軽なのは、[あなたの言語の短いアンケート]({{ "/help-translate/" | relative_url }})に答えていただくことで、10 分ほどで終わります。翻訳を管理している [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) で直接改善を提案することもできます（[Weblate の使い方](https://docs.weblate.org/en/latest/user/translating.html)）。

@@ -22,14 +22,14 @@ Aplikasi terus bekerja di latar belakang ketika ponsel berada di saku atau tas â
 
 Soundscape awalnya dikembangkan di iOS oleh [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) dan digunakan secara luas sebelum menjadi sumber terbuka pada 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) menjaganya tetap tersedia di iOS dan juga menulis ulangnya sebagai aplikasi Android sumber terbuka.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Dapatkan Soundscape di Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Unduh Soundscape di App Store" height=80></a>
 
-# Dukungan Soundscape
+## Dukungan Soundscape
 Alamat surel <soundscapeAndroid@scottishtecharmy.support> terhubung langsung ke sistem meja bantuan kami. Silakan kirimkan masukan apa pun, baik permintaan fitur maupun laporan bug. Anda akan menerima balasan surel otomatis, kami akan mendapat pemberitahuan bahwa ada tiket baru, dan kami akan berusaha menjawabnya secepat mungkin.
 
-# Cara menggunakan Soundscape
+## Cara menggunakan Soundscape
 [Cara menggunakan Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape dalam bahasa Anda
+## Soundscape dalam bahasa Anda
 Soundscape tersedia dalam 46 bahasa, tetapi sebagian besar terjemahannya belum diperiksa oleh penutur asli. Jika Anda berbicara salah satunya, kami akan sangat senang menerima bantuan Anda: cara tercepat adalah menjawab [kuesioner singkat untuk bahasa Anda]({{ "/help-translate/" | relative_url }}), yang memerlukan sekitar sepuluh menit. Anda juga dapat menyarankan perbaikan langsung di [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), tempat terjemahan dikelola ([cara kerja Weblate](https://docs.weblate.org/en/latest/user/translating.html)).

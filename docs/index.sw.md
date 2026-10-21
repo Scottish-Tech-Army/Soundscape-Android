@@ -22,14 +22,14 @@ Programu huendelea kufanya kazi chinichini simu ikiwa mfukoni au kwenye begi –
 
 Soundscape ilitengenezwa awali kwenye iOS na [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) na ilitumika sana kabla ya kufanywa msimbo huria mwaka 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) imeiweka ikipatikana kwenye iOS na pia imeiandika upya kama programu ya Android yenye msimbo huria.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Pata Soundscape kwenye Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Pakua Soundscape kwenye App Store" height=80></a>
 
-# Msaada wa Soundscape
+## Msaada wa Soundscape
 Anwani ya barua pepe <soundscapeAndroid@scottishtecharmy.support> huunganisha moja kwa moja na mfumo wetu wa msaada. Tafadhali tutumie maoni yoyote, iwe ni ombi la kipengele au ripoti ya hitilafu. Utapokea barua pepe ya kiotomatiki kama jibu, sisi tutaarifiwa kuwa kuna ombi jipya, na tutajaribu kulijibu haraka iwezekanavyo.
 
-# Jinsi ya kutumia Soundscape
+## Jinsi ya kutumia Soundscape
 [Jinsi ya kutumia Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape katika lugha yako
+## Soundscape katika lugha yako
 Soundscape inapatikana kwa lugha 46, lakini tafsiri nyingi bado hazijakaguliwa na mzungumzaji asilia. Ikiwa unazungumza mojawapo, tungefurahi sana kupata msaada wako: njia ya haraka zaidi ni kujibu [dodoso fupi la lugha yako]({{ "/help-translate/" | relative_url }}), ambalo huchukua takriban dakika kumi. Unaweza pia kupendekeza maboresho moja kwa moja kwenye [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), ambako tafsiri husimamiwa ([jinsi Weblate inavyofanya kazi](https://docs.weblate.org/en/latest/user/translating.html)).

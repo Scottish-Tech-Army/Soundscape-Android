@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-ca/
+content_lang: ca
 ---
 
 # Traducció catalana de Soundscape — unes quantes preguntes

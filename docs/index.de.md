@@ -22,14 +22,14 @@ Die App arbeitet im Hintergrund weiter, wenn sich das Telefon in einer Tasche od
 
 Soundscape wurde ursprünglich auf iOS von [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) entwickelt und war weit verbreitet, bevor es 2022 quelloffen wurde. Die [Scottish Tech Army](https://www.scottishtecharmy.org) hat es auf iOS verfügbar gehalten und es außerdem als quelloffene Android-App neu geschrieben.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Soundscape bei Google Play herunterladen" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Soundscape im App Store laden" height=80></a>
 
-# Soundscape-Support
+## Soundscape-Support
 Die E-Mail-Adresse <soundscapeAndroid@scottishtecharmy.support> führt direkt in unser Helpdesk-System. Bitte senden Sie uns jegliches Feedback, sei es ein Funktionswunsch oder ein Fehlerbericht. Sie erhalten eine automatische E-Mail als Antwort, und wir werden benachrichtigt, dass es ein neues Ticket zu bearbeiten gibt, und versuchen, es so schnell wie möglich zu beantworten.
 
-# Verwendung von Soundscape
+## Verwendung von Soundscape
 [Verwendung von Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape in Ihrer Sprache
+## Soundscape in Ihrer Sprache
 Soundscape ist in 46 Sprachen verfügbar, aber die meisten Übersetzungen wurden noch nicht von Muttersprachlern geprüft. Wenn Sie eine davon sprechen, freuen wir uns über Ihre Hilfe: Am schnellsten geht es mit dem kurzen [Fragebogen für Ihre Sprache]({{ "/help-translate/" | relative_url }}), der etwa zehn Minuten dauert. Sie können Verbesserungen auch direkt in [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) vorschlagen, wo die Übersetzungen verwaltet werden ([so funktioniert Weblate](https://docs.weblate.org/en/latest/user/translating.html)).

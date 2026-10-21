@@ -22,14 +22,14 @@ Uygulama, telefon bir cebte veya çantadayken arka planda çalışmaya devam ede
 
 Soundscape başlangıçta iOS üzerinde [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) tarafından geliştirilmiş ve 2022'de açık kaynak yapılmadan önce yaygın olarak kullanılmıştır. [Scottish Tech Army](https://www.scottishtecharmy.org), uygulamayı iOS'ta kullanılabilir tutmuş ve ayrıca açık kaynaklı bir Android uygulaması olarak yeniden yazmıştır.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Soundscape’i Google Play’den edinin" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Soundscape’i App Store’dan indirin" height=80></a>
 
-# Soundscape desteği
+## Soundscape desteği
 <soundscapeAndroid@scottishtecharmy.support> e-posta adresi doğrudan yardım masası sistemimize bağlanır. Bir özellik talebi veya bir hata bildirimi olsun, sahip olduğunuz her türlü geri bildirimi lütfen bize gönderin. Yanıt olarak otomatik bir e-posta alacaksınız ve bize bakılması gereken yeni bir bilet olduğu bildirilecek; bunu mümkün olduğunca hızlı yanıtlamaya çalışacağız.
 
-# Soundscape nasıl kullanılır
+## Soundscape nasıl kullanılır
 [Soundscape nasıl kullanılır]({{ "/users/user.html" | relative_url }})
 
-# Kendi dilinizde Soundscape
+## Kendi dilinizde Soundscape
 Soundscape 46 dilde kullanılabilir, ancak çevirilerin çoğu henüz anadili o dil olan biri tarafından kontrol edilmedi. Bu dillerden birini konuşuyorsanız yardımınızdan çok memnun oluruz: en hızlı yol, yaklaşık on dakika süren kısa [dilinize ait ankete]({{ "/help-translate/" | relative_url }}) yanıt vermektir. Çevirilerin yönetildiği [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) üzerinden doğrudan iyileştirme de önerebilirsiniz ([Weblate nasıl çalışır](https://docs.weblate.org/en/latest/user/translating.html)).

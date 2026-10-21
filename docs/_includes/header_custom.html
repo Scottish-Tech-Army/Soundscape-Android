@@ -6,20 +6,55 @@
   for the default language, which lives at the site root). Untranslated pages
   fall back to the default-language content at the same URL, so every option
   resolves to a valid page.
+
+  This is a <details> disclosure of ordinary links rather than a <select> that
+  navigates on change: with a keyboard, arrowing through a closed <select>
+  fires a change for every language passed, so a screen reader user was sent
+  off to another language before reaching the one they wanted. Each language
+  name carries its own lang attribute so screen readers speak it in that
+  language. static_href stops polyglot rewriting the links into the current
+  language.
 {%- endcomment -%}
 {%- if site.languages.size > 1 -%}
-<div class="lang-switcher" style="display:flex;align-items:center;padding:0 0.75rem;">
-  <select aria-label="Language"
-          onchange="if(this.value){window.location.href=this.value;}"
-          style="max-width:14rem;">
-    {%- for lang in site.languages -%}
-      {%- if lang == site.default_lang -%}
-        {%- assign lang_path = page.url -%}
-      {%- else -%}
-        {%- capture lang_path -%}/{{ lang }}{{ page.url }}{%- endcapture -%}
-      {%- endif -%}
-      <option value="{{ lang_path | relative_url }}"{% if lang == site.active_lang %} selected{% endif %}>{{ site.data.languages[lang] | default: lang }}</option>
-    {%- endfor -%}
-  </select>
-</div>
+{%- assign a11y_strings = site.data.ui_strings.a11y -%}
+{%- assign language_label = a11y_strings[site.active_lang].language | default: a11y_strings[site.default_lang].language -%}
+{%- assign current_language_name = site.data.languages[site.active_lang] | default: site.active_lang -%}
+<nav class="lang-switcher" aria-label="{{ language_label | escape }}">
+  <details>
+    <summary>
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9M12 3c-2.5 2.5-3.8 5.5-3.8 9s1.3 6.5 3.8 9"/></svg>
+      <span class="visually-hidden">{{ language_label | escape }}: </span><span lang="{{ site.active_lang }}">{{ current_language_name }}</span>
+    </summary>
+    <ul>
+      {%- for lang in site.languages -%}
+        {%- if lang == site.default_lang -%}
+          {%- assign lang_path = page.url -%}
+        {%- else -%}
+          {%- capture lang_path -%}/{{ lang }}{{ page.url }}{%- endcapture -%}
+        {%- endif -%}
+        <li><a {% static_href %}href="{{ lang_path | relative_url }}"{% endstatic_href %} lang="{{ lang }}" hreflang="{{ lang }}"{% if lang == site.active_lang %} aria-current="true"{% endif %}>{{ site.data.languages[lang] | default: lang }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </details>
+</nav>
+<script>
+  (function () {
+    var details = document.currentScript.previousElementSibling.querySelector('details');
+    /* Escape closes the list and returns focus to its button. Block comments
+       only: the page is minified onto one line. */
+    details.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && details.open) {
+        details.open = false;
+        details.querySelector('summary').focus();
+      }
+    });
+    /* Clicking or tabbing away closes it too. */
+    document.addEventListener('click', function (e) {
+      if (details.open && !details.contains(e.target)) details.open = false;
+    });
+    details.addEventListener('focusout', function (e) {
+      if (details.open && e.relatedTarget && !details.contains(e.relatedTarget)) details.open = false;
+    });
+  })();
+</script>
 {%- endif -%}

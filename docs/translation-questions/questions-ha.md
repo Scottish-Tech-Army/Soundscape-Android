@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-ha/
+content_lang: ha
 ---
 
 # Fassarar Soundscape zuwa Hausa — wasu tambayoyi

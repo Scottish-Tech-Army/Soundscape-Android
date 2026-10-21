@@ -41,8 +41,14 @@ different, unpublished format; this skill doesn't cover it.
   nav_exclude: true
   search_exclude: true
   permalink: /translation-questions/questions-<code>/
+  content_lang: <web language code>
   ---
   ```
+  `content_lang` is the sheet's language as a web code (`ru`, `pt-BR`,
+  `fr-CA`, `en-GB`, `nb` for `nb_NO`, `zh-CN` for `zh_Hans`). `docs/_plugins/accessibility.rb` puts
+  it on the page's `<main lang>` so screen readers read the sheet in its own
+  language rather than with an English voice. It is not `lang:`, which
+  polyglot would treat as a translation of another page.
   The `questions-` prefix is required: jekyll-polyglot silently drops any page
   whose file name or URL segment is a bare language code (`de.md`,
   `/translation-questions/de/`). The folder is in `exclude_from_localization`,

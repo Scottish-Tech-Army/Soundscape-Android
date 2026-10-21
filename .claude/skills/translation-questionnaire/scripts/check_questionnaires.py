@@ -34,6 +34,8 @@ def check(path):
     for need in ("layout: default", "nav_exclude: true", f"permalink: /translation-questions/questions-{code}/"):
         if need not in fm:
             errs.append(f"front matter lacks '{need}'")
+    if not re.search(r"^content_lang: [a-z]{2,3}(-[A-Z]{2})?$", fm, re.M):
+        errs.append("front matter lacks 'content_lang: <web language code>'")
     if "translation-terminology" not in s:
         errs.append("no 'What is Soundscape' section (no terminology link)")
     nums = [int(n) for n in re.findall(r"^(?:#{2,3} |\*\*)Q(\d+)", s, re.M)]

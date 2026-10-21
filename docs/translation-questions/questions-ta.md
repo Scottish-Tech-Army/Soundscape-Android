@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-ta/
+content_lang: ta
 ---
 
 # Soundscape தமிழ் மொழிபெயர்ப்பு — சில கேள்விகள்

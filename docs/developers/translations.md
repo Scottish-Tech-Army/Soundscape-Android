@@ -11,7 +11,7 @@ We aim to support as many languages as possible. Soundscape is translated into 4
 
 Native speakers help mainly through the [per-language questionnaires]({{ "/help-translate/" | relative_url }}) and by email to soundscapeAndroid@scottishtecharmy.support. [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) mirrors the repository so that anyone can browse the translations and leave suggestions there, but it no longer writes to the repository.
 
-A guide to key Soundscape terminology can be found [here]({% link developers/translation-terminology.md %}).
+A guide to key Soundscape terminology can be found in the [translation terminology guide]({% link developers/translation-terminology.md %}).
 
 ## The translation loop
 

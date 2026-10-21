@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-da/
+content_lang: da
 ---
 
 # Dansk oversættelse af Soundscape — et par spørgsmål

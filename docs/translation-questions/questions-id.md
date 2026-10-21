@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-id/
+content_lang: id
 ---
 
 # Terjemahan Bahasa Indonesia Soundscape — beberapa pertanyaan

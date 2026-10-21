@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-sl/
+content_lang: sl
 ---
 
 # Slovenski prevod Soundscapa — nekaj vprašanj

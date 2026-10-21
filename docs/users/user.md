@@ -5,7 +5,9 @@ has_toc: true
 nav_order: 1
 ---
 
+# {{ page.title }}
+
 The documentation here is from the latest version of the app. In the app you can get to it by clicking on the menu button (top left) and then selecting Help & Tutorials.
 
-For those with an interest in how the app works, please take a look at [this page]({{ "/users/how-it-works.html" | relative_url }}).
+For those with an interest in how the app works, please take a look at [how Soundscape works]({{ "/users/how-it-works.html" | relative_url }}).
 

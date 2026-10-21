@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-zh_Hans/
+content_lang: zh-CN
 ---
 
 # Soundscape 简体中文翻译 — 几个问题

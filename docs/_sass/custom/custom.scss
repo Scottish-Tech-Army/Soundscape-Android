@@ -1,12 +1,113 @@
 // =============================================================================
+// Accessibility helpers
+// =============================================================================
+
+// Text for screen readers only (e.g. the "Language:" prefix on the language
+// switcher, the search result count announcement).
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Logo beside the site name (replaces a <pre> that was used as a spacer).
+.site-logo {
+  margin-inline-end: $sp-3;
+}
+
+// Make keyboard focus easy to see everywhere, including on the theme's own
+// controls, which mostly rely on the browser default.
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible {
+  outline: 3px solid $link-color;
+  outline-offset: 2px;
+}
+
+// The theme's sidebar credit is light grey on grey (2.8:1); darken it to pass
+// the 4.5:1 contrast minimum.
+.site-footer {
+  color: $grey-dk-200;
+}
+
+// --- Language switcher (_includes/header_custom.html) ----------------------
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+
+  details {
+    position: relative;
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    border: $border $border-color;
+    border-radius: $border-radius;
+    white-space: nowrap;
+
+    .icon {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+  }
+
+  ul {
+    position: absolute;
+    inset-inline-end: 0;
+    z-index: 100;
+    min-width: 14rem;
+    max-height: 70vh;
+    margin: 0.25rem 0 0;
+    padding: 0.25rem 0;
+    overflow-y: auto;
+    list-style: none;
+    background: $body-background-color;
+    border: $border $border-color;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    padding: 0.35rem 0.9rem;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      background: $sidebar-color;
+    }
+
+    &[aria-current] {
+      font-weight: 600;
+    }
+  }
+}
+
+// =============================================================================
 // Right-to-left (RTL) layout overrides
 // =============================================================================
 //
 // just-the-docs builds its two-column layout with *physical* properties
 // (margin-left, border-right, left:0, padding-left, ...) so it does not flip
-// for RTL languages on its own. _includes/head_custom.html sets dir="rtl" on
-// <html> for Arabic (arz) and Persian (fa); everything below mirrors the
-// physical layout under that attribute.
+// for RTL languages on its own. _plugins/accessibility.rb sets dir="rtl" on
+// <html> for Arabic, Farsi and Urdu; everything below mirrors the physical
+// layout under that attribute.
 //
 // This file is imported last in the theme's SCSS chain (via _sass/custom/custom),
 // so the theme's variables ($nav-width, $border-color, ...) and the mq() mixin
@@ -145,6 +246,26 @@
     dd {
       margin-right: 1em;
       margin-left: 0;
+    }
+
+    // An untranslated page shown in an RTL language is English content in a
+    // <main dir="ltr">: put its lists back the left-to-right way round.
+    main[dir="ltr"] {
+      ul,
+      ol {
+        padding-right: 0;
+        padding-left: 1.5em;
+      }
+
+      ol > li::before {
+        right: auto;
+        left: -1.6em;
+      }
+
+      ul > li::before {
+        margin-right: 0;
+        margin-left: -1.4em;
+      }
     }
   }
 }

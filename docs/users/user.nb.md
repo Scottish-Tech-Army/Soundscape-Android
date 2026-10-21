@@ -8,6 +8,8 @@ permalink: /users/user.html
 machine-translated: true
 ---
 
+# {{ page.title }}
+
 Dokumentasjonen her er fra den nyeste versjonen av appen. I appen kan du komme til den ved å klikke på menyknappen (øverst til venstre) og deretter velge Hjelp og veiledninger.
 
 For de som er interessert i hvordan appen fungerer, ta gjerne en titt på [denne siden]({{ "/users/how-it-works.html" | relative_url }}).

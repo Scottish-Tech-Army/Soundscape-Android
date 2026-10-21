@@ -22,14 +22,14 @@ Aplikace funguje dál na pozadí, i když máte telefon v kapse nebo v tašce �
 
 Soundscape původně vyvinula pro iOS společnost [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) a byla široce používaná, než byla v roce 2022 uvolněna jako otevřený software. [Scottish Tech Army](https://www.scottishtecharmy.org) ji udržuje dostupnou na iOS a zároveň ji přepsala jako open-source aplikaci pro Android.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Stáhněte si Soundscape na Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Stáhněte si Soundscape z App Store" height=80></a>
 
-# Podpora Soundscape
+## Podpora Soundscape
 E-mailová adresa <soundscapeAndroid@scottishtecharmy.support> vede přímo do našeho systému podpory. Pošlete nám jakoukoli zpětnou vazbu, ať už jde o návrh funkce, nebo hlášení chyby. Obdržíte automatickou odpověď e-mailem, nám přijde upozornění, že je tu nový tiket, a pokusíme se jej vyřídit co nejrychleji.
 
-# Jak Soundscape používat
+## Jak Soundscape používat
 [Jak Soundscape používat]({{ "/users/user.html" | relative_url }})
 
-# Soundscape ve vašem jazyce
+## Soundscape ve vašem jazyce
 Soundscape je dostupný ve 46 jazycích, ale většinu překladů zatím nezkontroloval rodilý mluvčí. Pokud některým z nich mluvíte, budeme rádi za vaši pomoc: nejrychlejší je odpovědět na krátký [dotazník pro váš jazyk]({{ "/help-translate/" | relative_url }}), který zabere asi deset minut. Vylepšení můžete navrhovat také přímo ve [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), kde se překlady spravují ([jak Weblate funguje](https://docs.weblate.org/en/latest/user/translating.html)).

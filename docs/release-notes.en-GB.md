@@ -10,7 +10,7 @@ permalink: /release-notes.html
 # Release notes
 
 Soundscape 2.0 is a big release and is now in open Beta on Android. This means that anyone can access the beta
-release simply by going to the Play Store [here](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+release simply by going to [Soundscape on the Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
 The headline change is that
 Soundscape now has something useful to say when you're travelling by car, bus or train, rather than
 only when you're on foot. However, there's also a great deal of smaller work on how places are described,

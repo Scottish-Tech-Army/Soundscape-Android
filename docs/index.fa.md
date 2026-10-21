@@ -22,14 +22,14 @@ machine-translated: true
 
 ساند‌اسکیپ در ابتدا توسط [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) روی iOS توسعه داده شد و پیش از آنکه در سال ۲۰۲۲ متن‌باز شود، به‌طور گسترده‌ای مورد استفاده قرار می‌گرفت. [Scottish Tech Army](https://www.scottishtecharmy.org) آن را روی iOS در دسترس نگه داشته و همچنین آن را به‌عنوان یک اپلیکیشن اندروید متن‌باز بازنویسی کرده است.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Soundscape را از Google Play دریافت کنید" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Soundscape را از App Store دانلود کنید" height=80></a>
 
-# پشتیبانی ساند‌اسکیپ
+## پشتیبانی ساند‌اسکیپ
 آدرس ایمیل <soundscapeAndroid@scottishtecharmy.support> مستقیماً به سامانه‌ی میز پشتیبانی ما متصل می‌شود. لطفاً هر بازخوردی که دارید برای ما بفرستید، چه درخواست یک ویژگی باشد و چه گزارش یک اشکال. شما در پاسخ یک ایمیل خودکار دریافت خواهید کرد و به ما اطلاع داده می‌شود که یک درخواست جدید برای بررسی وجود دارد و ما تلاش می‌کنیم در سریع‌ترین زمان ممکن به آن پاسخ دهیم.
 
-# چگونه از ساند‌اسکیپ استفاده کنیم
+## چگونه از ساند‌اسکیپ استفاده کنیم
 [چگونه از ساند‌اسکیپ استفاده کنیم]({{ "/users/user.html" | relative_url }})
 
-# ساند‌اسکیپ به زبان شما
+## ساند‌اسکیپ به زبان شما
 Soundscape به ۴۶ زبان در دسترس است، اما بیشتر ترجمه‌ها هنوز توسط یک گویشور بومی بازبینی نشده‌اند. اگر به یکی از این زبان‌ها صحبت می‌کنید، خوشحال می‌شویم کمکمان کنید: سریع‌ترین راه پاسخ دادن به [پرسشنامه‌ی کوتاه زبان شما]({{ "/help-translate/" | relative_url }}) است که حدود ده دقیقه طول می‌کشد. همچنین می‌توانید پیشنهادهای خود را مستقیماً در [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) ثبت کنید، جایی که ترجمه‌ها مدیریت می‌شوند ([Weblate چگونه کار می‌کند](https://docs.weblate.org/en/latest/user/translating.html)).

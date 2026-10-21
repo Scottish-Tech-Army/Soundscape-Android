@@ -22,14 +22,14 @@ Manhajar tana ci gaba da aiki a baya idan wayar tana aljihu ko cikin jaka – ba
 
 Da farko [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) ne suka kirkiri Soundscape a kan iOS, kuma an yi amfani da ita sosai kafin a mai da ita budaddiyar tushe a 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) ta ci gaba da samar da ita a kan iOS, ta kuma sake rubuta ta a matsayin manhajar Android mai budaddiyar tushe.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Samu Soundscape a Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Sauke Soundscape a App Store" height=80></a>
 
-# Tallafin Soundscape
+## Tallafin Soundscape
 Adireshin imel <soundscapeAndroid@scottishtecharmy.support> yana kaiwa kai tsaye zuwa tsarin tallafinmu. Da fatan ka aiko mana da duk wani ra'ayi, ko bukatar sabon fasali ne ko rahoton kuskure. Za ka samu imel na atomatik a matsayin amsa, mu kuma za a sanar da mu cewa akwai sabon buƙata, kuma za mu yi kokarin amsawa da wuri-wuri.
 
-# Yadda ake amfani da Soundscape
+## Yadda ake amfani da Soundscape
 [Yadda ake amfani da Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape a harshenka
+## Soundscape a harshenka
 Ana samun Soundscape a harsuna 46, amma yawancin fassarorin ba a sa mai jin harshen ya duba su ba tukuna. Idan kuna jin ɗaya daga cikinsu, za mu yi farin ciki da taimakonku: hanya mafi sauri ita ce ku amsa gajeren [takardar tambayoyi ta harshenku]({{ "/help-translate/" | relative_url }}), wadda take ɗaukar kusan minti goma. Kuna iya kuma ba da shawarar gyare-gyare kai tsaye a [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), inda ake gudanar da fassarorin ([yadda Weblate ke aiki](https://docs.weblate.org/en/latest/user/translating.html)).

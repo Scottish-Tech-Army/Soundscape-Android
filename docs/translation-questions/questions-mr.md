@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-mr/
+content_lang: mr
 ---
 
 # Soundscape चे मराठी भाषांतर — काही प्रश्न

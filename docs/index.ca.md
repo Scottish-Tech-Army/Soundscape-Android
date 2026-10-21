@@ -22,14 +22,14 @@ L'aplicació continua funcionant en segon pla amb el telèfon a la butxaca o a l
 
 Soundscape va ser desenvolupada originalment a iOS per [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) i es va fer servir àmpliament abans d'alliberar-ne el codi el 2022. La [Scottish Tech Army](https://www.scottishtecharmy.org) l'ha mantinguda disponible a iOS i també l'ha reescrita com a aplicació Android de codi obert.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Obtén Soundscape a Google Play" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Baixa Soundscape a l’App Store" height=80></a>
 
-# Suport de Soundscape
+## Suport de Soundscape
 L'adreça de correu <soundscapeAndroid@scottishtecharmy.support> connecta directament amb el nostre sistema d'assistència. Envieu-nos qualsevol comentari, tant si és una petició de funcionalitat com un informe d'error. Rebreu un correu automàtic de resposta, a nosaltres ens arribarà l'avís que hi ha un tiquet nou i mirarem de respondre'l al més aviat possible.
 
-# Com fer servir Soundscape
+## Com fer servir Soundscape
 [Com fer servir Soundscape]({{ "/users/user.html" | relative_url }})
 
-# Soundscape en la vostra llengua
+## Soundscape en la vostra llengua
 Soundscape està disponible en 46 llengües, però la majoria de les traduccions encara no les ha revisat cap parlant nadiu. Si en parleu alguna, ens encantaria que ens ajudéssiu: la manera més ràpida és respondre el breu [qüestionari de la vostra llengua]({{ "/help-translate/" | relative_url }}), que porta uns deu minuts. També podeu suggerir millores directament a [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/), on es gestionen les traduccions ([com funciona Weblate](https://docs.weblate.org/en/latest/user/translating.html)).

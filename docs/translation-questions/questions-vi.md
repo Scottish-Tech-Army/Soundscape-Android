@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-vi/
+content_lang: vi
 ---
 
 # Bản dịch tiếng Việt của Soundscape — vài câu hỏi

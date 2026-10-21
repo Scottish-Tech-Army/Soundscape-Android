@@ -4,6 +4,7 @@ layout: default
 nav_exclude: true
 search_exclude: true
 permalink: /translation-questions/questions-bg/
+content_lang: bg
 ---
 
 # Българският превод на Soundscape — няколко въпроса
