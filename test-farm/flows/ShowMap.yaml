@@ -12,9 +12,11 @@ appId: org.scottishtecharmy.soundscape
 # testTags are driven by their English labels.
 ---
 - runFlow: LaunchHome.yaml
-# Whether the map is on is read from Home (its full screen button only shows
-# with the map), because Maestro's checked: matches the switch's label as well
-# as the switch.
+# Whether the map is on is read from the settingsShowMap row's checked state.
+# Untagged releases can only be read from Home (its full screen button only
+# shows with the map), because Maestro's checked: on its own matches the
+# switch's label as well as the switch; but on Home a beacon card can push the
+# button out of view, so that reading is only a fallback.
 - evalScript: ${output.mapOn = false}
 - evalScript: |
     ${
@@ -59,12 +61,34 @@ appId: org.scottishtecharmy.soundscape
           element:
             id: settingsShowMap
           direction: DOWN
+      - evalScript: ${output.mapOn = false}
+      - runFlow:
+          when:
+            visible:
+              id: settingsShowMap
+              checked: true
+          commands:
+            - evalScript: ${output.mapOn = true}
       - runFlow:
           when:
             true: ${output.mapOn !== output.want}
           commands:
             - tapOn:
                 id: settingsShowMap
+      - runFlow:
+          when:
+            true: ${output.want}
+          commands:
+            - assertVisible:
+                id: settingsShowMap
+                checked: true
+      - runFlow:
+          when:
+            true: ${!output.want}
+          commands:
+            - assertVisible:
+                id: settingsShowMap
+                checked: false
 - runFlow:
     when:
       true: ${!output.tagged}
@@ -92,13 +116,13 @@ appId: org.scottishtecharmy.soundscape
       screen: Home
 - runFlow:
     when:
-      true: ${output.want}
+      true: ${!output.tagged && output.want}
     commands:
       - assertVisible:
           id: homeFullScreenMap
 - runFlow:
     when:
-      true: ${!output.want}
+      true: ${!output.tagged && !output.want}
     commands:
       - assertNotVisible:
           id: homeFullScreenMap
