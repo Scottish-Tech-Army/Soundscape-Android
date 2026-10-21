@@ -95,9 +95,15 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
             }
 
             Accuracy.Balanced -> {
-                if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                // GPS when there is one, as GooglePlayLocationProvider does: network fixes are
+                // too coarse for wake on leave's 40m. The longer interval is the power saving.
+                val provider = if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                    LocationManager.GPS_PROVIDER
+                else
+                    LocationManager.NETWORK_PROVIDER
+                if (locationManager.isProviderEnabled(provider)) {
                     locationManager.requestLocationUpdates(
-                        LocationManager.NETWORK_PROVIDER,
+                        provider,
                         accuracy.updateInterval.inWholeMilliseconds,
                         accuracy.minimumDistanceM,
                         locationListener,

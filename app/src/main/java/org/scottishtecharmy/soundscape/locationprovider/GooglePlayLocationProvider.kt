@@ -67,12 +67,13 @@ class GooglePlayLocationProvider(context: Context) :
     @SuppressLint("MissingPermission")
     override fun start(accuracy: Accuracy) {
 
+        // Both ask for GPS: Balanced saves its power through the longer interval, not by
+        // accepting PRIORITY_BALANCED_POWER_ACCURACY's Wi-Fi and cell fixes. Those are 40-100m
+        // out, which is the whole of wake on leave's 40m, so they would wake it while the user
+        // sat still, or not as they walked off - and with no Wi-Fi or cell, never arrive at all.
         fusedLocationClient.requestLocationUpdates(
             LocationRequest.Builder(
-                when (accuracy) {
-                    Accuracy.Balanced -> Priority.PRIORITY_BALANCED_POWER_ACCURACY
-                    Accuracy.High -> Priority.PRIORITY_HIGH_ACCURACY
-                },
+                Priority.PRIORITY_HIGH_ACCURACY,
                 accuracy.updateInterval.inWholeMilliseconds
             ).apply {
                 setMinUpdateDistanceMeters(accuracy.minimumDistanceM)

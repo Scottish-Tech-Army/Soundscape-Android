@@ -27,9 +27,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectIndexed
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
@@ -66,15 +65,45 @@ sealed class SleepScreenEffect {
     object WakeUpNow : SleepScreenEffect()
 }
 
+/**
+ * How far the user has to move from where they snoozed before wake on leave wakes the app. 40m,
+ * as the legacy iOS app used: far enough that GPS drift while sitting indoors doesn't wake it.
+ */
+private const val WAKE_ON_LEAVE_DISTANCE_M = 40.0
+
 class SleepScreenViewModel(
     private val locationProvider: LocationProvider,
-    private val onWakeUp: () -> Unit,
+    /**
+     * Called with true when wake on leave starts and false when the user turns it off again, so
+     * the platform can keep location updates coming with the phone locked (Android runs its
+     * service while snoozing). Not called on waking: [onWakeUp] covers that.
+     */
+    private var onSnooze: (Boolean) -> Unit = {},
+    /**
+     * True when the platform is still snoozing from before this screen was recreated (Android
+     * keeps its service snoozing across activity re-creation), so wake on leave carries on.
+     */
+    alreadySnoozing: Boolean = false,
+    private var onWakeUp: () -> Unit,
 ) : ViewModel() {
+
+    /**
+     * Replaces the platform callbacks with the current screen's. The view model outlives the
+     * activity when it is recreated (dark mode, language, font size...), and the callbacks it was
+     * created with call into the old, destroyed activity, which ignores them - so the user could
+     * never wake from a sleep that a re-creation had happened during.
+     */
+    fun updateCallbacks(onSnooze: (Boolean) -> Unit, onWakeUp: () -> Unit) {
+        this.onSnooze = onSnooze
+        this.onWakeUp = onWakeUp
+    }
+
     private val _state: MutableStateFlow<SleepScreenState> =
         MutableStateFlow(SleepScreenState.Sleeping)
     val state: StateFlow<SleepScreenState> = _state.asStateFlow()
 
-    private val _location: MutableStateFlow<LngLatAlt> = MutableStateFlow(LngLatAlt())
+    // Null until the provider has a fix, so that no made-up position becomes the start location
+    private val _location: MutableStateFlow<LngLatAlt?> = MutableStateFlow(null)
     private val _events: MutableSharedFlow<SleepScreenEvent> = MutableSharedFlow()
 
     // Rendezvous Channel to handle navigation
@@ -83,9 +112,9 @@ class SleepScreenViewModel(
         onBufferOverflow = BufferOverflow.SUSPEND
     )
 
-    private lateinit var _locationJob: Job
+    private var _locationJob: Job? = null
     private val _eventsJob: Job
-    private lateinit var _geofenceJob: Job
+    private var _geofenceJob: Job? = null
     private var _isDestroyed = false
 
     init {
@@ -102,6 +131,12 @@ class SleepScreenViewModel(
                 }
             }
         }
+        if (alreadySnoozing) {
+            // The start location is wherever the user is now, which can only be closer to
+            // where they snoozed than where they are about to walk to
+            _state.value = SleepScreenState.Snoozing(userLocation = LngLatAlt())
+            subscribeToLocation()
+        }
     }
 
     fun onWakeUpNowClicked() {
@@ -111,17 +146,22 @@ class SleepScreenViewModel(
     fun onWakeOnLeaveClicked() {
         when (_state.value) {
             is SleepScreenState.Sleeping -> {
-                subscribeToLocation()
+                onSnooze(true)
+                // Snoozing before subscribing: on the main dispatcher the jobs run straight away,
+                // and the geofence ignores fixes until it is, so the provider's current fix -
+                // where the user actually is - would be dropped and the next one taken as start.
                 _state.update {
                     SleepScreenState.Snoozing(
-                        userLocation = _location.value,
+                        userLocation = _location.value ?: LngLatAlt(),
                     )
                 }
+                subscribeToLocation()
             }
 
             is SleepScreenState.Snoozing -> {
                 unsubscribeFromLocation()
                 _state.update { SleepScreenState.Sleeping }
+                onSnooze(false)
             }
         }
     }
@@ -145,74 +185,45 @@ class SleepScreenViewModel(
     }
 
     private fun unsubscribeFromLocation() {
-        if (this::_locationJob.isInitialized && _locationJob.isActive) {
-            _locationJob.cancel()
-        }
-        if (this::_geofenceJob.isInitialized && _geofenceJob.isActive) {
-            _geofenceJob.cancel()
-        }
+        _locationJob?.cancel()
+        _locationJob = null
+        _geofenceJob?.cancel()
+        _geofenceJob = null
+        // Forget the last fix, so that snoozing again starts from wherever the user is then
+        _location.value = null
         locationProvider.destroy()
     }
 
     private fun subscribeToLocation() {
         // Start location job to update internal location sharedflow
-        if (!this::_locationJob.isInitialized) {
+        if (_locationJob?.isActive != true) {
             _locationJob = viewModelScope.launch {
                 locationProvider.start(Accuracy.Balanced)
-                locationProvider.locationFlow.collect { loc ->
-                    if (isActive) {
-                        val lngLat = loc?.asLngLatAlt() ?: LngLatAlt()
-                        _location.update { lngLat }
-                    }
+                locationProvider.locationFlow.filterNotNull().collect { loc ->
+                    _location.value = loc.asLngLatAlt()
                 }
             }
         }
 
-        // Start geofence job to collect from location job. On collection of value, update the state with:
-        // if first emission: the start location
-        // subsequent emissions update the distance from the start location
-        if (!this::_geofenceJob.isInitialized) {
+        // The first fix becomes the start location, and the session ends once a later fix is
+        // further than WAKE_ON_LEAVE_DISTANCE_M from it.
+        if (_geofenceJob?.isActive != true) {
             _geofenceJob = viewModelScope.launch {
-                println("Geofencing job started: $state")
-                val ruler = CheapRuler(0.0)
-                _location.collectIndexed { index, value ->
-                    var state = _state.value
-
-                    println("Geofencing job new location. Current State: $state")
-
-                    when (state) {
-                        is SleepScreenState.Snoozing -> {
-                            state = if (index == 0) {
-                                state.copy(
-                                    userLocation = value,
-                                    startLocation = value,
-                                    geofenceDistance = ruler.distance(value, value)
-                                )
-                            } else {
-                                state.copy(
-                                    userLocation = value,
-                                    geofenceDistance = ruler.distance(
-                                        state.userLocation,
-                                        state.startLocation ?: value
-                                    )
-                                )
-                            }
-
-                            // Check if the geofence distance is greater than 12 metres and if so, end the
-                            // session
-                            println("Geofencing job. Distance: ${state.geofenceDistance}")
-                            if (state.geofenceDistance > 12.0) {
-                                destroy()
-                            }
-
-                            _state.value = state
-
-                            println("Geofencing job new location. Updated State: ${_state.value}")
-                        }
-
-                        SleepScreenState.Sleeping -> {
-                            // no-op
-                        }
+                var ruler: CheapRuler? = null
+                _location.filterNotNull().collect { value ->
+                    val state = _state.value as? SleepScreenState.Snoozing ?: return@collect
+                    val start = state.startLocation ?: value
+                    // Built at the start's latitude: at 0 it overstates east-west distances
+                    // everywhere else (by 1.8x in Glasgow), waking the user early.
+                    val startRuler = ruler ?: CheapRuler(start.latitude).also { ruler = it }
+                    val updated = state.copy(
+                        userLocation = value,
+                        startLocation = start,
+                        geofenceDistance = startRuler.distance(value, start),
+                    )
+                    _state.value = updated
+                    if (updated.geofenceDistance > WAKE_ON_LEAVE_DISTANCE_M) {
+                        destroy()
                     }
                 }
             }

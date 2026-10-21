@@ -172,10 +172,11 @@ abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
      * the list functions answer from the database regardless.
      *
      * `actions` can be null even with a live service, during the window between onCreate
-     * and the startup block that builds it, so that is treated the same way.
+     * and the startup block that builds it, so that is treated the same way - as is a
+     * service snoozing for wake on leave, whose geo engine isn't running.
      */
     private fun executor(): SoundscapeActionExecutor =
-        SoundscapeService.runningInstance?.actions
+        SoundscapeService.runningInstance?.takeUnless { it.snoozing }?.actions
             ?: SoundscapeActionExecutor(
                 service = null,
                 routeDao = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext)

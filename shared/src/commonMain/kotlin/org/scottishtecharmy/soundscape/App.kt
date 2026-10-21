@@ -86,6 +86,10 @@ data class AppCallbacks(
     // Home-screen extras
     val onSleep: () -> Unit = {},
     val onWakeUp: () -> Unit = {},
+    // Wake on leave turned on (true) or off (false) from the sleep screen
+    val onSnooze: (Boolean) -> Unit = {},
+    // Whether wake on leave is still snoozing, for a sleep screen recreated part way through
+    val isSnoozing: () -> Boolean = { false },
     val onStreetPreviewGo: () -> Unit = {},
     val onStreetPreviewExit: () -> Unit = {},
     val onEnableStreetPreview: (LngLatAlt) -> Unit = {},
