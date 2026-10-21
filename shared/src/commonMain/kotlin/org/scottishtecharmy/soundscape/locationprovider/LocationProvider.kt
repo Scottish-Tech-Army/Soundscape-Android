@@ -15,6 +15,10 @@ sealed class Accuracy {
 
     }
 
+    /**
+     * GPS-grade fixes at a low rate, for sleep mode's wake on leave. The saving is in how often
+     * fixes come, not their accuracy: coarse Wi-Fi or cell fixes would swamp the 40m it waits for.
+     */
     object Balanced : Accuracy() {
         override val updateInterval: Duration = 30.seconds
         override val minimumDistanceM: Float = 5.0f

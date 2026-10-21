@@ -188,6 +188,11 @@ fun HomeScreen(
             onEnableStreetPreview = { loc -> viewModel.enableStreetPreview(loc) },
             onSleep = { activity.setServiceState(newServiceState = false, sleeping = true) },
             onWakeUp = { activity.setServiceState(newServiceState = true, sleeping = false) },
+            onSnooze = { activity.setSnoozing(it) },
+            isSnoozing = {
+                org.scottishtecharmy.soundscape.services.SoundscapeService.runningInstance
+                    ?.snoozing == true
+            },
             onShareRecording = { activity.shareRecording() },
             onRateApp = rateSoundscape,
             onContactSupport = contactSupport,
@@ -218,14 +223,19 @@ fun HomeScreen(
                 )
             },
             onGetLanguageMismatch = { getLanguageMismatch() },
+            // Not started: the sleep screen starts it only for wake on leave, so that plain sleep
+            // doesn't keep GPS running. The application context, as the sleep screen's view
+            // model - and so this provider - outlives the activity when it is recreated.
             provideLocationProvider = {
-                if (org.scottishtecharmy.soundscape.hasPlayServices(context)) {
+                val appContext = context.applicationContext
+                if (org.scottishtecharmy.soundscape.hasPlayServices(appContext)) {
                     org.scottishtecharmy.soundscape.locationprovider.GooglePlayLocationProvider(
-                        context
-                    ).apply { start() }
+                        appContext
+                    )
                 } else {
-                    org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider(context)
-                        .apply { start() }
+                    org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider(
+                        appContext
+                    )
                 }
             },
             getOpenSourceLicensesJson = {

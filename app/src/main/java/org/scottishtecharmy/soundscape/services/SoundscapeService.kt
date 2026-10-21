@@ -355,10 +355,19 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     private var mediaSession: MediaSession? = null
 
     private var mediaControlsTarget: MediaControlTarget = OriginalMediaControls(this)
-    private val mediaPlayer = SoundscapeDummyMediaPlayer { mediaControlsTarget }
+    private val mediaPlayer = SoundscapeDummyMediaPlayer { activeMediaControlsTarget() }
 
     var running: Boolean = false
     var started: Boolean = false
+
+    /**
+     * True while sleep mode's wake on leave is waiting for the user to move off. The service runs
+     * in the foreground only so that the app keeps receiving locations with the phone locked,
+     * and so that waking is a call into it rather than a foreground service start from the
+     * background, which Android 12+ refuses. The geo engine isn't started until [wakeFromSnooze].
+     */
+    var snoozing: Boolean = false
+        private set
 
     private var binder: SoundscapeBinder? = null
 
@@ -453,18 +462,72 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             running = true
         }
 
-        if (!started) {
-            AnalyticsProvider.getInstance().crashLogNotes("Start geo-engine")
-            startProviders()
-            val configLocale = getCurrentLocale()
-            val configuration = Configuration(applicationContext.resources.configuration)
-            configuration.setLocale(configLocale)
-            localizedContext = applicationContext.createConfigurationContext(configuration)
-            startGeoEngine(false)
-            started = true
+        if (intent?.action == ACTION_SNOOZE && !started) {
+            snoozing = true
+        }
+        if (intent?.getBooleanExtra(EXTRA_RESUME_SLEEP_PLAYBACK, false) == true) {
+            resumeSleepPlayback = true
+        }
+        if (!started && !snoozing) {
+            startEngine()
         }
 
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    private fun startEngine() {
+        AnalyticsProvider.getInstance().crashLogNotes("Start geo-engine")
+        startProviders()
+        val configLocale = getCurrentLocale()
+        val configuration = Configuration(applicationContext.resources.configuration)
+        configuration.setLocale(configLocale)
+        localizedContext = applicationContext.createConfigurationContext(configuration)
+        startGeoEngine(false)
+        started = true
+
+        // Resume whatever route/beacon was playing when sleep mode last stopped this service -
+        // but only when this start is the user waking it. Any other start, such as launching
+        // the app after it was killed while asleep, forgets it instead: resuming a beacon from
+        // a sleep long past would guide the user towards somewhere they may have left days ago.
+        if (resumeSleepPlayback) {
+            restoreSleepPlaybackState()
+        } else {
+            sharedPreferences.edit { putBoolean(SLEEP_RESUME_ACTIVE_KEY, false) }
+        }
+    }
+
+    // Set when the service is started, or woken from snoozing, to wake from sleep mode
+    private var resumeSleepPlayback = false
+
+    /** Ends wake on leave's snooze, starting the geo engine as a fresh service start would. */
+    fun wakeFromSnooze() {
+        Log.d(TAG, "wakeFromSnooze")
+        snoozing = false
+        resumeSleepPlayback = true
+        if (!started) startEngine()
+    }
+
+    /**
+     * Stops a snoozing service when the user turns wake on leave off, going back to plain sleep.
+     * Unlike [stopForegroundService] this doesn't save the playback state: sleep already did,
+     * and nothing has played since, so saving again would forget what to resume.
+     */
+    fun stopSnooze() {
+        Log.d(TAG, "stopSnooze")
+        if (!snoozing) return
+        abandonAudioFocus()
+        stopSelf()
+    }
+
+    // Media buttons do nothing while snoozing, as they did when sleep stopped the service
+    // outright: the targets act on the geo engine, which isn't running.
+    private fun activeMediaControlsTarget(): MediaControlTarget =
+        if (snoozing) SnoozingMediaControls else mediaControlsTarget
+
+    private object SnoozingMediaControls : MediaControlTarget {
+        override fun onPlayPause() = false
+        override fun onNext() = false
+        override fun onPrevious() = false
     }
 
     lateinit var sharedPreferences: SharedPreferences
@@ -548,12 +611,9 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             ) ?: PreferenceDefaults.MEDIA_CONTROLS_MODE
             updateMediaControls(mode)
 
-            // Resume whatever route/beacon was playing when sleep mode last stopped this service.
-            restoreSleepPlaybackState()
-
             mediaSession = MediaSession.Builder(this, mediaPlayer)
                 .setId("org.scottishtecharmy.soundscape")
-                .setCallback(SoundscapeMediaSessionCallback { mediaControlsTarget })
+                .setCallback(SoundscapeMediaSessionCallback { activeMediaControlsTarget() })
                 .build()
         }
     }
@@ -724,7 +784,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     /**
      * Restarts route/beacon playback saved by [saveSleepPlaybackState], if any. Called once when
-     * a fresh service instance is created after sleep mode stopped the previous one. The saved
+     * a fresh service instance woken from sleep mode starts its geo engine - so not while it is
+     * snoozing for wake on leave, nor on a start that isn't a wake (see [startEngine]). The saved
      * state is consumed (cleared) so it's only ever applied once.
      */
     private fun restoreSleepPlaybackState() {
@@ -1144,6 +1205,12 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     companion object {
         private const val TAG = "SoundscapeService"
+
+        /** Intent action starting the service snoozed for wake on leave; see [snoozing]. */
+        const val ACTION_SNOOZE = "org.scottishtecharmy.soundscape.SNOOZE"
+
+        /** Boolean extra marking a start as waking from sleep, so the saved playback resumes. */
+        const val EXTRA_RESUME_SLEEP_PLAYBACK = "org.scottishtecharmy.soundscape.RESUME_SLEEP_PLAYBACK"
 
         /**
          * The running service, or null when it isn't up.

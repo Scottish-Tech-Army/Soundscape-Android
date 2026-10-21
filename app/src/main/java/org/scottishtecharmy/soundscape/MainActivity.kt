@@ -344,6 +344,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Still asleep if this is the same session recreated, e.g. by a dark mode, language or
+        // font size change, or a fold or rotation on a large screen, where screenOrientation is
+        // ignored. Without this the launch below would start the service behind the sleep screen.
+        serviceSleeping = savedInstanceState?.getBoolean(SERVICE_SLEEPING_KEY, false) ?: false
 
 //      Enable the following code to generate stack traces when tracking down "A resource failed to
 //      call close messages in the log.
@@ -563,8 +567,21 @@ class MainActivity : AppCompatActivity() {
             continueLaunch(isFirstLaunch)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(SERVICE_SLEEPING_KEY, serviceSleeping)
+    }
+
     private fun onSplashComplete() {
-        checkAndRequestNotificationPermissions()
+        // Asleep, the service stays stopped (or snoozing) until the user wakes it, which goes
+        // through setServiceState and starts it then.
+        if (!serviceSleeping) {
+            checkAndRequestNotificationPermissions()
+        } else {
+            // The recreated activity starts on the home screen, as its back stack isn't restored
+            // through the splash, so return the user to the sleep screen they were on
+            navigator.navigate(SharedRoutes.SLEEP)
+        }
         soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
 
         val db =
@@ -1036,6 +1053,10 @@ class MainActivity : AppCompatActivity() {
     private var pendingServiceStart = false
 
     var serviceSleeping = false
+
+    // Set on waking from sleep until the service start that the wake leads to has happened,
+    // which may be deferred behind a permission request or to onResume
+    private var resumeSleepPlaybackOnStart = false
     fun setServiceState(newServiceState: Boolean, sleeping: Boolean? = null) {
         Log.d(
             TAG,
@@ -1054,12 +1075,50 @@ class MainActivity : AppCompatActivity() {
                 }
                 soundscapeServiceConnection.stopService(forSleep = sleeping == true)
             } else {
-                checkAndRequestNotificationPermissions()
+                val snoozingService = SoundscapeService.runningInstance?.takeIf { it.snoozing }
+                if (snoozingService != null) {
+                    // Wake on leave kept the service running: wake it in place, which works
+                    // with the phone locked, where a foreground service start would be refused.
+                    snoozingService.wakeFromSnooze()
+                } else {
+                    if (serviceSleeping) {
+                        // The service start this leads to is the wake, so it resumes what
+                        // sleep saved
+                        resumeSleepPlaybackOnStart = true
+                    }
+                    checkAndRequestNotificationPermissions()
+                }
                 soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
             }
         }
         if (sleeping != null) {
             serviceSleeping = sleeping
+        }
+    }
+
+    /**
+     * Turns sleep mode's wake on leave on or off. On, the service is started snoozed, from the
+     * user's tap while the app is in the foreground - the only time Android allows it - so that
+     * locations keep arriving once the phone is locked, and setServiceState can wake it in place.
+     */
+    fun setSnoozing(on: Boolean) {
+        Log.d(TAG, "setSnoozing $on")
+        if (isFinishing || isDestroyed) return
+        if (on) {
+            try {
+                startForegroundService(
+                    Intent(this, SoundscapeService::class.java)
+                        .setAction(SoundscapeService.ACTION_SNOOZE)
+                )
+            } catch (e: Exception) {
+                // Wake on leave then only works while the app stays in the foreground, as before
+                Log.w(TAG, "Couldn't start the service for wake on leave", e)
+                AnalyticsProvider.getInstance().crashLogNotes("Wake on leave service start failed: $e")
+                return
+            }
+            soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
+        } else {
+            SoundscapeService.runningInstance?.stopSnooze()
         }
     }
 
@@ -1071,9 +1130,11 @@ class MainActivity : AppCompatActivity() {
     private fun startSoundscapeService() {
         Log.e(TAG, "startSoundscapeService")
         val serviceIntent = Intent(this, SoundscapeService::class.java)
+            .putExtra(SoundscapeService.EXTRA_RESUME_SLEEP_PLAYBACK, resumeSleepPlaybackOnStart)
         try {
             startForegroundService(serviceIntent)
             pendingServiceStart = false
+            resumeSleepPlaybackOnStart = false
         } catch (e: Exception) {
             // On Android 12+ startForegroundService() throws ForegroundServiceStartNotAllowedException
             // when the app isn't considered to be in the foreground. This happens when a permission
@@ -1097,6 +1158,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
+        private const val SERVICE_SLEEPING_KEY = "service_sleeping"
 
         // SharedPreference keys and default values
         const val ALLOW_CALLOUTS_DEFAULT = true

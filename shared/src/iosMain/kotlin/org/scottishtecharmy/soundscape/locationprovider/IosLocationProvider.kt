@@ -109,10 +109,11 @@ class IosLocationProvider : LocationProvider() {
 
         locationManager.distanceFilter = accuracy.minimumDistanceM.toDouble()
 
-        locationManager.pausesLocationUpdatesAutomatically = when (accuracy) {
-            Accuracy.Balanced -> true
-            Accuracy.High -> false
-        }
+        // Never paused, as the legacy iOS app did. Balanced is what sleep mode's wake on leave
+        // runs on, and a snoozing user is stationary by definition: CoreLocation would pause
+        // the updates, and a paused session in the background doesn't resume until the app
+        // returns to the foreground, so the user would walk away without it ever waking.
+        locationManager.pausesLocationUpdatesAutomatically = false
 
         // Other, CoreLocation's default and what the legacy iOS app used: Soundscape is used on foot
         // and as a passenger alike, which Fitness (walking, running, cycling) and OtherNavigation

@@ -638,13 +638,18 @@ fun SharedNavHost(
         }
 
         composable(SharedRoutes.SLEEP) {
-            val locationProvider = remember {
-                callbacks.provideLocationProvider?.invoke()
-                    ?: StaticLocationProvider(LngLatAlt())
-            }
+            // The provider is made with the view model, and lives as long as it does: remembered
+            // in the composition instead, every activity re-creation would make another one
             val viewModel = viewModel {
-                SleepScreenViewModel(locationProvider, callbacks.onWakeUp)
+                SleepScreenViewModel(
+                    locationProvider = callbacks.provideLocationProvider?.invoke()
+                        ?: StaticLocationProvider(LngLatAlt()),
+                    onSnooze = callbacks.onSnooze,
+                    alreadySnoozing = callbacks.isSnoozing(),
+                    onWakeUp = callbacks.onWakeUp,
+                )
             }
+            viewModel.updateCallbacks(callbacks.onSnooze, callbacks.onWakeUp)
 
             val state = viewModel.state.collectAsState()
 
