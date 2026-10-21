@@ -17,7 +17,7 @@ appId: org.scottishtecharmy.soundscape
 - assertVisible:
     id: "LocationItem-C-.*"
 
-- runFlow: LaunchHome.yam
+- runFlow: LaunchHome.yaml
 - runFlow:
     file: ../../maestro/SwipeAndTap.yaml
     env:
