@@ -25,6 +25,7 @@ include_emulators = false
 include_ios = true            # observe USB iPhones via pymobiledevice3 (see README)
 ios_poll_minutes = 10
 max_battery_temp_c = 42       # pause the phone for 10 minutes above this
+battery_poll_minutes = 1      # battery level and temperature readings (vitals table, report)
 
 # Mock location: follow this GPX track, turning round at each end. The default
 # is the synthetic walk/bus/train track, replayed by its timestamps (see the

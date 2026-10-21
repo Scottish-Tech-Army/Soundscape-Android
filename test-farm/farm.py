@@ -84,6 +84,9 @@ DEFAULTS = {
     "include_ios": True,
     "ios_poll_minutes": 10,
     "max_battery_temp_c": 42,
+    # How often each Android phone's battery level and temperature are read
+    # for the report and the vitals table, between the per-cycle readings.
+    "battery_poll_minutes": 1,
     "replay_speed_mps": 1.4,
     "default_location": [55.9474, -4.3058],
     # Held while the Maestro suite runs: the flows assert distance-sorted list
@@ -172,6 +175,9 @@ class Db:
             CREATE TABLE IF NOT EXISTS events(
                 id INTEGER PRIMARY KEY, serial TEXT, ts REAL, kind TEXT,
                 version_code INTEGER, detail TEXT);
+            CREATE TABLE IF NOT EXISTS vitals(
+                serial TEXT, ts REAL, battery_level INTEGER, battery_temp REAL);
+            CREATE INDEX IF NOT EXISTS vitals_serial_ts ON vitals(serial, ts);
         """)
         try:  # added after the table: whether the set-up suite all passed
             self.conn.execute("ALTER TABLE setups ADD COLUMN complete INTEGER DEFAULT 1")
@@ -1395,8 +1401,32 @@ class IosWorker(threading.Thread):
 # --------------------------------------------------------------------------- report
 
 
+def battery_cell(st, last):
+    """The live reading if there is one (Android), else the last cycle's."""
+    if st.get("battery"):
+        level, temp, ts = st["battery"]
+        when = fmt_time(ts)
+    elif last:
+        level, temp, when = last["battery_level"], last["battery_temp"], "at the last cycle"
+    else:
+        return ""
+    text = f"{'' if level is None else level}% / {'' if temp is None else temp}°C"
+    return f"{html.escape(text)}<div class=dim>{html.escape(when)}</div>"
+
+
 def fmt_time(ts):
     return dt.datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M") if ts else ""
+
+
+def record_vitals(db, serial):
+    """Reads the phone's battery now, for the report and the vitals table."""
+    level, temp = battery(serial)
+    if level is None and temp is None:
+        return  # disconnected or not answering
+    now = time.time()
+    db.execute("INSERT INTO vitals VALUES(?,?,?,?)", (serial, now, level, temp))
+    with state_lock:
+        device_state.setdefault(serial, {})["battery"] = (level, temp, now)
 
 
 def write_report(db):
@@ -1420,7 +1450,7 @@ def write_report(db):
             <td class="{last['status'] if last else ''}">{e(last['status']) if last else ''}</td>
             <td>{day['ok'] or 0}/{day['n']}</td><td>{day['c'] or 0}</td><td>{day['a'] or 0}</td>
             <td>{last['pss_kb'] // 1024 if last and last['pss_kb'] else ''} MB</td>
-            <td>{last['battery_level'] if last else ''}% / {last['battery_temp'] if last else ''}°C</td></tr>""")
+            <td>{battery_cell(st, last)}</td></tr>""")
     failures = "".join(
         f"<tr><td>{fmt_time(r['ts'])}</td><td>{e(r['serial'])}</td><td>{e(r['kind'])}</td>"
         f"<td>{e(r['name'])}</td><td><a href='{e(os.path.relpath(r['dir'], FARM_DIR))}'>files</a></td>"
@@ -1493,6 +1523,7 @@ def main():
     usb_proxy.start()  # network over USB for in-app map downloads
     workers = {}
     last_prune = 0
+    last_vitals = 0
     while not stop_event.is_set():
         for serial in connected_devices(cfg["include_emulators"]):
             if serial not in workers or not workers[serial].is_alive():
@@ -1502,9 +1533,15 @@ def main():
             if udid not in workers or not workers[udid].is_alive():
                 workers[udid] = IosWorker(udid, cfg, db)
                 workers[udid].start()
+        if time.time() - last_vitals >= cfg["battery_poll_minutes"] * 60:
+            last_vitals = time.time()
+            for serial, worker in list(workers.items()):
+                if isinstance(worker, Worker) and worker.is_alive():
+                    record_vitals(db, serial)
         write_report(db)
         if time.time() - last_prune > 86400:
             prune_runs(cfg["keep_days"])
+            db.execute("DELETE FROM vitals WHERE ts<?", (time.time() - cfg["keep_days"] * 86400,))
             last_prune = time.time()
         stop_event.wait(30)
 
