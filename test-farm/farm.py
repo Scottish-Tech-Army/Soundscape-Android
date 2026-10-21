@@ -74,6 +74,11 @@ DEFAULTS = {
     "keep_days": 14,
     "serialize_maestro": False,
     "allow_reinstall": False,
+    # false cuts apps off from the motion sensors (see Worker.set_sensors), so
+    # Soundscape has no compass or attitude and never thinks the phone is lying
+    # flat on the desk; it then takes its heading from travel, as in a pocket.
+    # Overridable per phone in its [devices] entry.
+    "sensors": True,
     "include_emulators": False,
     # iPhones (via pymobiledevice3) are observed, not driven: see IosWorker.
     "include_ios": True,
@@ -591,6 +596,11 @@ def disable_mock_location(serial, shell_providers=False):
 # --------------------------------------------------------------------------- crashes
 
 
+# The allowlist for SensorService's restricted mode when a phone's sensors are
+# off: apps whose package name contains it keep their sensors, and none does.
+SENSORS_OFF = "test-farm-sensors-off"
+SENSOR_MODE = "dumpsys sensorservice 2> /dev/null | grep -m1 '^Mode'"
+
 DROPBOX_TAGS = ("data_app_crash", "data_app_anr", "data_app_native_crash", "SYSTEM_TOMBSTONE")
 
 
@@ -690,6 +700,7 @@ class Worker(threading.Thread):
         shell(s, "settings put system firebase.test.lab true")
         adb(s, "logcat", "-G", "16M")
         self.quieten()
+        self.set_sensors()
         out = enable_mock_location(s)
         if "Exception" in out or "failed" in out:
             self.db.event(s, "error", None, f"could not enable mock location:\n{out}")
@@ -698,6 +709,31 @@ class Worker(threading.Thread):
             self.feeder = LocationFeeder(s, gpx, self.cfg["default_location"],
                                          self.cfg["replay_speed_mps"], self.db, self.alive)
             self.feeder.start()
+
+    def set_sensors(self):
+        """Puts the sensor service into the mode the phone's `sensors` setting
+        asks for. Off is SensorService's restricted mode with an allowlist no
+        package matches: apps (and Google Play services, which computes
+        Soundscape's orientation on phones that have it) get no sensor events;
+        only the system's own listeners do. It lasts until reboot or `enable`.
+
+        A running app keeps the last orientation it was sent, which on a farm
+        phone is lying flat, so turning the sensors off stops the app; it starts
+        again without one."""
+        s = self.serial
+        want = self.dev_cfg.get("sensors", self.cfg["sensors"])
+        restricted = SENSORS_OFF in shell(s, SENSOR_MODE)
+        if want and restricted:
+            shell(s, "dumpsys sensorservice enable > /dev/null")
+        elif not want and not restricted:
+            # Restricting a phone that's already restricted (by hand, with another
+            # allowlist) leaves the old allowlist, so enable first.
+            shell(s, f"dumpsys sensorservice enable > /dev/null; "
+                     f"dumpsys sensorservice restrict {SENSORS_OFF} > /dev/null")
+            if SENSORS_OFF not in shell(s, SENSOR_MODE):
+                self.db.event(s, "error", None, "could not turn the sensors off")
+            elif shell(s, f"pidof {PACKAGE}"):
+                shell(s, f"am force-stop {PACKAGE}")
 
     def quieten(self):
         """Dims the screen right down and turns media volume to zero."""
@@ -757,6 +793,7 @@ class Worker(threading.Thread):
         shell(self.serial, "cmd connectivity airplane-mode disable; svc wifi disable; "
                            "cmd statusbar collapse; input keyevent KEYCODE_WAKEUP")
         self.quieten()
+        self.set_sensors()
 
     # ----- install / upgrade
 
@@ -1105,14 +1142,16 @@ class Worker(threading.Thread):
     def run(self):
         set_state(self.serial, "preparing", model=self.model, android=self.android)
         try:
+            if self.dev_cfg.get("skip"):
+                # Not prepared either: a skipped phone may be someone's own, and
+                # preparing turns its Wi-Fi and sensors off, among other things.
+                set_state(self.serial, "skipped in config")
+                stop_event.wait()
+                return
             self.prepare()
             while not stop_event.is_set():
                 if adb(self.serial, "get-state", timeout=15).stdout.strip() != "device":
                     break
-                if self.dev_cfg.get("skip"):
-                    set_state(self.serial, "skipped in config")
-                    stop_event.wait(300)
-                    continue
                 try:
                     self.cycle()
                 except Exception as e:  # keep the farm going; record and retry
@@ -1454,6 +1493,9 @@ def main():
             worker.stop_processes()
         else:
             disable_mock_location(serial)
+            # Give the phone its sensors back.
+            if SENSORS_OFF in shell(serial, SENSOR_MODE):
+                shell(serial, "dumpsys sensorservice enable > /dev/null")
     write_report(db)
 
 
