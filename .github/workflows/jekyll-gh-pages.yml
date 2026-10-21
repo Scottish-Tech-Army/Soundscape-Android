@@ -54,6 +54,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: dokkaBuild
+    outputs:
+      base_path: ${{ steps.pages.outputs.base_path }}
     defaults:
       run:
         working-directory: docs
@@ -111,6 +113,41 @@ jobs:
         uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: docs/_site/
+
+  # Accessibility check: axe-core over the built site in headless Chrome (see
+  # scripts/docs-accessibility/check.js). Runs alongside deploy rather than
+  # before it, so a regression shows as a failed check on the commit without
+  # holding back the docs; the findings are in the job summary.
+  accessibility:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Download built site
+        uses: actions/download-artifact@v8
+        with:
+          name: github-pages
+          path: site-artifact
+
+      - name: Unpack built site
+        run: |
+          mkdir -p site
+          tar -xf site-artifact/artifact.tar -C site
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Install checker
+        working-directory: scripts/docs-accessibility
+        run: npm ci
+
+      - name: Check accessibility
+        working-directory: scripts/docs-accessibility
+        run: node check.js "$GITHUB_WORKSPACE/site" "${{ needs.build.outputs.base_path }}"
 
   # Deployment job
   deploy:
