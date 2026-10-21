@@ -6,6 +6,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.platform.PlatformLock
+import org.scottishtecharmy.soundscape.platform.withLock
 
 /**
  * HeadTrackingProvider that aggregates several underlying providers.
@@ -30,29 +32,40 @@ class CompositeHeadTrackingProvider(
 
     private var scope: CoroutineScope? = null
 
+    // Held by stop() and by the collectors whenever they act. Cancelling the scope doesn't
+    // interrupt a collector already running on another thread, so without this one part way
+    // through when stop() is called could write a stale status over stop()'s Inactive, or
+    // restart a child that stop() has just stopped and leave it scanning.
+    private val lock = PlatformLock()
+
+    /** Runs [block] under [lock], unless [session] has been stopped. */
+    private inline fun ifStillRunning(session: CoroutineScope, block: () -> Unit) =
+        lock.withLock { if (scope === session) block() }
+
     override fun start() {
-        if (scope != null) return
-        val newScope = CoroutineScope(Dispatchers.Default + Job())
-        scope = newScope
+        val newScope = lock.withLock {
+            if (scope != null) return
+            CoroutineScope(Dispatchers.Default + Job()).also { scope = it }
+        }
 
         children.forEach { it.start() }
 
         newScope.launch {
             combine(children.map { it.headHeadingFlow }) { headings ->
                 headings.filterNotNull().maxByOrNull { it.timestampMillis }
-            }.collect { mutableHeadHeadingFlow.value = it }
+            }.collect { ifStillRunning(newScope) { mutableHeadHeadingFlow.value = it } }
         }
         newScope.launch {
             combine(children.map { it.statusFlow }) { statuses ->
                 statuses.maxByOrNull { it.ordinal } ?: HeadTrackingStatus.Inactive
-            }.collect { mutableStatusFlow.value = it }
+            }.collect { ifStillRunning(newScope) { mutableStatusFlow.value = it } }
         }
         newScope.launch {
             // Scan-coordination: at most one child is allowed to be active at
             // a time. Inactive children sit idle (no BLE scan, no power draw)
             // until the active one drops below Connected.
             combine(children.map { it.statusFlow }) { statuses -> statuses.toList() }
-                .collect { statuses -> arbitrate(statuses) }
+                .collect { statuses -> ifStillRunning(newScope) { arbitrate(statuses) } }
         }
     }
 
@@ -75,8 +88,12 @@ class CompositeHeadTrackingProvider(
         this == HeadTrackingStatus.Connected || this == HeadTrackingStatus.Calibrated
 
     override fun stop() {
-        scope?.cancel()
-        scope = null
+        // Once this returns no collector can act any more: any part way through has finished,
+        // and the rest will find their session gone
+        lock.withLock {
+            scope?.cancel()
+            scope = null
+        }
         children.forEach { it.stop() }
         mutableHeadHeadingFlow.value = null
         mutableStatusFlow.value = HeadTrackingStatus.Inactive

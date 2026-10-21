@@ -1,6 +1,9 @@
 package org.scottishtecharmy.soundscape.locationprovider
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import kotlin.test.AfterTest
@@ -197,5 +200,38 @@ class CompositeHeadTrackingProviderTest {
         assertEquals(1, a.destroyCalls)
         assertEquals(1, b.destroyCalls)
         assertEquals(HeadTrackingStatus.Inactive, provider.statusFlow.value)
+    }
+
+    @Test
+    fun stopLeavesEverythingInactiveWhileChildrenAreChanging() = runBlocking {
+        // stop() can land while the composite's collectors are part way through handling a
+        // child's change on another thread. Whatever they were doing must not reach the
+        // composite's status or restart a child once stop() has returned.
+        repeat(200) {
+            val a = FakeHeadTrackingProvider()
+            val b = FakeHeadTrackingProvider()
+            val provider = composite(listOf(a, b))
+            provider.start()
+            val churn = launch(Dispatchers.Default) {
+                var connected = false
+                while (isActive) {
+                    connected = !connected
+                    a.setStatus(
+                        if (connected) HeadTrackingStatus.Connected
+                        else HeadTrackingStatus.Disconnected
+                    )
+                }
+            }
+            delay(1)
+            provider.stop()
+            churn.cancel()
+            churn.join()
+            // Clear the churned child so that only a restart by the composite could revive it
+            a.stop()
+            delay(20)
+
+            assertEquals(HeadTrackingStatus.Inactive, provider.statusFlow.value, "run $it")
+            assertEquals(HeadTrackingStatus.Inactive, b.statusFlow.value, "run $it: b restarted")
+        }
     }
 }
