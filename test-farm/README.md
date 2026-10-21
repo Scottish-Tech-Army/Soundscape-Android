@@ -189,6 +189,17 @@ service, that shows up as a failure, which is a real user problem.
   Restore only puts back search mode, the map and the markers and route.
 - The monkey can open the notification shade. After each soak the farm turns
   off airplane mode, turns off Wi-Fi and collapses the shade.
+- Phones lie flat on a desk, so Soundscape would use their compass even in
+  the background, unlike a phone in a pocket. With `sensors = false` the farm
+  puts the sensor service into restricted mode (`dumpsys sensorservice
+  restrict test-farm-sensors-off`): no app, nor Google Play services, gets
+  sensor events, so there's no compass or attitude and the heading comes from
+  travel. The app is stopped once when it's applied, since it would keep its
+  last (flat) orientation. A reboot lifts it; the farm re-applies it when it
+  prepares the phone and after each monkey soak, and lifts it when it stops.
+  It's "no compass" rather than "held upright": in the foreground a real
+  phone would still have a compass heading. It also stops auto-rotate and
+  the phones' other sensor features while the farm runs.
 - Each phone's Maestro gets its own `XDG_CACHE_HOME`/`XDG_STATE_HOME`
   (`runs/<serial>/maestro-home/`). Maestro prunes all but its newest few
   runs' logs, so with a shared `~/.cache/maestro` a long run lost its log
