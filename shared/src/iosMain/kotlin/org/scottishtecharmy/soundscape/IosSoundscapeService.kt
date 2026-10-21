@@ -904,6 +904,12 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         } else {
             iosLocationProvider.start()
             directionProvider.start()
+            // Sleep only silenced the beacon: RoutePlayer still has the route or beacon and the
+            // waypoint it was on, so recreate it there, as Android resumes it when it restarts
+            // its service on waking.
+            if (routePlayer.isPlaying()) {
+                routePlayer.play()
+            }
         }
     }
 
