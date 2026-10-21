@@ -689,7 +689,10 @@ class Worker(threading.Thread):
 
     def prepare(self):
         s = self.serial
-        shell(s, "svc power stayon usb")
+        # Any power source: on the USB hub a phone may report AC (the Moto does,
+        # and the A54 did until it was replugged), which `stayon usb` ignores,
+        # so its screen timed out in the middle of flows.
+        shell(s, "svc power stayon true")
         # Everything the farm tests works offline, and the farm's Wi-Fi is
         # unreliable. It also keeps Wi-Fi scans out of Google's fused location,
         # which would otherwise mix the phone's real position into the mock one.
@@ -890,6 +893,8 @@ class Worker(threading.Thread):
             out_dir = os.path.join(cycle_dir, f"{name}-{n}")
         os.makedirs(out_dir, exist_ok=True)
         report = os.path.join(out_dir, "report.xml")
+        # Every flow expects the screen on; this is a backstop for stayon.
+        shell(self.serial, "input keyevent KEYCODE_WAKEUP")
         # Whether the phone roams with the map on (show_map in its [devices]
         # entry). ShowMap.yaml sets it, and the roaming flows skip the map
         # without it. Suite flows ignore it.
