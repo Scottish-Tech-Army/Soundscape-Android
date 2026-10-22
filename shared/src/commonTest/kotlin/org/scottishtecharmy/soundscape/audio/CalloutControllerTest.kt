@@ -1,15 +1,9 @@
 package org.scottishtecharmy.soundscape.audio
 
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withTimeout
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -29,7 +23,6 @@ import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableSe
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -176,7 +169,7 @@ class CalloutControllerTest {
     // speakCallout()/updateGeometry() run synchronously with no coroutines
     // involved, so any throwaway scope does for those tests - it's simply
     // unused. The scope only matters for the four button methods, which
-    // launch through it (see the tests at the bottom of this file).
+    // launch through it.
     private fun controller(
         geoEngine: GeoEngine = GeoEngine(),
         scope: CoroutineScope = CoroutineScope(Job()),
@@ -287,97 +280,5 @@ class CalloutControllerTest {
         controller.speakCallout(callout, addModeEarcon = true)
 
         assertEquals(listOf(EARCON_MODE_ENTER, EARCON_MODE_EXIT), audioEngine.earconCalls)
-    }
-
-    // ----- startCallout() toggle behaviour / init-order regression -----
-    //
-    // The four button methods (myLocation/whatsAroundMe/aheadOfMe/nearbyMarkers)
-    // delegate straight into GeoEngine, which is a concrete (non-open) class
-    // with a large amount of `lateinit var` state that only gets populated by
-    // GeoEngine.start() (locationProvider, analytics, geocoder, etc.) - there
-    // is no lightweight fake for it anywhere in this codebase, and it can't be
-    // subclassed. That makes the "happy path" of these four methods (spoken
-    // text, cancel-in-flight-on-second-press, switch-active-button) untestable
-    // here without either standing up a fully-started GeoEngine (impractical -
-    // it also needs a RouteDao, VectorTileClient, PhotonSearch, etc.) or
-    // stubbing GeoEngine itself, which its class design does not allow.
-    //
-    // What *is* directly testable, and squarely in scope given the SIGSEGV
-    // history, is what happens when one of these methods is invoked against a
-    // GeoEngine that has not been started yet - the JVM-visible analogue of
-    // the "callback fires before setup finished" shape of bug that caused the
-    // iOS crash (there the not-yet-assigned collaborator was a `by lazy`
-    // delegate field; here it's GeoEngine's own lateinit state). Note this
-    // body runs via `withContext(Dispatchers.Default)`, a dispatcher no test
-    // scheduler controls, so this test uses real dispatchers/real (bounded)
-    // waiting rather than kotlinx-coroutines-test virtual time.
-    //
-    // Temporarily disabled: this is flaky on CI, where it times out waiting on
-    // the emissions below (TimeoutCancellationException). It depends on real
-    // Dispatchers.Default scheduling, which a loaded runner doesn't service
-    // promptly enough. Left in place rather than deleted so it can be
-    // re-enabled once the wait is made robust - just restore the @Test below.
-    // @Test
-    fun myLocation_calledBeforeGeoEngineStarted_resetsActiveFlow_andScopeSurvives() = runBlocking {
-        val caught = mutableListOf<Throwable>()
-        val handler = CoroutineExceptionHandler { _, throwable -> caught.add(throwable) }
-        val rootJob = Job()
-        val scope = CoroutineScope(rootJob + handler)
-        // An un-started GeoEngine - mirrors "geoEngine.start() hasn't run yet".
-        val controller = controller(geoEngine = GeoEngine(), scope = scope)
-
-        // UNDISPATCHED so the collector's StateFlow subscription is
-        // established synchronously, before myLocation() runs on a real
-        // background thread (Dispatchers.Default) - otherwise the collector
-        // could start after the transient MY_LOCATION -> null round trip has
-        // already happened and StateFlow would only ever show it the final
-        // value.
-        val emissions = mutableListOf<TourButton?>()
-        // Signalled from the collector each time a new emission lands, so the
-        // waits below suspend until notified instead of polling on a delay -
-        // deterministic regardless of CI scheduler contention on the real
-        // Dispatchers.Default that myLocation()/whatsAroundMe() dispatch onto.
-        val emitted = Channel<Unit>(Channel.UNLIMITED)
-        val collectJob = launch(start = CoroutineStart.UNDISPATCHED) {
-            controller.activeCalloutFlow.collect {
-                emissions.add(it)
-                emitted.trySend(Unit)
-            }
-        }
-
-        controller.myLocation()
-
-        // Wait (with a bound, not a fixed sleep) for the flow to record both
-        // the initial null, the MY_LOCATION it flips to synchronously, and
-        // the null it resets to once the callout body throws and startCallout's
-        // catch/finally run.
-        withTimeout(20_000) {
-            while (emissions.size < 3) emitted.receive()
-        }
-
-        assertEquals(listOf(null, TourButton.MY_LOCATION, null), emissions)
-
-        // The crash is caught inside CalloutController.startCallout itself,
-        // so it never escapes the launched coroutine to reach scope's handler...
-        assertTrue(caught.isEmpty())
-
-        // ...and the plain root Job this mirrors production with (see
-        // SoundscapeService's `private val coroutineScope = CoroutineScope(Job())`,
-        // which the real CalloutController is constructed with) is still
-        // active, unlike before this was fixed.
-        assertTrue(rootJob.isActive)
-
-        // So a subsequent button press on the same scope still runs, rather
-        // than being a silent permanent no-op on an already-cancelled parent.
-        controller.whatsAroundMe()
-        withTimeout(20_000) {
-            while (emissions.size < 5) emitted.receive()
-        }
-        collectJob.cancel()
-
-        assertEquals(
-            listOf(null, TourButton.MY_LOCATION, null, TourButton.AROUND_ME, null),
-            emissions,
-        )
     }
 }

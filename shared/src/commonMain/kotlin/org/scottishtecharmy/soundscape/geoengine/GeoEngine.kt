@@ -74,6 +74,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.language.getSystemLoca
 import org.scottishtecharmy.soundscape.screens.onboarding.language.supportedLanguages
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.process
+import kotlin.concurrent.Volatile
 import kotlin.math.abs
 import kotlin.time.measureTime
 
@@ -315,6 +316,16 @@ class GeoEngine {
 
     private lateinit var preferencesListener: PreferencesListener
 
+    /**
+     * Whether [start] has run, and [stop] hasn't since. Much of the engine's state is lateinit and
+     * only set by [start], but it can be asked things when it isn't running: on Android the service
+     * doesn't start it while it snoozes for wake on leave, yet the UI can be bound to it then, and
+     * the service can be stopped before it ever started it. So [stop] does nothing, and the
+     * lookups and callouts answer with nothing, rather than reading that state.
+     */
+    @Volatile
+    private var started = false
+
     @OptIn(ExperimentalCoroutinesApi::class)
     fun start(
         newLocationProvider: LocationProvider,
@@ -452,9 +463,12 @@ class GeoEngine {
                 }
             }
         }
+        started = true
     }
 
     fun stop() {
+        if (!started) return
+        started = false
         streetPreview.stop()
 
         locationMonitoringJob?.cancel()
@@ -474,6 +488,7 @@ class GeoEngine {
      * instead of only opportunistically the next time the user crosses a grid boundary.
      */
     fun refreshOfflineMaps() {
+        if (!started) return
         gridState.refreshOfflineMaps()
         settlementGrid.refreshOfflineMaps()
         tileSearch.refreshOfflineMaps()
@@ -721,6 +736,7 @@ class GeoEngine {
     }
 
     fun myLocation(): TrackedCallout? {
+        if (!started) return null
         analytics.logEvent("myLocation", null)
         return buildMyLocationCallout(
             userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
@@ -736,10 +752,11 @@ class GeoEngine {
      * all it can find is their markers.
      */
     fun searchIsOfflineWithoutMaps(): Boolean =
-        multiGeocoder.searchesOffline() &&
+        started && multiGeocoder.searchesOffline() &&
             !tileSearch.hasOfflineMapAt(getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location)
 
     suspend fun searchResult(searchString: String): List<LocationDescription>? {
+        if (!started) return null
         return withContext(org.scottishtecharmy.soundscape.platform.ioDispatcher) {
             val userLocation = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location
             val coordinates = parseCoordinateSearch(searchString, userLocation)
@@ -774,7 +791,8 @@ class GeoEngine {
         )
     }
 
-    fun whatsAroundMe(): TrackedCallout {
+    fun whatsAroundMe(): TrackedCallout? {
+        if (!started) return null
         analytics.logEvent("whatsAroundMe", null)
         return buildWhatsAroundMeCallout(
             userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
@@ -785,6 +803,7 @@ class GeoEngine {
     }
 
     fun aheadOfMe(): TrackedCallout? {
+        if (!started) return null
         analytics.logEvent("aheadOfMe", null)
         return buildAheadOfMeCallout(
             userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto),
@@ -800,6 +819,7 @@ class GeoEngine {
      * and the update throttle - the user just asked for it.
      */
     fun calloutBeacon(): TrackedCallout? {
+        if (!started) return null
         analytics.logEvent("calloutBeacon", null)
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
         return buildBeaconCallout(
@@ -814,6 +834,7 @@ class GeoEngine {
      * [beaconName] is null when nothing is playing, which says "No beacon active".
      */
     suspend fun beaconMoreInfo(beaconName: String?): TrackedCallout? {
+        if (!started) return null
         analytics.logEvent("beaconMoreInfo", null)
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
         val beacon = userGeometry.currentBeacon
@@ -828,7 +849,8 @@ class GeoEngine {
         )
     }
 
-    fun nearbyMarkers(): TrackedCallout {
+    fun nearbyMarkers(): TrackedCallout? {
+        if (!started) return null
         analytics.logEvent("nearbyMarkers", null)
         return buildNearbyMarkersCallout(
             userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
@@ -939,6 +961,7 @@ class GeoEngine {
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? {
+        if (!started) return null
         return withContext(gridState.treeContext) {
             multiGeocoder.offlineGeocoder.getAddressForFeature(
                 UserGeometry(location),
@@ -966,6 +989,8 @@ class GeoEngine {
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getLocationDescription(location: LngLatAlt): LocationDescription {
+        // Not even "Unknown location": the strings it would be looked up in are set by start()
+        if (!started) return LocationDescription("", location)
 
         // An answer which is somewhere else isn't a description of this location
         fun LocationDescription?.ifNearby(): LocationDescription? =
