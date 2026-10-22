@@ -25,12 +25,34 @@ appId: org.scottishtecharmy.soundscape
 - tapOn:
     text: "Close Release Notes"
     optional: true
+# The monkey can leave Street Preview ("Simulate Location") on. Its Home has no
+# search bar and Back doesn't leave it; its exit button has no testTag, so it's
+# found by its accessibility label.
+- runFlow:
+    when:
+      visible:
+        text: "Exit location simulation"
+    commands:
+      - tapOn:
+          text: "Exit location simulation"
+# The monkey can start the guided tutorial from the menu. Its instructions are
+# dialogs which only Continue closes (Back doesn't), and it's cancelled from the
+# menu it was started from, once back on Home.
+- evalScript: ${output.tour = false}
 - repeat:
     while:
       notVisible:
         id: mainSearchBarCollapsed
     times: 6
     commands:
+      - runFlow:
+          when:
+            visible:
+              id: audioTourInstructionContinue
+          commands:
+            - evalScript: ${output.tour = true}
+            - tapOn:
+                id: audioTourInstructionContinue
       - back
       - runFlow:
           file: ../../maestro/Wait.yaml
@@ -42,6 +64,45 @@ appId: org.scottishtecharmy.soundscape
     clearState: false
     stopApp: false
 - runFlow:
+    when:
+      visible:
+        id: audioTourInstructionContinue
+    commands:
+      - evalScript: ${output.tour = true}
+      - tapOn:
+          id: audioTourInstructionContinue
+- runFlow:
     file: ../../maestro/WaitForScreen.yaml
     env:
       screen: Home
+- runFlow:
+    when:
+      true: ${output.tour}
+    commands:
+      - tapOn:
+          id: topBarMenu
+      - scrollUntilVisible:
+          element:
+            id: menuAudioTutorial
+          direction: DOWN
+      # The item reads "Cancel guided tutorial" while the tour runs; it may
+      # already have finished, when tapping it would start a new one.
+      - runFlow:
+          when:
+            visible:
+              text: "Cancel guided tutorial"
+          commands:
+            - tapOn:
+                text: "Cancel guided tutorial"
+            - tapOn:
+                id: audioTourInstructionContinue
+      - runFlow:
+          when:
+            notVisible:
+              id: mainSearchBarCollapsed
+          commands:
+            - back
+      - runFlow:
+          file: ../../maestro/WaitForScreen.yaml
+          env:
+            screen: Home
