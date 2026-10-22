@@ -161,7 +161,7 @@ class CalloutController(
             val results = withContext(Dispatchers.Default) { geoEngine.whatsAroundMe() }
             ensureActive()
             var lastHandle = 0L
-            if (results.positionedStrings.isNotEmpty()) {
+            if (results != null && results.positionedStrings.isNotEmpty()) {
                 lastHandle = speakCallout(results, true)
             }
             awaitHandle(lastHandle)
