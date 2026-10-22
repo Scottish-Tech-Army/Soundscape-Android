@@ -1119,8 +1119,9 @@ class Worker(threading.Thread):
             self.run_monkey(cycle_id, cycle_dir)
         # The monkey can delete the markers or route, or change settings, and
         # roaming and the next upgrade's PostUpgrade check need them. Restore
-        # puts them back without restarting the app; only if it can't is the
-        # phone set up again, now rather than at the start of the next cycle,
+        # puts them back without restarting the app, or with a restart if it
+        # can't reach Home; only if that fails too is the phone set up again,
+        # now rather than at the start of the next cycle,
         # which may begin with an upgrade.
         # Restore also runs when a suite flow failed during set-up, and builds
         # what that flow didn't; otherwise every roam round fails for want of
@@ -1131,6 +1132,17 @@ class Worker(threading.Thread):
         if not stop_event.is_set() and self.set_up_version() == version:
             with self.suite_location():
                 restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
+                if restored is False and not stop_event.is_set():
+                    # The monkey can leave the app where Restore can't get it
+                    # back to Home, such as with its window shrunk to a pop-up
+                    # or left blank by the phone's own freeform modes.
+                    # Restarting the app gets out of those and keeps its
+                    # markers, route and settings, which setting up again
+                    # would wipe.
+                    self.db.event(s, "restart", version, "Restore couldn't get back to Home "
+                                                         "after the monkey soak; restarting the app")
+                    shell(s, f"am force-stop {PACKAGE}")
+                    restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
             if restored is not None:
                 tally[restored] += 1
             if restored and not complete[0]["complete"]:
