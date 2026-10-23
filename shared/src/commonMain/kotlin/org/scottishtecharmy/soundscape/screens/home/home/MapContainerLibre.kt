@@ -43,6 +43,8 @@ import org.maplibre.compose.expressions.value.SymbolAnchor
 import org.maplibre.compose.interaction.MapInteractions
 import org.maplibre.compose.layers.FillLayer
 import org.maplibre.compose.layers.LineLayer
+import org.maplibre.compose.layers.LocationIndicatorDefaults
+import org.maplibre.compose.layers.LocationIndicatorLayer
 import org.maplibre.compose.layers.SymbolLayer
 import org.maplibre.compose.map.MaplibreMap
 import org.maplibre.compose.map.rememberMapState
@@ -57,6 +59,9 @@ import org.maplibre.spatialk.geojson.MultiPolygon
 import org.maplibre.spatialk.geojson.Point
 import org.maplibre.spatialk.geojson.Polygon
 import org.maplibre.spatialk.geojson.Position
+import org.maplibre.spatialk.units.Bearing
+import org.maplibre.spatialk.units.extensions.degrees
+import org.maplibre.spatialk.units.extensions.meters
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.platform.nativeMapRenderOptions
@@ -65,7 +70,6 @@ import org.scottishtecharmy.soundscape.resources.current_beacon_location_marker
 import org.scottishtecharmy.soundscape.resources.location_detail_exit_full_screen_hint
 import org.scottishtecharmy.soundscape.resources.location_detail_full_screen_hint
 import org.scottishtecharmy.soundscape.resources.location_marker
-import org.scottishtecharmy.soundscape.resources.navigation
 
 @Composable
 fun FullScreenMapFab(
@@ -98,6 +102,10 @@ fun FullScreenMapFab(
  * @param allowScrolling Whether the user can scroll/pan the map
  * @param userLocation The location to draw the user location symbol at
  * @param userSymbolRotation The rotation of the user location symbol
+ * @param userLocationAccuracy The horizontal accuracy of [userLocation] in metres, drawn as a
+ * circle around it, or null for no circle
+ * @param userHeadingAccuracy The error either side of [userSymbolRotation] in degrees, drawn as a
+ * sector around it, or null for no sector
  * @param beaconLocation An optional location to show a beacon marker
  * @param routeData Optional route data to display route waypoint markers
  * @param modifier Modifier for the map container
@@ -135,12 +143,13 @@ fun MapContainerLibre(
     routeMarkerImages: List<ImageBitmap>? = null,
     extractGeometry: Geometry? = null,
     onInteractionChanged: (Boolean) -> Unit = {},
+    userLocationAccuracy: Float? = null,
+    userHeadingAccuracy: Float? = null,
 ) {
     val extractBounds = remember(extractGeometry) { extractGeometry?.computeBounds() }
     val editingBeacon = onBeaconLocationEdited != null
     val currentOnBeaconLocationEdited by rememberUpdatedState(onBeaconLocationEdited)
 
-    val navigationMarker = painterResource(Res.drawable.navigation)
     val locationMarker = painterResource(Res.drawable.location_marker)
     val currentBeaconLocationMarker = painterResource(Res.drawable.current_beacon_location_marker)
     val primaryColor = MaterialTheme.colorScheme.primary
@@ -172,21 +181,25 @@ fun MapContainerLibre(
                 width = const(2.dp),
             )
         }
-        if (userLocation != null) {
-            val userLocationGeoJson = rememberGeoJsonSource(
-                data = GeoJsonData.Features(
-                    Point(Position(longitude = userLocation.longitude, latitude = userLocation.latitude))
-                )
-            )
-            SymbolLayer(
-                id = "user-location",
-                source = userLocationGeoJson,
-                iconImage = image(navigationMarker),
-                iconSize = const(1.2F),
-                iconRotate = const(userSymbolRotation),
-                iconAllowOverlap = const(true)
-            )
-        }
+        // Driven by the location and heading the rest of the app is using, rather than
+        // maplibre-compose's own providers, which would make their own platform requests and know
+        // nothing of the head tracker, GPX replay or a simulated location. It animates between
+        // fixes where a symbol layer would jump. It's the same red in every theme, as the arrow it
+        // replaced was.
+        LocationIndicatorLayer(
+            id = "user-location",
+            location = userLocation?.let {
+                Position(longitude = it.longitude, latitude = it.latitude)
+            },
+            bearing = Bearing.North + userSymbolRotation.toDouble().degrees,
+            accuracyRadius = userLocationAccuracy?.toDouble()?.meters,
+            bearingAccuracy = userHeadingAccuracy?.toDouble()?.degrees,
+            topImage = LocationIndicatorDefaults.topImage(color = USER_LOCATION_COLOR),
+            bearingImage = LocationIndicatorDefaults.bearingImage(color = USER_LOCATION_COLOR),
+            bearingAccuracyColor = const(USER_LOCATION_COLOR.copy(alpha = 0.35f)),
+            accuracyRadiusColor = USER_LOCATION_COLOR.copy(alpha = 0.15f),
+            accuracyRadiusBorderColor = USER_LOCATION_COLOR,
+        )
 
         if (routeData != null) {
             for ((index, waypoint) in routeData.markers.withIndex()) {
@@ -319,6 +332,8 @@ fun MapContainerLibre(
         }
     }
 }
+
+private val USER_LOCATION_COLOR = Color(0xFFEF0000)
 
 // The marker drawable's 24dp, scaled by BeaconMarker's iconSize of 1.2
 private val BEACON_EDIT_MARKER_SIZE = 28.8.dp

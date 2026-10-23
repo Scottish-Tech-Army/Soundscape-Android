@@ -85,10 +85,23 @@ open class HomeViewModel(
                 service.orientationFlow,
                 service.headHeadingFlow,
             ) { orientation, head ->
-                head?.degrees?.toFloat() ?: orientation?.headingDegrees
+                // An accuracy of zero or less is no accuracy: the plain Android sensor provider
+                // reports 0 and iOS reports a negative accuracy for an invalid heading.
+                when {
+                    head != null -> head.degrees.toFloat() to head.accuracyDegrees.toFloat()
+                    orientation != null ->
+                        orientation.headingDegrees to orientation.headingAccuracyDegrees
+                    else -> null
+                }
             }.collectLatest { heading ->
                 if (heading != null) {
-                    _state.update { it.copy(heading = heading) }
+                    val (degrees, accuracy) = heading
+                    _state.update {
+                        it.copy(
+                            heading = degrees,
+                            headingAccuracy = accuracy.takeIf { a -> a > 0f },
+                        )
+                    }
                 }
             }
         }

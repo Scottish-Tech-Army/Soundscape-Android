@@ -37,6 +37,8 @@ actual fun PlatformMapContainer(
     forceOnlineTiles: Boolean,
     onInteractionChanged: (Boolean) -> Unit,
     onBeaconLocationEdited: ((LngLatAlt) -> Unit)?,
+    userLocationAccuracy: Float?,
+    userHeadingAccuracy: Float?,
 ) {
     val context = LocalContext.current
 
@@ -125,6 +127,8 @@ actual fun PlatformMapContainer(
         extractGeometry = extractGeometry,
         onInteractionChanged = onInteractionChanged,
         onBeaconLocationEdited = onBeaconLocationEdited,
+        userLocationAccuracy = userLocationAccuracy,
+        userHeadingAccuracy = userHeadingAccuracy,
     )
 }
 
