@@ -4,9 +4,10 @@
 #
 # Oboe is consumed as vendored prebuilts rather than as a Gradle dependency
 # because the Gradle route requires `buildFeatures.prefab = true`, and AGP then
-# validates the prefab metadata of *every* AAR on the module's classpath. MapLibre
-# 13.4.0+ ships a prefab package declaring stl=c++_static, which is rejected against
-# this app's c++_shared build with CXX1211 - even though we never link against it.
+# validates the prefab metadata of *every* AAR on the module's classpath. The MapLibre
+# Android SDK (13.4.0+, used up to maplibre-compose 0.13) shipped a prefab package
+# declaring stl=c++_static, which was rejected against this app's c++_shared build with
+# CXX1211 - even though we never linked against it.
 # Keeping prefab off decouples the native build from other dependencies entirely.
 #
 # The version is read from the `oboe` key in gradle/libs.versions.toml, which stays

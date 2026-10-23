@@ -8,8 +8,9 @@ project("soundscape-audio")
 
 # Oboe imported library. Vendored as prebuilts (see scripts/update-oboe.sh) rather than
 # consumed via prefab: enabling prefab makes AGP validate the prefab metadata of every AAR
-# on the classpath, and MapLibre 13.4.0+ declares stl=c++_static, which is rejected against
-# this app's c++_shared build with CXX1211 - even though we never link against MapLibre.
+# on the classpath, and the MapLibre Android SDK (13.4.0+, used up to maplibre-compose 0.13)
+# declared stl=c++_static, which was rejected against this app's c++_shared build with CXX1211 -
+# even though we never linked against MapLibre.
 set(OBOE_INC ${CMAKE_CURRENT_SOURCE_DIR}/oboe/include)
 set(OBOE_LIB ${CMAKE_CURRENT_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/liboboe.so)
 add_library(oboe SHARED IMPORTED)
