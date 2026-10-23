@@ -14,6 +14,7 @@ import org.jetbrains.compose.resources.InternalResourceApi
 import org.jetbrains.compose.resources.LanguageQualifier
 import org.jetbrains.compose.resources.RegionQualifier
 import org.jetbrains.compose.resources.ResourceEnvironment
+import org.jetbrains.compose.resources.ScriptQualifier
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.getSystemResourceEnvironment
 import org.junit.Rule
@@ -484,8 +485,9 @@ class DocumentationScreens {
      * with the qualifier "in" from their values-in folder, and are matched exactly.
      *
      * So the language and region are set here from the folder's own qualifier, keeping the
-     * device's theme and density. The constructor is internal to Compose Resources, hence the
-     * reflection; the check in getHelp catches it if that ever stops working.
+     * device's theme and density, and with no script, as none of the folders has one. The
+     * constructor is internal to Compose Resources, hence the reflection; the check in getHelp
+     * catches it if that ever stops working.
      */
     @OptIn(InternalResourceApi::class)
     private fun environmentFor(qualifier: String): ResourceEnvironment {
@@ -494,10 +496,11 @@ class DocumentationScreens {
         fun systemField(name: String) =
             type.getDeclaredField(name).apply { isAccessible = true }.get(system)
         val parts = qualifier.split("-r")
-        val constructor = type.declaredConstructors.single { it.parameterCount == 4 }
+        val constructor = type.declaredConstructors.single { it.parameterCount == 5 }
         constructor.isAccessible = true
         return constructor.newInstance(
             LanguageQualifier(parts[0]),
+            ScriptQualifier(""),
             RegionQualifier(parts.getOrElse(1) { "" }),
             systemField("theme"),
             systemField("density"),
