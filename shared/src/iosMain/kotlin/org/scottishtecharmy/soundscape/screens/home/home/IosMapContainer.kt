@@ -8,6 +8,8 @@ import androidx.compose.ui.graphics.toArgb
 import org.maplibre.compose.style.BaseStyle
 import org.maplibre.spatialk.geojson.Geometry
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.mapstyle.AccessibleTheme
 import org.scottishtecharmy.soundscape.mapstyle.accessibleLayerOverrides
@@ -35,15 +37,14 @@ private fun getMapAssetsBundlePath(): String {
 fun rememberIosMapBaseStyle(location: LngLatAlt?, forceOnlineTiles: Boolean = false): BaseStyle {
     val foregroundColor = argbToRgba(MaterialTheme.colorScheme.onBackground.toArgb())
     val backgroundColor = argbToRgba(MaterialTheme.colorScheme.background.toArgb())
-    val overrides = accessibleLayerOverrides(
-        foregroundColor = foregroundColor,
-        backgroundColor = backgroundColor,
-    )
 
-    return remember(foregroundColor, backgroundColor, location, forceOnlineTiles) {
-        val assetsDir = getMapAssetsBundlePath()
+    // Which extract covers the map only changes when its centre moves into another tile, so the
+    // extracts are only looked at again then, not on every location update: that means opening
+    // and reading each of them, on the main thread.
+    val centerTile = location?.let { getXYTile(it, MAX_ZOOM_LEVEL) }
+    val tileSourceUrl = remember(centerTile, forceOnlineTiles) {
         val extractsPath = NSHomeDirectory() + "/Documents"
-        val tileSourceUrl = if (forceOnlineTiles) {
+        if (forceOnlineTiles) {
             resolveTileSourceUrl(
                 location = null,
                 extractsPath = "",
@@ -56,7 +57,14 @@ fun rememberIosMapBaseStyle(location: LngLatAlt?, forceOnlineTiles: Boolean = fa
                 networkTileUrl = getTileProviderUrl(),
             )
         }
+    }
 
+    return remember(foregroundColor, backgroundColor, tileSourceUrl) {
+        val assetsDir = getMapAssetsBundlePath()
+        val overrides = accessibleLayerOverrides(
+            foregroundColor = foregroundColor,
+            backgroundColor = backgroundColor,
+        )
         buildMapStyle(
             theme = AccessibleTheme,
             spritePath = "file://$assetsDir/osm-liberty",

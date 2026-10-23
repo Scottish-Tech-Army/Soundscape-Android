@@ -14,6 +14,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import org.maplibre.spatialk.geojson.Geometry
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.mapstyle.AccessibleTheme
 import org.scottishtecharmy.soundscape.mapstyle.accessibleLayerOverrides
@@ -40,10 +42,6 @@ actual fun PlatformMapContainer(
 
     val foregroundColor = argbToRgba(MaterialTheme.colorScheme.onBackground.toArgb())
     val backgroundColor = argbToRgba(MaterialTheme.colorScheme.background.toArgb())
-    val overrides = accessibleLayerOverrides(
-        foregroundColor = foregroundColor,
-        backgroundColor = backgroundColor
-    )
 
     // Read TILE_PROVIDER_URL from Android BuildConfig via reflection
     val tileProviderUrl = remember {
@@ -76,7 +74,11 @@ actual fun PlatformMapContainer(
         val selectedStorage = prefs.getString("SelectedStorage", "") ?: ""
         "$selectedStorage/${android.os.Environment.DIRECTORY_DOWNLOADS}"
     }
-    val tileSourceUrl = remember(mapCenter, forceOnlineTiles) {
+    // Which extract covers the map only changes when its centre moves into another tile, so the
+    // extracts are only looked at again then, not on every location update: that means opening
+    // and reading each of them, on the main thread.
+    val centerTile = getXYTile(mapCenter, MAX_ZOOM_LEVEL)
+    val tileSourceUrl = remember(centerTile, forceOnlineTiles) {
         if (forceOnlineTiles) {
             resolveTileSourceUrl(
                 location = null,
@@ -93,6 +95,10 @@ actual fun PlatformMapContainer(
     }
 
     val baseStyle = remember(foregroundColor, backgroundColor, tileSourceUrl) {
+        val overrides = accessibleLayerOverrides(
+            foregroundColor = foregroundColor,
+            backgroundColor = backgroundColor
+        )
         buildMapStyle(
             theme = AccessibleTheme,
             spritePath = "asset://osm-liberty-accessible/osm-liberty",
