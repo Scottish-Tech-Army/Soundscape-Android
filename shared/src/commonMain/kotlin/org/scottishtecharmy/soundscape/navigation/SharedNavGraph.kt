@@ -252,7 +252,7 @@ fun SharedNavHost(
                     },
                     onClickFolder = { filter, title -> holder.onClickFolder(filter, title) },
                     onClickBack = {
-                        if (uiState.level == 0) navController.popBackStack()
+                        if (uiState.level == 0) navController.navigateBack()
                         else holder.onClickBack()
                     },
                     onStartBeacon = { desc ->
@@ -276,7 +276,7 @@ fun SharedNavHost(
                         callbacks.onPlacesNearbyClickFolder(filter, title)
                     },
                     onClickBack = {
-                        if (uiState.level == 0) navController.popBackStack()
+                        if (uiState.level == 0) navController.navigateBack()
                         else callbacks.onPlacesNearbyClickBack()
                     },
                     onStartBeacon = { desc ->
@@ -297,7 +297,7 @@ fun SharedNavHost(
                 callbacks = callbacks,
                 audioTour = audioTour,
                 itemActions = rememberLocationListActions(callbacks, preferencesProvider),
-                onBack = { navController.popBackStack() },
+                onBack = { navController.navigateBack() },
                 onAddMarker = { navController.navigate(SharedRoutes.ADD_MARKER) },
                 onSelectMarker = { desc ->
                     navStateHolder.navigateWithLocation(
@@ -311,7 +311,7 @@ fun SharedNavHost(
             RoutesContainer(
                 flows = flows,
                 callbacks = callbacks,
-                onBack = { navController.popBackStack() },
+                onBack = { navController.navigateBack() },
                 onAddRoute = { navController.navigate(SharedRoutes.ADD_ROUTE) },
                 onSelectRoute = { desc ->
                     navStateHolder.navigateWithLocation(
@@ -336,7 +336,7 @@ fun SharedNavHost(
                     heading = homeState.heading,
                     preferencesProvider = preferencesProvider,
                     resolveAddress = callbacks.onGetOfflineAddress,
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = { navController.navigateBack() },
                     onStartBeacon = { loc, name ->
                         callbacks.onStartBeacon(loc.latitude, loc.longitude, name)
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
@@ -429,7 +429,7 @@ fun SharedNavHost(
                 uiState = uiState,
                 downloadState = flows.offlineMapsDownloadState
                     ?: kotlinx.coroutines.flow.MutableStateFlow(DownloadStateCommon.Idle),
-                onBack = { navController.popBackStack() },
+                onBack = { navController.navigateBack() },
                 onDownload = { name, feature ->
                     callbacks.onOfflineMapsDownload(
                         name,
@@ -470,7 +470,7 @@ fun SharedNavHost(
                     userLocation = homeState.location,
                     heading = homeState.heading,
                     getCurrentLocationDescription = callbacks.onGetCurrentLocationDescription,
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = { navController.navigateBack() },
                     onSaveComplete = { navOnFinish(navController) },
                     onDeleteComplete = { navOnFinish(navController) },
                 )
@@ -494,7 +494,7 @@ fun SharedNavHost(
                     userLocation = homeState.location,
                     heading = homeState.heading,
                     getCurrentLocationDescription = callbacks.onGetCurrentLocationDescription,
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = { navController.navigateBack() },
                     onSaveComplete = {
                         navController.popBackStack(
                             SharedRoutes.ROUTES,
@@ -529,7 +529,7 @@ fun SharedNavHost(
                     userLocation = homeState.location,
                     heading = homeState.heading,
                     preferencesProvider = preferencesProvider,
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = { navController.navigateBack() },
                     onStartRoute = {
                         callbacks.onStartRoute(routeDesc.databaseId)
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
@@ -572,11 +572,11 @@ fun SharedNavHost(
                     getCurrentLocationDescription = callbacks.onGetCurrentLocationDescription,
                     onClickFolder = { filter, title -> holder.onClickFolder(filter, title) },
                     onClickBack = { holder.onClickBack() },
-                    onCancel = { navController.popBackStack() },
+                    onCancel = { navController.navigateBack() },
                     onSave = { desc ->
                         callbacks.onSaveMarker(desc)
                         callbacks.onSpeak(createdMessage)
-                        navController.popBackStack()
+                        navController.navigateBack()
                     },
                 )
             }
@@ -592,7 +592,7 @@ fun SharedNavHost(
                     userLocation = homeState.location,
                     heading = homeState.heading,
                     preferencesProvider = preferencesProvider,
-                    onCancel = { navController.popBackStack() },
+                    onCancel = { navController.navigateBack() },
                     onSave = { updated ->
                         callbacks.onSaveMarker(updated)
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
@@ -613,7 +613,7 @@ fun SharedNavHost(
                 topic = topic,
                 locationAccuracy = helpHomeState.locationAccuracy,
                 onNavigate = { dest -> navController.navigate(dest) },
-                onNavigateUp = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateBack() },
                 onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
                     { navController.navigate(SharedRoutes.OPEN_SOURCE_LICENSES) }
                 } else {
@@ -631,7 +631,7 @@ fun SharedNavHost(
                 val uiState by vm.uiState.collectAsState()
                 SharedOpenSourceLicensesScreen(
                     licenses = uiState.licenses,
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = { navController.navigateBack() },
                     onLicenseClick = vm::toggleLicense,
                 )
             }
@@ -675,7 +675,7 @@ fun SharedNavHost(
                 settingsContent(navController)
             } else {
                 SharedSettingsScreen(
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = { navController.navigateBack() },
                     beaconTypes = flows.beaconTypes,
                     preferencesProvider = preferencesProvider,
                     platformAudioContent = settingsPlatformAudioContent,
@@ -712,7 +712,7 @@ fun SharedNavHost(
                 val holder = viewModel { factory() }
                 SharedAdvancedMarkersAndRoutesSettingsScreen(
                     holder = holder,
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = { navController.navigateBack() },
                 )
             }
         }

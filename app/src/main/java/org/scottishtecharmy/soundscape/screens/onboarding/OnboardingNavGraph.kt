@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.koin.androidx.compose.koinViewModel
+import org.scottishtecharmy.soundscape.navigation.navigateBack
 import org.scottishtecharmy.soundscape.screens.onboarding.accessibility.AccessibilityOnboardingScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.battery.BatteryOptimizationScreen
@@ -69,7 +70,7 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.Hearing.route) {
             HearingScreen(
-                onBack = { navController.popBackStack() },
+                onBack = { navController.navigateBack() },
                 onNavigate = { navController.navigate(OnboardingScreens.AudioBeacons.route) },
                 audioViewModel
             )
@@ -100,7 +101,7 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.AudioBeacons.route) {
             AudioBeaconsScreen(
-                onBack = { navController.popBackStack() },
+                onBack = { navController.navigateBack() },
                 onNavigate = { navController.navigate(OnboardingScreens.OfflineStorage.route) },
                 audioViewModel
             )
