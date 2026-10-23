@@ -1,13 +1,10 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import android.util.Log
 import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.withFrameNanos
@@ -15,11 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LifecycleRegistry
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import org.maplibre.spatialk.geojson.Geometry
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -114,80 +106,20 @@ actual fun PlatformMapContainer(
 
     RedrawUntilSurfacesCreated()
 
-    DestroyMapWhenDisposed {
-        MapContainerLibre(
-            mapCenter = mapCenter,
-            allowScrolling = allowScrolling,
-            userLocation = userLocation,
-            userSymbolRotation = userSymbolRotation,
-            beaconLocation = beaconLocation,
-            routeData = routeData,
-            modifier = modifier,
-            currentBeaconWaypointIndex = currentBeaconWaypointIndex,
-            baseStyle = baseStyle,
-            extractGeometry = extractGeometry,
-            onInteractionChanged = onInteractionChanged,
-            onBeaconLocationEdited = onBeaconLocationEdited,
-        )
-    }
-}
-
-/**
- * Destroys the map's MapView when [content] leaves the composition.
- *
- * maplibre-compose (0.13) drives the MapView from LocalLifecycleOwner, and only destroys it on that
- * lifecycle's ON_DESTROY. Leaving the composition just stops observing it, so a map whose screen is
- * still alive is never destroyed: Home's, every time another screen is opened on top of it, as Home
- * stays on the back stack. MapLibre only frees a map's native side (its style, tiles and glyphs) in
- * MapView.onDestroy, so each of those maps stayed in memory for good: about 2.7 MB of native heap
- * each time Home was returned to on a Samsung A52s, and up to 2 GB on the test farm's phones.
- *
- * So the map is given a lifecycle of its own, which follows the screen's until the map leaves the
- * composition and is then destroyed. That has to happen while maplibre-compose is still observing
- * it: the DisposableEffect below comes after the map, and the effects being disposed run in the
- * reverse of their order in the composition, so it runs first.
- */
-@Composable
-private fun DestroyMapWhenDisposed(content: @Composable () -> Unit) {
-    val screenLifecycle = LocalLifecycleOwner.current.lifecycle
-    val mapLifecycleOwner = remember(screenLifecycle) { MapLifecycleOwner(screenLifecycle) }
-    CompositionLocalProvider(LocalLifecycleOwner provides mapLifecycleOwner) {
-        content()
-    }
-    DisposableEffect(mapLifecycleOwner) {
-        onDispose { mapLifecycleOwner.destroy() }
-    }
-}
-
-private class MapLifecycleOwner(private val screenLifecycle: Lifecycle) : LifecycleOwner {
-    private val registry = LifecycleRegistry(this)
-    override val lifecycle: Lifecycle get() = registry
-
-    private val follower = LifecycleEventObserver { _, _ ->
-        if (registry.currentState != Lifecycle.State.DESTROYED) {
-            registry.currentState = screenLifecycle.currentState
-        }
-    }
-
-    init {
-        screenLifecycle.addObserver(follower)
-    }
-
-    fun destroy() {
-        screenLifecycle.removeObserver(follower)
-        // Already destroyed with the screen, or never created at all
-        if (!registry.currentState.isAtLeast(Lifecycle.State.CREATED)) return
-        if (registry.observerCount == 0) {
-            // Nothing to tell: maplibre-compose has already stopped observing, so its MapView
-            // won't be destroyed. If this is ever logged, the ordering above no longer holds.
-            Log.w(TAG, "Map lifecycle has no observer left to destroy its MapView")
-        }
-        registry.currentState = Lifecycle.State.DESTROYED
-    }
-
-    private companion object {
-        const val TAG = "PlatformMapContainer"
-    }
+    MapContainerLibre(
+        mapCenter = mapCenter,
+        allowScrolling = allowScrolling,
+        userLocation = userLocation,
+        userSymbolRotation = userSymbolRotation,
+        beaconLocation = beaconLocation,
+        routeData = routeData,
+        modifier = modifier,
+        currentBeaconWaypointIndex = currentBeaconWaypointIndex,
+        baseStyle = baseStyle,
+        extractGeometry = extractGeometry,
+        onInteractionChanged = onInteractionChanged,
+        onBeaconLocationEdited = onBeaconLocationEdited,
+    )
 }
 
 /**

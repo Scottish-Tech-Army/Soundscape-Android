@@ -1,13 +1,16 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Fullscreen
 import androidx.compose.material.icons.rounded.FullscreenExit
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -15,35 +18,39 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import org.maplibre.compose.camera.CameraFit
 import org.maplibre.compose.camera.CameraPosition
-import org.maplibre.compose.camera.rememberCameraState
+import org.maplibre.compose.camera.CameraUpdate
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.format
 import org.maplibre.compose.expressions.dsl.image
-import org.maplibre.compose.expressions.dsl.offset
 import org.maplibre.compose.expressions.dsl.span
+import org.maplibre.compose.expressions.dsl.textOffset
 import org.maplibre.compose.expressions.value.SymbolAnchor
+import org.maplibre.compose.interaction.MapInteractions
 import org.maplibre.compose.layers.FillLayer
 import org.maplibre.compose.layers.LineLayer
 import org.maplibre.compose.layers.SymbolLayer
-import org.maplibre.compose.map.GestureOptions
-import org.maplibre.compose.map.MapOptions
 import org.maplibre.compose.map.MaplibreMap
-import org.maplibre.compose.map.OrnamentOptions
+import org.maplibre.compose.map.rememberMapState
 import org.maplibre.compose.sources.GeoJsonData
 import org.maplibre.compose.sources.rememberGeoJsonSource
 import org.maplibre.compose.style.BaseStyle
-import org.maplibre.compose.style.rememberStyleState
+import org.maplibre.compose.util.DpPadding
+import org.maplibre.compose.util.MaplibreComposable
 import org.maplibre.spatialk.geojson.BoundingBox
 import org.maplibre.spatialk.geojson.Geometry
 import org.maplibre.spatialk.geojson.MultiPolygon
@@ -130,58 +137,133 @@ fun MapContainerLibre(
     onInteractionChanged: (Boolean) -> Unit = {},
 ) {
     val extractBounds = remember(extractGeometry) { extractGeometry?.computeBounds() }
-    val cameraState = rememberCameraState(
-        firstPosition = CameraPosition(
-            target = Position(mapCenter.longitude, mapCenter.latitude),
+    val editingBeacon = onBeaconLocationEdited != null
+    val currentOnBeaconLocationEdited by rememberUpdatedState(onBeaconLocationEdited)
+
+    val navigationMarker = painterResource(Res.drawable.navigation)
+    val locationMarker = painterResource(Res.drawable.location_marker)
+    val currentBeaconLocationMarker = painterResource(Res.drawable.current_beacon_location_marker)
+    val primaryColor = MaterialTheme.colorScheme.primary
+
+    // The map's state owns its native map, and is closed (freeing that map) when it leaves the
+    // composition. Sources and layers are declared in its content block.
+    val mapState = rememberMapState(
+        baseStyle = baseStyle,
+        initialCameraPosition = CameraPosition(
+            center = Position(mapCenter.longitude, mapCenter.latitude),
             zoom = 15.0,
-        )
-    )
+        ),
+    ) {
+        if (extractGeometry != null) {
+            val extractSource = rememberGeoJsonSource(
+                data = GeoJsonData.Features(extractGeometry)
+            )
+            FillLayer(
+                id = "extract-fill",
+                source = extractSource,
+                color = const(primaryColor),
+                opacity = const(0.25f),
+                outlineColor = const(primaryColor),
+            )
+            LineLayer(
+                id = "extract-outline",
+                source = extractSource,
+                color = const(primaryColor),
+                width = const(2.dp),
+            )
+        }
+        if (userLocation != null) {
+            val userLocationGeoJson = rememberGeoJsonSource(
+                data = GeoJsonData.Features(
+                    Point(Position(longitude = userLocation.longitude, latitude = userLocation.latitude))
+                )
+            )
+            SymbolLayer(
+                id = "user-location",
+                source = userLocationGeoJson,
+                iconImage = image(navigationMarker),
+                iconSize = const(1.2F),
+                iconRotate = const(userSymbolRotation),
+                iconAllowOverlap = const(true)
+            )
+        }
+
+        if (routeData != null) {
+            for ((index, waypoint) in routeData.markers.withIndex()) {
+                val markerLocationGeoJson = rememberGeoJsonSource(
+                    data = GeoJsonData.Features(
+                        Point(Position(longitude = waypoint.longitude, latitude = waypoint.latitude))
+                    )
+                )
+                val preRendered = routeMarkerImages?.getOrNull(index)
+                if (preRendered != null) {
+                    SymbolLayer(
+                        id = "marker-$index",
+                        source = markerLocationGeoJson,
+                        iconImage = image(preRendered),
+                        iconSize = const(1.2F),
+                        iconAllowOverlap = const(true),
+                        iconAnchor = const(SymbolAnchor.Bottom)
+                    )
+                } else {
+                    SymbolLayer(
+                        id = "marker-$index",
+                        source = markerLocationGeoJson,
+                        iconImage = image(locationMarker),
+                        iconSize = const(1.2F),
+                        iconAllowOverlap = const(true),
+                        iconAnchor = const(SymbolAnchor.Bottom),
+                        // Default font stack (Open Sans, Arial Unicode MS) is not
+                        // bundled — must use a Roboto variant that ships with the
+                        // glyph PBFs in osm-liberty-accessible/fonts/.
+                        textField = format(span("${index + 1}")),
+                        textFont = const(listOf("Roboto Bold")),
+                        textColor = const(Color.White),
+                        textSize = const(11.sp),
+                        textAllowOverlap = const(true),
+                        textAnchor = const(SymbolAnchor.Center),
+                        textOffset = textOffset(0f.em, (-1.3f).em),
+                    )
+                }
+            }
+        }
+
+        // Draw beacon location marker last to prevent waypoint marker being drawn on top.
+        val drawnBeaconLocation = if (editingBeacon) null else beaconLocation
+        if (drawnBeaconLocation != null) {
+            BeaconMarker(drawnBeaconLocation, currentBeaconLocationMarker, currentBeaconWaypointIndex)
+        }
+    }
+
     // When an extract polygon is provided, fit the camera to its bounds.
     // Otherwise re-center on mapCenter when it changes (e.g. when location
     // becomes available on iOS).
     LaunchedEffect(mapCenter.latitude, mapCenter.longitude, extractBounds) {
         if (extractBounds != null) {
-            cameraState.animateTo(
+            mapState.animateCameraToBounds(
                 boundingBox = extractBounds,
-                padding = PaddingValues(16.dp),
+                fit = CameraFit(fitPadding = DpPadding(16.dp, 16.dp, 16.dp, 16.dp)),
             )
         } else {
-            cameraState.animateTo(
-                CameraPosition(
-                    target = Position(mapCenter.longitude, mapCenter.latitude),
-                    zoom = cameraState.position.zoom,
-                )
+            mapState.animateCamera(
+                CameraUpdate(center = Position(mapCenter.longitude, mapCenter.latitude))
             )
         }
     }
-    val styleState = rememberStyleState()
-
-    val editingBeacon = onBeaconLocationEdited != null
-    val currentOnBeaconLocationEdited by rememberUpdatedState(onBeaconLocationEdited)
     if (editingBeacon) {
-        LaunchedEffect(cameraState) {
-            snapshotFlow { cameraState.position.target }.collect { target ->
-                currentOnBeaconLocationEdited?.invoke(LngLatAlt(target.longitude, target.latitude))
+        LaunchedEffect(mapState) {
+            snapshotFlow { mapState.cameraPosition.center }.collect { center ->
+                currentOnBeaconLocationEdited?.invoke(LngLatAlt(center.longitude, center.latitude))
             }
         }
     }
-    val drawnBeaconLocation = if (editingBeacon) {
-        val target = cameraState.position.target
-        LngLatAlt(target.longitude, target.latitude)
-    } else {
-        beaconLocation
-    }
-
-    val navigationMarker = painterResource(Res.drawable.navigation)
-    val locationMarker = painterResource(Res.drawable.location_marker)
-    val currentBeaconLocationMarker = painterResource(Res.drawable.current_beacon_location_marker)
 
     Box(
         modifier = modifier.pointerInput(Unit) {
             // Only take over from the parent scroll on genuine multi-touch (pinch).
             // MapLibre's native gesture detector for pinch/rotate/tilt requires 2+
             // pointers by construction, so a single-finger drag here was never going
-            // to pan the map anyway (scroll is disabled via GestureOptions.ZoomOnly) -
+            // to pan the map anyway (panning is off unless allowScrolling) -
             // treating it as "interacting" too would just make single-finger swipes
             // starting on the map do nothing instead of scrolling the page.
             awaitPointerEventScope {
@@ -194,141 +276,83 @@ fun MapContainerLibre(
         }
     ) {
         MaplibreMap(
-            baseStyle = baseStyle,
-            cameraState = cameraState,
-            styleState = styleState,
-            options = MapOptions(
-                // maplibre-compose 0.12.1 only exposes companion-object presets
-                // for these option types in commonMain; per-ornament alignment
-                // customisation requires expect/actual code.
-                // RotationLocked = scroll + zoom on, rotation + tilt off.
-                // ZoomOnly = zoom (pinch/double-tap) on, scroll + rotation + tilt
-                // off - safe inside a scrollable parent since zoom gestures use
-                // two fingers or a tap, never a single-finger drag.
-                gestureOptions = if (allowScrolling) GestureOptions.RotationLocked
-                else GestureOptions.ZoomOnly,
-                ornamentOptions = OrnamentOptions.AllDisabled,
-                // Platform-specific render options: Android uses SurfaceView due to a leak in
-                // MapLibre: See SA-379
-                // (the default SurfaceView is a hardware overlay that doesn't
-                // animate). iOS keeps Standard.
-                renderOptions = nativeMapRenderOptions(),
-            )
-        ) {
-            if (extractGeometry != null) {
-                val extractSource = rememberGeoJsonSource(
-                    data = GeoJsonData.Features(extractGeometry)
-                )
-                FillLayer(
-                    id = "extract-fill",
-                    source = extractSource,
-                    color = const(MaterialTheme.colorScheme.primary),
-                    opacity = const(0.25f),
-                    outlineColor = const(MaterialTheme.colorScheme.primary),
-                )
-                LineLayer(
-                    id = "extract-outline",
-                    source = extractSource,
-                    color = const(MaterialTheme.colorScheme.primary),
-                    width = const(2.dp),
-                )
-            }
-            if (userLocation != null) {
-                val position = Position(
-                    latitude = userLocation.latitude,
-                    longitude = userLocation.longitude
-                )
-                val userLocationGeoJson =
-                    rememberGeoJsonSource(
-                        data = GeoJsonData.Features(Point(position))
-                    )
-
-                SymbolLayer(
-                    id = "user-location",
-                    source = userLocationGeoJson,
-                    iconImage = image(navigationMarker),
-                    iconSize = const(1.2F),
-                    iconRotate = const(userSymbolRotation),
-                    iconAllowOverlap = const(true)
-                )
-            }
-
-            if (routeData != null) {
-                for ((index, waypoint) in routeData.markers.withIndex()) {
-                    val position = Position(
-                        latitude = waypoint.latitude,
-                        longitude = waypoint.longitude
-                    )
-                    val markerLocationGeoJson =
-                        rememberGeoJsonSource(
-                            data = GeoJsonData.Features(Point(position))
-                        )
-
-                    val preRendered = routeMarkerImages?.getOrNull(index)
-                    if (preRendered != null) {
-                        SymbolLayer(
-                            id = "marker-$index",
-                            source = markerLocationGeoJson,
-                            iconImage = image(preRendered),
-                            iconSize = const(1.2F),
-                            iconAllowOverlap = const(true),
-                            iconAnchor = const(SymbolAnchor.Bottom)
-                        )
-                    } else {
-                        SymbolLayer(
-                            id = "marker-$index",
-                            source = markerLocationGeoJson,
-                            iconImage = image(locationMarker),
-                            iconSize = const(1.2F),
-                            iconAllowOverlap = const(true),
-                            iconAnchor = const(SymbolAnchor.Bottom),
-                            // Default font stack (Open Sans, Arial Unicode MS) is not
-                            // bundled — must use a Roboto variant that ships with the
-                            // glyph PBFs in osm-liberty-accessible/fonts/.
-                            textField = format(span("${index + 1}")),
-                            textFont = const(listOf("Roboto Bold")),
-                            textColor = const(Color.White),
-                            textSize = const(11.sp),
-                            textAllowOverlap = const(true),
-                            textAnchor = const(SymbolAnchor.Center),
-                            textOffset = offset(0f.em, (-1.3f).em),
-                        )
-                    }
+            state = mapState,
+            renderOptions = nativeMapRenderOptions(),
+            // Zoom (pinch/double-tap) is always on. Panning only when allowScrolling, so that
+            // inside a scrollable parent a single-finger drag scrolls the page instead.
+            // Rotation and tilt are always off.
+            interactions = MapInteractions {
+                camera {
+                    pan { enabled = allowScrolling }
+                    rotate { enabled = false }
+                    pitch { enabled = false }
                 }
-            }
-
-            // Draw beacon location marker last to prevent waypoint marker being drawn on top.
-            if (drawnBeaconLocation != null) {
-                val position = Position(
-                    latitude = drawnBeaconLocation.latitude,
-                    longitude = drawnBeaconLocation.longitude
+            },
+            // No ornaments: no compass, scale bar, zoom buttons or attribution
+            overlay = {},
+        )
+        if (editingBeacon) {
+            // While editing, the beacon is pinned to the centre of the map, so panning moves it.
+            // It's drawn over the map rather than as a layer so that it doesn't lag the camera,
+            // and laid out to match BeaconMarker: the pin's point at the centre, 1.2x its size,
+            // with the number in its head.
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .offset(y = -BEACON_EDIT_MARKER_SIZE / 2)
+                    .size(BEACON_EDIT_MARKER_SIZE),
+            ) {
+                Icon(
+                    painter = currentBeaconLocationMarker,
+                    contentDescription = null,
+                    tint = Color.Unspecified,
+                    modifier = Modifier.fillMaxSize(),
                 )
-                val beaconLocationGeoJson =
-                    rememberGeoJsonSource(
-                        data = GeoJsonData.Features(Point(position))
-                    )
-
-                SymbolLayer(
-                    id = "beacon-location",
-                    source = beaconLocationGeoJson,
-                    iconImage = image(currentBeaconLocationMarker),
-                    iconSize = const(1.2F),
-                    iconAllowOverlap = const(true),
-                    iconAnchor = const(SymbolAnchor.Bottom),
-                    // Default font stack (Open Sans, Arial Unicode MS) is not
-                    // bundled — must use a Roboto variant that ships with the
-                    // glyph PBFs in osm-liberty-accessible/fonts/.
-                    textField = format(span("${currentBeaconWaypointIndex + 1}")),
-                    textFont = const(listOf("Roboto Bold")),
-                    textColor = const(Color.White),
-                    textSize = const(11.sp),
-                    textAllowOverlap = const(true),
-                    textAnchor = const(SymbolAnchor.Center),
-                    textOffset = offset(0f.em, (-1.3f).em),
+                Text(
+                    text = "${currentBeaconWaypointIndex + 1}",
+                    color = Color.White,
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold,
                 )
             }
         }
     }
+}
+
+// The marker drawable's 24dp, scaled by BeaconMarker's iconSize of 1.2
+private val BEACON_EDIT_MARKER_SIZE = 28.8.dp
+
+@Composable
+@MaplibreComposable
+private fun BeaconMarker(
+    location: LngLatAlt,
+    marker: Painter,
+    waypointIndex: Int,
+) {
+    val beaconLocationGeoJson = rememberGeoJsonSource(
+        data = GeoJsonData.Features(
+            Point(Position(longitude = location.longitude, latitude = location.latitude))
+        )
+    )
+    SymbolLayer(
+        id = "beacon-location",
+        source = beaconLocationGeoJson,
+        iconImage = image(marker),
+        iconSize = const(1.2F),
+        iconAllowOverlap = const(true),
+        iconAnchor = const(SymbolAnchor.Bottom),
+        // Default font stack (Open Sans, Arial Unicode MS) is not
+        // bundled — must use a Roboto variant that ships with the
+        // glyph PBFs in osm-liberty-accessible/fonts/.
+        textField = format(span("${waypointIndex + 1}")),
+        textFont = const(listOf("Roboto Bold")),
+        textColor = const(Color.White),
+        textSize = const(11.sp),
+        textAllowOverlap = const(true),
+        textAnchor = const(SymbolAnchor.Center),
+        textOffset = textOffset(0f.em, (-1.3f).em),
+    )
 }
 
 private fun Geometry.computeBounds(): BoundingBox? {

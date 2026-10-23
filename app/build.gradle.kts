@@ -20,11 +20,12 @@ android {
 
     buildFeatures {
         buildConfig = true
-        // Must stay off. Enabling prefab makes AGP validate the prefab metadata of every
-        // AAR on the classpath, not just the ones the native build consumes, and MapLibre
-        // 13.4.0+ declares stl=c++_static which is rejected against our c++_shared build
-        // (CXX1211). Oboe was the only reason this was on; it is vendored instead - see
-        // scripts/update-oboe.sh and app/src/main/cpp/CMakeLists.txt.
+        // Off. Enabling prefab makes AGP validate the prefab metadata of every AAR on the
+        // classpath, not just the ones the native build consumes, and the MapLibre Android
+        // SDK (13.4.0+, used up to maplibre-compose 0.13) declared stl=c++_static, which was
+        // rejected against our c++_shared build (CXX1211). Oboe was the only reason this was
+        // on; it is vendored instead - see scripts/update-oboe.sh and
+        // app/src/main/cpp/CMakeLists.txt.
         prefab = false
     }
 
@@ -135,7 +136,7 @@ android {
             // Embed native debug symbols in the App Bundle so native (NDK) crashes
             // symbolicate in Play Console / Crashlytics. Note: this can only extract
             // symbols from libraries that still contain them - prebuilt third party
-            // libs that ship stripped (e.g. libmaplibre.so) must be symbolicated
+            // libs that ship stripped (e.g. MapLibre's) must be symbolicated
             // manually using their BuildId and the matching debug-symbols package.
             ndk {
                 debugSymbolLevel = "FULL"
@@ -463,9 +464,8 @@ dependencies {
     // GPX parser
 
     // MapLibre library
-    implementation (libs.maplibre)
-    implementation (libs.maplibre.annotations)
     implementation (libs.maplibre.compose)
+    runtimeOnly (libs.maplibre.compose.runtime.opengl)
 
     androidTestImplementation(libs.androidx.uiautomator)
 

@@ -2,5 +2,6 @@ package org.scottishtecharmy.soundscape.platform
 
 import org.maplibre.compose.map.RenderOptions
 
-actual fun nativeMapRenderOptions(): RenderOptions =
-    RenderOptions(renderMode = RenderOptions.RenderMode.SurfaceView)
+// The view a map draws through is now chosen by MapUiOptions.renderMode rather than here, and
+// defaults to AndroidRenderMode.Surface (a SurfaceView).
+actual fun nativeMapRenderOptions(): RenderOptions = RenderOptions.Standard

@@ -21,14 +21,11 @@ settings:
   # AppVersionName Info.plist key that PlatformInfo.appVersionName() reads.
   APP_VERSION_NAME: "0.0.0"
 packages:
-  MapLibre:
-    url: https://github.com/maplibre/maplibre-gl-native-distribution
-    version: 6.17.1
   RealmSwift:
     url: https://github.com/realm/realm-swift
     from: 20.0.4
   Firebase:
-    # Pinned exactly, like MapLibre above. `from:` is a >=12.18.0 <13.0.0 range, and
+    # Pinned exactly. `from:` is a >=12.18.0 <13.0.0 range, and
     # Package.resolved isn't committed (it lives inside the generated, gitignored
     # .xcodeproj), so CI resolved whatever was newest at build time. A release shipped
     # on GoogleAppMeasurement 12.19.0 while local builds were still on 12.18.0, which
@@ -40,8 +37,6 @@ targets:
     type: application
     platform: iOS
     dependencies:
-      - package: MapLibre
-        product: MapLibre
       - package: RealmSwift
         product: RealmSwift
         embed: true
@@ -171,6 +166,26 @@ targets:
           - "-ObjC"
           - "-framework"
           - "Shared"
+          # From maplibre-compose 0.20, MapLibre Native comes in through Shared (a static
+          # framework) rather than the MapLibre SwiftPM package, so its system
+          # dependencies have to be linked here. The list is from maplibre-compose's iOS
+          # setup instructions.
+          - "-lc++"
+          - "-lz"
+          - "-framework"
+          - "CoreFoundation"
+          - "-framework"
+          - "CoreGraphics"
+          - "-framework"
+          - "CoreText"
+          - "-framework"
+          - "Foundation"
+          - "-framework"
+          - "ImageIO"
+          - "-framework"
+          - "Metal"
+          - "-framework"
+          - "QuartzCore"
         CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
       configs:
         # CI archives with manual signing so xcodebuild uses the
