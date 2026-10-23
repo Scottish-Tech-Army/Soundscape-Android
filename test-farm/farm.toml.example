@@ -21,6 +21,19 @@ serialize_maestro = false
 # uninstall it, wiping its data. Off by default: the phone is reported as blocked.
 allow_reinstall = false
 
+# Test a locally built APK instead of the CI releases, on every phone or (in a
+# [devices] entry) on one. It's usually signed with a different key, so whatever
+# is on the phone is uninstalled, wiping its data, and the app is set up afresh.
+# Unset it to go back to the releases, which replace the local build the same way.
+# local_apk = "/path/to/app-release.apk"
+
+# When Restore fails after the monkey soak even with the app brought back to
+# the front, leave the phone as it is for up to pause_minutes before restarting
+# the app, so it can be looked at. Create a file named
+# resume-<serial> next to farm.py to carry on sooner.
+pause_on_restore_failure = false
+pause_minutes = 30
+
 include_emulators = false
 include_ios = true            # observe USB iPhones via pymobiledevice3 (see README)
 ios_poll_minutes = 10

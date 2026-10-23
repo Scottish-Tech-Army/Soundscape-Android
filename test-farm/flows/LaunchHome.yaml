@@ -53,6 +53,15 @@ appId: org.scottishtecharmy.soundscape
             - evalScript: ${output.tour = true}
             - tapOn:
                 id: audioTourInstructionContinue
+      # Backing out of another screen can land on Street Preview's Home, which
+      # Back doesn't leave either.
+      - runFlow:
+          when:
+            visible:
+              text: "Exit location simulation"
+          commands:
+            - tapOn:
+                text: "Exit location simulation"
       - back
       - runFlow:
           file: ../../maestro/Wait.yaml

@@ -74,6 +74,8 @@ DEFAULTS = {
     "keep_days": 14,
     "serialize_maestro": False,
     "allow_reinstall": False,
+    "pause_on_restore_failure": False,
+    "pause_minutes": 30,
     # false cuts apps off from the motion sensors (see Worker.set_sensors), so
     # Soundscape has no compass or attitude and never thinks the phone is lying
     # flat on the desk; it then takes its heading from travel, as in a pocket.
@@ -844,13 +846,47 @@ class Worker(threading.Thread):
                       + ("" if ok else "\n" + out))
         return ok
 
+    def ensure_local(self, path):
+        """Installs the locally built APK that local_apk names, to test in place of the CI
+        releases. It's normally signed with a different key, so it can't go over a release (nor a
+        release over it): whatever else is on the phone is uninstalled first, and the app set up
+        afresh. A rebuilt APK is only installed again if its versionCode changes."""
+        badging = run([find_aapt2(), "dump", "badging", path]).stdout
+        m = re.search(r"versionCode='(\d+)' versionName='([^']*)'", badging)
+        if not m:
+            log(self.serial, f"local_apk {path}: couldn't read its version")
+            return None
+        build = {"apk_path": path, "version_code": int(m.group(1)), "version_name": m.group(2)}
+        current = installed_version(self.serial)
+        if current != build["version_code"] or not self.farm_installed():
+            if current is not None:
+                self.db.event(self.serial, "uninstall", current,
+                              f"uninstalling {current} to test the local build "
+                              f"{build['version_name']} ({build['version_code']})")
+                adb(self.serial, "uninstall", PACKAGE)
+            set_state(self.serial, f"installing local build {build['version_name']}")
+            if not self.install(build, upgrade=False):
+                return None
+        return installed_version(self.serial) if self.farm_installed() else None
+
     def ensure_version(self, cycle_dir):
         """Installs or upgrades as needed. Returns the version to test, or None."""
+        local = self.dev_cfg.get("local_apk", self.cfg.get("local_apk"))
+        if local:
+            return self.ensure_local(local)
         builds = self.db.builds()
         if not builds:
             return None
         latest = builds[-1]
         current = installed_version(self.serial)
+        if (current is not None and self.farm_installed()
+                and current not in {b["version_code"] for b in builds}):
+            # Not a CI release: a local_apk build that has since been taken out of the config.
+            # It's signed differently, so the release can only replace it, not upgrade it.
+            self.db.event(self.serial, "uninstall", current,
+                          "uninstalling a local build now that local_apk is unset")
+            adb(self.serial, "uninstall", PACKAGE)
+            current = None
         if (current is not None and not self.farm_installed()
                 and current <= latest["version_code"] and current not in self.adopt_tried):
             self.adopt_tried.add(current)
@@ -985,6 +1021,52 @@ class Worker(threading.Thread):
             "VALUES(?,?,?,?,?,?,?,?,?)",
             (cycle_id, self.serial, start, kind, name, status, time.time() - start, detail, out_dir))
         return status == "pass"
+
+    def pause_for_investigation(self, version):
+        """Before restarting the app, leaves the phone as the failed Restores left it, so that
+        someone can see what needed the restart, until a file named resume-<serial> appears next to this script or pause_minutes
+        pass. The other phones carry on meanwhile."""
+        s = self.serial
+        flag = os.path.join(FARM_DIR, f"resume-{s}")
+        minutes = self.cfg["pause_minutes"]
+        self.db.event(s, "paused", version, f"Restore couldn't get back to Home even with the app "
+                                            f"brought to the front; paused for up to {minutes} "
+                                            f"minutes before restarting it, until "
+                                            f"{os.path.basename(flag)} exists")
+        set_state(s, "paused: Restore failed")
+        deadline = time.time() + minutes * 60
+        while not stop_event.is_set() and time.time() < deadline and not os.path.exists(flag):
+            stop_event.wait(5)
+        if os.path.exists(flag):
+            os.remove(flag)
+            log(s, "resumed")
+
+    def bring_to_front(self):
+        """Brings the app's task back in front of anything the monkey left over it, full screen,
+        without restarting it. MainActivity is singleTask, so starting it brings its task forward
+        (clearing anything stacked on it in that task). Starting it in full screen windowing mode
+        doesn't take a task that's already a pop-up out of freeform, but a task that can't be
+        resized can't stay in freeform, so it's briefly made unresizeable."""
+        s = self.serial
+        tasks = shell(s, "dumpsys activity activities")
+        m = re.search(r"Task\{\S+ #(\d+) [^}]*A=\d+:" + re.escape(PACKAGE) + r" [^}]*mode=(\S+)", tasks)
+        floating = m is not None and m.group(2) != "fullscreen"
+        if floating:
+            shell(s, f"am task resizeable {m.group(1)} 0")
+        shell(s, "input keyevent KEYCODE_HOME")
+        shell(s, f"am start -W -n {PACKAGE}/.MainActivity", timeout=60)
+        if floating:
+            shell(s, f"am task resizeable {m.group(1)} 2")
+        # The Moto has been left with the app's window up but blank grey: its Compose content had
+        # stopped composing and drawing (no frames, nothing in the view tree), though the process
+        # ran on. Turning the screen off and on didn't bring it back; a configuration change did.
+        # So dark mode is switched over and back again, which only redraws the app if it's fine.
+        night = re.search(r"Night mode: (\w+)", shell(s, "cmd uimode night"))
+        if night:
+            shell(s, "cmd uimode night " + ("no" if night.group(1) == "yes" else "yes"))
+            time.sleep(3)
+            shell(s, f"cmd uimode night {night.group(1)}")
+            time.sleep(3)
 
     def run_monkey(self, cycle_id, cycle_dir):
         set_state(self.serial, "monkey soak")
@@ -1134,13 +1216,25 @@ class Worker(threading.Thread):
                 restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
                 if restored is False and not stop_event.is_set():
                     # The monkey can leave the app where Restore can't get it
-                    # back to Home, such as with its window shrunk to a pop-up
-                    # or left blank by the phone's own freeform modes.
-                    # Restarting the app gets out of those and keeps its
-                    # markers, route and settings, which setting up again
+                    # back to Home: behind another app (Gmail, from Contact
+                    # support) or a launcher panel, or with its window shrunk
+                    # to a pop-up. Bringing it back to the front gets out of
+                    # those without ending its process, which is what lets it
+                    # run for hours.
+                    self.db.event(s, "front", version, "Restore couldn't get back to Home "
+                                                       "after the monkey soak; bringing the app "
+                                                       "to the front")
+                    self.bring_to_front()
+                    restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
+                if restored is False and not stop_event.is_set():
+                    if self.cfg["pause_on_restore_failure"]:
+                        self.pause_for_investigation(version)
+                if restored is False and not stop_event.is_set():
+                    # Restarting the app gets out of anything else, and keeps
+                    # its markers, route and settings, which setting up again
                     # would wipe.
-                    self.db.event(s, "restart", version, "Restore couldn't get back to Home "
-                                                         "after the monkey soak; restarting the app")
+                    self.db.event(s, "restart", version, "Restore still couldn't get back to "
+                                                         "Home; restarting the app")
                     shell(s, f"am force-stop {PACKAGE}")
                     restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
             if restored is not None:
@@ -1426,19 +1520,57 @@ def battery_cell(st, last):
     return f"{html.escape(text)}<div class=dim>{html.escape(when)}</div>"
 
 
+def pss_cell(st, db, serial):
+    """The app's memory use: the live reading if there is one (Android), else the newest cycle
+    that recorded it (one stopped by the farm shutting down doesn't)."""
+    if st.get("pss") and st["pss"][0] is not None:
+        kb, ts = st["pss"]
+        when = fmt_time(ts)
+    else:
+        row = db.query("SELECT pss_kb, ended FROM cycles WHERE serial=? AND pss_kb IS NOT NULL "
+                       "ORDER BY id DESC LIMIT 1", (serial,))
+        if not row:
+            return ""
+        kb, when = row[0]["pss_kb"], f"at the cycle ending {fmt_time(row[0]['ended'])}"
+    return f"{kb // 1024} MB<div class=dim>{html.escape(when)}</div>"
+
+
+def uptime_cell(st, last):
+    """How long the app has been running: the live reading if there is one (Android), else
+    as at the end of the last cycle."""
+    if st.get("uptime"):
+        seconds, ts = st["uptime"]
+        when = fmt_time(ts)
+    elif last and last["app_uptime_s"] is not None:
+        seconds, when = last["app_uptime_s"], "at the last cycle"
+    else:
+        return ""  # e.g. an iPhone, whose cycles don't record it
+    if seconds is None:
+        text = "not running"
+    else:
+        h, rem = divmod(seconds, 3600)
+        text = f"{h}h {rem // 60:02d}m" if h else f"{rem // 60}m"
+    return f"{html.escape(text)}<div class=dim>{html.escape(when)}</div>"
+
+
 def fmt_time(ts):
     return dt.datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M") if ts else ""
 
 
 def record_vitals(db, serial):
-    """Reads the phone's battery now, for the report and the vitals table."""
+    """Reads the phone's battery, and how long the app has been running, now: for the report
+    and the vitals table."""
     level, temp = battery(serial)
     if level is None and temp is None:
         return  # disconnected or not answering
+    uptime = app_uptime_s(serial)
+    pss = pss_kb(serial) if uptime is not None else None
     now = time.time()
     db.execute("INSERT INTO vitals VALUES(?,?,?,?)", (serial, now, level, temp))
     with state_lock:
         device_state.setdefault(serial, {})["battery"] = (level, temp, now)
+        device_state[serial]["uptime"] = (uptime, now)
+        device_state[serial]["pss"] = (pss, now)
 
 
 def write_report(db):
@@ -1461,7 +1593,8 @@ def write_report(db):
             <td>{e(st['state'])}<div class=dim>since {fmt_time(st['since'])}</div></td>
             <td class="{last['status'] if last else ''}">{e(last['status']) if last else ''}</td>
             <td>{day['ok'] or 0}/{day['n']}</td><td>{day['c'] or 0}</td><td>{day['a'] or 0}</td>
-            <td>{last['pss_kb'] // 1024 if last and last['pss_kb'] else ''} MB</td>
+            <td>{pss_cell(st, db, serial)}</td>
+            <td>{uptime_cell(st, last)}</td>
             <td>{battery_cell(st, last)}</td></tr>""")
     failures = "".join(
         f"<tr><td>{fmt_time(r['ts'])}</td><td>{e(r['serial'])}</td><td>{e(r['kind'])}</td>"
@@ -1489,7 +1622,7 @@ pre{{margin:0;white-space:pre-wrap;font-size:12px;max-width:70ch}} a{{color:inhe
 <h1>Soundscape test farm</h1><p class=dim>Updated {fmt_time(time.time())}. Cached releases: {builds or 'none yet'}</p>
 <h2>Devices</h2><div class=wrap><table><tr><th>Serial</th><th>Model</th><th>OS</th><th>App</th>
 <th>Now</th><th>Last cycle</th><th>Passed 24h</th><th>Crashes 24h</th><th>ANRs 24h</th>
-<th>PSS</th><th>Battery</th></tr>{''.join(rows)}</table></div>
+<th>PSS</th><th>App uptime</th><th>Battery</th></tr>{''.join(rows)}</table></div>
 <h2>Recent failures</h2><div class=wrap><table><tr><th>When</th><th>Device</th><th>Kind</th>
 <th>Name</th><th></th><th>Detail</th></tr>{failures}</table></div>
 <h2>Events</h2><div class=wrap><table><tr><th>When</th><th>Device</th><th>Kind</th><th>App</th>

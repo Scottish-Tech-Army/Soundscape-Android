@@ -1,0 +1,33 @@
+appId: org.scottishtecharmy.soundscape
+# Cancels the guided tutorial if it's running. Run by Restore.yaml, as only the
+# monkey starts it. LaunchHome.yaml cancels it too, but only when one of its
+# dialogs is showing; between instructions it runs with none, and its next
+# dialog then turns up over whatever Restore is doing (Places Nearby, say).
+# The menu item it's started from reads "Cancel guided tutorial" while it runs.
+---
+- runFlow: LaunchHome.yaml
+- tapOn:
+    id: topBarMenu
+- scrollUntilVisible:
+    element:
+      id: menuAudioTutorial
+    direction: DOWN
+- runFlow:
+    when:
+      visible:
+        text: "Cancel guided tutorial"
+    commands:
+      - tapOn:
+          text: "Cancel guided tutorial"
+      - tapOn:
+          id: audioTourInstructionContinue
+- runFlow:
+    when:
+      notVisible:
+        id: mainSearchBarCollapsed
+    commands:
+      - back
+- runFlow:
+    file: ../../maestro/WaitForScreen.yaml
+    env:
+      screen: Home
