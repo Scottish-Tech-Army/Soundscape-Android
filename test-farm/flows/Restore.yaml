@@ -12,6 +12,7 @@ appId: org.scottishtecharmy.soundscape
 # held location, the same spots the suite used, and saving a marker where one
 # already is (say one the monkey renamed) updates that marker.
 ---
+- runFlow: CancelTour.yaml
 - runFlow: FarmSettings.yaml
 # The markers are made with the map off, as in the suite: on a small screen
 # the map pushes controls under the bottom bar.
