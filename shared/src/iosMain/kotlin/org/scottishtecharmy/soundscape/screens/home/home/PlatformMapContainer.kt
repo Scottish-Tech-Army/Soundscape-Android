@@ -20,6 +20,8 @@ actual fun PlatformMapContainer(
     forceOnlineTiles: Boolean,
     onInteractionChanged: (Boolean) -> Unit,
     onBeaconLocationEdited: ((LngLatAlt) -> Unit)?,
+    userLocationAccuracy: Float?,
+    userHeadingAccuracy: Float?,
 ) {
     IosMapContainerLibre(
         mapCenter = mapCenter,
@@ -34,5 +36,7 @@ actual fun PlatformMapContainer(
         forceOnlineTiles = forceOnlineTiles,
         onInteractionChanged = onInteractionChanged,
         onBeaconLocationEdited = onBeaconLocationEdited,
+        userLocationAccuracy = userLocationAccuracy,
+        userHeadingAccuracy = userHeadingAccuracy,
     )
 }

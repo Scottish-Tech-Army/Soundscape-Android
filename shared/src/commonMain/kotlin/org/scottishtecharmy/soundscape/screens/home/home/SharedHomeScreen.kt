@@ -83,6 +83,8 @@ fun SharedHomeScreen(
         beaconLocation = state.beaconState?.location,
         routeData = state.currentRouteData.routeData,
         currentBeaconWaypointIndex = state.currentRouteData.currentWaypoint,
+        userLocationAccuracy = state.locationAccuracy,
+        userHeadingAccuracy = state.headingAccuracy,
     )
     val fullscreenMap = map.fullscreen
     val keyboardOpen = keyboardAsState()

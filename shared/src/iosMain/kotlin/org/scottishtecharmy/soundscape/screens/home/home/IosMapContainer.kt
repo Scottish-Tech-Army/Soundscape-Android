@@ -94,6 +94,8 @@ fun IosMapContainerLibre(
     forceOnlineTiles: Boolean = false,
     onInteractionChanged: (Boolean) -> Unit = {},
     onBeaconLocationEdited: ((LngLatAlt) -> Unit)? = null,
+    userLocationAccuracy: Float? = null,
+    userHeadingAccuracy: Float? = null,
 ) {
     val baseStyle =
         rememberIosMapBaseStyle(location = mapCenter, forceOnlineTiles = forceOnlineTiles)
@@ -111,5 +113,7 @@ fun IosMapContainerLibre(
         extractGeometry = extractGeometry,
         onInteractionChanged = onInteractionChanged,
         onBeaconLocationEdited = onBeaconLocationEdited,
+        userLocationAccuracy = userLocationAccuracy,
+        userHeadingAccuracy = userHeadingAccuracy,
     )
 }

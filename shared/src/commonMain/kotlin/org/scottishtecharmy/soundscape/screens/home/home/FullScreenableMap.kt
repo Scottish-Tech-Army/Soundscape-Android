@@ -50,6 +50,8 @@ class FullScreenableMap internal constructor(
                 currentBeaconWaypointIndex = c.currentBeaconWaypointIndex,
                 modifier = modifier,
                 onInteractionChanged = onInteractionChanged,
+                userLocationAccuracy = c.userLocationAccuracy,
+                userHeadingAccuracy = c.userHeadingAccuracy,
             )
         }
     }
@@ -67,6 +69,8 @@ fun rememberFullScreenableMap(
     beaconLocation: LngLatAlt?,
     routeData: RouteWithMarkers?,
     currentBeaconWaypointIndex: Int = 0,
+    userLocationAccuracy: Float? = null,
+    userHeadingAccuracy: Float? = null,
 ): FullScreenableMap {
     val content: State<MapContent> = rememberUpdatedState(
         MapContent(
@@ -76,6 +80,8 @@ fun rememberFullScreenableMap(
             beaconLocation,
             routeData,
             currentBeaconWaypointIndex,
+            userLocationAccuracy,
+            userHeadingAccuracy,
         )
     )
     return remember { FullScreenableMap(fullscreen = mutableStateOf(false), content = content) }
@@ -88,4 +94,6 @@ internal data class MapContent(
     val beaconLocation: LngLatAlt?,
     val routeData: RouteWithMarkers?,
     val currentBeaconWaypointIndex: Int,
+    val userLocationAccuracy: Float?,
+    val userHeadingAccuracy: Float?,
 )
