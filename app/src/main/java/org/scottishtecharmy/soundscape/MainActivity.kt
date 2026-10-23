@@ -621,11 +621,18 @@ class MainActivity : AppCompatActivity() {
                 val destination by navigator.destination.collectAsState()
                 LaunchedEffect(destination) {
                     if (destination != "") {
-                        if (navController.currentDestination?.route != destination) {
+                        if (destination == SharedRoutes.HOME) {
+                            // Pop back to home, or rebuild it if the back stack has lost it
+                            if (navController.currentDestination?.route != SharedRoutes.HOME &&
+                                !navController.popBackStack(SharedRoutes.HOME, inclusive = false)) {
+                                navController.navigate(SharedRoutes.HOME)
+                            }
+                        } else if (navController.currentDestination?.route != destination) {
                             navController.navigate(destination)
-                            // Reset the destination state ready for another
-                            navigator.destination.value = ""
                         }
+                        // Reset the destination state ready for another, even when nothing
+                        // moved, as the StateFlow would otherwise ignore the same request again
+                        navigator.destination.value = ""
                     }
                 }
                 HomeScreen(
