@@ -13,6 +13,10 @@ appId: org.scottishtecharmy.soundscape
 # already is (say one the monkey renamed) updates that marker.
 ---
 - runFlow: CancelTour.yaml
+# A playing beacon's card makes Home taller than a small screen (the Cubot's),
+# leaving its buttons scrolled under the search bar where taps miss them.
+# Restore doesn't need the beacon.
+- runFlow: StopBeacon.yaml
 - runFlow: FarmSettings.yaml
 # The markers are made with the map off, as in the suite: on a small screen
 # the map pushes controls under the bottom bar.

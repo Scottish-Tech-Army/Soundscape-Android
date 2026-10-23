@@ -189,6 +189,15 @@ class Db:
             self.conn.execute("ALTER TABLE cycles ADD COLUMN app_uptime_s INTEGER")
         except sqlite3.OperationalError:
             pass
+        # Added after the table: the app's memory each minute, and the phone's RAM. RssAnon and
+        # VmSwap (from /proc/<pid>/status) together are what the Play Store's memory rules
+        # measure against the device's RAM.
+        for column in ("app_uptime_s INTEGER", "pss_kb INTEGER", "rss_anon_kb INTEGER",
+                       "vm_swap_kb INTEGER", "mem_total_kb INTEGER", "proc_state INTEGER"):
+            try:
+                self.conn.execute(f"ALTER TABLE vitals ADD COLUMN {column}")
+            except sqlite3.OperationalError:
+                pass
 
     def execute(self, sql, args=()):
         with self.lock:
@@ -646,6 +655,61 @@ def pss_kb(serial):
     return int(m.group(1)) if m else None
 
 
+def app_anon_kb(serial):
+    """The app process's RssAnon and VmSwap in kB (from /proc/<pid>/status), or Nones if it isn't
+    running."""
+    pid = shell(serial, f"pidof {PACKAGE}").split()
+    if not pid:
+        return None, None
+    out = shell(serial, f"grep -E '^(RssAnon|VmSwap):' /proc/{pid[0]}/status")
+    anon = re.search(r"RssAnon:\s+(\d+)", out)
+    swap = re.search(r"VmSwap:\s+(\d+)", out)
+    return (int(anon.group(1)) if anon else None, int(swap.group(1)) if swap else None)
+
+
+# ActivityManager process states: on screen, and running a foreground service
+PROC_STATE_TOP = 2
+PROC_STATE_FOREGROUND_SERVICE = 4
+
+
+def app_proc_state(serial):
+    """The app process's ActivityManager state (PROC_STATE_*), or None if it isn't running."""
+    m = re.search(r"curProcState=(\d+)", shell(serial, f"dumpsys activity processes {PACKAGE}"))
+    return int(m.group(1)) if m else None
+
+
+# Google Play's memory limits for apps from February 2027: the 90th percentile of RssAnon +
+# VmSwap over 28 days must stay under these, by the phone's RAM tier (GB), for an app on
+# screen and for one with only user-perceived services (a foreground service) running. See
+# https://support.google.com/googleplay/android-developer/answer/17492799
+PLAY_MEMORY_LIMITS_GB = {4: (2.0, 1.0), 6: (2.25, 1.25), 8: (2.25, 1.5), 12: (3.25, 1.75),
+                         16: (4.25, 2.0)}
+
+
+def play_memory_limit_kb(mem_total_kb, state):
+    """The Play limit for an app in [state] on a phone with [mem_total_kb] of RAM, or None. A
+    phone reports less RAM than it's sold with, so it's put in the nearest tier; under 3 GB
+    (the 1 GB Cubot) is below the lowest."""
+    if not mem_total_kb or state not in (PROC_STATE_TOP, PROC_STATE_FOREGROUND_SERVICE):
+        return None
+    gb = mem_total_kb / 1048576
+    if gb < 3:
+        return None
+    tier = min(PLAY_MEMORY_LIMITS_GB, key=lambda t: abs(t - gb))
+    foreground, services = PLAY_MEMORY_LIMITS_GB[tier]
+    return int((foreground if state == PROC_STATE_TOP else services) * 1048576)
+
+
+def proc_state_name(state):
+    return {PROC_STATE_TOP: "on screen",
+            PROC_STATE_FOREGROUND_SERVICE: "service only"}.get(state, f"state {state}")
+
+
+def mem_total_kb(serial):
+    m = re.search(r"MemTotal:\s+(\d+)", shell(serial, "grep MemTotal /proc/meminfo"))
+    return int(m.group(1)) if m else None
+
+
 def app_uptime_s(serial):
     """Seconds the app's main process has been running, or None if it isn't."""
     pid = shell(serial, f"pidof {PACKAGE}").split()
@@ -1057,10 +1121,16 @@ class Worker(threading.Thread):
         shell(s, f"am start -W -n {PACKAGE}/.MainActivity", timeout=60)
         if floating:
             shell(s, f"am task resizeable {m.group(1)} 2")
-        # The Moto has been left with the app's window up but blank grey: its Compose content had
-        # stopped composing and drawing (no frames, nothing in the view tree), though the process
-        # ran on. Turning the screen off and on didn't bring it back; a configuration change did.
-        # So dark mode is switched over and back again, which only redraws the app if it's fine.
+        self.redraw_app()
+
+    def redraw_app(self):
+        """Switches dark mode over and back again, which only redraws the app if it's fine. The
+        Moto has been left with the app's window up but blank grey: its Compose content had
+        stopped composing and drawing (no frames, nothing in the view tree), though the process
+        ran on. Turning the screen off and on didn't bring it back; a configuration change did.
+        It can go blank again within a minute, so this is done before the first Restore after
+        the monkey soak too, not just when bringing the app back to the front for the retry."""
+        s = self.serial
         night = re.search(r"Night mode: (\w+)", shell(s, "cmd uimode night"))
         if night:
             shell(s, "cmd uimode night " + ("no" if night.group(1) == "yes" else "yes"))
@@ -1213,6 +1283,7 @@ class Worker(threading.Thread):
         complete = self.db.query("SELECT complete FROM setups WHERE serial=?", (s,))
         if not stop_event.is_set() and self.set_up_version() == version:
             with self.suite_location():
+                self.redraw_app()
                 restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
                 if restored is False and not stop_event.is_set():
                     # The monkey can leave the app where Restore can't get it
@@ -1241,7 +1312,7 @@ class Worker(threading.Thread):
                 tally[restored] += 1
             if restored and not complete[0]["complete"]:
                 self.db.execute("UPDATE setups SET complete=1 WHERE serial=?", (s,))
-            if restored is False and complete[0]["complete"]:
+            if restored is False and complete[0]["complete"] and not stop_event.is_set():
                 self.db.event(s, "reset", version, "couldn't restore the markers, route or "
                                                    "settings after the monkey soak; setting up again")
                 self.set_up(cycle_id, cycle_dir, version, tally)
@@ -1271,6 +1342,15 @@ class Worker(threading.Thread):
              cycle_id))
         set_state(s, f"cycle {status}: {passed} passed, {failed} failed, "
                      f"{crashes} crashes, {anrs} ANRs, {format_uptime(uptime)}")
+        if uptime is not None and not stop_event.is_set():
+            # The flows keep the app on screen, so its memory is otherwise only ever read there.
+            # The Play Store's memory rules set a different limit for an app running in the
+            # background, so take a reading with only its service running too. The next
+            # cycle's first flow brings it back.
+            set_state(s, "app in the background for a reading")
+            shell(s, "input keyevent KEYCODE_HOME")
+            stop_event.wait(15)
+            record_vitals(self.db, s)
 
     def run(self):
         set_state(self.serial, "preparing", model=self.model, android=self.android)
@@ -1535,6 +1615,37 @@ def pss_cell(st, db, serial):
     return f"{kb // 1024} MB<div class=dim>{html.escape(when)}</div>"
 
 
+def anon_cell(st, db, serial, since):
+    """RssAnon + VmSwap now, as a share of the phone's RAM, with the peak since [since]: what the
+    Play Store's memory rules measure."""
+    reading = st.get("anon")
+    ram = st.get("mem_total_kb")
+    if not reading or reading[0] is None:
+        return ""
+    anon, swap, state, ts = reading
+    total = anon + (swap or 0)
+    share = f" ({100 * total / ram:.0f}% of {ram / 1048576:.1f} GB)" if ram else ""
+    detail = [f"RssAnon {anon // 1024} + VmSwap {(swap or 0) // 1024} MB, "
+              f"{proc_state_name(state)}, {fmt_time(ts)}"]
+    # The Play Store's limits differ on screen and in the background, so a peak for each
+    for value in (PROC_STATE_TOP, PROC_STATE_FOREGROUND_SERVICE):
+        name = proc_state_name(value)
+        row = db.query("SELECT MAX(rss_anon_kb + COALESCE(vm_swap_kb, 0)) p FROM vitals "
+                       "WHERE serial=? AND ts>? AND rss_anon_kb IS NOT NULL AND proc_state=?",
+                       (serial, since, value))
+        peak = row[0]["p"] if row and row[0]["p"] else None
+        if peak:
+            limit = play_memory_limit_kb(ram, value)
+            text = f"24h peak {name} {peak // 1024} MB"
+            if limit:
+                text += f", {100 * peak / limit:.0f}% of the {limit / 1048576:g} GB Play limit"
+            detail.append((text, limit is not None and peak > limit))
+    lines = [(d, False) if isinstance(d, str) else d for d in detail]
+    return (f"{total // 1024} MB{html.escape(share)}"
+            + "".join(f"<div class=\"dim{' fail' if over else ''}\">{html.escape(d)}</div>"
+                      for d, over in lines))
+
+
 def uptime_cell(st, last):
     """How long the app has been running: the live reading if there is one (Android), else
     as at the end of the last cycle."""
@@ -1565,12 +1676,22 @@ def record_vitals(db, serial):
         return  # disconnected or not answering
     uptime = app_uptime_s(serial)
     pss = pss_kb(serial) if uptime is not None else None
+    anon, swap = app_anon_kb(serial) if uptime is not None else (None, None)
+    state = app_proc_state(serial) if uptime is not None else None
+    with state_lock:
+        ram = device_state.get(serial, {}).get("mem_total_kb")
+    if ram is None:
+        ram = mem_total_kb(serial)
     now = time.time()
-    db.execute("INSERT INTO vitals VALUES(?,?,?,?)", (serial, now, level, temp))
+    db.execute("INSERT INTO vitals (serial, ts, battery_level, battery_temp, app_uptime_s, pss_kb, "
+               "rss_anon_kb, vm_swap_kb, mem_total_kb, proc_state) VALUES(?,?,?,?,?,?,?,?,?,?)",
+               (serial, now, level, temp, uptime, pss, anon, swap, ram, state))
     with state_lock:
         device_state.setdefault(serial, {})["battery"] = (level, temp, now)
         device_state[serial]["uptime"] = (uptime, now)
         device_state[serial]["pss"] = (pss, now)
+        device_state[serial]["anon"] = (anon, swap, state, now)
+        device_state[serial]["mem_total_kb"] = ram
 
 
 def write_report(db):
@@ -1594,6 +1715,7 @@ def write_report(db):
             <td class="{last['status'] if last else ''}">{e(last['status']) if last else ''}</td>
             <td>{day['ok'] or 0}/{day['n']}</td><td>{day['c'] or 0}</td><td>{day['a'] or 0}</td>
             <td>{pss_cell(st, db, serial)}</td>
+            <td>{anon_cell(st, db, serial, day_ago)}</td>
             <td>{uptime_cell(st, last)}</td>
             <td>{battery_cell(st, last)}</td></tr>""")
     failures = "".join(
@@ -1622,7 +1744,7 @@ pre{{margin:0;white-space:pre-wrap;font-size:12px;max-width:70ch}} a{{color:inhe
 <h1>Soundscape test farm</h1><p class=dim>Updated {fmt_time(time.time())}. Cached releases: {builds or 'none yet'}</p>
 <h2>Devices</h2><div class=wrap><table><tr><th>Serial</th><th>Model</th><th>OS</th><th>App</th>
 <th>Now</th><th>Last cycle</th><th>Passed 24h</th><th>Crashes 24h</th><th>ANRs 24h</th>
-<th>PSS</th><th>App uptime</th><th>Battery</th></tr>{''.join(rows)}</table></div>
+<th>PSS</th><th>Anon + swap</th><th>App uptime</th><th>Battery</th></tr>{''.join(rows)}</table></div>
 <h2>Recent failures</h2><div class=wrap><table><tr><th>When</th><th>Device</th><th>Kind</th>
 <th>Name</th><th></th><th>Detail</th></tr>{failures}</table></div>
 <h2>Events</h2><div class=wrap><table><tr><th>When</th><th>Device</th><th>Kind</th><th>App</th>
