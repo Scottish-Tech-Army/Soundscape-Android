@@ -75,7 +75,7 @@ same address and we'll help you get set up.
 - [Српски]({{ "/translation-questions/questions-sr/" | relative_url }}) — Serbian · [screenshots]({{ page.screenshots }}/screenshots-sr.zip)
 - [Slovenčina]({{ "/translation-questions/questions-sk/" | relative_url }}) — Slovak · [screenshots]({{ page.screenshots }}/screenshots-sk.zip)
 - [Slovenščina]({{ "/translation-questions/questions-sl/" | relative_url }}) — Slovenian · [screenshots]({{ page.screenshots }}/screenshots-sl.zip)
-- [Español]({{ "/translation-questions/questions-es/" | relative_url }}) — Spanish _(one new question)_ · [screenshots]({{ page.screenshots }}/screenshots-es.zip)
+- [Español]({{ "/translation-questions/questions-es/" | relative_url }}) — Spanish · [screenshots]({{ page.screenshots }}/screenshots-es.zip)
 - [Kiswahili]({{ "/translation-questions/questions-sw/" | relative_url }}) — Swahili · [screenshots]({{ page.screenshots }}/screenshots-sw.zip)
 - [Svenska]({{ "/translation-questions/questions-sv/" | relative_url }}) — Swedish · [screenshots]({{ page.screenshots }}/screenshots-sv.zip)
 - [தமிழ்]({{ "/translation-questions/questions-ta/" | relative_url }}) — Tamil · [screenshots]({{ page.screenshots }}/screenshots-ta.zip)

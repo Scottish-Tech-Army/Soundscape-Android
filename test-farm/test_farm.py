@@ -162,11 +162,51 @@ class DeviceReadingsTest(ShellTestCase):
         self.fake_shell({"meminfo": "  Native Heap  1000\n        TOTAL    98765    1234"})
         self.assertEqual(farm.pss_kb("S"), 98765)
 
+    def test_meminfo_breakdown(self):
+        self.fake_shell({"meminfo": " App Summary\n                       Pss(KB)    Rss(KB)\n"
+                                    "           Java Heap:    53632      77192\n"
+                                    "         Native Heap:   106356     107428\n"
+                                    "                Code:    23448     109536\n"
+                                    "               Stack:     1808       1816\n"
+                                    "            Graphics:    72248      72252\n"
+                                    "       Private Other:    10020\n"
+                                    "              System:    22662\n"
+                                    "           TOTAL PSS:   290174   TOTAL RSS:   375764\n"})
+        total, parts = farm.app_meminfo("S")
+        self.assertEqual(total, 290174)
+        self.assertEqual(parts, {"java": 53632, "native": 106356, "code": 23448, "stack": 1808,
+                                 "graphics": 72248, "other": 10020, "system": 22662})
+        self.assertEqual(sum(parts.values()), total)
+
     def test_battery(self):
         self.fake_shell({"battery": "  level: 80\n  temperature: 315\n"})
         self.assertEqual(farm.battery("S"), (80, 31.5))
         self.fake_shell({"battery": ""})
         self.assertEqual(farm.battery("S"), (None, None))
+
+
+class RechargeTest(ShellTestCase):
+    def test_stops_app_until_charged(self):
+        shell = self.fake_shell({})
+        levels = iter([12, 40, 80])
+        events = []
+        worker = farm.Worker.__new__(farm.Worker)
+        worker.serial = "S"
+        worker.cfg = {"battery_low_percent": 10, "battery_resume_percent": 80}
+        worker.db = type("Db", (), {"event": lambda self, *a: events.append(a[1])})()
+        for name, value in (("battery", lambda s: (next(levels), 30.0)),
+                            ("installed_version", lambda s: 1095),
+                            ("adb", lambda *a, **k: type("R", (), {"stdout": "device"})()),
+                            ("set_state", lambda *a, **k: None)):
+            self.addCleanup(setattr, farm, name, getattr(farm, name))
+            setattr(farm, name, value)
+        self.addCleanup(setattr, farm.stop_event, "wait", farm.stop_event.wait)
+        farm.stop_event.wait = lambda t=None: False
+        worker.recharge(9)
+        self.assertEqual(events, ["recharge", "recharged"])
+        self.assertIn("am force-stop " + farm.PACKAGE, shell.commands)
+        self.assertTrue(any("KEYCODE_SLEEP" in c for c in shell.commands))
+        self.assertIn("stayon true", shell.commands[-1])
 
 
 class TrackTest(unittest.TestCase):
