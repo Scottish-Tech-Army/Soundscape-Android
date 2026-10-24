@@ -17,7 +17,8 @@ content_lang: es
 
 La traducción al
 español ya ha pasado por la revisión de hablantes nativos. Aquí tienes un
-resumen de lo que se decidió y, al final, una pregunta nueva.
+resumen de lo que se decidió y, al final, un espacio para cualquier otra cosa
+que quieras contarnos.
 **No necesitas conocer ni instalar la aplicación:** cada pregunta dice cuándo
 se oye el texto, qué dice en inglés y cómo suena ahora.
 
@@ -76,6 +77,10 @@ Los conceptos se describen con más detalle (en inglés)
   pantalla a gran velocidad) se quedan como están.
 - **«podrás usarla de la manera habitual»**, porque la que actúa eres tú, no la
   señal de audio.
+- **Los cuatro niveles de detalle: Detallado / Simplificado / Esencial /
+  Silencioso.** «Esencial» puede sonar algo formal al principio, pero en
+  contexto (este nivel solo da los avisos importantes para hacerse un mapa
+  mental) se entiende bien, y ninguno de sus sinónimos funcionaba mejor.
 
 ## Una novedad: artículos ante los nombres
 
@@ -94,26 +99,7 @@ ayuda.
 
 ---
 
-### Q1 — Los cuatro niveles de detalle *(Four detail levels, renamed 2026-09-30)*
-
-**Cuándo se oye:** en los ajustes, donde se elige de oído cuánto dice la
-aplicación por el camino.
-
-**En inglés:** «Detailed / Simplified / Essential / Silent». Los nombres en
-inglés han cambiado, porque a hablantes de varios idiomas les costaba entender
-los anteriores.
-
-**Cómo suena ahora:** Detallado / Simplificado / Esencial / Silencioso. Antes
-eran «Equilibrado» y «Discreto». El Simplificado omite los caminos pequeños y se
-repite menos; el Esencial solo avisa de calles, cruces y puntos de referencia.
-
-**Lo que nos hace dudar:** los nombres nuevos los elegimos nosotros, no un
-hablante nativo.
-
-**La pregunta:** ¿se distinguen bien de oído? ¿Llamarías de otra forma a los dos
-del medio?
-
-### Q2 — ¿Algo más? *(Anything else)*
+### Q1 — ¿Algo más? *(Anything else)*
 
 Si una frase te suena a traducción del inglés, es demasiado larga o no se
 entiende, cuéntanoslo, aunque no tenga número.
