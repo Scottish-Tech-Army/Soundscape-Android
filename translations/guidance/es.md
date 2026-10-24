@@ -38,7 +38,7 @@ since May; treat `confirmed` as "confirmed then, unswept since" rather than
 | Callout | aviso | `confirmed` | 40 occurrences, consistent |
 | Audio Beacon | señal (de audio) | `confirmed` | 77 occurrences, consistent |
 | Marker | marcador | `confirmed` | 84 occurrences, consistent |
-| Detailed / Simplified / Essential / Silent | Detallado / Simplificado / Esencial / Silencioso | `unconfirmed` | English renamed 2026-09-30 (C22), retranslated from «Equilibrado» / «Discreto». Asked as Q1 |
+| Detailed / Simplified / Essential / Silent | Detallado / Simplificado / Esencial / Silencioso | `confirmed` | English renamed 2026-09-30 (C22), retranslated from «Equilibrado» / «Discreto». Confirmed 2026-10-24 by a native speaker via JJ: «Esencial» sounded formal at first, but fits the level's purpose and its synonyms were worse |
 | Waypoint | punto de ruta | `confirmed` | 24 occurrences, consistent. **One deliberate exception:** `routes_no_routes_hint_1` says «puntos de referencia» (ES-M1) |
 | Sleep Mode | modo de suspensión | `confirmed` | 8 occurrences; lowercase mid-sentence is correct Spanish style, not a drift from the English title case |
 | Snooze Mode | modo de aplazamiento | `confirmed` | 5 occurrences, consistent |
@@ -118,7 +118,7 @@ than introducing a third verb.
 
 ---
 
-### ES-N1 — One Spanish for Spain and Latin America: avoid words that change meaning (`agreed` for the reported verb; the wider rule is `provisional`, awaiting Dave)
+### ES-N1 — One Spanish for Spain and Latin America: avoid words that change meaning (`agreed`)
 
 We ship one `es`. It follows the es-ES baseline (see Baseline below), but Latin American
 users get it too, because there is no `es_419`. **JJ, 2026-10-13 (via Dave), on the
@@ -135,13 +135,16 @@ something like "dejar de moverse"."*
   te estás moviendo», «Cuando te detengas un rato», «Sin movimiento».
 - Not affected: the noun «parada» (bus stop, 23 uses), and non-reflexive «parar» for
   "stop speaking" in `help_text_assistant_how_ios`.
-- **The wider rule (`provisional`):** where a word means different things in Spain and
-  Latin America, pick wording both understand. Where Spain's word is only *marked*, not
-  misleading, it stays for now. That is the case for the inherited place names
-  «Aparcamiento» (7), «Aseo(s)» (2), «Gasolinera» (2), «Ayuntamiento», and «móvil» in
-  `osm_mobile_phone` and `faq_mobile_data_use_question` (ES-M1). The search synonyms
-  already accept both sides («estacionamiento», «baño», «bencinera», «celulares»).
-  Inventory only, see the open questions.
+- **The wider rule (`agreed`, 2026-10-24):** where a word means different things in Spain
+  and Latin America, pick wording both understand. Where Spain's word is only *marked*, not
+  misleading, it stays. That covers the inherited place names «Aparcamiento» (7),
+  «Aseo(s)» (2), «Gasolinera» (2), «Ayuntamiento», and «móvil» in `osm_mobile_phone` and
+  `faq_mobile_data_use_question` (ES-M1). JJ (2026-10-24) on «Aparcamiento»: many Latin
+  American speakers don't know it, and «Estacionamiento» (Microsoft's word) is understood
+  on both sides but sounds formal in Spain, *"a catch 22"*; the context helps; the other
+  words are clear in context. **Dave chose to change nothing.** Don't flag these as
+  findings. The search synonyms already accept both sides («estacionamiento», «baño»,
+  «bencinera», «celulares»).
 - **JJ's own example of the approach (2026-10-13):** «auriculares», not «audífonos», for
   headphones. Spain's word wins here because the Latin American word means something
   else in Spain (hearing aids), while «auriculares» is understood everywhere. So the test
@@ -237,21 +240,18 @@ of Microsoft's text.
 
 ## Open questions for the reporter
 
-Numbered as on `docs/translation-questions/questions-es.md` (Q1…Q2); Q2 is "anything else".
-
-1. **The detail levels after the English rename (C22):** Detallado / Simplificado /
-   Esencial / Silencioso, retranslated 2026-09-30 from «Equilibrado» / «Discreto».
-   Distinct by ear? Better names for the middle two?
-
-2. **Spain-only place words (ES-N1):** would Latin American users be better served by
-   «Estacionamiento» for «Aparcamiento», «Baños» for «Aseos», «Estación de servicio» for
-   «Gasolinera», and «datos del celular» / «datos móviles»? Or are Spain's words fine as
-   long as they are understood?
+`docs/translation-questions/questions-es.md` now asks only Q1, "anything else". No
+other questions are open.
 
 Still waiting for a human: `osm_signal` («Señal» is also the Beacon term), and a device
 check of the iOS 26 menu names in `help_config_voices_content_ios`.
 
-*Earlier rounds, all closed:* **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
+*Earlier rounds, all closed:* **Q1 (2026-09-30 round), the detail levels**,
+confirmed 2026-10-24 by a native speaker via JJ: «Esencial» sounded too formal to
+her at first, but in context (only the callouts that matter for a mental map) it's
+right, and none of its synonyms worked as well. No string changes. **Spain-only
+place words (ES-N1)**, answered by JJ 2026-10-24 and closed by Dave choosing to change
+nothing (see ES-N1). **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
 button name** (`faq_snooze_mode_battery_answer`): JJ explained that
 Microsoft's FAQ said «Reactivar cuando salga» because Microsoft's iOS button
 had a *separate VoiceOver label*, `sleep_wake_up_when_i_leave` ("Wake Up When
