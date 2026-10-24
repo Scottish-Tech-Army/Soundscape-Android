@@ -64,6 +64,7 @@ import org.maplibre.spatialk.units.extensions.degrees
 import org.maplibre.spatialk.units.extensions.meters
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.mapstyle.OfflineExtractTiles
 import org.scottishtecharmy.soundscape.platform.nativeMapRenderOptions
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.current_beacon_location_marker
@@ -153,6 +154,10 @@ fun MapContainerLibre(
     val locationMarker = painterResource(Res.drawable.location_marker)
     val currentBeaconLocationMarker = painterResource(Res.drawable.current_beacon_location_marker)
     val primaryColor = MaterialTheme.colorScheme.primary
+
+    // Offline extracts are read through our own tile provider, not MapLibre's PMTiles source,
+    // which leaks native memory for every tile it reads. It must be in place before the first map.
+    OfflineExtractTiles.install()
 
     // The map's state owns its native map, and is closed (freeing that map) when it leaves the
     // composition. Sources and layers are declared in its content block.

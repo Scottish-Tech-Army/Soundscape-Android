@@ -152,15 +152,12 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
                             retries = 0
                             // Rename straight to the destination - do NOT delete it first, and
                             // never reuse an existing path for an "Update" re-download (see
-                            // logicalBaseName below). MapLibre's native PMTilesFileSource caches
-                            // parsed header/directory data per URL *forever*, with no invalidation
-                            // hook - so once a pmtiles://file://<path> URL has been opened once,
-                            // silently swapping the bytes at that same path (even atomically)
-                            // leaves MapLibre reading brand new file content through stale cached
-                            // offsets, which can misread garbage and crash with no try/catch on
-                            // its worker thread. Publishing each download under a unique path
-                            // sidesteps that entirely: MapLibre never sees a URL it has cached
-                            // anything for. File.renameTo (no pre-delete) still atomically
+                            // logicalBaseName below). MapLibre keeps the tiles it has read in its
+                            // ambient cache, under URLs that name the extract's path (see
+                            // OfflineExtractTiles), so new bytes at an old path would be drawn
+                            // mixed with stale cached tiles. Publishing each download under a
+                            // unique path sidesteps that entirely: MapLibre never sees a URL it
+                            // has cached anything for. File.renameTo (no pre-delete) still atomically
                             // replaces a destination that does exist - e.g. a retry of this same
                             // attempt - via the rename(2) syscall, since tempFile and finalFile
                             // are always in the same directory.

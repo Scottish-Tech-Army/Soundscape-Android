@@ -17,6 +17,15 @@ class PmTilesReader(path: Path, fileSystem: FileSystem = systemFileSystem) : Aut
     private val tileCount = mutableListOf(0L)
 
     val tileCompression: Byte get() = header.tileCompression
+    val minZoom: Int get() = header.minZoom
+    val maxZoom: Int get() = header.maxZoom
+
+    /** The extract's bounds as west, south, east, north in degrees. */
+    val bounds: DoubleArray get() = doubleArrayOf(header.minLon, header.minLat, header.maxLon, header.maxLat)
+
+    /** Longitude, latitude and zoom the archive suggests for an initial view. */
+    val center: DoubleArray get() = doubleArrayOf(header.centerLon, header.centerLat, header.centerZoom.toDouble())
+
 
     init {
         // The file is already open by the time we find out whether it's a valid PMTiles file. If
@@ -40,6 +49,10 @@ class PmTilesReader(path: Path, fileSystem: FileSystem = systemFileSystem) : Aut
         val id = hilbertZxyToIndex(zoom, x.toLong(), y.toLong()) + getZoomOffset(zoom)
         return rootDirectory.findTile(id)
     }
+
+    /** [getTile], decompressed as the archive's tile compression requires. */
+    fun getDecompressedTile(zoom: Int, x: Int, y: Int): ByteArray? =
+        getTile(zoom, x, y)?.let { decompress(it, header.tileCompression) }
 
     /**
      * Read and decompress the JSON metadata block.
@@ -271,6 +284,15 @@ private class Header {
     var tileDataLength: Long = 0
     var tileEntries: Long = 0
     var clustered: Byte = 0
+    var minZoom = 0
+    var maxZoom = 0
+    var minLon = 0.0
+    var minLat = 0.0
+    var maxLon = 0.0
+    var maxLat = 0.0
+    var centerZoom = 0
+    var centerLon = 0.0
+    var centerLat = 0.0
 
     fun read(handle: FileHandle) {
         val buffer = Buffer()
@@ -297,6 +319,15 @@ private class Header {
         clustered = bytes[96]
         internalCompression = bytes[97]
         tileCompression = bytes[98]
+        minZoom = bytes[100].toInt() and 0xFF
+        maxZoom = bytes[101].toInt() and 0xFF
+        minLon = readLittleEndianInt(bytes, 102) / 1e7
+        minLat = readLittleEndianInt(bytes, 106) / 1e7
+        maxLon = readLittleEndianInt(bytes, 110) / 1e7
+        maxLat = readLittleEndianInt(bytes, 114) / 1e7
+        centerZoom = bytes[118].toInt() and 0xFF
+        centerLon = readLittleEndianInt(bytes, 119) / 1e7
+        centerLat = readLittleEndianInt(bytes, 123) / 1e7
     }
 
     companion object {
@@ -308,6 +339,14 @@ private class Header {
             var result = 0L
             for (i in 0 until 8) {
                 result = result or ((bytes[offset + i].toLong() and 0xFF) shl (i * 8))
+            }
+            return result
+        }
+
+        private fun readLittleEndianInt(bytes: ByteArray, offset: Int): Int {
+            var result = 0
+            for (i in 0 until 4) {
+                result = result or ((bytes[offset + i].toInt() and 0xFF) shl (i * 8))
             }
             return result
         }
