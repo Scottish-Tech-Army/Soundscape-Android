@@ -146,11 +146,11 @@ class AndroidOfflineMapsManager(
         val filename = current.properties?.get("filename") as? String ?: return
         val logicalBase = logicalExtractName(filename)
         // Never reuse a previous download's filename for a re-download/"Update": MapLibre's
-        // native PMTilesFileSource caches parsed header/directory data per pmtiles://file://
-        // URL forever, with no way for us to invalidate it, so overwriting an already-opened
-        // path leaves it reading new bytes through stale cached offsets - which can crash.
-        // Giving each download a unique, never-before-seen filename means MapLibre never
-        // revisits a URL it has cached anything for. OfflineDownloader deletes the previous
+        // ambient cache keeps tiles under URLs that name the extract's path (see
+        // OfflineExtractTiles), with no way for us to invalidate them, so overwriting a path
+        // would mix new tiles with stale cached ones. Giving each download a unique,
+        // never-before-seen filename means MapLibre never revisits a URL it has cached anything
+        // for. OfflineDownloader deletes the previous
         // version's files once this one is published (see logicalBaseName below).
         val versionedFilename = "$logicalBase.v${System.currentTimeMillis()}.pmtiles"
         val path = "${extractsDir().path}/$versionedFilename"

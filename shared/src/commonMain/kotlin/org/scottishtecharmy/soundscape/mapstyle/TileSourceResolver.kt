@@ -13,8 +13,8 @@ import org.scottishtecharmy.soundscape.utils.isPmtilesUsable
 /**
  * Resolves the tile source URL to use for the map style.
  *
- * If offline map extracts are available and cover the given location, returns a
- * `pmtiles://file://` URI pointing at the best (largest) local extract.
+ * If offline map extracts are available and cover the given location, returns the
+ * [OfflineExtractTiles] TileJSON URL for the best (largest) local extract.
  * Otherwise returns the network tile server URL.
  *
  * @param location Current user location, or null if unknown
@@ -43,7 +43,7 @@ fun resolveTileSourceUrl(
         // No location — use the largest available (validated) extract, matching the "best
         // (largest)" guarantee this function documents for the location != null case below.
         val largestPath = offlineExtractPaths.maxBy { systemFileSystem.metadata(it.toPath()).size ?: 0L }
-        return "pmtiles://file://$largestPath"
+        return OfflineExtractTiles.tileJsonUrl(largestPath)
     }
 
     // Pick the largest extract that contains the user's location
@@ -73,7 +73,7 @@ fun resolveTileSourceUrl(
     }
 
     return if (bestPath != null) {
-        "pmtiles://file://$bestPath"
+        OfflineExtractTiles.tileJsonUrl(bestPath)
     } else {
         networkUrl
     }

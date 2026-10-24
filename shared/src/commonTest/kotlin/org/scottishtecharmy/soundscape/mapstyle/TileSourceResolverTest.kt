@@ -118,7 +118,7 @@ class TileSourceResolverTest {
         val path = writeFixture("world.pmtiles", PmTilesFixture.build(hasTileEntry = true))
 
         val result = resolveTileSourceUrl(null, tempDir.toString(), networkTileUrl)
-        assertEquals("pmtiles://file://$path", result)
+        assertEquals(OfflineExtractTiles.tileJsonUrl(path), result)
     }
 
     @Test
@@ -127,7 +127,7 @@ class TileSourceResolverTest {
         val usablePath = writeFixture("z-usable.pmtiles", PmTilesFixture.build(hasTileEntry = true))
 
         val result = resolveTileSourceUrl(null, tempDir.toString(), networkTileUrl)
-        assertEquals("pmtiles://file://$usablePath", result)
+        assertEquals(OfflineExtractTiles.tileJsonUrl(usablePath), result)
     }
 
     @Test
@@ -142,7 +142,7 @@ class TileSourceResolverTest {
             writeFixture("z-large.pmtiles", PmTilesFixture.build(hasTileEntry = true, paddingSize = 5_000))
 
         val result = resolveTileSourceUrl(null, tempDir.toString(), networkTileUrl)
-        assertEquals("pmtiles://file://$largerPath", result)
+        assertEquals(OfflineExtractTiles.tileJsonUrl(largerPath), result)
         assertTrue(
             systemFileSystem.metadata(smallerPath.toPath()).size!! <
                 systemFileSystem.metadata(largerPath.toPath()).size!!,
@@ -154,7 +154,7 @@ class TileSourceResolverTest {
         val path = writeFixture("world.pmtiles", PmTilesFixture.build(hasTileEntry = true))
 
         val result = resolveTileSourceUrl(glasgow, tempDir.toString(), networkTileUrl)
-        assertEquals("pmtiles://file://$path", result)
+        assertEquals(OfflineExtractTiles.tileJsonUrl(path), result)
     }
 
     @Test
@@ -173,7 +173,7 @@ class TileSourceResolverTest {
         val largerPath = writeFixture("large.pmtiles", PmTilesFixture.build(hasTileEntry = true, paddingSize = 5_000))
 
         val result = resolveTileSourceUrl(glasgow, tempDir.toString(), networkTileUrl)
-        assertEquals("pmtiles://file://$largerPath", result)
+        assertEquals(OfflineExtractTiles.tileJsonUrl(largerPath), result)
         // Sanity check that the two fixtures actually differ in size, i.e. the test is exercising
         // the "largest wins" comparison and not just picking the only match.
         assertTrue(
@@ -192,8 +192,8 @@ class TileSourceResolverTest {
             writeFixture("big-containing.pmtiles", PmTilesFixture.build(hasTileEntry = true, paddingSize = 2_000))
 
         val result = resolveTileSourceUrl(glasgow, tempDir.toString(), networkTileUrl)
-        assertEquals("pmtiles://file://$bigContaining", result)
-        assertNotEquals("pmtiles://file://$smallContaining", result)
+        assertEquals(OfflineExtractTiles.tileJsonUrl(bigContaining), result)
+        assertNotEquals(OfflineExtractTiles.tileJsonUrl(smallContaining), result)
     }
 }
 
@@ -208,7 +208,7 @@ class TileSourceResolverTest {
  * decompress calls are no-ops - real gzip data isn't needed to exercise resolveTileSourceUrl's
  * branching, only the presence/validity of each section.
  */
-private object PmTilesFixture {
+internal object PmTilesFixture {
     private const val HEADER_LENGTH = 127
     private val MAGIC = byteArrayOf(0x50, 0x4D, 0x54, 0x69, 0x6C, 0x65, 0x73) // "PMTiles"
     private const val VERSION: Byte = 3
