@@ -86,6 +86,11 @@ DEFAULTS = {
     "include_ios": True,
     "ios_poll_minutes": 10,
     "max_battery_temp_c": 42,
+    # A phone whose USB port can't keep up with the farm's load (the A50) drains slowly. At
+    # battery_low_percent the app is stopped and the screen turned off until the battery is back
+    # up to battery_resume_percent. Samsung's battery protection stops charging at 80-85%.
+    "battery_low_percent": 10,
+    "battery_resume_percent": 80,
     # How often each Android phone's battery level and temperature are read
     # for the report and the vitals table, between the per-cycle readings.
     "battery_poll_minutes": 1,
@@ -1108,6 +1113,36 @@ class Worker(threading.Thread):
             (cycle_id, self.serial, start, kind, name, status, time.time() - start, detail, out_dir))
         return status == "pass"
 
+    def recharge(self, level):
+        """Stops the app and turns the screen off until the battery is back up to
+        battery_resume_percent, for a phone that the farm's load drains faster than its USB port
+        charges it. The next cycle starts the app again; the cycle after a recharge measures a
+        fresh run of the app, not a continuation."""
+        s = self.serial
+        target = self.cfg["battery_resume_percent"]
+        self.db.event(s, "recharge", installed_version(s),
+                      f"battery at {level}%: app stopped and screen off until it's back to {target}%")
+        shell(s, f"am force-stop {PACKAGE}")
+        shell(s, "svc power stayon false; input keyevent KEYCODE_SLEEP")
+        start, best, warned = time.time(), level, False
+        while not stop_event.is_set():
+            set_state(s, f"recharging: {level}% of {target}%")
+            if level is not None and level >= target:
+                break
+            stop_event.wait(60)
+            if adb(s, "get-state", timeout=15).stdout.strip() != "device":
+                return  # unplugged: run() notices and stops this worker
+            level = battery(s)[0]
+            if level is not None and level > best:
+                best, start = level, time.time()
+            elif not warned and time.time() - start > 3600:
+                warned = True  # one warning, and keep waiting: carrying on would only drain it
+                self.db.event(s, "error", None, f"battery not charging: still {level}% after an hour "
+                                                f"with the screen off")
+        shell(s, "svc power stayon true; input keyevent KEYCODE_WAKEUP; wm dismiss-keyguard")
+        if not stop_event.is_set():
+            self.db.event(s, "recharged", None, f"battery back to {level}%")
+
     def pause_for_investigation(self, version):
         """Before restarting the app, leaves the phone as the failed Restores left it, so that
         someone can see what needed the restart, until a file named resume-<serial> appears next to this script or pause_minutes
@@ -1234,6 +1269,9 @@ class Worker(threading.Thread):
         if temp and temp > self.cfg["max_battery_temp_c"]:
             set_state(s, f"cooling down ({temp}°C)")
             stop_event.wait(600)
+            return
+        if level is not None and level <= self.cfg["battery_low_percent"]:
+            self.recharge(level)
             return
         stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
         cycle_dir = os.path.join(RUNS_DIR, s, stamp)

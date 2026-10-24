@@ -185,6 +185,30 @@ class DeviceReadingsTest(ShellTestCase):
         self.assertEqual(farm.battery("S"), (None, None))
 
 
+class RechargeTest(ShellTestCase):
+    def test_stops_app_until_charged(self):
+        shell = self.fake_shell({})
+        levels = iter([12, 40, 80])
+        events = []
+        worker = farm.Worker.__new__(farm.Worker)
+        worker.serial = "S"
+        worker.cfg = {"battery_low_percent": 10, "battery_resume_percent": 80}
+        worker.db = type("Db", (), {"event": lambda self, *a: events.append(a[1])})()
+        for name, value in (("battery", lambda s: (next(levels), 30.0)),
+                            ("installed_version", lambda s: 1095),
+                            ("adb", lambda *a, **k: type("R", (), {"stdout": "device"})()),
+                            ("set_state", lambda *a, **k: None)):
+            self.addCleanup(setattr, farm, name, getattr(farm, name))
+            setattr(farm, name, value)
+        self.addCleanup(setattr, farm.stop_event, "wait", farm.stop_event.wait)
+        farm.stop_event.wait = lambda t=None: False
+        worker.recharge(9)
+        self.assertEqual(events, ["recharge", "recharged"])
+        self.assertIn("am force-stop " + farm.PACKAGE, shell.commands)
+        self.assertTrue(any("KEYCODE_SLEEP" in c for c in shell.commands))
+        self.assertIn("stayon true", shell.commands[-1])
+
+
 class TrackTest(unittest.TestCase):
     START = (55.9474, -4.3058)
 
