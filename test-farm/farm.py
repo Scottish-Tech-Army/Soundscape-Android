@@ -193,7 +193,8 @@ class Db:
         # VmSwap (from /proc/<pid>/status) together are what the Play Store's memory rules
         # measure against the device's RAM.
         for column in ("app_uptime_s INTEGER", "pss_kb INTEGER", "rss_anon_kb INTEGER",
-                       "vm_swap_kb INTEGER", "mem_total_kb INTEGER", "proc_state INTEGER"):
+                       "vm_swap_kb INTEGER", "mem_total_kb INTEGER", "proc_state INTEGER",
+                       *(f"pss_{key}_kb INTEGER" for key, _, _ in PSS_PARTS)):
             try:
                 self.conn.execute(f"ALTER TABLE vitals ADD COLUMN {column}")
             except sqlite3.OperationalError:
@@ -649,10 +650,31 @@ def collect_dropbox(serial, since):
     return found
 
 
-def pss_kb(serial):
+# The rows of dumpsys meminfo's App Summary, which together make up the app's total PSS:
+# (vitals column suffix, row label, short name for the report)
+PSS_PARTS = (("native", "Native Heap", "Native"), ("graphics", "Graphics", "Graphics"),
+             ("java", "Java Heap", "Java"), ("code", "Code", "Code"),
+             ("system", "System", "System"), ("other", "Private Other", "Other"),
+             ("stack", "Stack", "Stack"))
+
+
+def app_meminfo(serial):
+    """The app's total PSS and its App Summary breakdown in kB, as (total, {part: kB}). The
+    breakdown is empty where the summary isn't there, and the total None if the app isn't
+    running."""
     out = shell(serial, f"dumpsys meminfo {PACKAGE}", timeout=60)
     m = re.search(r"TOTAL PSS:\s+(\d+)", out) or re.search(r"^\s*TOTAL\s+(\d+)", out, re.M)
-    return int(m.group(1)) if m else None
+    summary = out.split("App Summary", 1)[1] if "App Summary" in out else ""
+    parts = {}
+    for key, label, _ in PSS_PARTS:
+        p = re.search(rf"^\s*{label}:\s+(\d+)", summary, re.M)
+        if p:
+            parts[key] = int(p.group(1))
+    return (int(m.group(1)) if m else None), parts
+
+
+def pss_kb(serial):
+    return app_meminfo(serial)[0]
 
 
 def app_anon_kb(serial):
@@ -1110,17 +1132,17 @@ class Worker(threading.Thread):
         without restarting it. MainActivity is singleTask, so starting it brings its task forward
         (clearing anything stacked on it in that task). Starting it in full screen windowing mode
         doesn't take a task that's already a pop-up out of freeform, but a task that can't be
-        resized can't stay in freeform, so it's briefly made unresizeable."""
+        resized can't stay in freeform, so it's made unresizeable. It's left that way: the A54
+        remembers the task was a pop-up, and once it's resizeable again the next configuration
+        change (redraw_app's dark mode switch) puts it straight back into one. The setting only
+        lasts as long as the task, so the app's next restart undoes it."""
         s = self.serial
         tasks = shell(s, "dumpsys activity activities")
         m = re.search(r"Task\{\S+ #(\d+) [^}]*A=\d+:" + re.escape(PACKAGE) + r" [^}]*mode=(\S+)", tasks)
-        floating = m is not None and m.group(2) != "fullscreen"
-        if floating:
+        if m is not None and m.group(2) != "fullscreen":
             shell(s, f"am task resizeable {m.group(1)} 0")
         shell(s, "input keyevent KEYCODE_HOME")
         shell(s, f"am start -W -n {PACKAGE}/.MainActivity", timeout=60)
-        if floating:
-            shell(s, f"am task resizeable {m.group(1)} 2")
         self.redraw_app()
 
     def redraw_app(self):
@@ -1612,7 +1634,33 @@ def pss_cell(st, db, serial):
         if not row:
             return ""
         kb, when = row[0]["pss_kb"], f"at the cycle ending {fmt_time(row[0]['ended'])}"
-    return f"{kb // 1024} MB<div class=dim>{html.escape(when)}</div>"
+    return f"{kb // 1024} MB<div class=dim>{html.escape(when)}</div>{pss_parts_table(st, db, serial)}"
+
+
+def pss_parts_table(st, db, serial):
+    """What the live PSS is made of, each part with its change since the first reading of this
+    run of the app in the last day: growth across an app restart would mean nothing."""
+    parts = st.get("pss_parts")
+    if not parts:
+        return ""
+    since = time.time() - 86400
+    if st.get("uptime") and st["uptime"][0] is not None:
+        since = max(since, st["uptime"][1] - st["uptime"][0])
+    first = db.query("SELECT * FROM vitals WHERE serial=? AND ts>=? AND pss_native_kb IS NOT NULL "
+                     "ORDER BY ts LIMIT 1", (serial, since))
+    first = first[0] if first else None
+    hours = (time.time() - first["ts"]) / 3600 if first else 0
+    rows = []
+    for key, _, name in PSS_PARTS:
+        if key not in parts:
+            continue
+        change = ""
+        if first and first[f"pss_{key}_kb"] is not None and hours >= 0.5:
+            mb = (parts[key] - first[f"pss_{key}_kb"]) / 1024
+            change = f"{mb:+.0f}"
+        rows.append(f"<tr><td>{name}</td><td>{parts[key] // 1024}</td><td>{change}</td></tr>")
+    over = f"over {hours:.1f}h" if first and hours >= 0.5 else ""
+    return (f"<table class=parts><tr><th></th><th>MB</th><th>{over}</th></tr>{''.join(rows)}</table>")
 
 
 def anon_cell(st, db, serial, since):
@@ -1675,7 +1723,7 @@ def record_vitals(db, serial):
     if level is None and temp is None:
         return  # disconnected or not answering
     uptime = app_uptime_s(serial)
-    pss = pss_kb(serial) if uptime is not None else None
+    pss, parts = app_meminfo(serial) if uptime is not None else (None, {})
     anon, swap = app_anon_kb(serial) if uptime is not None else (None, None)
     state = app_proc_state(serial) if uptime is not None else None
     with state_lock:
@@ -1683,13 +1731,17 @@ def record_vitals(db, serial):
     if ram is None:
         ram = mem_total_kb(serial)
     now = time.time()
+    part_columns = [f"pss_{key}_kb" for key, _, _ in PSS_PARTS]
     db.execute("INSERT INTO vitals (serial, ts, battery_level, battery_temp, app_uptime_s, pss_kb, "
-               "rss_anon_kb, vm_swap_kb, mem_total_kb, proc_state) VALUES(?,?,?,?,?,?,?,?,?,?)",
-               (serial, now, level, temp, uptime, pss, anon, swap, ram, state))
+               f"rss_anon_kb, vm_swap_kb, mem_total_kb, proc_state, {', '.join(part_columns)}) "
+               f"VALUES({', '.join('?' * (10 + len(part_columns)))})",
+               (serial, now, level, temp, uptime, pss, anon, swap, ram, state,
+                *(parts.get(key) for key, _, _ in PSS_PARTS)))
     with state_lock:
         device_state.setdefault(serial, {})["battery"] = (level, temp, now)
         device_state[serial]["uptime"] = (uptime, now)
         device_state[serial]["pss"] = (pss, now)
+        device_state[serial]["pss_parts"] = parts
         device_state[serial]["anon"] = (anon, swap, state, now)
         device_state[serial]["mem_total_kb"] = ram
 
@@ -1740,7 +1792,10 @@ table{{border-collapse:collapse;width:100%;margin-bottom:24px}}
 td,th{{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}}
 .dim{{color:var(--dim);font-size:12px}} .pass{{color:var(--pass)}} .fail{{color:var(--fail)}}
 pre{{margin:0;white-space:pre-wrap;font-size:12px;max-width:70ch}} a{{color:inherit}}
-.wrap{{overflow-x:auto}}</style></head><body>
+.wrap{{overflow-x:auto}}
+table.parts{{width:auto;margin:4px 0 0;font-size:12px;color:var(--dim)}}
+table.parts td,table.parts th{{border:0;padding:0 8px 0 0;font-weight:normal;text-align:right}}
+table.parts td:first-child{{text-align:left}}</style></head><body>
 <h1>Soundscape test farm</h1><p class=dim>Updated {fmt_time(time.time())}. Cached releases: {builds or 'none yet'}</p>
 <h2>Devices</h2><div class=wrap><table><tr><th>Serial</th><th>Model</th><th>OS</th><th>App</th>
 <th>Now</th><th>Last cycle</th><th>Passed 24h</th><th>Crashes 24h</th><th>ANRs 24h</th>
