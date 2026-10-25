@@ -4,6 +4,9 @@ appId: org.scottishtecharmy.soundscape
 # a long way off, which is fine for exercising route playback.
 ---
 - runFlow: ../LaunchHome.yaml
+# A RouteWalk cut short (the farm restarting mid-walk) or the monkey can leave
+# the route playing, and Route Details then has Stop Route rather than Start.
+- runFlow: ../StopBeacon.yaml
 
 - runFlow:
     file: ../../../maestro/SwipeAndTap.yaml

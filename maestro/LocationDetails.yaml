@@ -47,6 +47,11 @@ appId: org.scottishtecharmy.soundscape
               direction: down
 - tapOn:
         id: placesNearby-0
+- runFlow:
+    file: WaitForScreen.yaml
+    env:
+      screen: PlacesList
+      timeout: 90000
 - tapOn:
         id: placesNearby-0
 - tapOn:

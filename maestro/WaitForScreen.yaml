@@ -11,8 +11,17 @@ appId: org.scottishtecharmy.soundscape
 #       env:
 #         screen: Home
 #
-# Supported screens: Home, LocationDetails, PlacesNearby, Markers, Routes,
-# RouteDetails, Settings. Add a new entry to the map below to support another.
+# Supported screens: Home, LocationDetails, PlacesNearby, PlacesList, Markers,
+# Routes, RouteDetails, Settings. Add a new entry to the map below to support
+# another.
+#
+# PlacesList is a Places Nearby folder once its places are listed. The folder
+# opens empty and fills in when the places have been found, which on a slow
+# phone just after the app starts (the Cubot J10) takes about 25 seconds; a
+# swipe or tap made meanwhile lands on whichever place appears under it.
+# Folders and places both use the placesNearby-<index> tags, so its anchor is
+# the first place's description, which lists its name, address and distance
+# separated by commas; a folder's is just its name.
 ---
 # Map the requested screen name to its anchor testTag, failing fast with a clear
 # message if an unknown (or missing) name is passed.
@@ -23,6 +32,7 @@ appId: org.scottishtecharmy.soundscape
         Home: 'mainSearchBarCollapsed',
         LocationDetails: 'locationDetailsStartBeacon',
         PlacesNearby: 'placesNearby-0',
+        PlacesList: 'placesNearby-0',
         Markers: 'markersScreen',
         Routes: 'routesScreen',
         RouteDetails: 'routeDetailsStartButton',
@@ -35,7 +45,20 @@ appId: org.scottishtecharmy.soundscape
       output.anchor = anchors[requested];
     }
 
-- extendedWaitUntil:
-    visible:
-      id: ${output.anchor}
-    timeout: ${timeout || 20000}
+- runFlow:
+    when:
+      true: ${screen !== 'PlacesList'}
+    commands:
+      - extendedWaitUntil:
+          visible:
+            id: ${output.anchor}
+          timeout: ${timeout || 20000}
+- runFlow:
+    when:
+      true: ${screen === 'PlacesList'}
+    commands:
+      - extendedWaitUntil:
+          visible:
+            id: ${output.anchor}
+            text: ".*, .*"
+          timeout: ${timeout || 20000}

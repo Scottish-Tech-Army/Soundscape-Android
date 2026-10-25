@@ -13,7 +13,8 @@ appId: org.scottishtecharmy.soundscape
 - runFlow:
     file: ../../../maestro/WaitForScreen.yaml
     env:
-      screen: PlacesNearby
+      screen: PlacesList
+      timeout: 90000
 - tapOn:
     id: placesNearby-0
 - runFlow:
