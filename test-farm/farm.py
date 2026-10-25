@@ -549,7 +549,10 @@ class LocationFeeder(threading.Thread):
                 # Keep going: if the feed stops, the phone falls back to its real
                 # position mid-suite, which breaks flows in confusing ways.
                 failures += 1
-                if failures in (1, 60) or failures % 600 == 0:
+                # A single missed fix is routine on the Cubot and the Moto (the
+                # next one lands a second later) and the app never notices it;
+                # only a run of them matters.
+                if failures in (5, 60) or failures % 600 == 0:
                     self.db.event(self.serial, "error", None,
                                   f"mock location rejected ({failures} in a row):\n{out}")
                 allow_helper(self.serial)
@@ -812,6 +815,7 @@ class Worker(threading.Thread):
         # so a marker saved at the current location could land there.
         shell(s, "settings put global wifi_scan_always_enabled 0; "
                  "settings put global ble_scan_always_enabled 0")
+        self.location_accuracy_off()
         self.clear_usb_proxy()  # in case the farm stopped mid-download
         # MainActivity uses dummy analytics when this is set, which keeps the
         # farm's traffic out of the production Firebase numbers.
@@ -853,6 +857,39 @@ class Worker(threading.Thread):
                 self.db.event(s, "error", None, "could not turn the sensors off")
             elif shell(s, f"pidof {PACKAGE}"):
                 shell(s, f"am force-stop {PACKAGE}")
+
+    def location_accuracy_off(self):
+        """Turns Play services' Location Accuracy off. With it on, Google's fused location, which
+        Soundscape uses where Play services is installed, mixed the farm's real position into the
+        mock fixes every few seconds, 68 km away, even with Wi-Fi and scanning off; set-up's marker
+        A, saved at the current location, landed there and Markers and RouteCreation failed. The
+        shell can't write the setting, so this switches it off on its settings screen. Phones
+        without Play services (the A52s) don't have it."""
+        s = self.serial
+        query = ("content query --uri content://com.google.settings/partner "
+                 "--where \"name='network_location_opt_in'\"")
+        value = re.search(r"value=(\d)", shell(s, query))
+        if value is None or value.group(1) == "0":
+            return
+        # A Maestro driver left running holds the UI automation that uiautomator dump needs.
+        shell(s, "am force-stop dev.mobile.maestro; am force-stop dev.mobile.maestro.test; "
+                 "input keyevent KEYCODE_WAKEUP; am start -W -f 0x10000000 "
+                 "-a com.google.android.gms.location.settings.LOCATION_ACCURACY", timeout=60)
+        time.sleep(3)
+        ui = shell(s, "uiautomator dump /sdcard/farm-ui.xml > /dev/null && cat /sdcard/farm-ui.xml",
+                   timeout=60)
+        on = [n for n in re.findall(r"<node [^>]*>", ui)
+              if 'class="android.widget.Switch"' in n and 'checked="true"' in n]
+        if len(on) == 1:
+            x1, y1, x2, y2 = map(int, re.search(r'bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',
+                                                on[0]).groups())
+            shell(s, f"input tap {(x1 + x2) // 2} {(y1 + y2) // 2}")
+            time.sleep(2)
+        shell(s, "input keyevent KEYCODE_BACK; input keyevent KEYCODE_HOME")
+        value = re.search(r"value=(\d)", shell(s, query))
+        if value is None or value.group(1) != "0":
+            self.db.event(s, "error", None, "could not turn Location Accuracy off; the phone's "
+                                            "real position can leak into the mock one")
 
     def quieten(self):
         """Dims the screen right down and turns media volume to zero."""
