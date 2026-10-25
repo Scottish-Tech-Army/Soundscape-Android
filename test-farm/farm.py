@@ -879,6 +879,37 @@ class Worker(threading.Thread):
                 return True
         return True
 
+    def extract_on_phone(self):
+        """Whether the cached offline map is in the app's extracts directory at its full size:
+        True or False, or None when the shell can't look there (the Cubot's Android 11 hides other
+        apps' Android/data from it)."""
+        if not current_extract:
+            return True
+        name = re.sub(r"^\d{8}-\d{4}-", "", os.path.basename(current_extract))
+        out = shell(self.serial, f"ls -l {DEVICE_EXTRACT_DIR}/ 2>&1")
+        if "Permission denied" in out:
+            return None
+        size = str(os.path.getsize(current_extract))
+        return any(f[-1:] == [name] and size in f for f in (l.split() for l in out.splitlines()))
+
+    def ensure_extract(self, cycle_id, cycle_dir, tally):
+        """Puts the offline map back if the monkey soak removed it. The monkey can delete it from
+        the app's Offline maps screen, and without it Places Nearby is empty and nearly every
+        flow after it fails until the phone is set up again. Pushing it takes seconds; where the
+        shell can't see the app's files, the app itself checks and downloads it if it's gone,
+        which takes a minute when it's still there."""
+        present = self.extract_on_phone()
+        if present:
+            return
+        if present is False:
+            self.db.event(self.serial, "extract", None,
+                          "offline map missing after the monkey soak; putting it back")
+            if self.push_extract():
+                return
+        result = self.download_extract(cycle_id, cycle_dir)
+        if result is not None:
+            tally[result] += 1
+
     def download_extract(self, cycle_id, cycle_dir):
         """For phones whose shell can't write to the app's Android/data (the
         Cubot J10): the app downloads the extract itself from its Offline maps
@@ -1346,6 +1377,8 @@ class Worker(threading.Thread):
                     tally[result] += 1
         if not stop_event.is_set():
             self.run_monkey(cycle_id, cycle_dir)
+        if not stop_event.is_set() and self.set_up_version() == version:
+            self.ensure_extract(cycle_id, cycle_dir, tally)
         # The monkey can delete the markers or route, or change settings, and
         # roaming and the next upgrade's PostUpgrade check need them. Restore
         # puts them back without restarting the app, or with a restart if it

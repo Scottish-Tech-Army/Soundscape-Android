@@ -38,9 +38,12 @@ appId: org.scottishtecharmy.soundscape
             text: ".*%"
           timeout: 30000
           optional: true
+      # Wait for the list to come back rather than for the percentage to go: on
+      # the Cubot the progress screen sat at 100.0% after a moment without it,
+      # and the tap below then found no list.
       - extendedWaitUntil:
-          notVisible:
-            text: ".*%"
+          visible:
+            text: ${EXTRACT}
           timeout: 3600000
       - tapOn:
           text: ${EXTRACT}

@@ -133,3 +133,17 @@ appId: org.scottishtecharmy.soundscape
           file: ../../maestro/WaitForScreen.yaml
           env:
             screen: Home
+# On a small screen (the Cubot's 480x854) Home scrolls, and stopping a beacon or
+# the monkey can leave it scrolled down with Places Nearby, Markers and Routes
+# off the top. The flows look for those without scrolling up, so scroll back to
+# the top. Bigger phones' Home doesn't scroll, so this never runs on them. The
+# swipe starts below the search bar and above the fixed bottom bar.
+- repeat:
+    while:
+      notVisible:
+        id: homePlacesNearby
+    times: 3
+    commands:
+      - swipe:
+          start: 50%, 35%
+          end: 50%, 70%

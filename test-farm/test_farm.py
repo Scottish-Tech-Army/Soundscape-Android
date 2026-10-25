@@ -185,6 +185,29 @@ class DeviceReadingsTest(ShellTestCase):
         self.assertEqual(farm.battery("S"), (None, None))
 
 
+class ExtractOnPhoneTest(ShellTestCase):
+    def setUp(self):
+        import tempfile
+        d = tempfile.mkdtemp()
+        self.addCleanup(__import__("shutil").rmtree, d)
+        path = os.path.join(d, "20261015-1444-glasgow-gb.pmtiles")
+        with open(path, "wb") as f:
+            f.write(b"x" * 1234)
+        self.addCleanup(setattr, farm, "current_extract", farm.current_extract)
+        farm.current_extract = path
+        self.worker = farm.Worker.__new__(farm.Worker)
+        self.worker.serial = "S"
+
+    def test_present_missing_truncated_hidden(self):
+        listing = "-rw-rw-rw- 1 shell ext_data_rw {} 2026-10-15 21:38 glasgow-gb.pmtiles\n"
+        for out, want in ((listing.format(1234), True), ("total 0\n", False),
+                          (listing.format(999), False),
+                          ("ls: /storage/...: Permission denied\n", None)):
+            with self.subTest(out=out):
+                self.fake_shell({"ls -l": out})
+                self.assertEqual(self.worker.extract_on_phone(), want)
+
+
 class RechargeTest(ShellTestCase):
     def test_stops_app_until_charged(self):
         shell = self.fake_shell({})
