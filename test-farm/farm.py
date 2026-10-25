@@ -805,6 +805,13 @@ class Worker(threading.Thread):
         # unreliable. It also keeps Wi-Fi scans out of Google's fused location,
         # which would otherwise mix the phone's real position into the mock one.
         shell(s, "svc wifi disable")
+        # Turning Wi-Fi off isn't enough: with scanning always available (on by
+        # default) the phone still scans for location, and Google's fused location
+        # matched the networks it had cached and reported the farm's real position,
+        # 68 km from the mock one, every few seconds. Soundscape uses fused location,
+        # so a marker saved at the current location could land there.
+        shell(s, "settings put global wifi_scan_always_enabled 0; "
+                 "settings put global ble_scan_always_enabled 0")
         self.clear_usb_proxy()  # in case the farm stopped mid-download
         # MainActivity uses dummy analytics when this is set, which keeps the
         # farm's traffic out of the production Firebase numbers.
