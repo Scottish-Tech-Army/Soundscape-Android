@@ -74,6 +74,9 @@ python3 -m unittest discover -s test-farm -v
   the compass of a phone lying on a desk. This reaches both the fused provider
   (phones with Play services) and plain `LocationManager` (AOSP phones). The
   helper's receiver requires `android.permission.DUMP`, so only adb can feed it.
+  A foreground service in the helper keeps its process running between fixes;
+  without it, phones short of memory killed the process after nearly every fix
+  and started a new one for the next.
   While the Maestro suite runs, the phone is
   held still (speed 0) at `suite_location` (CI's Edinburgh point), because
   the flows assert distance-sorted list order.

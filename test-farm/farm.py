@@ -256,6 +256,12 @@ def run(cmd, timeout=120, env=None):
             children.discard(proc)
 
 
+def stop_monkey(serial):
+    # monkey runs as com.android.commands.monkey. Not pkill: the phones' toybox
+    # pkill with a signal option signals every process it may, not just matches.
+    adb(serial, "shell", "p=$(pidof com.android.commands.monkey) && kill $p", timeout=15)
+
+
 def stop_children():
     with children_lock:
         procs = list(children)
@@ -605,6 +611,10 @@ def allow_helper(serial):
     for _ in range(5):
         shell(serial, f"appops set {HELPER_PKG} android:mock_location allow")
         if "allow" in shell(serial, f"appops get {HELPER_PKG} android:mock_location"):
+            # And keeps its process running between fixes (see KeepAlive.java):
+            # on the Cubot and the Moto it was killed after nearly every one.
+            # Starting it again when it's running does nothing.
+            shell(serial, f"am start-foreground-service -n {HELPER_PKG}/.KeepAlive")
             return ""
         time.sleep(2)
     return "failed to allow mock location for " + HELPER_PKG
@@ -615,8 +625,8 @@ def disable_mock_location(serial, shell_providers=False):
         shell(serial, "; ".join(f"cmd location providers remove-test-provider {p}"
                                  for p in MOCK_PROVIDERS), timeout=20)
     else:
-        shell(serial, f"am broadcast -f 0x10000000 -n {HELPER_PKG}/.FixReceiver -a {HELPER_PKG}.STOP",
-              timeout=20)
+        shell(serial, f"am broadcast -f 0x10000000 -n {HELPER_PKG}/.FixReceiver -a {HELPER_PKG}.STOP; "
+                      f"am stopservice -n {HELPER_PKG}/.KeepAlive", timeout=20)
 
 
 # --------------------------------------------------------------------------- crashes
@@ -800,6 +810,10 @@ class Worker(threading.Thread):
 
     def prepare(self):
         s = self.serial
+        # monkey runs on the phone, so stopping the farm (which only stops its own
+        # adb processes) leaves it going; after a restart its remaining events
+        # landed in the next flows.
+        stop_monkey(s)
         # Any power source: on the USB hub a phone may report AC (the Moto does,
         # and the A54 did until it was replugged), which `stayon usb` ignores,
         # so its screen timed out in the middle of flows.
@@ -1144,6 +1158,9 @@ class Worker(threading.Thread):
         own = os.path.join(RUNS_DIR, self.serial, "maestro-home")
         maestro_env = {"XDG_CACHE_HOME": os.path.join(own, "cache"),
                        "XDG_STATE_HOME": os.path.join(own, "state")}
+        recording = name in self.dev_cfg.get("record_flows", [])
+        if recording:
+            self.start_screenrecord()
         start = time.time()
         for attempt in range(2):
             set_state(self.serial, f"running {name}")
@@ -1171,6 +1188,8 @@ class Worker(threading.Thread):
             f.write(res.stdout + res.stderr)
         if "timeout after" in res.stderr:
             self.reinstall_driver = True
+        if recording:
+            self.stop_screenrecord(out_dir if res.returncode != 0 else None)
         if stop_event.is_set():
             return None
         status = "pass" if res.returncode == 0 else "fail"
@@ -1188,6 +1207,31 @@ class Worker(threading.Thread):
             "VALUES(?,?,?,?,?,?,?,?,?)",
             (cycle_id, self.serial, start, kind, name, status, time.time() - start, detail, out_dir))
         return status == "pass"
+
+    SCREENRECORD = "/sdcard/farm-screenrecord.mp4"
+
+    def start_screenrecord(self):
+        """Records the screen on the phone while a flow in its record_flows
+        runs, for failures the Maestro log can't explain: it has no screen
+        between commands. screenrecord stops by itself after 3 minutes, so a
+        long flow only has its start."""
+        shell(self.serial, f"p=$(pidof screenrecord) && kill -2 $p; rm -f {self.SCREENRECORD}; "
+                           f"nohup screenrecord --bit-rate 2000000 {self.SCREENRECORD} "
+                           "> /dev/null 2>&1 &")
+
+    def stop_screenrecord(self, out_dir):
+        """Stops the recording and, given a folder (the flow failed), keeps it
+        there as screenrecord.mp4."""
+        s = self.serial
+        shell(s, "p=$(pidof screenrecord) && kill -2 $p")
+        # It writes the end of the file after the interrupt.
+        for _ in range(10):
+            if not shell(s, "pidof screenrecord"):
+                break
+            time.sleep(1)
+        if out_dir:
+            adb(s, "pull", self.SCREENRECORD, os.path.join(out_dir, "screenrecord.mp4"))
+        shell(s, f"rm -f {self.SCREENRECORD}")
 
     def recharge(self, level):
         """Stops the app and turns the screen off until the battery is back up to
@@ -1291,12 +1335,19 @@ class Worker(threading.Thread):
         set_state(self.serial, "monkey soak")
         seed = int(time.time()) % 100000
         start = time.time()
+        # --ignore-timeouts: monkey otherwise stops at an ANR in any app, and the
+        # mock location helper's own (the Moto under memory pressure) cut soaks
+        # short. Soundscape's ANRs are still counted, from the dropbox.
         res = adb(self.serial, "shell", "monkey", "-p", PACKAGE, "-s", str(seed),
                   "--throttle", str(self.cfg["monkey_throttle_ms"]),
-                  "--pct-syskeys", "0", "-v", str(self.cfg["monkey_events"]),
+                  "--pct-syskeys", "0", "--ignore-timeouts", "-v", str(self.cfg["monkey_events"]),
                   timeout=self.cfg["monkey_events"] * self.cfg["monkey_throttle_ms"] / 1000 + 600)
         with open(os.path.join(cycle_dir, "monkey.log"), "w") as f:
             f.write(res.stdout + res.stderr)
+        if stop_event.is_set():
+            # Cut short by the farm stopping, not a failure; the next start
+            # stops what's left of it on the phone (see prepare).
+            return None
         ok = "Monkey finished" in res.stdout
         self.db.execute(
             "INSERT INTO results(cycle_id, serial, ts, kind, name, status, duration_s, detail, dir) "
