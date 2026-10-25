@@ -5,6 +5,9 @@ appId: org.scottishtecharmy.soundscape
 # automatic callouts run in between.
 ---
 - runFlow: ../LaunchHome.yaml
+# Home hides the full screen map button while a route plays, and the monkey (or
+# a RouteWalk that failed before stopping its route) can leave one playing.
+- runFlow: ../StopBeacon.yaml
 
 - tapOn:
     id: homeMyLocation
