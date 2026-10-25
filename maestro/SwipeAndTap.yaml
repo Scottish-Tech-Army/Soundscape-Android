@@ -8,7 +8,7 @@ appId: org.scottishtecharmy.soundscape
 #         id: someTestTag
 #         direction: up     # 'up' reveals items below the fold (default),
 #                           # 'down' reveals items above.
-#         escape: someId    # optional, see below
+#         escapeId: someId  # optional, see below
 #
 # We deliberately don't use scrollUntilVisible: it swipes from the screen centre
 # (which on the home screen is the non-scrollable map), and Maestro treats a
@@ -29,12 +29,13 @@ appId: org.scottishtecharmy.soundscape
 # than the scrollable area between the top and bottom bars there (about 43%),
 # so a target can't jump from below the fold to above the top in one step.
 #
-# escape is for a list whose rows open another screen: an id on that screen.
+# escapeId is for a list whose rows open another screen: an id on that screen.
 # On the Cubot J10 a Maestro swipe now and then arrives as a press without its
 # moves, which taps the row under it (seen on Places Nearby, opening Location
-# Details). If escape shows up after a swipe, Back returns to the list and the
-# scrolling carries on. Its check is skipped without escape, so other callers
-# don't pay for it.
+# Details). If escapeId shows up after a swipe, Back returns to the list and the
+# scrolling carries on. Its check is skipped without escapeId, so other
+# callers don't pay for it. (Not plain `escape`: that's a global JavaScript
+# function, so it's never undefined.)
 #
 # Note: swipe start/end coordinates can't be supplied via ${} variables (Maestro
 # parses them as literals and throws a number-format error), so the per-direction
@@ -51,7 +52,7 @@ appId: org.scottishtecharmy.soundscape
         throw 'SwipeAndTap: direction must be "up" or "down", got "' + dir + '"';
       }
       output.swipeDir = dir;
-      output.swipeEscape = typeof escape === 'undefined' ? '' : escape;
+      output.swipeEscape = typeof escapeId === 'undefined' ? '' : escapeId;
     }
 
 # If it's already on screen we don't need to scroll, but it may still be only
@@ -85,7 +86,7 @@ appId: org.scottishtecharmy.soundscape
             - swipe:
                 start: 50%, 50%
                 end: 50%, 80%
-      # A swipe that landed as a tap (see escape above).
+      # A swipe that landed as a tap (see escapeId above).
       - runFlow:
           when:
             true: ${output.swipeEscape !== ''}
@@ -120,7 +121,7 @@ appId: org.scottishtecharmy.soundscape
       - swipe:
           start: 50%, 60%
           end: 50%, 75%
-# The nudge can land as a tap too (see escape above).
+# The nudge can land as a tap too (see escapeId above).
 - runFlow:
     when:
       true: ${output.swipeEscape !== ''}
