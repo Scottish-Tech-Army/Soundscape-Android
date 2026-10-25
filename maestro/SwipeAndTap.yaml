@@ -8,6 +8,7 @@ appId: org.scottishtecharmy.soundscape
 #         id: someTestTag
 #         direction: up     # 'up' reveals items below the fold (default),
 #                           # 'down' reveals items above.
+#         escape: someId    # optional, see below
 #
 # We deliberately don't use scrollUntilVisible: it swipes from the screen centre
 # (which on the home screen is the non-scrollable map), and Maestro treats a
@@ -28,6 +29,13 @@ appId: org.scottishtecharmy.soundscape
 # than the scrollable area between the top and bottom bars there (about 43%),
 # so a target can't jump from below the fold to above the top in one step.
 #
+# escape is for a list whose rows open another screen: an id on that screen.
+# On the Cubot J10 a Maestro swipe now and then arrives as a press without its
+# moves, which taps the row under it (seen on Places Nearby, opening Location
+# Details). If escape shows up after a swipe, Back returns to the list and the
+# scrolling carries on. Its check is skipped without escape, so other callers
+# don't pay for it.
+#
 # Note: swipe start/end coordinates can't be supplied via ${} variables (Maestro
 # parses them as literals and throws a number-format error), so the per-direction
 # coordinates are hard-coded below and selected with `when` conditions.
@@ -43,6 +51,7 @@ appId: org.scottishtecharmy.soundscape
         throw 'SwipeAndTap: direction must be "up" or "down", got "' + dir + '"';
       }
       output.swipeDir = dir;
+      output.swipeEscape = typeof escape === 'undefined' ? '' : escape;
     }
 
 # If it's already on screen we don't need to scroll, but it may still be only
@@ -76,6 +85,17 @@ appId: org.scottishtecharmy.soundscape
             - swipe:
                 start: 50%, 50%
                 end: 50%, 80%
+      # A swipe that landed as a tap (see escape above).
+      - runFlow:
+          when:
+            true: ${output.swipeEscape !== ''}
+          commands:
+            - runFlow:
+                when:
+                  visible:
+                    id: ${output.swipeEscape}
+                commands:
+                  - back
       - evalScript: ${output.swipeTries = output.swipeTries + 1}
       - runFlow:
           when:
@@ -100,6 +120,17 @@ appId: org.scottishtecharmy.soundscape
       - swipe:
           start: 50%, 60%
           end: 50%, 75%
+# The nudge can land as a tap too (see escape above).
+- runFlow:
+    when:
+      true: ${output.swipeEscape !== ''}
+    commands:
+      - runFlow:
+          when:
+            visible:
+              id: ${output.swipeEscape}
+          commands:
+            - back
 
 # If the nudge landed on an inner scrollable list it can scroll a fully-visible
 # target back out of view. If the target is no longer visible, reverse the nudge

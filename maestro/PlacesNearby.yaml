@@ -12,12 +12,17 @@ appId: org.scottishtecharmy.soundscape
     id: homePlacesNearby
 - tapOn:
     id: placesNearby-0
-
+- runFlow:
+    file: WaitForScreen.yaml
+    env:
+      screen: PlacesList
+      timeout: 90000
 
 - runFlow:
     file: SwipeAndTap.yaml
     env:
       id: placesNearby-8
+      escape: locationDetailsStartBeacon
 
 - tapOn:
     id: appBarLeft
