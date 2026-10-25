@@ -1862,6 +1862,12 @@ def prune_runs(keep_days):
 
 
 def main():
+    # The farm, and Maestro under it, run in UTC. Maestro names its log folders by local time
+    # and keeps the newest few by name, so when the clocks went back each new folder sorted as
+    # the oldest and was deleted as soon as it was made, and every run crashed on its own lock
+    # file for an hour (25 Oct 2026). UTC also keeps the farm's log and run folders in order.
+    os.environ["TZ"] = "UTC"
+    time.tzset()
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--config", default=os.path.join(FARM_DIR, "farm.toml"))
     args = parser.parse_args()
