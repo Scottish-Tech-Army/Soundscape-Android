@@ -1675,29 +1675,44 @@ def pss_cell(st, db, serial):
     return f"{kb // 1024} MB<div class=dim>{html.escape(when)}</div>{pss_parts_table(st, db, serial)}"
 
 
+PSS_CHANGE_WINDOW_H = 4  # the breakdown's change column covers at most this long
+PSS_CHANGE_AVERAGE_MIN = 15  # each end of the window is the mean of this many minutes
+
+
 def pss_parts_table(st, db, serial):
-    """What the live PSS is made of, each part with its change since the first reading of this
-    run of the app in the last day: growth across an app restart would mean nothing."""
+    """What the live PSS is made of, each part with its change over the last
+    PSS_CHANGE_WINDOW_H hours of this run of the app (growth across an app restart would mean
+    nothing). Readings move tens of MB from minute to minute, so the change is between the means
+    of the first and last PSS_CHANGE_AVERAGE_MIN minutes of the window, on-screen readings only."""
     parts = st.get("pss_parts")
     if not parts:
         return ""
-    since = time.time() - 86400
+    now = time.time()
+    since = now - PSS_CHANGE_WINDOW_H * 3600
     if st.get("uptime") and st["uptime"][0] is not None:
         since = max(since, st["uptime"][1] - st["uptime"][0])
-    first = db.query("SELECT * FROM vitals WHERE serial=? AND ts>=? AND pss_native_kb IS NOT NULL "
-                     "ORDER BY ts LIMIT 1", (serial, since))
-    first = first[0] if first else None
-    hours = (time.time() - first["ts"]) / 3600 if first else 0
+    rows_in = db.query("SELECT * FROM vitals WHERE serial=? AND ts>=? AND pss_native_kb IS NOT NULL "
+                       "AND proc_state=? ORDER BY ts", (serial, since, PROC_STATE_TOP))
+    span = PSS_CHANGE_AVERAGE_MIN * 60
+    hours = (rows_in[-1]["ts"] - rows_in[0]["ts"]) / 3600 if rows_in else 0
+    usable = hours * 3600 >= 3 * span  # the two averaged ends mustn't overlap much
+    head = [r for r in rows_in if r["ts"] < rows_in[0]["ts"] + span] if usable else []
+    tail = [r for r in rows_in if r["ts"] > rows_in[-1]["ts"] - span] if usable else []
+
+    def mean(rs, key):
+        vals = [r[f"pss_{key}_kb"] for r in rs if r[f"pss_{key}_kb"] is not None]
+        return sum(vals) / len(vals) if vals else None
+
     rows = []
     for key, _, name in PSS_PARTS:
         if key not in parts:
             continue
         change = ""
-        if first and first[f"pss_{key}_kb"] is not None and hours >= 0.5:
-            mb = (parts[key] - first[f"pss_{key}_kb"]) / 1024
-            change = f"{mb:+.0f}"
+        a, b = (mean(head, key), mean(tail, key)) if usable else (None, None)
+        if a is not None and b is not None:
+            change = f"{(b - a) / 1024:+.0f}"
         rows.append(f"<tr><td>{name}</td><td>{parts[key] // 1024}</td><td>{change}</td></tr>")
-    over = f"over {hours:.1f}h" if first and hours >= 0.5 else ""
+    over = f"over {hours:.1f}h" if usable else ""
     return (f"<table class=parts><tr><th></th><th>MB</th><th>{over}</th></tr>{''.join(rows)}</table>")
 
 
