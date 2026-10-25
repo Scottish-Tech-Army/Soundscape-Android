@@ -53,6 +53,18 @@ appId: org.scottishtecharmy.soundscape
             - evalScript: ${output.tour = true}
             - tapOn:
                 id: audioTourInstructionContinue
+      # The monkey can leave the map full screen. Home has no search bar then and
+      # Back leaves the app rather than the full screen map. The same button
+      # closes it, and the bottom buttons are hidden while it's open.
+      - runFlow:
+          when:
+            visible:
+              id: homeFullScreenMap
+            notVisible:
+              id: homeMyLocation
+          commands:
+            - tapOn:
+                id: homeFullScreenMap
       # Backing out of another screen can land on Street Preview's Home, which
       # Back doesn't leave either.
       - runFlow:
@@ -62,7 +74,13 @@ appId: org.scottishtecharmy.soundscape
           commands:
             - tapOn:
                 text: "Exit location simulation"
-      - back
+      # Closing the full screen map may already have reached Home.
+      - runFlow:
+          when:
+            notVisible:
+              id: mainSearchBarCollapsed
+          commands:
+            - back
       - runFlow:
           file: ../../maestro/Wait.yaml
           env:

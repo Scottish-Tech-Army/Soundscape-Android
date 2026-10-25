@@ -1044,6 +1044,7 @@ class Worker(threading.Thread):
         # launchApp brings the app back.
         if "NotificationShade" in shell(self.serial, "dumpsys window | grep -m1 mCurrentFocus"):
             shell(self.serial, "cmd statusbar collapse; input keyevent KEYCODE_HOME")
+        self.unfloat_app()
         # Whether the phone roams with the map on (show_map in its [devices]
         # entry). ShowMap.yaml sets it, and the roaming flows skip the map
         # without it. Suite flows ignore it.
@@ -1172,13 +1173,29 @@ class Worker(threading.Thread):
         change (redraw_app's dark mode switch) puts it straight back into one. The setting only
         lasts as long as the task, so the app's next restart undoes it."""
         s = self.serial
-        tasks = shell(s, "dumpsys activity activities")
-        m = re.search(r"Task\{\S+ #(\d+) [^}]*A=\d+:" + re.escape(PACKAGE) + r" [^}]*mode=(\S+)", tasks)
-        if m is not None and m.group(2) != "fullscreen":
-            shell(s, f"am task resizeable {m.group(1)} 0")
+        self.pin_task_fullscreen()
         shell(s, "input keyevent KEYCODE_HOME")
         shell(s, f"am start -W -n {PACKAGE}/.MainActivity", timeout=60)
         self.redraw_app()
+
+    def pin_task_fullscreen(self):
+        """Makes the app's task unresizeable if it's in a pop-up (freeform) window, and returns
+        whether it was. See bring_to_front."""
+        tasks = shell(self.serial, "dumpsys activity activities")
+        m = re.search(r"Task\{\S+ #(\d+) [^}]*A=\d+:" + re.escape(PACKAGE) + r" [^}]*mode=(\S+)", tasks)
+        if m is None or m.group(2) == "fullscreen":
+            return False
+        shell(self.serial, f"am task resizeable {m.group(1)} 0")
+        return True
+
+    def unfloat_app(self):
+        """Takes the app out of a pop-up window before a flow. The monkey can leave it as one on
+        the A54 even when Restore then passes, and in the small window the home buttons are off
+        screen, so every flow of the cycle failed at its first tap."""
+        if self.pin_task_fullscreen():
+            log(self.serial, "app was in a pop-up window; back to full screen")
+            shell(self.serial, "input keyevent KEYCODE_HOME")
+            shell(self.serial, f"am start -W -n {PACKAGE}/.MainActivity", timeout=60)
 
     def redraw_app(self):
         """Switches dark mode over and back again, which only redraws the app if it's fine. The
