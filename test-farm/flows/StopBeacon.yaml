@@ -2,16 +2,30 @@ appId: org.scottishtecharmy.soundscape
 # Stops the audio beacon if one is still playing. A beacon on a nearby place
 # ends by itself when the walk reaches it, so there may be nothing to stop.
 # The beacon card can sit below the fold, so look further down the home
-# screen before deciding it has gone.
+# screen before deciding it has gone. The swipe starts no lower than 60%: on
+# a small screen (the Cubot's 480x854) Home's fixed bottom bar starts at about
+# 68%, and a swipe from 70% scrolled nothing, so the beacon was left playing.
 ---
+- evalScript: ${output.stopScrolled = false}
 - runFlow:
     when:
       notVisible:
         id: routeStop
     commands:
+      - evalScript: ${output.stopScrolled = true}
       - swipe:
-          start: 50%, 70%
-          end: 50%, 40%
+          start: 50%, 60%
+          end: 50%, 30%
 - tapOn:
     id: routeStop
     optional: true
+# Back to the top, where the flows after this expect Home's buttons (see the
+# end of LaunchHome.yaml). Home doesn't scroll on bigger phones, so then this
+# moves nothing.
+- runFlow:
+    when:
+      true: ${output.stopScrolled}
+    commands:
+      - swipe:
+          start: 50%, 35%
+          end: 50%, 70%

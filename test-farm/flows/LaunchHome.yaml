@@ -137,11 +137,15 @@ appId: org.scottishtecharmy.soundscape
 # the monkey can leave it scrolled down with Places Nearby, Markers and Routes
 # off the top. The flows look for those without scrolling up, so scroll back to
 # the top. Bigger phones' Home doesn't scroll, so this never runs on them. The
-# swipe starts below the search bar and above the fixed bottom bar.
+# swipe starts below the search bar and above the fixed bottom bar. Maestro
+# counts a button scrolled under the search bar as visible, so the button has
+# to be below the search bar too.
 - repeat:
     while:
       notVisible:
         id: homePlacesNearby
+        below:
+          id: mainSearchBarCollapsed
     times: 3
     commands:
       - swipe:

@@ -22,7 +22,7 @@ appId: org.scottishtecharmy.soundscape
     file: SwipeAndTap.yaml
     env:
       id: placesNearby-8
-      escape: locationDetailsStartBeacon
+      escapeId: locationDetailsStartBeacon
 
 - tapOn:
     id: appBarLeft
