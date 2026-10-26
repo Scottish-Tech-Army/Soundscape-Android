@@ -65,6 +65,17 @@ appId: org.scottishtecharmy.soundscape
           commands:
             - tapOn:
                 id: homeFullScreenMap
+      # The monkey can leave the full screen search open. Back didn't close it
+      # on the Cubot (six Backs over four minutes, with the navigation bar
+      # showing the keyboard as open though none was drawn), so use its own
+      # back button.
+      - runFlow:
+          when:
+            visible:
+              id: mainSearchBarBackButton
+          commands:
+            - tapOn:
+                id: mainSearchBarBackButton
       # Backing out of another screen can land on Street Preview's Home, which
       # Back doesn't leave either.
       - runFlow:
