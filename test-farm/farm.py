@@ -1334,9 +1334,28 @@ class Worker(threading.Thread):
         ime = shell(s, "settings get secure default_input_method").split("/")[0]
         if ime and ime != "null":
             shell(s, f"am force-stop {ime}")
+        self.dismiss_not_responding()
         shell(s, "input keyevent KEYCODE_HOME")
         shell(s, f"am start -W -n {PACKAGE}/.MainActivity", timeout=60)
         self.redraw_app()
+
+    def dismiss_not_responding(self):
+        """Taps Wait on an "isn't responding" dialog. On the Cubot under memory
+        pressure after a soak, Soundscape was slow long enough to be reported but
+        then recovered, and the dialog left over it kept Restore from Home until
+        the pause ran out. Waiting doesn't stop the app; if it's still hung, the
+        farm's restart deals with it, and the ANR is counted either way."""
+        s = self.serial
+        if "Application Not Responding" not in shell(s, "dumpsys window windows | grep 'Not Responding'"):
+            return
+        # A Maestro driver left running holds the UI automation that uiautomator dump needs.
+        shell(s, "am force-stop dev.mobile.maestro; am force-stop dev.mobile.maestro.test")
+        ui = shell(s, "uiautomator dump /sdcard/farm-ui.xml > /dev/null && cat /sdcard/farm-ui.xml", timeout=60)
+        m = re.search(r'resource-id="android:id/aerr_wait"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"', ui)
+        if m:
+            x1, y1, x2, y2 = map(int, m.groups())
+            shell(s, f"input tap {(x1 + x2) // 2} {(y1 + y2) // 2}")
+            log(s, "tapped Wait on a not responding dialog")
 
     def pin_task_fullscreen(self):
         """Makes the app's task unresizeable if it's in a pop-up (freeform) window, and returns
