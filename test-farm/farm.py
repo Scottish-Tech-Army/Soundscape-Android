@@ -1157,6 +1157,9 @@ class Worker(threading.Thread):
         if "NotificationShade" in shell(self.serial, "dumpsys window | grep -m1 mCurrentFocus"):
             shell(self.serial, "cmd statusbar collapse; input keyevent KEYCODE_HOME")
         self.unfloat_app()
+        # And not a not responding dialog (the mock location helper's on a busy
+        # Moto, where a fix's broadcast was delivered late), which flows can't see past.
+        self.dismiss_not_responding()
         # Whether the phone roams with the map on (show_map in its [devices]
         # entry). ShowMap.yaml sets it, and the roaming flows skip the map
         # without it. Suite flows ignore it.
@@ -1345,7 +1348,8 @@ class Worker(threading.Thread):
         self.redraw_app()
 
     def dismiss_not_responding(self):
-        """Taps Wait on an "isn't responding" dialog. On the Cubot under memory
+        """Taps Wait on an "isn't responding" dialog, checked before every flow and when
+        the app is brought to the front. On the Cubot under memory
         pressure after a soak, Soundscape was slow long enough to be reported but
         then recovered, and the dialog left over it kept Restore from Home until
         the pause ran out. Waiting doesn't stop the app; if it's still hung, the
