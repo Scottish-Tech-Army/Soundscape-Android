@@ -16,6 +16,14 @@ appId: org.scottishtecharmy.soundscape
       - swipe:
           start: 50%, 60%
           end: 50%, 30%
+      # On the Cubot a swipe now and then lands as a tap (see SwipeAndTap's
+      # escapeId), and on its Home every row a swipe can start on is a button.
+      - runFlow:
+          when:
+            notVisible:
+              id: mainSearchBarCollapsed
+          commands:
+            - back
 - tapOn:
     id: routeStop
     optional: true
@@ -29,3 +37,10 @@ appId: org.scottishtecharmy.soundscape
       - swipe:
           start: 50%, 35%
           end: 50%, 70%
+      # As above.
+      - runFlow:
+          when:
+            notVisible:
+              id: mainSearchBarCollapsed
+          commands:
+            - back
