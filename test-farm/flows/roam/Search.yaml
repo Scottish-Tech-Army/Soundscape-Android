@@ -20,11 +20,16 @@ appId: org.scottishtecharmy.soundscape
     file: ../../../maestro/Wait.yaml
     env:
       timeout: 15000
+# The app hides the keyboard when the search runs, but on the Cubot its window
+# stayed on top, and Maestro then saw only the keyboard: no results, and the
+# searched-word fallback below tapped a suggestion on the keyboard instead.
+- hideKeyboard
 # Releases before searchResult-* (the results are in a Dialog, whose testTags
 # weren't exposed) need the result found by its text: by a distance in its
 # accessibility text, or failing that by the searched word. A road's text is
 # just its address, with no distance. Index 1 skips the search field, which
-# holds the word too.
+# holds the word too. Never anything of the keyboard's (its suggestion strip
+# can show the word), in case it's still there.
 - evalScript: ${output.tapped = false}
 - runFlow:
     when:
@@ -50,6 +55,8 @@ appId: org.scottishtecharmy.soundscape
       visible:
         text: "(?s).*${output.searchWord}.*"
         index: 1
+      notVisible:
+        id: "com.google.android.inputmethod.latin:id/.*"
     commands:
       - evalScript: ${output.tapped = true}
       - tapOn:
