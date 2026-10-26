@@ -112,7 +112,15 @@ DEFAULTS = {
 
 # Same transient launch failures CI retries once (see run-maestro-tests.yaml).
 MAESTRO_RETRY_RE = re.compile(
-    r"Unable to launch app|device offline|Unknown error|Not able to reach the gRPC server")
+    r"Unable to launch app|device offline|Unknown error|Not able to reach the gRPC server"
+    r"|stalled at start")
+# Now and then a Maestro run hangs straight after "Selected device", before its
+# first command (seen on the Moto and the Cubot), until the flow timeout kills
+# it 15 minutes later, and the driver is then unreachable for the next flow.
+# No first command this long after starting counts as that hang: the run is
+# killed and tried again with the driver reinstalled. Starting normally takes
+# well under a minute, even on the Cubot.
+MAESTRO_START_S = 180
 
 stop_event = threading.Event()
 maestro_lock = threading.Lock()
@@ -231,10 +239,13 @@ children = set()  # running subprocesses, stopped when the farm stops
 children_lock = threading.Lock()
 
 
-def run(cmd, timeout=120, env=None):
+def run(cmd, timeout=120, env=None, started=None):
     """subprocess.run, except that the farm can stop the process when it stops.
     A Maestro run left behind by a stopped farm keeps hold of the phone's
-    driver, and every flow after a restart then fails with gRPC UNAVAILABLE."""
+    driver, and every flow after a restart then fails with gRPC UNAVAILABLE.
+
+    started, if given, is (seconds, check): the process is killed if check()
+    is still false that long after it starts (see MAESTRO_START_S)."""
     with children_lock:
         # Once the farm is stopping, start nothing new: stop_children() may
         # already have run, and anything started now would be orphaned.
@@ -245,6 +256,18 @@ def run(cmd, timeout=120, env=None):
                                 env={**os.environ, **env} if env else None)
         children.add(proc)
     try:
+        if started:
+            limit, check = started
+            try:
+                out, err = proc.communicate(timeout=limit)
+                return subprocess.CompletedProcess(cmd, proc.returncode, out, err)
+            except subprocess.TimeoutExpired:
+                if not check():
+                    proc.kill()
+                    out, _ = proc.communicate()
+                    return subprocess.CompletedProcess(cmd, -1, out or "",
+                                                       f"stalled at start after {limit}s")
+            timeout = max(timeout - limit, 1)
         out, err = proc.communicate(timeout=timeout)
         return subprocess.CompletedProcess(cmd, proc.returncode, out, err)
     except subprocess.TimeoutExpired:
@@ -1161,14 +1184,25 @@ class Worker(threading.Thread):
         recording = name in self.dev_cfg.get("record_flows", [])
         if recording:
             self.start_screenrecord()
+        debug_log = os.path.join(out_dir, "debug", "maestro.log")
+
+        def first_command():
+            try:
+                with open(debug_log, errors="replace") as f:
+                    return " RUNNING" in f.read()
+            except OSError:
+                return False
+
         start = time.time()
         for attempt in range(2):
             set_state(self.serial, f"running {name}")
             if self.cfg["serialize_maestro"]:
                 with maestro_lock:
-                    res = run(cmd, timeout=timeout, env=maestro_env)
+                    res = run(cmd, timeout=timeout, env=maestro_env,
+                              started=(MAESTRO_START_S, first_command))
             else:
-                res = run(cmd, timeout=timeout, env=maestro_env)
+                res = run(cmd, timeout=timeout, env=maestro_env,
+                          started=(MAESTRO_START_S, first_command))
             output = res.stdout + res.stderr
             # The driver errors that decide a retry only reach the debug log.
             for extra in (report, os.path.join(out_dir, "debug", "maestro.log")):
@@ -1180,13 +1214,13 @@ class Worker(threading.Thread):
             if res.returncode == 0 or not MAESTRO_RETRY_RE.search(output) or attempt:
                 break
             log(self.serial, f"{name}: transient launch failure, retrying once")
-            if "gRPC" in output and "--reinstall-driver" not in cmd:
+            if ("gRPC" in output or "stalled at start" in output) and "--reinstall-driver" not in cmd:
                 # Maestro's on-device driver is unreachable (seen after a phone
                 # sat on its lock screen); a fresh install brings it back.
                 cmd = cmd[:2] + ["--reinstall-driver"] + cmd[2:]
         with open(os.path.join(out_dir, "maestro.log"), "w") as f:
             f.write(res.stdout + res.stderr)
-        if "timeout after" in res.stderr:
+        if "timeout after" in res.stderr or "stalled at start" in res.stderr:
             self.reinstall_driver = True
         if recording:
             self.stop_screenrecord(out_dir if res.returncode != 0 else None)
