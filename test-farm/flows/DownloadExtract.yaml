@@ -41,9 +41,14 @@ appId: org.scottishtecharmy.soundscape
       # Wait for the list to come back rather than for the percentage to go: on
       # the Cubot the progress screen sat at 100.0% after a moment without it,
       # and the tap below then found no list.
+      #
+      # And for it to be listed twice, downloaded as well as nearby: the list
+      # comes back before the downloaded section is added above it, and on the
+      # Cubot the tap then landed on the nearby entry as it moved down.
       - extendedWaitUntil:
           visible:
             text: ${EXTRACT}
+            index: 1
           timeout: 3600000
       - tapOn:
           text: ${EXTRACT}
