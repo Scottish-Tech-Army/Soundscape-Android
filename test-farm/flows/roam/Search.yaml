@@ -21,9 +21,9 @@ appId: org.scottishtecharmy.soundscape
     env:
       timeout: 15000
 # The app hides the keyboard when the search runs, but on the Cubot its window
-# stayed on top, and Maestro then saw only the keyboard: no results, and the
+# can stay on top, and Maestro then sees only the keyboard: no results, and the
 # searched-word fallback below tapped a suggestion on the keyboard instead.
-- hideKeyboard
+# (Not Maestro's hideKeyboard: it closed the search, on every phone.)
 # Releases before searchResult-* (the results are in a Dialog, whose testTags
 # weren't exposed) need the result found by its text: by a distance in its
 # accessibility text, or failing that by the searched word. A road's text is
