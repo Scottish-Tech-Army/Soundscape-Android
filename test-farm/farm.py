@@ -1293,6 +1293,13 @@ class Worker(threading.Thread):
         lasts as long as the task, so the app's next restart undoes it."""
         s = self.serial
         self.pin_task_fullscreen()
+        # The keyboard can be left stuck over the app: on the Cubot, after the monkey
+        # left the search open, its window was undrawn but still on top, taking Back
+        # and hiding the app from Maestro. Stopping it closes it; it starts again
+        # when a text field next wants it.
+        ime = shell(s, "settings get secure default_input_method").split("/")[0]
+        if ime and ime != "null":
+            shell(s, f"am force-stop {ime}")
         shell(s, "input keyevent KEYCODE_HOME")
         shell(s, f"am start -W -n {PACKAGE}/.MainActivity", timeout=60)
         self.redraw_app()
