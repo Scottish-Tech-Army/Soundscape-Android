@@ -27,6 +27,16 @@ appId: org.scottishtecharmy.soundscape
     env:
       screen: LocationDetails
 - back
+# The sort order is whatever the monkey left (the two taps above put it back),
+# and furthest first puts C, a little further than B, just above it; the list
+# can come back from B's details scrolled with C off the top. SwipeAndTap only
+# looks further down, so look up first.
+- scrollUntilVisible:
+    element:
+      id: "LocationItem-C-.*"
+    direction: UP
+    timeout: 10000
+    optional: true
 - runFlow:
     file: ../../../maestro/SwipeAndTap.yaml
     env:
