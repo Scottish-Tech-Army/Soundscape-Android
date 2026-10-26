@@ -73,7 +73,7 @@ python3 -m unittest discover -s test-farm -v
   Without them (all that `cmd location providers` can set), callouts follow
   the compass of a phone lying on a desk. This reaches both the fused provider
   (phones with Play services) and plain `LocationManager` (AOSP phones). The
-  helper's receiver requires `android.permission.DUMP`, so only adb can feed it.
+  farm sends fixes with `content call` to the helper's provider, which serves only callers holding `android.permission.DUMP`, so only adb can feed it (a provider call, unlike a broadcast, has no timeout, so a busy phone can't get the helper reported as not responding).
   A foreground service in the helper keeps its process running between fixes;
   without it, phones short of memory killed the process after nearly every fix
   and started a new one for the next.

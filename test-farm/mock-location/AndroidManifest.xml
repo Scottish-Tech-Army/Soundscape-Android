@@ -21,6 +21,11 @@
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="Holds a test-only mock location provider between fixes" />
         </service>
+        <!-- How the farm sends fixes (see FixProvider.java); it checks for DUMP itself. -->
+        <provider
+            android:name=".FixProvider"
+            android:authorities="org.scottishtecharmy.farmlocation"
+            android:exported="true" />
         <!-- android.permission.DUMP is held by adb's shell, not by ordinary apps,
              so only the farm can feed this phone fake locations. -->
         <receiver

@@ -567,12 +567,12 @@ class LocationFeeder(threading.Thread):
         failures = 0
         while not stop_event.is_set() and self.alive.is_set():
             lat, lon, speed, bearing = self.fix(time.time() - start)
-            extras = f"--es lat {lat:.7f} --es lon {lon:.7f} --es speed {speed:.2f}"
+            extras = f"--extra lat:s:{lat:.7f} --extra lon:s:{lon:.7f} --extra speed:s:{speed:.2f}"
             if bearing is not None:
-                extras += f" --es bearing {bearing:.1f}"
-            out = shell(self.serial, f"am broadcast -f 0x10000000 -n {HELPER_PKG}/.FixReceiver "
-                                     f"-a {HELPER_PKG}.FIX {extras}", timeout=10)
-            if 'data="ok"' in out:
+                extras += f" --extra bearing:s:{bearing:.1f}"
+            out = shell(self.serial, f"content call --uri content://{HELPER_PKG} --method fix {extras}",
+                        timeout=10)
+            if "result=ok" in out:
                 failures = 0
             else:
                 # Keep going: if the feed stops, the phone falls back to its real
@@ -595,9 +595,11 @@ def initial_bearing(a, b):
     return (math.degrees(math.atan2(y, x)) + 360) % 360
 
 
-# Broadcasts to the helper go on the foreground queue (-f 0x10000000,
-# FLAG_RECEIVER_FOREGROUND): on the Android 11 A50 the background queue backed
-# up behind other apps' broadcasts and a fix took over 15 s to land.
+# Fixes go to the helper's FixProvider with `content call`. They were broadcasts
+# to its FixReceiver (on the foreground queue: on the Android 11 A50 the
+# background queue backed up and a fix took over 15 s to land), but a broadcast
+# has a delivery timeout, and on a busy Moto late ones got the helper reported as
+# not responding, with a dialog over Soundscape. A provider call has no timeout.
 #
 # The mock location helper in mock-location/. `cmd location providers` can only
 # set a position, so fixes from it have no speed or bearing; the helper sets
@@ -648,7 +650,7 @@ def disable_mock_location(serial, shell_providers=False):
         shell(serial, "; ".join(f"cmd location providers remove-test-provider {p}"
                                  for p in MOCK_PROVIDERS), timeout=20)
     else:
-        shell(serial, f"am broadcast -f 0x10000000 -n {HELPER_PKG}/.FixReceiver -a {HELPER_PKG}.STOP; "
+        shell(serial, f"content call --uri content://{HELPER_PKG} --method stop; "
                       f"am stopservice -n {HELPER_PKG}/.KeepAlive", timeout=20)
 
 
