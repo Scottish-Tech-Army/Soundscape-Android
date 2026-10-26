@@ -45,6 +45,24 @@ class ShellTestCase(unittest.TestCase):
         return fake
 
 
+class RunStartedTest(unittest.TestCase):
+    """run(started=...) kills a process that hasn't started its work in time."""
+
+    def test_stalled_process_is_killed(self):
+        res = farm.run(["sleep", "30"], timeout=60, started=(1, lambda: False))
+        self.assertEqual(res.returncode, -1)
+        self.assertIn("stalled at start", res.stderr)
+
+    def test_started_process_runs_on(self):
+        res = farm.run(["sh", "-c", "sleep 2; echo done"], timeout=60, started=(1, lambda: True))
+        self.assertEqual(res.returncode, 0)
+        self.assertEqual(res.stdout.strip(), "done")
+
+    def test_quick_process_is_left_alone(self):
+        res = farm.run(["echo", "hi"], timeout=60, started=(5, lambda: False))
+        self.assertEqual(res.stdout.strip(), "hi")
+
+
 class ConfigTest(unittest.TestCase):
     EXAMPLE = os.path.join(farm.FARM_DIR, "farm.toml.example")
 
