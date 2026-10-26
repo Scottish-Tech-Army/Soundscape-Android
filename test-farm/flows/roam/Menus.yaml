@@ -60,12 +60,19 @@ appId: org.scottishtecharmy.soundscape
           end: 50%, 30%
 - back
 
-- tapOn:
-    id: topBarMenu
-- runFlow:
-    file: ../../../maestro/SwipeAndTap.yaml
-    env:
-      id: menuAboutSoundscape
+# About is at the bottom of the drawer, so the drawer is scrolled to it. On the
+# Cubot a swipe now and then lands as a tap (see SwipeAndTap's escapeId), here
+# on another menu item (Offline maps); then start again from Home.
+- retry:
+    maxRetries: 2
+    commands:
+      - runFlow: ../LaunchHome.yaml
+      - tapOn:
+          id: topBarMenu
+      - runFlow:
+          file: ../../../maestro/SwipeAndTap.yaml
+          env:
+            id: menuAboutSoundscape
 - back
 # Some screens come back to the open menu drawer rather than Home.
 - tapOn:
