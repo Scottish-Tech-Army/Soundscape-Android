@@ -1214,6 +1214,11 @@ class Worker(threading.Thread):
             if res.returncode == 0 or not MAESTRO_RETRY_RE.search(output) or attempt:
                 break
             log(self.serial, f"{name}: transient launch failure, retrying once")
+            # A retry started straight away failed the same way (the A54, and the
+            # A52s just after a farm restart) while the next flow, a few seconds
+            # later, was fine: let the old driver go first.
+            shell(self.serial, "am force-stop dev.mobile.maestro; am force-stop dev.mobile.maestro.test")
+            stop_event.wait(5)
             if ("gRPC" in output or "stalled at start" in output) and "--reinstall-driver" not in cmd:
                 # Maestro's on-device driver is unreachable (seen after a phone
                 # sat on its lock screen); a fresh install brings it back.
