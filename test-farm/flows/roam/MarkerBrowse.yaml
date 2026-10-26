@@ -1,6 +1,10 @@
 appId: org.scottishtecharmy.soundscape
 # Roaming flow: flips the Markers list's sort order and opens each of the
 # suite's markers (B and C) as the walk moves away from them. Changes nothing.
+#
+# The monkey adds markers, so B and C can be below the fold or only partly on
+# screen at the bottom, where a tap on them missed; SwipeAndTap brings each
+# into view first.
 ---
 - runFlow: ../LaunchHome.yaml
 
@@ -13,15 +17,21 @@ appId: org.scottishtecharmy.soundscape
 - tapOn:
     id: SortOption
 
-- tapOn:
-    id: "LocationItem-B-.*"
+- runFlow:
+    file: ../../../maestro/SwipeAndTap.yaml
+    env:
+      id: "LocationItem-B-.*"
+      escapeId: locationDetailsStartBeacon
 - runFlow:
     file: ../../../maestro/WaitForScreen.yaml
     env:
       screen: LocationDetails
 - back
-- tapOn:
-    id: "LocationItem-C-.*"
+- runFlow:
+    file: ../../../maestro/SwipeAndTap.yaml
+    env:
+      id: "LocationItem-C-.*"
+      escapeId: locationDetailsStartBeacon
 - runFlow:
     file: ../../../maestro/WaitForScreen.yaml
     env:
