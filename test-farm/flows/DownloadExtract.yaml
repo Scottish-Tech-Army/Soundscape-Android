@@ -20,6 +20,16 @@ appId: org.scottishtecharmy.soundscape
 # Onboarding's clearState doesn't always remove a downloaded extract (it
 # survived on the Cubot), so it may already be in "Maps already downloaded",
 # which is listed first. Its details then offer Delete rather than Download.
+# And the farm runs this after every soak on the Cubot, whose shell can't see
+# whether the extract is there, so usually it is. That section is added after
+# the nearby list, moving it down, and a tap made meanwhile landed between
+# entries; wait for it (no testTag, so by its English heading). With nothing
+# downloaded this waits the timeout out.
+- extendedWaitUntil:
+    visible:
+      text: "Maps already downloaded"
+    timeout: 15000
+    optional: true
 - tapOn:
     text: ${EXTRACT}
     index: 0
