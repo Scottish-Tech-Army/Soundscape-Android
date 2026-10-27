@@ -1168,7 +1168,10 @@ class Worker(threading.Thread):
         # Whether the phone roams with the map on (show_map in its [devices]
         # entry). ShowMap.yaml sets it, and the roaming flows skip the map
         # without it. Suite flows ignore it.
+        # And whether its Home scrolls (home_scrolls; the Cubot's small screen with a
+        # beacon card showing), for StopBeacon.yaml.
         env = {"SHOW_MAP": "true" if self.dev_cfg.get("show_map", True) else "false",
+               "HOME_SCROLLS": "true" if self.dev_cfg.get("home_scrolls", False) else "false",
                **(env or {})}
         cmd = [os.path.expanduser("~/.maestro/bin/maestro"), "test", "--device", self.serial,
                "--format", "junit", "--output", report, "--test-output-dir", out_dir,
