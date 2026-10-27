@@ -1,14 +1,17 @@
 appId: org.scottishtecharmy.soundscape
 # Stops the audio beacon if one is still playing. A beacon on a nearby place
 # ends by itself when the walk reaches it, so there may be nothing to stop.
-# The beacon card can sit below the fold, so look further down the home
-# screen before deciding it has gone. The swipe starts no lower than 60%: on
+# On a phone whose Home scrolls (HOME_SCROLLS, the farm's home_scrolls: the
+# Cubot's small screen) the beacon card can sit below the fold, so look further
+# down before deciding it has gone. Elsewhere Home doesn't scroll, and the
+# swipes only risked landing on something. The swipe starts no lower than 60%: on
 # a small screen (the Cubot's 480x854) Home's fixed bottom bar starts at about
 # 68%, and a swipe from 70% scrolled nothing, so the beacon was left playing.
 ---
 - evalScript: ${output.stopScrolled = false}
 - runFlow:
     when:
+      true: ${HOME_SCROLLS === 'true'}
       notVisible:
         id: routeStop
     commands:
@@ -18,10 +21,12 @@ appId: org.scottishtecharmy.soundscape
           end: 50%, 30%
       # On the Cubot a swipe now and then lands as a tap (see SwipeAndTap's
       # escapeId), and on its Home every row a swipe can start on is a button.
+      # Back only from a screen with a Back button: on Home it leaves the app
+      # (a check for Home's search bar right after a swipe missed it once).
       - runFlow:
           when:
-            notVisible:
-              id: mainSearchBarCollapsed
+            visible:
+              id: appBarLeft
           commands:
             - back
 - tapOn:
@@ -40,7 +45,7 @@ appId: org.scottishtecharmy.soundscape
       # As above.
       - runFlow:
           when:
-            notVisible:
-              id: mainSearchBarCollapsed
+            visible:
+              id: appBarLeft
           commands:
             - back
