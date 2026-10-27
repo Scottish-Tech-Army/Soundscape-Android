@@ -25,6 +25,22 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: "LocationItem-B-.*"
       escapeId: locationDetailsStartBeacon
+# The rows' distances update as the walk moves, and on the Cubot a tap that
+# landed while they were redrawn was dropped (see NearbyBeacon); tap again if
+# the details haven't opened.
+- extendedWaitUntil:
+    visible:
+      id: locationDetailsStartBeacon
+    timeout: 5000
+    optional: true
+- runFlow:
+    when:
+      notVisible:
+        id: locationDetailsStartBeacon
+    commands:
+      - tapOn:
+          id: "LocationItem-B-.*"
+          optional: true
 - runFlow:
     file: ../../../maestro/WaitForScreen.yaml
     env:
@@ -45,6 +61,19 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: "LocationItem-C-.*"
       escapeId: locationDetailsStartBeacon
+- extendedWaitUntil:
+    visible:
+      id: locationDetailsStartBeacon
+    timeout: 5000
+    optional: true
+- runFlow:
+    when:
+      notVisible:
+        id: locationDetailsStartBeacon
+    commands:
+      - tapOn:
+          id: "LocationItem-C-.*"
+          optional: true
 - runFlow:
     file: ../../../maestro/WaitForScreen.yaml
     env:
