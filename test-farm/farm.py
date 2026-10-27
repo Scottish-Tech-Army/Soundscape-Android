@@ -113,7 +113,10 @@ DEFAULTS = {
 # Same transient launch failures CI retries once (see run-maestro-tests.yaml).
 MAESTRO_RETRY_RE = re.compile(
     r"Unable to launch app|device offline|Unknown error|Not able to reach the gRPC server"
-    r"|stalled at start")
+    r"|stalled at start"
+    # A flow that failed in no time ran no command, so the driver wasn't there; the
+    # debug log that says why isn't always written by the time it's read.
+    r"|\[Failed\] \S+ \(0s\)")
 # Now and then a Maestro run hangs straight after "Selected device", before its
 # first command (seen on the Moto and the Cubot), until the flow timeout kills
 # it 15 minutes later, and the driver is then unreachable for the next flow.
