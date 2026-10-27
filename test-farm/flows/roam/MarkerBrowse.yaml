@@ -1,7 +1,6 @@
 appId: org.scottishtecharmy.soundscape
 # Roaming flow: steps through the Markers list's sort orders and opens each of the
-# suite's markers (B and C) as the walk moves away from them. Changes only
-# the sort order.
+# suite's markers (B and C) as the walk moves away from them. Changes nothing.
 #
 # The monkey adds markers, so B and C can be below the fold or only partly on
 # screen at the bottom, where a tap on them missed; SwipeAndTap brings each
@@ -17,18 +16,18 @@ appId: org.scottishtecharmy.soundscape
       id: homeMarkers
       direction: down
       escapeId: locationDetailsStartBeacon
-# Flip through the sort orders to name, A to Z, which puts B and C near the
-# top. The monkey leaves the list in any order, and with B or C last (Z to A,
-# or furthest first) the row sat at the very bottom above the gesture bar,
-# where nothing could scroll it higher and taps on it were lost (the A52s).
-- repeat:
-    while:
-      notVisible:
-        text: "Sorted by name, A to Z"
-    times: 4
-    commands:
-      - tapOn:
-          id: SortOption
+# Tap through all four sort orders, which ends on the one the list started
+# with. Maestro can't see which order is showing (the button reports it as a
+# state description, which its text matching ignores), so it can't stop at a
+# chosen one, such as name A to Z with B and C near the top.
+- tapOn:
+    id: SortOption
+- tapOn:
+    id: SortOption
+- tapOn:
+    id: SortOption
+- tapOn:
+    id: SortOption
 
 - runFlow:
     file: ../../../maestro/SwipeAndTap.yaml
