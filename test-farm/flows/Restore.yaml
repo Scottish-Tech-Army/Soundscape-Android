@@ -108,11 +108,20 @@ appId: org.scottishtecharmy.soundscape
       - inputText: "C"
       - tapOn:
           id: flexibleAppBarRight
+# Both must be there. The list is in whatever order the monkey left it (by
+# name Z to A puts B below C), so after scrolling down to C, look further down
+# for B before looking back up.
 - scrollUntilVisible:
     element:
       id: "LocationItem-C-.*"
     direction: DOWN
     timeout: 20000
+- scrollUntilVisible:
+    element:
+      id: "LocationItem-B-.*"
+    direction: DOWN
+    timeout: 20000
+    optional: true
 - scrollUntilVisible:
     element:
       id: "LocationItem-B-.*"
