@@ -14,6 +14,7 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: homeMarkers
       direction: down
+      escapeId: locationDetailsStartBeacon
 # Markers.yaml's C replaced A (same location), so B and C are what's left.
 - assertVisible:
     id: "LocationItem-B-.*"
@@ -28,5 +29,6 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: homeRoutes
       direction: down
+      escapeId: locationDetailsStartBeacon
 - assertVisible:
     text: "Test Route.*"
