@@ -8,10 +8,13 @@ appId: org.scottishtecharmy.soundscape
 # the route playing, and Route Details then has Stop Route rather than Start.
 - runFlow: ../StopBeacon.yaml
 
+# direction down: Home's top buttons. The nudge up pushed one under the
+# search bar on the Cubot (Home scrolls there with a beacon card).
 - runFlow:
     file: ../../../maestro/SwipeAndTap.yaml
     env:
       id: homeRoutes
+      direction: down
 - tapOn:
     id: "LocationItem-Test Route-.*"
 - runFlow:

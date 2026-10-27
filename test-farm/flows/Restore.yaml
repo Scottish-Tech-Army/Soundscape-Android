@@ -26,10 +26,13 @@ appId: org.scottishtecharmy.soundscape
       SHOW: "false"
 
 # Marker B: the first place nearby.
+# direction down: Home's top buttons. The nudge up pushed one under the
+# search bar on the Cubot (Home scrolls there with a beacon card).
 - runFlow:
     file: ../../maestro/SwipeAndTap.yaml
     env:
       id: homeMarkers
+      direction: down
 # The monkey adds markers, so B can be below the fold: scroll for it before
 # deciding it's gone (making another B).
 - scrollUntilVisible:
@@ -81,10 +84,13 @@ appId: org.scottishtecharmy.soundscape
       - runFlow: LaunchHome.yaml
 
 # Marker C: the current (held) location, from the Markers screen's New button.
+# direction down: Home's top buttons. The nudge up pushed one under the
+# search bar on the Cubot (Home scrolls there with a beacon card).
 - runFlow:
     file: ../../maestro/SwipeAndTap.yaml
     env:
       id: homeMarkers
+      direction: down
 - scrollUntilVisible:
     element:
       id: "LocationItem-C-.*"
@@ -130,10 +136,13 @@ appId: org.scottishtecharmy.soundscape
 - runFlow: LaunchHome.yaml
 
 # The route, B then C.
+# direction down: Home's top buttons. The nudge up pushed one under the
+# search bar on the Cubot (Home scrolls there with a beacon card).
 - runFlow:
     file: ../../maestro/SwipeAndTap.yaml
     env:
       id: homeRoutes
+      direction: down
 - runFlow:
     when:
       notVisible:
