@@ -1423,12 +1423,14 @@ class Worker(threading.Thread):
         set_state(self.serial, "monkey soak")
         seed = int(time.time()) % 100000
         start = time.time()
-        # --ignore-timeouts: monkey otherwise stops at an ANR in any app, and the
-        # mock location helper's own (the Moto under memory pressure) cut soaks
-        # short. Soundscape's ANRs are still counted, from the dropbox.
+        # --ignore-timeouts and --ignore-crashes: monkey otherwise stops at an ANR
+        # or crash in any app; the mock location helper's ANR (the Moto under
+        # memory pressure) and the A52s's launcher running out of memory cut soaks
+        # short. Soundscape's ANRs and crashes are still counted, from the dropbox.
         res = adb(self.serial, "shell", "monkey", "-p", PACKAGE, "-s", str(seed),
                   "--throttle", str(self.cfg["monkey_throttle_ms"]),
-                  "--pct-syskeys", "0", "--ignore-timeouts", "-v", str(self.cfg["monkey_events"]),
+                  "--pct-syskeys", "0", "--ignore-timeouts", "--ignore-crashes",
+                  "-v", str(self.cfg["monkey_events"]),
                   timeout=self.cfg["monkey_events"] * self.cfg["monkey_throttle_ms"] / 1000 + 600)
         with open(os.path.join(cycle_dir, "monkey.log"), "w") as f:
             f.write(res.stdout + res.stderr)
