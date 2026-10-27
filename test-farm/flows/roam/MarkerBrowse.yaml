@@ -1,5 +1,5 @@
 appId: org.scottishtecharmy.soundscape
-# Roaming flow: flips the Markers list's sort order and opens each of the
+# Roaming flow: steps through the Markers list's sort orders and opens each of the
 # suite's markers (B and C) as the walk moves away from them. Changes nothing.
 #
 # The monkey adds markers, so B and C can be below the fold or only partly on
@@ -15,10 +15,18 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: homeMarkers
       direction: down
-- tapOn:
-    id: SortOption
-- tapOn:
-    id: SortOption
+# Flip through the sort orders to name, A to Z, which puts B and C near the
+# top. The monkey leaves the list in any order, and with B or C last (Z to A,
+# or furthest first) the row sat at the very bottom above the gesture bar,
+# where nothing could scroll it higher and taps on it were lost (the A52s).
+- repeat:
+    while:
+      notVisible:
+        text: "Sorted by name, A to Z"
+    times: 4
+    commands:
+      - tapOn:
+          id: SortOption
 
 - runFlow:
     file: ../../../maestro/SwipeAndTap.yaml
