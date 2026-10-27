@@ -830,6 +830,9 @@ class Worker(threading.Thread):
         self.feeder = None
         self.adopt_tried = set()  # versions of a foreign install already tried
         self.reinstall_driver = False  # set after a Maestro run had to be killed
+        # The farm may have stopped mid-soak or mid-Restore, leaving whatever the
+        # monkey did (a guided tutorial running, say) for the first roam round.
+        self.restore_first = True
 
     # ----- setup
 
@@ -1517,6 +1520,7 @@ class Worker(threading.Thread):
         tally = {True: 0, False: 0}
         if self.set_up_version() != version:
             self.set_up(cycle_id, cycle_dir, version, tally)
+            self.restore_first = False  # a fresh set-up has nothing to put back
         # The roaming flows only look around and don't assert what's nearby, so
         # they run on the moving walk rather than held at suite_location.
         # Without a finished set-up there's no offline map, settings, markers
@@ -1524,14 +1528,16 @@ class Worker(threading.Thread):
         # next cycle.
         flows = roam_flows() if self.set_up_version() == version else []
         complete = self.db.query("SELECT complete FROM setups WHERE serial=?", (s,))
-        if flows and not complete[0]["complete"] and not stop_event.is_set():
-            # A suite flow failed during set-up; build what it missed first.
+        if flows and (not complete[0]["complete"] or self.restore_first) and not stop_event.is_set():
+            # A suite flow failed during set-up, or this is the first cycle since
+            # the farm started (see restore_first); build what's missing first.
             with self.suite_location():
                 restored = self.run_flow(cycle_id, RESTORE_FLOW, cycle_dir, kind="restore")
             if restored is not None:
                 tally[restored] += 1
             if restored:
                 self.db.execute("UPDATE setups SET complete=1 WHERE serial=?", (s,))
+        self.restore_first = False
         for _ in range(self.cfg["roam_rounds"]):
             random.shuffle(flows)
             for flow in flows:
