@@ -33,6 +33,7 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: homeMarkers
       direction: down
+      escapeId: locationDetailsStartBeacon
 # The monkey adds markers, so B can be below the fold: scroll for it before
 # deciding it's gone (making another B).
 - scrollUntilVisible:
@@ -58,6 +59,7 @@ appId: org.scottishtecharmy.soundscape
           env:
             id: homePlacesNearby
             direction: down
+            escapeId: locationDetailsStartBeacon
       - tapOn:
           id: placesNearby-0
       - runFlow:
@@ -91,6 +93,7 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: homeMarkers
       direction: down
+      escapeId: locationDetailsStartBeacon
 - scrollUntilVisible:
     element:
       id: "LocationItem-C-.*"
@@ -143,6 +146,7 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: homeRoutes
       direction: down
+      escapeId: locationDetailsStartBeacon
 - runFlow:
     when:
       notVisible:

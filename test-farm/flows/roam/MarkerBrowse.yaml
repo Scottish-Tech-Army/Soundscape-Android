@@ -16,6 +16,7 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: homeMarkers
       direction: down
+      escapeId: locationDetailsStartBeacon
 # Flip through the sort orders to name, A to Z, which puts B and C near the
 # top. The monkey leaves the list in any order, and with B or C last (Z to A,
 # or furthest first) the row sat at the very bottom above the gesture bar,

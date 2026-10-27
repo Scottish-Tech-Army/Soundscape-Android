@@ -15,6 +15,7 @@ appId: org.scottishtecharmy.soundscape
     env:
       id: homeRoutes
       direction: down
+      escapeId: locationDetailsStartBeacon
 - tapOn:
     id: "LocationItem-Test Route-.*"
 - runFlow:
