@@ -1528,6 +1528,10 @@ class Worker(threading.Thread):
         # next cycle.
         flows = roam_flows() if self.set_up_version() == version else []
         complete = self.db.query("SELECT complete FROM setups WHERE serial=?", (s,))
+        if flows and self.restore_first and not stop_event.is_set():
+            # The soak the farm stopped in may have deleted the offline map (the
+            # monkey does on the Cubot), and the check after it never ran.
+            self.ensure_extract(cycle_id, cycle_dir, tally)
         if flows and (not complete[0]["complete"] or self.restore_first) and not stop_event.is_set():
             # A suite flow failed during set-up, or this is the first cycle since
             # the farm started (see restore_first); build what's missing first.
