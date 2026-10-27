@@ -1,6 +1,7 @@
 appId: org.scottishtecharmy.soundscape
 # Roaming flow: steps through the Markers list's sort orders and opens each of the
-# suite's markers (B and C) as the walk moves away from them. Changes nothing.
+# suite's markers (B and C) as the walk moves away from them. Changes only
+# the sort order.
 #
 # The monkey adds markers, so B and C can be below the fold or only partly on
 # screen at the bottom, where a tap on them missed; SwipeAndTap brings each
