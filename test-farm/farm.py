@@ -943,6 +943,10 @@ class Worker(threading.Thread):
         # because Soundscape is playing, so the keys adjust the media stream.
         if "volume is 0 " not in shell(s, "cmd media_session volume --stream 3 --get"):
             shell(s, "for i in $(seq 1 16); do input keyevent KEYCODE_VOLUME_DOWN; done")
+        # Live Caption (Google's on-device captions; its switch is on the volume
+        # panel) turned up on the Moto: its panel transcribing Soundscape's speech
+        # sat over Home's search bar, which flows then couldn't see.
+        shell(s, "settings put secure odi_captions_enabled 0")
 
     def push_extract(self):
         """Copies the cached offline map and its metadata sidecar into the app's
