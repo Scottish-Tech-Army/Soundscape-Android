@@ -53,6 +53,21 @@ appId: org.scottishtecharmy.soundscape
 
 - tapOn:
     id: locationDetailsStartBeacon
+# A tap can be dropped while the page redraws for the moving walk (see
+# the place tap above); if the details are still showing, tap again.
+- extendedWaitUntil:
+    visible:
+      id: mainSearchBarCollapsed
+    timeout: 5000
+    optional: true
+- runFlow:
+    when:
+      visible:
+        id: locationDetailsStartBeacon
+    commands:
+      - tapOn:
+          id: locationDetailsStartBeacon
+          optional: true
 - runFlow:
     file: ../../../maestro/WaitForScreen.yaml
     env:
