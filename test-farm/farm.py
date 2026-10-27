@@ -946,7 +946,11 @@ class Worker(threading.Thread):
         # Live Caption (Google's on-device captions; its switch is on the volume
         # panel) turned up on the Moto: its panel transcribing Soundscape's speech
         # sat over Home's search bar, which flows then couldn't see.
-        shell(s, "settings put secure odi_captions_enabled 0")
+        # The setting alone leaves a caption panel already showing; stopping
+        # Android System Intelligence, which draws it, closes it.
+        if shell(s, "settings get secure odi_captions_enabled") == "1":
+            shell(s, "settings put secure odi_captions_enabled 0; "
+                     "am force-stop com.google.android.as")
 
     def push_extract(self):
         """Copies the cached offline map and its metadata sidecar into the app's
