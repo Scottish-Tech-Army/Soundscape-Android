@@ -11,7 +11,7 @@ appId: org.scottishtecharmy.soundscape
 - evalScript: ${output.stopScrolled = false}
 - runFlow:
     when:
-      true: ${HOME_SCROLLS === 'true'}
+      true: ${typeof HOME_SCROLLS !== 'undefined' && HOME_SCROLLS === 'true'}
       notVisible:
         id: routeStop
     commands:
