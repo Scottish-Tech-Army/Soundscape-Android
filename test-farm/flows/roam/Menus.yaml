@@ -89,8 +89,11 @@ appId: org.scottishtecharmy.soundscape
     file: ../../../maestro/Wait.yaml
     env:
       timeout: 30000
+# Sleep ends by itself once the walk leaves the area (quickly on a bus), so
+# the app may already be back on Home.
 - tapOn:
     id: sleepWakeUpNow
+    optional: true
 - runFlow:
     file: ../../../maestro/WaitForScreen.yaml
     env:
