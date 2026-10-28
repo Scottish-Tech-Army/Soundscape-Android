@@ -38,3 +38,4 @@ appId: org.scottishtecharmy.soundscape
     file: ../../../maestro/SwipeAndTap.yaml
     env:
       id: routeStop
+      escapeId: locationDetailsStartBeacon
