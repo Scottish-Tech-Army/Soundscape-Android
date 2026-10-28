@@ -1,0 +1,40 @@
+appId: org.scottishtecharmy.soundscape
+# Scrolls the Markers list until the marker with test tag ${id} is on screen,
+# or gives up after 20 seconds (callers check for it). direction: down (the
+# default) or up.
+#
+# On the Cubot a scroll's swipe sometimes lands as a tap (see SwipeAndTap),
+# opening whichever marker was under it in Location Details; back out and
+# scroll again.
+---
+- evalScript: ${output.scrollUp = typeof direction !== 'undefined' && direction === 'up'}
+- retry:
+    maxRetries: 2
+    commands:
+      - runFlow:
+          when:
+            true: ${!output.scrollUp}
+          commands:
+            - scrollUntilVisible:
+                element:
+                  id: ${id}
+                direction: DOWN
+                timeout: 20000
+                optional: true
+      - runFlow:
+          when:
+            true: ${output.scrollUp}
+          commands:
+            - scrollUntilVisible:
+                element:
+                  id: ${id}
+                direction: UP
+                timeout: 20000
+                optional: true
+      - runFlow:
+          when:
+            visible:
+              id: locationDetailsStartBeacon
+          commands:
+            - back
+            - assertTrue: ${false}
