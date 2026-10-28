@@ -36,12 +36,10 @@ appId: org.scottishtecharmy.soundscape
       escapeId: locationDetailsStartBeacon
 # The monkey adds markers, so B can be below the fold: scroll for it before
 # deciding it's gone (making another B).
-- scrollUntilVisible:
-    element:
+- runFlow:
+    file: ScrollMarkers.yaml
+    env:
       id: "LocationItem-B-.*"
-    direction: DOWN
-    timeout: 20000
-    optional: true
 - evalScript: ${output.haveB = false}
 - runFlow:
     when:
@@ -94,12 +92,10 @@ appId: org.scottishtecharmy.soundscape
       id: homeMarkers
       direction: down
       escapeId: locationDetailsStartBeacon
-- scrollUntilVisible:
-    element:
+- runFlow:
+    file: ScrollMarkers.yaml
+    env:
       id: "LocationItem-C-.*"
-    direction: DOWN
-    timeout: 20000
-    optional: true
 - runFlow:
     when:
       notVisible:
@@ -120,22 +116,28 @@ appId: org.scottishtecharmy.soundscape
 # Both must be there. The list is in whatever order the monkey left it (by
 # name Z to A puts B below C), so after scrolling down to C, look further down
 # for B before looking back up.
-- scrollUntilVisible:
-    element:
+- runFlow:
+    file: ScrollMarkers.yaml
+    env:
       id: "LocationItem-C-.*"
-    direction: DOWN
-    timeout: 20000
-- scrollUntilVisible:
-    element:
+- assertVisible:
+    id: "LocationItem-C-.*"
+- runFlow:
+    file: ScrollMarkers.yaml
+    env:
       id: "LocationItem-B-.*"
-    direction: DOWN
-    timeout: 20000
-    optional: true
-- scrollUntilVisible:
-    element:
-      id: "LocationItem-B-.*"
-    direction: UP
-    timeout: 20000
+- runFlow:
+    when:
+      notVisible:
+        id: "LocationItem-B-.*"
+    commands:
+      - runFlow:
+          file: ScrollMarkers.yaml
+          env:
+            id: "LocationItem-B-.*"
+            direction: up
+- assertVisible:
+    id: "LocationItem-B-.*"
 - runFlow: LaunchHome.yaml
 
 # The route, B then C.
