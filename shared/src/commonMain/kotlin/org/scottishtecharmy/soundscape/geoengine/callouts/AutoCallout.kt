@@ -151,11 +151,16 @@ class AutoCallout(
      * in traffic would immediately expose pedestrian-style intersection/POI callouts, then flip
      * back a moment later as it moves off - this smooths that out, same as the train-specific
      * window above but for any vehicle stop, not just a train dwell stop.
+     *
+     * Over early for somebody seen to have got out and walked off - see OnFootDetector. Not during
+     * a train journey: the rail lock outlives the ride for somebody walking up a platform, and
+     * nothing should be read out about the street above it until that has been settled.
      */
     private val vehicleStickyWindowMs = 60_000L
 
     private fun recentlyInVehicle(userGeometry: UserGeometry): Boolean {
         val last = lastVehicleTimestampMs ?: return false
+        if (userGeometry.onFootAfterVehicle && !recentlyOnTrain(userGeometry)) return false
         return (userGeometry.timestampMilliseconds - last) < vehicleStickyWindowMs
     }
 
@@ -184,7 +189,8 @@ class AutoCallout(
     private val blindSpellLimitMs = 300_000L
 
     /**
-     * Discounts time the geoengine couldn't see from the sticky windows above.
+     * Discounts time that says nothing about whether the journey is over from the sticky windows
+     * above.
      *
      * Both windows are elapsed-time measurements, which quietly assumes someone was watching
      * throughout. Underground nobody is: GeoEngine drops fixes too inaccurate to place at all (see
@@ -229,10 +235,16 @@ class AutoCallout(
         // real dwell. There is no double counting to worry about: StationaryDetector is not
         // updated at all while fixes are being rejected, so stationaryMillis cannot grow during
         // the spells unobservedMillis is counting.
+        //
+        // Only on a train. A bus or a car is held for a straight [vehicleStickyWindowMs] however
+        // still it is: a stop of a minute or more is long enough to be worth describing, and
+        // freezing it left somebody who had sat for ten minutes waiting out the rest of the window
+        // as they walked away.
         val stillness = userGeometry.stationaryMillis - lastStationaryMillis
         lastStationaryMillis = userGeometry.stationaryMillis
         if (stillness <= 0L) return
 
+        if (!recentlyOnTrain(userGeometry)) return
         lastVehicleTimestampMs = lastVehicleTimestampMs?.plus(stillness)
         lastTrainTimestampMs = lastTrainTimestampMs?.plus(stillness)
     }

@@ -48,6 +48,9 @@ import kotlin.math.abs
  * still. The counterpart of [unobservedMillis], a running total for the same reason, and consumed
  * in the same place: time in which nothing can have changed shouldn't count against a window
  * measuring how long ago something happened.
+ * @param onFootAfterVehicle is true if the user has been seen to walk away since last travelling at
+ * vehicle speed, which ends AutoCallout's vehicle sticky window early. Decided by OnFootDetector and
+ * handed in, for the same reason as [stationary].
  *
  * The heading prioritization comes from iOS - see https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/364
  *
@@ -73,6 +76,7 @@ class UserGeometry(
     val unobservedMillis: Long = 0L,
     val stationary: Boolean = false,
     val stationaryMillis: Long = 0L,
+    val onFootAfterVehicle: Boolean = false,
     private val headingMode: HeadingMode = HeadingMode.CourseAuto,
     private var travelHeading: Double? = null,
     private var headHeading: Double? = null,

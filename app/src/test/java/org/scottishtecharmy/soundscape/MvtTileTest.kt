@@ -27,6 +27,7 @@ import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
+import org.scottishtecharmy.soundscape.geoengine.filters.OnFootDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
@@ -4457,6 +4458,7 @@ class MvtTileTest {
         // against each other rather than trusting the rail one alone.
         val railMatchArbiter = RailMatchArbiter()
         val stationaryDetector = StationaryDetector()
+        val onFootDetector = OnFootDetector()
         val headingHold = HeadingHold()
         val gps = parseGpxFromFile(gpxFilename)
         // See recordedTravelHeading
@@ -4595,14 +4597,16 @@ class MvtTileTest {
                 // bearingAccuracy (GPX from other apps, or synthesized) gets false, which is
                 // right: an ungated bearing says which way the user pointed, not that they moved.
                 val bearingAccuracy = position.properties?.get("bearingAccuracy") as? Double?
+                val courseIsTrustworthy = (position.properties?.get("heading") != null) &&
+                    (bearingAccuracy != null) &&
+                    (bearingAccuracy < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES)
                 val stationary = stationaryDetector.update(
                     LngLatAlt(rawLocation.longitude, rawLocation.latitude),
                     accuracy,
-                    (position.properties?.get("heading") != null) &&
-                        (bearingAccuracy != null) &&
-                        (bearingAccuracy < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES),
+                    courseIsTrustworthy,
                     timestamp
                 )
+                onFootDetector.update(speed, courseIsTrustworthy, timestamp)
 
                 // Update the nearest road filter with our new location
                 val mapMatchedResult = mapMatchFilter.filter(
@@ -4675,7 +4679,8 @@ class MvtTileTest {
                     ),
                     unobservedMillis = unobservedMillis,
                     stationary = stationary,
-                    stationaryMillis = stationaryDetector.stationaryMillis
+                    stationaryMillis = stationaryDetector.stationaryMillis,
+                    onFootAfterVehicle = onFootDetector.isOnFoot
                 )
                 // Fed once per fix from the geometry the callouts use, as GeoEngine does.
                 val holdCourse = (position.properties?.get("heading") as? Double?)?.takeIf {
