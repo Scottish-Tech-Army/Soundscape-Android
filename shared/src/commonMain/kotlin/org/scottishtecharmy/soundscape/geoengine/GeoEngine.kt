@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.buildWhatsAroundMeCall
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
+import org.scottishtecharmy.soundscape.geoengine.filters.OnFootDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
@@ -140,6 +141,9 @@ class GeoEngine {
     // see StationaryDetector. Driven below, ahead of the matchers, since the arbiter reads it.
     private var stationaryDetector = StationaryDetector()
     private var userStationary = false
+    // Whether the user has walked away from a vehicle - see OnFootDetector. Driven alongside
+    // stationaryDetector, from the same stream and the same course flag.
+    private var onFootDetector = OnFootDetector()
     // The last trusted travel heading, kept through a pause - see HeadingHold. Updated once per
     // location update below, read by every UserGeometry built.
     private var headingHold = HeadingHold()
@@ -288,7 +292,8 @@ class GeoEngine {
             // location update, and whether the user has gone anywhere is a question about the last
             // minute of them. See StationaryDetector.
             stationary = userStationary,
-            stationaryMillis = stationaryDetector.stationaryMillis
+            stationaryMillis = stationaryDetector.stationaryMillis,
+            onFootAfterVehicle = onFootDetector.isOnFoot
         )
     }
 
@@ -603,6 +608,10 @@ class GeoEngine {
                                 // travelHeading gate below, which trusts an ungated bearing: a
                                 // bearing with no accuracy beside it is fine to steer audio with,
                                 // but says nothing about whether the user is moving.
+                                val courseIsTrustworthy = unfilteredLocation.hasBearing &&
+                                    unfilteredLocation.hasBearingAccuracy &&
+                                    (unfilteredLocation.bearingAccuracyDegrees <
+                                        MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES)
                                 userStationary = stationaryDetector.update(
                                     LngLatAlt(
                                         unfilteredLocation.longitude,
@@ -612,10 +621,12 @@ class GeoEngine {
                                         unfilteredLocation.accuracy.toDouble()
                                     else
                                         null,
-                                    unfilteredLocation.hasBearing &&
-                                        unfilteredLocation.hasBearingAccuracy &&
-                                        (unfilteredLocation.bearingAccuracyDegrees <
-                                            MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES),
+                                    courseIsTrustworthy,
+                                    nowMillis
+                                )
+                                onFootDetector.update(
+                                    unfilteredSpeed,
+                                    courseIsTrustworthy,
                                     nowMillis
                                 )
 

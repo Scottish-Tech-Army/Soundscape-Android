@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -251,13 +252,82 @@ class CalloutCategorySettingsTest {
         assertNull(autoCallout.updateLocation(walkingFix(2000L), grid, GridState()))
     }
 
+    /** Whether the shop is named at [walkingAt], having been in a vehicle at 1s. */
+    private fun shopNamedAfterVehicle(walkingAt: UserGeometry, before: UserGeometry? = null): Boolean {
+        val autoCallout = AutoCallout(null, FakePreferences())
+        val grid = poiGrid()
+        autoCallout.updateLocation(vehicleFix(1000L), grid, GridState())
+        before?.let { autoCallout.updateLocation(it, grid, GridState()) }
+        return autoCallout.updateLocation(walkingAt, grid, GridState())
+            ?.positionedStrings?.any { it.text.contains("Corner Shop") } == true
+    }
+
+    @Test
+    fun walkingAwayFromAVehicleEndsTheStickyWindowEarly() {
+        assertTrue(shopNamedAfterVehicle(walkingFix(21_000L, onFoot = true)))
+        assertFalse(shopNamedAfterVehicle(walkingFix(21_000L)))
+    }
+
+    /**
+     * Sitting still no longer stops the clock in a bus or a car, so somebody who stays put hears
+     * about where they are after the same minute as anybody else.
+     */
+    @Test
+    fun aVehicleThatHasNotMovedIsHeldForJustTheStickyWindow() {
+        val still = { timestamp: Long, millis: Long ->
+            UserGeometry(
+                location = userLocation,
+                phoneHeading = 0.0,
+                timestampMilliseconds = timestamp,
+                stationary = true,
+                stationaryMillis = millis,
+            )
+        }
+        assertFalse(shopNamedAfterVehicle(still(59_000L, 28_000L), still(40_000L, 9_000L)))
+        assertTrue(shopNamedAfterVehicle(still(62_000L, 31_000L), still(40_000L, 9_000L)))
+    }
+
+    /** A train is another matter: its dwells run to minutes, and the clock still stops for them. */
+    @Test
+    fun aTrainIsStillHeldWhileItStandsAtAPlatform() {
+        val autoCallout = AutoCallout(null, FakePreferences())
+        val grid = poiGrid()
+        val railway = Way().apply { name = "Some Line" }
+        autoCallout.updateLocation(
+            UserGeometry(
+                location = userLocation,
+                phoneHeading = 0.0,
+                speed = 15.0,
+                mapMatchedRailway = railway,
+                timestampMilliseconds = 1000L,
+            ),
+            grid,
+            GridState()
+        )
+        // Rail lock lost and walking, seen as walking away, but too soon after the ride to go by.
+        assertNull(
+            autoCallout.updateLocation(walkingFix(21_000L, onFoot = true), grid, GridState())
+        )
+        // Fifty seconds standing still pushes both windows back by as much.
+        val stood = UserGeometry(
+            location = userLocation,
+            phoneHeading = 0.0,
+            timestampMilliseconds = 51_000L,
+            stationary = true,
+            stationaryMillis = 50_000L,
+        )
+        assertNull(autoCallout.updateLocation(stood, grid, GridState()))
+        assertNull(autoCallout.updateLocation(walkingFix(100_000L), grid, GridState()))
+    }
+
     private val userLocation = LngLatAlt(-2.657, 51.430)
 
-    private fun walkingFix(timestamp: Long) = UserGeometry(
+    private fun walkingFix(timestamp: Long, onFoot: Boolean = false) = UserGeometry(
         location = userLocation,
         phoneHeading = 0.0,
         speed = 1.0,
         timestampMilliseconds = timestamp,
+        onFootAfterVehicle = onFoot,
     )
 
     private fun vehicleFix(timestamp: Long) = UserGeometry(
