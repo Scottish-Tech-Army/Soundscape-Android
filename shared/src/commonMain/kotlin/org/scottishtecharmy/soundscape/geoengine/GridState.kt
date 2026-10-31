@@ -731,6 +731,14 @@ open class GridState(
     // very much isn't.
     private val transitStopWaySearchDistanceMetres = 20.0
 
+    // The roads anybody may drive along, so the ones a vehicle is map matched to. TreeId.ROADS also
+    // holds what runs beside them: service roads, bus lanes, platforms. Motorways are left out as
+    // nothing on one calls at a stop, however close the stop is to it.
+    private val generalTrafficRoads = setOf(
+        "trunk", "primary", "secondary", "tertiary", "minor", "residential", "unclassified",
+        "living_street"
+    )
+
     /**
      * Records each bus/tram stop against the road it serves, as a TRANSIT_STOP AlongWayFeature at
      * its position along that road.
@@ -747,6 +755,13 @@ open class GridState(
      * TreeId.ROADS rather than ROADS_AND_PATHS: a stop belongs to the street, not to the pavement
      * running alongside it. Unnamed roads count - a stop on an unnamed service road is still on
      * that road, and unlike attachNearestWays this isn't looking for a name to use as an address.
+     *
+     * A stop whose nearest Way is something other than a through road goes on the nearest through
+     * road as well. Those are often the closest thing to a stop without being what the bus is
+     * matched to: in central Tehran a fifth of stops are nearest a service road, a bus lane or a
+     * platform running beside the main road, and on the Way alone they could never be announced
+     * from the main road. Keeping the nearest Way too means they still can be from the bus lane.
+     * The callout identifies a stop by its osmId, so being on two Ways can't announce it twice.
      */
     private fun attachTransitStopsToWays(
         featureCollections: Array<FeatureCollection>,
@@ -763,6 +778,8 @@ open class GridState(
 
             var nearestWay: Way? = null
             var nearestDistance = Double.POSITIVE_INFINITY
+            var nearestThroughRoad: Way? = null
+            var nearestThroughRoadDistance = Double.POSITIVE_INFINITY
             for (candidate in roadTree.getNearbyCollection(
                 point, transitStopWaySearchDistanceMetres, ruler
             )) {
@@ -770,32 +787,39 @@ open class GridState(
                 val line = way.geometry as? LineString ?: continue
                 if (line.coordinates.size < 2) continue
                 val distance = ruler.distanceToLineString(point, line).distance
+                if (distance > transitStopWaySearchDistanceMetres) continue
                 if (distance < nearestDistance) {
                     nearestDistance = distance
                     nearestWay = way
                 }
+                if ((way.featureValue in generalTrafficRoads) &&
+                    (distance < nearestThroughRoadDistance)
+                ) {
+                    nearestThroughRoadDistance = distance
+                    nearestThroughRoad = way
+                }
             }
-            val way = nearestWay ?: continue
-            if (nearestDistance > transitStopWaySearchDistanceMetres) continue
 
-            val line = way.geometry as LineString
-            val projection = ruler.distanceToLineString(point, line)
-            way.addAlongWayFeature(
-                AlongWayFeature(
-                    distanceFromStart = distanceAlongLineString(line, projection, ruler),
-                    point = point,
-                    kind = AlongWayKind.TRANSIT_STOP,
-                    name = stop.name,
-                    translatedName = stop.translatedName,
-                    side = getSideOfLine(
-                        line.coordinates[projection.index],
-                        line.coordinates[projection.index + 1],
-                        point
-                    ),
-                    feature = stop
+            for (way in listOfNotNull(nearestWay, nearestThroughRoad).distinct()) {
+                val line = way.geometry as LineString
+                val projection = ruler.distanceToLineString(point, line)
+                way.addAlongWayFeature(
+                    AlongWayFeature(
+                        distanceFromStart = distanceAlongLineString(line, projection, ruler),
+                        point = point,
+                        kind = AlongWayKind.TRANSIT_STOP,
+                        name = stop.name,
+                        translatedName = stop.translatedName,
+                        side = getSideOfLine(
+                            line.coordinates[projection.index],
+                            line.coordinates[projection.index + 1],
+                            point
+                        ),
+                        feature = stop
+                    )
                 )
-            )
-            attached++
+                attached++
+            }
         }
         return attached
     }

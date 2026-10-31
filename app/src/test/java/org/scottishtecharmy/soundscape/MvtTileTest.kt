@@ -2603,6 +2603,24 @@ class MvtTileTest {
     }
 
     /**
+     * Palestine stop on Jomhouri Street in Tehran is nearest the bus lane beside the street, but a
+     * bus is matched to the street, so it has to be recorded against both to be announced.
+     */
+    @Test
+    fun testTransitStopBesideABusLaneIsAttachedToTheStreetToo() {
+        val location = LngLatAlt(51.403031, 35.695659)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val waysWithStop = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .filter { way ->
+                way.alongWayFeatures(AlongWayKind.TRANSIT_STOP).any {
+                    gridState.ruler.distance(it.point, location) < 5.0
+                }
+            }
+        assertEquals(setOf("busway", "primary"), waysWithStop.map { it.featureValue }.toSet())
+    }
+
+    /**
      * The same concern for railways, which central Glasgow is full of: the Argyle Line and the
      * North Clyde Line run in tunnel under the city centre for hundreds of metres at a time, with
      * ordinary streets over the top. Announcing a railway crossing on every one of them would be
