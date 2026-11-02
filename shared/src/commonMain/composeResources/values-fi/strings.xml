@@ -524,6 +524,8 @@
     <string name="settings_use_value">käytä</string>
     <string name="street_preview_exit">Poistu sijainnin esikatselusta</string>
     <string name="settings_travel_recording">Ota matkojen tallennus käyttöön</string>
+    <string name="settings_alpha_features">Ota alfatestauksen ominaisuudet käyttöön</string>
+    <string name="settings_alpha_features_description">Näytä asetukset ominaisuuksille, joita vielä testataan. Ne voivat olla keskeneräisiä tai epäluotettavia.</string>
     <string name="settings_show_map">Näytä kartta näytöllä</string>
     <string name="settings_debug_heading">Virheenkorjausasetukset</string>
     <string name="settings_search_results_language">Hakutulosten kieli</string>
@@ -1504,6 +1506,7 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="settings_mix_audio_description">Kun tämä on pois päältä, muiden äänisovellusten toisto keskeytetään ja lukitusnäytön mediasäätimet ovat käytettävissä</string>
     <string name="settings_head_tracking">Ota pään seuranta käyttöön</string>
     <string name="settings_head_tracking_description">Aseta tilaääni suhteessa pään suuntaan käyttämällä liikedataa tuetuista AirPods‑kuulokkeista, Bose Frames ‑laseista tai ulkoisesta Bluetooth‑IMU:sta. Kalibroituu automaattisesti kävellessäsi.</string>
+    <string name="settings_head_tracking_description_android">3D-ääni kääntyy pääsi mukana puhelimen sijaan. Toimii Bose Frames ‑lasien tai päähän kiinnitetyn WitMotion Bluetooth ‑liiketunnistimen kanssa. Ensimmäiset 30 sekuntia liikkumista käytetään pään seurannan kalibrointiin, ja sen jälkeen pääsi suunta ohjaa kaikkien äänten sijaintia.</string>
     <string name="sleep_snoozing">Odotustila</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape on tällä hetkellä odotustilassa. Kun poistut nykyisestä sijainnistasi, Soundscape herää automaattisesti. Odotustila käyttää Sijaintipalveluita vähävirtaisessa tilassa puhelimesi akun säästämiseksi. Napauta alla olevaa painiketta herättääksesi Soundscapen nyt.</string>
     <string name="sleep_wake_on_leave">Herää kun poistut</string>

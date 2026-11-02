@@ -486,6 +486,8 @@
     <string name="settings_theme_contrast_regular">Regular</string>
     <string name="settings_list_item_description">%1$s is choice %2$s out of %3$s</string>
     <string name="settings_travel_recording">Enable recording of travel</string>
+    <string name="settings_alpha_features">Enable alpha test features</string>
+    <string name="settings_alpha_features_description">Show settings for features that are still being tested. They may be incomplete or unreliable.</string>
     <string name="menu_share_recorded_route">Share recording of travel</string>
     <string name="settings_theme_contrast">Theme contrast</string>
     <string name="settings_keep_value">keep</string>
@@ -1504,6 +1506,7 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="settings_mix_audio_description">When disabled, other audio apps will pause and lock screen media controls will be available</string>
     <string name="settings_head_tracking">Enable head tracking</string>
     <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.</string>
+    <string name="settings_head_tracking_description_android">Turn the 3D audio with your head instead of your phone. Works with Bose Frames, or with a WitMotion Bluetooth motion sensor worn on your head. The first 30 seconds of moving is used to calibrate the head tracking, and after that your head direction will be used to control all audio positioning.</string>
     <string name="sleep_snoozing">Snoozing</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape is currently snoozing. When you leave your current location, Soundscape will automatically wake up. Snoozing uses Location Services in a low power mode to save your phone's battery. Tap the button below to wake up now.</string>
     <string name="sleep_wake_on_leave">Wake on Leave</string>

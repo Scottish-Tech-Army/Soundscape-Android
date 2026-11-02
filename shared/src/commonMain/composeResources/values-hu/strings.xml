@@ -1300,10 +1300,13 @@
     <string name="settings_use_value">használat</string>
     <string name="street_preview_exit">Kilépés a helyszimulációból</string>
     <string name="settings_travel_recording">Utazás rögzítésének engedélyezése</string>
+    <string name="settings_alpha_features">Alfateszt-funkciók engedélyezése</string>
+    <string name="settings_alpha_features_description">Megjeleníti a még tesztelés alatt álló funkciók beállításait. Ezek hiányosak vagy megbízhatatlanok lehetnek.</string>
     <string name="settings_mix_audio">Hang keverése más alkalmazásokkal</string>
     <string name="settings_mix_audio_description">Ha ki van kapcsolva, a többi hangalkalmazás szüneteltetve lesz, és elérhetők lesznek a zárolási képernyő médiavezérlői</string>
     <string name="settings_head_tracking">Fejkövetés engedélyezése</string>
     <string name="settings_head_tracking_description">A térbeli hangot a feje irányához igazítja, a támogatott AirPods, Bose Frames vagy egy külső Bluetooth IMU mozgásadatai alapján. Séta közben automatikusan kalibrálódik.</string>
+    <string name="settings_head_tracking_description_android">A 3D hang a telefon helyett az Ön fejével együtt fordul. Bose Frames szemüveggel vagy fejen viselt WitMotion Bluetooth mozgásérzékelővel működik. A mozgás első 30 másodperce a fejkövetés kalibrálására szolgál, utána az Ön fejének iránya határozza meg az összes hang helyzetét.</string>
     <string name="settings_show_map">Térképek megjelenítése a képernyőn</string>
     <string name="settings_debug_heading">Hibakeresési beállítások</string>
     <string name="settings_search_results_language">Keresési nyelv</string>

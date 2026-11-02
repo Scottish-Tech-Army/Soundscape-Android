@@ -690,10 +690,13 @@
     <string name="settings_use_value">الاستخدام</string>
     <string name="street_preview_exit">الخروج من محاكاة الموقع</string>
     <string name="settings_travel_recording">تفعيل تسجيل التنقل</string>
+    <string name="settings_alpha_features">تفعيل ميزات اختبار ألفا</string>
+    <string name="settings_alpha_features_description">عرض إعدادات الميزات التي لا تزال قيد الاختبار. قد تكون غير مكتملة أو غير موثوقة.</string>
     <string name="settings_mix_audio">مزج الصوت مع التطبيقات الأخرى</string>
     <string name="settings_mix_audio_description">عند التعطيل، ستتوقف تطبيقات الصوت الأخرى مؤقتًا وستتوفر عناصر التحكم بالوسائط على شاشة القفل</string>
     <string name="settings_head_tracking">تفعيل تتبع حركة الرأس</string>
     <string name="settings_head_tracking_description">يضبط موضع الصوت المكاني حسب اتجاه رأسك، باستخدام بيانات الحركة من سماعات AirPods أو نظارات Bose Frames المدعومة أو وحدة قياس بالقصور الذاتي (IMU) خارجية عبر البلوتوث. تتم المعايرة تلقائيًا أثناء المشي.</string>
+    <string name="settings_head_tracking_description_android">يُدير الصوت ثلاثي الأبعاد مع حركة رأسك بدلًا من هاتفك. يعمل مع نظارات Bose Frames، أو مع مستشعر حركة WitMotion عبر البلوتوث تضعه على رأسك. تُستخدم أول 30 ثانية من الحركة لمعايرة تتبع حركة الرأس، وبعدها يُستخدم اتجاه رأسك للتحكم في مواضع جميع الأصوات.</string>
     <string name="settings_show_map">إظهار الخرائط على الشاشة</string>
     <string name="settings_debug_heading">خيارات تصحيح الأخطاء</string>
     <string name="settings_search_results_language">لغة البحث</string>

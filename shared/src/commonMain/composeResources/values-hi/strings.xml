@@ -442,6 +442,8 @@
     <string name="settings_use_value">उपयोग करें</string>
     <string name="street_preview_exit">स्थान सिमुलेशन से बाहर निकलें</string>
     <string name="settings_travel_recording">यात्रा की रिकॉर्डिंग सक्षम करें</string>
+    <string name="settings_alpha_features">अल्फ़ा टेस्ट फ़ीचर सक्षम करें</string>
+    <string name="settings_alpha_features_description">उन फ़ीचर की सेटिंग दिखाएँ जिनका अभी परीक्षण हो रहा है। ये अधूरे या अविश्वसनीय हो सकते हैं।</string>
     <string name="settings_show_map">स्क्रीन पर मानचित्र दिखाएँ</string>
     <string name="settings_debug_heading">डीबग विकल्प</string>
     <string name="settings_search_results_language">खोज भाषा</string>
@@ -1504,6 +1506,7 @@
     <string name="settings_mix_audio_description">यदि अक्षम किया गया है, तो अन्य ऑडियो ऐप्स पॉज़ हो जाएंगे और लॉक‑स्क्रीन मीडिया नियंत्रण उपलब्ध होंगे</string>
     <string name="settings_head_tracking">हेड ट्रैकिंग सक्षम करें</string>
     <string name="settings_head_tracking_description">समर्थित AirPods, Bose Frames या बाहरी ब्लूटूथ IMU से प्राप्त मोशन डेटा का उपयोग करके स्थानिक ऑडियो को आपके सिर की दिशा के सापेक्ष व्यवस्थित करें। चलते समय यह स्वतः कैलिब्रेट हो जाता है।</string>
+    <string name="settings_head_tracking_description_android">3D ऑडियो आपके फ़ोन के बजाय आपके सिर के साथ घूमता है। यह Bose Frames के साथ, या सिर पर पहने जाने वाले WitMotion ब्लूटूथ मोशन सेंसर के साथ काम करता है। चलने-फिरने के पहले 30 सेकंड हेड ट्रैकिंग को कैलिब्रेट करने में लगते हैं, और उसके बाद आपके सिर की दिशा ही सारे ऑडियो की स्थिति तय करती है।</string>
     <string name="sleep_snoozing">स्नूज़ मोड में</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape वर्तमान में स्नूज़ मोड में है। जब आप अपने वर्तमान स्थान को छोड़ेंगे, तो Soundscape स्वचालित रूप से जाग जाएगा। स्नूज़ मोड आपके फ़ोन की बैटरी बचाने के लिए लो‑पावर मोड में स्थान सेवाओं का उपयोग करता है। Soundscape को अभी जगाने के लिए नीचे दिए गए बटन पर टैप करें।</string>
     <string name="sleep_wake_on_leave">जब मैं निकलूँ तब जगाएँ</string>

@@ -509,6 +509,8 @@
     <string name="settings_use_value">usare</string>
     <string name="street_preview_exit">Esci dalla simulazione della posizione</string>
     <string name="settings_travel_recording">Abilitare la registrazione del viaggio</string>
+    <string name="settings_alpha_features">Abilitare le funzioni di test alpha</string>
+    <string name="settings_alpha_features_description">Mostra le impostazioni delle funzioni ancora in fase di test. Potrebbero essere incomplete o poco affidabili.</string>
     <string name="settings_debug_heading">Opzioni di debug</string>
     <string name="menu_share_recorded_route">Condividi la registrazione del viaggio</string>
     <string name="confect_name_to_via">%1$s che porta {it:a %2$s} tramite %3$s</string>
@@ -1520,6 +1522,7 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="settings_mix_audio_description">Se disattivato, le altre app audio verranno messe in pausa e saranno disponibili i controlli multimediali nella schermata di blocco</string>
     <string name="settings_head_tracking">Abilitare il tracciamento della testa</string>
     <string name="settings_head_tracking_description">Posiziona l'audio spaziale in base alla direzione della tua testa, utilizzando i dati di movimento provenienti da AirPods compatibili, Bose Frames o da un IMU Bluetooth esterno. Si calibra automaticamente mentre cammini.</string>
+    <string name="settings_head_tracking_description_android">L'audio 3D ruota con la tua testa invece che con il telefono. Funziona con i Bose Frames o con un sensore di movimento Bluetooth WitMotion indossato sulla testa. I primi 30 secondi di movimento servono a calibrare il tracciamento della testa; dopodiché la direzione della tua testa controlla la posizione di tutto l'audio.</string>
     <string name="sleep_snoozing">In modalità Posponi</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape è attualmente in modalità Posponi. Quando lasci la tua posizione attuale, Soundscape si riattiverà automaticamente. La modalità Posponi utilizza i servizi di localizzazione in modalità a basso consumo per risparmiare la batteria del telefono. Tocca il pulsante qui sotto per riattivarlo ora.</string>
     <string name="sleep_wake_on_leave">Riattiva quando mi allontano</string>

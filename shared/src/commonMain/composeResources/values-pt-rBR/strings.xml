@@ -516,6 +516,8 @@
     <string name="settings_use_value">usar</string>
     <string name="street_preview_exit">Sair da simulação de localização</string>
     <string name="settings_travel_recording">Habilitar a gravação de viagens</string>
+    <string name="settings_alpha_features">Habilitar recursos de teste alfa</string>
+    <string name="settings_alpha_features_description">Mostra as configurações de recursos que ainda estão em teste. Eles podem estar incompletos ou não ser confiáveis.</string>
     <string name="settings_debug_heading">Opções de Depuração</string>
     <string name="menu_share_recorded_route">Compartilhar a gravação de viagens</string>
     <string name="confect_name_to_via">%1$s {pt:para %2$s} via %3$s</string>
@@ -1520,6 +1522,7 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="settings_mix_audio_description">Quando desativado, outros apps de áudio serão pausados e os controles de mídia na tela de bloqueio estarão disponíveis</string>
     <string name="settings_head_tracking">Ativar rastreamento de cabeça</string>
     <string name="settings_head_tracking_description">Posicione o áudio espacial em relação à direção para a qual sua cabeça está voltada, usando dados de movimento de AirPods compatíveis, Bose Frames ou um IMU Bluetooth externo. Calibra automaticamente enquanto você caminha.</string>
+    <string name="settings_head_tracking_description_android">O áudio 3D gira com a sua cabeça em vez de com o celular. Funciona com Bose Frames ou com um sensor de movimento Bluetooth WitMotion usado na cabeça. Os primeiros 30 segundos de movimento são usados para calibrar o rastreamento de cabeça e, depois disso, a direção da sua cabeça controla a posição de todo o áudio.</string>
     <string name="sleep_snoozing">Em Soneca</string>
     <string name="sleep_sleeping_wake_on_leave_message">O Soundscape está em modo Soneca. Ao deixar sua localização atual, o Soundscape despertará automaticamente. O modo Soneca utiliza os Serviços de Localização em modo de baixo consumo para conservar a bateria do seu telefone. Toque no botão abaixo para despertar agora.</string>
     <string name="sleep_wake_on_leave">Despertar quando eu sair</string>

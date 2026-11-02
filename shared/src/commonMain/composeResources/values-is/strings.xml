@@ -524,6 +524,8 @@
     <string name="settings_use_value">nota</string>
     <string name="street_preview_exit">Ljúka staðsetningarhermun</string>
     <string name="settings_travel_recording">Virkja skráningu ferða</string>
+    <string name="settings_alpha_features">Virkja eiginleika í alfaprófun</string>
+    <string name="settings_alpha_features_description">Sýnir stillingar fyrir eiginleika sem enn er verið að prófa. Þeir geta verið ókláraðir eða óáreiðanlegir.</string>
     <string name="settings_show_map">Sýna kort á skjánum</string>
     <string name="settings_debug_heading">Villuleitarmöguleikar</string>
     <string name="settings_search_results_language">Leitartungumál</string>
@@ -1504,6 +1506,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="settings_mix_audio_description">Ef þetta er óvirkt munu önnur hljóðforrit stöðvast og fjölmiðlahnappar á læstum skjá verða tiltækir</string>
     <string name="settings_head_tracking">Virkja höfuðrakningu</string>
     <string name="settings_head_tracking_description">Staðsetur rúmhljóð miðað við þá átt sem höfuðið snýr í, með því að nota hreyfigögn frá studdum AirPods, Bose Frames eða ytri Bluetooth IMU. Stillist sjálfkrafa meðan þú gengur.</string>
+    <string name="settings_head_tracking_description_android">Þrívíddarhljóðið snýst með höfðinu í stað símans. Virkar með Bose Frames eða með WitMotion Bluetooth-hreyfiskynjara sem þú berð á höfðinu. Fyrstu 30 sekúndur hreyfingar eru notaðar til að stilla höfuðrakninguna og eftir það stjórnar stefna höfuðsins staðsetningu alls hljóðs.</string>
     <string name="sleep_snoozing">Í lúra-ham</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape er nú í lúra‑ham. Þegar þú yfirgefur núverandi staðsetningu þína mun Soundscape vekja sig sjálfkrafa. Lúra‑hamur notar staðsetningarþjónustu í lágorkuham til að spara rafhlöðu símans. Bankaðu á hnappinn hér að neðan til að vekja forritið núna.</string>
     <string name="sleep_wake_on_leave">Vakna við brottför</string>

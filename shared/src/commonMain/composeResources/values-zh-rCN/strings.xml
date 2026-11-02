@@ -983,6 +983,8 @@
     <string name="settings_use_value">使用</string>
     <string name="street_preview_exit">退出位置模拟</string>
     <string name="settings_travel_recording">启用行程录制</string>
+    <string name="settings_alpha_features">启用 Alpha 测试功能</string>
+    <string name="settings_alpha_features_description">显示仍在测试中的功能的设置。这些功能可能不完整或不稳定。</string>
     <string name="settings_show_map">在屏幕上显示地图</string>
     <string name="settings_debug_heading">调试选项</string>
     <string name="settings_search_results_language">搜索语言</string>
@@ -1488,6 +1490,7 @@
     <string name="settings_mix_audio_description">禁用时，其他音频应用将被暂停，并且可使用锁屏媒体控制</string>
     <string name="settings_head_tracking">启用头部追踪</string>
     <string name="settings_head_tracking_description">使用支持的 AirPods、Bose Frames 或外部蓝牙惯性测量单元（IMU）的运动数据，将空间音频相对于您头部的朝向定位。行走时会自动校准。</string>
+    <string name="settings_head_tracking_description_android">让 3D 音频随您的头部而不是手机转动。支持 Bose Frames，或戴在头上的 WitMotion 蓝牙运动传感器。开始移动后的前 30 秒用于校准头部追踪，之后所有音频的位置都将由您头部的朝向控制。</string>
     <string name="sleep_snoozing">小睡中</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape 当前处于小睡状态。当您离开当前位置时，Soundscape 会自动唤醒。小睡状态会在低功耗模式下使用定位服务，以节省手机电量。点击下方按钮即可立即唤醒。</string>
     <string name="sleep_wake_on_leave">离开时唤醒</string>

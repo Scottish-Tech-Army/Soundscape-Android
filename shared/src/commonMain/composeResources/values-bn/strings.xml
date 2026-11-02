@@ -1536,10 +1536,13 @@
     <string name="settings_use_value">ব্যবহার করতে</string>
     <string name="street_preview_exit">অবস্থান সিমুলেশন থেকে বের হন</string>
     <string name="settings_travel_recording">ভ্রমণ রেকর্ডিং সক্রিয় করুন</string>
+    <string name="settings_alpha_features">আলফা টেস্টের ফিচার সক্রিয় করুন</string>
+    <string name="settings_alpha_features_description">যে ফিচারগুলো এখনও পরীক্ষা করা হচ্ছে সেগুলোর সেটিংস দেখায়। এগুলো অসম্পূর্ণ বা অনির্ভরযোগ্য হতে পারে।</string>
     <string name="settings_mix_audio">অন্যান্য অ্যাপের সাথে অডিও মিশ্রিত করুন</string>
     <string name="settings_mix_audio_description">নিষ্ক্রিয় থাকলে, অন্যান্য অডিও অ্যাপ বিরতি নেবে এবং লক স্ক্রিন মিডিয়া কন্ট্রোল উপলব্ধ হবে</string>
     <string name="settings_head_tracking">হেড ট্র্যাকিং সক্রিয় করুন</string>
     <string name="settings_head_tracking_description">সমর্থিত AirPods, Bose Frames বা একটি বহিরাগত ব্লুটুথ IMU থেকে গতিবিধি ডেটা ব্যবহার করে, আপনার মাথা যেদিকে মুখ করে আছে তার সাপেক্ষে স্প্যাশিয়াল অডিও অবস্থান নির্ধারণ করে। আপনি হাঁটার সময় স্বয়ংক্রিয়ভাবে ক্যালিব্রেট হয়।</string>
+    <string name="settings_head_tracking_description_android">আপনার ফোনের বদলে আপনার মাথার সাথে 3D অডিও ঘোরে। Bose Frames, অথবা মাথায় পরা একটি WitMotion ব্লুটুথ মোশন সেন্সরের সাথে কাজ করে। চলাচলের প্রথম 30 সেকেন্ড হেড ট্র্যাকিং ক্যালিব্রেট করতে ব্যবহার করা হয়, এবং তারপর থেকে আপনার মাথার দিক দিয়েই সমস্ত অডিওর অবস্থান নিয়ন্ত্রণ করা হয়।</string>
     <string name="settings_show_map">স্ক্রিনে ম্যাপ দেখান</string>
     <string name="settings_debug_heading">ডিবাগ অপশন</string>
     <string name="settings_search_results_language">সার্চ ভাষা</string>

@@ -487,10 +487,13 @@
     <string name="settings_use_value">kasutada</string>
     <string name="street_preview_exit">Välju asukoha simulatsioonist</string>
     <string name="settings_travel_recording">Luba reisi salvestamine</string>
+    <string name="settings_alpha_features">Luba alfatestimise funktsioonid</string>
+    <string name="settings_alpha_features_description">Näitab seadeid funktsioonidele, mida alles testitakse. Need võivad olla poolikud või ebausaldusväärsed.</string>
     <string name="settings_mix_audio">Sega heli teiste rakendustega</string>
     <string name="settings_mix_audio_description">Kui see on välja lülitatud, peatatakse teised helirakendused ja lukustuskuval on saadaval meediumijuhtnupud</string>
     <string name="settings_head_tracking">Luba pea jälgimine</string>
     <string name="settings_head_tracking_description">Positsioneeri ruumiline heli vastavalt pea suunale, kasutades liikumisandmeid toetatud AirPodsidest, Bose Framesist või välisest Bluetooth IMU-st. Kalibreerub automaatselt kõndimise ajal.</string>
+    <string name="settings_head_tracking_description_android">Pöörab 3D-heli koos peaga, mitte telefoniga. Töötab Bose Framesiga või pähe kinnitatud WitMotioni Bluetooth-liikumisanduriga. Esimesed 30 sekundit liikumist kasutatakse pea jälgimise kalibreerimiseks ja seejärel juhib pea suund kogu heli paigutust.</string>
     <string name="settings_show_map">Näita kaarte ekraanil</string>
     <string name="settings_debug_heading">Silumisvalikud</string>
     <string name="settings_search_results_language">Otsingukeel</string>

@@ -1536,10 +1536,13 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="settings_use_value">yi amfani</string>
     <string name="street_preview_exit">Fita daga kwaikwayon wuri</string>
     <string name="settings_travel_recording">Kunna rikodin tafiya</string>
+    <string name="settings_alpha_features">Kunna fasalolin gwajin alpha</string>
+    <string name="settings_alpha_features_description">Nuna saitunan fasalolin da ake ci gaba da gwadawa. Za su iya zama ba su kammala ba ko kuma ba a iya dogara da su ba.</string>
     <string name="settings_mix_audio">Haɗa sauti da sauran manhajoji</string>
     <string name="settings_mix_audio_description">Idan an kashe wannan, sauran manhajojin sauti za su dakata kuma maɓallan sarrafa sauti na allon kulle za su kasance akwai</string>
     <string name="settings_head_tracking">Kunna bin diddigin kai</string>
     <string name="settings_head_tracking_description">Sanya sautin sarari dangane da inda kanku yake fuskanta, ta amfani da bayanan motsi daga AirPods, Bose Frames, ko na'urar IMU ta Bluetooth ta waje da ake goyon baya. Yana daidaitawa kai tsaye yayin da kuke tafiya.</string>
+    <string name="settings_head_tracking_description_android">Sautin 3D yana juyawa da kanku maimakon da wayarku. Yana aiki da Bose Frames, ko da na'urar auna motsi ta Bluetooth ta WitMotion da kuke sawa a kanku. Ana amfani da daƙiƙa 30 na farko na motsi don daidaita bin diddigin kai, kuma bayan haka alkiblar kanku ce za ta sarrafa matsayin dukkan sautuka.</string>
     <string name="settings_show_map">Nuna taswira a allo</string>
     <string name="settings_debug_heading">Zaɓuɓɓukan Gyaran Kwaro</string>
     <string name="settings_search_results_language">Harshen Bincike</string>

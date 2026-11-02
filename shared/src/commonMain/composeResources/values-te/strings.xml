@@ -1536,10 +1536,13 @@
     <string name="settings_use_value">ఉపయోగించడానికి</string>
     <string name="street_preview_exit">లొకేషన్ సిమ్యులేషన్ నుండి నిష్క్రమించండి</string>
     <string name="settings_travel_recording">ప్రయాణ రికార్డింగ్‌ను ప్రారంభించండి</string>
+    <string name="settings_alpha_features">ఆల్ఫా టెస్ట్ ఫీచర్‌లను ప్రారంభించండి</string>
+    <string name="settings_alpha_features_description">ఇంకా పరీక్షిస్తున్న ఫీచర్‌ల సెట్టింగ్‌లను చూపుతుంది. అవి అసంపూర్ణంగా లేదా నమ్మదగనివిగా ఉండవచ్చు.</string>
     <string name="settings_mix_audio">ఇతర యాప్‌లతో ఆడియోను మిక్స్ చేయండి</string>
     <string name="settings_mix_audio_description">నిలిపివేసినప్పుడు, ఇతర ఆడియో యాప్‌లు పాజ్ అవుతాయి మరియు లాక్ స్క్రీన్ మీడియా కంట్రోల్‌లు అందుబాటులో ఉంటాయి</string>
     <string name="settings_head_tracking">హెడ్ ట్రాకింగ్‌ను ప్రారంభించండి</string>
     <string name="settings_head_tracking_description">మద్దతు ఇచ్చే AirPods, Bose Frames లేదా బాహ్య బ్లూటూత్ IMU నుండి మోషన్ డేటాను ఉపయోగించి, మీ తల తిరిగి ఉన్న దిశకు సంబంధించి స్పేషియల్ ఆడియోను ఉంచుతుంది. మీరు నడుస్తున్నప్పుడు స్వయంచాలకంగా కాలిబ్రేట్ అవుతుంది.</string>
+    <string name="settings_head_tracking_description_android">3D ఆడియో మీ ఫోన్‌తో కాకుండా మీ తలతో పాటు తిరుగుతుంది. Bose Frames తో, లేదా తలపై ధరించే WitMotion బ్లూటూత్ మోషన్ సెన్సార్‌తో పనిచేస్తుంది. కదలిక మొదలైన మొదటి 30 సెకన్లు హెడ్ ట్రాకింగ్‌ను కాలిబ్రేట్ చేయడానికి ఉపయోగించబడతాయి, ఆ తర్వాత మీ తల దిశే అన్ని ఆడియోల స్థానాన్ని నియంత్రిస్తుంది.</string>
     <string name="settings_show_map">స్క్రీన్‌పై మ్యాప్‌లను చూపించండి</string>
     <string name="settings_debug_heading">డీబగ్ ఆప్షన్‌లు</string>
     <string name="settings_search_results_language">శోధన భాష</string>

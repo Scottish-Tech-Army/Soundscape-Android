@@ -812,10 +812,13 @@
     <string name="settings_use_value">वापरा</string>
     <string name="street_preview_exit">स्थान सिम्युलेशनमधून बाहेर पडा</string>
     <string name="settings_travel_recording">प्रवासाचे रेकॉर्डिंग सक्षम करा</string>
+    <string name="settings_alpha_features">अल्फा चाचणी वैशिष्ट्ये सक्षम करा</string>
+    <string name="settings_alpha_features_description">अजूनही चाचणी सुरू असलेल्या वैशिष्ट्यांची सेटिंग्ज दाखवा. ती अपूर्ण किंवा अविश्वसनीय असू शकतात.</string>
     <string name="settings_mix_audio">इतर अॅप्ससोबत ऑडिओ मिक्स करा</string>
     <string name="settings_mix_audio_description">अक्षम केल्यास, इतर ऑडिओ अॅप्स थांबतील आणि लॉक स्क्रीनवर मीडिया नियंत्रणे उपलब्ध होतील</string>
     <string name="settings_head_tracking">हेड ट्रॅकिंग सक्षम करा</string>
     <string name="settings_head_tracking_description">समर्थित AirPods, Bose Frames किंवा बाह्य ब्लूटूथ IMU मधील गती डेटा वापरून, तुमचे डोके ज्या दिशेला वळलेले आहे त्यानुसार स्पेशियल ऑडिओ स्थानबद्ध करा. तुम्ही चालत असताना ते आपोआप कॅलिब्रेट होते.</string>
+    <string name="settings_head_tracking_description_android">3D ऑडिओ तुमच्या फोनऐवजी तुमच्या डोक्यासोबत फिरतो. हे Bose Frames सोबत, किंवा डोक्यावर घातलेल्या WitMotion ब्लूटूथ मोशन सेन्सरसोबत काम करते. हालचालीचे पहिले 30 सेकंद हेड ट्रॅकिंग कॅलिब्रेट करण्यासाठी वापरले जातात, आणि त्यानंतर तुमच्या डोक्याची दिशा सर्व ऑडिओचे स्थान नियंत्रित करते.</string>
     <string name="settings_show_map">स्क्रीनवर नकाशे दाखवा</string>
     <string name="settings_debug_heading">डीबग पर्याय</string>
     <string name="settings_search_results_language">शोध भाषा</string>

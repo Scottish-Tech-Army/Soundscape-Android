@@ -1536,10 +1536,13 @@
     <string name="settings_use_value">استعمال کریں</string>
     <string name="street_preview_exit">مقام کی نقالی سے باہر نکلیں</string>
     <string name="settings_travel_recording">سفر کی ریکارڈنگ فعال کریں</string>
+    <string name="settings_alpha_features">الفا ٹیسٹ کی خصوصیات فعال کریں</string>
+    <string name="settings_alpha_features_description">ان خصوصیات کی ترتیبات دکھائیں جن کی ابھی جانچ ہو رہی ہے۔ یہ نامکمل یا ناقابلِ اعتماد ہو سکتی ہیں۔</string>
     <string name="settings_mix_audio">دوسری ایپس کے ساتھ آڈیو مکس کریں</string>
     <string name="settings_mix_audio_description">غیر فعال ہونے پر، دیگر آڈیو ایپس رک جائیں گی اور لاک اسکرین میڈیا کنٹرولز دستیاب ہوں گے</string>
     <string name="settings_head_tracking">ہیڈ ٹریکنگ فعال کریں</string>
     <string name="settings_head_tracking_description">معاون AirPods، Bose Frames، یا بیرونی بلوٹوتھ IMU سے حرکت کے ڈیٹا کا استعمال کرتے ہوئے، مکانی آڈیو کو آپ کے سر کے رخ کے مطابق ترتیب دیں۔ یہ چلتے وقت خودکار طور پر کیلیبریٹ ہو جاتا ہے۔</string>
+    <string name="settings_head_tracking_description_android">3D آڈیو آپ کے فون کے بجائے آپ کے سر کے ساتھ گھومتا ہے۔ یہ Bose Frames کے ساتھ، یا سر پر پہنے گئے WitMotion بلوٹوتھ موشن سینسر کے ساتھ کام کرتا ہے۔ حرکت کے پہلے 30 سیکنڈ ہیڈ ٹریکنگ کو کیلیبریٹ کرنے کے لیے استعمال ہوتے ہیں، اور اس کے بعد آپ کے سر کی سمت تمام آڈیو کی جگہ کو کنٹرول کرتی ہے۔</string>
     <string name="settings_show_map">اسکرین پر نقشے دکھائیں</string>
     <string name="settings_debug_heading">ڈیبگ کے اختیارات</string>
     <string name="settings_search_results_language">تلاش کی زبان</string>

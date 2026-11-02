@@ -526,6 +526,8 @@
     <string name="settings_use_value">użyj</string>
     <string name="street_preview_exit">Zakończ podgląd lokalizacji</string>
     <string name="settings_travel_recording">Włącz rejestrowanie podróży</string>
+    <string name="settings_alpha_features">Włącz funkcje testów alfa</string>
+    <string name="settings_alpha_features_description">Pokazuje ustawienia funkcji, które są jeszcze testowane. Mogą być niedokończone lub zawodne.</string>
     <string name="settings_show_map">Wyświetlaj mapy na ekranie</string>
     <string name="settings_debug_heading">Opcje debugowania</string>
     <string name="settings_search_results_language">Język wyszukiwania</string>
@@ -1536,6 +1538,7 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="settings_mix_audio_description">Gdy wyłączone, inne aplikacje audio zostaną wstrzymane, a na ekranie blokady będzie dostępne sterowanie mediami</string>
     <string name="settings_head_tracking">Włącz śledzenie ruchu głowy</string>
     <string name="settings_head_tracking_description">Ustawia dźwięk przestrzenny względem kierunku, w którym zwrócona jest Twoja głowa, korzystając z danych ruchu pochodzących z obsługiwanych słuchawek AirPods, okularów Bose Frames lub zewnętrznego modułu IMU przez Bluetooth. Kalibruje się automatycznie podczas marszu.</string>
+    <string name="settings_head_tracking_description_android">Dźwięk 3D obraca się razem z Twoją głową, a nie z telefonem. Działa z okularami Bose Frames lub z czujnikiem ruchu Bluetooth WitMotion noszonym na głowie. Pierwsze 30 sekund ruchu służy do kalibracji śledzenia ruchu głowy, a potem kierunek Twojej głowy decyduje o położeniu wszystkich dźwięków.</string>
     <string name="sleep_snoozing">Tryb drzemki</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape jest obecnie w trybie drzemki. Po opuszczeniu bieżącej lokalizacji Soundscape obudzi się automatycznie. Tryb drzemki wykorzystuje Usługi lokalizacji w trybie niskiego zużycia energii, aby oszczędzać baterię telefonu. Stuknij przycisk poniżej, aby obudzić Soundscape teraz.</string>
     <string name="sleep_wake_on_leave">Obudź mnie, gdy opuszczę to miejsce</string>
