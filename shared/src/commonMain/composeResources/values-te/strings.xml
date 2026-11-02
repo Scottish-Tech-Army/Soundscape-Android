@@ -1543,6 +1543,12 @@
     <string name="settings_head_tracking">హెడ్ ట్రాకింగ్‌ను ప్రారంభించండి</string>
     <string name="settings_head_tracking_description">మద్దతు ఇచ్చే AirPods, Bose Frames లేదా బాహ్య బ్లూటూత్ IMU నుండి మోషన్ డేటాను ఉపయోగించి, మీ తల తిరిగి ఉన్న దిశకు సంబంధించి స్పేషియల్ ఆడియోను ఉంచుతుంది. మీరు నడుస్తున్నప్పుడు స్వయంచాలకంగా కాలిబ్రేట్ అవుతుంది.</string>
     <string name="settings_head_tracking_description_android">3D ఆడియో మీ ఫోన్‌తో కాకుండా మీ తలతో పాటు తిరుగుతుంది. Bose Frames తో, లేదా తలపై ధరించే WitMotion బ్లూటూత్ మోషన్ సెన్సార్‌తో పనిచేస్తుంది. కదలిక మొదలైన మొదటి 30 సెకన్లు హెడ్ ట్రాకింగ్‌ను కాలిబ్రేట్ చేయడానికి ఉపయోగించబడతాయి, ఆ తర్వాత మీ తల దిశే అన్ని ఆడియోల స్థానాన్ని నియంత్రిస్తుంది.</string>
+    <string name="head_tracker_connected">%1$s హెడ్ ట్రాకర్ కనెక్ట్ అయింది</string>
+    <string name="head_tracker_connected_battery">%1$s హెడ్ ట్రాకర్ కనెక్ట్ అయింది, బ్యాటరీ %2$d శాతం</string>
+    <string name="head_tracker_calibrated">హెడ్ ట్రాకింగ్ కాలిబ్రేట్ అయింది, ఇప్పుడు మీ తల దిశ ఆడియోను నియంత్రిస్తుంది</string>
+    <string name="head_tracker_disconnected">%1$s హెడ్ ట్రాకర్ డిస్‌కనెక్ట్ అయింది</string>
+    <string name="head_tracker_battery_low">హెడ్ ట్రాకర్ బ్యాటరీ తక్కువగా ఉంది, %1$d శాతం</string>
+    <string name="head_tracker_status_searching">హెడ్ ట్రాకర్ కోసం వెతుకుతోంది</string>
     <string name="settings_show_map">స్క్రీన్‌పై మ్యాప్‌లను చూపించండి</string>
     <string name="settings_debug_heading">డీబగ్ ఆప్షన్‌లు</string>
     <string name="settings_search_results_language">శోధన భాష</string>

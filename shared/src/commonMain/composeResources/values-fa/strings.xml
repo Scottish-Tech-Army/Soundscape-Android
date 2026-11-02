@@ -1508,6 +1508,12 @@
     <string name="settings_head_tracking">فعال‌سازی ردیابی سر</string>
     <string name="settings_head_tracking_description">صدای فضایی را نسبت به جهتی که سر شما به آن است موقعیت‌دهی می‌کند، با استفاده از داده‌های حرکتی ارائه‌شده توسط AirPods یا Bose Framesِ پشتیبانی‌شده یا یک IMU بلوتوثی خارجی. در حین راه‌رفتن به‌طور خودکار کالیبره می‌شود.</string>
     <string name="settings_head_tracking_description_android">صدای سه‌بعدی را به‌جای گوشی با سر شما می‌چرخاند. با Bose Frames یا با یک حسگر حرکتی بلوتوثی WitMotion که روی سر می‌گذارید کار می‌کند. 30 ثانیهٔ اول حرکت برای کالیبره کردن ردیابی سر استفاده می‌شود و پس از آن جهت سر شما موقعیت همهٔ صداها را کنترل می‌کند.</string>
+    <string name="head_tracker_connected">ردیاب سر %1$s وصل شد</string>
+    <string name="head_tracker_connected_battery">ردیاب سر %1$s وصل شد، باتری %2$d درصد</string>
+    <string name="head_tracker_calibrated">ردیابی سر کالیبره شد، اکنون جهت سر شما صدا را کنترل می‌کند</string>
+    <string name="head_tracker_disconnected">اتصال ردیاب سر %1$s قطع شد</string>
+    <string name="head_tracker_battery_low">باتری ردیاب سر ضعیف است، %1$d درصد</string>
+    <string name="head_tracker_status_searching">در حال جستجوی ردیاب سر</string>
     <string name="sleep_snoozing">در حالت چرت</string>
     <string name="sleep_sleeping_wake_on_leave_message">ساند‌اسکیپ در حال حاضر در حالت چرت قرار دارد. وقتی محل فعلی خود را ترک کنید، ساند‌اسکیپ به‌طور خودکار بیدار خواهد شد. حالت چرت از خدمات مکان‌یابی در وضعیت کم‌مصرف استفاده می‌کند تا باتری گوشی شما حفظ شود. برای بیدار کردن الآن، روی دکمه‌ی زیر ضربه بزنید.</string>
     <string name="sleep_wake_on_leave">بیدار شدن هنگام ترک محل</string>

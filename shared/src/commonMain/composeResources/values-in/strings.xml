@@ -1527,6 +1527,12 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="settings_head_tracking">Aktifkan pelacakan kepala</string>
     <string name="settings_head_tracking_description">Posisikan audio spasial relatif terhadap arah hadap kepala Anda, menggunakan data gerakan dari AirPods, Bose Frames yang didukung, atau IMU Bluetooth eksternal. Terkalibrasi secara otomatis saat Anda berjalan.</string>
     <string name="settings_head_tracking_description_android">Audio 3D berputar mengikuti kepala Anda, bukan ponsel Anda. Berfungsi dengan Bose Frames, atau dengan sensor gerak Bluetooth WitMotion yang dipakai di kepala. 30 detik pertama saat bergerak digunakan untuk mengkalibrasi pelacakan kepala, dan setelah itu arah kepala Anda akan mengendalikan posisi semua audio.</string>
+    <string name="head_tracker_connected">Pelacak kepala %1$s terhubung</string>
+    <string name="head_tracker_connected_battery">Pelacak kepala %1$s terhubung, baterai %2$d persen</string>
+    <string name="head_tracker_calibrated">Pelacakan kepala sudah terkalibrasi, kini arah kepala Anda mengendalikan audio</string>
+    <string name="head_tracker_disconnected">Pelacak kepala %1$s terputus</string>
+    <string name="head_tracker_battery_low">Baterai pelacak kepala lemah, %1$d persen</string>
+    <string name="head_tracker_status_searching">Mencari pelacak kepala</string>
     <string name="settings_show_map">Tampilkan peta di layar</string>
     <string name="settings_debug_heading">Opsi debug</string>
     <string name="settings_search_results_language">Bahasa pencarian</string>

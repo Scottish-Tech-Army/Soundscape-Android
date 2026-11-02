@@ -819,6 +819,12 @@
     <string name="settings_head_tracking">हेड ट्रॅकिंग सक्षम करा</string>
     <string name="settings_head_tracking_description">समर्थित AirPods, Bose Frames किंवा बाह्य ब्लूटूथ IMU मधील गती डेटा वापरून, तुमचे डोके ज्या दिशेला वळलेले आहे त्यानुसार स्पेशियल ऑडिओ स्थानबद्ध करा. तुम्ही चालत असताना ते आपोआप कॅलिब्रेट होते.</string>
     <string name="settings_head_tracking_description_android">3D ऑडिओ तुमच्या फोनऐवजी तुमच्या डोक्यासोबत फिरतो. हे Bose Frames सोबत, किंवा डोक्यावर घातलेल्या WitMotion ब्लूटूथ मोशन सेन्सरसोबत काम करते. हालचालीचे पहिले 30 सेकंद हेड ट्रॅकिंग कॅलिब्रेट करण्यासाठी वापरले जातात, आणि त्यानंतर तुमच्या डोक्याची दिशा सर्व ऑडिओचे स्थान नियंत्रित करते.</string>
+    <string name="head_tracker_connected">%1$s हेड ट्रॅकर कनेक्ट झाला</string>
+    <string name="head_tracker_connected_battery">%1$s हेड ट्रॅकर कनेक्ट झाला, बॅटरी %2$d टक्के</string>
+    <string name="head_tracker_calibrated">हेड ट्रॅकिंग कॅलिब्रेट झाले, आता तुमच्या डोक्याची दिशा ऑडिओ नियंत्रित करते</string>
+    <string name="head_tracker_disconnected">%1$s हेड ट्रॅकर डिस्कनेक्ट झाला</string>
+    <string name="head_tracker_battery_low">हेड ट्रॅकरची बॅटरी कमी आहे, %1$d टक्के</string>
+    <string name="head_tracker_status_searching">हेड ट्रॅकर शोधत आहे</string>
     <string name="settings_show_map">स्क्रीनवर नकाशे दाखवा</string>
     <string name="settings_debug_heading">डीबग पर्याय</string>
     <string name="settings_search_results_language">शोध भाषा</string>

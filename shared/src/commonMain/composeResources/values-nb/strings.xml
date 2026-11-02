@@ -1507,6 +1507,12 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="settings_head_tracking">Aktiver hodesporing</string>
     <string name="settings_head_tracking_description">Posisjoner den romlige lyden i forhold til hvilken retning hodet ditt peker ved å bruke bevegelsesdata fra støttede AirPods, Bose Frames eller en ekstern Bluetooth‑IMU. Kalibreres automatisk mens du går.</string>
     <string name="settings_head_tracking_description_android">Snu 3D-lyden med hodet i stedet for telefonen. Fungerer med Bose Frames eller med en WitMotion Bluetooth-bevegelsessensor som du har på hodet. De første 30 sekundene med bevegelse brukes til å kalibrere hodesporingen, og deretter styrer retningen på hodet ditt plasseringen av all lyd.</string>
+    <string name="head_tracker_connected">%1$s-hodesporingsenhet tilkoblet</string>
+    <string name="head_tracker_connected_battery">%1$s-hodesporingsenhet tilkoblet, batteri %2$d prosent</string>
+    <string name="head_tracker_calibrated">Hodesporingen er kalibrert, nå styrer retningen på hodet ditt lyden</string>
+    <string name="head_tracker_disconnected">%1$s-hodesporingsenhet frakoblet</string>
+    <string name="head_tracker_battery_low">Lavt batteri på hodesporingsenheten, %1$d prosent</string>
+    <string name="head_tracker_status_searching">Søker etter en hodesporingsenhet</string>
     <string name="sleep_snoozing">I pausemodus</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape er for øyeblikket i pausemodus. Når du forlater din nåværende posisjon, vil Soundscape våkne automatisk. Pausemodus bruker Stedstjenester i lavstrømsmodus for å spare telefonens batteri. Trykk på knappen nedenfor for å vekke Soundscape nå.</string>
     <string name="sleep_wake_on_leave">Vekk meg når jeg forlater stedet</string>

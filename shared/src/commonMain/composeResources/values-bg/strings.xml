@@ -1503,6 +1503,12 @@
     <string name="settings_head_tracking">Разреши проследяване на главата</string>
     <string name="settings_head_tracking_description">Позиционира пространственото аудио спрямо посоката, в която е обърната главата ви, като използва данни за движение от поддържани AirPods, Bose Frames или външен Bluetooth IMU. Калибрира се автоматично, докато вървите.</string>
     <string name="settings_head_tracking_description_android">Завърта 3D звука спрямо главата ви вместо спрямо телефона. Работи с Bose Frames или с Bluetooth сензор за движение WitMotion, носен на главата. Първите 30 секунди движение се използват за калибриране на проследяването на главата, след което посоката на главата ви управлява позиционирането на целия звук.</string>
+    <string name="head_tracker_connected">Сензорът за проследяване на главата %1$s е свързан</string>
+    <string name="head_tracker_connected_battery">Сензорът за проследяване на главата %1$s е свързан, батерия %2$d процента</string>
+    <string name="head_tracker_calibrated">Проследяването на главата е калибрирано, посоката на главата ви вече управлява звука</string>
+    <string name="head_tracker_disconnected">Сензорът за проследяване на главата %1$s е изключен</string>
+    <string name="head_tracker_battery_low">Батерията на сензора за проследяване на главата е слаба, %1$d процента</string>
+    <string name="head_tracker_status_searching">Търсене на сензор за проследяване на главата</string>
     <string name="settings_show_map">Показвай карти на екрана</string>
     <string name="settings_debug_heading">Опции за отстраняване на грешки</string>
     <string name="settings_search_results_language">Език на търсенето</string>

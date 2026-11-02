@@ -1539,6 +1539,12 @@
     <string name="settings_head_tracking">Увімкнути відстеження голови</string>
     <string name="settings_head_tracking_description">Розміщуйте просторове аудіо відносно напрямку, у який повернена ваша голова, використовуючи дані руху від підтримуваних AirPods, Bose Frames або зовнішнього Bluetooth IMU. Калібрується автоматично під час ходьби.</string>
     <string name="settings_head_tracking_description_android">Повертає 3D‑звук разом із вашою головою, а не з телефоном. Працює з Bose Frames або з Bluetooth‑датчиком руху WitMotion, закріпленим на голові. Перші 30 секунд руху використовуються для калібрування відстеження голови, а потім розташування всіх звуків визначає напрямок вашої голови.</string>
+    <string name="head_tracker_connected">Датчик відстеження голови %1$s підключено</string>
+    <string name="head_tracker_connected_battery">Датчик відстеження голови %1$s підключено, заряд %2$d відсотків</string>
+    <string name="head_tracker_calibrated">Відстеження голови відкалібровано, тепер звуком керує напрямок вашої голови</string>
+    <string name="head_tracker_disconnected">Датчик відстеження голови %1$s відключено</string>
+    <string name="head_tracker_battery_low">Низький заряд датчика відстеження голови, %1$d відсотків</string>
+    <string name="head_tracker_status_searching">Пошук датчика відстеження голови</string>
     <string name="sleep_snoozing">У режимі Дрімоти</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape наразі перебуває в режимі дрімоти. Коли ви покинете поточне місцезнаходження, Soundscape автоматично прокинеться. У режимі дрімоти служби визначення місцезнаходження працюють в енергозберігаючому режимі, щоб зберегти заряд акумулятора вашого телефона. Натисніть кнопку нижче, щоб розбудити зараз.</string>
     <string name="sleep_wake_on_leave">Розбудити при виході</string>

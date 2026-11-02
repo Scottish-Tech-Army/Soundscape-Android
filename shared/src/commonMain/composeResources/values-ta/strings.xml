@@ -1543,6 +1543,12 @@
     <string name="settings_head_tracking">தலை கண்காணிப்பை இயக்கு</string>
     <string name="settings_head_tracking_description">ஆதரிக்கப்படும் AirPods, Bose Frames அல்லது வெளிப்புற Bluetooth IMU இலிருந்து இயக்கத் தரவைப் பயன்படுத்தி, உங்கள் தலை எதிர்நோக்கும் திசைக்கு ஏற்ப இடவியல் ஆடியோவை நிலைநிறுத்தும். நீங்கள் நடக்கும்போது தானாகவே அளவீடு செய்யும்.</string>
     <string name="settings_head_tracking_description_android">3D ஆடியோ உங்கள் ஃபோனுக்குப் பதிலாக உங்கள் தலையுடன் திரும்பும். Bose Frames உடன், அல்லது தலையில் அணியும் WitMotion Bluetooth இயக்க சென்சாருடன் வேலை செய்யும். நகரத் தொடங்கிய முதல் 30 வினாடிகள் தலை கண்காணிப்பை அளவீடு செய்யப் பயன்படும், அதன் பிறகு உங்கள் தலையின் திசையே எல்லா ஆடியோவின் நிலையையும் கட்டுப்படுத்தும்.</string>
+    <string name="head_tracker_connected">%1$s தலை கண்காணிப்புக் கருவி இணைக்கப்பட்டது</string>
+    <string name="head_tracker_connected_battery">%1$s தலை கண்காணிப்புக் கருவி இணைக்கப்பட்டது, பேட்டரி %2$d சதவீதம்</string>
+    <string name="head_tracker_calibrated">தலை கண்காணிப்பு அளவீடு செய்யப்பட்டது, இப்போது உங்கள் தலையின் திசை ஆடியோவைக் கட்டுப்படுத்துகிறது</string>
+    <string name="head_tracker_disconnected">%1$s தலை கண்காணிப்புக் கருவியின் இணைப்பு துண்டிக்கப்பட்டது</string>
+    <string name="head_tracker_battery_low">தலை கண்காணிப்புக் கருவியின் பேட்டரி குறைவாக உள்ளது, %1$d சதவீதம்</string>
+    <string name="head_tracker_status_searching">தலை கண்காணிப்புக் கருவியைத் தேடுகிறது</string>
     <string name="settings_show_map">திரையில் வரைபடங்களைக் காட்டு</string>
     <string name="settings_debug_heading">பிழைதிருத்த விருப்பங்கள்</string>
     <string name="settings_search_results_language">தேடல் மொழி</string>

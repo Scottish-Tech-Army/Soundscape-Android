@@ -1527,6 +1527,12 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="settings_head_tracking">Bật theo dõi chuyển động đầu</string>
     <string name="settings_head_tracking_description">Định vị âm thanh không gian theo hướng đầu của bạn, sử dụng dữ liệu chuyển động từ AirPods, Bose Frames được hỗ trợ, hoặc một cảm biến IMU Bluetooth bên ngoài. Tự động hiệu chỉnh trong khi bạn đi bộ.</string>
     <string name="settings_head_tracking_description_android">Âm thanh 3D sẽ xoay theo đầu của bạn thay vì theo điện thoại. Hoạt động với Bose Frames, hoặc với cảm biến chuyển động Bluetooth WitMotion đeo trên đầu. 30 giây di chuyển đầu tiên được dùng để hiệu chỉnh tính năng theo dõi chuyển động đầu, sau đó hướng đầu của bạn sẽ điều khiển vị trí của mọi âm thanh.</string>
+    <string name="head_tracker_connected">Đã kết nối thiết bị theo dõi chuyển động đầu %1$s</string>
+    <string name="head_tracker_connected_battery">Đã kết nối thiết bị theo dõi chuyển động đầu %1$s, pin %2$d phần trăm</string>
+    <string name="head_tracker_calibrated">Đã hiệu chỉnh tính năng theo dõi chuyển động đầu, giờ hướng đầu của bạn điều khiển âm thanh</string>
+    <string name="head_tracker_disconnected">Đã ngắt kết nối thiết bị theo dõi chuyển động đầu %1$s</string>
+    <string name="head_tracker_battery_low">Pin thiết bị theo dõi chuyển động đầu yếu, %1$d phần trăm</string>
+    <string name="head_tracker_status_searching">Đang tìm thiết bị theo dõi chuyển động đầu</string>
     <string name="settings_show_map">Hiện bản đồ trên màn hình</string>
     <string name="settings_debug_heading">Tùy chọn gỡ lỗi</string>
     <string name="settings_search_results_language">Ngôn ngữ tìm kiếm</string>

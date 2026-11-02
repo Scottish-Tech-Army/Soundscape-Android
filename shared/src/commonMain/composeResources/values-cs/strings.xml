@@ -1339,6 +1339,12 @@
     <string name="settings_head_tracking">Povolit sledování polohy hlavy</string>
     <string name="settings_head_tracking_description">Umístí prostorový zvuk vzhledem ke směru, kterým je natočena vaše hlava, pomocí pohybových dat z podporovaných AirPods, Bose Frames nebo externí Bluetooth IMU jednotky. Automaticky se kalibruje během chůze.</string>
     <string name="settings_head_tracking_description_android">Otáčí 3D zvuk podle vaší hlavy místo podle telefonu. Funguje s brýlemi Bose Frames nebo s Bluetooth senzorem pohybu WitMotion, který nosíte na hlavě. Prvních 30 sekund pohybu slouží ke kalibraci sledování polohy hlavy a poté směr vaší hlavy určuje umístění veškerého zvuku.</string>
+    <string name="head_tracker_connected">Snímač polohy hlavy %1$s připojen</string>
+    <string name="head_tracker_connected_battery">Snímač polohy hlavy %1$s připojen, baterie %2$d procent</string>
+    <string name="head_tracker_calibrated">Sledování polohy hlavy je zkalibrováno, zvuk se nyní řídí směrem vaší hlavy</string>
+    <string name="head_tracker_disconnected">Snímač polohy hlavy %1$s odpojen</string>
+    <string name="head_tracker_battery_low">Slabá baterie snímače polohy hlavy, %1$d procent</string>
+    <string name="head_tracker_status_searching">Hledá se snímač polohy hlavy</string>
     <string name="settings_show_map">Zobrazit mapy na obrazovce</string>
     <string name="settings_debug_heading">Ladicí možnosti</string>
     <string name="settings_search_results_language">Jazyk vyhledávání</string>

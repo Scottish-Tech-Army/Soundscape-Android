@@ -1507,6 +1507,12 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="settings_head_tracking">Baş takibini etkinleştir</string>
     <string name="settings_head_tracking_description">Desteklenen AirPods, Bose Frames veya harici bir Bluetooth IMU'dan gelen hareket verilerini kullanarak mekânsal sesi başınızın baktığı yöne göre konumlandırır. Yürürken otomatik olarak kalibre olur.</string>
     <string name="settings_head_tracking_description_android">3D sesi telefonunuz yerine başınızla birlikte döndürür. Bose Frames ile ya da başınıza taktığınız bir WitMotion Bluetooth hareket sensörüyle çalışır. Hareketin ilk 30 saniyesi baş takibini kalibre etmek için kullanılır; bundan sonra tüm seslerin konumunu başınızın yönü belirler.</string>
+    <string name="head_tracker_connected">%1$s baş takip cihazı bağlandı</string>
+    <string name="head_tracker_connected_battery">%1$s baş takip cihazı bağlandı, pil yüzde %2$d</string>
+    <string name="head_tracker_calibrated">Baş takibi kalibre edildi, artık sesi başınızın yönü kontrol ediyor</string>
+    <string name="head_tracker_disconnected">%1$s baş takip cihazının bağlantısı kesildi</string>
+    <string name="head_tracker_battery_low">Baş takip cihazının pili zayıf, yüzde %1$d</string>
+    <string name="head_tracker_status_searching">Baş takip cihazı aranıyor</string>
     <string name="sleep_snoozing">Erteleme Modu'nda</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape şu anda erteleme modunda. Mevcut konumunuzdan ayrıldığınızda Soundscape otomatik olarak uyanacaktır. Erteleme modu, telefonunuzun pilini korumak için Konum Hizmetleri'ni düşük güç modunda kullanır. Şimdi uyandırmak için aşağıdaki düğmeye dokunun.</string>
     <string name="sleep_wake_on_leave">Ayrıldığımda Uyandır</string>

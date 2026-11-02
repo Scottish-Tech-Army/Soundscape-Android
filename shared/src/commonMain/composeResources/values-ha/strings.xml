@@ -1543,6 +1543,12 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="settings_head_tracking">Kunna bin diddigin kai</string>
     <string name="settings_head_tracking_description">Sanya sautin sarari dangane da inda kanku yake fuskanta, ta amfani da bayanan motsi daga AirPods, Bose Frames, ko na'urar IMU ta Bluetooth ta waje da ake goyon baya. Yana daidaitawa kai tsaye yayin da kuke tafiya.</string>
     <string name="settings_head_tracking_description_android">Sautin 3D yana juyawa da kanku maimakon da wayarku. Yana aiki da Bose Frames, ko da na'urar auna motsi ta Bluetooth ta WitMotion da kuke sawa a kanku. Ana amfani da daƙiƙa 30 na farko na motsi don daidaita bin diddigin kai, kuma bayan haka alkiblar kanku ce za ta sarrafa matsayin dukkan sautuka.</string>
+    <string name="head_tracker_connected">An haɗa na'urar bin diddigin kai ta %1$s</string>
+    <string name="head_tracker_connected_battery">An haɗa na'urar bin diddigin kai ta %1$s, baturi kashi %2$d</string>
+    <string name="head_tracker_calibrated">An daidaita bin diddigin kai, yanzu alkiblar kanku ce ke sarrafa sautin</string>
+    <string name="head_tracker_disconnected">Na'urar bin diddigin kai ta %1$s ta katse</string>
+    <string name="head_tracker_battery_low">Baturin na'urar bin diddigin kai ya yi ƙasa, kashi %1$d</string>
+    <string name="head_tracker_status_searching">Ana neman na'urar bin diddigin kai</string>
     <string name="settings_show_map">Nuna taswira a allo</string>
     <string name="settings_debug_heading">Zaɓuɓɓukan Gyaran Kwaro</string>
     <string name="settings_search_results_language">Harshen Bincike</string>

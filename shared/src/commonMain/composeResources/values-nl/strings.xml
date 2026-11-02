@@ -1507,6 +1507,12 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="settings_head_tracking">Hoofdtracking inschakelen</string>
     <string name="settings_head_tracking_description">Plaats ruimtelijke audio ten opzichte van de richting waarin uw hoofd is gericht, met behulp van bewegingsgegevens van ondersteunde AirPods, Bose Frames of een externe Bluetooth‑IMU. Kalibreert automatisch terwijl u loopt.</string>
     <string name="settings_head_tracking_description_android">Draai de 3D‑audio mee met uw hoofd in plaats van met uw telefoon. Werkt met Bose Frames of met een WitMotion Bluetooth‑bewegingssensor die u op uw hoofd draagt. De eerste 30 seconden van bewegen worden gebruikt om de hoofdtracking te kalibreren, en daarna bepaalt de richting van uw hoofd de positie van alle audio.</string>
+    <string name="head_tracker_connected">%1$s-hoofdtracker verbonden</string>
+    <string name="head_tracker_connected_battery">%1$s-hoofdtracker verbonden, batterij %2$d procent</string>
+    <string name="head_tracker_calibrated">Hoofdtracking gekalibreerd, de richting van uw hoofd bepaalt nu de audio</string>
+    <string name="head_tracker_disconnected">%1$s-hoofdtracker losgekoppeld</string>
+    <string name="head_tracker_battery_low">Batterij van de hoofdtracker bijna leeg, %1$d procent</string>
+    <string name="head_tracker_status_searching">Zoeken naar een hoofdtracker</string>
     <string name="sleep_snoozing">Sluimerstand</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape staat momenteel in de sluimerstand. Wanneer u uw huidige locatie verlaat, wordt Soundscape automatisch weer gewekt. In de sluimerstand worden Locatievoorzieningen in een zuinige modus gebruikt om de batterij van uw telefoon te sparen. Tik op de knop hieronder om Soundscape nu te wekken.</string>
     <string name="sleep_wake_on_leave">Wek bij vertrek</string>

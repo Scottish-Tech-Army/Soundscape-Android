@@ -1523,6 +1523,12 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="settings_head_tracking">Activează urmărirea capului</string>
     <string name="settings_head_tracking_description">Poziționează audio spațial în raport cu direcția în care este îndreptat capul tău, folosind date de mișcare de la AirPods compatibile, Bose Frames sau un IMU Bluetooth extern. Se calibrează automat în timp ce mergi.</string>
     <string name="settings_head_tracking_description_android">Sunetul 3D se rotește odată cu capul tău, nu cu telefonul. Funcționează cu Bose Frames sau cu un senzor de mișcare Bluetooth WitMotion purtat pe cap. Primele 30 de secunde de mișcare sunt folosite pentru calibrarea urmăririi capului, iar după aceea direcția capului tău controlează poziția întregului sunet.</string>
+    <string name="head_tracker_connected">Senzorul de urmărire a capului %1$s este conectat</string>
+    <string name="head_tracker_connected_battery">Senzorul de urmărire a capului %1$s este conectat, baterie %2$d la sută</string>
+    <string name="head_tracker_calibrated">Urmărirea capului este calibrată, acum direcția capului tău controlează sunetul</string>
+    <string name="head_tracker_disconnected">Senzorul de urmărire a capului %1$s s-a deconectat</string>
+    <string name="head_tracker_battery_low">Bateria senzorului de urmărire a capului este descărcată, %1$d la sută</string>
+    <string name="head_tracker_status_searching">Se caută un senzor de urmărire a capului</string>
     <string name="sleep_snoozing">În amânare</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape este momentan în modul Amânare. Când părăsești locația curentă, Soundscape se va trezi automat. Modul Amânare folosește Serviciile de localizare într‑un mod cu consum redus pentru a conserva bateria telefonului. Atinge butonul de mai jos pentru a trezi aplicația acum.</string>
     <string name="sleep_wake_on_leave">Trezire la plecare</string>

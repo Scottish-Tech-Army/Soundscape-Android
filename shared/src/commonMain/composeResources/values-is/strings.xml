@@ -1507,6 +1507,12 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="settings_head_tracking">Virkja höfuðrakningu</string>
     <string name="settings_head_tracking_description">Staðsetur rúmhljóð miðað við þá átt sem höfuðið snýr í, með því að nota hreyfigögn frá studdum AirPods, Bose Frames eða ytri Bluetooth IMU. Stillist sjálfkrafa meðan þú gengur.</string>
     <string name="settings_head_tracking_description_android">Þrívíddarhljóðið snýst með höfðinu í stað símans. Virkar með Bose Frames eða með WitMotion Bluetooth-hreyfiskynjara sem þú berð á höfðinu. Fyrstu 30 sekúndur hreyfingar eru notaðar til að stilla höfuðrakninguna og eftir það stjórnar stefna höfuðsins staðsetningu alls hljóðs.</string>
+    <string name="head_tracker_connected">Höfuðrakningarbúnaður %1$s tengdur</string>
+    <string name="head_tracker_connected_battery">Höfuðrakningarbúnaður %1$s tengdur, rafhlaða %2$d prósent</string>
+    <string name="head_tracker_calibrated">Höfuðrakning er stillt, nú stjórnar stefna höfuðsins hljóðinu</string>
+    <string name="head_tracker_disconnected">Höfuðrakningarbúnaður %1$s aftengdur</string>
+    <string name="head_tracker_battery_low">Rafhlaða höfuðrakningarbúnaðar að tæmast, %1$d prósent</string>
+    <string name="head_tracker_status_searching">Leitar að höfuðrakningarbúnaði</string>
     <string name="sleep_snoozing">Í lúra-ham</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape er nú í lúra‑ham. Þegar þú yfirgefur núverandi staðsetningu þína mun Soundscape vekja sig sjálfkrafa. Lúra‑hamur notar staðsetningarþjónustu í lágorkuham til að spara rafhlöðu símans. Bankaðu á hnappinn hér að neðan til að vekja forritið núna.</string>
     <string name="sleep_wake_on_leave">Vakna við brottför</string>

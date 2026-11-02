@@ -1507,6 +1507,12 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="settings_head_tracking">Aktivera huvudspårning</string>
     <string name="settings_head_tracking_description">Positionera det rumsbestämda ljudet i förhållande till vart ditt huvud pekar, med hjälp av rörelsedata från kompatibla AirPods, Bose Frames eller en extern Bluetooth‑IMU. Kalibreras automatiskt medan du går.</string>
     <string name="settings_head_tracking_description_android">Vrid 3D-ljudet med huvudet i stället för med telefonen. Fungerar med Bose Frames eller med en WitMotion Bluetooth-rörelsesensor som du bär på huvudet. De första 30 sekunderna av rörelse används för att kalibrera huvudspårningen, och därefter styr ditt huvuds riktning placeringen av allt ljud.</string>
+    <string name="head_tracker_connected">%1$s-huvudspårare ansluten</string>
+    <string name="head_tracker_connected_battery">%1$s-huvudspårare ansluten, batteri %2$d procent</string>
+    <string name="head_tracker_calibrated">Huvudspårningen är kalibrerad, nu styr ditt huvuds riktning ljudet</string>
+    <string name="head_tracker_disconnected">%1$s-huvudspårare frånkopplad</string>
+    <string name="head_tracker_battery_low">Låg batterinivå i huvudspåraren, %1$d procent</string>
+    <string name="head_tracker_status_searching">Söker efter en huvudspårare</string>
     <string name="sleep_snoozing">Snoozar</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape är för närvarande i snoozeläge. När du lämnar din nuvarande plats vaknar Soundscape automatiskt. Snoozeläget använder Platstjänster i ett lågeffektsläge för att spara telefonens batteri. Tryck på knappen nedan för att väcka Soundscape nu.</string>
     <string name="sleep_wake_on_leave">Väck Soundscape när jag lämnar</string>

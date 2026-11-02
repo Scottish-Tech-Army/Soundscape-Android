@@ -494,6 +494,12 @@
     <string name="settings_head_tracking">Luba pea jälgimine</string>
     <string name="settings_head_tracking_description">Positsioneeri ruumiline heli vastavalt pea suunale, kasutades liikumisandmeid toetatud AirPodsidest, Bose Framesist või välisest Bluetooth IMU-st. Kalibreerub automaatselt kõndimise ajal.</string>
     <string name="settings_head_tracking_description_android">Pöörab 3D-heli koos peaga, mitte telefoniga. Töötab Bose Framesiga või pähe kinnitatud WitMotioni Bluetooth-liikumisanduriga. Esimesed 30 sekundit liikumist kasutatakse pea jälgimise kalibreerimiseks ja seejärel juhib pea suund kogu heli paigutust.</string>
+    <string name="head_tracker_connected">Pea jälgimise andur %1$s on ühendatud</string>
+    <string name="head_tracker_connected_battery">Pea jälgimise andur %1$s on ühendatud, aku %2$d protsenti</string>
+    <string name="head_tracker_calibrated">Pea jälgimine on kalibreeritud, nüüd juhib heli pea suund</string>
+    <string name="head_tracker_disconnected">Pea jälgimise andur %1$s on lahti ühendatud</string>
+    <string name="head_tracker_battery_low">Pea jälgimise anduri aku on tühjenemas, %1$d protsenti</string>
+    <string name="head_tracker_status_searching">Pea jälgimise anduri otsimine</string>
     <string name="settings_show_map">Näita kaarte ekraanil</string>
     <string name="settings_debug_heading">Silumisvalikud</string>
     <string name="settings_search_results_language">Otsingukeel</string>

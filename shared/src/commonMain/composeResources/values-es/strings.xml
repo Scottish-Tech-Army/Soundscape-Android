@@ -1523,6 +1523,12 @@ Sigue informándonos de cualquier problema, por pequeño que sea, a través de �
     <string name="settings_head_tracking">Habilitar seguimiento de la cabeza</string>
     <string name="settings_head_tracking_description">Posicionar el audio espacial en relación con la dirección hacia la que mira tu cabeza, usando datos de movimiento de AirPods compatibles, Bose Frames o una IMU Bluetooth externa. Se calibra automáticamente mientras caminas.</string>
     <string name="settings_head_tracking_description_android">Gira el audio 3D con tu cabeza en lugar de con el teléfono. Funciona con Bose Frames o con un sensor de movimiento Bluetooth WitMotion que lleves en la cabeza. Los primeros 30 segundos de movimiento se usan para calibrar el seguimiento de la cabeza y, a partir de ahí, la dirección de tu cabeza controla la posición de todo el audio.</string>
+    <string name="head_tracker_connected">Sensor de seguimiento de la cabeza %1$s conectado</string>
+    <string name="head_tracker_connected_battery">Sensor de seguimiento de la cabeza %1$s conectado, batería al %2$d por ciento</string>
+    <string name="head_tracker_calibrated">Seguimiento de la cabeza calibrado, ahora la dirección de tu cabeza controla el audio</string>
+    <string name="head_tracker_disconnected">Sensor de seguimiento de la cabeza %1$s desconectado</string>
+    <string name="head_tracker_battery_low">Batería baja del sensor de seguimiento de la cabeza, %1$d por ciento</string>
+    <string name="head_tracker_status_searching">Buscando un sensor de seguimiento de la cabeza</string>
     <string name="sleep_snoozing">Posponiendo</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape se encuentra actualmente en modo de aplazamiento. Cuando salgas de tu ubicación actual, Soundscape se reactivará automáticamente. El modo de aplazamiento utiliza los Servicios de localización en un modo de bajo consumo para ahorrar batería del teléfono. Pulsa el botón siguiente para reactivar Soundscape ahora.</string>
     <string name="sleep_wake_on_leave">Reactivar al salir</string>

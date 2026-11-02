@@ -644,6 +644,12 @@
     <string name="settings_head_tracking">ਸਿਰ ਦੀ ਟਰੈਕਿੰਗ ਚਾਲੂ ਕਰੋ</string>
     <string name="settings_head_tracking_description">ਸਮਰਥਿਤ AirPods, Bose Frames ਜਾਂ ਬਾਹਰੀ ਬਲੂਟੁੱਥ IMU ਦੇ ਹਰਕਤ ਡਾਟਾ ਨਾਲ, 3D ਆਵਾਜ਼ ਨੂੰ ਤੁਹਾਡੇ ਸਿਰ ਦੀ ਦਿਸ਼ਾ ਮੁਤਾਬਕ ਰੱਖੋ। ਤੁਰਦੇ ਸਮੇਂ ਆਪਣੇ ਆਪ ਕੈਲੀਬ੍ਰੇਟ ਹੁੰਦਾ ਹੈ।</string>
     <string name="settings_head_tracking_description_android">3D ਆਵਾਜ਼ ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀ ਥਾਂ ਤੁਹਾਡੇ ਸਿਰ ਨਾਲ ਘੁੰਮਦੀ ਹੈ। ਇਹ Bose Frames ਨਾਲ, ਜਾਂ ਸਿਰ 'ਤੇ ਪਹਿਨੇ WitMotion ਬਲੂਟੁੱਥ ਮੋਸ਼ਨ ਸੈਂਸਰ ਨਾਲ ਕੰਮ ਕਰਦੀ ਹੈ। ਹਰਕਤ ਦੇ ਪਹਿਲੇ 30 ਸਕਿੰਟ ਸਿਰ ਦੀ ਟਰੈਕਿੰਗ ਨੂੰ ਕੈਲੀਬ੍ਰੇਟ ਕਰਨ ਲਈ ਵਰਤੇ ਜਾਂਦੇ ਹਨ, ਅਤੇ ਉਸ ਤੋਂ ਬਾਅਦ ਤੁਹਾਡੇ ਸਿਰ ਦੀ ਦਿਸ਼ਾ ਸਾਰੀ ਆਵਾਜ਼ ਦੀ ਥਾਂ ਨੂੰ ਕੰਟਰੋਲ ਕਰਦੀ ਹੈ।</string>
+    <string name="head_tracker_connected">%1$s ਸਿਰ ਟਰੈਕਰ ਜੁੜ ਗਿਆ</string>
+    <string name="head_tracker_connected_battery">%1$s ਸਿਰ ਟਰੈਕਰ ਜੁੜ ਗਿਆ, ਬੈਟਰੀ %2$d ਪ੍ਰਤੀਸ਼ਤ</string>
+    <string name="head_tracker_calibrated">ਸਿਰ ਦੀ ਟਰੈਕਿੰਗ ਕੈਲੀਬ੍ਰੇਟ ਹੋ ਗਈ, ਹੁਣ ਤੁਹਾਡੇ ਸਿਰ ਦੀ ਦਿਸ਼ਾ ਆਵਾਜ਼ ਨੂੰ ਕੰਟਰੋਲ ਕਰਦੀ ਹੈ</string>
+    <string name="head_tracker_disconnected">%1$s ਸਿਰ ਟਰੈਕਰ ਦਾ ਕਨੈਕਸ਼ਨ ਟੁੱਟ ਗਿਆ</string>
+    <string name="head_tracker_battery_low">ਸਿਰ ਟਰੈਕਰ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ, %1$d ਪ੍ਰਤੀਸ਼ਤ</string>
+    <string name="head_tracker_status_searching">ਸਿਰ ਟਰੈਕਰ ਲੱਭਿਆ ਜਾ ਰਿਹਾ ਹੈ</string>
     <string name="settings_show_map">ਸਕ੍ਰੀਨ 'ਤੇ ਨਕਸ਼ੇ ਦਿਖਾਓ</string>
     <string name="settings_debug_heading">ਡੀਬੱਗ ਵਿਕਲਪ</string>
     <string name="settings_search_results_language">ਖੋਜ ਦੀ ਭਾਸ਼ਾ</string>

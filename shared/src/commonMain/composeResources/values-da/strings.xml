@@ -1507,6 +1507,12 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="settings_head_tracking">Aktivér hovedsporing</string>
     <string name="settings_head_tracking_description">Positionér den rumlige lyd i forhold til, hvor dit hoved vender, ved hjælp af bevægelsesdata fra understøttede AirPods, Bose Frames eller en ekstern Bluetooth IMU. Kalibreres automatisk, mens du går.</string>
     <string name="settings_head_tracking_description_android">Drej 3D-lyden med dit hoved i stedet for din telefon. Virker med Bose Frames eller med en WitMotion Bluetooth-bevægelsessensor, som du bærer på hovedet. De første 30 sekunders bevægelse bruges til at kalibrere hovedsporingen, og derefter styrer dit hoveds retning placeringen af al lyd.</string>
+    <string name="head_tracker_connected">%1$s-hovedsporingsenhed tilsluttet</string>
+    <string name="head_tracker_connected_battery">%1$s-hovedsporingsenhed tilsluttet, batteri %2$d procent</string>
+    <string name="head_tracker_calibrated">Hovedsporingen er kalibreret, dit hoveds retning styrer nu lyden</string>
+    <string name="head_tracker_disconnected">%1$s-hovedsporingsenhed afbrudt</string>
+    <string name="head_tracker_battery_low">Lavt batteri på hovedsporingsenheden, %1$d procent</string>
+    <string name="head_tracker_status_searching">Søger efter en hovedsporingsenhed</string>
     <string name="sleep_snoozing">Slumrer</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape er i øjeblikket i slumretilstand. Når du forlader din nuværende placering, vækkes Soundscape automatisk. Slumretilstand bruger lokalitetstjenester i en lavenergitilstand for at spare telefonens batteri. Tryk på knappen nedenfor for at vække Soundscape nu.</string>
     <string name="sleep_wake_on_leave">Væk, når jeg forlader stedet</string>
