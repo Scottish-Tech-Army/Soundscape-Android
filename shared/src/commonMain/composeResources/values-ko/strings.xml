@@ -562,6 +562,12 @@
     <string name="settings_head_tracking">헤드 트래킹 사용</string>
     <string name="settings_head_tracking_description">지원되는 AirPods, Bose Frames 또는 외부 블루투스 IMU의 동작 데이터를 사용하여 머리가 향하는 방향을 기준으로 공간 음향을 배치합니다. 걷는 동안 자동으로 보정됩니다.</string>
     <string name="settings_head_tracking_description_android">3D 오디오가 휴대폰 대신 머리 방향에 따라 회전합니다. Bose Frames 또는 머리에 착용한 WitMotion 블루투스 동작 센서와 함께 작동합니다. 이동을 시작한 후 처음 30초 동안 헤드 트래킹을 보정하며, 그 이후에는 머리 방향으로 모든 오디오의 위치를 제어합니다.</string>
+    <string name="head_tracker_connected">%1$s 헤드 트래커가 연결되었습니다</string>
+    <string name="head_tracker_connected_battery">%1$s 헤드 트래커가 연결되었습니다. 배터리 %2$d퍼센트</string>
+    <string name="head_tracker_calibrated">헤드 트래킹 보정이 완료되었습니다. 이제 머리 방향으로 오디오가 제어됩니다</string>
+    <string name="head_tracker_disconnected">%1$s 헤드 트래커 연결이 끊어졌습니다</string>
+    <string name="head_tracker_battery_low">헤드 트래커 배터리 부족, %1$d퍼센트</string>
+    <string name="head_tracker_status_searching">헤드 트래커를 찾는 중</string>
     <string name="settings_show_map">화면에 지도 표시</string>
     <string name="settings_debug_heading">디버그 옵션</string>
     <string name="settings_search_results_language">검색 언어</string>

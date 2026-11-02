@@ -1523,6 +1523,12 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="settings_head_tracking">Activer le suivi de la tête</string>
     <string name="settings_head_tracking_description">Positionner l’audio spatial par rapport à l’orientation de votre tête en utilisant les données de mouvement des AirPods compatibles, des Bose Frames ou d’un IMU Bluetooth externe. Se calibre automatiquement pendant la marche.</string>
     <string name="settings_head_tracking_description_android">L’audio 3D tourne avec votre tête plutôt qu’avec votre téléphone. Fonctionne avec les Bose Frames ou avec un capteur de mouvement Bluetooth WitMotion porté sur la tête. Les 30 premières secondes de déplacement servent à calibrer le suivi de la tête ; ensuite, l’orientation de votre tête détermine la position de tous les sons.</string>
+    <string name="head_tracker_connected">Capteur de suivi de la tête %1$s connecté</string>
+    <string name="head_tracker_connected_battery">Capteur de suivi de la tête %1$s connecté, batterie à %2$d pour cent</string>
+    <string name="head_tracker_calibrated">Suivi de la tête calibré, l’orientation de votre tête contrôle maintenant l’audio</string>
+    <string name="head_tracker_disconnected">Capteur de suivi de la tête %1$s déconnecté</string>
+    <string name="head_tracker_battery_low">Batterie du capteur de suivi de la tête faible, %1$d pour cent</string>
+    <string name="head_tracker_status_searching">Recherche d’un capteur de suivi de la tête</string>
     <string name="sleep_snoozing">En pause à l’arrêt</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape est actuellement en pause jusqu’à votre départ. Lorsque vous quittez votre emplacement actuel, Soundscape se réveillera automatiquement. La pause à l’arrêt utilise les services de localisation en mode basse consommation pour économiser la batterie de votre téléphone. Appuyez sur le bouton ci‑dessous pour le réactiver maintenant.</string>
     <string name="sleep_wake_on_leave">Reprendre au déplacement</string>

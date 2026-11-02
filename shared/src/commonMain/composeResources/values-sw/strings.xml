@@ -1543,6 +1543,12 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="settings_head_tracking">Wezesha ufuatiliaji wa kichwa</string>
     <string name="settings_head_tracking_description">Weka sauti ya anga kulingana na upande kichwa chako kinapoelekea, kwa kutumia data ya mwendo kutoka AirPods, Bose Frames zinazotumika, au IMU ya Bluetooth ya nje. Hujirekebisha kiotomatiki unapotembea.</string>
     <string name="settings_head_tracking_description_android">Sauti ya 3D huzunguka pamoja na kichwa chako badala ya simu yako. Inafanya kazi na Bose Frames, au na kihisi mwendo cha Bluetooth cha WitMotion unachovaa kichwani. Sekunde 30 za kwanza za kutembea hutumika kurekebisha ufuatiliaji wa kichwa, na baada ya hapo upande kichwa chako kinapoelekea ndio utadhibiti mahali sauti zote zinapotoka.</string>
+    <string name="head_tracker_connected">Kifuatiliaji cha kichwa cha %1$s kimeunganishwa</string>
+    <string name="head_tracker_connected_battery">Kifuatiliaji cha kichwa cha %1$s kimeunganishwa, betri asilimia %2$d</string>
+    <string name="head_tracker_calibrated">Ufuatiliaji wa kichwa umerekebishwa, sasa upande kichwa chako kinapoelekea unadhibiti sauti</string>
+    <string name="head_tracker_disconnected">Kifuatiliaji cha kichwa cha %1$s kimetenganishwa</string>
+    <string name="head_tracker_battery_low">Betri ya kifuatiliaji cha kichwa iko chini, asilimia %1$d</string>
+    <string name="head_tracker_status_searching">Inatafuta kifuatiliaji cha kichwa</string>
     <string name="settings_show_map">Onyesha ramani kwenye skrini</string>
     <string name="settings_debug_heading">Chaguo za Utatuzi</string>
     <string name="settings_search_results_language">Lugha ya utafutaji</string>

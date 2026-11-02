@@ -1307,6 +1307,12 @@
     <string name="settings_head_tracking">Fejkövetés engedélyezése</string>
     <string name="settings_head_tracking_description">A térbeli hangot a feje irányához igazítja, a támogatott AirPods, Bose Frames vagy egy külső Bluetooth IMU mozgásadatai alapján. Séta közben automatikusan kalibrálódik.</string>
     <string name="settings_head_tracking_description_android">A 3D hang a telefon helyett az Ön fejével együtt fordul. Bose Frames szemüveggel vagy fejen viselt WitMotion Bluetooth mozgásérzékelővel működik. A mozgás első 30 másodperce a fejkövetés kalibrálására szolgál, utána az Ön fejének iránya határozza meg az összes hang helyzetét.</string>
+    <string name="head_tracker_connected">%1$s fejkövető csatlakoztatva</string>
+    <string name="head_tracker_connected_battery">%1$s fejkövető csatlakoztatva, akkumulátor %2$d százalék</string>
+    <string name="head_tracker_calibrated">A fejkövetés kalibrálva, mostantól az Ön fejének iránya vezérli a hangot</string>
+    <string name="head_tracker_disconnected">%1$s fejkövető leválasztva</string>
+    <string name="head_tracker_battery_low">A fejkövető akkumulátora lemerülőben, %1$d százalék</string>
+    <string name="head_tracker_status_searching">Fejkövető keresése</string>
     <string name="settings_show_map">Térképek megjelenítése a képernyőn</string>
     <string name="settings_debug_heading">Hibakeresési beállítások</string>
     <string name="settings_search_results_language">Keresési nyelv</string>

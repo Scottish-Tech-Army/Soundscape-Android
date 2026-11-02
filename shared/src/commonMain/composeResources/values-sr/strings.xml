@@ -1323,6 +1323,12 @@
     <string name="settings_head_tracking">Омогући праћење покрета главе</string>
     <string name="settings_head_tracking_description">Позиционирајте просторни звук у односу на правац у коме је окренута ваша глава, користећи податке о кретању са подржаних AirPods, Bose Frames слушалица или спољне Bluetooth IMU јединице. Аутоматски се калибрише док ходате.</string>
     <string name="settings_head_tracking_description_android">Окреће 3D звук према вашој глави уместо према телефону. Ради са Bose Frames наочарима или са WitMotion Bluetooth сензором покрета који носите на глави. Првих 30 секунди кретања користи се за калибрацију праћења покрета главе, а након тога правац ваше главе одређује положај свих звукова.</string>
+    <string name="head_tracker_connected">Сензор за праћење покрета главе %1$s је повезан</string>
+    <string name="head_tracker_connected_battery">Сензор за праћење покрета главе %1$s је повезан, батерија %2$d процената</string>
+    <string name="head_tracker_calibrated">Праћење покрета главе је калибрисано, правац ваше главе сада управља звуком</string>
+    <string name="head_tracker_disconnected">Сензор за праћење покрета главе %1$s је прекинуо везу</string>
+    <string name="head_tracker_battery_low">Батерија сензора за праћење покрета главе је слаба, %1$d процената</string>
+    <string name="head_tracker_status_searching">Тражење сензора за праћење покрета главе</string>
     <string name="settings_show_map">Прикажи мапе на екрану</string>
     <string name="settings_debug_heading">Опције за отклањање грешака</string>
     <string name="settings_search_results_language">Језик претраге</string>

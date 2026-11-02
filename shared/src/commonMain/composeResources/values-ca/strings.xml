@@ -592,6 +592,12 @@
     <string name="settings_head_tracking">Activa el seguiment del cap</string>
     <string name="settings_head_tracking_description">Posiciona l'àudio espacial en relació amb la direcció cap a la qual mira el vostre cap, utilitzant dades de moviment d'AirPods, Bose Frames o una IMU Bluetooth externa compatibles. Es calibra automàticament mentre camineu.</string>
     <string name="settings_head_tracking_description_android">Fa girar l'àudio 3D amb el teu cap en lloc del telèfon. Funciona amb les Bose Frames o amb un sensor de moviment Bluetooth WitMotion que portis al cap. Els primers 30 segons de moviment serveixen per calibrar el seguiment del cap i, a partir d'aleshores, la direcció del teu cap controla la posició de tot l'àudio.</string>
+    <string name="head_tracker_connected">Sensor de seguiment del cap %1$s connectat</string>
+    <string name="head_tracker_connected_battery">Sensor de seguiment del cap %1$s connectat, bateria al %2$d per cent</string>
+    <string name="head_tracker_calibrated">Seguiment del cap calibrat, ara la direcció del teu cap controla l'àudio</string>
+    <string name="head_tracker_disconnected">Sensor de seguiment del cap %1$s desconnectat</string>
+    <string name="head_tracker_battery_low">Bateria baixa del sensor de seguiment del cap, %1$d per cent</string>
+    <string name="head_tracker_status_searching">S'està cercant un sensor de seguiment del cap</string>
     <string name="settings_show_map">Mostra els mapes a la pantalla</string>
     <string name="settings_debug_heading">Opcions de depuració</string>
     <string name="settings_search_results_language">Idioma de cerca</string>

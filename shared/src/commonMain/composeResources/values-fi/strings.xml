@@ -1507,6 +1507,12 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="settings_head_tracking">Ota pään seuranta käyttöön</string>
     <string name="settings_head_tracking_description">Aseta tilaääni suhteessa pään suuntaan käyttämällä liikedataa tuetuista AirPods‑kuulokkeista, Bose Frames ‑laseista tai ulkoisesta Bluetooth‑IMU:sta. Kalibroituu automaattisesti kävellessäsi.</string>
     <string name="settings_head_tracking_description_android">3D-ääni kääntyy pääsi mukana puhelimen sijaan. Toimii Bose Frames ‑lasien tai päähän kiinnitetyn WitMotion Bluetooth ‑liiketunnistimen kanssa. Ensimmäiset 30 sekuntia liikkumista käytetään pään seurannan kalibrointiin, ja sen jälkeen pääsi suunta ohjaa kaikkien äänten sijaintia.</string>
+    <string name="head_tracker_connected">Pään seurantalaite %1$s yhdistetty</string>
+    <string name="head_tracker_connected_battery">Pään seurantalaite %1$s yhdistetty, akku %2$d prosenttia</string>
+    <string name="head_tracker_calibrated">Pään seuranta on kalibroitu, pääsi suunta ohjaa nyt ääntä</string>
+    <string name="head_tracker_disconnected">Pään seurantalaitteen %1$s yhteys katkesi</string>
+    <string name="head_tracker_battery_low">Pään seurantalaitteen akku on vähissä, %1$d prosenttia</string>
+    <string name="head_tracker_status_searching">Etsitään pään seurantalaitetta</string>
     <string name="sleep_snoozing">Odotustila</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape on tällä hetkellä odotustilassa. Kun poistut nykyisestä sijainnistasi, Soundscape herää automaattisesti. Odotustila käyttää Sijaintipalveluita vähävirtaisessa tilassa puhelimesi akun säästämiseksi. Napauta alla olevaa painiketta herättääksesi Soundscapen nyt.</string>
     <string name="sleep_wake_on_leave">Herää kun poistut</string>

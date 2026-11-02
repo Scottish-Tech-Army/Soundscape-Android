@@ -1491,6 +1491,12 @@
     <string name="settings_head_tracking">ヘッドトラッキングを有効にする</string>
     <string name="settings_head_tracking_description">対応する AirPods、Bose Frames、または外部の Bluetooth IMU からのモーションデータを使用して、頭の向きに合わせて空間オーディオの位置を調整します。歩行中に自動でキャリブレーションされます。</string>
     <string name="settings_head_tracking_description_android">3D オーディオをスマートフォンではなく頭の向きに合わせて回転させます。Bose Frames、または頭に装着した WitMotion の Bluetooth モーションセンサーで動作します。移動を始めてから最初の 30 秒間でヘッドトラッキングをキャリブレーションし、その後はすべてのオーディオの位置を頭の向きで制御します。</string>
+    <string name="head_tracker_connected">%1$s ヘッドトラッカーが接続されました</string>
+    <string name="head_tracker_connected_battery">%1$s ヘッドトラッカーが接続されました。バッテリー残量 %2$d パーセント</string>
+    <string name="head_tracker_calibrated">ヘッドトラッキングのキャリブレーションが完了しました。頭の向きでオーディオが制御されます</string>
+    <string name="head_tracker_disconnected">%1$s ヘッドトラッカーの接続が切れました</string>
+    <string name="head_tracker_battery_low">ヘッドトラッカーのバッテリー残量が少なくなっています。%1$d パーセント</string>
+    <string name="head_tracker_status_searching">ヘッドトラッカーを探しています</string>
     <string name="sleep_snoozing">スヌーズ中</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape は現在スヌーズ状態です。現在地から離れると自動的にスリープ解除します。スヌーズ中は、端末のバッテリーを節約するために低消費電力モードで位置情報サービスを使用します。今すぐスリープを解除するには、下のボタンをタップしてください。</string>
     <string name="sleep_wake_on_leave">離れたらスリープ解除</string>

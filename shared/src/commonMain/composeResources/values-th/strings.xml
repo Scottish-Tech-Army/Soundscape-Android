@@ -1527,6 +1527,12 @@
     <string name="settings_head_tracking">เปิดใช้งานการติดตามการเคลื่อนไหวศีรษะ</string>
     <string name="settings_head_tracking_description">จัดตำแหน่งเสียงเชิงพื้นที่ตามทิศทางที่ศีรษะของคุณหันไป โดยใช้ข้อมูลการเคลื่อนไหวจาก AirPods, Bose Frames ที่รองรับ หรือ IMU บลูทูธภายนอก ปรับเทียบโดยอัตโนมัติขณะที่คุณเดิน</string>
     <string name="settings_head_tracking_description_android">เสียง 3D จะหมุนตามศีรษะของคุณแทนโทรศัพท์ ใช้งานได้กับ Bose Frames หรือเซ็นเซอร์ตรวจจับการเคลื่อนไหวบลูทูธของ WitMotion ที่สวมไว้บนศีรษะ ช่วง 30 วินาทีแรกของการเคลื่อนที่จะใช้ปรับเทียบการติดตามการเคลื่อนไหวศีรษะ หลังจากนั้นทิศทางของศีรษะคุณจะควบคุมตำแหน่งของเสียงทั้งหมด</string>
+    <string name="head_tracker_connected">เชื่อมต่ออุปกรณ์ติดตามการเคลื่อนไหวศีรษะ %1$s แล้ว</string>
+    <string name="head_tracker_connected_battery">เชื่อมต่ออุปกรณ์ติดตามการเคลื่อนไหวศีรษะ %1$s แล้ว แบตเตอรี่ %2$d เปอร์เซ็นต์</string>
+    <string name="head_tracker_calibrated">ปรับเทียบการติดตามการเคลื่อนไหวศีรษะแล้ว ตอนนี้ทิศทางศีรษะของคุณควบคุมเสียง</string>
+    <string name="head_tracker_disconnected">อุปกรณ์ติดตามการเคลื่อนไหวศีรษะ %1$s ยกเลิกการเชื่อมต่อแล้ว</string>
+    <string name="head_tracker_battery_low">แบตเตอรี่อุปกรณ์ติดตามการเคลื่อนไหวศีรษะเหลือน้อย %1$d เปอร์เซ็นต์</string>
+    <string name="head_tracker_status_searching">กำลังค้นหาอุปกรณ์ติดตามการเคลื่อนไหวศีรษะ</string>
     <string name="settings_show_map">แสดงแผนที่บนหน้าจอ</string>
     <string name="settings_debug_heading">ตัวเลือกดีบัก</string>
     <string name="settings_search_results_language">ภาษาในการค้นหา</string>

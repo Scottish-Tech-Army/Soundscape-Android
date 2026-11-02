@@ -1523,6 +1523,12 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="settings_head_tracking">Ativar rastreio da cabeça</string>
     <string name="settings_head_tracking_description">Posiciona o áudio espacial relativamente à direção para a qual a sua cabeça está virada, usando dados de movimento dos AirPods suportados, dos Bose Frames ou de um IMU Bluetooth externo. Calibra automaticamente enquanto caminha.</string>
     <string name="settings_head_tracking_description_android">O áudio 3D roda com a sua cabeça em vez de com o telemóvel. Funciona com os Bose Frames ou com um sensor de movimento Bluetooth WitMotion usado na cabeça. Os primeiros 30 segundos de movimento servem para calibrar o rastreio da cabeça e, a partir daí, a direção da sua cabeça controla a posição de todo o áudio.</string>
+    <string name="head_tracker_connected">Sensor de rastreio da cabeça %1$s ligado</string>
+    <string name="head_tracker_connected_battery">Sensor de rastreio da cabeça %1$s ligado, bateria a %2$d por cento</string>
+    <string name="head_tracker_calibrated">Rastreio da cabeça calibrado, a direção da sua cabeça controla agora o áudio</string>
+    <string name="head_tracker_disconnected">Sensor de rastreio da cabeça %1$s desligado</string>
+    <string name="head_tracker_battery_low">Bateria do sensor de rastreio da cabeça fraca, %1$d por cento</string>
+    <string name="head_tracker_status_searching">A procurar um sensor de rastreio da cabeça</string>
     <string name="sleep_snoozing">Em Modo de Pausa</string>
     <string name="sleep_sleeping_wake_on_leave_message">O Soundscape está atualmente em Modo de Pausa. Quando sair da sua localização atual, o Soundscape reativar‑se‑á automaticamente. O Modo de Pausa utiliza os Serviços de localização num modo de baixo consumo para poupar a bateria do seu telemóvel. Toque no botão abaixo para reativar agora.</string>
     <string name="sleep_wake_on_leave">Reativar ao sair</string>

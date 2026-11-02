@@ -1491,6 +1491,12 @@
     <string name="settings_head_tracking">启用头部追踪</string>
     <string name="settings_head_tracking_description">使用支持的 AirPods、Bose Frames 或外部蓝牙惯性测量单元（IMU）的运动数据，将空间音频相对于您头部的朝向定位。行走时会自动校准。</string>
     <string name="settings_head_tracking_description_android">让 3D 音频随您的头部而不是手机转动。支持 Bose Frames，或戴在头上的 WitMotion 蓝牙运动传感器。开始移动后的前 30 秒用于校准头部追踪，之后所有音频的位置都将由您头部的朝向控制。</string>
+    <string name="head_tracker_connected">%1$s 头部追踪器已连接</string>
+    <string name="head_tracker_connected_battery">%1$s 头部追踪器已连接，电量百分之 %2$d</string>
+    <string name="head_tracker_calibrated">头部追踪已校准，现在由您头部的朝向控制音频</string>
+    <string name="head_tracker_disconnected">%1$s 头部追踪器已断开连接</string>
+    <string name="head_tracker_battery_low">头部追踪器电量低，百分之 %1$d</string>
+    <string name="head_tracker_status_searching">正在搜索头部追踪器</string>
     <string name="sleep_snoozing">小睡中</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape 当前处于小睡状态。当您离开当前位置时，Soundscape 会自动唤醒。小睡状态会在低功耗模式下使用定位服务，以节省手机电量。点击下方按钮即可立即唤醒。</string>
     <string name="sleep_wake_on_leave">离开时唤醒</string>

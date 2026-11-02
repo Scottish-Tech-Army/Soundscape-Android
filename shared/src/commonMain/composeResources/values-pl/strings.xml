@@ -1539,6 +1539,12 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="settings_head_tracking">Włącz śledzenie ruchu głowy</string>
     <string name="settings_head_tracking_description">Ustawia dźwięk przestrzenny względem kierunku, w którym zwrócona jest Twoja głowa, korzystając z danych ruchu pochodzących z obsługiwanych słuchawek AirPods, okularów Bose Frames lub zewnętrznego modułu IMU przez Bluetooth. Kalibruje się automatycznie podczas marszu.</string>
     <string name="settings_head_tracking_description_android">Dźwięk 3D obraca się razem z Twoją głową, a nie z telefonem. Działa z okularami Bose Frames lub z czujnikiem ruchu Bluetooth WitMotion noszonym na głowie. Pierwsze 30 sekund ruchu służy do kalibracji śledzenia ruchu głowy, a potem kierunek Twojej głowy decyduje o położeniu wszystkich dźwięków.</string>
+    <string name="head_tracker_connected">Czujnik ruchu głowy %1$s połączony</string>
+    <string name="head_tracker_connected_battery">Czujnik ruchu głowy %1$s połączony, bateria %2$d procent</string>
+    <string name="head_tracker_calibrated">Śledzenie ruchu głowy skalibrowane, teraz kierunek Twojej głowy steruje dźwiękiem</string>
+    <string name="head_tracker_disconnected">Czujnik ruchu głowy %1$s rozłączony</string>
+    <string name="head_tracker_battery_low">Słaba bateria czujnika ruchu głowy, %1$d procent</string>
+    <string name="head_tracker_status_searching">Szukanie czujnika ruchu głowy</string>
     <string name="sleep_snoozing">Tryb drzemki</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape jest obecnie w trybie drzemki. Po opuszczeniu bieżącej lokalizacji Soundscape obudzi się automatycznie. Tryb drzemki wykorzystuje Usługi lokalizacji w trybie niskiego zużycia energii, aby oszczędzać baterię telefonu. Stuknij przycisk poniżej, aby obudzić Soundscape teraz.</string>
     <string name="sleep_wake_on_leave">Obudź mnie, gdy opuszczę to miejsce</string>

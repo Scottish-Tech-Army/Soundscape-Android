@@ -1507,6 +1507,12 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="settings_head_tracking">Head‑Tracking aktivieren</string>
     <string name="settings_head_tracking_description">Positioniert das räumliche Audio relativ zur Blickrichtung Ihres Kopfes unter Verwendung von Bewegungsdaten unterstützter AirPods, Bose Frames oder eines externen Bluetooth‑IMU. Kalibriert automatisch, während Sie gehen.</string>
     <string name="settings_head_tracking_description_android">Dreht den 3D‑Klang mit Ihrem Kopf statt mit Ihrem Telefon. Funktioniert mit Bose Frames oder mit einem WitMotion‑Bluetooth‑Bewegungssensor, den Sie am Kopf tragen. Die ersten 30 Sekunden Bewegung dienen der Kalibrierung des Head‑Trackings, danach steuert die Richtung Ihres Kopfes die Position aller Klänge.</string>
+    <string name="head_tracker_connected">%1$s‑Head‑Tracker verbunden</string>
+    <string name="head_tracker_connected_battery">%1$s‑Head‑Tracker verbunden, Akku %2$d Prozent</string>
+    <string name="head_tracker_calibrated">Head‑Tracking kalibriert, die Richtung Ihres Kopfes steuert jetzt den Klang</string>
+    <string name="head_tracker_disconnected">%1$s‑Head‑Tracker getrennt</string>
+    <string name="head_tracker_battery_low">Akku des Head‑Trackers schwach, %1$d Prozent</string>
+    <string name="head_tracker_status_searching">Suche nach einem Head‑Tracker</string>
     <string name="sleep_snoozing">Im Standbymodus</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape ist derzeit im Standbymodus. Wenn Sie Ihren aktuellen Standort verlassen, wacht Soundscape automatisch auf. Der Standbymodus nutzt die Ortungsdienste in einem Energiesparmodus, um den Akku Ihres Telefons zu schonen. Tippen Sie auf die Schaltfläche unten, um Soundscape jetzt aufzuwecken.</string>
     <string name="sleep_wake_on_leave">Beim Verlassen aufwecken</string>

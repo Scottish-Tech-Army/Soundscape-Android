@@ -1507,6 +1507,12 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="settings_head_tracking">Enable head tracking</string>
     <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.</string>
     <string name="settings_head_tracking_description_android">Turn the 3D audio with your head instead of your phone. Works with Bose Frames, or with a WitMotion Bluetooth motion sensor worn on your head. The first 30 seconds of moving is used to calibrate the head tracking, and after that your head direction will be used to control all audio positioning.</string>
+    <string name="head_tracker_connected">%1$s head tracker connected</string>
+    <string name="head_tracker_connected_battery">%1$s head tracker connected, battery %2$d percent</string>
+    <string name="head_tracker_calibrated">Head tracking calibrated, your head direction now controls the audio</string>
+    <string name="head_tracker_disconnected">%1$s head tracker disconnected</string>
+    <string name="head_tracker_battery_low">Head tracker battery low, %1$d percent</string>
+    <string name="head_tracker_status_searching">Searching for a head tracker</string>
     <string name="sleep_snoozing">Snoozing</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape is currently snoozing. When you leave your current location, Soundscape will automatically wake up. Snoozing uses Location Services in a low power mode to save your phone's battery. Tap the button below to wake up now.</string>
     <string name="sleep_wake_on_leave">Wake on Leave</string>

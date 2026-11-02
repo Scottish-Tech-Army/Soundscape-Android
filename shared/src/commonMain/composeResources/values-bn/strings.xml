@@ -1543,6 +1543,12 @@
     <string name="settings_head_tracking">হেড ট্র্যাকিং সক্রিয় করুন</string>
     <string name="settings_head_tracking_description">সমর্থিত AirPods, Bose Frames বা একটি বহিরাগত ব্লুটুথ IMU থেকে গতিবিধি ডেটা ব্যবহার করে, আপনার মাথা যেদিকে মুখ করে আছে তার সাপেক্ষে স্প্যাশিয়াল অডিও অবস্থান নির্ধারণ করে। আপনি হাঁটার সময় স্বয়ংক্রিয়ভাবে ক্যালিব্রেট হয়।</string>
     <string name="settings_head_tracking_description_android">আপনার ফোনের বদলে আপনার মাথার সাথে 3D অডিও ঘোরে। Bose Frames, অথবা মাথায় পরা একটি WitMotion ব্লুটুথ মোশন সেন্সরের সাথে কাজ করে। চলাচলের প্রথম 30 সেকেন্ড হেড ট্র্যাকিং ক্যালিব্রেট করতে ব্যবহার করা হয়, এবং তারপর থেকে আপনার মাথার দিক দিয়েই সমস্ত অডিওর অবস্থান নিয়ন্ত্রণ করা হয়।</string>
+    <string name="head_tracker_connected">%1$s হেড ট্র্যাকার সংযুক্ত হয়েছে</string>
+    <string name="head_tracker_connected_battery">%1$s হেড ট্র্যাকার সংযুক্ত হয়েছে, ব্যাটারি %2$d শতাংশ</string>
+    <string name="head_tracker_calibrated">হেড ট্র্যাকিং ক্যালিব্রেট হয়েছে, এখন আপনার মাথার দিক অডিও নিয়ন্ত্রণ করছে</string>
+    <string name="head_tracker_disconnected">%1$s হেড ট্র্যাকারের সংযোগ বিচ্ছিন্ন হয়েছে</string>
+    <string name="head_tracker_battery_low">হেড ট্র্যাকারের ব্যাটারি কম, %1$d শতাংশ</string>
+    <string name="head_tracker_status_searching">হেড ট্র্যাকার খোঁজা হচ্ছে</string>
     <string name="settings_show_map">স্ক্রিনে ম্যাপ দেখান</string>
     <string name="settings_debug_heading">ডিবাগ অপশন</string>
     <string name="settings_search_results_language">সার্চ ভাষা</string>
