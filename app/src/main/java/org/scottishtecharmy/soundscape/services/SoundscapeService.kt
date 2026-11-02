@@ -69,6 +69,8 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.callouts.cycleCalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.headtracking.HeadTrackerAnnouncer
+import org.scottishtecharmy.soundscape.geoengine.headtracking.text
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
@@ -86,7 +88,9 @@ import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.CompositeHeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackerState
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuClient
 import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuHeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.bose.BoseFramesHeadTrackingProvider
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
@@ -145,6 +149,11 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     private val _headHeadingFlow = MutableStateFlow<HeadHeading?>(null)
     override val headHeadingFlow: StateFlow<HeadHeading?> = _headHeadingFlow
     private var headHeadingForwarderJob: Job? = null
+
+    // The same for the head tracker's status, device and battery. HeadTrackerAnnouncer speaks
+    // its changes and Settings shows them.
+    private val _headTrackerStateFlow = MutableStateFlow<HeadTrackerState?>(null)
+    override val headTrackerStateFlow: StateFlow<HeadTrackerState?> = _headTrackerStateFlow
 
     // System broadcast-based battery monitor for paired Bluetooth headphones.
     private val headsetBatteryMonitor by lazy { AudioHeadsetBatteryMonitor(this) }
@@ -306,14 +315,30 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         headHeadingForwarderJob?.cancel()
         val provider = CompositeHeadTrackingProvider(
             listOf(
-                BleImuHeadTrackingProvider(directionProvider, locationProvider),
+                BleImuHeadTrackingProvider(
+                    directionProvider,
+                    locationProvider,
+                    // Remembers the sensor so it can be found again with the screen off
+                    BleImuClient(
+                        knownAddress = {
+                            PreferenceManager.getDefaultSharedPreferences(this)
+                                .getString(PreferenceKeys.WITMOTION_ADDRESS, "")
+                                ?.takeIf { it.isNotEmpty() }
+                        },
+                        onConnectedAddress = { address ->
+                            PreferenceManager.getDefaultSharedPreferences(this)
+                                .edit { putString(PreferenceKeys.WITMOTION_ADDRESS, address) }
+                        },
+                    ),
+                ),
                 BoseFramesHeadTrackingProvider(directionProvider, locationProvider),
             ),
         )
         headTrackingProvider = provider
         geoEngine.setHeadTrackingProvider(provider)
         headHeadingForwarderJob = coroutineScope.launch {
-            provider.headHeadingFlow.collect { _headHeadingFlow.value = it }
+            launch { provider.headHeadingFlow.collect { _headHeadingFlow.value = it } }
+            provider.stateFlow.collect { _headTrackerStateFlow.value = it }
         }
         applyHeadTrackingEnabled()
     }
@@ -651,6 +676,11 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
             headsetBatteryMonitor.start()
 
+            // Speak head tracker connections, calibration, disconnections and low battery
+            HeadTrackerAnnouncer(_headTrackerStateFlow, { announcement ->
+                speak2dText(announcement.text())
+            }).launchIn(coroutineScope)
+
             // Update the media controls mode
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
             sharedPreferences.registerOnSharedPreferenceChangeListener(headTrackingPrefListener)
@@ -707,6 +737,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         headTrackingProvider?.destroy()
         headTrackingProvider = null
         _headHeadingFlow.value = null
+        _headTrackerStateFlow.value = null
         if (::sharedPreferences.isInitialized) {
             sharedPreferences.unregisterOnSharedPreferenceChangeListener(headTrackingPrefListener)
         }

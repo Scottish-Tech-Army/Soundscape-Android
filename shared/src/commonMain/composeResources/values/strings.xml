@@ -1240,6 +1240,18 @@
     <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing, using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.</string>
     <!-- Description for the head tracking option on Android, which supports Bose Frames and WitMotion sensors but not AirPods -->
     <string name="settings_head_tracking_description_android">Turn the 3D audio with your head instead of your phone. Works with Bose Frames, or with a WitMotion Bluetooth motion sensor worn on your head. The first 30 seconds of moving is used to calibrate the head tracking, and after that your head direction will be used to control all audio positioning.</string>
+    <!-- Spoken, and shown in Settings, when a head tracker connects. %1$s is the device's brand name, e.g. WitMotion or Bose Frames -->
+    <string name="head_tracker_connected">%1$s head tracker connected</string>
+    <!-- Spoken, and shown in Settings, when a head tracker that reports its battery connects. %1$s is the device's brand name, e.g. WitMotion; %2$d is its battery level as a percentage -->
+    <string name="head_tracker_connected_battery">%1$s head tracker connected, battery %2$d percent</string>
+    <!-- Spoken, and shown in Settings, once head tracking has calibrated (after about 30 seconds of moving) and the direction of the user's head starts to control where the audio comes from -->
+    <string name="head_tracker_calibrated">Head tracking calibrated, your head direction now controls the audio</string>
+    <!-- Spoken when a connected head tracker stops responding, e.g. it was switched off or went out of range. %1$s is the device's brand name, e.g. WitMotion or Bose Frames -->
+    <string name="head_tracker_disconnected">%1$s head tracker disconnected</string>
+    <!-- Spoken when the head tracker's battery runs low. %1$d is its battery level as a percentage -->
+    <string name="head_tracker_battery_low">Head tracker battery low, %1$d percent</string>
+    <!-- Shown in Settings under the head tracking switch while the app looks for a head tracker to connect to -->
+    <string name="head_tracker_status_searching">Searching for a head tracker</string>
     <!-- Settings option for showing or hiding the map on the screen -->
     <string name="settings_show_map">Show maps on screen</string>
     <!-- Settings title for various debugging options to aid developers -->

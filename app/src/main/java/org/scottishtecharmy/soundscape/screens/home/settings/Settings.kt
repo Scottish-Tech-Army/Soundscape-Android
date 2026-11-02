@@ -16,6 +16,8 @@ import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackerState
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingStatus
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
@@ -36,6 +38,7 @@ fun Settings(
     storages: List<StorageUtils.StorageSpace>,
     onStorageSelected: (String) -> Unit,
     selectedStorageIndex: Int,
+    headTrackerState: HeadTrackerState? = null,
     onResetSettings: (() -> Unit)?,
     onBeaconPreviewStart: ((String) -> Unit)? = null,
     onBeaconPreviewUpdate: ((String) -> Unit)? = null,
@@ -69,6 +72,12 @@ fun Settings(
         PreferenceKeys.ALPHA_FEATURES,
         PreferenceDefaults.ALPHA_FEATURES,
     )
+    val headTrackingEnabled by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.HEAD_TRACKING_ENABLED,
+        PreferenceDefaults.HEAD_TRACKING_ENABLED,
+    )
+    val headTrackerStatus = headTrackerStatusText(headTrackerState)
 
     SharedSettingsScreen(
         onNavigateUp = { navController.navigateUp() },
@@ -214,7 +223,44 @@ fun Settings(
                         )
                     },
                 )
+                if (headTrackingEnabled && headTrackerStatus != null) {
+                    item(key = "head_tracker_status") {
+                        Text(
+                            text = headTrackerStatus,
+                            color = textColor,
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = expandedSectionModifier
+                                .fillMaxWidth()
+                                .padding(spacing.small)
+                                .testTag("settingsHeadTrackerStatus"),
+                        )
+                    }
+                }
             }
         },
     )
+}
+
+/**
+ * What the status line under the head tracking switch says: the same wording as the spoken
+ * announcements, so that it reads the same as what the user has heard. Null while head tracking
+ * isn't running.
+ */
+@Composable
+private fun headTrackerStatusText(state: HeadTrackerState?): String? {
+    if (state == null) return null
+    val name = state.deviceName ?: ""
+    val battery = state.batteryPercent
+    val connected = if (battery != null) {
+        stringResource(Res.string.head_tracker_connected_battery, name, battery)
+    } else {
+        stringResource(Res.string.head_tracker_connected, name)
+    }
+    return when (state.status) {
+        HeadTrackingStatus.Disconnected -> stringResource(Res.string.head_tracker_status_searching)
+        HeadTrackingStatus.Connected -> connected
+        HeadTrackingStatus.Calibrated ->
+            "$connected. ${stringResource(Res.string.head_tracker_calibrated)}"
+        HeadTrackingStatus.Inactive, HeadTrackingStatus.Unavailable -> null
+    }
 }
