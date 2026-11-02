@@ -23,12 +23,10 @@
         android:usesPermissionFlags="neverForLocation"
         tools:targetApi="s" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <!-- FOREGROUND_SERVICE_CONNECTED_DEVICE is required once head tracking ships (the service
-         will need to run as foregroundServiceType="connectedDevice" to stay connected to a
-         head-tracking BLE device). The head tracking code is all in place, but the feature is
-         currently disabled for users, so this permission is left out to avoid requiring it
-         before it's needed. Re-add it, and "connectedDevice" to the service's
-         foregroundServiceType below, when the feature ships. -->
+    <!-- For head tracking, so that the foreground service covers the connection to a head-tracking
+         BLE device. SoundscapeService only asks for the connectedDevice type while head tracking is
+         on and the Bluetooth permissions are granted. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <!-- UnusedTranslation is ignored because lint doesn't know that Indonesian's resource folder,
@@ -139,7 +137,7 @@
             android:stopWithTask="true"
             android:enabled="true"
             android:exported="true"
-            android:foregroundServiceType="location|mediaPlayback"
+            android:foregroundServiceType="location|mediaPlayback|connectedDevice"
             android:permission="android.permission.FOREGROUND_SERVICE_LOCATION">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService" />

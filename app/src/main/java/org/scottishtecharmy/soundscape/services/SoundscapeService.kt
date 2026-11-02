@@ -318,23 +318,62 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         applyHeadTrackingEnabled()
     }
 
-    fun applyHeadTrackingEnabled() {
-        // Head tracking is an alpha feature on Android: turning the alpha features off hides its
-        // switch, so it must stop it too rather than leave it running with no way to turn it off.
-        val enabled = sharedPreferences.getBoolean(
+    /**
+     * Head tracking is an alpha feature on Android: turning the alpha features off hides its
+     * switch, so it must stop it too rather than leave it running with no way to turn it off.
+     *
+     * Reads the preferences directly rather than through [sharedPreferences], because
+     * [startAsForegroundService] needs it at the top of onCreate(), before that is set.
+     */
+    private fun headTrackingEnabled(): Boolean {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        return preferences.getBoolean(
             PreferenceKeys.ALPHA_FEATURES,
             PreferenceDefaults.ALPHA_FEATURES,
-        ) && sharedPreferences.getBoolean(
+        ) && preferences.getBoolean(
             PreferenceKeys.HEAD_TRACKING_ENABLED,
             PreferenceDefaults.HEAD_TRACKING_ENABLED,
         )
+    }
+
+    /**
+     * The foreground service types to start with. connectedDevice covers the head tracker's BLE
+     * connection, but from Android 14 startForeground() throws a SecurityException for it unless
+     * BLUETOOTH_CONNECT is granted, so it is only asked for once head tracking can actually run.
+     * Everyone else starts with exactly location|mediaPlayback.
+     */
+    private fun wantedForegroundServiceType(): Int {
+        var serviceType = ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION or
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+        if (headTrackingEnabled() && hasBluetoothPermissions()) {
+            serviceType = serviceType or ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE
+        }
+        return serviceType
+    }
+
+    /**
+     * Calls startForeground() again if head tracking has changed whether connectedDevice is
+     * wanted. Only once in the foreground: before that, onCreate()'s own startForeground()
+     * picks the right types.
+     */
+    private fun updateForegroundServiceType() {
+        if (running && wantedForegroundServiceType() != foregroundServiceType) {
+            startAsForegroundService()
+        }
+    }
+
+    fun applyHeadTrackingEnabled() {
+        val enabled = headTrackingEnabled()
         val provider = headTrackingProvider ?: return
         if (enabled) {
+            // Add connectedDevice before connecting, so the connection is covered from the start
+            updateForegroundServiceType()
             // If permissions are missing the start is deferred — MainActivity
             // requests them and re-applies the preference once granted.
             if (hasBluetoothPermissions()) provider.start()
         } else {
             provider.stop()
+            updateForegroundServiceType()
         }
     }
 
@@ -365,6 +404,9 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     private val mediaPlayer = SoundscapeDummyMediaPlayer { activeMediaControlsTarget() }
 
     var running: Boolean = false
+
+    // The types the service is in the foreground with, see updateForegroundServiceType()
+    private var foregroundServiceType = 0
     var started: Boolean = false
 
     /**
@@ -703,14 +745,14 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                 }
             }
 
-            val serviceType = ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION or
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+            val serviceType = wantedForegroundServiceType()
             ServiceCompat.startForeground(
                 this,
                 NOTIFICATION_ID,
                 getNotification(),
                 serviceType
             )
+            foregroundServiceType = serviceType
         } catch (e: Exception) {
             if (running) {
                 // We were only re-asserting a foreground state we already hold (see
