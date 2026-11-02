@@ -9,12 +9,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.testTag
 import me.zhanghai.compose.preference.listPreference
+import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.StorageDropDownMenu
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
@@ -58,6 +64,11 @@ fun Settings(
     val themeLightnessValues = listOf("Auto", "Light", "Dark")
 
     val preferencesProvider: PreferencesProvider = koinInject()
+    val alphaFeatures by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.ALPHA_FEATURES,
+        PreferenceDefaults.ALPHA_FEATURES,
+    )
 
     SharedSettingsScreen(
         onNavigateUp = { navController.navigateUp() },
@@ -189,6 +200,21 @@ fun Settings(
                 },
                 summary = { ClickableOption(it, textColor) },
             )
+            // Alpha: not yet finished on Android, so only shown with the alpha test features on
+            if (alphaFeatures) {
+                switchPreference(
+                    key = PreferenceKeys.HEAD_TRACKING_ENABLED,
+                    defaultValue = PreferenceDefaults.HEAD_TRACKING_ENABLED,
+                    modifier = expandedSectionModifier.testTag("settingsHeadTracking"),
+                    title = {
+                        SettingDetails(
+                            Res.string.settings_head_tracking,
+                            Res.string.settings_head_tracking_description_android,
+                            textColor,
+                        )
+                    },
+                )
+            }
         },
     )
 }

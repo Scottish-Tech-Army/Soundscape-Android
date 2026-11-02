@@ -92,6 +92,12 @@ object PreferenceKeys {
     const val HEAD_TRACKING_ENABLED = "HeadTrackingEnabled"
 
     /**
+     * Debug option that reveals features still being tested and not yet finished. Each such
+     * feature hides its settings, and stays switched off, unless this is on.
+     */
+    const val ALPHA_FEATURES = "AlphaFeatures"
+
+    /**
      * Debug-only: which PoiRankStrategy to use when choosing between nearby POIs. Held as a string
      * rather than the enum so that an unrecognised value degrades to the default instead of
      * throwing, and so that it round-trips through the plain string preference store.
@@ -135,6 +141,7 @@ object PreferenceDefaults {
     const val MARKERS_SORT_BY_NAME = false  // distance by default
     const val MARKERS_SORT_ASCENDING = true
     const val HEAD_TRACKING_ENABLED = false
+    const val ALPHA_FEATURES = false
     const val POI_RANK_STRATEGY = "off"
     const val PREFERRED_MAP_APP = ""
 }

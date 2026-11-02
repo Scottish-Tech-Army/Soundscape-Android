@@ -88,6 +88,8 @@ import org.scottishtecharmy.soundscape.resources.menu_manage_locale
 import org.scottishtecharmy.soundscape.resources.menu_manage_search
 import org.scottishtecharmy.soundscape.resources.menu_media_controls
 import org.scottishtecharmy.soundscape.resources.offline_map_storage_title
+import org.scottishtecharmy.soundscape.resources.settings_alpha_features
+import org.scottishtecharmy.soundscape.resources.settings_alpha_features_description
 import org.scottishtecharmy.soundscape.resources.settings_debug_heading
 import org.scottishtecharmy.soundscape.resources.settings_explanation
 import org.scottishtecharmy.soundscape.resources.settings_media_controls_audio_menu
@@ -723,6 +725,19 @@ fun SharedSettingsScreen(
                         Text(
                             text = stringResource(Res.string.settings_travel_recording),
                             color = textColor
+                        )
+                    },
+                )
+
+                switchPreference(
+                    key = PreferenceKeys.ALPHA_FEATURES,
+                    defaultValue = PreferenceDefaults.ALPHA_FEATURES,
+                    modifier = expandedSectionModifier.testTag("settingsAlphaFeatures"),
+                    title = {
+                        SettingDetails(
+                            Res.string.settings_alpha_features,
+                            Res.string.settings_alpha_features_description,
+                            textColor,
                         )
                     },
                 )

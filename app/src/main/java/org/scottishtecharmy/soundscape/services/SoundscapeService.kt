@@ -154,7 +154,9 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     // Listener instance is field-level so it can be unregistered cleanly in onDestroy.
     private val headTrackingPrefListener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (key == PreferenceKeys.HEAD_TRACKING_ENABLED) applyHeadTrackingEnabled()
+            if (key == PreferenceKeys.HEAD_TRACKING_ENABLED || key == PreferenceKeys.ALPHA_FEATURES) {
+                applyHeadTrackingEnabled()
+            }
         }
 
     override val filteredLocationFlow: StateFlow<SoundscapeLocation?>
@@ -317,7 +319,12 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     }
 
     fun applyHeadTrackingEnabled() {
+        // Head tracking is an alpha feature on Android: turning the alpha features off hides its
+        // switch, so it must stop it too rather than leave it running with no way to turn it off.
         val enabled = sharedPreferences.getBoolean(
+            PreferenceKeys.ALPHA_FEATURES,
+            PreferenceDefaults.ALPHA_FEATURES,
+        ) && sharedPreferences.getBoolean(
             PreferenceKeys.HEAD_TRACKING_ENABLED,
             PreferenceDefaults.HEAD_TRACKING_ENABLED,
         )
