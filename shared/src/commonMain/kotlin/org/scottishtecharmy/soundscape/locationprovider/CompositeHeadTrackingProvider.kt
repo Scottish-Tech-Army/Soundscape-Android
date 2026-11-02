@@ -4,6 +4,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.platform.PlatformLock
@@ -29,6 +31,10 @@ import org.scottishtecharmy.soundscape.platform.withLock
 class CompositeHeadTrackingProvider(
     private val children: List<HeadTrackingProvider>,
 ) : HeadTrackingProvider() {
+
+    private val mutableStateFlow = MutableStateFlow(INACTIVE)
+    /** The overall status, with the name and battery of whichever child is connected. */
+    val stateFlow: StateFlow<HeadTrackerState> = mutableStateFlow
 
     private var scope: CoroutineScope? = null
 
@@ -59,6 +65,19 @@ class CompositeHeadTrackingProvider(
             combine(children.map { it.statusFlow }) { statuses ->
                 statuses.maxByOrNull { it.ordinal } ?: HeadTrackingStatus.Inactive
             }.collect { ifStillRunning(newScope) { mutableStatusFlow.value = it } }
+        }
+        newScope.launch {
+            combine(
+                combine(children.map { it.statusFlow }) { it.toList() },
+                combine(children.map { it.batteryPercentFlow }) { it.toList() },
+            ) { statuses, batteries ->
+                val activeIndex = statuses.indexOfFirst { it.isActive() }
+                HeadTrackerState(
+                    status = statuses.maxByOrNull { it.ordinal } ?: HeadTrackingStatus.Inactive,
+                    deviceName = children.getOrNull(activeIndex)?.deviceName,
+                    batteryPercent = batteries.getOrNull(activeIndex),
+                )
+            }.collect { ifStillRunning(newScope) { mutableStateFlow.value = it } }
         }
         newScope.launch {
             // Scan-coordination: at most one child is allowed to be active at
@@ -97,10 +116,15 @@ class CompositeHeadTrackingProvider(
         children.forEach { it.stop() }
         mutableHeadHeadingFlow.value = null
         mutableStatusFlow.value = HeadTrackingStatus.Inactive
+        mutableStateFlow.value = INACTIVE
     }
 
     override fun destroy() {
         stop()
         children.forEach { it.destroy() }
+    }
+
+    private companion object {
+        val INACTIVE = HeadTrackerState(HeadTrackingStatus.Inactive, null, null)
     }
 }

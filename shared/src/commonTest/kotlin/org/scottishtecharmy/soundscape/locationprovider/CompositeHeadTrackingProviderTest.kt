@@ -42,7 +42,9 @@ class CompositeHeadTrackingProviderTest {
         }
     }
 
-    private class FakeHeadTrackingProvider : HeadTrackingProvider() {
+    private class FakeHeadTrackingProvider(
+        override val deviceName: String? = null,
+    ) : HeadTrackingProvider() {
         var startCalls = 0
             private set
         var stopCalls = 0
@@ -75,6 +77,10 @@ class CompositeHeadTrackingProviderTest {
 
         fun setHeading(heading: HeadHeading?) {
             mutableHeadHeadingFlow.value = heading
+        }
+
+        fun setBattery(percent: Int?) {
+            mutableBatteryPercentFlow.value = percent
         }
     }
 
@@ -233,5 +239,33 @@ class CompositeHeadTrackingProviderTest {
             assertEquals(HeadTrackingStatus.Inactive, provider.statusFlow.value, "run $it")
             assertEquals(HeadTrackingStatus.Inactive, b.statusFlow.value, "run $it: b restarted")
         }
+    }
+
+    @Test
+    fun stateFlowNamesTheConnectedChildAndGivesItsBattery() = runBlocking {
+        val a = FakeHeadTrackingProvider("WitMotion")
+        val b = FakeHeadTrackingProvider("Bose Frames")
+        val provider = composite(listOf(a, b))
+        provider.start()
+
+        awaitUntil { provider.stateFlow.value.status == HeadTrackingStatus.Disconnected }
+        assertNull(provider.stateFlow.value.deviceName)
+        assertNull(provider.stateFlow.value.batteryPercent)
+
+        b.setStatus(HeadTrackingStatus.Connected)
+        awaitUntil { provider.stateFlow.value.deviceName == "Bose Frames" }
+        assertEquals(HeadTrackingStatus.Connected, provider.stateFlow.value.status)
+        assertNull(provider.stateFlow.value.batteryPercent)
+
+        // b drops out and a connects in its place
+        b.setStatus(HeadTrackingStatus.Disconnected)
+        a.setBattery(70)
+        a.setStatus(HeadTrackingStatus.Calibrated)
+        awaitUntil { provider.stateFlow.value.deviceName == "WitMotion" }
+        awaitUntil { provider.stateFlow.value.batteryPercent == 70 }
+        assertEquals(HeadTrackingStatus.Calibrated, provider.stateFlow.value.status)
+
+        provider.stop()
+        assertEquals(HeadTrackerState(HeadTrackingStatus.Inactive, null, null), provider.stateFlow.value)
     }
 }

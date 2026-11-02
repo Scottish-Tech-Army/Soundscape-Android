@@ -354,6 +354,7 @@ fun HomeScreen(
         settingsContent = { navCtrl ->
             val settingsViewModel: SettingsViewModel = koinViewModel()
             val uiState by settingsViewModel.state.collectAsStateWithLifecycle()
+            val headTrackerState by settingsViewModel.headTrackerState.collectAsStateWithLifecycle()
 
             Settings(
                 navController = navCtrl,
@@ -361,6 +362,7 @@ fun HomeScreen(
                 storages = uiState.storages,
                 onStorageSelected = { path -> settingsViewModel.selectStorage(path) },
                 selectedStorageIndex = uiState.selectedStorageIndex,
+                headTrackerState = headTrackerState,
                 onResetSettings = callbacks.onResetSettings,
                 onBeaconPreviewStart = { type -> settingsViewModel.startBeaconPreview(type) },
                 onBeaconPreviewUpdate = { type -> settingsViewModel.updateBeaconPreviewType(type) },

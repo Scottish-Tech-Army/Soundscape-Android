@@ -6,6 +6,7 @@ import com.juul.kable.Scanner
 import com.juul.kable.WriteType
 import com.juul.kable.characteristicOf
 import kotlinx.coroutines.flow.first
+import org.scottishtecharmy.soundscape.locationprovider.collectUntilSilent
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -46,9 +47,7 @@ class BoseFramesClient {
             val patched = patchEnableRotation(existing, rotationPeriodMs = ROTATION_PERIOD_MS)
             peripheral.write(configCharacteristic, patched, WriteType.WithResponse)
             onConnected()
-            peripheral.observe(dataCharacteristic).collect { bytes ->
-                onBytes(bytes)
-            }
+            collectUntilSilent(peripheral.observe(dataCharacteristic), STREAM_SILENCE_MILLIS, onBytes)
         } finally {
             peripheral.disconnect()
         }
@@ -75,6 +74,10 @@ class BoseFramesClient {
     }
 
     companion object {
+        // The sensor streams continuously, so this long without a notification means it has
+        // gone: end the session now rather than wait for Android's BLE supervision timeout.
+        private const val STREAM_SILENCE_MILLIS = 1_500L
+
         // Bose AR sensor service (SIG-base UUID, custom 16-bit ID 0xFDD2).
         const val SERVICE_UUID = "0000fdd2-0000-1000-8000-00805f9b34fb"
         const val DATA_CHAR_UUID = "56a72ab8-4988-4cc8-a752-fbd1d54a953d"

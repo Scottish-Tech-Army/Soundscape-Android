@@ -34,6 +34,8 @@ class BoseFramesHeadTrackingProvider(
     private val client: BoseFramesClient = BoseFramesClient(),
 ) : HeadTrackingProvider() {
 
+    override val deviceName = "Bose Frames"
+
     private val calibrationManager = HeadphoneCalibrationManager()
 
     private var scope: CoroutineScope? = null

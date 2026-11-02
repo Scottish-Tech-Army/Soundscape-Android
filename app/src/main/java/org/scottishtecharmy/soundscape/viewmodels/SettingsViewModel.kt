@@ -7,13 +7,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackerState
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
@@ -38,6 +44,16 @@ class SettingsViewModel(
 
     private val _state: MutableStateFlow<SettingsUiState> = MutableStateFlow(SettingsUiState())
     val state: StateFlow<SettingsUiState> = _state.asStateFlow()
+
+    /** The head tracker's status, device and battery, for the status line under its switch. */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val headTrackerState: StateFlow<HeadTrackerState?> =
+        soundscapeServiceConnection.serviceBoundState
+            .flatMapLatest { bound ->
+                val service = soundscapeServiceConnection.soundscapeService
+                if (bound && service != null) service.headTrackerStateFlow else flowOf(null)
+            }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
     private var serviceBoundJob: Job? = null
 
     init {

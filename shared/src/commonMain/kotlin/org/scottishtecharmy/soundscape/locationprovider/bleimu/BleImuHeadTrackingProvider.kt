@@ -31,6 +31,8 @@ class BleImuHeadTrackingProvider(
     private val client: BleImuClient = BleImuClient(),
 ) : HeadTrackingProvider() {
 
+    override val deviceName = "WitMotion"
+
     private val parser = WitMotionFrameParser(onRegisterResponse = ::onRegisterResponse)
     // The WT streams at 100 Hz, so the device calibrator needs a ~10 s window
     // of samples to be as forgiving of brief look-aways as the iOS AirPods
@@ -79,12 +81,18 @@ class BleImuHeadTrackingProvider(
         mutableHeadHeadingFlow.value = null
         mutableStatusFlow.value = HeadTrackingStatus.Inactive
         _batteryVoltageFlow.value = null
+        mutableBatteryPercentFlow.value = null
     }
 
     private fun onRegisterResponse(response: WitMotionRegisterResponse) {
         if (response.address == BleImuClient.REG_BATTERY_VOLTAGE) {
+            // The first reply after connecting reads 0, before the sensor has measured its
+            // battery. Taken at face value that announces a flat battery, so wait for the next.
+            if (response.rawValue <= 0) return
             // Register units are 0.01 V (e.g. 410 -> 4.10 V).
-            _batteryVoltageFlow.value = response.rawValue / 100.0f
+            val volts = response.rawValue / 100.0f
+            _batteryVoltageFlow.value = volts
+            mutableBatteryPercentFlow.value = witMotionBatteryPercent(response.rawValue)
         }
     }
 
@@ -132,6 +140,8 @@ class BleImuHeadTrackingProvider(
                 // Scan failed / connection dropped / GATT error — wait and retry.
                 mutableHeadHeadingFlow.value = null
                 mutableStatusFlow.value = HeadTrackingStatus.Disconnected
+                _batteryVoltageFlow.value = null
+                mutableBatteryPercentFlow.value = null
                 delay(RECONNECT_DELAY_MILLIS)
             }
         }

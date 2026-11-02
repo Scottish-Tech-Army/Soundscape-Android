@@ -109,6 +109,12 @@ object PreferenceKeys {
      * Details - an Android package name, or an iOS app key from IosMapApps. Empty means ask.
      */
     const val PREFERRED_MAP_APP = "PreferredMapApp"
+
+    /**
+     * Address of the WitMotion head tracker last connected to (Android only), so that it can be
+     * found again with the screen off - see BleImuClient.scanForSensor. Empty if none.
+     */
+    const val WITMOTION_ADDRESS = "WitMotionAddress"
 }
 
 object PreferenceDefaults {
