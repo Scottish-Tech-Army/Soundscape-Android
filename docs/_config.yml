@@ -31,7 +31,7 @@ default_lang: "en"
 # instead; all binary assets live under assets/, dokka/ or documentationScreens/.
 # translation-questions/: each questionnaire is already in its own language, so it is
 # built once rather than copied under every /<lang>/ prefix.
-exclude_from_localization: ["assets", "dokka", "documentationScreens", "javascript", "generate-beacons.py", "translation-questions"]
+exclude_from_localization: ["assets", "dokka", "documentationScreens", "javascript", "generate-beacons.py", "translation-questions", "roadmap.md"]
 # Keep serial for now: just-the-docs nav generation can race under polyglot's
 # parallel mode. Revisit only if build time becomes a problem.
 parallel_localization: false
