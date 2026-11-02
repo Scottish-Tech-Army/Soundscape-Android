@@ -209,8 +209,11 @@ class MainActivity : AppCompatActivity() {
                 soundscapeServiceConnection.soundscapeService?.updateMediaControls(mode)
             }
 
-            PreferenceKeys.HEAD_TRACKING_ENABLED -> {
+            PreferenceKeys.HEAD_TRACKING_ENABLED, PreferenceKeys.ALPHA_FEATURES -> {
                 val enabled = preferences.getBoolean(
+                    PreferenceKeys.ALPHA_FEATURES,
+                    PreferenceDefaults.ALPHA_FEATURES,
+                ) && preferences.getBoolean(
                     PreferenceKeys.HEAD_TRACKING_ENABLED,
                     PreferenceDefaults.HEAD_TRACKING_ENABLED,
                 )
