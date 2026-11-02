@@ -516,6 +516,8 @@
     <string name="settings_use_value">usar</string>
     <string name="street_preview_exit">Sair da simulação de localização</string>
     <string name="settings_travel_recording">Ativar a gravação de viagens</string>
+    <string name="settings_alpha_features">Ativar funcionalidades de teste alfa</string>
+    <string name="settings_alpha_features_description">Mostra as definições de funcionalidades que ainda estão a ser testadas. Podem estar incompletas ou ser pouco fiáveis.</string>
     <string name="settings_debug_heading">Opções de Depuração</string>
     <string name="menu_share_recorded_route">Partilhar a gravação de viagens</string>
     <string name="confect_name_to_via">%1$s {pt:para %2$s} via %3$s</string>
@@ -1520,6 +1522,7 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="settings_mix_audio_description">Quando desativado, outras aplicações de áudio serão pausadas e os controlos multimédia do ecrã de bloqueio ficarão disponíveis</string>
     <string name="settings_head_tracking">Ativar rastreio da cabeça</string>
     <string name="settings_head_tracking_description">Posiciona o áudio espacial relativamente à direção para a qual a sua cabeça está virada, usando dados de movimento dos AirPods suportados, dos Bose Frames ou de um IMU Bluetooth externo. Calibra automaticamente enquanto caminha.</string>
+    <string name="settings_head_tracking_description_android">O áudio 3D roda com a sua cabeça em vez de com o telemóvel. Funciona com os Bose Frames ou com um sensor de movimento Bluetooth WitMotion usado na cabeça. Os primeiros 30 segundos de movimento servem para calibrar o rastreio da cabeça e, a partir daí, a direção da sua cabeça controla a posição de todo o áudio.</string>
     <string name="sleep_snoozing">Em Modo de Pausa</string>
     <string name="sleep_sleeping_wake_on_leave_message">O Soundscape está atualmente em Modo de Pausa. Quando sair da sua localização atual, o Soundscape reativar‑se‑á automaticamente. O Modo de Pausa utiliza os Serviços de localização num modo de baixo consumo para poupar a bateria do seu telemóvel. Toque no botão abaixo para reativar agora.</string>
     <string name="sleep_wake_on_leave">Reativar ao sair</string>

@@ -1332,10 +1332,13 @@
     <string name="settings_use_value">použiť</string>
     <string name="street_preview_exit">Ukončiť simuláciu polohy</string>
     <string name="settings_travel_recording">Povoliť nahrávanie cesty</string>
+    <string name="settings_alpha_features">Povoliť funkcie na alfa testovanie</string>
+    <string name="settings_alpha_features_description">Zobrazí nastavenia funkcií, ktoré sa ešte testujú. Môžu byť nedokončené alebo nespoľahlivé.</string>
     <string name="settings_mix_audio">Miešať zvuk s inými aplikáciami</string>
     <string name="settings_mix_audio_description">Keď je táto možnosť vypnutá, ostatné zvukové aplikácie sa pozastavia a na uzamknutej obrazovke budú k dispozícii ovládacie prvky médií</string>
     <string name="settings_head_tracking">Povoliť sledovanie polohy hlavy</string>
     <string name="settings_head_tracking_description">Umiestňuje priestorový zvuk podľa smeru, ktorým je natočená vaša hlava, pomocou pohybových dát z podporovaných slúchadiel AirPods, okuliarov Bose Frames alebo externej Bluetooth jednotky IMU. Automaticky sa kalibruje počas chôdze.</string>
+    <string name="settings_head_tracking_description_android">Otáča 3D zvuk podľa vašej hlavy namiesto telefónu. Funguje s okuliarmi Bose Frames alebo s Bluetooth snímačom pohybu WitMotion, ktorý nosíte na hlave. Prvých 30 sekúnd pohybu sa použije na kalibráciu sledovania polohy hlavy a potom smer vašej hlavy určuje umiestnenie všetkého zvuku.</string>
     <string name="settings_show_map">Zobrazovať mapy na obrazovke</string>
     <string name="settings_debug_heading">Možnosti ladenia</string>
     <string name="settings_search_results_language">Jazyk vyhľadávania</string>

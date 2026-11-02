@@ -524,6 +524,8 @@
     <string name="settings_use_value">Χρήση</string>
     <string name="street_preview_exit">Έξοδος από την προσομοίωση τοποθεσίας</string>
     <string name="settings_travel_recording">Ενεργοποίηση καταγραφής της πορείας μετακίνησης</string>
+    <string name="settings_alpha_features">Ενεργοποίηση λειτουργιών δοκιμής άλφα</string>
+    <string name="settings_alpha_features_description">Εμφανίζει ρυθμίσεις για λειτουργίες που βρίσκονται ακόμη σε δοκιμή. Μπορεί να είναι ημιτελείς ή αναξιόπιστες.</string>
     <string name="settings_show_map">Εμφάνιση χαρτών στην οθόνη</string>
     <string name="settings_debug_heading">Επιλογές αποσφαλμάτωσης</string>
     <string name="settings_search_results_language">Γλώσσα αναζήτησης</string>
@@ -1504,6 +1506,7 @@
     <string name="settings_mix_audio_description">Όταν είναι απενεργοποιημένη, άλλες εφαρμογές ήχου θα παύουν και θα είναι διαθέσιμοι οι έλεγχοι πολυμέσων στην οθόνη κλειδώματος</string>
     <string name="settings_head_tracking">Ενεργοποίηση παρακολούθησης κεφαλής</string>
     <string name="settings_head_tracking_description">Τοποθετήστε τον χωρικό ήχο σε σχέση με την κατεύθυνση που κοιτάει το κεφάλι σας, χρησιμοποιώντας δεδομένα κίνησης από υποστηριζόμενα AirPods, Bose Frames ή εξωτερικό Bluetooth IMU. Η βαθμονόμηση γίνεται αυτόματα όσο περπατάτε.</string>
+    <string name="settings_head_tracking_description_android">Ο τρισδιάστατος ήχος περιστρέφεται με το κεφάλι σας αντί για το τηλέφωνο. Λειτουργεί με Bose Frames ή με αισθητήρα κίνησης Bluetooth της WitMotion που φοράτε στο κεφάλι. Τα πρώτα 30 δευτερόλεπτα κίνησης χρησιμοποιούνται για τη βαθμονόμηση της παρακολούθησης κεφαλής και στη συνέχεια η κατεύθυνση του κεφαλιού σας ελέγχει τη θέση όλων των ήχων.</string>
     <string name="sleep_snoozing">Σε αναβολή</string>
     <string name="sleep_sleeping_wake_on_leave_message">Το Soundscape αυτήν τη στιγμή βρίσκεται σε λειτουργία αναβολής. Όταν φύγετε από την τρέχουσα τοποθεσία σας, το Soundscape θα ενεργοποιηθεί αυτόματα. Η λειτουργία αναβολής χρησιμοποιεί τις Υπηρεσίες τοποθεσίας σε λειτουργία χαμηλής κατανάλωσης ενέργειας για να εξοικονομήσει μπαταρία στο τηλέφωνό σας. Πατήστε το παρακάτω κουμπί για να το ενεργοποιήσετε τώρα.</string>
     <string name="sleep_wake_on_leave">Ενεργοποίηση όταν φύγω</string>

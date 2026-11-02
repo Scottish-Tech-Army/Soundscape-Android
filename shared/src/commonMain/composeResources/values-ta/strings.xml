@@ -1536,10 +1536,13 @@
     <string name="settings_use_value">பயன்படுத்து</string>
     <string name="street_preview_exit">இருப்பிட உருவகப்படுத்துதலிலிருந்து வெளியேறு</string>
     <string name="settings_travel_recording">பயணப் பதிவை இயக்கு</string>
+    <string name="settings_alpha_features">ஆல்ஃபா சோதனை அம்சங்களை இயக்கு</string>
+    <string name="settings_alpha_features_description">இன்னும் சோதிக்கப்பட்டு வரும் அம்சங்களுக்கான அமைப்புகளைக் காட்டும். அவை முழுமையற்றதாகவோ நம்பகமற்றதாகவோ இருக்கலாம்.</string>
     <string name="settings_mix_audio">மற்ற பயன்பாடுகளுடன் ஆடியோவைக் கலக்கு</string>
     <string name="settings_mix_audio_description">முடக்கப்பட்டால், மற்ற ஆடியோ பயன்பாடுகள் இடைநிறுத்தப்படும், மேலும் பூட்டுத் திரை மீடியா கட்டுப்பாடுகள் கிடைக்கும்</string>
     <string name="settings_head_tracking">தலை கண்காணிப்பை இயக்கு</string>
     <string name="settings_head_tracking_description">ஆதரிக்கப்படும் AirPods, Bose Frames அல்லது வெளிப்புற Bluetooth IMU இலிருந்து இயக்கத் தரவைப் பயன்படுத்தி, உங்கள் தலை எதிர்நோக்கும் திசைக்கு ஏற்ப இடவியல் ஆடியோவை நிலைநிறுத்தும். நீங்கள் நடக்கும்போது தானாகவே அளவீடு செய்யும்.</string>
+    <string name="settings_head_tracking_description_android">3D ஆடியோ உங்கள் ஃபோனுக்குப் பதிலாக உங்கள் தலையுடன் திரும்பும். Bose Frames உடன், அல்லது தலையில் அணியும் WitMotion Bluetooth இயக்க சென்சாருடன் வேலை செய்யும். நகரத் தொடங்கிய முதல் 30 வினாடிகள் தலை கண்காணிப்பை அளவீடு செய்யப் பயன்படும், அதன் பிறகு உங்கள் தலையின் திசையே எல்லா ஆடியோவின் நிலையையும் கட்டுப்படுத்தும்.</string>
     <string name="settings_show_map">திரையில் வரைபடங்களைக் காட்டு</string>
     <string name="settings_debug_heading">பிழைதிருத்த விருப்பங்கள்</string>
     <string name="settings_search_results_language">தேடல் மொழி</string>

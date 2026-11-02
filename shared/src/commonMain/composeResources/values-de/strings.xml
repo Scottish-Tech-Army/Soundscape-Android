@@ -524,6 +524,8 @@
     <string name="settings_use_value">verwenden</string>
     <string name="street_preview_exit">Standortsimulation beenden</string>
     <string name="settings_travel_recording">Aufzeichnung von Reisen aktivieren</string>
+    <string name="settings_alpha_features">Funktionen für Alphatests aktivieren</string>
+    <string name="settings_alpha_features_description">Zeigt Einstellungen für Funktionen, die noch getestet werden. Sie können unvollständig oder unzuverlässig sein.</string>
     <string name="settings_show_map">Karten auf dem Bildschirm anzeigen</string>
     <string name="settings_debug_heading">Debug‑Optionen</string>
     <string name="settings_search_results_language">Suchsprache</string>
@@ -1504,6 +1506,7 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="settings_mix_audio_description">Wenn deaktiviert, werden andere Audio‑Apps pausiert und die Mediensteuerung auf dem Sperrbildschirm ist verfügbar</string>
     <string name="settings_head_tracking">Head‑Tracking aktivieren</string>
     <string name="settings_head_tracking_description">Positioniert das räumliche Audio relativ zur Blickrichtung Ihres Kopfes unter Verwendung von Bewegungsdaten unterstützter AirPods, Bose Frames oder eines externen Bluetooth‑IMU. Kalibriert automatisch, während Sie gehen.</string>
+    <string name="settings_head_tracking_description_android">Dreht den 3D‑Klang mit Ihrem Kopf statt mit Ihrem Telefon. Funktioniert mit Bose Frames oder mit einem WitMotion‑Bluetooth‑Bewegungssensor, den Sie am Kopf tragen. Die ersten 30 Sekunden Bewegung dienen der Kalibrierung des Head‑Trackings, danach steuert die Richtung Ihres Kopfes die Position aller Klänge.</string>
     <string name="sleep_snoozing">Im Standbymodus</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape ist derzeit im Standbymodus. Wenn Sie Ihren aktuellen Standort verlassen, wacht Soundscape automatisch auf. Der Standbymodus nutzt die Ortungsdienste in einem Energiesparmodus, um den Akku Ihres Telefons zu schonen. Tippen Sie auf die Schaltfläche unten, um Soundscape jetzt aufzuwecken.</string>
     <string name="sleep_wake_on_leave">Beim Verlassen aufwecken</string>

@@ -1496,10 +1496,13 @@
     <string name="settings_use_value">използвай</string>
     <string name="street_preview_exit">Изход от симулацията на местоположение</string>
     <string name="settings_travel_recording">Разреши записване на пътуването</string>
+    <string name="settings_alpha_features">Разреши функции за алфа тестване</string>
+    <string name="settings_alpha_features_description">Показва настройки за функции, които все още се тестват. Те може да са незавършени или ненадеждни.</string>
     <string name="settings_mix_audio">Смесване на звука с други приложения</string>
     <string name="settings_mix_audio_description">Когато е изключено, другите аудио приложения ще бъдат поставени на пауза и ще бъдат налични мултимедийните контроли на заключения екран</string>
     <string name="settings_head_tracking">Разреши проследяване на главата</string>
     <string name="settings_head_tracking_description">Позиционира пространственото аудио спрямо посоката, в която е обърната главата ви, като използва данни за движение от поддържани AirPods, Bose Frames или външен Bluetooth IMU. Калибрира се автоматично, докато вървите.</string>
+    <string name="settings_head_tracking_description_android">Завърта 3D звука спрямо главата ви вместо спрямо телефона. Работи с Bose Frames или с Bluetooth сензор за движение WitMotion, носен на главата. Първите 30 секунди движение се използват за калибриране на проследяването на главата, след което посоката на главата ви управлява позиционирането на целия звук.</string>
     <string name="settings_show_map">Показвай карти на екрана</string>
     <string name="settings_debug_heading">Опции за отстраняване на грешки</string>
     <string name="settings_search_results_language">Език на търсенето</string>

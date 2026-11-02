@@ -520,6 +520,8 @@
     <string name="settings_use_value">використовувати</string>
     <string name="street_preview_exit">Вийти з режиму симуляції місцезнаходження</string>
     <string name="settings_travel_recording">Увімкнути запис подорожі</string>
+    <string name="settings_alpha_features">Увімкнути функції альфа-тестування</string>
+    <string name="settings_alpha_features_description">Показує налаштування функцій, які ще тестуються. Вони можуть бути незавершеними або ненадійними.</string>
     <string name="settings_debug_heading">Параметри налагодження</string>
     <string name="menu_share_recorded_route">Поділитися записом подорожі</string>
     <string name="confect_name_to_via">%1$s, напрямок: %2$s, через %3$s</string>
@@ -1536,6 +1538,7 @@
     <string name="settings_mix_audio_description">Якщо вимкнено, інші аудіопрограми призупинять відтворення, а на заблокованому екрані стануть доступні елементи керування медіа</string>
     <string name="settings_head_tracking">Увімкнути відстеження голови</string>
     <string name="settings_head_tracking_description">Розміщуйте просторове аудіо відносно напрямку, у який повернена ваша голова, використовуючи дані руху від підтримуваних AirPods, Bose Frames або зовнішнього Bluetooth IMU. Калібрується автоматично під час ходьби.</string>
+    <string name="settings_head_tracking_description_android">Повертає 3D‑звук разом із вашою головою, а не з телефоном. Працює з Bose Frames або з Bluetooth‑датчиком руху WitMotion, закріпленим на голові. Перші 30 секунд руху використовуються для калібрування відстеження голови, а потім розташування всіх звуків визначає напрямок вашої голови.</string>
     <string name="sleep_snoozing">У режимі Дрімоти</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape наразі перебуває в режимі дрімоти. Коли ви покинете поточне місцезнаходження, Soundscape автоматично прокинеться. У режимі дрімоти служби визначення місцезнаходження працюють в енергозберігаючому режимі, щоб зберегти заряд акумулятора вашого телефона. Натисніть кнопку нижче, щоб розбудити зараз.</string>
     <string name="sleep_wake_on_leave">Розбудити при виході</string>

@@ -524,6 +524,8 @@
     <string name="settings_use_value">gebruiken</string>
     <string name="street_preview_exit">Locatiesimulatie afsluiten</string>
     <string name="settings_travel_recording">Reisregistratie inschakelen</string>
+    <string name="settings_alpha_features">Functies voor alfatest inschakelen</string>
+    <string name="settings_alpha_features_description">Toon instellingen voor functies die nog worden getest. Ze kunnen onvolledig of onbetrouwbaar zijn.</string>
     <string name="settings_show_map">Kaarten op het scherm weergeven</string>
     <string name="settings_debug_heading">Debugopties</string>
     <string name="settings_search_results_language">Taal van zoekresultaten</string>
@@ -1504,6 +1506,7 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="settings_mix_audio_description">Wanneer uitgeschakeld, worden andere audio‑apps gepauzeerd en zijn de mediacontroles op het vergrendelscherm beschikbaar</string>
     <string name="settings_head_tracking">Hoofdtracking inschakelen</string>
     <string name="settings_head_tracking_description">Plaats ruimtelijke audio ten opzichte van de richting waarin uw hoofd is gericht, met behulp van bewegingsgegevens van ondersteunde AirPods, Bose Frames of een externe Bluetooth‑IMU. Kalibreert automatisch terwijl u loopt.</string>
+    <string name="settings_head_tracking_description_android">Draai de 3D‑audio mee met uw hoofd in plaats van met uw telefoon. Werkt met Bose Frames of met een WitMotion Bluetooth‑bewegingssensor die u op uw hoofd draagt. De eerste 30 seconden van bewegen worden gebruikt om de hoofdtracking te kalibreren, en daarna bepaalt de richting van uw hoofd de positie van alle audio.</string>
     <string name="sleep_snoozing">Sluimerstand</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape staat momenteel in de sluimerstand. Wanneer u uw huidige locatie verlaat, wordt Soundscape automatisch weer gewekt. In de sluimerstand worden Locatievoorzieningen in een zuinige modus gebruikt om de batterij van uw telefoon te sparen. Tik op de knop hieronder om Soundscape nu te wekken.</string>
     <string name="sleep_wake_on_leave">Wek bij vertrek</string>

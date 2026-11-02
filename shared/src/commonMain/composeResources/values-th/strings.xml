@@ -1520,10 +1520,13 @@
     <string name="settings_use_value">ใช้</string>
     <string name="street_preview_exit">ออกจากการจำลองตำแหน่ง</string>
     <string name="settings_travel_recording">เปิดใช้งานการบันทึกการเดินทาง</string>
+    <string name="settings_alpha_features">เปิดใช้งานฟีเจอร์สำหรับการทดสอบอัลฟ่า</string>
+    <string name="settings_alpha_features_description">แสดงการตั้งค่าของฟีเจอร์ที่ยังอยู่ระหว่างการทดสอบ ฟีเจอร์เหล่านี้อาจยังไม่สมบูรณ์หรือไม่เสถียร</string>
     <string name="settings_mix_audio">ผสมเสียงกับแอปอื่น</string>
     <string name="settings_mix_audio_description">เมื่อปิดใช้งาน แอปเสียงอื่นจะหยุดชั่วคราวและจะมีการควบคุมสื่อบนหน้าจอล็อกให้ใช้งาน</string>
     <string name="settings_head_tracking">เปิดใช้งานการติดตามการเคลื่อนไหวศีรษะ</string>
     <string name="settings_head_tracking_description">จัดตำแหน่งเสียงเชิงพื้นที่ตามทิศทางที่ศีรษะของคุณหันไป โดยใช้ข้อมูลการเคลื่อนไหวจาก AirPods, Bose Frames ที่รองรับ หรือ IMU บลูทูธภายนอก ปรับเทียบโดยอัตโนมัติขณะที่คุณเดิน</string>
+    <string name="settings_head_tracking_description_android">เสียง 3D จะหมุนตามศีรษะของคุณแทนโทรศัพท์ ใช้งานได้กับ Bose Frames หรือเซ็นเซอร์ตรวจจับการเคลื่อนไหวบลูทูธของ WitMotion ที่สวมไว้บนศีรษะ ช่วง 30 วินาทีแรกของการเคลื่อนที่จะใช้ปรับเทียบการติดตามการเคลื่อนไหวศีรษะ หลังจากนั้นทิศทางของศีรษะคุณจะควบคุมตำแหน่งของเสียงทั้งหมด</string>
     <string name="settings_show_map">แสดงแผนที่บนหน้าจอ</string>
     <string name="settings_debug_heading">ตัวเลือกดีบัก</string>
     <string name="settings_search_results_language">ภาษาในการค้นหา</string>

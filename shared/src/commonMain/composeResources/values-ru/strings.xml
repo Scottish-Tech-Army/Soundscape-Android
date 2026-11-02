@@ -388,6 +388,8 @@
     <string name="settings_list_item_description">%1$s — выбор %2$s из %3$s</string>
     <string name="street_preview_exit">Выйти из режима симуляции местоположения</string>
     <string name="settings_travel_recording">Включить запись поездки</string>
+    <string name="settings_alpha_features">Включить функции альфа-тестирования</string>
+    <string name="settings_alpha_features_description">Показывает настройки функций, которые ещё тестируются. Они могут быть незавершёнными или ненадёжными.</string>
     <string name="settings_debug_heading">Параметры отладки</string>
     <string name="menu_share_recorded_route">Поделиться записью поездки</string>
     <string name="confect_name_to_via">%1$s к %2$s через %3$s</string>
@@ -1536,6 +1538,7 @@
     <string name="settings_mix_audio_description">Если отключено, другие аудиоприложения будут приостановлены, а элементы управления медиа на экране блокировки станут доступны</string>
     <string name="settings_head_tracking">Включить отслеживание головы</string>
     <string name="settings_head_tracking_description">Располагать пространственное аудио относительно направления вашей головы, используя данные движения от поддерживаемых AirPods, Bose Frames или внешнего Bluetooth‑IMU. Калибруется автоматически во время прогулки.</string>
+    <string name="settings_head_tracking_description_android">Поворачивает 3D‑звук вместе с вашей головой, а не с телефоном. Работает с Bose Frames или с Bluetooth‑датчиком движения WitMotion, закреплённым на голове. Первые 30 секунд движения используются для калибровки отслеживания головы, а затем расположение всех звуков определяется направлением вашей головы.</string>
     <string name="sleep_snoozing">Отложенный режим</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape в настоящее время находится в отложенном режиме. Когда вы покинете текущее местоположение, Soundscape автоматически проснётся. Отложенный режим использует Службы геолокации в режиме пониженного энергопотребления, чтобы экономить заряд батареи телефона. Нажмите кнопку ниже, чтобы разбудить Soundscape.</string>
     <string name="sleep_wake_on_leave">Разбудить, когда я уйду</string>

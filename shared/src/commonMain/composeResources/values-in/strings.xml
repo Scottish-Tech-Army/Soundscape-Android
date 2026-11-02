@@ -1520,10 +1520,13 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="settings_use_value">gunakan</string>
     <string name="street_preview_exit">Keluar dari simulasi lokasi</string>
     <string name="settings_travel_recording">Aktifkan perekaman perjalanan</string>
+    <string name="settings_alpha_features">Aktifkan fitur uji alfa</string>
+    <string name="settings_alpha_features_description">Tampilkan pengaturan untuk fitur yang masih diuji. Fitur ini mungkin belum lengkap atau belum andal.</string>
     <string name="settings_mix_audio">Campur audio dengan aplikasi lain</string>
     <string name="settings_mix_audio_description">Jika dinonaktifkan, aplikasi audio lain akan dijeda dan kontrol media di layar kunci akan tersedia</string>
     <string name="settings_head_tracking">Aktifkan pelacakan kepala</string>
     <string name="settings_head_tracking_description">Posisikan audio spasial relatif terhadap arah hadap kepala Anda, menggunakan data gerakan dari AirPods, Bose Frames yang didukung, atau IMU Bluetooth eksternal. Terkalibrasi secara otomatis saat Anda berjalan.</string>
+    <string name="settings_head_tracking_description_android">Audio 3D berputar mengikuti kepala Anda, bukan ponsel Anda. Berfungsi dengan Bose Frames, atau dengan sensor gerak Bluetooth WitMotion yang dipakai di kepala. 30 detik pertama saat bergerak digunakan untuk mengkalibrasi pelacakan kepala, dan setelah itu arah kepala Anda akan mengendalikan posisi semua audio.</string>
     <string name="settings_show_map">Tampilkan peta di layar</string>
     <string name="settings_debug_heading">Opsi debug</string>
     <string name="settings_search_results_language">Bahasa pencarian</string>

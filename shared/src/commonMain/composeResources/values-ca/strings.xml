@@ -585,10 +585,13 @@
     <string name="settings_use_value">utilitza</string>
     <string name="street_preview_exit">Surt de la simulació d'ubicació</string>
     <string name="settings_travel_recording">Activa l'enregistrament de trajectes</string>
+    <string name="settings_alpha_features">Activa les funcions de prova alfa</string>
+    <string name="settings_alpha_features_description">Mostra la configuració de funcions que encara s'estan provant. Poden estar incompletes o no ser fiables.</string>
     <string name="settings_mix_audio">Combina l'àudio amb altres aplicacions</string>
     <string name="settings_mix_audio_description">Quan està desactivat, la resta d'aplicacions d'àudio es pausaran i els controls multimèdia de la pantalla de bloqueig estaran disponibles</string>
     <string name="settings_head_tracking">Activa el seguiment del cap</string>
     <string name="settings_head_tracking_description">Posiciona l'àudio espacial en relació amb la direcció cap a la qual mira el vostre cap, utilitzant dades de moviment d'AirPods, Bose Frames o una IMU Bluetooth externa compatibles. Es calibra automàticament mentre camineu.</string>
+    <string name="settings_head_tracking_description_android">Fa girar l'àudio 3D amb el teu cap en lloc del telèfon. Funciona amb les Bose Frames o amb un sensor de moviment Bluetooth WitMotion que portis al cap. Els primers 30 segons de moviment serveixen per calibrar el seguiment del cap i, a partir d'aleshores, la direcció del teu cap controla la posició de tot l'àudio.</string>
     <string name="settings_show_map">Mostra els mapes a la pantalla</string>
     <string name="settings_debug_heading">Opcions de depuració</string>
     <string name="settings_search_results_language">Idioma de cerca</string>

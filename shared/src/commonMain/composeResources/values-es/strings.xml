@@ -509,6 +509,8 @@
     <string name="settings_use_value">usar</string>
     <string name="street_preview_exit">Salir de la simulación de ubicación</string>
     <string name="settings_travel_recording">Habilitar grabación de viaje</string>
+    <string name="settings_alpha_features">Habilitar funciones de prueba alfa</string>
+    <string name="settings_alpha_features_description">Muestra los ajustes de funciones que aún se están probando. Pueden estar incompletas o no ser fiables.</string>
     <string name="settings_debug_heading">Opciones de depuración</string>
     <string name="menu_share_recorded_route">Compartir grabación de viaje</string>
     <string name="confect_name_to_via">%1$s {es:hacia %2$s} vía %3$s</string>
@@ -1520,6 +1522,7 @@ Sigue informándonos de cualquier problema, por pequeño que sea, a través de �
     <string name="settings_mix_audio_description">Si está desactivada, otras aplicaciones de audio se pausarán y estarán disponibles los controles multimedia en la pantalla de bloqueo</string>
     <string name="settings_head_tracking">Habilitar seguimiento de la cabeza</string>
     <string name="settings_head_tracking_description">Posicionar el audio espacial en relación con la dirección hacia la que mira tu cabeza, usando datos de movimiento de AirPods compatibles, Bose Frames o una IMU Bluetooth externa. Se calibra automáticamente mientras caminas.</string>
+    <string name="settings_head_tracking_description_android">Gira el audio 3D con tu cabeza en lugar de con el teléfono. Funciona con Bose Frames o con un sensor de movimiento Bluetooth WitMotion que lleves en la cabeza. Los primeros 30 segundos de movimiento se usan para calibrar el seguimiento de la cabeza y, a partir de ahí, la dirección de tu cabeza controla la posición de todo el audio.</string>
     <string name="sleep_snoozing">Posponiendo</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape se encuentra actualmente en modo de aplazamiento. Cuando salgas de tu ubicación actual, Soundscape se reactivará automáticamente. El modo de aplazamiento utiliza los Servicios de localización en un modo de bajo consumo para ahorrar batería del teléfono. Pulsa el botón siguiente para reactivar Soundscape ahora.</string>
     <string name="sleep_wake_on_leave">Reactivar al salir</string>

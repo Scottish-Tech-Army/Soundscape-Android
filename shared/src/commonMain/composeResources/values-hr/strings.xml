@@ -1316,10 +1316,13 @@
     <string name="settings_use_value">koristi</string>
     <string name="street_preview_exit">Izađi iz simulacije lokacije</string>
     <string name="settings_travel_recording">Omogući snimanje putovanja</string>
+    <string name="settings_alpha_features">Omogući značajke za alfa testiranje</string>
+    <string name="settings_alpha_features_description">Prikazuje postavke značajki koje se još testiraju. Mogu biti nedovršene ili nepouzdane.</string>
     <string name="settings_mix_audio">Miješaj zvuk s drugim aplikacijama</string>
     <string name="settings_mix_audio_description">Kada je onemogućeno, druge zvučne aplikacije će se pauzirati, a upravljanje medijima na zaključanom zaslonu bit će dostupno</string>
     <string name="settings_head_tracking">Omogući praćenje pokreta glave</string>
     <string name="settings_head_tracking_description">Postavlja prostorni zvuk u odnosu na smjer u kojem je okrenuta vaša glava, koristeći podatke o pokretu s podržanih AirPods, Bose Frames ili vanjske Bluetooth IMU jedinice. Automatski se kalibrira dok hodate.</string>
+    <string name="settings_head_tracking_description_android">Okreće 3D zvuk prema vašoj glavi umjesto prema telefonu. Radi s naočalama Bose Frames ili s WitMotion Bluetooth senzorom pokreta koji nosite na glavi. Prvih 30 sekundi kretanja koristi se za kalibraciju praćenja pokreta glave, a nakon toga smjer vaše glave određuje položaj svih zvukova.</string>
     <string name="settings_show_map">Prikaži karte na zaslonu</string>
     <string name="settings_debug_heading">Opcije za otklanjanje pogrešaka</string>
     <string name="settings_search_results_language">Jezik pretraživanja</string>
