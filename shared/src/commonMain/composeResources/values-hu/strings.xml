@@ -1302,6 +1302,8 @@
     <string name="settings_travel_recording">Utazás rögzítésének engedélyezése</string>
     <string name="settings_alpha_features">Alfateszt-funkciók engedélyezése</string>
     <string name="settings_alpha_features_description">Megjeleníti a még tesztelés alatt álló funkciók beállításait. Ezek hiányosak vagy megbízhatatlanok lehetnek.</string>
+    <string name="settings_record_head_tracker_input">Fejkövető adatainak rögzítése</string>
+    <string name="settings_record_head_tracker_input_description">Az utazások rögzítéseihez hozzáad mindent, amit a fejkövető küld, így hibakereséskor egy séta pontosan visszajátszható. WitMotion érzékelővel ez a rögzítéseket minden óra gyaloglás után körülbelül 20 MB-tal növeli.</string>
     <string name="settings_mix_audio">Hang keverése más alkalmazásokkal</string>
     <string name="settings_mix_audio_description">Ha ki van kapcsolva, a többi hangalkalmazás szüneteltetve lesz, és elérhetők lesznek a zárolási képernyő médiavezérlői</string>
     <string name="settings_head_tracking">Fejkövetés engedélyezése</string>

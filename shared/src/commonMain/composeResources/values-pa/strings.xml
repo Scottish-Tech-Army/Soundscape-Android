@@ -639,6 +639,8 @@
     <string name="settings_travel_recording">ਸਫ਼ਰ ਦੀ ਰਿਕਾਰਡਿੰਗ ਚਾਲੂ ਕਰੋ</string>
     <string name="settings_alpha_features">ਅਲਫ਼ਾ ਟੈਸਟ ਵਾਲੀਆਂ ਸਹੂਲਤਾਂ ਚਾਲੂ ਕਰੋ</string>
     <string name="settings_alpha_features_description">ਉਹਨਾਂ ਸਹੂਲਤਾਂ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਦਿਖਾਓ ਜਿਨ੍ਹਾਂ ਦੀ ਅਜੇ ਜਾਂਚ ਹੋ ਰਹੀ ਹੈ। ਇਹ ਅਧੂਰੀਆਂ ਜਾਂ ਭਰੋਸੇਯੋਗ ਨਾ ਹੋਣ ਵਾਲੀਆਂ ਹੋ ਸਕਦੀਆਂ ਹਨ।</string>
+    <string name="settings_record_head_tracker_input">ਸਿਰ ਟਰੈਕਰ ਦਾ ਡਾਟਾ ਰਿਕਾਰਡ ਕਰੋ</string>
+    <string name="settings_record_head_tracker_input_description">ਸਿਰ ਟਰੈਕਰ ਜੋ ਕੁਝ ਵੀ ਭੇਜਦਾ ਹੈ ਉਹ ਸਭ ਸਫ਼ਰ ਦੀਆਂ ਰਿਕਾਰਡਿੰਗਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ, ਤਾਂ ਜੋ ਡੀਬੱਗ ਕਰਦੇ ਸਮੇਂ ਪੈਦਲ ਸਫ਼ਰ ਨੂੰ ਬਿਲਕੁਲ ਉਸੇ ਤਰ੍ਹਾਂ ਦੁਬਾਰਾ ਚਲਾਇਆ ਜਾ ਸਕੇ। WitMotion ਸੈਂਸਰ ਨਾਲ ਇਸ ਨਾਲ ਹਰ ਘੰਟੇ ਦੀ ਸੈਰ ਲਈ ਰਿਕਾਰਡਿੰਗਾਂ ਲਗਭਗ 20 MB ਵੱਡੀਆਂ ਹੋ ਜਾਂਦੀਆਂ ਹਨ।</string>
     <string name="settings_mix_audio">ਹੋਰ ਐਪਾਂ ਨਾਲ ਆਡੀਓ ਮਿਲਾਓ</string>
     <string name="settings_mix_audio_description">ਬੰਦ ਹੋਣ 'ਤੇ, ਹੋਰ ਆਡੀਓ ਐਪਾਂ ਰੁਕ ਜਾਣਗੀਆਂ ਅਤੇ ਲਾਕ ਸਕ੍ਰੀਨ ਦੇ ਮੀਡੀਆ ਕੰਟਰੋਲ ਉਪਲਬਧ ਹੋਣਗੇ</string>
     <string name="settings_head_tracking">ਸਿਰ ਦੀ ਟਰੈਕਿੰਗ ਚਾਲੂ ਕਰੋ</string>

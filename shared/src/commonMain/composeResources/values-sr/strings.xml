@@ -1318,6 +1318,8 @@
     <string name="settings_travel_recording">Омогући снимање путовања</string>
     <string name="settings_alpha_features">Омогући функције за алфа тестирање</string>
     <string name="settings_alpha_features_description">Приказује подешавања функција које се још тестирају. Могу бити недовршене или непоуздане.</string>
+    <string name="settings_record_head_tracker_input">Снимај податке сензора за праћење покрета главе</string>
+    <string name="settings_record_head_tracker_input_description">Додаје у снимке путовања све што сензор за праћење покрета главе шаље, како би се шетња при отклањању грешака могла тачно поново репродуковати. Са сензором WitMotion снимци постају већи за око 20 MB за сваки сат ходања.</string>
     <string name="settings_mix_audio">Мешај звук са другим апликацијама</string>
     <string name="settings_mix_audio_description">Када је ово онемогућено, друге звучне апликације ће се паузирати, а дугмад за управљање медијима на закључаном екрану ће бити доступна</string>
     <string name="settings_head_tracking">Омогући праћење покрета главе</string>

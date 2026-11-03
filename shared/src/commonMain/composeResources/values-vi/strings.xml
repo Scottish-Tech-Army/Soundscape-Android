@@ -1522,6 +1522,8 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="settings_travel_recording">Bật ghi lại hành trình di chuyển</string>
     <string name="settings_alpha_features">Bật các tính năng thử nghiệm alpha</string>
     <string name="settings_alpha_features_description">Hiển thị cài đặt cho các tính năng vẫn đang được thử nghiệm. Các tính năng này có thể chưa hoàn thiện hoặc chưa ổn định.</string>
+    <string name="settings_record_head_tracker_input">Ghi lại dữ liệu từ thiết bị theo dõi chuyển động đầu</string>
+    <string name="settings_record_head_tracker_input_description">Thêm mọi dữ liệu mà thiết bị theo dõi chuyển động đầu gửi vào bản ghi hành trình, để có thể phát lại chính xác một lần đi bộ khi gỡ lỗi. Với cảm biến WitMotion, bản ghi sẽ lớn thêm khoảng 20 MB cho mỗi giờ đi bộ.</string>
     <string name="settings_mix_audio">Trộn âm thanh với ứng dụng khác</string>
     <string name="settings_mix_audio_description">Khi tắt, các ứng dụng âm thanh khác sẽ tạm dừng và điều khiển đa phương tiện trên màn hình khóa sẽ khả dụng</string>
     <string name="settings_head_tracking">Bật theo dõi chuyển động đầu</string>

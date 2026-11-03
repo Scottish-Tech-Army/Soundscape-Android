@@ -526,6 +526,8 @@
     <string name="settings_travel_recording">Virkja skráningu ferða</string>
     <string name="settings_alpha_features">Virkja eiginleika í alfaprófun</string>
     <string name="settings_alpha_features_description">Sýnir stillingar fyrir eiginleika sem enn er verið að prófa. Þeir geta verið ókláraðir eða óáreiðanlegir.</string>
+    <string name="settings_record_head_tracker_input">Skrá gögn frá höfuðrakningarbúnaði</string>
+    <string name="settings_record_head_tracker_input_description">Bætir öllu sem höfuðrakningarbúnaðurinn sendir við ferðaskráningar, svo hægt sé að endurspila göngu nákvæmlega við villuleit. Með WitMotion-skynjara stækka skráningarnar um u.þ.b. 20 MB fyrir hverja klukkustund af göngu.</string>
     <string name="settings_show_map">Sýna kort á skjánum</string>
     <string name="settings_debug_heading">Villuleitarmöguleikar</string>
     <string name="settings_search_results_language">Leitartungumál</string>

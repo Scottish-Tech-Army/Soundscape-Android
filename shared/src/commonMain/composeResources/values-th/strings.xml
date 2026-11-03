@@ -1522,6 +1522,8 @@
     <string name="settings_travel_recording">เปิดใช้งานการบันทึกการเดินทาง</string>
     <string name="settings_alpha_features">เปิดใช้งานฟีเจอร์สำหรับการทดสอบอัลฟ่า</string>
     <string name="settings_alpha_features_description">แสดงการตั้งค่าของฟีเจอร์ที่ยังอยู่ระหว่างการทดสอบ ฟีเจอร์เหล่านี้อาจยังไม่สมบูรณ์หรือไม่เสถียร</string>
+    <string name="settings_record_head_tracker_input">บันทึกข้อมูลจากอุปกรณ์ติดตามการเคลื่อนไหวศีรษะ</string>
+    <string name="settings_record_head_tracker_input_description">เพิ่มทุกอย่างที่อุปกรณ์ติดตามการเคลื่อนไหวศีรษะส่งมาลงในการบันทึกการเดินทาง เพื่อให้เล่นการเดินซ้ำได้อย่างแม่นยำเมื่อแก้ไขข้อบกพร่อง หากใช้เซ็นเซอร์ WitMotion การบันทึกจะใหญ่ขึ้นประมาณ 20 MB ต่อการเดินทุกหนึ่งชั่วโมง</string>
     <string name="settings_mix_audio">ผสมเสียงกับแอปอื่น</string>
     <string name="settings_mix_audio_description">เมื่อปิดใช้งาน แอปเสียงอื่นจะหยุดชั่วคราวและจะมีการควบคุมสื่อบนหน้าจอล็อกให้ใช้งาน</string>
     <string name="settings_head_tracking">เปิดใช้งานการติดตามการเคลื่อนไหวศีรษะ</string>

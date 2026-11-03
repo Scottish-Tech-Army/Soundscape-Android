@@ -526,6 +526,8 @@
     <string name="settings_travel_recording">Aufzeichnung von Reisen aktivieren</string>
     <string name="settings_alpha_features">Funktionen für Alphatests aktivieren</string>
     <string name="settings_alpha_features_description">Zeigt Einstellungen für Funktionen, die noch getestet werden. Sie können unvollständig oder unzuverlässig sein.</string>
+    <string name="settings_record_head_tracker_input">Head‑Tracker‑Daten aufzeichnen</string>
+    <string name="settings_record_head_tracker_input_description">Fügt alles, was der Head‑Tracker sendet, den Reiseaufzeichnungen hinzu, damit ein Weg bei der Fehlersuche genau wiedergegeben werden kann. Mit einem WitMotion‑Sensor werden die Aufzeichnungen dadurch pro Stunde Gehen etwa 20 MB größer.</string>
     <string name="settings_show_map">Karten auf dem Bildschirm anzeigen</string>
     <string name="settings_debug_heading">Debug‑Optionen</string>
     <string name="settings_search_results_language">Suchsprache</string>

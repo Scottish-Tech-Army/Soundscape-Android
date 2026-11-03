@@ -520,6 +520,8 @@
     <string name="settings_travel_recording">Aktivera inspelning av resor</string>
     <string name="settings_alpha_features">Aktivera funktioner för alfatest</string>
     <string name="settings_alpha_features_description">Visa inställningar för funktioner som fortfarande testas. De kan vara ofärdiga eller opålitliga.</string>
+    <string name="settings_record_head_tracker_input">Spela in data från huvudspåraren</string>
+    <string name="settings_record_head_tracker_input_description">Lägger till allt som huvudspåraren skickar i inspelningar av resor, så att en promenad kan spelas upp exakt vid felsökning. Med en WitMotion-sensor blir inspelningarna ungefär 20 MB större för varje timmes promenad.</string>
     <string name="settings_show_map">Visa kartor på skärmen</string>
     <string name="settings_debug_heading">Felsökningsalternativ</string>
     <string name="settings_search_results_language">Sökspråk</string>

@@ -814,6 +814,8 @@
     <string name="settings_travel_recording">प्रवासाचे रेकॉर्डिंग सक्षम करा</string>
     <string name="settings_alpha_features">अल्फा चाचणी वैशिष्ट्ये सक्षम करा</string>
     <string name="settings_alpha_features_description">अजूनही चाचणी सुरू असलेल्या वैशिष्ट्यांची सेटिंग्ज दाखवा. ती अपूर्ण किंवा अविश्वसनीय असू शकतात.</string>
+    <string name="settings_record_head_tracker_input">हेड ट्रॅकरचा डेटा रेकॉर्ड करा</string>
+    <string name="settings_record_head_tracker_input_description">हेड ट्रॅकर जे काही पाठवतो ते सर्व प्रवासाच्या रेकॉर्डिंगमध्ये जोडा, जेणेकरून डीबग करताना चालणे जसेच्या तसे पुन्हा चालवता येईल. WitMotion सेन्सरसह यामुळे प्रत्येक तास चालण्यामागे रेकॉर्डिंग सुमारे 20 MB ने मोठे होते.</string>
     <string name="settings_mix_audio">इतर अॅप्ससोबत ऑडिओ मिक्स करा</string>
     <string name="settings_mix_audio_description">अक्षम केल्यास, इतर ऑडिओ अॅप्स थांबतील आणि लॉक स्क्रीनवर मीडिया नियंत्रणे उपलब्ध होतील</string>
     <string name="settings_head_tracking">हेड ट्रॅकिंग सक्षम करा</string>

@@ -450,6 +450,8 @@
     <string name="settings_travel_recording">Seyahat kaydını etkinleştir</string>
     <string name="settings_alpha_features">Alfa test özelliklerini etkinleştir</string>
     <string name="settings_alpha_features_description">Hâlâ test edilen özelliklerin ayarlarını gösterir. Bu özellikler eksik veya güvenilmez olabilir.</string>
+    <string name="settings_record_head_tracker_input">Baş takip cihazı verilerini kaydet</string>
+    <string name="settings_record_head_tracker_input_description">Baş takip cihazının gönderdiği her şeyi seyahat kayıtlarına ekler; böylece hata ayıklarken bir yürüyüş tam olarak yeniden oynatılabilir. WitMotion sensörüyle bu, kayıtları her yürüyüş saati için yaklaşık 20 MB büyütür.</string>
     <string name="settings_show_map">Haritayı ekranda göster</string>
     <string name="settings_debug_heading">Hata ayıklama seçenekleri</string>
     <string name="settings_search_results_language">Arama dili</string>

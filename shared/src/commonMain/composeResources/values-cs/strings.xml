@@ -1334,6 +1334,8 @@
     <string name="settings_travel_recording">Povolit záznam cesty</string>
     <string name="settings_alpha_features">Povolit funkce pro alfa testování</string>
     <string name="settings_alpha_features_description">Zobrazí nastavení funkcí, které se stále testují. Mohou být nedokončené nebo nespolehlivé.</string>
+    <string name="settings_record_head_tracker_input">Zaznamenávat data ze snímače polohy hlavy</string>
+    <string name="settings_record_head_tracker_input_description">Přidá do záznamů cesty vše, co snímač polohy hlavy odesílá, aby bylo možné chůzi při ladění přesně přehrát. Se snímačem WitMotion se tím záznamy zvětší asi o 20 MB za každou hodinu chůze.</string>
     <string name="settings_mix_audio">Mísit zvuk s ostatními aplikacemi</string>
     <string name="settings_mix_audio_description">Když je vypnuto, ostatní zvukové aplikace se pozastaví a bude k dispozici ovládání médií na zamykací obrazovce</string>
     <string name="settings_head_tracking">Povolit sledování polohy hlavy</string>

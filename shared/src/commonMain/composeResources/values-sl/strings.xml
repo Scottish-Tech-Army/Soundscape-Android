@@ -1530,6 +1530,8 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="settings_travel_recording">Omogoči snemanje poti</string>
     <string name="settings_alpha_features">Omogoči funkcije za alfa testiranje</string>
     <string name="settings_alpha_features_description">Prikaže nastavitve funkcij, ki so še v preizkušanju. Morda so nedokončane ali nezanesljive.</string>
+    <string name="settings_record_head_tracker_input">Snemaj podatke senzorja za sledenje glavi</string>
+    <string name="settings_record_head_tracker_input_description">Posnetkom poti doda vse, kar pošlje senzor za sledenje glavi, da je mogoče sprehod pri odpravljanju napak natančno znova predvajati. S senzorjem WitMotion se posnetki povečajo za približno 20 MB na vsako uro hoje.</string>
     <string name="settings_mix_audio">Mešaj zvok z drugimi aplikacijami</string>
     <string name="settings_mix_audio_description">Če je onemogočeno, se druge zvočne aplikacije ustavijo, na zaklenjenem zaslonu pa bodo na voljo kontrolniki za predstavnost</string>
     <string name="settings_head_tracking">Omogoči sledenje glavi</string>

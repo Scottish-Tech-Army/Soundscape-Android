@@ -448,6 +448,8 @@
     <string name="settings_travel_recording">Activează înregistrarea deplasării</string>
     <string name="settings_alpha_features">Activează funcțiile de testare alfa</string>
     <string name="settings_alpha_features_description">Afișează setările pentru funcțiile care sunt încă în testare. Acestea pot fi incomplete sau nesigure.</string>
+    <string name="settings_record_head_tracker_input">Înregistrează datele senzorului de urmărire a capului</string>
+    <string name="settings_record_head_tracker_input_description">Adaugă la înregistrările deplasării tot ce trimite senzorul de urmărire a capului, astfel încât o plimbare să poată fi redată exact la depanare. Cu un senzor WitMotion, înregistrările cresc cu aproximativ 20 MB pentru fiecare oră de mers.</string>
     <string name="settings_show_map">Afișează hărțile pe ecran</string>
     <string name="settings_debug_heading">Opțiuni de depanare</string>
     <string name="settings_search_results_language">Limba de căutare</string>

@@ -526,6 +526,8 @@
     <string name="settings_travel_recording">Reisregistratie inschakelen</string>
     <string name="settings_alpha_features">Functies voor alfatest inschakelen</string>
     <string name="settings_alpha_features_description">Toon instellingen voor functies die nog worden getest. Ze kunnen onvolledig of onbetrouwbaar zijn.</string>
+    <string name="settings_record_head_tracker_input">Gegevens van de hoofdtracker vastleggen</string>
+    <string name="settings_record_head_tracker_input_description">Voegt alles wat de hoofdtracker verstuurt toe aan reisregistraties, zodat een wandeling bij het debuggen precies opnieuw kan worden afgespeeld. Met een WitMotion-sensor worden registraties hierdoor ongeveer 20 MB groter per uur lopen.</string>
     <string name="settings_show_map">Kaarten op het scherm weergeven</string>
     <string name="settings_debug_heading">Debugopties</string>
     <string name="settings_search_results_language">Taal van zoekresultaten</string>
