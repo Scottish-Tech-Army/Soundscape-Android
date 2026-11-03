@@ -10,17 +10,9 @@ import kotlin.test.assertTrue
 
 class HeadphoneCalibrationManagerTest {
 
-    /** Small windows so tests converge in a handful of samples instead of 200/30. */
-    private fun smallWindowManager(
-        deviceWindow: Int = 3,
-        courseWindow: Int = 3,
-    ): HeadphoneCalibrationManager {
-        val composite = CompositeHeadphoneCalibrator(
-            deviceCalibrator = HeadphoneCalibrator(CalibrationSource.Device, windowSize = deviceWindow),
-            courseCalibrator = HeadphoneCalibrator(CalibrationSource.Course, windowSize = courseWindow),
-        )
-        return HeadphoneCalibrationManager(calibrator = composite)
-    }
+    /** A small device window so tests converge in a handful of samples instead of 200. */
+    private fun smallWindowManager(deviceWindow: Int = 3) =
+        HeadphoneCalibrationManager(deviceWindowSize = deviceWindow)
 
     @Test
     fun notCalibratedBeforeAnyData() {
@@ -100,7 +92,7 @@ class HeadphoneCalibrationManagerTest {
 
     @Test
     fun pushCourseReferenceIgnoresRepeatedIdenticalValues() {
-        val manager = smallWindowManager(courseWindow = 2)
+        val manager = smallWindowManager()
         manager.start()
         // Same course value pushed repeatedly (as would happen between ~1 Hz
         // GPS ticks while this is called at IMU rate) should count as a
@@ -113,7 +105,7 @@ class HeadphoneCalibrationManagerTest {
 
     @Test
     fun pushCourseReferenceCalibratesOnDistinctValues() {
-        val manager = smallWindowManager(courseWindow = 2)
+        val manager = smallWindowManager()
         manager.start()
         val offset = -20.0
         for (i in 0..5) {
@@ -125,7 +117,7 @@ class HeadphoneCalibrationManagerTest {
 
     @Test
     fun pushCourseReferenceNoOpWhenNotActive() {
-        val manager = smallWindowManager(courseWindow = 2)
+        val manager = smallWindowManager()
         for (i in 0..5) {
             manager.pushCourseReference(i * 10.0, i * 10.0 + 15.0, i.toLong())
         }

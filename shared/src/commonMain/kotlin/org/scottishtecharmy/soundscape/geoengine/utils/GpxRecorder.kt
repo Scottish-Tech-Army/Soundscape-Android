@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import org.scottishtecharmy.soundscape.geoengine.LocationRecorder
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingDebug
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.platform.formatGpxTimestamp
 
@@ -10,13 +11,20 @@ class GpxRecorder : LocationRecorder {
 
     val bufferMutex = Mutex()
     val maxBufferSize = 3600        // 1 location per second for an hour
-    private val buffer: MutableList<SoundscapeLocation> = mutableListOf()
+    private val buffer: MutableList<Pair<SoundscapeLocation, HeadTrackingDebug?>> = mutableListOf()
+
+    /**
+     * Gives the head tracker's state to record with each fix, or null when there's no tracker
+     * running. Written as an `<extensions>` element, which GpxParser skips, so a replay is
+     * unaffected and RECORDER_VERSION stays as it is.
+     */
+    var headTracking: (() -> HeadTrackingDebug?)? = null
 
     suspend fun generateGpx(): String {
         val builder = StringBuilder()
         builder.append(GPX_HEADER)
         bufferMutex.withLock {
-            for (location in buffer) {
+            for ((location, head) in buffer) {
                 builder.append("<trkpt lat=\"").append(location.latitude)
                     .append("\" lon=\"").append(location.longitude).append("\">\n")
                 builder.append("<ele>0.0</ele>\n")
@@ -43,11 +51,47 @@ class GpxRecorder : LocationRecorder {
                 builder.append("<time>")
                     .append(formatGpxTimestamp(location.timestampMilliseconds))
                     .append("</time>\n")
+                head?.let { appendHeadTracking(builder, it) }
                 builder.append("</trkpt>\n")
             }
         }
         builder.append(GPX_FOOTER)
         return builder.toString()
+    }
+
+    private fun appendHeadTracking(builder: StringBuilder, head: HeadTrackingDebug) {
+        builder.append("<extensions>\n<headTracking>\n")
+        builder.append("<status>").append(head.status.name).append("</status>\n")
+        head.device?.let { builder.append("<device>").append(it).append("</device>\n") }
+        appendDegrees(builder, "heading", head.headingDegrees)
+        appendDegrees(builder, "yaw", head.yawDegrees)
+        appendDegrees(builder, "offset", head.offsetDegrees)
+        appendDegrees(builder, "phoneHeading", head.phoneHeadingDegrees)
+        builder.append("<phoneFlat>").append(head.phoneFlat).append("</phoneFlat>\n")
+        appendDegrees(builder, "course", head.courseDegrees)
+        for (calibration in head.calibrations) {
+            builder.append("<calibration>\n")
+            builder.append("<source>").append(calibration.source.name).append("</source>\n")
+            appendDegrees(builder, "offset", calibration.offsetDegrees)
+            appendDegrees(builder, "accuracy", calibration.accuracyDegrees)
+            builder.append("<time>")
+                .append(formatGpxTimestamp(calibration.timestampMillis))
+                .append("</time>\n")
+            builder.append("</calibration>\n")
+        }
+        for ((device, input) in head.inputs) {
+            builder.append("<input device=\"").append(device).append("\">\n")
+                .append(input).append("</input>\n")
+        }
+        builder.append("</headTracking>\n</extensions>\n")
+    }
+
+    // To a tenth of a degree, left out when there's no value, as for the fix's own fields
+    private fun appendDegrees(builder: StringBuilder, element: String, value: Double?) {
+        if (value == null) return
+        builder.append("<").append(element).append(">")
+            .append(kotlin.math.round(value * 10.0) / 10.0)
+            .append("</").append(element).append(">\n")
     }
 
     private fun appendIfPresent(
@@ -64,7 +108,7 @@ class GpxRecorder : LocationRecorder {
 
     override suspend fun storeLocation(location: SoundscapeLocation) {
         bufferMutex.withLock {
-            buffer.add(location)
+            buffer.add(location to headTracking?.invoke())
             if (buffer.size > maxBufferSize)
                 buffer.removeAt(0)
         }

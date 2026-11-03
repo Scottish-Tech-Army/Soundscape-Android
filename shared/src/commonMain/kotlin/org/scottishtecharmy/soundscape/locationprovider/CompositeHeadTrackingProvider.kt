@@ -103,6 +103,9 @@ class CompositeHeadTrackingProvider(
         }
     }
 
+    override fun takeDebugSnapshot(includeInput: Boolean): HeadTrackingDebug? =
+        mergeDebugSnapshots(children.mapNotNull { it.takeDebugSnapshot(includeInput) })
+
     private fun HeadTrackingStatus.isActive(): Boolean =
         this == HeadTrackingStatus.Connected || this == HeadTrackingStatus.Calibrated
 
@@ -127,4 +130,16 @@ class CompositeHeadTrackingProvider(
     private companion object {
         val INACTIVE = HeadTrackerState(HeadTrackingStatus.Inactive, null, null)
     }
+}
+
+/**
+ * One snapshot for several trackers: the connected one's state, or the first's when none is,
+ * with every tracker's input. Every running tracker records the phone heading and location it's
+ * given, so a replay of whichever connects later starts from the same state the live one did.
+ */
+internal fun mergeDebugSnapshots(snapshots: List<HeadTrackingDebug>): HeadTrackingDebug? {
+    val main = snapshots.firstOrNull {
+        it.status == HeadTrackingStatus.Connected || it.status == HeadTrackingStatus.Calibrated
+    } ?: snapshots.firstOrNull() ?: return null
+    return main.copy(inputs = snapshots.fold(emptyMap()) { inputs, it -> inputs + it.inputs })
 }

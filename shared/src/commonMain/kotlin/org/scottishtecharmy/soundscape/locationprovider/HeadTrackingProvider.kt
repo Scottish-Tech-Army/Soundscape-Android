@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import org.scottishtecharmy.soundscape.geoengine.headtracking.HeadphoneCalibration
 
 data class HeadHeading(
     val degrees: Double,
@@ -28,6 +29,28 @@ data class HeadTrackerState(
     val batteryPercent: Int?,
 )
 
+/**
+ * What a head tracker was doing at one moment, recorded alongside each GPX track point so a walk
+ * can be looked at afterwards. [yawDegrees] is the sensor's own relative yaw, clockwise and
+ * unwrapped, and [headingDegrees] = [yawDegrees] + [offsetDegrees]. [courseDegrees] is the walking
+ * course given to the calibrator, or null when there wasn't a fresh one. [calibrations] are those
+ * made since the previous snapshot. [device] is the tracker the rest describes, by its
+ * [CalibratedHeadTrackingProvider.inputId], and [inputs] holds everything each tracker that was
+ * running was given since then, for replaying it (see [HeadTrackerInputLog]), by the same id.
+ */
+data class HeadTrackingDebug(
+    val status: HeadTrackingStatus,
+    val yawDegrees: Double?,
+    val offsetDegrees: Double?,
+    val headingDegrees: Double?,
+    val phoneHeadingDegrees: Double?,
+    val phoneFlat: Boolean,
+    val courseDegrees: Double?,
+    val calibrations: List<HeadphoneCalibration>,
+    val device: String? = null,
+    val inputs: Map<String, String> = emptyMap(),
+)
+
 abstract class HeadTrackingProvider {
     protected val mutableHeadHeadingFlow = MutableStateFlow<HeadHeading?>(null)
     val headHeadingFlow: StateFlow<HeadHeading?> = mutableHeadHeadingFlow
@@ -41,6 +64,14 @@ abstract class HeadTrackingProvider {
 
     /** The device's brand name, used when telling the user it has connected. Not translated. */
     open val deviceName: String? = null
+
+    /**
+     * The tracker's state for a GPX recording, or null if it isn't running or doesn't report one.
+     * Each call takes the calibrations made since the last, so only the recorder should call it.
+     * With [includeInput], the snapshot also carries the tracker's raw input for replaying it;
+     * without, the tracker stops keeping it.
+     */
+    open fun takeDebugSnapshot(includeInput: Boolean): HeadTrackingDebug? = null
 
     abstract fun start()
     abstract fun stop()

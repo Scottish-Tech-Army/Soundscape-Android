@@ -6,49 +6,39 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.geoengine.headtracking.HeadphoneCalibrationManager
+import org.scottishtecharmy.soundscape.locationprovider.CalibratedHeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
-import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
-import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackerInputLog
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingStatus
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
-import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.platform.currentTimeMillis
-import kotlin.concurrent.Volatile
 
 /**
  * HeadTrackingProvider backed by Bose Frames AR glasses.
  *
- * Mirrors the WitMotion provider:
- *   1. Bose's quaternion → yaw (degrees, sensor frame, drifts from boot)
- *   2. [HeadphoneCalibrationManager] correlates the yaw with the phone's
- *      compass + walking course to estimate a constant offset
- *   3. Calibrated geographic heading is published on [headHeadingFlow]
- *
- * The earlier proof-of-concept required the glasses to be powered on facing
- * north before app launch — the calibration manager replaces that with the
- * same auto-calibration the iOS AirPods provider already uses.
+ * Bose's quaternion gives a yaw (degrees, sensor frame, drifting from boot), which
+ * [CalibratedHeadTrackingProvider] turns into a geographic heading. The earlier
+ * proof-of-concept required the glasses to be powered on facing north before app
+ * launch — calibration replaces that.
  */
 class BoseFramesHeadTrackingProvider(
-    private val directionProvider: DirectionProvider,
-    private val locationProvider: LocationProvider,
+    directionProvider: DirectionProvider,
+    locationProvider: LocationProvider,
     private val client: BoseFramesClient = BoseFramesClient(),
-) : HeadTrackingProvider() {
+    clock: () -> Long = ::currentTimeMillis,
+) : CalibratedHeadTrackingProvider(
+    directionProvider,
+    locationProvider,
+    inputId = INPUT_ID,
+    deviceWindowSize = 200,
+    clock = clock,
+) {
 
     override val deviceName = "Bose Frames"
 
-    private val calibrationManager = HeadphoneCalibrationManager()
-
     private var scope: CoroutineScope? = null
 
-    @Volatile
-    private var lastDeviceHeadingDegrees: Double? = null
-
-    @Volatile
-    private var lastCourseDegrees: Double? = null
-
-    @Volatile
-    private var lastCourseTimestampMillis: Long = 0L
+    override val isRunning: Boolean get() = scope != null
 
     override fun start() {
         if (scope != null) return
@@ -57,114 +47,52 @@ class BoseFramesHeadTrackingProvider(
         calibrationManager.start()
         mutableStatusFlow.value = HeadTrackingStatus.Disconnected
 
-        newScope.launch { observeDeviceHeading() }
-        newScope.launch { observeCourse() }
+        observeReferences(newScope)
         newScope.launch { runBleLoop() }
     }
 
     override fun stop() {
         scope?.cancel()
         scope = null
-        calibrationManager.stop()
-        lastDeviceHeadingDegrees = null
-        lastCourseDegrees = null
-        lastCourseTimestampMillis = 0L
-        mutableHeadHeadingFlow.value = null
+        resetCalibration()
         mutableStatusFlow.value = HeadTrackingStatus.Inactive
-    }
-
-    private suspend fun observeDeviceHeading() {
-        directionProvider.orientationFlow.collect { dir ->
-            // Only while the phone is held flat does its heading say where the user faces; see
-            // BleImuHeadTrackingProvider.observeDeviceHeading.
-            lastDeviceHeadingDegrees =
-                if (dir != null && dir.headingAccuracyDegrees >= 0f && phoneHeldFlat(dir)) {
-                    dir.headingDegrees.toDouble()
-                } else {
-                    null
-                }
-        }
-    }
-
-    private suspend fun observeCourse() {
-        locationProvider.filteredLocationFlow.collect { loc ->
-            val usable = loc != null &&
-                loc.hasBearing &&
-                loc.hasSpeed &&
-                loc.speed >= COURSE_MIN_SPEED_MPS
-            if (usable) {
-                lastCourseDegrees = loc.bearing.toDouble()
-                lastCourseTimestampMillis = currentTimeMillis()
-            } else {
-                lastCourseDegrees = null
-            }
-        }
     }
 
     private suspend fun runBleLoop() {
         while (true) {
             try {
                 client.runSession(
-                    onConnected = {
-                        mutableStatusFlow.value = HeadTrackingStatus.Connected
-                        // Restart calibration so the offset is re-learned for
-                        // this session — the glasses orient yaw=0 wherever they
-                        // happen to be when powered on.
-                        calibrationManager.stop()
-                        calibrationManager.start()
-                    },
-                    onBytes = { bytes -> onBytes(bytes) },
+                    // Calibration restarts with each connection — the glasses orient yaw=0
+                    // wherever they happen to be when powered on.
+                    onConnected = { onSessionConnected(clock()) },
+                    onBytes = { bytes -> onBytes(bytes, clock()) },
                 )
             } catch (ce: kotlin.coroutines.cancellation.CancellationException) {
                 throw ce
             } catch (_: Throwable) {
                 // Scan failed / connection dropped / GATT error — wait and retry.
-                mutableHeadHeadingFlow.value = null
-                mutableStatusFlow.value = HeadTrackingStatus.Disconnected
+                onSessionEnded(clock())
                 delay(RECONNECT_DELAY_MILLIS)
             }
         }
     }
 
-    private fun onBytes(bytes: ByteArray) {
-        val now = currentTimeMillis()
-        val sample = BoseFramesDataParser.parse(bytes, now) ?: return
-        processSample(sample.yawDegrees, now)
-    }
-
-    private fun processSample(rawYawDegrees: Double, nowMillis: Long) {
+    internal fun onBytes(bytes: ByteArray, nowMillis: Long) = input({ bytes(nowMillis, bytes) }) {
+        val sample = BoseFramesDataParser.parse(bytes, nowMillis)
         // Bose Frames quaternion → yaw uses the right-hand rule (CCW positive
         // looking down from above). Compass heading increases clockwise, so
         // negate before handing off — matches the WitMotion provider's choice.
-        val yawDegrees = -rawYawDegrees
+        if (sample != null) processYaw(-sample.yawDegrees, nowMillis)
+    }
 
-        calibrationManager.pushDeviceReference(yawDegrees, lastDeviceHeadingDegrees, nowMillis)
-
-        val course = lastCourseDegrees
-        val courseFresh = course != null &&
-            (nowMillis - lastCourseTimestampMillis) <= COURSE_STALENESS_MILLIS
-        calibrationManager.pushCourseReference(
-            yawDegrees,
-            if (courseFresh) course else null,
-            nowMillis,
-        )
-
-        val heading = calibrationManager.headingFor(yawDegrees) ?: return
-        mutableHeadHeadingFlow.value = HeadHeading(
-            degrees = heading,
-            accuracyDegrees = REPORTED_ACCURACY_DEGREES,
-            timestampMillis = nowMillis,
-        )
-        if (mutableStatusFlow.value == HeadTrackingStatus.Connected) {
-            mutableStatusFlow.value = HeadTrackingStatus.Calibrated
-        }
+    override fun replayDeviceInput(fields: List<String>, t: Long): Boolean {
+        if (fields[0] != "B") return false
+        onBytes(HeadTrackerInputLog.parseBytes(fields[2]), t)
+        return true
     }
 
     companion object {
-        private const val COURSE_MIN_SPEED_MPS = 0.4f
-        private const val COURSE_STALENESS_MILLIS = 3_000L
-
-        private const val REPORTED_ACCURACY_DEGREES = 10.0
+        const val INPUT_ID = "bose"
         private const val RECONNECT_DELAY_MILLIS = 2_000L
     }
 }

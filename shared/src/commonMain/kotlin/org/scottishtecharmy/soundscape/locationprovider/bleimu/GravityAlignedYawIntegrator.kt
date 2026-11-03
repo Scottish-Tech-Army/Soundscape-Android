@@ -47,26 +47,12 @@ class GravityAlignedYawIntegrator(
      * (no dt available yet).
      */
     fun update(accelG: Vec3, gyroDps: Vec3, timestampMillis: Long): Double? {
-        val mag = sqrt(accelG.x * accelG.x + accelG.y * accelG.y + accelG.z * accelG.z)
-        if (mag < MIN_ACCEL_MAG_G) {
+        if (!updateGravity(accelG)) {
             // Free-fall / bogus reading. Skip integration this frame, just bump
             // the timestamp so we don't get a huge dt next time.
             lastTimestampMillis = timestampMillis
             hasLastTimestamp = true
             return if (hasFilteredUp) integratedYawDegrees else null
-        }
-        val ux = accelG.x / mag
-        val uy = accelG.y / mag
-        val uz = accelG.z / mag
-
-        if (!hasFilteredUp) {
-            filteredUpX = ux; filteredUpY = uy; filteredUpZ = uz
-            hasFilteredUp = true
-        } else {
-            val a = gravityLpfAlpha
-            filteredUpX = filteredUpX * (1.0 - a) + ux * a
-            filteredUpY = filteredUpY * (1.0 - a) + uy * a
-            filteredUpZ = filteredUpZ * (1.0 - a) + uz * a
         }
 
         val prev = lastTimestampMillis
@@ -82,6 +68,39 @@ class GravityAlignedYawIntegrator(
             gyroDps.x * filteredUpX + gyroDps.y * filteredUpY + gyroDps.z * filteredUpZ
         integratedYawDegrees += yawRateDps * dtSeconds
         return integratedYawDegrees
+    }
+
+    /**
+     * Add one IMU sample that covers [dtSeconds], for a caller that knows each sample's interval
+     * better than its timestamp does. Returns the integrated yaw in degrees, or null before the
+     * first usable sample.
+     */
+    fun update(accelG: Vec3, gyroDps: Vec3, dtSeconds: Double): Double? {
+        if (!updateGravity(accelG)) return if (hasFilteredUp) integratedYawDegrees else null
+        val yawRateDps =
+            gyroDps.x * filteredUpX + gyroDps.y * filteredUpY + gyroDps.z * filteredUpZ
+        integratedYawDegrees += yawRateDps * dtSeconds
+        return integratedYawDegrees
+    }
+
+    /** Low-pass filters the up direction with this sample. False if it's unusable. */
+    private fun updateGravity(accelG: Vec3): Boolean {
+        val mag = sqrt(accelG.x * accelG.x + accelG.y * accelG.y + accelG.z * accelG.z)
+        if (mag < MIN_ACCEL_MAG_G) return false
+        val ux = accelG.x / mag
+        val uy = accelG.y / mag
+        val uz = accelG.z / mag
+
+        if (!hasFilteredUp) {
+            filteredUpX = ux; filteredUpY = uy; filteredUpZ = uz
+            hasFilteredUp = true
+        } else {
+            val a = gravityLpfAlpha
+            filteredUpX = filteredUpX * (1.0 - a) + ux * a
+            filteredUpY = filteredUpY * (1.0 - a) + uy * a
+            filteredUpZ = filteredUpZ * (1.0 - a) + uz * a
+        }
+        return true
     }
 
     companion object {

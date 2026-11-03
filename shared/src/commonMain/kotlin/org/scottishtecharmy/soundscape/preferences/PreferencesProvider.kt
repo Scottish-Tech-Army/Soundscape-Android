@@ -115,6 +115,13 @@ object PreferenceKeys {
      * found again with the screen off - see BleImuClient.scanForSensor. Empty if none.
      */
     const val WITMOTION_ADDRESS = "WitMotionAddress"
+
+    /**
+     * Debug option (alpha): adds everything the head tracker is given to travel recordings, so a
+     * walk can be replayed exactly - see HeadTrackerInputLog. Off by default because with a
+     * WitMotion it makes recordings about 20 MB an hour larger.
+     */
+    const val RECORD_HEAD_TRACKER_INPUT = "RecordHeadTrackerInput"
 }
 
 object PreferenceDefaults {
@@ -150,4 +157,5 @@ object PreferenceDefaults {
     const val ALPHA_FEATURES = false
     const val POI_RANK_STRATEGY = "off"
     const val PREFERRED_MAP_APP = ""
+    const val RECORD_HEAD_TRACKER_INPUT = false
 }
