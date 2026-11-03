@@ -1543,6 +1543,8 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="head_tracker_disconnected">Senzor za sledenje glavi %1$s ni več povezan</string>
     <string name="head_tracker_battery_low">Baterija senzorja za sledenje glavi je skoraj prazna, %1$d odstotkov</string>
     <string name="head_tracker_status_searching">Iskanje senzorja za sledenje glavi</string>
+    <string name="head_tracker_status_calibrated">Senzor za sledenje glavi %1$s je umerjen</string>
+    <string name="head_tracker_status_calibrated_battery">Senzor za sledenje glavi %1$s je umerjen, baterija %2$d odstotkov</string>
     <string name="settings_show_map">Prikaži zemljevide na zaslonu</string>
     <string name="settings_debug_heading">Možnosti za razhroščevanje</string>
     <string name="settings_search_results_language">Jezik iskanja</string>

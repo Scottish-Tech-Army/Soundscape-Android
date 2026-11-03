@@ -1535,6 +1535,8 @@
     <string name="head_tracker_disconnected">อุปกรณ์ติดตามการเคลื่อนไหวศีรษะ %1$s ยกเลิกการเชื่อมต่อแล้ว</string>
     <string name="head_tracker_battery_low">แบตเตอรี่อุปกรณ์ติดตามการเคลื่อนไหวศีรษะเหลือน้อย %1$d เปอร์เซ็นต์</string>
     <string name="head_tracker_status_searching">กำลังค้นหาอุปกรณ์ติดตามการเคลื่อนไหวศีรษะ</string>
+    <string name="head_tracker_status_calibrated">ปรับเทียบอุปกรณ์ติดตามการเคลื่อนไหวศีรษะ %1$s แล้ว</string>
+    <string name="head_tracker_status_calibrated_battery">ปรับเทียบอุปกรณ์ติดตามการเคลื่อนไหวศีรษะ %1$s แล้ว แบตเตอรี่ %2$d เปอร์เซ็นต์</string>
     <string name="settings_show_map">แสดงแผนที่บนหน้าจอ</string>
     <string name="settings_debug_heading">ตัวเลือกดีบัก</string>
     <string name="settings_search_results_language">ภาษาในการค้นหา</string>

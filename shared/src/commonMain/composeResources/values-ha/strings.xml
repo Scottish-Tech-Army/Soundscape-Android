@@ -1551,6 +1551,8 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="head_tracker_disconnected">Na'urar bin diddigin kai ta %1$s ta katse</string>
     <string name="head_tracker_battery_low">Baturin na'urar bin diddigin kai ya yi ƙasa, kashi %1$d</string>
     <string name="head_tracker_status_searching">Ana neman na'urar bin diddigin kai</string>
+    <string name="head_tracker_status_calibrated">An daidaita na'urar bin diddigin kai ta %1$s</string>
+    <string name="head_tracker_status_calibrated_battery">An daidaita na'urar bin diddigin kai ta %1$s, baturi kashi %2$d</string>
     <string name="settings_show_map">Nuna taswira a allo</string>
     <string name="settings_debug_heading">Zaɓuɓɓukan Gyaran Kwaro</string>
     <string name="settings_search_results_language">Harshen Bincike</string>

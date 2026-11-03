@@ -1515,6 +1515,8 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="head_tracker_disconnected">%1$s head tracker disconnected</string>
     <string name="head_tracker_battery_low">Head tracker battery low, %1$d percent</string>
     <string name="head_tracker_status_searching">Searching for a head tracker</string>
+    <string name="head_tracker_status_calibrated">%1$s head tracker calibrated</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s head tracker calibrated, battery %2$d percent</string>
     <string name="sleep_snoozing">Snoozing</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape is currently snoozing. When you leave your current location, Soundscape will automatically wake up. Snoozing uses Location Services in a low power mode to save your phone's battery. Tap the button below to wake up now.</string>
     <string name="sleep_wake_on_leave">Wake on Leave</string>

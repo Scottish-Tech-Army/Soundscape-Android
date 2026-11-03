@@ -1331,6 +1331,8 @@
     <string name="head_tracker_disconnected">Сензор за праћење покрета главе %1$s је прекинуо везу</string>
     <string name="head_tracker_battery_low">Батерија сензора за праћење покрета главе је слаба, %1$d процената</string>
     <string name="head_tracker_status_searching">Тражење сензора за праћење покрета главе</string>
+    <string name="head_tracker_status_calibrated">Сензор за праћење покрета главе %1$s је калибрисан</string>
+    <string name="head_tracker_status_calibrated_battery">Сензор за праћење покрета главе %1$s је калибрисан, батерија %2$d процената</string>
     <string name="settings_show_map">Прикажи мапе на екрану</string>
     <string name="settings_debug_heading">Опције за отклањање грешака</string>
     <string name="settings_search_results_language">Језик претраге</string>

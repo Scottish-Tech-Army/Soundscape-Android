@@ -1515,6 +1515,8 @@
     <string name="head_tracker_disconnected">%1$s हेड ट्रैकर डिस्कनेक्ट हो गया</string>
     <string name="head_tracker_battery_low">हेड ट्रैकर की बैटरी कम है, %1$d प्रतिशत</string>
     <string name="head_tracker_status_searching">हेड ट्रैकर खोजा जा रहा है</string>
+    <string name="head_tracker_status_calibrated">%1$s हेड ट्रैकर कैलिब्रेट हो गया</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s हेड ट्रैकर कैलिब्रेट हो गया, बैटरी %2$d प्रतिशत</string>
     <string name="sleep_snoozing">स्नूज़ मोड में</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape वर्तमान में स्नूज़ मोड में है। जब आप अपने वर्तमान स्थान को छोड़ेंगे, तो Soundscape स्वचालित रूप से जाग जाएगा। स्नूज़ मोड आपके फ़ोन की बैटरी बचाने के लिए लो‑पावर मोड में स्थान सेवाओं का उपयोग करता है। Soundscape को अभी जगाने के लिए नीचे दिए गए बटन पर टैप करें।</string>
     <string name="sleep_wake_on_leave">जब मैं निकलूँ तब जगाएँ</string>

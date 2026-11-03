@@ -1516,6 +1516,8 @@
     <string name="head_tracker_disconnected">اتصال ردیاب سر %1$s قطع شد</string>
     <string name="head_tracker_battery_low">باتری ردیاب سر ضعیف است، %1$d درصد</string>
     <string name="head_tracker_status_searching">در حال جستجوی ردیاب سر</string>
+    <string name="head_tracker_status_calibrated">ردیاب سر %1$s کالیبره شد</string>
+    <string name="head_tracker_status_calibrated_battery">ردیاب سر %1$s کالیبره شد، باتری %2$d درصد</string>
     <string name="sleep_snoozing">در حالت چرت</string>
     <string name="sleep_sleeping_wake_on_leave_message">ساند‌اسکیپ در حال حاضر در حالت چرت قرار دارد. وقتی محل فعلی خود را ترک کنید، ساند‌اسکیپ به‌طور خودکار بیدار خواهد شد. حالت چرت از خدمات مکان‌یابی در وضعیت کم‌مصرف استفاده می‌کند تا باتری گوشی شما حفظ شود. برای بیدار کردن الآن، روی دکمه‌ی زیر ضربه بزنید.</string>
     <string name="sleep_wake_on_leave">بیدار شدن هنگام ترک محل</string>

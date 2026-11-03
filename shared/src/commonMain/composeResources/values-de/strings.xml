@@ -1515,6 +1515,8 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="head_tracker_disconnected">%1$s‑Head‑Tracker getrennt</string>
     <string name="head_tracker_battery_low">Akku des Head‑Trackers schwach, %1$d Prozent</string>
     <string name="head_tracker_status_searching">Suche nach einem Head‑Tracker</string>
+    <string name="head_tracker_status_calibrated">%1$s‑Head‑Tracker kalibriert</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s‑Head‑Tracker kalibriert, Akku %2$d Prozent</string>
     <string name="sleep_snoozing">Im Standbymodus</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape ist derzeit im Standbymodus. Wenn Sie Ihren aktuellen Standort verlassen, wacht Soundscape automatisch auf. Der Standbymodus nutzt die Ortungsdienste in einem Energiesparmodus, um den Akku Ihres Telefons zu schonen. Tippen Sie auf die Schaltfläche unten, um Soundscape jetzt aufzuwecken.</string>
     <string name="sleep_wake_on_leave">Beim Verlassen aufwecken</string>

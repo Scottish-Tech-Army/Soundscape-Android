@@ -1515,6 +1515,8 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="head_tracker_disconnected">Pään seurantalaitteen %1$s yhteys katkesi</string>
     <string name="head_tracker_battery_low">Pään seurantalaitteen akku on vähissä, %1$d prosenttia</string>
     <string name="head_tracker_status_searching">Etsitään pään seurantalaitetta</string>
+    <string name="head_tracker_status_calibrated">Pään seurantalaite %1$s kalibroitu</string>
+    <string name="head_tracker_status_calibrated_battery">Pään seurantalaite %1$s kalibroitu, akku %2$d prosenttia</string>
     <string name="sleep_snoozing">Odotustila</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape on tällä hetkellä odotustilassa. Kun poistut nykyisestä sijainnistasi, Soundscape herää automaattisesti. Odotustila käyttää Sijaintipalveluita vähävirtaisessa tilassa puhelimesi akun säästämiseksi. Napauta alla olevaa painiketta herättääksesi Soundscapen nyt.</string>
     <string name="sleep_wake_on_leave">Herää kun poistut</string>

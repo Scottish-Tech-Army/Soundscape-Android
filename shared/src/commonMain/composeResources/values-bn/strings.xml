@@ -1551,6 +1551,8 @@
     <string name="head_tracker_disconnected">%1$s হেড ট্র্যাকারের সংযোগ বিচ্ছিন্ন হয়েছে</string>
     <string name="head_tracker_battery_low">হেড ট্র্যাকারের ব্যাটারি কম, %1$d শতাংশ</string>
     <string name="head_tracker_status_searching">হেড ট্র্যাকার খোঁজা হচ্ছে</string>
+    <string name="head_tracker_status_calibrated">%1$s হেড ট্র্যাকার ক্যালিব্রেট হয়েছে</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s হেড ট্র্যাকার ক্যালিব্রেট হয়েছে, ব্যাটারি %2$d শতাংশ</string>
     <string name="settings_show_map">স্ক্রিনে ম্যাপ দেখান</string>
     <string name="settings_debug_heading">ডিবাগ অপশন</string>
     <string name="settings_search_results_language">সার্চ ভাষা</string>

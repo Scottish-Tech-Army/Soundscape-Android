@@ -1535,6 +1535,8 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="head_tracker_disconnected">Pelacak kepala %1$s terputus</string>
     <string name="head_tracker_battery_low">Baterai pelacak kepala lemah, %1$d persen</string>
     <string name="head_tracker_status_searching">Mencari pelacak kepala</string>
+    <string name="head_tracker_status_calibrated">Pelacak kepala %1$s terkalibrasi</string>
+    <string name="head_tracker_status_calibrated_battery">Pelacak kepala %1$s terkalibrasi, baterai %2$d persen</string>
     <string name="settings_show_map">Tampilkan peta di layar</string>
     <string name="settings_debug_heading">Opsi debug</string>
     <string name="settings_search_results_language">Bahasa pencarian</string>

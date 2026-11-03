@@ -1551,6 +1551,8 @@
     <string name="head_tracker_disconnected">%1$s హెడ్ ట్రాకర్ డిస్‌కనెక్ట్ అయింది</string>
     <string name="head_tracker_battery_low">హెడ్ ట్రాకర్ బ్యాటరీ తక్కువగా ఉంది, %1$d శాతం</string>
     <string name="head_tracker_status_searching">హెడ్ ట్రాకర్ కోసం వెతుకుతోంది</string>
+    <string name="head_tracker_status_calibrated">%1$s హెడ్ ట్రాకర్ కాలిబ్రేట్ అయింది</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s హెడ్ ట్రాకర్ కాలిబ్రేట్ అయింది, బ్యాటరీ %2$d శాతం</string>
     <string name="settings_show_map">స్క్రీన్‌పై మ్యాప్‌లను చూపించండి</string>
     <string name="settings_debug_heading">డీబగ్ ఆప్షన్‌లు</string>
     <string name="settings_search_results_language">శోధన భాష</string>

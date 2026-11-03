@@ -1551,6 +1551,8 @@
     <string name="head_tracker_disconnected">%1$s தலை கண்காணிப்புக் கருவியின் இணைப்பு துண்டிக்கப்பட்டது</string>
     <string name="head_tracker_battery_low">தலை கண்காணிப்புக் கருவியின் பேட்டரி குறைவாக உள்ளது, %1$d சதவீதம்</string>
     <string name="head_tracker_status_searching">தலை கண்காணிப்புக் கருவியைத் தேடுகிறது</string>
+    <string name="head_tracker_status_calibrated">%1$s தலை கண்காணிப்புக் கருவி அளவீடு செய்யப்பட்டது</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s தலை கண்காணிப்புக் கருவி அளவீடு செய்யப்பட்டது, பேட்டரி %2$d சதவீதம்</string>
     <string name="settings_show_map">திரையில் வரைபடங்களைக் காட்டு</string>
     <string name="settings_debug_heading">பிழைதிருத்த விருப்பங்கள்</string>
     <string name="settings_search_results_language">தேடல் மொழி</string>

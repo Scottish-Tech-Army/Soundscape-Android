@@ -1515,6 +1515,8 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="head_tracker_disconnected">%1$s-hoofdtracker losgekoppeld</string>
     <string name="head_tracker_battery_low">Batterij van de hoofdtracker bijna leeg, %1$d procent</string>
     <string name="head_tracker_status_searching">Zoeken naar een hoofdtracker</string>
+    <string name="head_tracker_status_calibrated">%1$s-hoofdtracker gekalibreerd</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s-hoofdtracker gekalibreerd, batterij %2$d procent</string>
     <string name="sleep_snoozing">Sluimerstand</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape staat momenteel in de sluimerstand. Wanneer u uw huidige locatie verlaat, wordt Soundscape automatisch weer gewekt. In de sluimerstand worden Locatievoorzieningen in een zuinige modus gebruikt om de batterij van uw telefoon te sparen. Tik op de knop hieronder om Soundscape nu te wekken.</string>
     <string name="sleep_wake_on_leave">Wek bij vertrek</string>

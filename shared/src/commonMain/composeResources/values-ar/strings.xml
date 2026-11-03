@@ -705,6 +705,8 @@
     <string name="head_tracker_disconnected">انقطع اتصال جهاز تتبع حركة الرأس %1$s</string>
     <string name="head_tracker_battery_low">بطارية جهاز تتبع حركة الرأس منخفضة، %1$d بالمئة</string>
     <string name="head_tracker_status_searching">جارٍ البحث عن جهاز لتتبع حركة الرأس</string>
+    <string name="head_tracker_status_calibrated">تمت معايرة جهاز تتبع حركة الرأس %1$s</string>
+    <string name="head_tracker_status_calibrated_battery">تمت معايرة جهاز تتبع حركة الرأس %1$s، البطارية %2$d بالمئة</string>
     <string name="settings_show_map">إظهار الخرائط على الشاشة</string>
     <string name="settings_debug_heading">خيارات تصحيح الأخطاء</string>
     <string name="settings_search_results_language">لغة البحث</string>

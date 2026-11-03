@@ -1515,6 +1515,8 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="head_tracker_disconnected">%1$s-hodesporingsenhet frakoblet</string>
     <string name="head_tracker_battery_low">Lavt batteri på hodesporingsenheten, %1$d prosent</string>
     <string name="head_tracker_status_searching">Søker etter en hodesporingsenhet</string>
+    <string name="head_tracker_status_calibrated">%1$s-hodesporingsenhet kalibrert</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s-hodesporingsenhet kalibrert, batteri %2$d prosent</string>
     <string name="sleep_snoozing">I pausemodus</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape er for øyeblikket i pausemodus. Når du forlater din nåværende posisjon, vil Soundscape våkne automatisk. Pausemodus bruker Stedstjenester i lavstrømsmodus for å spare telefonens batteri. Trykk på knappen nedenfor for å vekke Soundscape nå.</string>
     <string name="sleep_wake_on_leave">Vekk meg når jeg forlater stedet</string>

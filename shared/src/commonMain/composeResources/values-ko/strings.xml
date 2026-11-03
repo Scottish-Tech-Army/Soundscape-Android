@@ -570,6 +570,8 @@
     <string name="head_tracker_disconnected">%1$s 헤드 트래커 연결이 끊어졌습니다</string>
     <string name="head_tracker_battery_low">헤드 트래커 배터리 부족, %1$d퍼센트</string>
     <string name="head_tracker_status_searching">헤드 트래커를 찾는 중</string>
+    <string name="head_tracker_status_calibrated">%1$s 헤드 트래커 보정이 완료되었습니다</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s 헤드 트래커 보정이 완료되었습니다. 배터리 %2$d퍼센트</string>
     <string name="settings_show_map">화면에 지도 표시</string>
     <string name="settings_debug_heading">디버그 옵션</string>
     <string name="settings_search_results_language">검색 언어</string>

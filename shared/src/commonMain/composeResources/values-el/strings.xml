@@ -1515,6 +1515,8 @@
     <string name="head_tracker_disconnected">Ο αισθητήρας παρακολούθησης κεφαλής %1$s αποσυνδέθηκε</string>
     <string name="head_tracker_battery_low">Χαμηλή μπαταρία αισθητήρα παρακολούθησης κεφαλής, %1$d τοις εκατό</string>
     <string name="head_tracker_status_searching">Αναζήτηση αισθητήρα παρακολούθησης κεφαλής</string>
+    <string name="head_tracker_status_calibrated">Ο αισθητήρας παρακολούθησης κεφαλής %1$s βαθμονομήθηκε</string>
+    <string name="head_tracker_status_calibrated_battery">Ο αισθητήρας παρακολούθησης κεφαλής %1$s βαθμονομήθηκε, μπαταρία %2$d τοις εκατό</string>
     <string name="sleep_snoozing">Σε αναβολή</string>
     <string name="sleep_sleeping_wake_on_leave_message">Το Soundscape αυτήν τη στιγμή βρίσκεται σε λειτουργία αναβολής. Όταν φύγετε από την τρέχουσα τοποθεσία σας, το Soundscape θα ενεργοποιηθεί αυτόματα. Η λειτουργία αναβολής χρησιμοποιεί τις Υπηρεσίες τοποθεσίας σε λειτουργία χαμηλής κατανάλωσης ενέργειας για να εξοικονομήσει μπαταρία στο τηλέφωνό σας. Πατήστε το παρακάτω κουμπί για να το ενεργοποιήσετε τώρα.</string>
     <string name="sleep_wake_on_leave">Ενεργοποίηση όταν φύγω</string>

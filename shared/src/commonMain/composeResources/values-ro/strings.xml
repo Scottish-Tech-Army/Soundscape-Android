@@ -1531,6 +1531,8 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="head_tracker_disconnected">Senzorul de urmărire a capului %1$s s-a deconectat</string>
     <string name="head_tracker_battery_low">Bateria senzorului de urmărire a capului este descărcată, %1$d la sută</string>
     <string name="head_tracker_status_searching">Se caută un senzor de urmărire a capului</string>
+    <string name="head_tracker_status_calibrated">Senzorul de urmărire a capului %1$s este calibrat</string>
+    <string name="head_tracker_status_calibrated_battery">Senzorul de urmărire a capului %1$s este calibrat, baterie %2$d la sută</string>
     <string name="sleep_snoozing">În amânare</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape este momentan în modul Amânare. Când părăsești locația curentă, Soundscape se va trezi automat. Modul Amânare folosește Serviciile de localizare într‑un mod cu consum redus pentru a conserva bateria telefonului. Atinge butonul de mai jos pentru a trezi aplicația acum.</string>
     <string name="sleep_wake_on_leave">Trezire la plecare</string>

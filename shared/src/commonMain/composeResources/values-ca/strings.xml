@@ -600,6 +600,8 @@
     <string name="head_tracker_disconnected">Sensor de seguiment del cap %1$s desconnectat</string>
     <string name="head_tracker_battery_low">Bateria baixa del sensor de seguiment del cap, %1$d per cent</string>
     <string name="head_tracker_status_searching">S'està cercant un sensor de seguiment del cap</string>
+    <string name="head_tracker_status_calibrated">Sensor de seguiment del cap %1$s calibrat</string>
+    <string name="head_tracker_status_calibrated_battery">Sensor de seguiment del cap %1$s calibrat, bateria al %2$d per cent</string>
     <string name="settings_show_map">Mostra els mapes a la pantalla</string>
     <string name="settings_debug_heading">Opcions de depuració</string>
     <string name="settings_search_results_language">Idioma de cerca</string>
