@@ -242,25 +242,28 @@ fun Settings(
 }
 
 /**
- * What the status line under the head tracking switch says: the same wording as the spoken
- * announcements, so that it reads the same as what the user has heard. Null while head tracking
- * isn't running.
+ * What the status line under the head tracking switch says: the spoken announcements' wording
+ * while searching and connected, so that it reads the same as what the user has heard, and one
+ * sentence once calibrated rather than the two that are spoken. Null while head tracking isn't
+ * running.
  */
 @Composable
 private fun headTrackerStatusText(state: HeadTrackerState?): String? {
     if (state == null) return null
     val name = state.deviceName ?: ""
     val battery = state.batteryPercent
-    val connected = if (battery != null) {
-        stringResource(Res.string.head_tracker_connected_battery, name, battery)
-    } else {
-        stringResource(Res.string.head_tracker_connected, name)
-    }
     return when (state.status) {
         HeadTrackingStatus.Disconnected -> stringResource(Res.string.head_tracker_status_searching)
-        HeadTrackingStatus.Connected -> connected
-        HeadTrackingStatus.Calibrated ->
-            "$connected. ${stringResource(Res.string.head_tracker_calibrated)}"
+        HeadTrackingStatus.Connected -> if (battery != null) {
+            stringResource(Res.string.head_tracker_connected_battery, name, battery)
+        } else {
+            stringResource(Res.string.head_tracker_connected, name)
+        }
+        HeadTrackingStatus.Calibrated -> if (battery != null) {
+            stringResource(Res.string.head_tracker_status_calibrated_battery, name, battery)
+        } else {
+            stringResource(Res.string.head_tracker_status_calibrated, name)
+        }
         HeadTrackingStatus.Inactive, HeadTrackingStatus.Unavailable -> null
     }
 }

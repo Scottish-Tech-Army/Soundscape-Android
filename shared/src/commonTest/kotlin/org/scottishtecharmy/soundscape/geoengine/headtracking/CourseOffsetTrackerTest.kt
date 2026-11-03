@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.headtracking
 import kotlin.math.abs
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -38,12 +39,37 @@ class CourseOffsetTrackerTest {
     }
 
     @Test
-    fun walkingAloneCalibratesFromTheSecondReading() {
+    fun walkingAloneGivesAnOffsetFromTheSecondReadingButOnlySettlesAfterTen() {
         val tracker = CourseOffsetTracker()
         assertNull(tracker.processCourse(40.0, 310.0, 25.0, 0L))
         assertNull(tracker.offsetDegrees)
         assertNotNull(tracker.processCourse(41.0, 311.0, 25.0, 1_000L))
         assertNear(270.0, tracker.offsetDegrees, 0.1)
+        assertFalse(tracker.isSettled, "one reading could be a glance to the side")
+
+        for (i in 2..10) tracker.processCourse(40.0 + i % 2, 310.0 + i % 2, 25.0, i * 1_000L)
+        assertTrue(tracker.isSettled)
+    }
+
+    @Test
+    fun aCompassCalibrationSettlesAtOnce() {
+        val tracker = CourseOffsetTracker()
+        tracker.applyDeviceCalibration(deviceCalibration(320.0))
+        assertTrue(tracker.isSettled)
+    }
+
+    @Test
+    fun aYawThatWrapsIsNotATurn() {
+        // Bose Frames report yaw in -180..180: walking straight with the head near the seam
+        val tracker = CourseOffsetTracker()
+        tracker.applyDeviceCalibration(deviceCalibration(0.0))
+        for (i in 0 until 30) {
+            val yaw = if (i % 2 == 0) 179.0 else -179.0
+            val reading = tracker.processCourse(yaw, (yaw + 270.0 + 360.0) % 360.0, 25.0, i * 1_000L)
+            // The first only has nothing to compare against
+            if (i > 0) assertNotNull(reading, "reading $i was taken as a turn")
+        }
+        assertNear(270.0, tracker.offsetDegrees, 5.0)
     }
 
     @Test

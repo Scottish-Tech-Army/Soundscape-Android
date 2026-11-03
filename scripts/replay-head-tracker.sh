@@ -13,4 +13,4 @@ gpx="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
 cd "$(dirname "$0")/.."
 HEAD_TRACKER_GPX="$gpx" ./gradlew :app:testDebugUnitTest \
     --tests 'org.scottishtecharmy.soundscape.HeadTrackerReplayTool' --rerun -i \
-    | grep -E "(Replayed [0-9]+ samples|The recording starts|[0-9]+ gap\(s\)|Heading matched)" | sed "s/^ *//" || true
+    | grep -E "(Replayed [0-9]+ samples|The recording starts|[0-9]+ gap\(s\) in|Heading matched)" | sed "s/^ *//" || true

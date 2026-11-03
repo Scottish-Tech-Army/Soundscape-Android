@@ -71,6 +71,32 @@ class HeadTrackerAnnouncerTest {
     }
 
     @Test
+    fun calibratingDuringTheBatteryWaitIsAnnouncedAfterTheConnection() = runTest {
+        startAnnouncer()
+        searching()
+        set(HeadTrackingStatus.Connected, "Bose Frames")
+        // Bose Frames report no battery, and calibration can now finish within the wait
+        set(HeadTrackingStatus.Calibrated, "Bose Frames")
+        assertEquals(emptyList(), announced)
+
+        advanceTimeBy(HeadTrackerAnnouncer.BATTERY_WAIT_MILLIS + 1)
+        runCurrent()
+        assertEquals(listOf(Connected("Bose Frames", null), Calibrated), announced)
+    }
+
+    @Test
+    fun aCalibrationThatDisconnectsBeforeTheConnectionIsAnnouncedSaysNothing() = runTest {
+        startAnnouncer()
+        searching()
+        set(HeadTrackingStatus.Connected, "Bose Frames")
+        set(HeadTrackingStatus.Calibrated, "Bose Frames")
+        searching()
+        advanceTimeBy(HeadTrackerAnnouncer.BATTERY_WAIT_MILLIS + HeadTrackerAnnouncer.DISCONNECT_DEBOUNCE_MILLIS)
+        runCurrent()
+        assertEquals(emptyList(), announced)
+    }
+
+    @Test
     fun disconnectIsAnnouncedAfterTheDebounce() = runTest {
         startAnnouncer()
         searching()

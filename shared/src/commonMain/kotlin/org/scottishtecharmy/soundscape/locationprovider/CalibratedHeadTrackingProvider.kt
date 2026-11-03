@@ -103,8 +103,13 @@ abstract class CalibratedHeadTrackingProvider(
         scope.launch { locationProvider.filteredLocationFlow.collect { onLocation(it, clock()) } }
     }
 
-    /** Forgets the calibration and everything it was given, for stop(). */
+    /**
+     * Forgets the calibration and everything it was given, for stop(). Recording stops too: a
+     * stopped tracker isn't asked for snapshots, so its log would otherwise sit armed until it
+     * restarted, and then report the time it was stopped as lost input.
+     */
     protected fun resetCalibration() = inputLock.withLock {
+        inputLog.stop()
         calibrationManager.stop()
         lastDeviceHeadingDegrees = null
         lastCourseDegrees = null

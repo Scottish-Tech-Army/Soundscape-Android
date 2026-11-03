@@ -95,10 +95,10 @@ fun addMissingBearingAccuracy(gpx: String, recorded: List<RecordedHeadTrackerInp
 class HeadTrackerReplay {
     private val providers = mutableMapOf<String, CalibratedHeadTrackingProvider>()
     private val connected = mutableSetOf<String>()
+    private val gaps = mutableMapOf<String, Int>()
 
-    /** Gaps (`G` events) seen so far: after one, the replay may not match the recording. */
-    var gaps = 0
-        private set
+    /** Gaps (`G` events) in [device]'s input so far: after one, its replay may not match. */
+    fun gaps(device: String): Int = gaps[device] ?: 0
 
     /** Whether [device] has been seen connecting, from which point its replay matches. */
     fun sawConnect(device: String) = device in connected
@@ -115,7 +115,7 @@ class HeadTrackerReplay {
                 val fields = line.split(' ')
                 when (fields[0]) {
                     "S" -> connected.add(device)
-                    "G" -> gaps++
+                    "G" -> gaps[device] = gaps(device) + 1
                 }
                 if (provider.replay(fields)) {
                     onRow(
