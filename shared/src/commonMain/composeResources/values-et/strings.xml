@@ -489,6 +489,8 @@
     <string name="settings_travel_recording">Luba reisi salvestamine</string>
     <string name="settings_alpha_features">Luba alfatestimise funktsioonid</string>
     <string name="settings_alpha_features_description">Näitab seadeid funktsioonidele, mida alles testitakse. Need võivad olla poolikud või ebausaldusväärsed.</string>
+    <string name="settings_record_head_tracker_input">Salvesta pea jälgimise anduri andmed</string>
+    <string name="settings_record_head_tracker_input_description">Lisab reisisalvestistele kõik, mida pea jälgimise andur saadab, et jalutuskäiku saaks silumisel täpselt uuesti esitada. WitMotioni anduriga muutuvad salvestised iga kõnnitunni kohta umbes 20 MB suuremaks.</string>
     <string name="settings_mix_audio">Sega heli teiste rakendustega</string>
     <string name="settings_mix_audio_description">Kui see on välja lülitatud, peatatakse teised helirakendused ja lukustuskuval on saadaval meediumijuhtnupud</string>
     <string name="settings_head_tracking">Luba pea jälgimine</string>

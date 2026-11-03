@@ -1538,6 +1538,8 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="settings_travel_recording">Wezesha kurekodi safari</string>
     <string name="settings_alpha_features">Wezesha vipengele vya majaribio ya alpha</string>
     <string name="settings_alpha_features_description">Onyesha mipangilio ya vipengele ambavyo bado vinajaribiwa. Huenda havijakamilika au havitegemeki.</string>
+    <string name="settings_record_head_tracker_input">Rekodi data ya kifuatiliaji cha kichwa</string>
+    <string name="settings_record_head_tracker_input_description">Ongeza kila kitu ambacho kifuatiliaji cha kichwa kinatuma kwenye rekodi za safari, ili matembezi yaweze kuchezwa tena kwa usahihi wakati wa kutatua hitilafu. Ukitumia kihisi cha WitMotion, hii huongeza ukubwa wa rekodi kwa takriban MB 20 kwa kila saa ya kutembea.</string>
     <string name="settings_mix_audio">Changanya sauti na programu nyingine</string>
     <string name="settings_mix_audio_description">Ikizimwa, programu nyingine za sauti zitasimamishwa na vidhibiti vya sauti kwenye skrini iliyofungwa vitapatikana</string>
     <string name="settings_head_tracking">Wezesha ufuatiliaji wa kichwa</string>

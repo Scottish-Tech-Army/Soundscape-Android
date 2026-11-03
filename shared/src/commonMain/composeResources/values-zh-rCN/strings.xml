@@ -985,6 +985,8 @@
     <string name="settings_travel_recording">启用行程录制</string>
     <string name="settings_alpha_features">启用 Alpha 测试功能</string>
     <string name="settings_alpha_features_description">显示仍在测试中的功能的设置。这些功能可能不完整或不稳定。</string>
+    <string name="settings_record_head_tracker_input">录制头部追踪器数据</string>
+    <string name="settings_record_head_tracker_input_description">将头部追踪器发送的所有数据添加到行程录制中，以便调试时能准确重放一次步行。使用 WitMotion 传感器时，每步行一小时，录制文件会增大约 20 MB。</string>
     <string name="settings_show_map">在屏幕上显示地图</string>
     <string name="settings_debug_heading">调试选项</string>
     <string name="settings_search_results_language">搜索语言</string>

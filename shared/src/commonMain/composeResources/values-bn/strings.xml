@@ -1538,6 +1538,8 @@
     <string name="settings_travel_recording">ভ্রমণ রেকর্ডিং সক্রিয় করুন</string>
     <string name="settings_alpha_features">আলফা টেস্টের ফিচার সক্রিয় করুন</string>
     <string name="settings_alpha_features_description">যে ফিচারগুলো এখনও পরীক্ষা করা হচ্ছে সেগুলোর সেটিংস দেখায়। এগুলো অসম্পূর্ণ বা অনির্ভরযোগ্য হতে পারে।</string>
+    <string name="settings_record_head_tracker_input">হেড ট্র্যাকারের ডেটা রেকর্ড করুন</string>
+    <string name="settings_record_head_tracker_input_description">হেড ট্র্যাকার যা কিছু পাঠায় সব ভ্রমণ রেকর্ডিংয়ে যোগ করুন, যাতে ডিবাগ করার সময় হাঁটাটি হুবহু আবার চালানো যায়। WitMotion সেন্সরের ক্ষেত্রে এতে প্রতি ঘণ্টা হাঁটার জন্য রেকর্ডিং প্রায় 20 MB বড় হয়।</string>
     <string name="settings_mix_audio">অন্যান্য অ্যাপের সাথে অডিও মিশ্রিত করুন</string>
     <string name="settings_mix_audio_description">নিষ্ক্রিয় থাকলে, অন্যান্য অডিও অ্যাপ বিরতি নেবে এবং লক স্ক্রিন মিডিয়া কন্ট্রোল উপলব্ধ হবে</string>
     <string name="settings_head_tracking">হেড ট্র্যাকিং সক্রিয় করুন</string>

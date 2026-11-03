@@ -526,6 +526,8 @@
     <string name="settings_travel_recording">Ota matkojen tallennus käyttöön</string>
     <string name="settings_alpha_features">Ota alfatestauksen ominaisuudet käyttöön</string>
     <string name="settings_alpha_features_description">Näytä asetukset ominaisuuksille, joita vielä testataan. Ne voivat olla keskeneräisiä tai epäluotettavia.</string>
+    <string name="settings_record_head_tracker_input">Tallenna pään seurantalaitteen tiedot</string>
+    <string name="settings_record_head_tracker_input_description">Lisää matkojen tallennuksiin kaiken, mitä pään seurantalaite lähettää, jotta kävelyn voi toistaa tarkasti vianetsinnässä. WitMotion-anturilla tallennukset kasvavat noin 20 Mt jokaista kävelytuntia kohden.</string>
     <string name="settings_show_map">Näytä kartta näytöllä</string>
     <string name="settings_debug_heading">Virheenkorjausasetukset</string>
     <string name="settings_search_results_language">Hakutulosten kieli</string>

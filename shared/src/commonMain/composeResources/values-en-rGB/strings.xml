@@ -488,6 +488,8 @@
     <string name="settings_travel_recording">Enable recording of travel</string>
     <string name="settings_alpha_features">Enable alpha test features</string>
     <string name="settings_alpha_features_description">Show settings for features that are still being tested. They may be incomplete or unreliable.</string>
+    <string name="settings_record_head_tracker_input">Record head tracker data</string>
+    <string name="settings_record_head_tracker_input_description">Add everything the head tracker sends to travel recordings, so that a walk can be replayed exactly when debugging. With a WitMotion sensor this makes recordings about 20 MB larger for each hour of walking.</string>
     <string name="menu_share_recorded_route">Share recording of travel</string>
     <string name="settings_theme_contrast">Theme contrast</string>
     <string name="settings_keep_value">keep</string>

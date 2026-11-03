@@ -518,6 +518,8 @@
     <string name="settings_travel_recording">Ativar a gravação de viagens</string>
     <string name="settings_alpha_features">Ativar funcionalidades de teste alfa</string>
     <string name="settings_alpha_features_description">Mostra as definições de funcionalidades que ainda estão a ser testadas. Podem estar incompletas ou ser pouco fiáveis.</string>
+    <string name="settings_record_head_tracker_input">Gravar os dados do sensor de rastreio da cabeça</string>
+    <string name="settings_record_head_tracker_input_description">Adiciona às gravações de viagens tudo o que o sensor de rastreio da cabeça envia, para que uma caminhada possa ser reproduzida exatamente durante a depuração. Com um sensor WitMotion, as gravações ficam cerca de 20 MB maiores por cada hora de caminhada.</string>
     <string name="settings_debug_heading">Opções de Depuração</string>
     <string name="menu_share_recorded_route">Partilhar a gravação de viagens</string>
     <string name="confect_name_to_via">%1$s {pt:para %2$s} via %3$s</string>

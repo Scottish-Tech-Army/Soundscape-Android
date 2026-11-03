@@ -1538,6 +1538,8 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="settings_travel_recording">Kunna rikodin tafiya</string>
     <string name="settings_alpha_features">Kunna fasalolin gwajin alpha</string>
     <string name="settings_alpha_features_description">Nuna saitunan fasalolin da ake ci gaba da gwadawa. Za su iya zama ba su kammala ba ko kuma ba a iya dogara da su ba.</string>
+    <string name="settings_record_head_tracker_input">Yi rikodin bayanan na'urar bin diddigin kai</string>
+    <string name="settings_record_head_tracker_input_description">Ƙara duk abin da na'urar bin diddigin kai ke aikowa cikin rikodin tafiya, domin a iya sake kunna tafiyar ƙafa daidai yayin gyaran kurakurai. Da na'urar WitMotion, wannan yana ƙara girman rikodin da kusan MB 20 a kowace sa'ar tafiya.</string>
     <string name="settings_mix_audio">Haɗa sauti da sauran manhajoji</string>
     <string name="settings_mix_audio_description">Idan an kashe wannan, sauran manhajojin sauti za su dakata kuma maɓallan sarrafa sauti na allon kulle za su kasance akwai</string>
     <string name="settings_head_tracking">Kunna bin diddigin kai</string>

@@ -1498,6 +1498,8 @@
     <string name="settings_travel_recording">Разреши записване на пътуването</string>
     <string name="settings_alpha_features">Разреши функции за алфа тестване</string>
     <string name="settings_alpha_features_description">Показва настройки за функции, които все още се тестват. Те може да са незавършени или ненадеждни.</string>
+    <string name="settings_record_head_tracker_input">Записване на данните от сензора за проследяване на главата</string>
+    <string name="settings_record_head_tracker_input_description">Добавя всичко, което изпраща сензорът за проследяване на главата, към записите на пътуването, за да може разходката да бъде възпроизведена точно при отстраняване на грешки. Със сензор WitMotion това прави записите с около 20 MB по-големи за всеки час ходене.</string>
     <string name="settings_mix_audio">Смесване на звука с други приложения</string>
     <string name="settings_mix_audio_description">Когато е изключено, другите аудио приложения ще бъдат поставени на пауза и ще бъдат налични мултимедийните контроли на заключения екран</string>
     <string name="settings_head_tracking">Разреши проследяване на главата</string>

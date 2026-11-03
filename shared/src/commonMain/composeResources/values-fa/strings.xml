@@ -518,6 +518,8 @@
     <string name="settings_travel_recording">فعال‌سازی ضبط سفر</string>
     <string name="settings_alpha_features">فعال‌سازی ویژگی‌های آزمایش آلفا</string>
     <string name="settings_alpha_features_description">تنظیمات ویژگی‌هایی را که هنوز در حال آزمایش هستند نشان می‌دهد. ممکن است ناقص یا غیرقابل‌اعتماد باشند.</string>
+    <string name="settings_record_head_tracker_input">ضبط داده‌های ردیاب سر</string>
+    <string name="settings_record_head_tracker_input_description">هر چیزی را که ردیاب سر می‌فرستد به ضبط‌های سفر اضافه می‌کند تا هنگام اشکال‌زدایی بتوان یک پیاده‌روی را دقیقاً دوباره پخش کرد. با حسگر WitMotion، این کار حجم ضبط‌ها را به ازای هر ساعت پیاده‌روی حدود ۲۰ مگابایت بیشتر می‌کند.</string>
     <string name="settings_debug_heading">گزینه‌های اشکال‌زدایی</string>
     <string name="menu_share_recorded_route">اشتراک‌گذاری سفر ضبط‌شده</string>
     <string name="confect_name_to_via">%1$s منتهی به %2$s از مسیر %3$s</string>

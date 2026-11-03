@@ -511,6 +511,8 @@
     <string name="settings_travel_recording">Activer l’enregistrement des voyages</string>
     <string name="settings_alpha_features">Activer les fonctionnalités de test alpha</string>
     <string name="settings_alpha_features_description">Affiche les paramètres des fonctionnalités encore en cours de test. Elles peuvent être incomplètes ou peu fiables.</string>
+    <string name="settings_record_head_tracker_input">Enregistrer les données du capteur de suivi de la tête</string>
+    <string name="settings_record_head_tracker_input_description">Ajoute aux enregistrements des voyages tout ce qu’envoie le capteur de suivi de la tête, afin de pouvoir rejouer exactement une marche lors du débogage. Avec un capteur WitMotion, les enregistrements grossissent d’environ 20 Mo par heure de marche.</string>
     <string name="settings_debug_heading">Options de débogage</string>
     <string name="menu_share_recorded_route">Partager l'enregistrement du voyage</string>
     <string name="confect_name_to_via">%1$s {fr:vers %2$s} via %3$s</string>

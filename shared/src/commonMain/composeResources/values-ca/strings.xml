@@ -587,6 +587,8 @@
     <string name="settings_travel_recording">Activa l'enregistrament de trajectes</string>
     <string name="settings_alpha_features">Activa les funcions de prova alfa</string>
     <string name="settings_alpha_features_description">Mostra la configuració de funcions que encara s'estan provant. Poden estar incompletes o no ser fiables.</string>
+    <string name="settings_record_head_tracker_input">Enregistra les dades del sensor de seguiment del cap</string>
+    <string name="settings_record_head_tracker_input_description">Afegeix als enregistraments de trajectes tot el que envia el sensor de seguiment del cap, perquè es pugui reproduir exactament un recorregut a peu en depurar. Amb un sensor WitMotion, els enregistraments ocupen uns 20 MB més per cada hora de caminar.</string>
     <string name="settings_mix_audio">Combina l'àudio amb altres aplicacions</string>
     <string name="settings_mix_audio_description">Quan està desactivat, la resta d'aplicacions d'àudio es pausaran i els controls multimèdia de la pantalla de bloqueig estaran disponibles</string>
     <string name="settings_head_tracking">Activa el seguiment del cap</string>

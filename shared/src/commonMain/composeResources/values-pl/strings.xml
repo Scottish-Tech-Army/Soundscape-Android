@@ -528,6 +528,8 @@
     <string name="settings_travel_recording">Włącz rejestrowanie podróży</string>
     <string name="settings_alpha_features">Włącz funkcje testów alfa</string>
     <string name="settings_alpha_features_description">Pokazuje ustawienia funkcji, które są jeszcze testowane. Mogą być niedokończone lub zawodne.</string>
+    <string name="settings_record_head_tracker_input">Rejestruj dane z czujnika ruchu głowy</string>
+    <string name="settings_record_head_tracker_input_description">Dodaje do rejestrowanych podróży wszystko, co wysyła czujnik ruchu głowy, aby podczas debugowania można było dokładnie odtworzyć spacer. Z czujnikiem WitMotion zapisy rosną o około 20 MB na każdą godzinę marszu.</string>
     <string name="settings_show_map">Wyświetlaj mapy na ekranie</string>
     <string name="settings_debug_heading">Opcje debugowania</string>
     <string name="settings_search_results_language">Język wyszukiwania</string>

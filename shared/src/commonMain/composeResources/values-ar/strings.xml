@@ -692,6 +692,8 @@
     <string name="settings_travel_recording">تفعيل تسجيل التنقل</string>
     <string name="settings_alpha_features">تفعيل ميزات اختبار ألفا</string>
     <string name="settings_alpha_features_description">عرض إعدادات الميزات التي لا تزال قيد الاختبار. قد تكون غير مكتملة أو غير موثوقة.</string>
+    <string name="settings_record_head_tracker_input">تسجيل بيانات جهاز تتبع حركة الرأس</string>
+    <string name="settings_record_head_tracker_input_description">إضافة كل ما يرسله جهاز تتبع حركة الرأس إلى تسجيلات التنقل، حتى يمكن إعادة تشغيل المشي بدقة عند تصحيح الأخطاء. مع مستشعر WitMotion يزيد هذا حجم التسجيلات بنحو 20 ميغابايت لكل ساعة من المشي.</string>
     <string name="settings_mix_audio">مزج الصوت مع التطبيقات الأخرى</string>
     <string name="settings_mix_audio_description">عند التعطيل، ستتوقف تطبيقات الصوت الأخرى مؤقتًا وستتوفر عناصر التحكم بالوسائط على شاشة القفل</string>
     <string name="settings_head_tracking">تفعيل تتبع حركة الرأس</string>

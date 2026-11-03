@@ -444,6 +444,8 @@
     <string name="settings_travel_recording">यात्रा की रिकॉर्डिंग सक्षम करें</string>
     <string name="settings_alpha_features">अल्फ़ा टेस्ट फ़ीचर सक्षम करें</string>
     <string name="settings_alpha_features_description">उन फ़ीचर की सेटिंग दिखाएँ जिनका अभी परीक्षण हो रहा है। ये अधूरे या अविश्वसनीय हो सकते हैं।</string>
+    <string name="settings_record_head_tracker_input">हेड ट्रैकर का डेटा रिकॉर्ड करें</string>
+    <string name="settings_record_head_tracker_input_description">हेड ट्रैकर जो कुछ भी भेजता है, उसे यात्रा की रिकॉर्डिंग में जोड़ें, ताकि डीबग करते समय पैदल यात्रा को हूबहू फिर से चलाया जा सके। WitMotion सेंसर के साथ इससे हर घंटे की पैदल यात्रा पर रिकॉर्डिंग लगभग 20 MB बड़ी हो जाती है।</string>
     <string name="settings_show_map">स्क्रीन पर मानचित्र दिखाएँ</string>
     <string name="settings_debug_heading">डीबग विकल्प</string>
     <string name="settings_search_results_language">खोज भाषा</string>

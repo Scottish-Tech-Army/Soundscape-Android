@@ -511,6 +511,8 @@
     <string name="settings_travel_recording">Abilitare la registrazione del viaggio</string>
     <string name="settings_alpha_features">Abilitare le funzioni di test alpha</string>
     <string name="settings_alpha_features_description">Mostra le impostazioni delle funzioni ancora in fase di test. Potrebbero essere incomplete o poco affidabili.</string>
+    <string name="settings_record_head_tracker_input">Registrare i dati del sensore di tracciamento della testa</string>
+    <string name="settings_record_head_tracker_input_description">Aggiunge alle registrazioni del viaggio tutto ciò che invia il sensore di tracciamento della testa, così che una camminata possa essere riprodotta esattamente durante il debug. Con un sensore WitMotion le registrazioni aumentano di circa 20 MB per ogni ora di cammino.</string>
     <string name="settings_debug_heading">Opzioni di debug</string>
     <string name="menu_share_recorded_route">Condividi la registrazione del viaggio</string>
     <string name="confect_name_to_via">%1$s che porta {it:a %2$s} tramite %3$s</string>

@@ -1522,6 +1522,8 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="settings_travel_recording">Aktifkan perekaman perjalanan</string>
     <string name="settings_alpha_features">Aktifkan fitur uji alfa</string>
     <string name="settings_alpha_features_description">Tampilkan pengaturan untuk fitur yang masih diuji. Fitur ini mungkin belum lengkap atau belum andal.</string>
+    <string name="settings_record_head_tracker_input">Rekam data pelacak kepala</string>
+    <string name="settings_record_head_tracker_input_description">Tambahkan semua yang dikirim pelacak kepala ke rekaman perjalanan, agar perjalanan kaki dapat diputar ulang dengan tepat saat debugging. Dengan sensor WitMotion, rekaman menjadi sekitar 20 MB lebih besar untuk setiap jam berjalan.</string>
     <string name="settings_mix_audio">Campur audio dengan aplikasi lain</string>
     <string name="settings_mix_audio_description">Jika dinonaktifkan, aplikasi audio lain akan dijeda dan kontrol media di layar kunci akan tersedia</string>
     <string name="settings_head_tracking">Aktifkan pelacakan kepala</string>

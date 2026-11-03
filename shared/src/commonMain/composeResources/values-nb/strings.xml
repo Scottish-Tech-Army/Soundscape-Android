@@ -526,6 +526,8 @@
     <string name="settings_travel_recording">Aktiver registrering av reiser</string>
     <string name="settings_alpha_features">Aktiver funksjoner for alfatesting</string>
     <string name="settings_alpha_features_description">Vis innstillinger for funksjoner som fortsatt testes. De kan være uferdige eller upålitelige.</string>
+    <string name="settings_record_head_tracker_input">Registrer data fra hodesporingsenheten</string>
+    <string name="settings_record_head_tracker_input_description">Legg alt hodesporingsenheten sender, til i registreringer av reiser, slik at en gåtur kan spilles av nøyaktig på nytt ved feilsøking. Med en WitMotion-sensor blir registreringene omtrent 20 MB større for hver time med gange.</string>
     <string name="settings_show_map">Vis kart på skjermen</string>
     <string name="settings_debug_heading">Feilsøkingsalternativer</string>
     <string name="settings_search_results_language">Søkespråk</string>

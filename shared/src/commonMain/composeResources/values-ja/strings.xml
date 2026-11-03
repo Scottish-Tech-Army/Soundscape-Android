@@ -522,6 +522,8 @@
     <string name="settings_travel_recording">移動の記録を有効にする</string>
     <string name="settings_alpha_features">アルファテスト機能を有効にする</string>
     <string name="settings_alpha_features_description">まだテスト中の機能の設定を表示します。未完成だったり、動作が不安定だったりする場合があります。</string>
+    <string name="settings_record_head_tracker_input">ヘッドトラッカーのデータを記録する</string>
+    <string name="settings_record_head_tracker_input_description">ヘッドトラッカーが送信するすべてのデータを移動の記録に追加し、デバッグ時に歩いた経路を正確に再現できるようにします。WitMotion センサーの場合、歩行 1 時間あたり記録が約 20 MB 大きくなります。</string>
     <string name="settings_show_map">画面に地図を表示する</string>
     <string name="settings_debug_heading">デバッグオプション</string>
     <string name="settings_search_results_language">検索言語</string>

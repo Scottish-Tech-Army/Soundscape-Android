@@ -557,6 +557,8 @@
     <string name="settings_travel_recording">이동 기록 사용</string>
     <string name="settings_alpha_features">알파 테스트 기능 사용</string>
     <string name="settings_alpha_features_description">아직 테스트 중인 기능의 설정을 표시합니다. 완성되지 않았거나 불안정할 수 있습니다.</string>
+    <string name="settings_record_head_tracker_input">헤드 트래커 데이터 기록</string>
+    <string name="settings_record_head_tracker_input_description">헤드 트래커가 보내는 모든 데이터를 이동 기록에 추가하여 디버깅할 때 걸은 경로를 정확히 재현할 수 있게 합니다. WitMotion 센서를 사용하면 걷는 1시간마다 기록이 약 20MB 커집니다.</string>
     <string name="settings_mix_audio">다른 앱과 오디오 혼합</string>
     <string name="settings_mix_audio_description">비활성화하면 다른 오디오 앱이 일시정지되고 잠금 화면 미디어 제어를 사용할 수 있습니다</string>
     <string name="settings_head_tracking">헤드 트래킹 사용</string>

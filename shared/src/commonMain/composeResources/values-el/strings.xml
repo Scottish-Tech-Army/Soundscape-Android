@@ -526,6 +526,8 @@
     <string name="settings_travel_recording">Ενεργοποίηση καταγραφής της πορείας μετακίνησης</string>
     <string name="settings_alpha_features">Ενεργοποίηση λειτουργιών δοκιμής άλφα</string>
     <string name="settings_alpha_features_description">Εμφανίζει ρυθμίσεις για λειτουργίες που βρίσκονται ακόμη σε δοκιμή. Μπορεί να είναι ημιτελείς ή αναξιόπιστες.</string>
+    <string name="settings_record_head_tracker_input">Καταγραφή δεδομένων αισθητήρα παρακολούθησης κεφαλής</string>
+    <string name="settings_record_head_tracker_input_description">Προσθέτει στις καταγραφές της πορείας μετακίνησης ό,τι στέλνει ο αισθητήρας παρακολούθησης κεφαλής, ώστε μια διαδρομή με τα πόδια να μπορεί να αναπαραχθεί ακριβώς κατά τον εντοπισμό σφαλμάτων. Με αισθητήρα WitMotion οι καταγραφές μεγαλώνουν περίπου 20 MB για κάθε ώρα περπατήματος.</string>
     <string name="settings_show_map">Εμφάνιση χαρτών στην οθόνη</string>
     <string name="settings_debug_heading">Επιλογές αποσφαλμάτωσης</string>
     <string name="settings_search_results_language">Γλώσσα αναζήτησης</string>

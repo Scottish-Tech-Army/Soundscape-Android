@@ -1538,6 +1538,8 @@
     <string name="settings_travel_recording">سفر کی ریکارڈنگ فعال کریں</string>
     <string name="settings_alpha_features">الفا ٹیسٹ کی خصوصیات فعال کریں</string>
     <string name="settings_alpha_features_description">ان خصوصیات کی ترتیبات دکھائیں جن کی ابھی جانچ ہو رہی ہے۔ یہ نامکمل یا ناقابلِ اعتماد ہو سکتی ہیں۔</string>
+    <string name="settings_record_head_tracker_input">ہیڈ ٹریکر کا ڈیٹا ریکارڈ کریں</string>
+    <string name="settings_record_head_tracker_input_description">ہیڈ ٹریکر جو کچھ بھیجتا ہے وہ سب سفر کی ریکارڈنگ میں شامل کریں، تاکہ ڈیبگ کرتے وقت پیدل چلنے کو بالکل ویسے ہی دوبارہ چلایا جا سکے۔ WitMotion سینسر کے ساتھ اس سے ہر گھنٹے پیدل چلنے پر ریکارڈنگ تقریباً 20 MB بڑی ہو جاتی ہے۔</string>
     <string name="settings_mix_audio">دوسری ایپس کے ساتھ آڈیو مکس کریں</string>
     <string name="settings_mix_audio_description">غیر فعال ہونے پر، دیگر آڈیو ایپس رک جائیں گی اور لاک اسکرین میڈیا کنٹرولز دستیاب ہوں گے</string>
     <string name="settings_head_tracking">ہیڈ ٹریکنگ فعال کریں</string>

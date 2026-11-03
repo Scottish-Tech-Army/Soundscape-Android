@@ -1538,6 +1538,8 @@
     <string name="settings_travel_recording">ప్రయాణ రికార్డింగ్‌ను ప్రారంభించండి</string>
     <string name="settings_alpha_features">ఆల్ఫా టెస్ట్ ఫీచర్‌లను ప్రారంభించండి</string>
     <string name="settings_alpha_features_description">ఇంకా పరీక్షిస్తున్న ఫీచర్‌ల సెట్టింగ్‌లను చూపుతుంది. అవి అసంపూర్ణంగా లేదా నమ్మదగనివిగా ఉండవచ్చు.</string>
+    <string name="settings_record_head_tracker_input">హెడ్ ట్రాకర్ డేటాను రికార్డ్ చేయండి</string>
+    <string name="settings_record_head_tracker_input_description">హెడ్ ట్రాకర్ పంపే ప్రతిదాన్నీ ప్రయాణ రికార్డింగ్‌లకు జోడిస్తుంది, తద్వారా డీబగ్ చేస్తున్నప్పుడు నడకను సరిగ్గా అలాగే మళ్లీ ప్లే చేయవచ్చు. WitMotion సెన్సార్‌తో ఇది ప్రతి గంట నడకకు రికార్డింగ్‌లను సుమారు 20 MB పెంచుతుంది.</string>
     <string name="settings_mix_audio">ఇతర యాప్‌లతో ఆడియోను మిక్స్ చేయండి</string>
     <string name="settings_mix_audio_description">నిలిపివేసినప్పుడు, ఇతర ఆడియో యాప్‌లు పాజ్ అవుతాయి మరియు లాక్ స్క్రీన్ మీడియా కంట్రోల్‌లు అందుబాటులో ఉంటాయి</string>
     <string name="settings_head_tracking">హెడ్ ట్రాకింగ్‌ను ప్రారంభించండి</string>

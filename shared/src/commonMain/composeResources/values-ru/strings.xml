@@ -390,6 +390,8 @@
     <string name="settings_travel_recording">Включить запись поездки</string>
     <string name="settings_alpha_features">Включить функции альфа-тестирования</string>
     <string name="settings_alpha_features_description">Показывает настройки функций, которые ещё тестируются. Они могут быть незавершёнными или ненадёжными.</string>
+    <string name="settings_record_head_tracker_input">Записывать данные датчика отслеживания головы</string>
+    <string name="settings_record_head_tracker_input_description">Добавляет в записи поездок всё, что передаёт датчик отслеживания головы, чтобы при отладке прогулку можно было точно воспроизвести. С датчиком WitMotion записи увеличиваются примерно на 20 МБ за каждый час ходьбы.</string>
     <string name="settings_debug_heading">Параметры отладки</string>
     <string name="menu_share_recorded_route">Поделиться записью поездки</string>
     <string name="confect_name_to_via">%1$s к %2$s через %3$s</string>
