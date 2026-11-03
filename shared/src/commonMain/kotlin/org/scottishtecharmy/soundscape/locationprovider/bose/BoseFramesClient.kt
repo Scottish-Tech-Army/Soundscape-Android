@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.locationprovider.bose
 import com.juul.kable.Filter
 import com.juul.kable.Peripheral
 import com.juul.kable.Scanner
+import org.scottishtecharmy.soundscape.locationprovider.BleScanBudget
 import com.juul.kable.WriteType
 import com.juul.kable.characteristicOf
 import kotlinx.coroutines.flow.first
@@ -19,7 +20,10 @@ import kotlin.uuid.Uuid
  * period) — that's the only sensor we care about for head heading.
  */
 @OptIn(ExperimentalUuidApi::class)
-class BoseFramesClient {
+class BoseFramesClient(
+    /** Shared with the app's other BLE clients - see [BleScanBudget]. */
+    private val scanBudget: BleScanBudget = BleScanBudget.shared,
+) {
 
     private val serviceUuid = Uuid.parse(SERVICE_UUID)
     private val dataCharacteristic = characteristicOf(serviceUuid, Uuid.parse(DATA_CHAR_UUID))
@@ -34,6 +38,7 @@ class BoseFramesClient {
         onConnected: () -> Unit,
         onBytes: suspend (ByteArray) -> Unit,
     ) {
+        scanBudget.awaitStarts(1)
         val advertisement = Scanner {
             filters {
                 match { services = listOf(serviceUuid) }
