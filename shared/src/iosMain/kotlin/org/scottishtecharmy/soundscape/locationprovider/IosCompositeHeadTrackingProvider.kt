@@ -81,6 +81,10 @@ class IosCompositeHeadTrackingProvider(
         }
     }
 
+    override fun takeDebugSnapshot(includeInput: Boolean): HeadTrackingDebug? = mergeDebugSnapshots(
+        listOfNotNull(airpods.takeDebugSnapshot(includeInput), externalBle.takeDebugSnapshot(includeInput))
+    )
+
     override fun stop() {
         scope?.cancel()
         scope = null

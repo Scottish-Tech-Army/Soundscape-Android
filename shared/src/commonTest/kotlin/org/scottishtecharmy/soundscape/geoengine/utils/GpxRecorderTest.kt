@@ -1,7 +1,12 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
 import kotlinx.coroutines.test.runTest
+import org.scottishtecharmy.soundscape.geoengine.headtracking.CalibrationSource
+import org.scottishtecharmy.soundscape.geoengine.headtracking.HeadphoneCalibration
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxLocationStream
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingDebug
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingStatus
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -164,5 +169,48 @@ class GpxRecorderTest {
         // ...while the most recently stored location is still present.
         val lastIndex = total - 1
         assertTrue(gpx.contains("<trkpt lat=\"${lastIndex.toDouble()}\" lon=\"0.0\">"))
+    }
+
+    /**
+     * Head tracking goes in an `<extensions>` element, which a replay must read past without it
+     * changing the fix - so recordings made while debugging a head tracker still replay.
+     */
+    @Test
+    fun headTrackingIsRecordedAsAnExtensionThatReplaysIgnore() = runTest {
+        val location = SoundscapeLocation(
+            latitude = 55.9,
+            longitude = -4.3,
+            bearing = 90.0f,
+            speed = 1.2f,
+            hasBearing = true,
+            hasSpeed = true,
+            timestampMilliseconds = 60_000L,
+        )
+        val plain = GpxRecorder().apply { storeLocation(location) }.generateGpx()
+        val recorder = GpxRecorder()
+        recorder.headTracking = {
+            HeadTrackingDebug(
+                status = HeadTrackingStatus.Calibrated,
+                yawDegrees = -412.34,
+                offsetDegrees = 142.06,
+                headingDegrees = 89.7,
+                phoneHeadingDegrees = 271.0,
+                phoneFlat = false,
+                courseDegrees = 90.0,
+                calibrations = listOf(
+                    HeadphoneCalibration(142.06, 3.21, 59_000L, CalibrationSource.Course)
+                ),
+            )
+        }
+        recorder.storeLocation(location)
+        val gpx = recorder.generateGpx()
+
+        assertTrue(gpx.contains("<status>Calibrated</status>"))
+        assertTrue(gpx.contains("<yaw>-412.3</yaw>"))
+        assertTrue(gpx.contains("<offset>142.1</offset>"))
+        assertTrue(gpx.contains("<phoneFlat>false</phoneFlat>"))
+        assertTrue(gpx.contains("<source>Course</source>"))
+        assertTrue(gpx.contains("<time>1970-01-01T00:00:59.000Z</time>"))
+        assertEquals(parseGpx(plain), parseGpx(gpx))
     }
 }

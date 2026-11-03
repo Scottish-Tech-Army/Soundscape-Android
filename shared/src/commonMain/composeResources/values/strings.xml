@@ -1229,6 +1229,10 @@
     <string name="settings_alpha_features">Enable alpha test features</string>
     <!-- Description for the alpha test features debug option -->
     <string name="settings_alpha_features_description">Show settings for features that are still being tested. They may be incomplete or unreliable.</string>
+    <!-- Debug settings option, shown with the alpha test features, that adds the raw data from a head tracker (AirPods, Bose Frames or a WitMotion sensor) to travel recordings -->
+    <string name="settings_record_head_tracker_input">Record head tracker data</string>
+    <!-- Description for the option that adds the raw data from a head tracker to travel recordings -->
+    <string name="settings_record_head_tracker_input_description">Add everything the head tracker sends to travel recordings, so that a walk can be replayed exactly when debugging. With a WitMotion sensor this makes recordings about 20 MB larger for each hour of walking.</string>
     <!-- Settings option for enabling a map styling which has improved accessibility -->
     <!-- Settings option for mixing audio with other apps -->
     <string name="settings_mix_audio">Mix audio with other apps</string>

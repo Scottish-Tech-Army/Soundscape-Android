@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.geoengine.headtracking.HeadphoneCalibrationManager
+import org.scottishtecharmy.soundscape.platform.currentTimeMillis
 import platform.CoreMotion.CMAuthorizationStatusDenied
 import platform.CoreMotion.CMAuthorizationStatusRestricted
 import platform.CoreMotion.CMDeviceMotion
@@ -17,16 +17,26 @@ import platform.Foundation.NSError
 import platform.Foundation.NSOperationQueue
 import platform.Foundation.NSProcessInfo
 import platform.darwin.NSObject
-import kotlin.concurrent.Volatile
 import kotlin.math.PI
 
 private const val RAD_TO_DEG = 180.0 / PI
 
+/**
+ * AirPods head tracking. CoreMotion gives the headphones' attitude, whose yaw
+ * [CalibratedHeadTrackingProvider] turns into a geographic heading. The yaw is what's recorded
+ * for a replay, as CoreMotion can't run off the device.
+ */
 @OptIn(ExperimentalForeignApi::class)
 class IosHeadTrackingProvider(
-    private val directionProvider: DirectionProvider,
-    private val locationProvider: LocationProvider,
-) : HeadTrackingProvider() {
+    directionProvider: DirectionProvider,
+    locationProvider: LocationProvider,
+) : CalibratedHeadTrackingProvider(
+    directionProvider,
+    locationProvider,
+    inputId = AIRPODS_INPUT_ID,
+    deviceWindowSize = AIRPODS_DEVICE_WINDOW_SIZE,
+    clock = ::currentTimeMillis,
+) {
 
     private val motionManager: CMHeadphoneMotionManager? =
         if (isHeadphoneMotionSupported()) CMHeadphoneMotionManager() else null
@@ -36,10 +46,11 @@ class IosHeadTrackingProvider(
         maxConcurrentOperationCount = 1L
     }
 
-    private val calibrationManager = HeadphoneCalibrationManager()
     private val delegate = HeadphoneDelegate(this)
 
     private var scope: CoroutineScope? = null
+
+    override val isRunning: Boolean get() = scope != null
 
     init {
         if (motionManager == null) {
@@ -73,34 +84,7 @@ class IosHeadTrackingProvider(
 
         val newScope = CoroutineScope(Dispatchers.Default + Job())
         scope = newScope
-        newScope.launch {
-            directionProvider.orientationFlow.collect { dir ->
-                // Only while the phone is held flat does its heading say where the user faces.
-                // In a pocket it can point anywhere, often straight backwards, and a still phone
-                // and head would calibrate to that within seconds, leaving the head heading 180°
-                // out. Away from flat, calibration waits for the walking course instead.
-                lastDeviceHeadingDegrees =
-                    if (dir != null && dir.headingAccuracyDegrees >= 0f && phoneHeldFlat(dir)) {
-                        dir.headingDegrees.toDouble()
-                    } else {
-                        null
-                    }
-            }
-        }
-        newScope.launch {
-            locationProvider.filteredLocationFlow.collect { loc ->
-                val usable = loc != null &&
-                        loc.hasBearing &&
-                        loc.hasSpeed &&
-                        loc.speed >= COURSE_MIN_SPEED_MPS
-                if (usable) {
-                    lastCourseDegrees = loc.bearing.toDouble()
-                    lastCourseTimestampMillis = uptimeMillis()
-                } else {
-                    lastCourseDegrees = null
-                }
-            }
-        }
+        observeReferences(newScope)
     }
 
     override fun stop() {
@@ -110,94 +94,34 @@ class IosHeadTrackingProvider(
         }
         scope?.cancel()
         scope = null
-        calibrationManager.stop()
-        mutableHeadHeadingFlow.value = null
+        resetCalibration()
         mutableStatusFlow.value = HeadTrackingStatus.Inactive
     }
 
-    @Volatile
-    private var lastDeviceHeadingDegrees: Double? = null
-
-    @Volatile
-    private var lastCourseDegrees: Double? = null
-
-    @Volatile
-    private var lastCourseTimestampMillis: Long = 0L
-
     private fun onDeviceMotion(motion: CMDeviceMotion) {
-        val attitude = motion.attitude
-        val rawYawRadians = attitude.yaw
+        val rawYawRadians = motion.attitude.yaw
         // 180° flip so yaw increases clockwise from the AirPods origin (matches iOS reference).
         // This convention is load-bearing — flipping it requires inverting the offset sign.
-        val yawDegrees = 180.0 - rawYawRadians * RAD_TO_DEG
-        val timestampMillis = uptimeMillis()
-
-        calibrationManager.pushDeviceReference(
-            yawDegrees,
-            lastDeviceHeadingDegrees,
-            timestampMillis
-        )
-
-        val course = lastCourseDegrees
-        val fresh = course != null &&
-                (timestampMillis - lastCourseTimestampMillis) <= COURSE_STALENESS_MILLIS
-        // Push null when stale/missing so the course calibrator drops its partial window,
-        // mirroring how the iOS reference clears samples when its heading observer goes nil.
-        calibrationManager.pushCourseReference(
-            yawDegrees,
-            if (fresh) course else null,
-            timestampMillis,
-        )
-
-        val heading = calibrationManager.headingFor(yawDegrees)
-        if (heading != null) {
-            mutableHeadHeadingFlow.value = HeadHeading(
-                degrees = heading,
-                accuracyDegrees = 10.0,
-                timestampMillis = timestampMillis,
-            )
-            if (mutableStatusFlow.value == HeadTrackingStatus.Connected) {
-                mutableStatusFlow.value = HeadTrackingStatus.Calibrated
-            }
-        }
+        onYawSample(180.0 - rawYawRadians * RAD_TO_DEG, clock())
     }
 
     internal fun onHeadphonesConnected() {
-        mutableHeadHeadingFlow.value = null
-        if (mutableStatusFlow.value != HeadTrackingStatus.Inactive &&
-            mutableStatusFlow.value != HeadTrackingStatus.Unavailable
-        ) {
-            mutableStatusFlow.value = HeadTrackingStatus.Connected
-            calibrationManager.stop()
-            calibrationManager.start()
-        }
+        if (isTracking()) onSessionConnected(clock())
     }
 
     internal fun onHeadphonesDisconnected() {
-        mutableHeadHeadingFlow.value = null
-        if (mutableStatusFlow.value != HeadTrackingStatus.Inactive &&
-            mutableStatusFlow.value != HeadTrackingStatus.Unavailable
-        ) {
-            mutableStatusFlow.value = HeadTrackingStatus.Disconnected
-            calibrationManager.stop()
-            calibrationManager.start()
-        }
+        if (isTracking()) onSessionEnded(clock())
     }
+
+    private fun isTracking() = mutableStatusFlow.value != HeadTrackingStatus.Inactive &&
+        mutableStatusFlow.value != HeadTrackingStatus.Unavailable
 
     private fun isAuthorizedOrUndetermined(): Boolean {
         val status = CMHeadphoneMotionManager.authorizationStatus()
         return status != CMAuthorizationStatusDenied && status != CMAuthorizationStatusRestricted
     }
 
-    private fun uptimeMillis(): Long =
-        (NSProcessInfo.processInfo.systemUptime * 1000.0).toLong()
-
     companion object {
-        // Match FilteredCourseProvider on iOS: ignore course while effectively stationary
-        // (CLLocation course is noisy below walking pace) and treat updates older than 3 s as stale.
-        private const val COURSE_MIN_SPEED_MPS = 0.4f
-        private const val COURSE_STALENESS_MILLIS = 3_000L
-
         fun isHeadphoneMotionSupported(): Boolean {
             // CMHeadphoneMotionManager requires iOS 14.0+; AirPods Max landed in 14.2/14.3,
             // so the iOS reference gates on 14.4. Match that.

@@ -439,6 +439,14 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
         val documentsPath = NSHomeDirectory() + "/Documents"
 
+        gpxRecorder.headTracking = {
+            headTrackingProvider.takeDebugSnapshot(
+                includeInput = preferencesProvider.getBoolean(
+                    PreferenceKeys.RECORD_HEAD_TRACKER_INPUT,
+                    PreferenceDefaults.RECORD_HEAD_TRACKER_INPUT,
+                )
+            )
+        }
         geoEngine.locationRecorder = gpxRecorder
 
         geoEngine.start(

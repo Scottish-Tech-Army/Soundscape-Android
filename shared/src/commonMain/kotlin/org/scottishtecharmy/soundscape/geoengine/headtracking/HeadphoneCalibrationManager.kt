@@ -3,6 +3,13 @@ package org.scottishtecharmy.soundscape.geoengine.headtracking
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeDegrees
 import org.scottishtecharmy.soundscape.platform.currentTimeMillis
 
+/**
+ * Turns a head tracker's relative yaw into a geographic heading by keeping an offset between them.
+ *
+ * The offset starts from the phone's compass, when the phone is held flat and both have agreed for
+ * a window of samples (see [HeadphoneCalibrator]), or from the walking course, and from then on
+ * every course reading keeps it up to date (see [CourseOffsetTracker]).
+ */
 class HeadphoneCalibrationManager(
     /**
      * Window size for the device (phone-compass) calibrator. The compass
@@ -12,17 +19,9 @@ class HeadphoneCalibrationManager(
      * WitMotion @ 100 Hz wants ≈1000 (≈10 s).
      */
     deviceWindowSize: Int = 200,
-    /**
-     * Window size for the course (GPS-bearing) calibrator. GPS updates at
-     * ~1 Hz regardless of IMU rate, and only **new** course values are
-     * accepted (see [pushCourseReference]), so this is in real GPS readings.
-     * Default 30 ≈ 30 s of walking before the first course-based offset.
-     */
-    courseWindowSize: Int = 30,
-    private val calibrator: CompositeHeadphoneCalibrator = CompositeHeadphoneCalibrator(
-        deviceCalibrator = HeadphoneCalibrator(CalibrationSource.Device, windowSize = deviceWindowSize),
-        courseCalibrator = HeadphoneCalibrator(CalibrationSource.Course, windowSize = courseWindowSize),
-    ),
+    private val deviceCalibrator: HeadphoneCalibrator =
+        HeadphoneCalibrator(CalibrationSource.Device, windowSize = deviceWindowSize),
+    private val offsetTracker: CourseOffsetTracker = CourseOffsetTracker(),
 ) {
     private var active = false
 
@@ -31,7 +30,14 @@ class HeadphoneCalibrationManager(
     private var lastLogMillis: Long = 0L
 
     val isCalibrated: Boolean
-        get() = calibrator.estimatedOffsetDegrees != null
+        get() = offsetDegrees != null
+
+    /** The current yaw-to-heading offset, or null before the first calibration. */
+    val offsetDegrees: Double?
+        get() = offsetTracker.offsetDegrees
+
+    /** Called with each calibration as it is made, from whichever thread pushed the reference. */
+    var onCalibration: ((HeadphoneCalibration) -> Unit)? = null
 
     fun start() {
         active = true
@@ -39,14 +45,15 @@ class HeadphoneCalibrationManager(
 
     fun stop() {
         active = false
-        calibrator.reset()
+        deviceCalibrator.reset()
+        offsetTracker.reset()
         lastDeviceHeadingDegrees = null
         lastCourseDegrees = null
     }
 
     fun headingFor(yawDegrees: Double): Double? {
         if (!active) return null
-        val offset = calibrator.estimatedOffsetDegrees
+        val offset = offsetDegrees
         val heading = offset?.let { (yawDegrees + it).normalizeDegrees() }
         logOncePerSecond(heading)
         return heading
@@ -59,19 +66,27 @@ class HeadphoneCalibrationManager(
     ) {
         if (!active) return
         lastDeviceHeadingDegrees = deviceHeadingDegrees
-        calibrator.processDevice(yawDegrees, deviceHeadingDegrees, timestampMillis)
+        deviceCalibrator.process(yawDegrees, deviceHeadingDegrees, timestampMillis)?.let {
+            offsetTracker.applyDeviceCalibration(it)
+            onCalibration?.invoke(it)
+        }
     }
 
-    fun pushCourseReference(yawDegrees: Double, courseDegrees: Double?, timestampMillis: Long) {
+    /** [courseAccuracyDegrees] is the receiver's bearing accuracy, which weights the reading. */
+    fun pushCourseReference(
+        yawDegrees: Double,
+        courseDegrees: Double?,
+        timestampMillis: Long,
+        courseAccuracyDegrees: Double? = null,
+    ) {
         if (!active) return
         // GPS course updates at ~1 Hz but this is called at the IMU rate, so
         // the same reading would otherwise be pushed ~100 times before GPS
-        // ticks again. Skip duplicates so each calibrator sample corresponds
-        // to one genuinely new course observation; the window size is sized
-        // in those units, not in IMU samples.
+        // ticks again. Skip duplicates so that each reading is taken once.
         if (courseDegrees == lastCourseDegrees) return
         lastCourseDegrees = courseDegrees
-        calibrator.processCourse(yawDegrees, courseDegrees, timestampMillis)
+        offsetTracker.processCourse(yawDegrees, courseDegrees, courseAccuracyDegrees, timestampMillis)
+            ?.let { onCalibration?.invoke(it) }
     }
 
     private fun logOncePerSecond(headingDegrees: Double?) {

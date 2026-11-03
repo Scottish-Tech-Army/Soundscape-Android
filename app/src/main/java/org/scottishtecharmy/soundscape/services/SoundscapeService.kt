@@ -279,7 +279,17 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         val platformGeocoder = if (AndroidGeocoder.enabled) AndroidGeocoder(application) else null
         val routeDao = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
 
-        gpxRecorder = GpxRecorder()
+        gpxRecorder = GpxRecorder().apply {
+            headTracking = {
+                // Only read once a second, with each recorded fix
+                val includeInput = PreferenceManager.getDefaultSharedPreferences(this@SoundscapeService)
+                    .getBoolean(
+                        PreferenceKeys.RECORD_HEAD_TRACKER_INPUT,
+                        PreferenceDefaults.RECORD_HEAD_TRACKER_INPUT,
+                    )
+                headTrackingProvider?.takeDebugSnapshot(includeInput)
+            }
+        }
         geoEngine.locationRecorder = gpxRecorder
 
         geoEngine.start(

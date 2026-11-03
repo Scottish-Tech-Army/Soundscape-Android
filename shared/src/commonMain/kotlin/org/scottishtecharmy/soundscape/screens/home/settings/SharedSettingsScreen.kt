@@ -55,6 +55,9 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.toPreference
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreferenceState
+import org.scottishtecharmy.soundscape.resources.settings_record_head_tracker_input_description
+import org.scottishtecharmy.soundscape.resources.settings_record_head_tracker_input
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.beacon_settings_style
 import org.scottishtecharmy.soundscape.resources.beacon_settings_style_description
@@ -198,6 +201,11 @@ fun SharedSettingsScreen(
         )
     }
     val expandedSection = rememberSaveable { mutableStateOf(initialExpandedSection) }
+    val alphaFeatures by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.ALPHA_FEATURES,
+        PreferenceDefaults.ALPHA_FEATURES,
+    )
 
     val textColor = MaterialTheme.colorScheme.onBackground
     val backgroundColor = MaterialTheme.colorScheme.background
@@ -741,6 +749,21 @@ fun SharedSettingsScreen(
                         )
                     },
                 )
+
+                if (alphaFeatures) {
+                    switchPreference(
+                        key = PreferenceKeys.RECORD_HEAD_TRACKER_INPUT,
+                        defaultValue = PreferenceDefaults.RECORD_HEAD_TRACKER_INPUT,
+                        modifier = expandedSectionModifier.testTag("settingsRecordHeadTrackerInput"),
+                        title = {
+                            SettingDetails(
+                                Res.string.settings_record_head_tracker_input,
+                                Res.string.settings_record_head_tracker_input_description,
+                                textColor,
+                            )
+                        },
+                    )
+                }
 
                 if (onNavigateToAdvancedMarkersAndRoutes != null) {
                     item(key = "advanced_markers_and_routes") {
