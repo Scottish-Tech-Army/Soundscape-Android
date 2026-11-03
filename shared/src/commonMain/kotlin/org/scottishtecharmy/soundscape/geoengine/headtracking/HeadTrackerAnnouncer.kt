@@ -48,7 +48,8 @@ suspend fun HeadTrackerAnnouncement.text(): String = when (this) {
  * A disconnect is only announced once the tracker has stayed disconnected for
  * [DISCONNECT_DEBOUNCE_MILLIS], and reconnecting within that time is not announced either, so a
  * brief drop-out says nothing at all. Head tracking being switched off (Inactive) is never
- * announced: the user did that themselves.
+ * announced: the user did that themselves. Calibrating is only announced after connecting is,
+ * even when it happens during the wait for the battery level.
  *
  * Everything runs on [dispatcher], which must not run two coroutines at once: the collector and
  * the delayed announcements it launches share the state below without locking.
@@ -62,6 +63,8 @@ class HeadTrackerAnnouncer(
     // a pending disconnect so that a quick reconnect of the same device stays silent.
     private var announcedDevice: String? = null
     private var connectionAnnounced = false
+    // Calibrated before the connection had been announced: say it straight after that
+    private var calibratedPending = false
     private val lowBatteryAnnounced = mutableSetOf<Int>()
     private var connectJob: Job? = null
     private var disconnectJob: Job? = null
@@ -78,7 +81,11 @@ class HeadTrackerAnnouncer(
                 !status.isActive() && previous.isActive() -> onDisconnected(this)
             }
             if (status == HeadTrackingStatus.Calibrated && previous != HeadTrackingStatus.Calibrated) {
-                announce(HeadTrackerAnnouncement.Calibrated)
+                if (connectionAnnounced) {
+                    announce(HeadTrackerAnnouncement.Calibrated)
+                } else {
+                    calibratedPending = true
+                }
             }
             if (status.isActive() && connectionAnnounced) {
                 current?.batteryPercent?.let { checkBattery(it) }
@@ -95,6 +102,7 @@ class HeadTrackerAnnouncer(
         if (reconnected && connectionAnnounced && deviceName == announcedDevice) return
 
         connectionAnnounced = false
+        calibratedPending = false
         lowBatteryAnnounced.clear()
         connectJob?.cancel()
         connectJob = scope.launch {
@@ -110,12 +118,17 @@ class HeadTrackerAnnouncer(
             // The connection announcement gives the level, so don't follow it with a warning
             battery?.let { level -> lowBatteryAnnounced.addAll(LOW_BATTERY_THRESHOLDS.filter { level <= it }) }
             announce(HeadTrackerAnnouncement.Connected(deviceName, battery))
+            if (calibratedPending) {
+                calibratedPending = false
+                announce(HeadTrackerAnnouncement.Calibrated)
+            }
         }
     }
 
     private fun onDisconnected(scope: CoroutineScope) {
         connectJob?.cancel()
         connectJob = null
+        calibratedPending = false
         if (!connectionAnnounced) return
         disconnectJob?.cancel()
         disconnectJob = scope.launch {
@@ -142,6 +155,7 @@ class HeadTrackerAnnouncer(
         disconnectJob = null
         announcedDevice = null
         connectionAnnounced = false
+        calibratedPending = false
         lowBatteryAnnounced.clear()
     }
 

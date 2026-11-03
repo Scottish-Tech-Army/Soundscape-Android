@@ -112,6 +112,13 @@ class HeadphoneCalibrationManagerTest {
             val yaw = i * 10.0
             manager.pushCourseReference(yaw, yaw + offset, i.toLong())
         }
+        // Not yet: a few course readings could all be glances to the side
+        assertFalse(manager.isCalibrated)
+        assertNull(manager.headingFor(10.0))
+        for (i in 6..11) {
+            val yaw = i * 10.0
+            manager.pushCourseReference(yaw, yaw + offset, i.toLong())
+        }
         assertTrue(manager.isCalibrated)
     }
 

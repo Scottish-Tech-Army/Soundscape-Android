@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.headtracking
 
+import org.scottishtecharmy.soundscape.geoengine.utils.circularDifferenceDegrees
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeDegrees
 import kotlin.math.abs
 import kotlin.math.max
@@ -22,6 +23,11 @@ import kotlin.math.sqrt
  * Readings it can't trust are skipped: a bearing accuracy worse than [maxCourseAccuracyDegrees],
  * and anything while turning - the course or the yaw having moved [maxTurnDegrees] or more since the
  * previous reading - because GPS course lags a turn, and the head usually leads it.
+ *
+ * The offset is usable from the first reading, but it only counts as [isSettled] once it rests on
+ * more than one glance: a compass calibration, which has already needed seconds of agreement, or
+ * [minCourseReadings] course readings. Until then a single reading taken while the user looked
+ * sideways would be announced as calibrated, and steer the audio that far out.
  */
 class CourseOffsetTracker(
     private val driftVariancePerSecond: Double = 4.0,
@@ -33,6 +39,8 @@ class CourseOffsetTracker(
      * least this, so the walking course can soon correct it.
      */
     private val deviceAccuracyFloorDegrees: Double = 20.0,
+    /** About 10 seconds of steady walking. */
+    private val minCourseReadings: Int = 10,
 ) {
     var offsetDegrees: Double? = null
         private set
@@ -41,20 +49,29 @@ class CourseOffsetTracker(
     val accuracyDegrees: Double?
         get() = if (offsetDegrees == null) null else sqrt(variance)
 
+    /** Whether the offset is established enough to steer the audio by. */
+    val isSettled: Boolean
+        get() = offsetDegrees != null && (deviceCalibrated || courseReadings >= minCourseReadings)
+
     private var variance = 0.0
     private var lastTimestampMillis = 0L
     private var previousCourse: Double? = null
     private var previousYaw = 0.0
+    private var deviceCalibrated = false
+    private var courseReadings = 0
 
     fun reset() {
         offsetDegrees = null
         variance = 0.0
         lastTimestampMillis = 0L
         previousCourse = null
+        deviceCalibrated = false
+        courseReadings = 0
     }
 
     /** Takes in a calibration against the phone's compass. */
     fun applyDeviceCalibration(calibration: HeadphoneCalibration) {
+        deviceCalibrated = true
         update(
             calibration.offsetDegrees,
             max(calibration.accuracyDegrees, deviceAccuracyFloorDegrees),
@@ -79,12 +96,14 @@ class CourseOffsetTracker(
         if (courseDegrees == null || previous == null) return null
         val accuracy = courseAccuracyDegrees ?: UNKNOWN_COURSE_ACCURACY_DEGREES
         if (accuracy > maxCourseAccuracyDegrees) return null
-        if (abs(angleBetween(courseDegrees, previous)) >= maxTurnDegrees) return null
-        if (abs(yawDegrees - previousYawDegrees) >= maxTurnDegrees) return null
+        if (abs(circularDifferenceDegrees(courseDegrees, previous)) >= maxTurnDegrees) return null
+        // The yaw wraps too: AirPods report 0..360 and Bose Frames -180..180
+        if (abs(circularDifferenceDegrees(yawDegrees, previousYawDegrees)) >= maxTurnDegrees) return null
 
         val measured = (courseDegrees - yawDegrees).normalizeDegrees()
         val measurementAccuracy = max(accuracy, MIN_COURSE_ACCURACY_DEGREES)
         update(measured, measurementAccuracy, timestampMillis)
+        courseReadings++
         return HeadphoneCalibration(
             offsetDegrees = measured,
             accuracyDegrees = measurementAccuracy,
@@ -107,12 +126,10 @@ class CourseOffsetTracker(
         lastTimestampMillis = timestampMillis
 
         val gain = variance / (variance + measurementVariance)
-        offsetDegrees = (current + gain * angleBetween(measuredDegrees, current)).normalizeDegrees()
+        offsetDegrees =
+            (current + gain * circularDifferenceDegrees(measuredDegrees, current)).normalizeDegrees()
         variance *= 1.0 - gain
     }
-
-    /** [a] - [b], the short way round, in -180..180. */
-    private fun angleBetween(a: Double, b: Double): Double = ((a - b) % 360.0 + 540.0) % 360.0 - 180.0
 
     private companion object {
         // What a reading with no reported accuracy is taken as: a middling GPS course

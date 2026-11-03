@@ -43,7 +43,7 @@ class HeadTrackerReplayTool {
                 }
                 // The recording rounds to a tenth of a degree
                 val device = point.device ?: continue
-                if (replay.sawConnect(device) && replay.gaps == 0) {
+                if (replay.sawConnect(device) && replay.gaps(device) == 0) {
                     val want = point.recordedHeadingDegrees
                     val got = replay.headingDegrees(device)
                     compared++
@@ -60,8 +60,9 @@ class HeadTrackerReplayTool {
             if (!replay.sawConnect(device)) {
                 println("The recording starts after the $device connected, so its replay won't match")
             }
+            val gaps = replay.gaps(device)
+            if (gaps > 0) println("$gaps gap(s) in the $device input: it can't match after one")
         }
-        if (replay.gaps > 0) println("${replay.gaps} gap(s) in the input: it can't match after one")
         println("Heading matched the recording at ${compared - mismatches} of $compared track points")
     }
 }

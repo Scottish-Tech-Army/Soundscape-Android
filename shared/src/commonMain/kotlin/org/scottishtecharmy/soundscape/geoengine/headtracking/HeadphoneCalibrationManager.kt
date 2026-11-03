@@ -29,10 +29,11 @@ class HeadphoneCalibrationManager(
     private var lastCourseDegrees: Double? = null
     private var lastLogMillis: Long = 0L
 
+    /** Whether the offset is established enough to give a heading - see [CourseOffsetTracker.isSettled]. */
     val isCalibrated: Boolean
-        get() = offsetDegrees != null
+        get() = offsetTracker.isSettled
 
-    /** The current yaw-to-heading offset, or null before the first calibration. */
+    /** The current yaw-to-heading offset, or null before the first reading, even if not yet settled. */
     val offsetDegrees: Double?
         get() = offsetTracker.offsetDegrees
 
@@ -53,7 +54,7 @@ class HeadphoneCalibrationManager(
 
     fun headingFor(yawDegrees: Double): Double? {
         if (!active) return null
-        val offset = offsetDegrees
+        val offset = if (isCalibrated) offsetDegrees else null
         val heading = offset?.let { (yawDegrees + it).normalizeDegrees() }
         logOncePerSecond(heading)
         return heading

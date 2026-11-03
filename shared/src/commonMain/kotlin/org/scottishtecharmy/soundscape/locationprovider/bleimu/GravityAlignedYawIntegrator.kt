@@ -12,7 +12,9 @@ import kotlin.math.sqrt
  *      from head movements / walking bobs.
  *   2. Compute `yawRate = gyro · up_in_body` — the component of the body's
  *      angular velocity about the world-up axis.
- *   3. Integrate over `dt = now - previousSampleTime`.
+ *   3. Integrate over the sample's interval, which the caller supplies: the
+ *      WitMotion packs several samples into each notification, so their
+ *      arrival times don't give it.
  *
  * Sign: right-hand rule about world-up, so positive when rotating CCW viewed
  * from above. Callers that want compass-style CW-positive must negate.
@@ -22,7 +24,6 @@ import kotlin.math.sqrt
  */
 class GravityAlignedYawIntegrator(
     private val gravityLpfAlpha: Double = 0.05,
-    private val maxDtMillis: Long = 200L,
 ) {
     private var filteredUpX: Double = 0.0
     private var filteredUpY: Double = 0.0
@@ -30,50 +31,16 @@ class GravityAlignedYawIntegrator(
     private var hasFilteredUp: Boolean = false
 
     private var integratedYawDegrees: Double = 0.0
-    private var lastTimestampMillis: Long = 0L
-    private var hasLastTimestamp: Boolean = false
 
     fun reset() {
         filteredUpX = 0.0; filteredUpY = 0.0; filteredUpZ = 0.0
         hasFilteredUp = false
         integratedYawDegrees = 0.0
-        lastTimestampMillis = 0L
-        hasLastTimestamp = false
     }
 
     /**
-     * Add one IMU sample. Returns the integrated yaw in degrees (unbounded —
-     * caller can normalize if needed) or null if this was the first sample
-     * (no dt available yet).
-     */
-    fun update(accelG: Vec3, gyroDps: Vec3, timestampMillis: Long): Double? {
-        if (!updateGravity(accelG)) {
-            // Free-fall / bogus reading. Skip integration this frame, just bump
-            // the timestamp so we don't get a huge dt next time.
-            lastTimestampMillis = timestampMillis
-            hasLastTimestamp = true
-            return if (hasFilteredUp) integratedYawDegrees else null
-        }
-
-        val prev = lastTimestampMillis
-        val hadPrev = hasLastTimestamp
-        lastTimestampMillis = timestampMillis
-        hasLastTimestamp = true
-        if (!hadPrev) return null
-        val rawDt = timestampMillis - prev
-        if (rawDt <= 0L) return integratedYawDegrees
-        val dtSeconds = rawDt.coerceAtMost(maxDtMillis) / 1000.0
-
-        val yawRateDps =
-            gyroDps.x * filteredUpX + gyroDps.y * filteredUpY + gyroDps.z * filteredUpZ
-        integratedYawDegrees += yawRateDps * dtSeconds
-        return integratedYawDegrees
-    }
-
-    /**
-     * Add one IMU sample that covers [dtSeconds], for a caller that knows each sample's interval
-     * better than its timestamp does. Returns the integrated yaw in degrees, or null before the
-     * first usable sample.
+     * Add one IMU sample that covers [dtSeconds]. Returns the integrated yaw in degrees
+     * (unbounded — caller can normalize if needed), or null before the first usable sample.
      */
     fun update(accelG: Vec3, gyroDps: Vec3, dtSeconds: Double): Double? {
         if (!updateGravity(accelG)) return if (hasFilteredUp) integratedYawDegrees else null

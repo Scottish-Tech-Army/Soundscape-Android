@@ -1256,6 +1256,10 @@
     <string name="head_tracker_battery_low">Head tracker battery low, %1$d percent</string>
     <!-- Shown in Settings under the head tracking switch while the app looks for a head tracker to connect to -->
     <string name="head_tracker_status_searching">Searching for a head tracker</string>
+    <!-- Shown in Settings under the head tracking option once a head tracker has connected and calibrated. %1$s is the device's brand name, e.g. WitMotion or Bose Frames -->
+    <string name="head_tracker_status_calibrated">%1$s head tracker calibrated</string>
+    <!-- Shown in Settings under the head tracking option once a head tracker has connected and calibrated. %1$s is the device's brand name, e.g. WitMotion; %2$d is its battery level as a percentage -->
+    <string name="head_tracker_status_calibrated_battery">%1$s head tracker calibrated, battery %2$d percent</string>
     <!-- Settings option for showing or hiding the map on the screen -->
     <string name="settings_show_map">Show maps on screen</string>
     <!-- Settings title for various debugging options to aid developers -->

@@ -95,7 +95,7 @@ class HeadTrackerReplayTest {
         for (point in recorded) replay.feed(point) { replayRows.add(it.yawDegrees to it.headingDegrees) }
 
         assertTrue(replay.sawConnect(device))
-        assertEquals(0, replay.gaps)
+        assertEquals(0, replay.gaps(device))
         assertNotNull(rows.last().second, "the live run should have calibrated")
         assertEquals(rows, replayRows)
         assertEquals(recorded.last().recordedHeadingDegrees, replay.headingDegrees(device))
@@ -146,6 +146,28 @@ class HeadTrackerReplayTest {
         assertTrue(live.takeDebugSnapshot(includeInput = true)!!.inputs.isEmpty())
         live.onBytes(witMotionFrame(0.0), 1_030L)
         assertTrue(live.takeDebugSnapshot(includeInput = true)!!.inputs.isNotEmpty())
+    }
+
+    @Test
+    fun stoppingATrackerStopsItsRecordingWithoutAGap() {
+        // As CompositeHeadTrackingProvider stops the others while one is connected
+        var now = START_MILLIS
+        val bose = BoseFramesHeadTrackingProvider(
+            DirectionProvider(), HeadTrackerReplay.noLocation(), clock = { now },
+        )
+        bose.start()
+        assertTrue(bose.takeDebugSnapshot(includeInput = true)!!.inputs.isEmpty()) // arms it
+        bose.stop()
+        assertNull(bose.takeDebugSnapshot(includeInput = true))
+        now += 60_000L
+        bose.start()
+        // The phone heading arrives as soon as it restarts, before the recorder next asks
+        bose.onDirection(null, now)
+        bose.takeDebugSnapshot(includeInput = true)
+        bose.onDirection(null, now + 1)
+        val input = bose.takeDebugSnapshot(includeInput = true)!!.inputs.values.single()
+        bose.stop()
+        assertTrue(input.lines().none { it.startsWith("G ") }, input)
     }
 
     @Test
