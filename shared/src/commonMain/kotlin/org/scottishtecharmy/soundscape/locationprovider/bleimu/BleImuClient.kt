@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
+import org.scottishtecharmy.soundscape.locationprovider.BleScanBudget
 import org.scottishtecharmy.soundscape.locationprovider.collectUntilSilent
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -33,6 +34,8 @@ class BleImuClient(
     private val knownAddress: () -> String? = { null },
     /** Told the address of each sensor connected to, to be returned by [knownAddress] later. */
     private val onConnectedAddress: (String) -> Unit = {},
+    /** Shared with the app's other BLE clients - see [BleScanBudget]. */
+    private val scanBudget: BleScanBudget = BleScanBudget.shared,
 ) {
 
     private val serviceUuid = Uuid.parse(SERVICE_UUID)
@@ -89,15 +92,17 @@ class BleImuClient(
      * back on with the phone locked in a pocket would never be found. So once a sensor has
      * connected, its address is also scanned for on its own, which Android does filter in
      * hardware and keeps scanning for with the screen off. Whichever scan finds a sensor first
-     * wins.
+     * wins. That is two scan starts per attempt, which [scanBudget] keeps within Android's limit.
      */
     private suspend fun scanForSensor(): Advertisement {
+        val address = knownAddress()
+        scanBudget.awaitStarts(if (address == null) 1 else 2)
         val byName = Scanner {
             filters {
                 match { name = Filter.Name.Prefix(DEVICE_NAME_PREFIX) }
             }
         }.advertisements
-        val address = knownAddress() ?: return byName.first()
+        if (address == null) return byName.first()
         val byAddress = Scanner {
             filters {
                 match { this.address = address }
