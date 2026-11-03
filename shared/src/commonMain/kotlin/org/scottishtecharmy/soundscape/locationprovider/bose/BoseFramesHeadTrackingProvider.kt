@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingStatus
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.platform.currentTimeMillis
 import kotlin.concurrent.Volatile
 
@@ -74,9 +75,14 @@ class BoseFramesHeadTrackingProvider(
 
     private suspend fun observeDeviceHeading() {
         directionProvider.orientationFlow.collect { dir ->
+            // Only while the phone is held flat does its heading say where the user faces; see
+            // BleImuHeadTrackingProvider.observeDeviceHeading.
             lastDeviceHeadingDegrees =
-                if (dir != null && dir.headingAccuracyDegrees >= 0f) dir.headingDegrees.toDouble()
-                else null
+                if (dir != null && dir.headingAccuracyDegrees >= 0f && phoneHeldFlat(dir)) {
+                    dir.headingDegrees.toDouble()
+                } else {
+                    null
+                }
         }
     }
 

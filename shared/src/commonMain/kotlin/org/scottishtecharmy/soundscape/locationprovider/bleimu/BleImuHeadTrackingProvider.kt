@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingStatus
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.platform.currentTimeMillis
 import kotlin.concurrent.Volatile
 
@@ -98,9 +99,16 @@ class BleImuHeadTrackingProvider(
 
     private suspend fun observeDeviceHeading() {
         directionProvider.orientationFlow.collect { dir ->
+            // The phone's heading only says where the user faces while it's held flat in front of
+            // them. In a pocket it can point anywhere, often straight backwards, and a still
+            // phone and head would calibrate to that within seconds, leaving the head heading
+            // 180° out. Away from flat, calibration waits for the walking course instead.
             lastDeviceHeadingDegrees =
-                if (dir != null && dir.headingAccuracyDegrees >= 0f) dir.headingDegrees.toDouble()
-                else null
+                if (dir != null && dir.headingAccuracyDegrees >= 0f && phoneHeldFlat(dir)) {
+                    dir.headingDegrees.toDouble()
+                } else {
+                    null
+                }
         }
     }
 

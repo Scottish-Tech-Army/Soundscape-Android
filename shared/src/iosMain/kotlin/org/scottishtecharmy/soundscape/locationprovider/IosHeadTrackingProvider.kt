@@ -75,9 +75,16 @@ class IosHeadTrackingProvider(
         scope = newScope
         newScope.launch {
             directionProvider.orientationFlow.collect { dir ->
+                // Only while the phone is held flat does its heading say where the user faces.
+                // In a pocket it can point anywhere, often straight backwards, and a still phone
+                // and head would calibrate to that within seconds, leaving the head heading 180°
+                // out. Away from flat, calibration waits for the walking course instead.
                 lastDeviceHeadingDegrees =
-                    if (dir != null && dir.headingAccuracyDegrees >= 0f) dir.headingDegrees.toDouble()
-                    else null
+                    if (dir != null && dir.headingAccuracyDegrees >= 0f && phoneHeldFlat(dir)) {
+                        dir.headingDegrees.toDouble()
+                    } else {
+                        null
+                    }
             }
         }
         newScope.launch {
