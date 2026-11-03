@@ -1531,6 +1531,8 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="head_tracker_disconnected">Sensor de rastreio da cabeça %1$s desligado</string>
     <string name="head_tracker_battery_low">Bateria do sensor de rastreio da cabeça fraca, %1$d por cento</string>
     <string name="head_tracker_status_searching">A procurar um sensor de rastreio da cabeça</string>
+    <string name="head_tracker_status_calibrated">Sensor de rastreio da cabeça %1$s calibrado</string>
+    <string name="head_tracker_status_calibrated_battery">Sensor de rastreio da cabeça %1$s calibrado, bateria a %2$d por cento</string>
     <string name="sleep_snoozing">Em Modo de Pausa</string>
     <string name="sleep_sleeping_wake_on_leave_message">O Soundscape está atualmente em Modo de Pausa. Quando sair da sua localização atual, o Soundscape reativar‑se‑á automaticamente. O Modo de Pausa utiliza os Serviços de localização num modo de baixo consumo para poupar a bateria do seu telemóvel. Toque no botão abaixo para reativar agora.</string>
     <string name="sleep_wake_on_leave">Reativar ao sair</string>

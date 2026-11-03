@@ -652,6 +652,8 @@
     <string name="head_tracker_disconnected">%1$s ਸਿਰ ਟਰੈਕਰ ਦਾ ਕਨੈਕਸ਼ਨ ਟੁੱਟ ਗਿਆ</string>
     <string name="head_tracker_battery_low">ਸਿਰ ਟਰੈਕਰ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ, %1$d ਪ੍ਰਤੀਸ਼ਤ</string>
     <string name="head_tracker_status_searching">ਸਿਰ ਟਰੈਕਰ ਲੱਭਿਆ ਜਾ ਰਿਹਾ ਹੈ</string>
+    <string name="head_tracker_status_calibrated">%1$s ਸਿਰ ਟਰੈਕਰ ਕੈਲੀਬ੍ਰੇਟ ਹੋ ਗਿਆ</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s ਸਿਰ ਟਰੈਕਰ ਕੈਲੀਬ੍ਰੇਟ ਹੋ ਗਿਆ, ਬੈਟਰੀ %2$d ਪ੍ਰਤੀਸ਼ਤ</string>
     <string name="settings_show_map">ਸਕ੍ਰੀਨ 'ਤੇ ਨਕਸ਼ੇ ਦਿਖਾਓ</string>
     <string name="settings_debug_heading">ਡੀਬੱਗ ਵਿਕਲਪ</string>
     <string name="settings_search_results_language">ਖੋਜ ਦੀ ਭਾਸ਼ਾ</string>

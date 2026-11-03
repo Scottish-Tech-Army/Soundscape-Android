@@ -1511,6 +1511,8 @@
     <string name="head_tracker_disconnected">Сензорът за проследяване на главата %1$s е изключен</string>
     <string name="head_tracker_battery_low">Батерията на сензора за проследяване на главата е слаба, %1$d процента</string>
     <string name="head_tracker_status_searching">Търсене на сензор за проследяване на главата</string>
+    <string name="head_tracker_status_calibrated">Сензорът за проследяване на главата %1$s е калибриран</string>
+    <string name="head_tracker_status_calibrated_battery">Сензорът за проследяване на главата %1$s е калибриран, батерия %2$d процента</string>
     <string name="settings_show_map">Показвай карти на екрана</string>
     <string name="settings_debug_heading">Опции за отстраняване на грешки</string>
     <string name="settings_search_results_language">Език на търсенето</string>

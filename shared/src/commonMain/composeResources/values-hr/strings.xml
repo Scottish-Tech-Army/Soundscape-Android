@@ -1331,6 +1331,8 @@
     <string name="head_tracker_disconnected">Senzor praćenja pokreta glave %1$s je odspojen</string>
     <string name="head_tracker_battery_low">Baterija senzora praćenja pokreta glave je slaba, %1$d posto</string>
     <string name="head_tracker_status_searching">Traženje senzora praćenja pokreta glave</string>
+    <string name="head_tracker_status_calibrated">Senzor praćenja pokreta glave %1$s je kalibriran</string>
+    <string name="head_tracker_status_calibrated_battery">Senzor praćenja pokreta glave %1$s je kalibriran, baterija %2$d posto</string>
     <string name="settings_show_map">Prikaži karte na zaslonu</string>
     <string name="settings_debug_heading">Opcije za otklanjanje pogrešaka</string>
     <string name="settings_search_results_language">Jezik pretraživanja</string>

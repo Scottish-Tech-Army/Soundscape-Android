@@ -1315,6 +1315,8 @@
     <string name="head_tracker_disconnected">%1$s fejkövető leválasztva</string>
     <string name="head_tracker_battery_low">A fejkövető akkumulátora lemerülőben, %1$d százalék</string>
     <string name="head_tracker_status_searching">Fejkövető keresése</string>
+    <string name="head_tracker_status_calibrated">%1$s fejkövető kalibrálva</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s fejkövető kalibrálva, akkumulátor %2$d százalék</string>
     <string name="settings_show_map">Térképek megjelenítése a képernyőn</string>
     <string name="settings_debug_heading">Hibakeresési beállítások</string>
     <string name="settings_search_results_language">Keresési nyelv</string>

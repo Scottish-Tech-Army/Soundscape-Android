@@ -1531,6 +1531,8 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="head_tracker_disconnected">Sensore di tracciamento della testa %1$s disconnesso</string>
     <string name="head_tracker_battery_low">Batteria del sensore di tracciamento della testa scarica, %1$d per cento</string>
     <string name="head_tracker_status_searching">Ricerca di un sensore di tracciamento della testa</string>
+    <string name="head_tracker_status_calibrated">Sensore di tracciamento della testa %1$s calibrato</string>
+    <string name="head_tracker_status_calibrated_battery">Sensore di tracciamento della testa %1$s calibrato, batteria al %2$d per cento</string>
     <string name="sleep_snoozing">In modalità Posponi</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape è attualmente in modalità Posponi. Quando lasci la tua posizione attuale, Soundscape si riattiverà automaticamente. La modalità Posponi utilizza i servizi di localizzazione in modalità a basso consumo per risparmiare la batteria del telefono. Tocca il pulsante qui sotto per riattivarlo ora.</string>
     <string name="sleep_wake_on_leave">Riattiva quando mi allontano</string>

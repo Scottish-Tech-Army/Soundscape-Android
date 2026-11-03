@@ -1515,6 +1515,8 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="head_tracker_disconnected">%1$s baş takip cihazının bağlantısı kesildi</string>
     <string name="head_tracker_battery_low">Baş takip cihazının pili zayıf, yüzde %1$d</string>
     <string name="head_tracker_status_searching">Baş takip cihazı aranıyor</string>
+    <string name="head_tracker_status_calibrated">%1$s baş takip cihazı kalibre edildi</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s baş takip cihazı kalibre edildi, pil yüzde %2$d</string>
     <string name="sleep_snoozing">Erteleme Modu'nda</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape şu anda erteleme modunda. Mevcut konumunuzdan ayrıldığınızda Soundscape otomatik olarak uyanacaktır. Erteleme modu, telefonunuzun pilini korumak için Konum Hizmetleri'ni düşük güç modunda kullanır. Şimdi uyandırmak için aşağıdaki düğmeye dokunun.</string>
     <string name="sleep_wake_on_leave">Ayrıldığımda Uyandır</string>

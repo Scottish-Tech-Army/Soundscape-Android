@@ -502,6 +502,8 @@
     <string name="head_tracker_disconnected">Pea jälgimise andur %1$s on lahti ühendatud</string>
     <string name="head_tracker_battery_low">Pea jälgimise anduri aku on tühjenemas, %1$d protsenti</string>
     <string name="head_tracker_status_searching">Pea jälgimise anduri otsimine</string>
+    <string name="head_tracker_status_calibrated">Pea jälgimise andur %1$s on kalibreeritud</string>
+    <string name="head_tracker_status_calibrated_battery">Pea jälgimise andur %1$s on kalibreeritud, aku %2$d protsenti</string>
     <string name="settings_show_map">Näita kaarte ekraanil</string>
     <string name="settings_debug_heading">Silumisvalikud</string>
     <string name="settings_search_results_language">Otsingukeel</string>

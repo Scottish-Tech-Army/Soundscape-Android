@@ -1551,6 +1551,8 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="head_tracker_disconnected">Kifuatiliaji cha kichwa cha %1$s kimetenganishwa</string>
     <string name="head_tracker_battery_low">Betri ya kifuatiliaji cha kichwa iko chini, asilimia %1$d</string>
     <string name="head_tracker_status_searching">Inatafuta kifuatiliaji cha kichwa</string>
+    <string name="head_tracker_status_calibrated">Kifuatiliaji cha kichwa cha %1$s kimerekebishwa</string>
+    <string name="head_tracker_status_calibrated_battery">Kifuatiliaji cha kichwa cha %1$s kimerekebishwa, betri asilimia %2$d</string>
     <string name="settings_show_map">Onyesha ramani kwenye skrini</string>
     <string name="settings_debug_heading">Chaguo za Utatuzi</string>
     <string name="settings_search_results_language">Lugha ya utafutaji</string>

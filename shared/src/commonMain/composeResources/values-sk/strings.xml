@@ -1347,6 +1347,8 @@
     <string name="head_tracker_disconnected">Snímač polohy hlavy %1$s je odpojený</string>
     <string name="head_tracker_battery_low">Slabá batéria snímača polohy hlavy, %1$d percent</string>
     <string name="head_tracker_status_searching">Hľadá sa snímač polohy hlavy</string>
+    <string name="head_tracker_status_calibrated">Snímač polohy hlavy %1$s je nakalibrovaný</string>
+    <string name="head_tracker_status_calibrated_battery">Snímač polohy hlavy %1$s je nakalibrovaný, batéria %2$d percent</string>
     <string name="settings_show_map">Zobrazovať mapy na obrazovke</string>
     <string name="settings_debug_heading">Možnosti ladenia</string>
     <string name="settings_search_results_language">Jazyk vyhľadávania</string>

@@ -1531,6 +1531,8 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="head_tracker_disconnected">Capteur de suivi de la tête %1$s déconnecté</string>
     <string name="head_tracker_battery_low">Pile du capteur de suivi de la tête faible, %1$d pour cent</string>
     <string name="head_tracker_status_searching">Recherche d’un capteur de suivi de la tête</string>
+    <string name="head_tracker_status_calibrated">Capteur de suivi de la tête %1$s calibré</string>
+    <string name="head_tracker_status_calibrated_battery">Capteur de suivi de la tête %1$s calibré, pile à %2$d pour cent</string>
     <string name="sleep_snoozing">Désactivé temporairement</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape est actuellement en mode Désactivation temporaire. Lorsque vous quittez votre emplacement actuel, Soundscape se réveillera automatiquement. La désactivation temporaire utilise les services de localisation en mode basse consommation pour économiser la batterie de votre téléphone. Appuyez sur le bouton ci‑dessous pour désactiver ce mode maintenant.</string>
     <string name="sleep_wake_on_leave">Sortir de veille quand je m’éloigne</string>

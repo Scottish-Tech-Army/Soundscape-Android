@@ -1547,6 +1547,8 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="head_tracker_disconnected">Czujnik ruchu głowy %1$s rozłączony</string>
     <string name="head_tracker_battery_low">Słaba bateria czujnika ruchu głowy, %1$d procent</string>
     <string name="head_tracker_status_searching">Szukanie czujnika ruchu głowy</string>
+    <string name="head_tracker_status_calibrated">Czujnik ruchu głowy %1$s skalibrowany</string>
+    <string name="head_tracker_status_calibrated_battery">Czujnik ruchu głowy %1$s skalibrowany, bateria %2$d procent</string>
     <string name="sleep_snoozing">Tryb drzemki</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape jest obecnie w trybie drzemki. Po opuszczeniu bieżącej lokalizacji Soundscape obudzi się automatycznie. Tryb drzemki wykorzystuje Usługi lokalizacji w trybie niskiego zużycia energii, aby oszczędzać baterię telefonu. Stuknij przycisk poniżej, aby obudzić Soundscape teraz.</string>
     <string name="sleep_wake_on_leave">Obudź mnie, gdy opuszczę to miejsce</string>

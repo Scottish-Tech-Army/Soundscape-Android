@@ -827,6 +827,8 @@
     <string name="head_tracker_disconnected">%1$s हेड ट्रॅकर डिस्कनेक्ट झाला</string>
     <string name="head_tracker_battery_low">हेड ट्रॅकरची बॅटरी कमी आहे, %1$d टक्के</string>
     <string name="head_tracker_status_searching">हेड ट्रॅकर शोधत आहे</string>
+    <string name="head_tracker_status_calibrated">%1$s हेड ट्रॅकर कॅलिब्रेट झाला</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s हेड ट्रॅकर कॅलिब्रेट झाला, बॅटरी %2$d टक्के</string>
     <string name="settings_show_map">स्क्रीनवर नकाशे दाखवा</string>
     <string name="settings_debug_heading">डीबग पर्याय</string>
     <string name="settings_search_results_language">शोध भाषा</string>

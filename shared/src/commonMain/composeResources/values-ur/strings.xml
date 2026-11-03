@@ -1551,6 +1551,8 @@
     <string name="head_tracker_disconnected">%1$s ہیڈ ٹریکر کا رابطہ منقطع ہو گیا</string>
     <string name="head_tracker_battery_low">ہیڈ ٹریکر کی بیٹری کم ہے، %1$d فیصد</string>
     <string name="head_tracker_status_searching">ہیڈ ٹریکر تلاش کیا جا رہا ہے</string>
+    <string name="head_tracker_status_calibrated">%1$s ہیڈ ٹریکر کیلیبریٹ ہو گیا</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s ہیڈ ٹریکر کیلیبریٹ ہو گیا، بیٹری %2$d فیصد</string>
     <string name="settings_show_map">اسکرین پر نقشے دکھائیں</string>
     <string name="settings_debug_heading">ڈیبگ کے اختیارات</string>
     <string name="settings_search_results_language">تلاش کی زبان</string>

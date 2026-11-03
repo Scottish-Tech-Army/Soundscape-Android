@@ -1535,6 +1535,8 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="head_tracker_disconnected">Đã ngắt kết nối thiết bị theo dõi chuyển động đầu %1$s</string>
     <string name="head_tracker_battery_low">Pin thiết bị theo dõi chuyển động đầu yếu, %1$d phần trăm</string>
     <string name="head_tracker_status_searching">Đang tìm thiết bị theo dõi chuyển động đầu</string>
+    <string name="head_tracker_status_calibrated">Đã hiệu chỉnh thiết bị theo dõi chuyển động đầu %1$s</string>
+    <string name="head_tracker_status_calibrated_battery">Đã hiệu chỉnh thiết bị theo dõi chuyển động đầu %1$s, pin %2$d phần trăm</string>
     <string name="settings_show_map">Hiện bản đồ trên màn hình</string>
     <string name="settings_debug_heading">Tùy chọn gỡ lỗi</string>
     <string name="settings_search_results_language">Ngôn ngữ tìm kiếm</string>

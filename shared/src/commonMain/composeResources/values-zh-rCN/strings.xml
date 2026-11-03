@@ -1499,6 +1499,8 @@
     <string name="head_tracker_disconnected">%1$s 头部追踪器已断开连接</string>
     <string name="head_tracker_battery_low">头部追踪器电量低，百分之 %1$d</string>
     <string name="head_tracker_status_searching">正在搜索头部追踪器</string>
+    <string name="head_tracker_status_calibrated">%1$s 头部追踪器已校准</string>
+    <string name="head_tracker_status_calibrated_battery">%1$s 头部追踪器已校准，电量百分之 %2$d</string>
     <string name="sleep_snoozing">小睡中</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape 当前处于小睡状态。当您离开当前位置时，Soundscape 会自动唤醒。小睡状态会在低功耗模式下使用定位服务，以节省手机电量。点击下方按钮即可立即唤醒。</string>
     <string name="sleep_wake_on_leave">离开时唤醒</string>

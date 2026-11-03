@@ -1515,6 +1515,8 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="head_tracker_disconnected">Höfuðrakningarbúnaður %1$s aftengdur</string>
     <string name="head_tracker_battery_low">Rafhlaða höfuðrakningarbúnaðar að tæmast, %1$d prósent</string>
     <string name="head_tracker_status_searching">Leitar að höfuðrakningarbúnaði</string>
+    <string name="head_tracker_status_calibrated">Höfuðrakningarbúnaður %1$s stilltur</string>
+    <string name="head_tracker_status_calibrated_battery">Höfuðrakningarbúnaður %1$s stilltur, rafhlaða %2$d prósent</string>
     <string name="sleep_snoozing">Í lúra-ham</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape er nú í lúra‑ham. Þegar þú yfirgefur núverandi staðsetningu þína mun Soundscape vekja sig sjálfkrafa. Lúra‑hamur notar staðsetningarþjónustu í lágorkuham til að spara rafhlöðu símans. Bankaðu á hnappinn hér að neðan til að vekja forritið núna.</string>
     <string name="sleep_wake_on_leave">Vakna við brottför</string>
