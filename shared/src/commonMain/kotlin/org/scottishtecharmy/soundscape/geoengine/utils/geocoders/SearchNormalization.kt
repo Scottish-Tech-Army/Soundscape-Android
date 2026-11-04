@@ -242,6 +242,22 @@ private fun isAddressDash(ch: Char) = when (ch) {
     else -> false
 }
 
+// What follows the digits of an ordinal: English 1st/2nd/3rd/4th, French 1er/1re/2ème - Quebec's
+// "1re Avenue" - and the º/ª/° of Spanish and Portuguese 3º/3ª. French's commonest form, the bare
+// "e" of "2e Rue", is left out because it's also a house number's letter, as in "12e".
+private val ORDINAL_SUFFIXES = setOf("st", "nd", "rd", "th", "er", "re", "ème", "eme", "º", "ª", "°")
+
+/**
+ * Whether [word] is an ordinal such as "2nd" or "5th" - a word that starts with a digit but is a
+ * street name's ("2nd Avenue South") rather than a house number.
+ */
+fun isOrdinalWord(word: String): Boolean {
+    val trimmed = word.trimEnd { it == ',' || it == '.' }
+    val digits = trimmed.takeWhile { it.isDigit() }
+    if (digits.isEmpty() || (digits.length == trimmed.length)) return false
+    return trimmed.substring(digits.length).lowercase() in ORDINAL_SUFFIXES
+}
+
 /**
  * [houseNumber] with its digits, from whatever script they were typed in, as ASCII, and the dashes
  * between them as hyphens - so that "４－１１－１２" is the 4-11-12 in the map.

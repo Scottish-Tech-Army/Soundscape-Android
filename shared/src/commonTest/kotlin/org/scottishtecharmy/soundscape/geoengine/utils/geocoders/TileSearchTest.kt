@@ -88,6 +88,26 @@ class TileSearchTest {
     // ============================================================================================
 
     @Test
+    fun splitSearchString_ordinalStreetNameKeepsItsNumber() {
+        val ts = newTileSearch()
+        // From Sauble Beach, Ontario: "2nd" used to replace 50 as the house number, leaving the
+        // needle "avenue south" to be found as 3rd Avenue South
+        assertEquals(Pair("2nd Avenue South ", "50"), ts.splitSearchString("50 2nd Avenue South"))
+        assertEquals(Pair("5th Street North ", "326"), ts.splitSearchString("326 5th Street North"))
+        assertEquals(Pair("2nd Avenue South ", ""), ts.splitSearchString("2nd Avenue South"))
+        assertEquals(Pair("1re Avenue ", "12"), ts.splitSearchString("12 1re Avenue"))
+    }
+
+    @Test
+    fun splitSearchString_houseNumbersAreStillTakenOut() {
+        val ts = newTileSearch()
+        assertEquals(Pair("Kersland Drive ", "21"), ts.splitSearchString("21 Kersland Drive"))
+        assertEquals(Pair("Avenida Corrientes ", "1155"), ts.splitSearchString("Avenida Corrientes 1155"))
+        assertEquals(Pair("Avenida Sur ", "4a"), ts.splitSearchString("4a Avenida Sur"))
+        assertEquals(Pair("七松線 ", "29"), ts.splitSearchString("七松線29"))
+    }
+
+    @Test
     fun addLastWords_joinsRequestedNumberOfTrailingWords() {
         val tileSearch = newTileSearch()
         assertEquals("b c", tileSearch.addLastWords(2, listOf("a", "b", "c")))

@@ -298,4 +298,17 @@ class SearchNormalizationTest {
         assertNull(splitUnspacedHouseNumber("A82"))
         assertNull(splitUnspacedHouseNumber("Kersland21"))
     }
+
+    @Test
+    fun isOrdinalWord_englishFrenchAndIberianOrdinals() {
+        for (word in listOf("1st", "2nd", "3rd", "5th", "21st", "2ND", "4th,", "1er", "1re", "2ème", "3º", "3ª"))
+            assertEquals(true, isOrdinalWord(word), word)
+    }
+
+    @Test
+    fun isOrdinalWord_houseNumbersAreNot() {
+        // "2e" is left out: it's also a house number with a letter
+        for (word in listOf("21", "4a", "12B", "2e", "4-11-12", "A82", "st", "", "1155,"))
+            assertEquals(false, isOrdinalWord(word), word)
+    }
 }
