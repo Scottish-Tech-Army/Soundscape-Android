@@ -1217,7 +1217,7 @@ class StreetDescriptionTest {
         val house14 = house("14", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 35.0), 90.0, 5.0))
         val house11 = house("11", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 20.0), 270.0, 5.0))
         val house13 = house("13", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 40.0), 270.0, 5.0))
-        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+        fixture.gridState.gridStreetNumberTreeMap[streetKey("Test Street")] = FeatureTree(
             FeatureCollection().apply {
                 addFeature(house12); addFeature(house14); addFeature(house11); addFeature(house13)
             }
@@ -1245,7 +1245,7 @@ class StreetDescriptionTest {
         val nearHouse = house("12", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 15.0), 90.0, 5.0))
         val ruralHouse = house("14", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 35.0), 90.0, 200.0))
         val farHouse = house("2", getDestinationCoordinate(fixture.pointA, 180.0, 2000.0))
-        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+        fixture.gridState.gridStreetNumberTreeMap[streetKey("Test Street")] = FeatureTree(
             FeatureCollection().apply { addFeature(nearHouse); addFeature(ruralHouse); addFeature(farHouse) }
         )
 
@@ -1274,7 +1274,7 @@ class StreetDescriptionTest {
         val eastEvenHouses = listOf("2", "4", "6").mapIndexed { i, num ->
             house(num, getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 6.5 + i * 5.0), 90.0, 5.0))
         }
-        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+        fixture.gridState.gridStreetNumberTreeMap[streetKey("Test Street")] = FeatureTree(
             FeatureCollection().apply {
                 (westOddHouses + westExceptionHouse + eastEvenHouses).forEach { addFeature(it) }
             }
@@ -1345,7 +1345,7 @@ class StreetDescriptionTest {
         val anchor15 = house("9", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 15.0), 270.0, 5.0))
         val anchor25 = house("13", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 25.0), 270.0, 5.0))
         val anchor35 = house("17", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 35.0), 270.0, 5.0))
-        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+        fixture.gridState.gridStreetNumberTreeMap[streetKey("Test Street")] = FeatureTree(
             FeatureCollection().apply {
                 addFeature(anchor5); addFeature(anchor15); addFeature(anchor25); addFeature(anchor35)
             }
@@ -1414,7 +1414,7 @@ class StreetDescriptionTest {
             house("6", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 10.0), 90.0, 5.0)),
             house("10", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 30.0), 90.0, 5.0)),
         )
-        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+        fixture.gridState.gridStreetNumberTreeMap[streetKey("Test Street")] = FeatureTree(
             FeatureCollection().apply { (westAnchors + eastAnchors).forEach { addFeature(it) } }
         )
 

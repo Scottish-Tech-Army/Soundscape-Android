@@ -850,20 +850,21 @@ class TileSearch(
         tile: (Int, Int) -> Tile?
     ): List<StreetHouse> {
         val houses = mutableListOf<StreetHouse>()
+        val key = streetKey(street)
         val origin = LngLatAlt()
         val ruler = CheapRuler(0.0)
         for ((x, y) in tiles) {
             val layer = tile(x, y)?.layers?.firstOrNull { it.name == "housenumber" } ?: continue
-            val streetKey = layer.keys.indexOf("street")
+            val streetTagKey = layer.keys.indexOf("street")
             val houseNumberKey = layer.keys.indexOf("housenumber")
             val blockNumberKey = layer.keys.indexOf("block_number")
             // Most tiles the street runs through have no house on it, and are passed over on
             // their values without looking at a single house. Its houses can be under more than
             // the one name - "Fifth Street North" and "5th Street North".
-            val streetValues = layer.values.indices.filter {
-                isSameStreet(layer.values[it].string_value, street)
+            val streetValues = layer.values.indices.filter { index ->
+                layer.values[index].string_value?.let { (it == street) || (streetKey(it) == key) } == true
             }.toSet()
-            if ((streetKey < 0) || (houseNumberKey < 0) || streetValues.isEmpty()) continue
+            if ((streetTagKey < 0) || (houseNumberKey < 0) || streetValues.isEmpty()) continue
             for (feature in layer.features) {
                 var onStreet = false
                 var numberedInBlock = false
@@ -871,7 +872,7 @@ class TileSearch(
                 val tags = feature.tags
                 for (i in 0 until tags.size - 1 step 2) {
                     when (tags[i]) {
-                        streetKey -> onStreet = (tags[i + 1] in streetValues)
+                        streetTagKey -> onStreet = (tags[i + 1] in streetValues)
                         houseNumberKey -> housenumber = layer.values[tags[i + 1]].string_value
                         blockNumberKey -> numberedInBlock = true
                     }

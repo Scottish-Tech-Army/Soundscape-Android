@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 import kotlin.test.assertNull
 
@@ -310,25 +311,63 @@ class SearchNormalizationTest {
     @Test
     fun streetKey_spelledAndNumericOrdinalsAreTheOneStreet() {
         // From Sauble Beach, Ontario: the road is "Fifth Street North", its houses "5th Street North"
-        assertEquals("5th Street North", streetKey("Fifth Street North"))
-        assertEquals("5th Street North", streetKey("5th Street North"))
-        assertEquals("2nd Avenue North", streetKey("Second Avenue North"))
-        assertEquals("1st Avenue", streetKey("FIRST Avenue"))
-        assertEquals("12th Line", streetKey("Twelfth Line"))
-        assertEquals("21st Street", streetKey("Twenty-First Street"))
-        assertEquals("21st Street", streetKey("Twenty First Street"))
-        assertEquals("21st Street", streetKey("21ST Street"))
-        assertEquals("30th Street", streetKey("Thirtieth Street"))
-        assertTrue(isSameStreet("Fifth Street North", "5th Street North"))
+        for ((a, b) in listOf(
+            "Fifth Street North" to "5th Street North",
+            "Second Avenue North" to "2nd Avenue North",
+            "FIRST Avenue" to "1st Avenue",
+            "Twelfth Line" to "12th Line",
+            "Twenty-First Street" to "21st Street",
+            "Twenty First Street" to "21ST Street",
+            "Thirtieth Street" to "30th Street",
+        )) assertTrue(isSameStreet(a, b), "$a / $b")
+        assertEquals("5 street north", streetKey("Fifth Street North"))
         assertFalse(isSameStreet("Fifth Street North", "6th Street North"))
         assertFalse(isSameStreet("Fifth Street North", null))
     }
 
     @Test
-    fun streetKey_nameWithNoOrdinalIsItsOwnKey() {
-        for (name in listOf("Kersland Drive", "Avenida 9 de Julio", "A82", "Route 66", "Twenty Acres", "Rue de Rivoli", "七松線"))
-            assertEquals(name, streetKey(name))
+    fun streetKey_iberianAndFrenchOrdinalsAreTheirNumber() {
+        // San Salvador maps both ways round; Lisbon's addresses leave the º off
+        for ((a, b) in listOf(
+            "1a Calle Poniente" to "1ª Calle Poniente",
+            "1ª Calle Poniente" to "1° Calle Poniente",
+            "Rua 1 de Junho" to "Rua 1º de Junho",
+            "10ª Calle Oriente" to "10 Calle Oriente",
+            "Avenue Albert 1er" to "Avenue Albert 1",
+            "2ème rue du Quillier" to "2e Rue du Quillier",
+        )) assertTrue(isSameStreet(a, b), "$a / $b")
+        assertFalse(isSameStreet("1a Calle Poniente", "2a Calle Poniente"))
+    }
+
+    @Test
+    fun streetKey_accentsCasePunctuationAndPossessivesDontMatter() {
+        // All from addresses in the test extracts which didn't match their street
+        for ((a, b) in listOf(
+            "Velez Sarsfield" to "Vélez Sarsfield",
+            "Entre Rios" to "Entre Ríos",
+            "Calle Circunvalacion" to "Calle Circunvalación",
+            "Rua Esteiro De Santo Ovídio" to "Rua Esteiro de Santo Ovídio",
+            "Estrada de Santo Ovídio Mourisca" to "Estrada de Santo Ovídio - Mourisca",
+            "St. Owen's Street" to "St. Owen Street",
+            "St James's Street" to "St James Street",
+            "قائم مقام فراهانی" to "قائم‌مقام فراهانی",
+            "سید جمال‌الدین اسدآبادی" to "سید جمال الدین اسدآبادی",
+        )) assertTrue(isSameStreet(a, b), "$a / $b")
+        // A plural isn't a possessive
+        assertFalse(isSameStreet("Queens Road", "Queen Road"))
+    }
+
+    @Test
+    fun streetKey_differentStreetsStayDifferent() {
+        for ((a, b) in listOf(
+            "Kersland Drive" to "Kersland Street",
+            "Avenida 9 de Julio" to "Avenida 10 de Julio",
+            "A82" to "A81",
+            "七松線" to "七松",
+        )) assertFalse(isSameStreet(a, b), "$a / $b")
         assertEquals("null", streetKey(null))
+        // A street called "Null" isn't filed with the houses that have no street
+        assertNotEquals("null", streetKey("Null"))
     }
 
     @Test

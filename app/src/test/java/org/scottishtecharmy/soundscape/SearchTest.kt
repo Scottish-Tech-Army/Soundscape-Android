@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OsmTag
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SearchCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.StreetDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.streetKey
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -379,7 +380,7 @@ class SearchTest {
 
                 for (segment in ways) {
                     for (point in (segment.second.geometry as LineString).coordinates) {
-                        val nearestHouse = streetTrees[streetName]?.getNearestFeature(
+                        val nearestHouse = streetTrees[streetKey(streetName)]?.getNearestFeature(
                             point,
                             gridState.ruler
                         ) as? MvtFeature
