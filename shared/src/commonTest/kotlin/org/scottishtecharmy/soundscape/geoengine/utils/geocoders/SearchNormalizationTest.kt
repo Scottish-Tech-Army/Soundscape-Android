@@ -2,6 +2,8 @@ package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 import kotlin.test.assertNull
 
 class SearchNormalizationTest {
@@ -303,6 +305,37 @@ class SearchNormalizationTest {
     fun isOrdinalWord_englishFrenchAndIberianOrdinals() {
         for (word in listOf("1st", "2nd", "3rd", "5th", "21st", "2ND", "4th,", "1er", "1re", "2ème", "3º", "3ª"))
             assertEquals(true, isOrdinalWord(word), word)
+    }
+
+    @Test
+    fun streetKey_spelledAndNumericOrdinalsAreTheOneStreet() {
+        // From Sauble Beach, Ontario: the road is "Fifth Street North", its houses "5th Street North"
+        assertEquals("5th Street North", streetKey("Fifth Street North"))
+        assertEquals("5th Street North", streetKey("5th Street North"))
+        assertEquals("2nd Avenue North", streetKey("Second Avenue North"))
+        assertEquals("1st Avenue", streetKey("FIRST Avenue"))
+        assertEquals("12th Line", streetKey("Twelfth Line"))
+        assertEquals("21st Street", streetKey("Twenty-First Street"))
+        assertEquals("21st Street", streetKey("Twenty First Street"))
+        assertEquals("21st Street", streetKey("21ST Street"))
+        assertEquals("30th Street", streetKey("Thirtieth Street"))
+        assertTrue(isSameStreet("Fifth Street North", "5th Street North"))
+        assertFalse(isSameStreet("Fifth Street North", "6th Street North"))
+        assertFalse(isSameStreet("Fifth Street North", null))
+    }
+
+    @Test
+    fun streetKey_nameWithNoOrdinalIsItsOwnKey() {
+        for (name in listOf("Kersland Drive", "Avenida 9 de Julio", "A82", "Route 66", "Twenty Acres", "Rue de Rivoli", "七松線"))
+            assertEquals(name, streetKey(name))
+        assertEquals("null", streetKey(null))
+    }
+
+    @Test
+    fun normalizeForSearch_spelledAndNumericOrdinalsMatch() {
+        assertEquals(normalizeForSearch("5th Street North"), normalizeForSearch("Fifth Street North"))
+        assertEquals("21st street", normalizeForSearch("Twenty-First Street"))
+        assertEquals("kersland drive", normalizeForSearch("Kersland Drive"))
     }
 
     @Test

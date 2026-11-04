@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.isNameKey
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.streetKey
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.superCategoryMap
@@ -34,12 +35,7 @@ private fun addToStreetNumberMap(
         // building feature that also carries a housenumber (e.g. a car park tagged with both a
         // name and an address) silently lands in the "null" (unknown street) bucket regardless
         // of whether it actually has a real street tag.
-        val street = mvt.street
-        val streetString = street.toString()
-        if (!streetNumberMap.containsKey(streetString)) {
-            streetNumberMap[streetString] = FeatureCollection()
-        }
-        streetNumberMap[streetString]?.addFeature(mvt)
+        streetNumberMap.getOrPut(streetKey(mvt.street)) { FeatureCollection() }.addFeature(mvt)
     }
 }
 
@@ -1112,9 +1108,10 @@ fun vectorTileToGeoJson(
                     // We store house numbers in a FeatureCollection per named street. One without a
                     // street goes under "null", with the POIs and buildings that have no street -
                     // which is most of them in Japan, where a building is numbered within its
-                    // block rather than along a street.
+                    // block rather than along a street. The street's key is its name with any
+                    // ordinal in it written as a number, as "Fifth" and "5th" are the one street.
                     geoFeature.superCategory = SuperCategoryId.HOUSENUMBER
-                    streetNumberMap.getOrPut(street.toString()) { FeatureCollection() }
+                    streetNumberMap.getOrPut(streetKey(street)) { FeatureCollection() }
                         .addFeature(geoFeature)
                 } else {
                     geoFeature.name = name
