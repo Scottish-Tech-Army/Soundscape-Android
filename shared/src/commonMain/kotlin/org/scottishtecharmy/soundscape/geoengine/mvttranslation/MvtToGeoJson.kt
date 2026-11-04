@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
+import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.isNameKey
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.streetKey
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
@@ -23,6 +24,28 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import vector_tile.Tile
 
+
+/**
+ * The block address in a Japanese address tagged as a street address - see
+ * JapaneseAddress.fromStreet - or null if it isn't one. A district is often named after a road,
+ * and when [mvt] has a road of the [street]'s name the houses along it are numbered along it -
+ * 道頓堀 1-4-17, 近鉄今里駅前通 4-11-12 - so it's only taken for a district when there's no such
+ * road. The tile's roads are only looked at for an address that could be one, which none outside
+ * Japan is.
+ */
+internal fun blockAddressTaggedAsStreet(street: String?, housenumber: String?, mvt: Tile): JapaneseAddress.Parts? {
+    val parts = JapaneseAddress.fromStreet(street, housenumber) ?: return null
+    val key = streetKey(street)
+    for (layer in mvt.layers) {
+        if ((layer.name != "transportation") && (layer.name != "transportation_name")) continue
+        if (layer.values.any { value ->
+                val name = value.string_value
+                // Only a name in Japanese could be the street's
+                (name != null) && ((name.firstOrNull()?.code ?: 0) >= 0x3000) && (streetKey(name) == key)
+            }) return null
+    }
+    return parts
+}
 
 private fun addToStreetNumberMap(
     mvt: MvtFeature,
@@ -1094,6 +1117,19 @@ fun vectorTileToGeoJson(
                 // We've added the entrance to our matching code and so we don't need to add it as
                 // as feature now
                 continue
+            }
+
+            // A Japanese block address tagged as a street address is given the block address's
+            // parts, and no street, as no road is named after it - see blockAddressTaggedAsStreet
+            if (blockNumber == null) {
+                blockAddressTaggedAsStreet(street, housenumber, mvt)?.let { parts ->
+                    street = null
+                    housenumber = parts.houseNumber
+                    blockNumber = parts.blockNumber
+                    quarter = quarter ?: parts.quarter
+                    neighbourhood = neighbourhood ?: parts.neighbourhood
+                    suburb = suburb ?: parts.suburb
+                }
             }
 
             for (geometry in listOfGeometries) {

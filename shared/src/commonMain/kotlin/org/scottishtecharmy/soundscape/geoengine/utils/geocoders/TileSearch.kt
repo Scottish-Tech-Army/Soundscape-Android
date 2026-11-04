@@ -24,6 +24,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.parseGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.pointIsOffTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.translateProperties
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.blockAddressTaggedAsStreet
 import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
@@ -519,13 +520,28 @@ class TileSearch(
         return false
     }
 
-    private fun featureProperties(layer: Tile.Layer, feature: Tile.Feature): HashMap<String, Any?> {
+    private fun featureProperties(tile: Tile?, layer: Tile.Layer, feature: Tile.Feature): HashMap<String, Any?> {
         val properties = hashMapOf<String, Any?>()
         val tags = feature.tags
         for (i in 0 until tags.size - 1 step 2) {
             val raw = layer.values[tags[i + 1]]
             properties[layer.keys[tags[i]]] = raw.bool_value ?: raw.int_value ?: raw.sint_value
                 ?: raw.float_value ?: raw.double_value ?: raw.string_value ?: raw.uint_value
+        }
+        // An address the grid would have given its block address's parts, given them here too
+        if ((tile != null) && (properties["block_number"] == null)) {
+            blockAddressTaggedAsStreet(
+                properties["street"] as? String,
+                properties["housenumber"] as? String,
+                tile
+            )?.let { parts ->
+                properties.remove("street")
+                properties["housenumber"] = parts.houseNumber
+                properties["block_number"] = parts.blockNumber
+                properties.getOrPut("quarter") { parts.quarter }
+                properties.getOrPut("neighbourhood") { parts.neighbourhood }
+                properties.getOrPut("suburb") { parts.suburb }
+            }
         }
         return properties
     }
@@ -551,10 +567,13 @@ class TileSearch(
      */
     private fun blockAddresses(tile: Tile, tileX: Int, tileY: Int): List<BlockAddress> {
         val layer = tile.layers.firstOrNull { it.name == "housenumber" } ?: return emptyList()
-        // Only Japan and a few of its neighbours number a building within its block, so everywhere
-        // else the whole layer is turned away on its keys, without looking at a single building
+        // Only Japan and a few of its neighbours number a building within its block. This is only
+        // called for a search written like a Japanese address, and a tile with neither a block
+        // number nor a street - which may hold one tagged as a street address - is turned away on
+        // its keys, without looking at a single building
         val blockNumberKey = layer.keys.indexOf("block_number")
-        if (blockNumberKey < 0) return emptyList()
+        val streetTagKey = layer.keys.indexOf("street")
+        if ((blockNumberKey < 0) && (streetTagKey < 0)) return emptyList()
         val houseNumberKey = layer.keys.indexOf("housenumber")
         val quarterKey = layer.keys.indexOf("quarter")
         val neighbourhoodKey = layer.keys.indexOf("neighbourhood")
@@ -570,14 +589,26 @@ class TileSearch(
             var quarter: String? = null
             var neighbourhood: String? = null
             var suburb: String? = null
+            var street: String? = null
             val tags = feature.tags
             for (i in 0 until tags.size - 1 step 2) {
                 when (tags[i]) {
                     blockNumberKey -> blockNumber = layer.values[tags[i + 1]].string_value
                     houseNumberKey -> housenumber = layer.values[tags[i + 1]].string_value
+                    streetTagKey -> street = layer.values[tags[i + 1]].string_value
                     quarterKey -> quarter = layer.values[tags[i + 1]].string_value
                     neighbourhoodKey -> neighbourhood = layer.values[tags[i + 1]].string_value
                     suburbKey -> suburb = layer.values[tags[i + 1]].string_value
+                }
+            }
+            // Tagged as a street address - see blockAddressTaggedAsStreet
+            if (blockNumber == null) {
+                blockAddressTaggedAsStreet(street, housenumber, tile)?.let { parts ->
+                    housenumber = parts.houseNumber
+                    blockNumber = parts.blockNumber
+                    quarter = quarter ?: parts.quarter
+                    neighbourhood = neighbourhood ?: parts.neighbourhood
+                    suburb = suburb ?: parts.suburb
                 }
             }
             val keys = JapaneseAddress.searchKeys(quarter, neighbourhood, blockNumber, housenumber)
@@ -1231,7 +1262,7 @@ class TileSearch(
                                 result.score,
                                 layer.values[stringKey].string_value ?: "",
                                 featureLocation.location,
-                                featureProperties(layer, feature),
+                                featureProperties(tile(result.tileX, result.tileY), layer, feature),
                                 layer.name,
                                 result.houseNumber,
                                 featureLocation.distance,
@@ -1489,7 +1520,7 @@ class TileSearch(
                 }
                 if ((!isMatch && !isCandidate) || !nameMatches) continue
 
-                val properties = featureProperties(layer, feature)
+                val properties = featureProperties(tile, layer, feature)
                 if (!isMatch) {
                     val specificType = MvtFeature().apply {
                         featureClass = properties["class"] as? String

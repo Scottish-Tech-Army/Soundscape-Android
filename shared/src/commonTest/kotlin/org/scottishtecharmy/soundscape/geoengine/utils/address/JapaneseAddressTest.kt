@@ -84,4 +84,74 @@ class JapaneseAddressTest {
         assertNull(JapaneseAddress.searchKey("3-1-1"))
         assertNull(JapaneseAddress.searchKey("Calle 4 25"))
     }
+
+    @Test
+    fun blockAddressTaggedAsAStreetAddress() {
+        // The district in addr:street, behind its city and ward, and the chōme, block and building
+        // in addr:housenumber - from shops in Kobe and Osaka
+        assertEquals(
+            JapaneseAddress.Parts("中央区", "北長狭通", "1", "31", "35"),
+            JapaneseAddress.fromStreet("神戸市中央区北長狭通", "1-31-35")
+        )
+        assertEquals(
+            JapaneseAddress.Parts("中央区", "北長狭通", "1", "30", "19"),
+            JapaneseAddress.fromStreet("神戸市中央区北長狭通", "１丁目３０−１９")
+        )
+        assertEquals(
+            JapaneseAddress.Parts(null, "道頓堀", "1", "4", "17"),
+            JapaneseAddress.fromStreet("道頓堀", "1-4-17")
+        )
+        assertEquals(
+            JapaneseAddress.Parts("中央区", "博労町", "2", "4", "11"),
+            JapaneseAddress.fromStreet("大阪府大阪市中央区博労町", "2丁目4番11号")
+        )
+        assertEquals(
+            JapaneseAddress.Parts("浪速区", "敷津西", "2", "5", "10"),
+            JapaneseAddress.fromStreet("浪速区敷津西", "2-5-10")
+        )
+        // The chōme in addr:street with the district
+        assertEquals(
+            JapaneseAddress.Parts("中央区", null, "南船場3丁目", "11", "24"),
+            JapaneseAddress.fromStreet("中央区南船場３丁目", "１１−２４")
+        )
+        assertEquals(
+            JapaneseAddress.Parts(null, null, "南桜塚一丁目", "16", "7"),
+            JapaneseAddress.fromStreet("南桜塚一丁目", "16-7")
+        )
+        // Which is then the address it would have been tagged as
+        val parts = JapaneseAddress.fromStreet("神戸市中央区北長狭通", "1-31-35")!!
+        assertEquals(
+            "北長狭通1丁目31-35",
+            JapaneseAddress.address(parts.quarter, parts.neighbourhood, parts.blockNumber, parts.houseNumber)
+        )
+        val key = JapaneseAddress.searchKeys(parts.quarter, parts.neighbourhood, parts.blockNumber, parts.houseNumber)!!.first
+        assertTrue(JapaneseAddress.isMatch(JapaneseAddress.searchKey("北長狭通1-31-35")!!, key))
+        assertTrue(JapaneseAddress.isMatch(JapaneseAddress.searchKey("神戸市中央区北長狭通一丁目31番35号")!!, key))
+    }
+
+    @Test
+    fun streetAddressesArentTakenForBlockAddresses() {
+        // Plots of land, and a number with no chōme
+        assertNull(JapaneseAddress.fromStreet("平岡町新在家", "2214-57"))
+        assertNull(JapaneseAddress.fromStreet("桐ケ丘3", "333"))
+        assertNull(JapaneseAddress.fromStreet("南武庫之荘５丁目", "１０"))
+        // Phone numbers
+        assertNull(JapaneseAddress.fromStreet("河原町三条下ル大黒町71京劇会館ビル１F", "075-212-9026"))
+        assertNull(JapaneseAddress.fromStreet("奈良県生駒郡三郷町立野南1-29-1", "0745-73-1138"))
+        // Roads, and a floor in the housenumber
+        assertNull(JapaneseAddress.fromStreet("国道176号線", "1-2-3"))
+        assertNull(JapaneseAddress.fromStreet("堀川通 (Horikawa-dori);京都府道38号京都広河原美山線", "1-2-3"))
+        assertNull(JapaneseAddress.fromStreet("日本橋町東1丁目", "10-7 1F"))
+        assertNull(JapaneseAddress.fromStreet("周防町通り", "1-15-15"))
+        assertNull(JapaneseAddress.fromStreet("南堀江立花通（オレンジストリート）", "1-24-7"))
+        // But a district can be named after one, as 北長狭通 and 心斎橋筋 are
+        assertEquals(
+            JapaneseAddress.Parts(null, "心斎橋筋", "2", "8", "20"),
+            JapaneseAddress.fromStreet("心斎橋筋", "2丁目8番20号")
+        )
+        // Streets elsewhere
+        assertNull(JapaneseAddress.fromStreet("Kersland Drive", "1-2-3"))
+        assertNull(JapaneseAddress.fromStreet("중앙로", "1-2-3"))
+        assertNull(JapaneseAddress.fromStreet("中山路", "1-2-3"))
+    }
 }
