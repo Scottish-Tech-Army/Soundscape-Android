@@ -804,6 +804,8 @@ fun vectorTileToGeoJson(
 
         val mapInterpolatedNodes: HashMap<Long, Feature> = hashMapOf()
         val translation = NameTranslationPicker(layer.keys, nameKeys)
+        // A tile's houses share a few street names between them, and each name's key is worked out once
+        val streetKeys = hashMapOf<String?, String>()
         for (feature in layer.features) {
             if ((farmTag != null) && !hasTag(feature, farmTag)) continue
             if (feature in farmsInFarmyards) continue
@@ -1111,7 +1113,7 @@ fun vectorTileToGeoJson(
                     // block rather than along a street. The street's key is its name with any
                     // ordinal in it written as a number, as "Fifth" and "5th" are the one street.
                     geoFeature.superCategory = SuperCategoryId.HOUSENUMBER
-                    streetNumberMap.getOrPut(streetKey(street)) { FeatureCollection() }
+                    streetNumberMap.getOrPut(streetKeys.getOrPut(street) { streetKey(street) }) { FeatureCollection() }
                         .addFeature(geoFeature)
                 } else {
                     geoFeature.name = name

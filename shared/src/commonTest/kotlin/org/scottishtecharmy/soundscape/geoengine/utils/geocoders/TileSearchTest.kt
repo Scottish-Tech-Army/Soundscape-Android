@@ -555,13 +555,15 @@ class TileSearchTest {
     }
 
     @Test
-    fun findNearestNamedWay_nameMatchIsCaseSensitiveExactEquality() {
+    fun findNearestNamedWay_nameMatchIsByStreetKeyNotFuzzy() {
         val fixture = buildNamedWayFixture()
         val tileSearch = newTileSearch(fixture.gridState)
 
-        // No fuzzy matching here (unlike compareAndAddToResults/generateWithoutSettlement) - a
-        // case difference is a plain, exact non-match.
-        assertNull(tileSearch.findNearestNamedWay(fixture.origin, "high street"))
+        // An address's street is matched to the road by streetKey, so case and accents don't
+        // matter - but there's no fuzzy matching here (unlike compareAndAddToResults/
+        // generateWithoutSettlement), and a name that's spelled differently is a non-match.
+        assertEquals("High Street", tileSearch.findNearestNamedWay(fixture.origin, "high street")?.name)
+        assertNull(tileSearch.findNearestNamedWay(fixture.origin, "High Streets"))
     }
 
     @Test

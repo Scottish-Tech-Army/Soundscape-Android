@@ -43,8 +43,15 @@ class StreetDescription(
      * own, since Way.getName would otherwise confect one. Pavements are excluded by the path test
      * in travel mode, and on foot are handled by the caller as before.
      */
+    /** The key this street's house numbers are filed under - see [streetKey]. */
+    private val nameKey = streetKey(name)
+
+    /** Whether [other] is a name of this street, however differently it's written. */
+    private fun isThisStreet(other: String?): Boolean =
+        (other != null) && ((other == name) || (streetKey(other) == nameKey))
+
     private fun usableCrossStreet(member: Way): Boolean {
-        if (isSameStreet(member.name, name)) return false
+        if (isThisStreet(member.name)) return false
         if (!travelMode) return true
         if (member.isPath()) return false
         return (member.name != null) || (member.ref != null)
@@ -439,7 +446,7 @@ class StreetDescription(
                     //  confuses the odd/even numbering analysis.
                     for (member in intersection.members) {
                         if ((currentWay != member) &&
-                            (isSameStreet(member.name, name) || (member.wayType == WayType.JOINER))
+                            (isThisStreet(member.name) || (member.wayType == WayType.JOINER))
                         ) {
                             // We've got a Way of the same street extending away - which may be
                             // spelled differently, as Second Avenue North carries on as 2nd Avenue
@@ -496,7 +503,7 @@ class StreetDescription(
         }
 
         // Add all of the house numbers with known street to our linear map
-        val houseNumberTree = gridState.gridStreetNumberTreeMap[streetKey(name)]
+        val houseNumberTree = gridState.gridStreetNumberTreeMap[nameKey]
         if (houseNumberTree != null) {
             val houseCollection = houseNumberTree.getAllCollection()
             for (house in houseCollection) {
@@ -535,7 +542,7 @@ class StreetDescription(
                             gridState.getNearestFeature(TreeId.WAYS_SELECTION, gridState.ruler, location, 25.0) as Way?
                         if ((globalNearestWay != null) &&
                             (globalNearestWay.name != null) &&
-                            !isSameStreet(globalNearestWay.name, name)
+                            !isThisStreet(globalNearestWay.name)
                         ) {
                             continue
                         }
@@ -563,7 +570,7 @@ class StreetDescription(
                 // lives in the dedicated `street` field (see MvtToGeoJson.kt's tag parsing) -
                 // it's never copied into `properties`.
                 val poiStreet = poi.street
-                if (poiStreet != null && !isSameStreet(poiStreet, name)) continue
+                if (poiStreet != null && !isThisStreet(poiStreet)) continue
 
                 // An unnamed POI describes itself by its class ("OSM Feature park park"), which is
                 // no use as a landmark to someone driving past. On foot it's still worth having -

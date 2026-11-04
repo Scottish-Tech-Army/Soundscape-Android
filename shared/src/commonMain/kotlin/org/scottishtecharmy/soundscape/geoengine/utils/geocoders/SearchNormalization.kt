@@ -329,34 +329,60 @@ private fun canonicalSearchOrdinals(normalized: String): String {
 }
 
 /**
- * The key which a street's house numbers are filed under, and looked up by: the street's name
- * with any English ordinal in it written as a number. Addresses aren't always tagged with the
- * name their street has - in Sauble Beach, Ontario the houses on "Fifth Street North" are on
- * "5th Street North" - and both are the one street. A name with no ordinal in it is its own key,
- * and a house with no street is filed under "null".
+ * [name] without the apostrophe and s of its possessives: "St Owen's Street" is as often mapped as
+ * "St Owen Street", and "St James's Street" as "St James Street".
+ */
+private fun withoutPossessives(name: String): String {
+    if (name.none { isApostrophe(it) }) return name
+    val sb = StringBuilder(name.length)
+    var index = 0
+    while (index < name.length) {
+        val ch = name[index]
+        if (isApostrophe(ch) && (index > 0) && name[index - 1].isLetter() &&
+            (index + 1 < name.length) && (name[index + 1].lowercaseChar() == 's') &&
+            ((index + 2 == name.length) || !name[index + 2].isLetterOrDigit())
+        ) {
+            index += 2
+            continue
+        }
+        sb.append(ch)
+        index++
+    }
+    return sb.toString()
+}
+
+// What follows the digits of an ordinal in a street's name, once normalizeForSearch has had it:
+// English 5th, the 1ª and 1º of Spanish and Portuguese - which it makes 1a and 1o - and French
+// 1er, 1re, 2e and 2ème. In a house number "2e" or "12a" may be a letter, but in the name of a
+// street it's an ordinal.
+private val STREET_ORDINAL_SUFFIXES = setOf("st", "nd", "rd", "th", "a", "o", "er", "re", "e", "eme", "ere")
+
+/** The digits of [word] if it's an ordinal - "5th", "1a", "2eme" - from a normalized street name. */
+private fun streetOrdinalDigits(word: String): String? {
+    val digits = word.takeWhile { it.isDigit() }
+    if (digits.isEmpty() || (digits.length == word.length) || (digits.length > 4)) return null
+    return if (word.substring(digits.length) in STREET_ORDINAL_SUFFIXES) digits else null
+}
+
+/**
+ * The key which a street's house numbers are filed under, and looked up by. Addresses aren't
+ * always tagged with the name their street has, and the key is the same for all the ways it's
+ * written:
+ *  - as [normalizeForSearch] has it, without accents, case or punctuation - "Velez Sarsfield" is
+ *    "Vélez Sarsfield", and the Persian "قائم مقام" is "قائم‌مقام" with its zero width non-joiner
+ *  - without the apostrophe and s of a possessive - "St Owen's Street" is "St Owen Street"
+ *  - with each ordinal as its number alone, spelled out or not and in whichever language - in
+ *    Sauble Beach, Ontario "Fifth Street North" is "5th Street North", in San Salvador "1a Calle
+ *    Poniente" is "1ª Calle Poniente", in Lisbon "Rua 1º de Junho" is "Rua 1 de Junho"
+ * A house with no street is filed under "null".
  */
 fun streetKey(name: String?): String {
     if (name == null) return "null"
-    val words = name.split(' ')
-    var changed = false
-    // "Twenty-First" is the one word, and is a hyphenated ordinal only if all of it becomes one
-    val hyphensJoined = words.map { word ->
-        if (!word.contains('-')) return@map word
-        val parts = word.split('-')
-        val joined = canonicalOrdinalWords(parts)
-        if ((joined != null) && (joined.size == 1)) {
-            changed = true
-            joined.first()
-        } else {
-            word
-        }
-    }
-    val canonical = canonicalOrdinalWords(hyphensJoined)
-    return when {
-        canonical != null -> canonical.joinToString(" ")
-        changed -> hyphensJoined.joinToString(" ")
-        else -> name
-    }
+    val key = normalizeForSearch(withoutPossessives(name))
+        .split(' ')
+        .joinToString(" ") { streetOrdinalDigits(it) ?: it }
+    // A street called "Null" mustn't be filed with the houses that have no street
+    return if (key == "null") "\u0000null" else key
 }
 
 /** Whether [a] and [b] are names of the one street - see [streetKey]. */
