@@ -1236,6 +1236,26 @@ class StreetDescriptionTest {
     }
 
     @Test
+    fun createDescription_houseFarFromTheStreetIsOnAnotherOfTheSameName() {
+        // Exeter's 3rd Avenue and Third Avenue are 2km apart and share a street key; the houses
+        // of the one mustn't be numbered along the other
+        val fixture = buildLinearStreetFixture()
+        val sd = StreetDescription("Test Street", fixture.gridState)
+
+        val nearHouse = house("12", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 15.0), 90.0, 5.0))
+        val ruralHouse = house("14", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 35.0), 90.0, 200.0))
+        val farHouse = house("2", getDestinationCoordinate(fixture.pointA, 180.0, 2000.0))
+        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+            FeatureCollection().apply { addFeature(nearHouse); addFeature(ruralHouse); addFeature(farHouse) }
+        )
+
+        sd.createDescription(fixture.waySouth, null)
+
+        val numbers = (sd.leftSortedNumbers.values + sd.rightSortedNumbers.values).map { it.housenumber }
+        assertEquals(listOf("12", "14"), numbers.sortedBy { it!!.toInt() })
+    }
+
+    @Test
     fun createDescription_toleratedParityExceptionIsRemovedFromSortedNumbers() {
         // West side: 9 odd numbers plus one genuinely street-confident even exception (10%,
         // right at the tolerance boundary) - mirrors the real Sauchiehall Street case where a
