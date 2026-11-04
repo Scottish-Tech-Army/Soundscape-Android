@@ -238,6 +238,37 @@ class TileSearch(
         }
     }
 
+    /**
+     * [searchString] split into the needle - the name being searched for - and the house number
+     * taken out of it, which is empty if there isn't one. A word starting with a digit is taken for
+     * the house number unless it's an ordinal, so that "50 2nd Avenue South" is 50 on 2nd Avenue
+     * South rather than "2nd" on Avenue South.
+     */
+    fun splitSearchString(searchString: String): Pair<String, String> {
+        var housenumber = ""
+        val needleBuilder = StringBuilder()
+        // The space bar on a Japanese keyboard types the full-width U+3000
+        val words = searchString.split(' ', '\u3000')
+        for (word in words) {
+            if (word.isEmpty()) continue
+            // Before the word is taken for a number for starting with one, as 4-11-12近鉄今里駅前通
+            // does
+            val split = splitUnspacedHouseNumber(word)
+            if (split != null) {
+                housenumber = foldHouseNumber(split.second)
+                needleBuilder.append(split.first)
+            } else if (word.first().isDigit() && !isOrdinalWord(word)) {
+                housenumber = foldHouseNumber(word)
+                continue
+            } else {
+                // All other parts we use as the needle
+                needleBuilder.append(word)
+            }
+            needleBuilder.append(" ")
+        }
+        return Pair(needleBuilder.toString(), housenumber)
+    }
+
     fun addLastWords(wordCount: Int, words: List<String>): String {
         val result = StringBuilder()
         var count = wordCount
@@ -1011,28 +1042,8 @@ class TileSearch(
         // search is made both ways: without the number, and with the string as a whole. Chinese,
         // Japanese, Korean and Thai often have no space before the number - "七松線29" - so it's
         // taken off the end of a name written in one of them too.
-        var housenumber = ""
-        val needleBuilder = StringBuilder()
-        // The space bar on a Japanese keyboard types the full-width U+3000
-        val words = searchString.split(' ', '\u3000')
-        for (word in words) {
-            if (word.isEmpty()) continue
-            // Before the word is taken for a number for starting with one, as 4-11-12近鉄今里駅前通
-            // does
-            val split = splitUnspacedHouseNumber(word)
-            if (split != null) {
-                housenumber = foldHouseNumber(split.second)
-                needleBuilder.append(split.first)
-            } else if (word.first().isDigit()) {
-                housenumber = foldHouseNumber(word)
-                continue
-            } else {
-                // All other parts we use as the needle
-                needleBuilder.append(word)
-            }
-            needleBuilder.append(" ")
-        }
-        val normalizedNeedle = normalizeForSearch(needleBuilder.toString())
+        val (needle, housenumber) = splitSearchString(searchString)
+        val normalizedNeedle = normalizeForSearch(needle)
         val wholeNeedle = if (housenumber.isEmpty()) null else normalizeForSearch(searchString)
 
         // A Japanese address - 梅田3-1-1 - is found by its numbers rather than by a name
