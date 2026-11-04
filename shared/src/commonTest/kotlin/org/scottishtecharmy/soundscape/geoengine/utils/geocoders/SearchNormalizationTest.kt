@@ -371,6 +371,34 @@ class SearchNormalizationTest {
     }
 
     @Test
+    fun isShortenedStreetKey_surnamesTitlesAndInitials() {
+        // All from addresses in the test extracts which didn't match their street
+        for ((address, road) in listOf(
+            "Sarmiento" to "Domingo Faustino Sarmiento",
+            "Castellanos" to "Doctor Joaquín Castellanos",
+            "Urquiza" to "Justo José de Urquiza",
+            "Comandante Rosales" to "Comandante Leonardo Rosales",
+            "Doctor Tomás M. de Anchorena" to "Doctor Tomás Manuel de Anchorena",
+            "Jorge Newbery" to "Avenida Jorge Newbery",
+            "Avenida Estanislao del Campo" to "Avenida del Campo",
+            "دکتر آیت" to "شهید دکتر آیت",
+            "دکتر علی شریعتی" to "شریعتی",
+        )) assertTrue(isShortenedStreetKey(streetKey(address), streetKey(road)), "$address / $road")
+    }
+
+    @Test
+    fun isShortenedStreetKey_notWhenTheEndOrTheWordsDiffer() {
+        for ((a, b) in listOf(
+            "Kersland Drive" to "Kersland Drive",
+            "Kersland Drive" to "Kersland Street",
+            "Rua Frei Miguel Cardoso" to "Rua Frei Manuel Cardoso",
+            "بلوار دریا غربی" to "بلوار دریا",
+            "Calle 5" to "Calle 25 de Mayo 5",
+            "Avenida San Martín" to "San Martín Norte",
+        )) assertFalse(isShortenedStreetKey(streetKey(a), streetKey(b)), "$a / $b")
+    }
+
+    @Test
     fun normalizeForSearch_spelledAndNumericOrdinalsMatch() {
         assertEquals(normalizeForSearch("5th Street North"), normalizeForSearch("Fifth Street North"))
         assertEquals("21st street", normalizeForSearch("Twenty-First Street"))

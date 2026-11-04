@@ -319,12 +319,38 @@ private fun canonicalOrdinalWords(words: List<String>): List<String>? {
 }
 
 /**
+ * Whether [normalized] - lowercased, its words separated by single spaces - has an English ordinal
+ * among its words: one ending as 5th, first, second or third do, which is a number or a spelled
+ * out ordinal. A spelled out number before one, as in "twenty first", is only part of it. It's
+ * looked for without taking the string apart, as hardly any string has one.
+ */
+private fun hasEnglishOrdinalWord(normalized: String): Boolean {
+    val length = normalized.length
+    var start = 0
+    while (start < length) {
+        var end = normalized.indexOf(' ', start)
+        if (end < 0) end = length
+        if (end - start >= 3) {
+            val penultimate = normalized[end - 2]
+            val last = normalized[end - 1]
+            val ordinalEnding = ((penultimate == 't') && (last == 'h')) || ((penultimate == 's') && (last == 't')) ||
+                ((penultimate == 'n') && (last == 'd')) || ((penultimate == 'r') && (last == 'd'))
+            if (ordinalEnding &&
+                (normalized[start].isDigit() || SPELLED_ORDINALS.containsKey(normalized.substring(start, end)))
+            ) return true
+        }
+        start = end + 1
+    }
+    return false
+}
+
+/**
  * [normalized] - a string from [normalizeForSearch] - with its English ordinals written as
  * numbers, so that a search for "5th Street North" finds "Fifth Street North".
  */
 private fun canonicalSearchOrdinals(normalized: String): String {
     // Every string in every tile searched comes through here, and most have no ordinal in them
-    if (normalized.none { it == 't' || it == 'd' || it == 'h' }) return normalized
+    if (!hasEnglishOrdinalWord(normalized)) return normalized
     return canonicalOrdinalWords(normalized.split(' '))?.joinToString(" ") ?: normalized
 }
 
@@ -383,6 +409,49 @@ fun streetKey(name: String?): String {
         .joinToString(" ") { streetOrdinalDigits(it) ?: it }
     // A street called "Null" mustn't be filed with the houses that have no street
     return if (key == "null") "\u0000null" else key
+}
+
+/**
+ * Whether one of two street keys - see [streetKey] - is a shortened form of the other: the words of
+ * the shorter one are among those of the longer, in the same order and ending with the same word,
+ * and a word of one letter may stand for a longer word starting with it. An address often names
+ * its street by its surname alone, or without a title or a first name: "Sarmiento" for "Domingo
+ * Faustino Sarmiento", "Comandante Rosales" for "Comandante Leonardo Rosales", "Doctor Tomás M. de
+ * Anchorena" for "Doctor Tomás Manuel de Anchorena", and in Tehran a street is as often named
+ * without the "شهید" (martyr) before it. Which way round they are doesn't matter - the road is
+ * as often the shorter: "Avenida del Campo" for "Avenida Estanislao del Campo".
+ *
+ * Plenty of names are shortened forms of others which aren't the same street - "Main Street" of
+ * "Old Main Street", and "Street" of every one of them - so this only says that they could be.
+ */
+fun isShortenedStreetKey(a: String, b: String): Boolean {
+    if (a == b) return false
+    // Every street in the grid is looked at for each description, so those which can't be - most
+    // of them, not ending with the same word - are passed over before any of them is split up
+    val aLast = a.lastIndexOf(' ') + 1
+    val bLast = b.lastIndexOf(' ') + 1
+    val lastLength = a.length - aLast
+    if ((lastLength != b.length - bLast) || !a.regionMatches(aLast, b, bLast, lastLength)) return false
+    val aWords = a.split(' ')
+    val bWords = b.split(' ')
+    val (short, long) = if (aWords.size <= bWords.size) Pair(aWords, bWords) else Pair(bWords, aWords)
+    // The same street with a word left out or abbreviated ends the same way, and not with a number
+    // - "Calle 5" isn't "Calle 25 de Mayo 5"
+    val last = short.last()
+    if ((last != long.last()) || last.none { it.isLetter() }) return false
+    fun matches(shortWord: String, longWord: String) =
+        (shortWord == longWord) ||
+            ((shortWord.length == 1) && shortWord[0].isLetter() && longWord.startsWith(shortWord))
+    var matched = 0
+    var abbreviated = false
+    for (word in long) {
+        if ((matched < short.size) && matches(short[matched], word)) {
+            if (short[matched] != word) abbreviated = true
+            matched++
+        }
+    }
+    // As many words, and all of them the same, would be the same key
+    return (matched == short.size) && ((short.size < long.size) || abbreviated)
 }
 
 /** Whether [a] and [b] are names of the one street - see [streetKey]. */

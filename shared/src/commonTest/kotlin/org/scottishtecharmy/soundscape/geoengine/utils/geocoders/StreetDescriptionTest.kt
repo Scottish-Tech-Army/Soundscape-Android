@@ -1255,6 +1255,65 @@ class StreetDescriptionTest {
         assertEquals(listOf("12", "14"), numbers.sortedBy { it!!.toInt() })
     }
 
+    /** The house numbers [sd] placed, in order. */
+    private fun placedNumbers(sd: StreetDescription) =
+        (sd.leftSortedNumbers.values + sd.rightSortedNumbers.values).map { it.housenumber!! }.sortedBy { it.toInt() }
+
+    /** The fixture's roads, as the ROADS tree the shortened name matching looks in. */
+    private fun withRoadsTree(fixture: LinearStreetFixture): LinearStreetFixture {
+        fixture.gridState.featureTrees[TreeId.ROADS.id] = fixture.gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
+        return fixture
+    }
+
+    @Test
+    fun createDescription_houseAddressedByAShortenedNameIsPlacedWhenNearAndUnambiguous() {
+        // As Río Gallegos' "Sarmiento" for "Domingo Faustino Sarmiento" - here the road is the
+        // shorter, as "Avenida del Campo" is for "Avenida Estanislao del Campo"
+        val fixture = withRoadsTree(buildLinearStreetFixture())
+        val sd = StreetDescription("Test Street", fixture.gridState)
+        val near = house("12", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 15.0), 90.0, 10.0))
+        val tooFar = house("14", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 35.0), 90.0, 100.0))
+        fixture.gridState.gridStreetNumberTreeMap[streetKey("Old Test Street")] = FeatureTree(
+            FeatureCollection().apply { addFeature(near); addFeature(tooFar) }
+        )
+
+        sd.createDescription(fixture.waySouth, null)
+
+        assertEquals(listOf("12"), placedNumbers(sd))
+    }
+
+    @Test
+    fun createDescription_houseAddressedByAShortenedNameIsNotPlacedWhenItCouldBeAnotherStreet() {
+        val fixture = withRoadsTree(buildLinearStreetFixture())
+        // "Street" could be Test Street or the fixture's Cross Street
+        fixture.gridState.gridStreetNumberTreeMap[streetKey("Street")] = FeatureTree(
+            FeatureCollection().apply {
+                addFeature(house("12", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 15.0), 90.0, 5.0)))
+            }
+        )
+        // and "Old Test Street" is a street of its own, running alongside
+        val oldTestStreet = Way().apply {
+            name = "Old Test Street"
+            geometry = LineString(
+                getDestinationCoordinate(fixture.pointA, 90.0, 40.0),
+                getDestinationCoordinate(fixture.pointB, 90.0, 40.0)
+            )
+        }
+        fixture.gridState.featureTrees[TreeId.ROADS.id] = FeatureTree(
+            fixture.gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]!!.getAllCollection().apply { addFeature(oldTestStreet) }
+        )
+        fixture.gridState.gridStreetNumberTreeMap[streetKey("Old Test Street")] = FeatureTree(
+            FeatureCollection().apply {
+                addFeature(house("14", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 35.0), 90.0, 20.0)))
+            }
+        )
+        val sd = StreetDescription("Test Street", fixture.gridState)
+
+        sd.createDescription(fixture.waySouth, null)
+
+        assertEquals(emptyList(), placedNumbers(sd))
+    }
+
     @Test
     fun createDescription_toleratedParityExceptionIsRemovedFromSortedNumbers() {
         // West side: 9 odd numbers plus one genuinely street-confident even exception (10%,

@@ -124,6 +124,23 @@ open class GridState(
     // cached result no longer matches the data it was built from.
     var generation: Int = 0
 
+    // The ROADS tree that roadStreetKeys was last worked out from, with what it was, together so
+    // that a tree replaced since never gives the old one's keys
+    private var roadStreetKeysCache: Pair<FeatureTree, Set<String>>? = null
+
+    /**
+     * The street keys - see streetKey - of the names of all the roads in the grid. Every street
+     * description looks through them for the streets a shortened name in an address could mean,
+     * and they're only worked out again when the ROADS tree is.
+     */
+    fun roadStreetKeys(): Set<String> {
+        val tree = featureTrees[TreeId.ROADS.id]
+        roadStreetKeysCache?.let { if (it.first === tree) return it.second }
+        val keys = tree.getAllCollection().features.mapNotNullTo(HashSet()) { (it as MvtFeature).nameStreetKey }
+        roadStreetKeysCache = Pair(tree, keys)
+        return keys
+    }
+
     // This doesn't naturally belong in GridState, but it's where all the other geo info is. It's
     // a tree of Markers from the database.
     var markerTree: FeatureTree? = null
