@@ -415,6 +415,20 @@ class WorldCitiesTest {
         assertEquals("大深町4", osaka.search("大深町4番").first().name)
     }
 
+        @Test
+    fun osakaBlockAddressTaggedAsAStreetAddress() {
+        // The 7-Eleven at 敷津西2丁目5-10 has its ward and district as addr:street - "浪速区敷津西" -
+        // and its chōme, block and building as addr:housenumber. No road is named 浪速区敷津西, so
+        // it's the block address it would have been tagged as, ward and all; and the chōme can be in
+        // addr:street instead, as the Doutor at 南船場3丁目11-24 has it.
+        for (typed in listOf("敷津西2-5-10", "浪速区敷津西二丁目5番10号")) {
+            val result = osaka.search(typed).first()
+            assertEquals(typed, "敷津西2丁目5-10", result.name)
+            assertEquals(typed, "浪速区, 敷津西2丁目5-10", result.description)
+        }
+        assertEquals("中央区, 南船場3丁目11-24", osaka.search("南船場3-11-24").first().description)
+    }
+
     @Test
     fun osakaSearchWordInsideName() {
         // The Hanshin and Hankyu stations are both 大阪梅田, and it's 梅田 people look for
