@@ -837,6 +837,8 @@ class TileSearch(
         val location: LngLatAlt,
         val tileX: Int,
         val tileY: Int,
+        /** Whether its address names the street as it's named, rather than shortened. */
+        val exactStreet: Boolean,
     )
 
     /**
@@ -860,26 +862,36 @@ class TileSearch(
             val blockNumberKey = layer.keys.indexOf("block_number")
             // Most tiles the street runs through have no house on it, and are passed over on
             // their values without looking at a single house. Its houses can be under more than
-            // the one name - "Fifth Street North" and "5th Street North".
+            // the one name - "Fifth Street North" and "5th Street North" - or a shortened one,
+            // "Sarmiento" for "Domingo Faustino Sarmiento". Those only say which tiles to describe
+            // the street from, and the StreetDescription decides which of them are on it.
+            val exactValues = mutableSetOf<Int>()
             val streetValues = layer.values.indices.filter { index ->
-                layer.values[index].string_value?.let { (it == street) || (streetKey(it) == key) } == true
+                val value = layer.values[index].string_value ?: return@filter false
+                val valueKey = if (value == street) key else streetKey(value)
+                if (valueKey == key) exactValues.add(index)
+                (valueKey == key) || isShortenedStreetKey(valueKey, key)
             }.toSet()
             if ((streetTagKey < 0) || (houseNumberKey < 0) || streetValues.isEmpty()) continue
             for (feature in layer.features) {
                 var onStreet = false
+                var exactStreet = false
                 var numberedInBlock = false
                 var housenumber: String? = null
                 val tags = feature.tags
                 for (i in 0 until tags.size - 1 step 2) {
                     when (tags[i]) {
-                        streetTagKey -> onStreet = (tags[i + 1] in streetValues)
+                        streetTagKey -> {
+                            onStreet = (tags[i + 1] in streetValues)
+                            exactStreet = (tags[i + 1] in exactValues)
+                        }
                         houseNumberKey -> housenumber = layer.values[tags[i + 1]].string_value
                         blockNumberKey -> numberedInBlock = true
                     }
                 }
                 if (!onStreet || numberedInBlock || (housenumber == null)) continue
                 val location = featureLocation(feature, x, y, origin, ruler)?.location ?: continue
-                houses.add(StreetHouse(housenumber, location, x, y))
+                houses.add(StreetHouse(housenumber, location, x, y, exactStreet))
             }
         }
         return houses
@@ -934,7 +946,9 @@ class TileSearch(
         val houses = housesOnStreet(street, streetTiles, tile)
 
         // The number in the map may be typed full width - ７ - as much as the one searched for
-        houses.firstOrNull { foldHouseNumber(it.housenumber).equals(houseNumber, ignoreCase = true) }
+        // Only one whose address names the street as it's named is taken as it stands: one naming
+        // it by a shortened name may be on another street, which the StreetDescription decides
+        houses.firstOrNull { it.exactStreet && foldHouseNumber(it.housenumber).equals(houseNumber, ignoreCase = true) }
             ?.let { return Pair(it.location, it.housenumber) }
 
         // The numbers either side of it, nearest first
@@ -1022,8 +1036,12 @@ class TileSearch(
                 BoundingBox()
             )
         )
-        for (key in listOf(streetKey(street), "null")) {
-            streetNumbers[key]?.let { streetGrid.gridStreetNumberTreeMap[key] = FeatureTree(it) }
+        // The houses on it, those with no street, and those whose address names it by a shortened
+        // form of its name, which the StreetDescription decides between
+        val key = streetKey(street)
+        for ((houseKey, houses) in streetNumbers) {
+            if ((houseKey == key) || (houseKey == "null") || isShortenedStreetKey(houseKey, key))
+                streetGrid.gridStreetNumberTreeMap[houseKey] = FeatureTree(houses)
         }
 
         val way = findNearestNamedWay(location, street, streetGrid) ?: return null

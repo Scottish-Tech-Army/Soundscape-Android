@@ -50,8 +50,14 @@ class StreetDescription(
     private fun isThisStreet(other: String?): Boolean =
         (other != null) && ((other == name) || (streetKey(other) == nameKey))
 
+    /** Whether [feature] is named as this street, with the key it keeps of its name. */
+    private fun isThisStreet(feature: MvtFeature): Boolean {
+        val other = feature.name ?: return false
+        return (other == name) || (feature.nameStreetKey == nameKey)
+    }
+
     private fun usableCrossStreet(member: Way): Boolean {
-        if (isThisStreet(member.name)) return false
+        if (isThisStreet(member)) return false
         if (!travelMode) return true
         if (member.isPath()) return false
         return (member.name != null) || (member.ref != null)
@@ -208,6 +214,36 @@ class StreetDescription(
          * farthest, rural ones are around 200m.
          */
         const val MAX_HOUSE_DISTANCE_FROM_STREET = 250.0
+
+        /**
+         * How far a house whose address names its street by a shortened form of its name - see
+         * [isShortenedStreetKey] - can be from it, in metres. Being near the street is most of what
+         * says it's on it, so it's much nearer than [MAX_HOUSE_DISTANCE_FROM_STREET].
+         */
+        const val MAX_SHORTENED_NAME_HOUSE_DISTANCE = 50.0
+    }
+
+    /**
+     * Whether this street is the only one in the grid which an address naming its street as
+     * [houseKey] - a shortened form of this street's name, or this a shortened form of it - could
+     * mean. "Street" could be any of them, "Main Street" could be Main Street itself or Old Main
+     * Street, and in Río Gallegos "Belgrano" could be Manuel Belgrano or Crucero General Belgrano.
+     * The whole grid is looked through, not only the streets around the house, as the grid's road
+     * names are already to hand and looking for the roads around each house is far slower.
+     */
+    private fun isOnlyStreetFor(houseKey: String): Boolean {
+        for (roadKey in gridState.roadStreetKeys()) {
+            if (roadKey == nameKey) continue
+            if ((roadKey == houseKey) || isShortenedStreetKey(houseKey, roadKey)) return false
+        }
+        return true
+    }
+
+    /** Whether a house at [location], addressed by a shortened name of this street, is near it. */
+    private fun isNearThisStreet(location: LngLatAlt): Boolean {
+        val nearestWay = nearestWayOnStreet(location) ?: return false
+        return getDistanceToFeature(location, nearestWay.first, gridState.ruler).distance <=
+            MAX_SHORTENED_NAME_HOUSE_DISTANCE
     }
 
     fun assignHouseNumberModes(odd: Array<Int>, even: Array<Int>) {
@@ -446,7 +482,7 @@ class StreetDescription(
                     //  confuses the odd/even numbering analysis.
                     for (member in intersection.members) {
                         if ((currentWay != member) &&
-                            (isThisStreet(member.name) || (member.wayType == WayType.JOINER))
+                            (isThisStreet(member) || (member.wayType == WayType.JOINER))
                         ) {
                             // We've got a Way of the same street extending away - which may be
                             // spelled differently, as Second Avenue North carries on as 2nd Avenue
@@ -515,6 +551,20 @@ class StreetDescription(
             }
         }
 
+        // And those whose address names the street by a shortened form of its name, or the street
+        // is named by a shortened form of theirs: in Río Gallegos the houses on "Domingo Faustino
+        // Sarmiento" are on "Sarmiento"
+        for ((houseKey, tree) in gridState.gridStreetNumberTreeMap) {
+            if ((houseKey == "null") || !isShortenedStreetKey(houseKey, nameKey)) continue
+            if (!isOnlyStreetFor(houseKey)) continue
+            for (house in tree.getAllCollection()) {
+                if ((house as MvtFeature).blockNumber != null) continue
+                val location = getCentralPointForFeature(house) ?: continue
+                if (!isNearThisStreet(location)) continue
+                addHouse(house, nearestWayOnStreet(location), houseNumberPoints, true)
+            }
+        }
+
         // Now search in the house numbers which don't have a known street
         val unknownStreetTree = gridState.gridStreetNumberTreeMap["null"]
         if (unknownStreetTree != null) {
@@ -542,7 +592,7 @@ class StreetDescription(
                             gridState.getNearestFeature(TreeId.WAYS_SELECTION, gridState.ruler, location, 25.0) as Way?
                         if ((globalNearestWay != null) &&
                             (globalNearestWay.name != null) &&
-                            !isThisStreet(globalNearestWay.name)
+                            !isThisStreet(globalNearestWay)
                         ) {
                             continue
                         }

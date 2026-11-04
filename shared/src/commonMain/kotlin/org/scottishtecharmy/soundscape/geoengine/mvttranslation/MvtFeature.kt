@@ -4,6 +4,7 @@ import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.Side
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.streetKey
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
@@ -88,6 +89,24 @@ open class MvtFeature : Feature() {
     var translatedName: String? = null
     val displayName: String?
         get() = translatedName ?: name
+
+    // The name streetKey was last worked out for, and its key, together so that a feature renamed
+    // since never gives the old name's key
+    private var nameKeyCache: Pair<String, String>? = null
+
+    /**
+     * The [streetKey] of [name], or null if it has none. A street description compares the names
+     * of the Ways it meets and the roads around its houses many times over, and working out a key
+     * is too much to do each time, so it's kept.
+     */
+    val nameStreetKey: String?
+        get() {
+            val current = name ?: return null
+            nameKeyCache?.let { if (it.first === current) return it.second }
+            val key = streetKey(current)
+            nameKeyCache = Pair(current, key)
+            return key
+        }
 
     var ref: String? = null
     var housenumber: String? = null
