@@ -44,7 +44,7 @@ class StreetDescription(
      * in travel mode, and on foot are handled by the caller as before.
      */
     private fun usableCrossStreet(member: Way): Boolean {
-        if (member.name == name) return false
+        if (isSameStreet(member.name, name)) return false
         if (!travelMode) return true
         if (member.isPath()) return false
         return (member.name != null) || (member.ref != null)
@@ -194,6 +194,13 @@ class StreetDescription(
     companion object {
         /** See [isDominantParity]. */
         private const val PARITY_EXCEPTION_TOLERANCE = 0.1
+
+        /**
+         * How far a house can be from its street and still be on it, in metres. In Sauble Beach,
+         * Ontario half the houses are within 10m of their street and 99% within 41m; the
+         * farthest, rural ones are around 200m.
+         */
+        const val MAX_HOUSE_DISTANCE_FROM_STREET = 250.0
     }
 
     fun assignHouseNumberModes(odd: Array<Int>, even: Array<Int>) {
@@ -237,6 +244,13 @@ class StreetDescription(
         if (nearestWay != null) {
             val location = getCentralPointForFeature(house) ?: return
             val pdh = getDistanceToFeature(location, nearestWay.first, gridState.ruler)
+            // A house filed under this street's name, but too far from it to be on it, is on
+            // another street of the same name - or one written differently but the same street
+            // key, as Exeter's 3rd Avenue and Third Avenue, 2km apart. Placed on the nearest bit
+            // of this street, its number would be called out there. Only those placed by their
+            // street's name are measured: the others are found within 25m of the street, and a
+            // POI's central point - a university campus's - can be far from where it meets it.
+            if (streetConfidence && (pdh.distance > MAX_HOUSE_DISTANCE_FROM_STREET)) return
             val totalDistance = distanceAlongLine(nearestWay.first, pdh)
             val side = whichSide(
                 nearestWay.first,
@@ -425,9 +439,11 @@ class StreetDescription(
                     //  confuses the odd/even numbering analysis.
                     for (member in intersection.members) {
                         if ((currentWay != member) &&
-                            ((member.name == name) || (member.wayType == WayType.JOINER))
+                            (isSameStreet(member.name, name) || (member.wayType == WayType.JOINER))
                         ) {
-                            // We've got a Way of the same name extending away. See if it's continuing
+                            // We've got a Way of the same street extending away - which may be
+                            // spelled differently, as Second Avenue North carries on as 2nd Avenue
+                            // North in Sauble Beach. See if it's continuing
                             // on in the same direction
                             newWay = member
                             found = true
