@@ -480,7 +480,7 @@ class StreetDescription(
         }
 
         // Add all of the house numbers with known street to our linear map
-        val houseNumberTree = gridState.gridStreetNumberTreeMap[name]
+        val houseNumberTree = gridState.gridStreetNumberTreeMap[streetKey(name)]
         if (houseNumberTree != null) {
             val houseCollection = houseNumberTree.getAllCollection()
             for (house in houseCollection) {
@@ -519,7 +519,7 @@ class StreetDescription(
                             gridState.getNearestFeature(TreeId.WAYS_SELECTION, gridState.ruler, location, 25.0) as Way?
                         if ((globalNearestWay != null) &&
                             (globalNearestWay.name != null) &&
-                            (globalNearestWay.name != name)
+                            !isSameStreet(globalNearestWay.name, name)
                         ) {
                             continue
                         }
@@ -547,7 +547,7 @@ class StreetDescription(
                 // lives in the dedicated `street` field (see MvtToGeoJson.kt's tag parsing) -
                 // it's never copied into `properties`.
                 val poiStreet = poi.street
-                if (poiStreet != null && poiStreet != name) continue
+                if (poiStreet != null && !isSameStreet(poiStreet, name)) continue
 
                 // An unnamed POI describes itself by its class ("OSM Feature park park"), which is
                 // no use as a landmark to someone driving past. On foot it's still worth having -

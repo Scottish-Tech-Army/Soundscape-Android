@@ -231,7 +231,7 @@ fun normalizeForSearch(input: String): String {
     // Every letter has been lowercased as it went in, apart from those beyond U+FFFF, which only the
     // whole string can be
     val normalized = sb.toString().trim()
-    return if (hasLetterBeyondBmp) normalized.lowercase() else normalized
+    return canonicalSearchOrdinals(if (hasLetterBeyondBmp) normalized.lowercase() else normalized)
 }
 
 // The dashes typed between the numbers of an address: the ASCII hyphen-minus, its full-width form,
@@ -257,6 +257,111 @@ fun isOrdinalWord(word: String): Boolean {
     if (digits.isEmpty() || (digits.length == trimmed.length)) return false
     return trimmed.substring(digits.length).lowercase() in ORDINAL_SUFFIXES
 }
+
+private val SPELLED_ORDINALS = mapOf(
+    "first" to 1, "second" to 2, "third" to 3, "fourth" to 4, "fifth" to 5, "sixth" to 6,
+    "seventh" to 7, "eighth" to 8, "ninth" to 9, "tenth" to 10, "eleventh" to 11, "twelfth" to 12,
+    "thirteenth" to 13, "fourteenth" to 14, "fifteenth" to 15, "sixteenth" to 16,
+    "seventeenth" to 17, "eighteenth" to 18, "nineteenth" to 19, "twentieth" to 20,
+    "thirtieth" to 30, "fortieth" to 40, "fiftieth" to 50, "sixtieth" to 60, "seventieth" to 70,
+    "eightieth" to 80, "ninetieth" to 90,
+)
+private val SPELLED_TENS = mapOf(
+    "twenty" to 20, "thirty" to 30, "forty" to 40, "fifty" to 50, "sixty" to 60, "seventy" to 70,
+    "eighty" to 80, "ninety" to 90,
+)
+private val ENGLISH_ORDINAL_SUFFIXES = setOf("st", "nd", "rd", "th")
+
+private fun englishOrdinal(n: Int): String {
+    val suffix = if (n % 100 in 11..13) "th" else when (n % 10) {
+        1 -> "st"
+        2 -> "nd"
+        3 -> "rd"
+        else -> "th"
+    }
+    return "$n$suffix"
+}
+
+/** The number an English ordinal is, whether it's spelled out - "Fifth" - or not - "5th". */
+private fun englishOrdinalValue(word: String): Int? {
+    val lower = word.lowercase()
+    SPELLED_ORDINALS[lower]?.let { return it }
+    val digits = lower.takeWhile { it.isDigit() }
+    if (digits.isEmpty() || (digits.length > 4)) return null
+    return if (lower.substring(digits.length) in ENGLISH_ORDINAL_SUFFIXES) digits.toInt() else null
+}
+
+/**
+ * [words] with each English ordinal among them written as a number, as "5th", and a spelled-out
+ * one in two words - "Twenty First" - joined into one, as "21st". Null when there are none.
+ */
+private fun canonicalOrdinalWords(words: List<String>): List<String>? {
+    var result: MutableList<String>? = null
+    var index = 0
+    while (index < words.size) {
+        val word = words[index]
+        val tens = SPELLED_TENS[word.lowercase()]
+        val unit = if ((tens != null) && (index + 1 < words.size))
+            SPELLED_ORDINALS[words[index + 1].lowercase()]?.takeIf { it < 10 }
+        else
+            null
+        val value = if (unit != null) tens!! + unit else englishOrdinalValue(word)
+        if (value != null) {
+            if (result == null) result = words.subList(0, index).toMutableList()
+            result.add(englishOrdinal(value))
+            index += if (unit != null) 2 else 1
+        } else {
+            result?.add(word)
+            index++
+        }
+    }
+    return result
+}
+
+/**
+ * [normalized] - a string from [normalizeForSearch] - with its English ordinals written as
+ * numbers, so that a search for "5th Street North" finds "Fifth Street North".
+ */
+private fun canonicalSearchOrdinals(normalized: String): String {
+    // Every string in every tile searched comes through here, and most have no ordinal in them
+    if (normalized.none { it == 't' || it == 'd' || it == 'h' }) return normalized
+    return canonicalOrdinalWords(normalized.split(' '))?.joinToString(" ") ?: normalized
+}
+
+/**
+ * The key which a street's house numbers are filed under, and looked up by: the street's name
+ * with any English ordinal in it written as a number. Addresses aren't always tagged with the
+ * name their street has - in Sauble Beach, Ontario the houses on "Fifth Street North" are on
+ * "5th Street North" - and both are the one street. A name with no ordinal in it is its own key,
+ * and a house with no street is filed under "null".
+ */
+fun streetKey(name: String?): String {
+    if (name == null) return "null"
+    val words = name.split(' ')
+    var changed = false
+    // "Twenty-First" is the one word, and is a hyphenated ordinal only if all of it becomes one
+    val hyphensJoined = words.map { word ->
+        if (!word.contains('-')) return@map word
+        val parts = word.split('-')
+        val joined = canonicalOrdinalWords(parts)
+        if ((joined != null) && (joined.size == 1)) {
+            changed = true
+            joined.first()
+        } else {
+            word
+        }
+    }
+    val canonical = canonicalOrdinalWords(hyphensJoined)
+    return when {
+        canonical != null -> canonical.joinToString(" ")
+        changed -> hyphensJoined.joinToString(" ")
+        else -> name
+    }
+}
+
+/** Whether [a] and [b] are names of the one street - see [streetKey]. */
+fun isSameStreet(a: String?, b: String?): Boolean =
+    if ((a == null) || (b == null)) a == b else (a == b) || (streetKey(a) == streetKey(b))
 
 /**
  * [houseNumber] with its digits, from whatever script they were typed in, as ASCII, and the dashes

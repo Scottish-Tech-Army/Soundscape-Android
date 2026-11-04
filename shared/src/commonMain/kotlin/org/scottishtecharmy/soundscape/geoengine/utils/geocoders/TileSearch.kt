@@ -96,7 +96,9 @@ class TileSearch(
         for (way in nearestWays) {
             val wayName = (way as MvtFeature?)?.name
             if (name != null) {
-                if (wayName == name) {
+                // An address's street may be "5th Street North" where the road is "Fifth Street
+                // North"
+                if (isSameStreet(wayName, name)) {
                     return way as Way?
                 }
             } else {
@@ -856,9 +858,12 @@ class TileSearch(
             val houseNumberKey = layer.keys.indexOf("housenumber")
             val blockNumberKey = layer.keys.indexOf("block_number")
             // Most tiles the street runs through have no house on it, and are passed over on
-            // their values without looking at a single house
-            val streetValue = layer.values.indexOfFirst { it.string_value == street }
-            if ((streetKey < 0) || (houseNumberKey < 0) || (streetValue < 0)) continue
+            // their values without looking at a single house. Its houses can be under more than
+            // the one name - "Fifth Street North" and "5th Street North".
+            val streetValues = layer.values.indices.filter {
+                isSameStreet(layer.values[it].string_value, street)
+            }.toSet()
+            if ((streetKey < 0) || (houseNumberKey < 0) || streetValues.isEmpty()) continue
             for (feature in layer.features) {
                 var onStreet = false
                 var numberedInBlock = false
@@ -866,7 +871,7 @@ class TileSearch(
                 val tags = feature.tags
                 for (i in 0 until tags.size - 1 step 2) {
                     when (tags[i]) {
-                        streetKey -> onStreet = (tags[i + 1] == streetValue)
+                        streetKey -> onStreet = (tags[i + 1] in streetValues)
                         houseNumberKey -> housenumber = layer.values[tags[i + 1]].string_value
                         blockNumberKey -> numberedInBlock = true
                     }
@@ -1016,7 +1021,7 @@ class TileSearch(
                 BoundingBox()
             )
         )
-        for (key in listOf(street, "null")) {
+        for (key in listOf(streetKey(street), "null")) {
             streetNumbers[key]?.let { streetGrid.gridStreetNumberTreeMap[key] = FeatureTree(it) }
         }
 
