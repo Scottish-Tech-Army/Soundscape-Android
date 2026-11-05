@@ -68,6 +68,8 @@ import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenuMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
+import org.scottishtecharmy.soundscape.geoengine.headtracking.HeadTrackerAnnouncer
+import org.scottishtecharmy.soundscape.geoengine.headtracking.text
 import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.IosMarkersAndRoutesIo
@@ -270,6 +272,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         get() = directionProvider.orientationFlow
     override val headHeadingFlow: StateFlow<org.scottishtecharmy.soundscape.locationprovider.HeadHeading?>
         get() = headTrackingProvider.headHeadingFlow
+    override val headTrackerStateFlow: StateFlow<org.scottishtecharmy.soundscape.locationprovider.HeadTrackerState?>
+        get() = headTrackingProvider.stateFlow
     override val currentRouteFlow: StateFlow<RoutePlayerState>
         get() = routePlayer.currentRouteFlow
 
@@ -401,6 +405,12 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             startGeoEngine()
         }
         geoEngine.setHeadTrackingProvider(headTrackingProvider)
+        // Speak head tracker connections, calibration, disconnections and low battery, as the
+        // Android service does
+        HeadTrackerAnnouncer(
+            headTrackingProvider.stateFlow,
+            { announcement -> speak2dText(announcement.text()) },
+        ).launchIn(scope)
         applyHeadTrackingEnabled()
         observeAppLifecycle()
         cloudBackup.start()
