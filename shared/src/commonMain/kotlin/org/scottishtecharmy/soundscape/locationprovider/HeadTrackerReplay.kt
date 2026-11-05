@@ -6,8 +6,13 @@ import org.scottishtecharmy.soundscape.locationprovider.bose.BoseFramesHeadTrack
 /** The input id of the AirPods tracker, which is iOS only and records its yaw (`Y` events). */
 const val AIRPODS_INPUT_ID = "airpods"
 
-/** The AirPods' device calibration window: 200 samples at ~25 Hz, about 8 seconds. */
-const val AIRPODS_DEVICE_WINDOW_SIZE = 200
+/**
+ * The AirPods' device calibration window: 360 samples at the ~45 Hz CMHeadphoneMotionManager
+ * actually delivers (its rate isn't configurable), about 8 seconds. Sized for that real rate
+ * rather than a lower assumed one so calibration doesn't finish while the fixed battery-less
+ * connection wait is still running, which would leave no audible gap before "connected" is spoken.
+ */
+const val AIRPODS_DEVICE_WINDOW_SIZE = 360
 
 /** A head tracker's state after one replayed sample. */
 data class HeadTrackerReplayRow(

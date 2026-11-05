@@ -15,7 +15,7 @@ class HeadphoneCalibrationManager(
      * Window size for the device (phone-compass) calibrator. The compass
      * updates at the IMU sample rate so each sample is genuinely new
      * information. Sized in samples, so higher-rate sensors should pass
-     * a larger value — AirPods @ ~25 Hz uses the 200 default (≈8 s),
+     * a larger value — AirPods @ ~45 Hz wants ≈360 (≈8 s),
      * WitMotion @ 100 Hz wants ≈1000 (≈10 s).
      */
     deviceWindowSize: Int = 200,

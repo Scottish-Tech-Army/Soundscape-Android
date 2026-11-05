@@ -50,6 +50,10 @@ class IosHeadTrackingProvider(
 
     private var scope: CoroutineScope? = null
 
+    // CoreMotion doesn't say which headphones these are, and they're nearly always AirPods.
+    // iOS gives apps no AirPods battery level, so the connection is announced without one.
+    override val deviceName = "AirPods"
+
     override val isRunning: Boolean get() = scope != null
 
     init {

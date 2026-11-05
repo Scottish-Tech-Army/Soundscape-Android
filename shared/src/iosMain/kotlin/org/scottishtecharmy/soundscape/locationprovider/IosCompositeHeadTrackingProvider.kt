@@ -4,6 +4,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuHeadTrackingProvider
@@ -32,6 +34,13 @@ class IosCompositeHeadTrackingProvider(
             BoseFramesHeadTrackingProvider(directionProvider, locationProvider),
         ),
     )
+
+    private val mutableStateFlow = MutableStateFlow(INACTIVE)
+    /**
+     * The overall status, with the name and battery of whichever tracker is in use: the AirPods
+     * while they are connected, otherwise the external composite's own state.
+     */
+    val stateFlow: StateFlow<HeadTrackerState> = mutableStateFlow
 
     private var scope: CoroutineScope? = null
 
@@ -79,7 +88,21 @@ class IosCompositeHeadTrackingProvider(
                 listOf(a, b).maxBy { it.ordinal }
             }.collect { mutableStatusFlow.value = it }
         }
+
+        newScope.launch {
+            combine(airpods.statusFlow, externalBle.stateFlow) { airpodsStatus, external ->
+                if (airpodsStatus.isActive()) {
+                    HeadTrackerState(airpodsStatus, airpods.deviceName, null)
+                } else {
+                    // Same status as statusFlow, so a searching AirPods tracker still shows
+                    external.copy(status = maxOf(airpodsStatus, external.status))
+                }
+            }.collect { mutableStateFlow.value = it }
+        }
     }
+
+    private fun HeadTrackingStatus.isActive(): Boolean =
+        this == HeadTrackingStatus.Connected || this == HeadTrackingStatus.Calibrated
 
     override fun takeDebugSnapshot(includeInput: Boolean): HeadTrackingDebug? = mergeDebugSnapshots(
         listOfNotNull(airpods.takeDebugSnapshot(includeInput), externalBle.takeDebugSnapshot(includeInput))
@@ -92,11 +115,16 @@ class IosCompositeHeadTrackingProvider(
         externalBle.stop()
         mutableHeadHeadingFlow.value = null
         mutableStatusFlow.value = HeadTrackingStatus.Inactive
+        mutableStateFlow.value = INACTIVE
     }
 
     override fun destroy() {
         stop()
         airpods.destroy()
         externalBle.destroy()
+    }
+
+    private companion object {
+        val INACTIVE = HeadTrackerState(HeadTrackingStatus.Inactive, null, null)
     }
 }
