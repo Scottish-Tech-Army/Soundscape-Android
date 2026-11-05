@@ -42,6 +42,13 @@ sealed class SoundscapeAction {
     data object PreviousWaypoint : SoundscapeAction()
     data object ToggleBeaconMute : SoundscapeAction()
 
+    /**
+     * Mutes or unmutes the beacon outright rather than toggling it, for an assistant
+     * that can't see the current state - the Android AppFunction. Asking for the state
+     * it is already in succeeds without changing anything.
+     */
+    data class SetBeaconMuted(val muted: Boolean) : SoundscapeAction()
+
     // ── Beacons — AudioMenu "Start Audio Beacon" submenu ─────────────────────
     data class BeaconOnMarkerById(val markerId: Long) : SoundscapeAction()
     data class BeaconOnMarkerNamed(val name: String) : SoundscapeAction()

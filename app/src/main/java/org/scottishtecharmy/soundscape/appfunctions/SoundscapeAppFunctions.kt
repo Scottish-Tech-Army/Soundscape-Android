@@ -1,14 +1,16 @@
 package org.scottishtecharmy.soundscape.appfunctions
 
 import androidx.annotation.RequiresApi
-import androidx.appfunctions.AppFunction
+import androidx.appfunctions.AppFunctionDeclaration
 import androidx.appfunctions.AppFunctionSerializable
 import androidx.appfunctions.AppFunctionService
 import androidx.appfunctions.AppFunctionServiceEntryPoint
+import androidx.appfunctions.AppFunctionStringValueConstraint
 import org.scottishtecharmy.soundscape.actions.ActionResult
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.actions.SoundscapeActionExecutor
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 
 /**
@@ -17,13 +19,16 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
  * Soundscape answers through its own spatial audio, so for most functions the useful
  * result is only whether it worked: the callout itself carries direction information no
  * text could. [message] is filled where the app makes no sound of its own — the lists,
- * and every failure.
+ * the confirmations, and every failure.
  */
 @AppFunctionSerializable(isDescribedByKDoc = true)
 data class SoundscapeResult(
     /** Whether the action was carried out. */
     val success: Boolean,
-    /** What to tell the user, or empty when the app has already answered aloud. */
+    /**
+     * What to say to the user, in their language. Empty when Soundscape has already
+     * answered aloud itself, in which case say nothing more.
+     */
     val message: String,
 )
 
@@ -35,7 +40,11 @@ data class SoundscapeResult(
  * describing different capabilities.
  *
  * The KDoc on each function below is not decoration: with `isDescribedByKDoc = true` it
- * becomes the natural-language description the agent reads to decide when to call it.
+ * becomes the natural-language description the agent reads to decide when to call it,
+ * and the agent sees each one on its own. So each says for itself whether Soundscape
+ * must be open and whether the answer is spoken by the app, even where that repeats.
+ * The app-wide context (who the app is for, how it answers) is in
+ * res/xml/app_functions_app_metadata.xml.
  *
  * Requires API 36, well above the app's minSdk of 30. Nothing else references this class,
  * so on older devices the service simply never starts.
@@ -48,90 +57,161 @@ data class SoundscapeResult(
 abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
 
     /**
-     * Describes where the user is now — the street, and what is nearby.
+     * Answers "where am I?": Soundscape says the street the user is on or the junction
+     * they are at, and the nearest landmarks. For points of interest all around, use
+     * aroundMe; for what is in front, aheadOfMe.
+     *
+     * Soundscape speaks the answer itself in spatial audio, so on success the message is
+     * empty: say nothing more, and do not describe the location yourself. Soundscape must
+     * be open; if it is not, or has no GPS fix yet, the message explains and should be
+     * read to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun myLocation(): SoundscapeResult = run(SoundscapeAction.MyLocation)
 
     /**
-     * Calls out the points of interest around the user, positioned in spatial audio.
+     * Answers "what's around me?": Soundscape calls out points of interest on every side
+     * of the user, each positioned in spatial audio so it sounds from its real direction.
+     * For the street the user is on, use myLocation; for only what is in front, aheadOfMe.
+     *
+     * Soundscape speaks the answer itself, so on success the message is empty: say nothing
+     * more, and do not list places yourself. Soundscape must be open; if it is not, or has
+     * no GPS fix yet, the message explains and should be read to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun aroundMe(): SoundscapeResult = run(SoundscapeAction.AroundMe)
 
     /**
-     * Calls out what lies ahead of the user in the direction they are facing.
+     * Answers "what's ahead of me?": Soundscape calls out the roads, junctions and places
+     * lying ahead in the direction the user is facing or walking.
+     *
+     * Soundscape speaks the answer itself, so on success the message is empty: say nothing
+     * more. Soundscape must be open; if it is not, or has no GPS fix yet, the message
+     * explains and should be read to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun aheadOfMe(): SoundscapeResult = run(SoundscapeAction.AheadOfMe)
 
     /**
-     * Calls out the user's saved markers that are nearby.
+     * Calls out the user's own saved markers (places they saved in Soundscape) that are
+     * close by, each from its direction. To hear all saved markers by name wherever they
+     * are, use listMarkers.
+     *
+     * Soundscape speaks the answer itself, so on success the message is empty: say nothing
+     * more. Soundscape must be open; if it is not, the message explains and should be
+     * read to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun nearbyMarkers(): SoundscapeResult = run(SoundscapeAction.NearbyMarkers)
 
     /**
-     * Says how far away the audio beacon is, from the beacon's direction. Says "No beacon
-     * active" when there is no beacon or route playing.
+     * A quick "how far is it?" for the audio beacon: Soundscape says the distance, heard
+     * from the beacon's direction. For the beacon's name and address as well, use
+     * beaconInfo.
+     *
+     * Soundscape speaks the answer itself, so on success the message is empty: say nothing
+     * more. Needs Soundscape open and a beacon or route playing; otherwise the message
+     * explains and should be read to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun calloutBeacon(): SoundscapeResult = run(SoundscapeAction.CalloutBeacon)
 
     /**
-     * Says the audio beacon's name, distance, direction and street address. Says "No beacon
-     * active" when there is no beacon or route playing.
+     * Answers "what is the beacon on?" or "where is my beacon?": Soundscape says the
+     * beacon's name, distance, direction and street address. For just the distance, use
+     * calloutBeacon.
+     *
+     * Soundscape speaks the answer itself, so on success the message is empty: say nothing
+     * more. Needs Soundscape open and a beacon or route playing; otherwise the message
+     * explains and should be read to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun beaconInfo(): SoundscapeResult = run(SoundscapeAction.BeaconInfo)
 
     /**
-     * Starts one of the user's saved routes, matched by name.
+     * Starts playing one of the user's saved routes: an audio beacon guides them to each
+     * waypoint in turn. Only routes the user has already saved in Soundscape can be
+     * started; it cannot plan a route to a new place. If unsure of the name, call
+     * listRoutes first.
+     *
+     * Read the message to the user: it confirms which route started, or says no route
+     * matched. Soundscape must be open.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun startRoute(
         /** The name of the saved route to start. Matched loosely, so a partial name works. */
         name: String,
     ): SoundscapeResult = run(SoundscapeAction.StartRouteNamed(name))
 
     /**
-     * Stops the route that is currently playing.
+     * Stops the route that is playing, and its beacon. Read the message to the user: it
+     * confirms the route stopped. Soundscape must be open.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun stopRoute(): SoundscapeResult = run(SoundscapeAction.StopRoute)
 
     /**
-     * Skips forward to the next waypoint on the route being played.
+     * Skips forward to the next waypoint on the route that is playing, moving the beacon
+     * there.
+     *
+     * Soundscape announces the new waypoint itself, so on success the message is empty:
+     * say nothing more. Needs Soundscape open and a route playing; if there is none, or
+     * the route is already at its last waypoint, the message says so and should be read
+     * to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun nextWaypoint(): SoundscapeResult = run(SoundscapeAction.NextWaypoint)
 
     /**
-     * Goes back to the previous waypoint on the route being played.
+     * Goes back to the previous waypoint on the route that is playing, moving the beacon
+     * there.
+     *
+     * Soundscape announces the new waypoint itself, so on success the message is empty:
+     * say nothing more. Needs Soundscape open and a route playing; if there is none, or
+     * the route is already at its first waypoint, the message says so and should be read
+     * to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun previousWaypoint(): SoundscapeResult = run(SoundscapeAction.PreviousWaypoint)
 
     /**
-     * Mutes the audio beacon, or unmutes it if it is already muted.
+     * Silences or restores the audio beacon's repeating tone, without stopping the beacon
+     * or route: it keeps its place and can be unmuted later. Asking for the state it is
+     * already in changes nothing. To remove the beacon altogether, use stopBeacon or
+     * stopRoute.
+     *
+     * On success the message is empty, as the change is heard directly: say nothing more.
+     * Needs Soundscape open and a beacon or route playing; otherwise the message explains
+     * and should be read to the user.
      */
-    @AppFunction(isDescribedByKDoc = true)
-    suspend fun toggleBeaconMute(): SoundscapeResult = run(SoundscapeAction.ToggleBeaconMute)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
+    suspend fun setBeaconMuted(
+        /** True to mute the beacon, false to unmute it. */
+        muted: Boolean,
+    ): SoundscapeResult = run(SoundscapeAction.SetBeaconMuted(muted))
 
     /**
-     * Sets an audio beacon on one of the user's saved markers, matched by name. The beacon
-     * plays a repeating tone from the direction of the marker until it is stopped.
+     * Sets an audio beacon on one of the user's saved markers: a repeating tone that
+     * sounds from the marker's direction, so the user can walk towards it, until it is
+     * stopped. Only places the user has already saved as markers in Soundscape can be
+     * used; it cannot search for a shop, address or other new place. If unsure of the
+     * name, call listMarkers first.
+     *
+     * Read the message to the user: it confirms which marker the beacon is on, or says no
+     * marker matched. Soundscape must be open.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun startBeacon(
         /** The name of the saved marker to place the beacon on. Matched loosely. */
         name: String,
     ): SoundscapeResult = run(SoundscapeAction.BeaconOnMarkerNamed(name))
 
     /**
-     * Switches the audio beacon off.
+     * Switches the audio beacon off. To only silence it for a while, use setBeaconMuted.
+     * Read the message to the user: it confirms the beacon stopped. Soundscape must be
+     * open.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun stopBeacon(): SoundscapeResult = run(SoundscapeAction.StopBeacon)
 
     /**
@@ -140,25 +220,37 @@ abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
      * streets, junctions and landmarks; Simplified skips minor paths and repeats itself less;
      * Detailed calls out everything nearby. Useful when a busy street is too noisy, or a quiet
      * one too sparse. The change is saved, the same as choosing it in Settings.
+     *
+     * Read the message to the user: it confirms the new level. Soundscape must be open.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun setCalloutDetail(
-        /** One of Silent, Essential, Simplified or Detailed. */
+        /** How much to call out automatically. */
+        @AppFunctionStringValueConstraint(
+            enumValues = ["Silent", "Essential", "Simplified", "Detailed"],
+        )
         level: String,
-    ): SoundscapeResult = run(SoundscapeAction.SetCalloutDetailNamed(level))
+    ): SoundscapeResult = run(
+        CALLOUT_DETAIL_LEVELS[level.trim().lowercase()]
+            ?.let { SoundscapeAction.SetCalloutDetail(it) }
+            ?: SoundscapeAction.SetCalloutDetailNamed(level),
+    )
 
     /**
-     * Lists the names of the user's saved routes. Works whether or not Soundscape is
-     * running, because it only reads saved data.
+     * Lists the names of the routes the user has saved in Soundscape, for choosing one to
+     * pass to startRoute. Works whether or not Soundscape is open, because it only reads
+     * saved data. Read the message to the user, or use it to pick the route they meant.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun listRoutes(): SoundscapeResult = run(SoundscapeAction.ListRoutes)
 
     /**
-     * Lists the names of the user's saved markers. Works whether or not Soundscape is
-     * running, because it only reads saved data.
+     * Lists the names of the places the user has saved as markers in Soundscape, for
+     * choosing one to pass to startBeacon. Works whether or not Soundscape is open,
+     * because it only reads saved data. Read the message to the user, or use it to pick
+     * the marker they meant.
      */
-    @AppFunction(isDescribedByKDoc = true)
+    @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun listMarkers(): SoundscapeResult = run(SoundscapeAction.ListMarkers)
 
     // ── Plumbing ─────────────────────────────────────────────────────────────
@@ -201,5 +293,19 @@ abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
 
     private companion object {
         const val READY_TIMEOUT_MS = 5_000L
+
+        /**
+         * The schema's fixed English words for setCalloutDetail, mapped here rather than
+         * matched by name: two are English display names ("Essential" is stored as
+         * Quiet, "Simplified" as Balanced), and the executor matches display names only
+         * in the app's own language, so on a French phone they would match nothing.
+         * Anything else still goes through SetCalloutDetailNamed.
+         */
+        val CALLOUT_DETAIL_LEVELS = mapOf(
+            "silent" to CalloutVerbosity.SILENT,
+            "essential" to CalloutVerbosity.QUIET,
+            "simplified" to CalloutVerbosity.BALANCED,
+            "detailed" to CalloutVerbosity.DETAILED,
+        )
     }
 }
