@@ -8,7 +8,7 @@ import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
 import platform.CoreLocation.kCLDistanceFilterNone
-import platform.CoreLocation.kCLLocationAccuracyBestForNavigation
+import platform.CoreLocation.kCLLocationAccuracyBest
 import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
 import platform.Foundation.NSDate
 import platform.Foundation.NSError
@@ -99,12 +99,15 @@ class IosLocationProvider : LocationProvider() {
     override fun start(accuracy: Accuracy) {
         locationManager.delegate = delegate
 
-        // BestForNavigation, as the legacy iOS app used: Apple's highest setting, meant for
-        // navigation apps, which it says adds other sensor data to the GPS. Separate passes down a
-        // street (2026-10-02) showed no clear difference from Best, so this is for parity with the
-        // app iOS users had rather than a measured gain, and Apple says it can cost more power.
+        // Best, not BestForNavigation. The legacy iOS app used BestForNavigation, and a separate
+        // pass down a street (2026-10-02) showed no clear difference in position from Best - but
+        // logging each fix's CoreLocation delivery delay on a walk (2026-11-05) showed delay
+        // sitting at 1-2.2s, consistently, under BestForNavigation once fixes settled into real
+        // GPS-grade readings; the same walk under Best stayed at 0.04-0.16s throughout.
+        // BestForNavigation's sensor-fusion pipeline is tuned for smooth car navigation, not low
+        // latency, and that latency was showing up as map-dot lag.
         locationManager.desiredAccuracy = when (accuracy) {
-            Accuracy.High -> kCLLocationAccuracyBestForNavigation
+            Accuracy.High -> kCLLocationAccuracyBest
             Accuracy.Balanced -> kCLLocationAccuracyNearestTenMeters
         }
 
