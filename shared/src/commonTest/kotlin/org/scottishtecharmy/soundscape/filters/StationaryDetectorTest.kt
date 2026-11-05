@@ -135,25 +135,36 @@ class StationaryDetectorTest {
     }
 
     @Test
-    fun testAMinuteOfPoorFixesEndsIt() {
-        // A train pulling out of a station: the GPS falls to fixes too poor to use, which say
-        // nothing either way - until there has been a minute of them, which is a gap in the
-        // record and must end the verdict there and then, not when a good fix next turns up.
+    fun testAMinuteOfRejectedFixesEndsIt() {
+        // A train pulling out of a station: the GPS falls to fixes the geoengine rejects outright,
+        // which say nothing either way - until there has been a minute of them, which is a gap in
+        // the record and must end the verdict there and then, not when a good fix next turns up.
         val detector = StationaryDetector()
         assertTrue(detector.run(121, 0L) { jitter(it, 8.0) })
         val stillness = detector.stationaryMillis
 
         for (second in 1..60) {
-            val stationary = detector.update(at(0.0, second * 15.0), 200.0, false,
-                120_000L + second * 1000L)
-            assertTrue(stationary, "a minute of poor fixes is not yet a gap, but ended at ${second}s")
+            val stationary = detector.noteUnusableFix(120_000L + second * 1000L)
+            assertTrue(stationary, "a minute of rejected fixes is not yet a gap, but ended at ${second}s")
         }
-        assertFalse(detector.update(at(0.0, 61 * 15.0), 200.0, false, 181_000L),
-            "over a minute of poor fixes is a gap")
+        assertFalse(detector.noteUnusableFix(181_000L), "over a minute of rejected fixes is a gap")
         assertEquals(stillness, detector.stationaryMillis, "the blind minute is not stillness")
 
         // And the window starts again from the next good fix.
         assertFalse(detector.run(20, 182_000L) { jitter(it, 8.0) }, "20s in, still undecided")
+    }
+
+    @Test
+    fun testPoorButUsableFixesHoldTheVerdict() {
+        // 25-50m is what a passenger waiting on an indoor concourse gets for minutes on end. Those
+        // are not evidence either, and must not turn them into somebody moving.
+        val detector = StationaryDetector()
+        assertTrue(detector.run(121, 0L) { jitter(it, 8.0) })
+        for (second in 1..300) {
+            val stationary =
+                detector.update(jitter(second, 8.0), 40.0, false, 120_000L + second * 1000L)
+            assertTrue(stationary, "40m fixes ended a stationary spell at ${second}s")
+        }
     }
 
     @Test
