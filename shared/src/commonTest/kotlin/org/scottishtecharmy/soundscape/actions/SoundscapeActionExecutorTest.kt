@@ -162,7 +162,8 @@ private class FakeService : MediaControllableService {
     // --- Unused by the executor ---
     override val filteredLocationFlow: StateFlow<SoundscapeLocation?> = MutableStateFlow(null)
     override val orientationFlow: StateFlow<DeviceDirection?> = MutableStateFlow(null)
-    override val beaconFlow: StateFlow<BeaconState> = MutableStateFlow(BeaconState())
+    val beaconFlowState = MutableStateFlow(BeaconState())
+    override val beaconFlow: StateFlow<BeaconState> = beaconFlowState
     override var menuActive: Boolean = false
 
     override fun speakText(
@@ -503,6 +504,48 @@ class SoundscapeActionExecutorTest {
         assertEquals("ActionNoRouteActive()", result.speech)
     }
 
+    @Test
+    fun setBeaconMuted_togglesOnlyWhenTheStateDiffers() = runTest {
+        for (muted in listOf(true, false)) {
+            val service = FakeService().apply {
+                beaconFlowState.value = BeaconState(muteState = !muted)
+            }
+            val result = executor(service).execute(SoundscapeAction.SetBeaconMuted(muted))
+            assertIs<ActionResult.Ok>(result, "muted=$muted")
+            assertNull(result.speech, "muted=$muted")
+            assertContentEquals(listOf("routeMute"), service.calls, "muted=$muted")
+        }
+    }
+
+    @Test
+    fun setBeaconMuted_leavesTheBeaconAloneWhenAlreadyInThatState() = runTest {
+        // A toggle here would turn "mute the beacon" into unmuting an already muted one.
+        for (muted in listOf(true, false)) {
+            val service = FakeService().apply {
+                beaconFlowState.value = BeaconState(muteState = muted)
+                currentRouteFlowState.value = playing(waypointCount = 1, currentWaypoint = 0)
+            }
+            val result = executor(service).execute(SoundscapeAction.SetBeaconMuted(muted))
+            assertIs<ActionResult.Ok>(result, "muted=$muted")
+            assertContentEquals(emptyList(), service.calls, "muted=$muted")
+        }
+    }
+
+    @Test
+    fun setBeaconMuted_reportsNoRouteWhenNothingIsPlaying() = runTest {
+        // Both branches: the state already matches (no route to check against), and it
+        // differs but routeMute() finds nothing playing.
+        for (muteState in listOf(true, false)) {
+            val service = FakeService().apply {
+                routeCommandsSucceed = false
+                beaconFlowState.value = BeaconState(muteState = muteState)
+            }
+            val result = executor(service).execute(SoundscapeAction.SetBeaconMuted(true))
+            assertIs<ActionResult.NotReady>(result, "muteState=$muteState")
+            assertEquals(ActionResult.Reason.NO_ROUTE_ACTIVE, result.reason, "muteState=$muteState")
+        }
+    }
+
     // ── No running service ────────────────────────────────────────────────────
 
     @Test
@@ -526,6 +569,7 @@ class SoundscapeActionExecutorTest {
             SoundscapeAction.NextWaypoint,
             SoundscapeAction.PreviousWaypoint,
             SoundscapeAction.ToggleBeaconMute,
+            SoundscapeAction.SetBeaconMuted(true),
             SoundscapeAction.BeaconOnMarkerById(1),
             SoundscapeAction.BeaconOnMarkerNamed("Tesco"),
             SoundscapeAction.StopBeacon,

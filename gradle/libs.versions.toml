@@ -13,9 +13,9 @@ composeMaterial3 = "1.9.0"
 composeMaterialIconsExtended = "1.7.3"
 wire = "6.4.5"
 devtools-ksp = "2.3.12"
-# AppFunctions is an experimental preview and its API surface is still changing.
-# Pinned deliberately: check the release notes before bumping.
-appfunctions = "1.0.0-alpha10"
+# AppFunctions reached RC in 1.0.0-rc01, but the Gemini side is still a private preview
+# and the API changed a lot through the alphas. Check the release notes before bumping.
+appfunctions = "1.0.0-rc01"
 koin = "4.2.2"
 google-services = "4.5.0"
 jetbrains-dokka = "2.2.0"

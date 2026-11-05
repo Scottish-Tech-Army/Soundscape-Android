@@ -125,6 +125,18 @@ class SoundscapeActionExecutor(
         SoundscapeAction.ToggleBeaconMute ->
             if (service.routeMute()) ActionResult.Ok() else noRouteActive()
 
+        // Only toggles when the state differs. Already there still needs something
+        // playing to have muted, or "mute the beacon" with no route would report success.
+        is SoundscapeAction.SetBeaconMuted ->
+            if (service.beaconFlow.value.muteState == action.muted) {
+                if (service.currentRouteFlow.value.routeData != null) ActionResult.Ok()
+                else noRouteActive()
+            } else if (service.routeMute()) {
+                ActionResult.Ok()
+            } else {
+                noRouteActive()
+            }
+
         is SoundscapeAction.BeaconOnMarkerById ->
             routeDao.getMarkerById(action.markerId)
                 ?.let { beaconOn(service, it) }
