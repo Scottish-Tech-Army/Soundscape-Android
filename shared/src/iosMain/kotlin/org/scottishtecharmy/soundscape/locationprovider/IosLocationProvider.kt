@@ -7,6 +7,7 @@ import platform.CoreLocation.CLActivityTypeOther
 import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
+import platform.CoreLocation.kCLDistanceFilterNone
 import platform.CoreLocation.kCLLocationAccuracyBestForNavigation
 import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
 import platform.Foundation.NSDate
@@ -107,7 +108,12 @@ class IosLocationProvider : LocationProvider() {
             Accuracy.Balanced -> kCLLocationAccuracyNearestTenMeters
         }
 
-        locationManager.distanceFilter = accuracy.minimumDistanceM.toDouble()
+        // kCLDistanceFilterNone rather than 0 for High: it is Apple's documented way to be told of
+        // every update (and CoreLocation's default), where 0 is undocumented.
+        locationManager.distanceFilter = when (accuracy) {
+            Accuracy.High -> kCLDistanceFilterNone
+            Accuracy.Balanced -> accuracy.minimumDistanceM.toDouble()
+        }
 
         // Never paused, as the legacy iOS app did. Balanced is what sleep mode's wake on leave
         // runs on, and a snoozing user is stationary by definition: CoreLocation would pause

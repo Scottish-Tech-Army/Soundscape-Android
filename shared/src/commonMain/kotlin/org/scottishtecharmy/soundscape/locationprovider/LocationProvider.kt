@@ -11,8 +11,17 @@ sealed class Accuracy {
 
     object High : Accuracy() {
         override val updateInterval: Duration = 1.seconds
-        override val minimumDistanceM: Float = 1.0f
 
+        /**
+         * None: every fix, including those of someone standing still. The GPS runs at this
+         * interval either way, so a distance filter saves no power - it only stops fixes being
+         * delivered, and the OS applies it, so nothing above can get them back. With 1m, a phone
+         * lying still indoors went more than a minute without a single fix (2026-11-05), which
+         * left the geoengine blind exactly when it needed one: a grid load that failed while the
+         * network dropped is retried on the next fix, StationaryDetector resets after a 60s gap
+         * and so never saw anyone stand still, and recordings left stationary spells out.
+         */
+        override val minimumDistanceM: Float = 0.0f
     }
 
     /**
