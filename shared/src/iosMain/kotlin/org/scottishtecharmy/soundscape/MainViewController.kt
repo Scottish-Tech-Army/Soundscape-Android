@@ -24,6 +24,7 @@ import org.scottishtecharmy.soundscape.platform.readResourceText
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
+import org.scottishtecharmy.soundscape.preferences.rememberCoercedBooleanPreferenceState
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.settings_head_tracking
 import org.scottishtecharmy.soundscape.resources.settings_head_tracking_description
@@ -153,6 +154,12 @@ fun MainViewController() = ComposeUIViewController {
             key = PreferenceKeys.MIX_AUDIO,
             defaultValue = PreferenceDefaults.MIX_AUDIO,
             modifier = expandedSectionModifier,
+            rememberState = {
+                rememberCoercedBooleanPreferenceState(
+                    PreferenceKeys.MIX_AUDIO,
+                    PreferenceDefaults.MIX_AUDIO,
+                )
+            },
             title = {
                 SettingDetails(
                     Res.string.settings_mix_audio,
@@ -165,6 +172,12 @@ fun MainViewController() = ComposeUIViewController {
             key = PreferenceKeys.HEAD_TRACKING_ENABLED,
             defaultValue = PreferenceDefaults.HEAD_TRACKING_ENABLED,
             modifier = expandedSectionModifier,
+            rememberState = {
+                rememberCoercedBooleanPreferenceState(
+                    PreferenceKeys.HEAD_TRACKING_ENABLED,
+                    PreferenceDefaults.HEAD_TRACKING_ENABLED,
+                )
+            },
             title = {
                 SettingDetails(
                     Res.string.settings_head_tracking,

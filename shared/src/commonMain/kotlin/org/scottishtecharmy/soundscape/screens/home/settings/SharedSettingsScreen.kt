@@ -58,6 +58,7 @@ import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreferenceStat
 import org.scottishtecharmy.soundscape.resources.settings_record_head_tracker_input_description
 import org.scottishtecharmy.soundscape.resources.settings_record_head_tracker_input
 import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
+import org.scottishtecharmy.soundscape.preferences.rememberCoercedBooleanPreferenceState
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.beacon_settings_style
 import org.scottishtecharmy.soundscape.resources.beacon_settings_style_description
@@ -729,6 +730,12 @@ fun SharedSettingsScreen(
                     key = PreferenceKeys.RECORD_TRAVEL,
                     defaultValue = PreferenceDefaults.RECORD_TRAVEL,
                     modifier = expandedSectionModifier,
+                    rememberState = {
+                        rememberCoercedBooleanPreferenceState(
+                            PreferenceKeys.RECORD_TRAVEL,
+                            PreferenceDefaults.RECORD_TRAVEL,
+                        )
+                    },
                     title = {
                         Text(
                             text = stringResource(Res.string.settings_travel_recording),
@@ -741,6 +748,12 @@ fun SharedSettingsScreen(
                     key = PreferenceKeys.ALPHA_FEATURES,
                     defaultValue = PreferenceDefaults.ALPHA_FEATURES,
                     modifier = expandedSectionModifier.testTag("settingsAlphaFeatures"),
+                    rememberState = {
+                        rememberCoercedBooleanPreferenceState(
+                            PreferenceKeys.ALPHA_FEATURES,
+                            PreferenceDefaults.ALPHA_FEATURES,
+                        )
+                    },
                     title = {
                         SettingDetails(
                             Res.string.settings_alpha_features,
