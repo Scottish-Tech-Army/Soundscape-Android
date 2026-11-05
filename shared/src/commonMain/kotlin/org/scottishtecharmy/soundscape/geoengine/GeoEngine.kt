@@ -542,6 +542,9 @@ class GeoEngine {
                         // going blind rather than idle, and the two mean opposite things to the
                         // callout sticky windows - see AutoCallout.discountUninformativeTime.
                         blindSinceLastUsableFix = true
+                        // Not evidence of anything, but a minute of these has to end a stationary
+                        // verdict - a train losing GPS as it pulls out of a station.
+                        userStationary = stationaryDetector.noteUnusableFix(currentTimeMillis())
                         return@let
                     }
                     haveUsableLocation = true
