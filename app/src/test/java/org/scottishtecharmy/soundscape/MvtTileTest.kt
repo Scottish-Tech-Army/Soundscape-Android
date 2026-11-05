@@ -4510,6 +4510,9 @@ class MvtTileTest {
             val accuracy = position.properties?.get("accuracy") as? Double?
             if ((accuracy != null) && (accuracy > MAXIMUM_USABLE_ACCURACY_METRES)) {
                 blindSinceLastUsableFix = true
+                // As GeoEngine does: a minute of these ends a stationary verdict.
+                (position.properties?.get("time") as? Double?)?.toLong()?.takeIf { gpxHasClock }
+                    ?.let { stationaryDetector.noteUnusableFix(it) }
                 return@forEachIndexed
             }
 

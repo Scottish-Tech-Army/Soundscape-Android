@@ -135,6 +135,28 @@ class StationaryDetectorTest {
     }
 
     @Test
+    fun testAMinuteOfPoorFixesEndsIt() {
+        // A train pulling out of a station: the GPS falls to fixes too poor to use, which say
+        // nothing either way - until there has been a minute of them, which is a gap in the
+        // record and must end the verdict there and then, not when a good fix next turns up.
+        val detector = StationaryDetector()
+        assertTrue(detector.run(121, 0L) { jitter(it, 8.0) })
+        val stillness = detector.stationaryMillis
+
+        for (second in 1..60) {
+            val stationary = detector.update(at(0.0, second * 15.0), 200.0, false,
+                120_000L + second * 1000L)
+            assertTrue(stationary, "a minute of poor fixes is not yet a gap, but ended at ${second}s")
+        }
+        assertFalse(detector.update(at(0.0, 61 * 15.0), 200.0, false, 181_000L),
+            "over a minute of poor fixes is a gap")
+        assertEquals(stillness, detector.stationaryMillis, "the blind minute is not stillness")
+
+        // And the window starts again from the next good fix.
+        assertFalse(detector.run(20, 182_000L) { jitter(it, 8.0) }, "20s in, still undecided")
+    }
+
+    @Test
     fun testAFixWithoutAccuracyStillCounts() {
         // Street Preview and hand-written GPX carry no accuracy, and must still get a verdict.
         val detector = StationaryDetector()

@@ -43,8 +43,9 @@ class StationaryGapFillTest {
                 location = LngLatAlt(tp.longitude, tp.latitude),
                 accuracy = tp.accuracy?.toDouble(),
                 // As GeoEngine and MvtTileTest build it: the GPS course and its own accuracy.
-                courseIsTrustworthy = (tp.bearing != null) && (tp.bearingAccuracyDegrees != null) &&
-                    (tp.bearingAccuracyDegrees < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES),
+                courseIsTrustworthy = (tp.bearing != null) &&
+                    ((tp.bearingAccuracyDegrees ?: Float.MAX_VALUE) <
+                        MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES),
                 millis = millis,
             )
         }
@@ -89,9 +90,12 @@ class StationaryGapFillTest {
         var start: Long? = null
         var last = 0L
         for (fix in fixes) {
-            if ((fix.accuracy != null) && (fix.accuracy > MAXIMUM_USABLE_ACCURACY_METRES)) continue
+            // GeoEngine's own gate hands these to noteUnusableFix rather than update.
             val stationary =
-                detector.update(fix.location, fix.accuracy, fix.courseIsTrustworthy, fix.millis)
+                if ((fix.accuracy != null) && (fix.accuracy > MAXIMUM_USABLE_ACCURACY_METRES))
+                    detector.noteUnusableFix(fix.millis)
+                else
+                    detector.update(fix.location, fix.accuracy, fix.courseIsTrustworthy, fix.millis)
             if (stationary && (start == null)) start = fix.millis
             if (!stationary && (start != null)) {
                 spells.add(Spell(start, fix.millis)); start = null
@@ -130,6 +134,18 @@ class StationaryGapFillTest {
             // Putting the stillness back can only show more of it.
             assertTrue(filledMillis >= rawMillis,
                 "$journey: filling the gaps lost stillness ($rawMillis -> $filledMillis ms)")
+
+            // ToMilngavie's train is stopped by 49:06 and pulls out at 50:18 into four minutes of
+            // 46-400m fixes, covering 2.7km before good ones return at 54:17. The stop is still;
+            // the ride out of it must not be.
+            if (journey == "ToMilngavie") {
+                val stop = origin + (49 * 60 + 30) * 1000L
+                val pullingOut = origin + (52 * 60) * 1000L
+                assertTrue(filledSpells.any { it.startMillis <= stop && it.endMillis > stop },
+                    "the stop at 49:30 should be stationary")
+                assertTrue(filledSpells.none { it.startMillis <= pullingOut && it.endMillis > pullingOut },
+                    "still stationary at 52:00, on a train that left at 50:18")
+            }
         }
         println(report)
         File("build/test-output").mkdirs()
