@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The pre-rc01 name of androidx.appfunctions' "instructions" attribute, which the library
+         no longer declares. The Play Console still requires it in
+         xml/app_functions_app_metadata.xml, and aapt2 rejects an undeclared attribute. -->
+    <attr name="description" format="string" />
+</resources>
