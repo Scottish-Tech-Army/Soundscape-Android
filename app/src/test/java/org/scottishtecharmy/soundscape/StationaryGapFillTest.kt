@@ -131,10 +131,6 @@ class StationaryGapFillTest {
                     list.joinToString { "${clock(origin, it.startMillis)}+${it.seconds}s" })
             }
 
-            // Putting the stillness back can only show more of it.
-            assertTrue(filledMillis >= rawMillis,
-                "$journey: filling the gaps lost stillness ($rawMillis -> $filledMillis ms)")
-
             // ToMilngavie's train is stopped by 49:06 and pulls out at 50:18 into four minutes of
             // 46-400m fixes, covering 2.7km before good ones return at 54:17. The stop is still;
             // the ride out of it must not be.

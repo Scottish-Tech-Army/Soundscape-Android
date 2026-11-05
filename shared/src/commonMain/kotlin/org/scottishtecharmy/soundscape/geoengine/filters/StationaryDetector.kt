@@ -92,9 +92,9 @@ class StationaryDetector {
      * the other, so the window starts again rather than treating the pair as evidence that nobody
      * moved. Same value and the same reasoning as AutoCallout's sweepMaximumGapMilliseconds.
      *
-     * Because the gap is measured between *admitted* fixes, a spell of fixes too poor to use ends
-     * the window by itself - a stretch of 30-50m fixes and a stretch of no fixes at all are the
-     * same thing as far as this is concerned.
+     * Measured between *admitted* fixes, so a spell of 25-50m fixes ends the window once a good
+     * fix arrives after it, and holds the verdict until then. Fixes the geoengine rejects outright
+     * (over 50m) end it as they arrive instead - see [noteUnusableFix].
      */
     private val maximumFixGapMillis = 60_000L
 
@@ -132,8 +132,8 @@ class StationaryDetector {
      * consumers track the growth themselves.
      *
      * Only observed stillness counts. Time spent blind is unobservedMillis' business, and since a
-     * fix that fails the accuracy gate never reaches the deque at all, the two cannot both be
-     * counting the same seconds.
+     * fix that fails either accuracy gate never reaches the deque, the two cannot both be counting
+     * the same seconds.
      */
     var stationaryMillis: Long = 0L
         private set
@@ -166,14 +166,12 @@ class StationaryDetector {
         timestampMilliseconds: Long,
     ): Boolean {
         // Too poor a fix to say anything about twenty metres, so it isn't evidence either way and
-        // doesn't advance anything - not the deque, not the clock. Except that a spell of them as
-        // long as [maximumFixGapMillis] is a gap in the record, the same as no fixes at all, and
-        // has to end the window now rather than when a good fix eventually turns up. Otherwise
-        // the verdict froze: a train pulling out of a station loses GPS to 46-400m fixes, and
-        // ToMilngavie was held "stationary" for four minutes while it covered 2.7km.
-        if ((accuracyMetres != null) && (accuracyMetres > usableAccuracyMetres)) {
-            return noteUnusableFix(timestampMilliseconds)
-        }
+        // doesn't advance anything - not the deque, not the clock, and not the verdict. 25-50m is
+        // what someone waiting on an indoor concourse or underground platform gets for minutes on
+        // end, and ending the verdict on a minute of those would turn them into a moving
+        // passenger whose train ride was over. Fixes too poor for the geoengine at all are
+        // another matter - see noteUnusableFix.
+        if ((accuracyMetres != null) && (accuracyMetres > usableAccuracyMetres)) return isStationary
 
         val newest = samples.lastOrNull()
         if (newest != null) {
@@ -206,10 +204,13 @@ class StationaryDetector {
     }
 
     /**
-     * A fix too poor to use, whether this detector's own 25m gate turned it down or the
-     * geoengine's 50m one did before it got here (GeoEngine calls this for those). It isn't
-     * evidence, but a minute of them is a gap in the record, which ends the window. Returns
-     * [isStationary].
+     * A fix the geoengine rejected outright, as too poor to say which street the user is on (over
+     * MAXIMUM_USABLE_ACCURACY_METRES): GeoEngine calls this instead of [update] for those. It
+     * isn't evidence either, but once [maximumFixGapMillis] has passed since the last admitted
+     * fix it is a gap in the record, and ends the window there and then rather than when a good
+     * fix eventually turns up. Otherwise the verdict froze: a train pulling out of a station
+     * loses GPS to 200-400m fixes, and ToMilngavie was held "stationary" for four minutes while
+     * it covered 2.7km. Returns [isStationary].
      */
     fun noteUnusableFix(timestampMilliseconds: Long): Boolean {
         val newest = samples.lastOrNull()
