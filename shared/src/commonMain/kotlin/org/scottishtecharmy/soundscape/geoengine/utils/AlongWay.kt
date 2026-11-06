@@ -328,7 +328,8 @@ data class IntersectionAhead(
  * returns false.
  *
  * A node is only reported when it has at least two arms that pass [Way.isJunctionArm], or exactly
- * one whose name/ref doesn't continue the road being followed. Anything short of that - a plain
+ * one whose name/ref continues neither the road the walk started on nor the one it arrived on.
+ * Anything short of that - a plain
  * pass-through, a tile-edge JOINER, or a node that exists only for a sidewalk/crossing stub off
  * the road - is walked through transparently, the same way [forEachAlongWayFeatureAhead] already
  * treats a plain two-Way node.
@@ -461,9 +462,16 @@ private fun collectIntersectionsAhead(
     // outright) - so member count alone can never be the shortcut for "nothing to report here".
     val candidates = exit.members.filter { it !== way }
     val realArms = candidates.filter { it.isJunctionArm(exit, way, gridState, strings) }
+    // A single real arm is a pass-through if it continues either the road the walk started on or
+    // the one it is on now. The second matters once the walk has turned off at a junction to look
+    // further: a side road carrying on past the node where the main road's pavement crosses it is
+    // not a junction, yet it never continues the main road by name, so it was being reported as one
+    // - and, sitting on the pavement, it could be nearer the user than the junction it lies beyond.
+    val singleArmIsSameRoad = (realArms.size == 1) &&
+        (sameRoad(realArms.single(), roadName, roadRef) ||
+            sameRoad(realArms.single(), way.name, way.ref))
     when {
-        realArms.size >= 2 ||
-            (realArms.size == 1 && !sameRoad(realArms.single(), roadName, roadRef)) -> {
+        realArms.size >= 2 || (realArms.size == 1 && !singleArmIsSameRoad) -> {
             val ahead = IntersectionAhead(exit, travelledToExit, way, stepForwards)
             val alreadyFound = found[exit]
             if ((alreadyFound == null) || (ahead.distance < alreadyFound.distance)) {

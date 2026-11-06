@@ -202,6 +202,30 @@ class IntersectionsTestMvt {
     }
 
     /**
+     * Walking west on the south pavement of Craigdhu Road, Milngavie, towards Crossburn Avenue - the
+     * position is from a recording of that walk. 8m down Crossburn Avenue its centre-line crosses
+     * that pavement, and the junction walk, having turned down Crossburn Avenue to look further,
+     * reported that crossing as a junction: its one real arm is Crossburn Avenue carrying on, and it
+     * was compared against Craigdhu Road, the road the walk started on. Being on the pavement, it was
+     * nearer as the crow flies than the real junction, so it won, and all that was said was
+     * "Crossburn Avenue continues ahead".
+     */
+    @Test
+    fun pavementCrossingASideRoadDoesNotHideTheJunction() {
+        val (_, callout) = calloutWalkingIn(
+            LngLatAlt(-4.325606253510407, 55.939769503200154), 262.0
+        )
+        Assert.assertNotNull(callout)
+        Assert.assertEquals(
+            listOf(
+                "DirectionsNameGoesLeft(Crossburn Avenue)",
+                "DirectionsNameContinuesAhead(Craigdhu Road)"
+            ),
+            callout!!.positionedStrings.drop(1).map { it.text }
+        )
+    }
+
+    /**
      * The network distance to the intersection, which is what a spoken "intersection in N metres"
      * is built from. On a straight approach it should agree closely with the straight-line
      * distance; the point of measuring it along the graph is the cases where it doesn't.
