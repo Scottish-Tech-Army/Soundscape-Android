@@ -22,6 +22,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import kotlin.math.asin
 import kotlin.math.max
 import kotlin.math.min
@@ -30,6 +31,8 @@ import kotlin.math.sign
 import kotlin.math.sqrt
 
 private const val FRECHET_QUEUE_SIZE = 12
+
+private val logger = AppLog.tag("RoadFollower")
 
 // See MapMatchFilter.filter's follower-selection hysteresis - a challenger follower must beat the
 // currently-matched one's frechetAverage by at least this fraction (i.e. be at least 25% lower)
@@ -304,7 +307,7 @@ class RoadFollower(
         }
         for (count in hashMap) {
             if (count.value > 2) {
-                println("Too many intersections")
+                logger.d { "Too many intersections" }
                 // We can get here 'legally' if we add a way which loops back and joins the current
                 // way e.g. https://www.openstreetmap.org/way/945577262
 //                assert(false)

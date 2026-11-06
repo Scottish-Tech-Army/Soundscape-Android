@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.locationprovider
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
+import org.scottishtecharmy.soundscape.logging.AppLog
 import platform.CoreLocation.CLActivityTypeOther
 import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationManager
@@ -17,6 +18,8 @@ import platform.darwin.NSObject
 
 /** How old CLLocationManager's cached fix may be before it is ignored on start. */
 private const val MAX_CACHED_FIX_AGE_SECONDS = 60.0
+
+private val logger = AppLog.tag("LocationDelegate")
 
 /**
  * Converts CoreLocation's courseAccuracy onto Android's bearingAccuracyDegrees scale, which is
@@ -184,6 +187,6 @@ private class LocationDelegate(
 
     override fun locationManager(manager: CLLocationManager, didFailWithError: NSError) {
         // Location errors are logged but not fatal
-        println("Location error: ${didFailWithError.localizedDescription}")
+        logger.d { "Location error: ${didFailWithError.localizedDescription}" }
     }
 }

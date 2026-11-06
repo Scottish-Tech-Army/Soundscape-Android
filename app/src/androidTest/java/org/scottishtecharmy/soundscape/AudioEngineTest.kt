@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape
 
-import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert
 import org.junit.Test
@@ -8,8 +7,10 @@ import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 
 class AudioEngineTest {
+    private val logger = AppLog.tag(TAG)
 
     @Test
     fun beaconList() {
@@ -50,7 +51,7 @@ class AudioEngineTest {
             if (!noMovement)
                 orientation += delta
         }
-        Log.d(TAG, "Time $time, Orientation $orientation")
+        logger.d { "Time $time, Orientation $orientation" }
     }
 
     private fun initializeAudioEngine(): NativeAudioEngine {
@@ -94,7 +95,7 @@ class AudioEngineTest {
         // Play each of the beacon types, with the orientation of the listener rotating
         // a full 360 degrees
         for (beaconType in beaconTypes) {
-            Log.d(TAG, "Test beacon type $beaconType")
+            logger.d { "Test beacon type $beaconType" }
             audioEngine.setBeaconType(beaconType)
 
             val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)

@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.screens.home
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Process
-import android.util.Log
 import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -30,6 +29,7 @@ import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.intents.IntentEventBus
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.navigation.NavigationStateHolder
 import org.scottishtecharmy.soundscape.navigation.SharedNavHost
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
@@ -40,11 +40,14 @@ import org.scottishtecharmy.soundscape.screens.onboarding.language.getLanguageMi
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import kotlin.system.exitProcess
 
+private val navigatorLogger = AppLog.tag("NavigationRoot")
+private val homeScreenLogger = AppLog.tag("Home")
+
 class Navigator {
     var destination = MutableStateFlow(SharedRoutes.HOME)
 
     fun navigate(newDestination: String) {
-        Log.d("NavigationRoot", "Navigate to $newDestination")
+        navigatorLogger.d { "Navigate to $newDestination" }
         this.destination.value = newDestination
     }
 }
@@ -89,7 +92,7 @@ fun HomeScreen(
                     MainActivity.RECORD_TRAVEL_KEY,
                     MainActivity.RECORD_TRAVEL_DEFAULT
                 )
-                Log.d("Home", "value change: $key -> ${recordingEnabledFlow.value}")
+                homeScreenLogger.d { "value change: $key -> ${recordingEnabledFlow.value}" }
             }
         }
     }

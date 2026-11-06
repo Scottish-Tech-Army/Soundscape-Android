@@ -4,10 +4,10 @@ import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.os.Build
-import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
@@ -46,10 +46,9 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                 try {
                     val geocodeListener = object : Geocoder.GeocodeListener {
                         override fun onGeocode(addresses: MutableList<Address>) {
-                            Log.d(
-                                TAG,
+                            logger.d {
                                 "getFromLocationName results count " + addresses.size.toString()
-                            )
+                            }
                             if (addresses.isNotEmpty()) {
                                 continuation.resume(addresses)
                             } else {
@@ -58,7 +57,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                         }
 
                         override fun onError(errorMessage: String?) {
-                            Log.d(TAG, "AndroidGeocoder error: $errorMessage")
+                            logger.d { "AndroidGeocoder error: $errorMessage" }
                             continuation.resume(null)
                         }
                     }
@@ -74,7 +73,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                 } catch (e: Exception) {
                     AnalyticsProvider.getInstance()
                         .logEvent("androidGeocoderError", mapOf("exception" to e.toString()))
-                    Log.d(TAG, "AndroidGeocoder error: $e")
+                    logger.d { "AndroidGeocoder error: $e" }
                     continuation.resume(null)
                 }
             }?.map { feature -> feature.toLocationDescription(locationName) }
@@ -99,7 +98,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
             } catch (e: Exception) {
                 AnalyticsProvider.getInstance()
                     .logEvent("androidGeocoderError", mapOf("exception" to e.toString()))
-                Log.d(TAG, "AndroidGeocoder error: $e")
+                logger.d { "AndroidGeocoder error: $e" }
             }
         }
         return null
@@ -125,14 +124,13 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                         location.latitude, location.longitude, 5,
                         object : Geocoder.GeocodeListener {
                             override fun onGeocode(addresses: MutableList<Address>) {
-                                Log.d(
-                                    TAG,
+                                logger.d {
                                     "getAddressFromLngLat results count " + addresses.size.toString()
-                                )
+                                }
                                 val name = userGeometry.mapMatchedWay?.name
                                 if (name != null) {
                                     for (address in addresses) {
-                                        Log.d(TAG, "$address")
+                                        logger.d { "$address" }
                                         if (address.thoroughfare.fuzzyCompare(name, false) < 0.3) {
                                             continuation.resume(address)
                                             return
@@ -143,7 +141,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                             }
 
                             override fun onError(errorMessage: String?) {
-                                Log.d(TAG, "AndroidGeocoder error: $errorMessage")
+                                logger.d { "AndroidGeocoder error: $errorMessage" }
                                 continuation.resume(null)
                             }
                         }
@@ -151,7 +149,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                 } catch (e: Exception) {
                     AnalyticsProvider.getInstance()
                         .logEvent("androidGeocoderError", mapOf("exception" to e.toString()))
-                    Log.d(TAG, "AndroidGeocoder error: $e")
+                    logger.d { "AndroidGeocoder error: $e" }
                     continuation.resume(null)
                 }
             }?.toLocationDescription(null)
@@ -170,7 +168,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
             } catch (e: Exception) {
                 AnalyticsProvider.getInstance()
                     .logEvent("androidGeocoderError", mapOf("exception" to e.toString()))
-                Log.d(TAG, "AndroidGeocoder error: $e")
+                logger.d { "AndroidGeocoder error: $e" }
             }
             return null
         }
@@ -178,6 +176,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
 
     companion object {
         const val TAG = "AndroidGeocoder"
+        private val logger = AppLog.tag(TAG)
 
         // Not all Android platforms have Geocoder capability
         val enabled = Geocoder.isPresent()

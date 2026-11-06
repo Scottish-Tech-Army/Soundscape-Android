@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.tour_ahead
 import org.scottishtecharmy.soundscape.resources.tour_around_me
@@ -69,6 +70,8 @@ interface AudioTourHost {
 class AudioTour(
     private val host: AudioTourHost
 ) {
+    private val logger = AppLog.tag(TAG)
+
     private val _currentStep = MutableStateFlow(AudioTourStep.NOT_STARTED)
 
     private val _currentInstruction = MutableStateFlow<AudioTourInstruction?>(null)
@@ -91,13 +94,13 @@ class AudioTour(
     }
 
     fun start() {
-        println("$TAG: Starting audio tour")
+        logger.d { "Starting audio tour" }
         _currentStep.value = AudioTourStep.WELCOME
         showTourInstruction(runBlocking { getString(Res.string.tour_welcome) })
     }
 
     fun onInstructionAcknowledged() {
-        println("$TAG: Instruction acknowledged, current step: ${_currentStep.value}")
+        logger.d { "Instruction acknowledged, current step: ${_currentStep.value}" }
         _currentInstruction.value = null
 
         when (_currentStep.value) {
@@ -133,17 +136,17 @@ class AudioTour(
     }
 
     private fun showTourInstruction(text: String) {
-        println("$TAG: Showing instruction: $text")
+        logger.d { "Showing instruction: $text" }
         _currentInstruction.value = AudioTourInstruction(text)
     }
 
     fun stop() {
-        println("$TAG: Stopping audio tour")
+        logger.d { "Stopping audio tour" }
         advanceToStep(AudioTourStep.CANCEL)
     }
 
     fun onButtonPressed(button: TourButton) {
-        println("$TAG: Button pressed: $button, current step: ${_currentStep.value}")
+        logger.d { "Button pressed: $button, current step: ${_currentStep.value}" }
 
         when (_currentStep.value) {
             AudioTourStep.MY_LOCATION_WAIT -> {
@@ -186,56 +189,56 @@ class AudioTour(
     }
 
     fun onNavigatedToPlacesNearby() {
-        println("$TAG: Navigated to Places Nearby, current step: ${_currentStep.value}")
+        logger.d { "Navigated to Places Nearby, current step: ${_currentStep.value}" }
         if (_currentStep.value == AudioTourStep.WELCOME) {
             advanceToStep(AudioTourStep.SELECT_PLACE)
         }
     }
 
     fun onPlaceSelected() {
-        println("$TAG: Place selected, current step: ${_currentStep.value}")
+        logger.d { "Place selected, current step: ${_currentStep.value}" }
         if (_currentStep.value == AudioTourStep.SELECT_PLACE) {
             advanceToStep(AudioTourStep.CREATE_MARKER_STARTED)
         }
     }
 
     fun onMarkerCreateStarted() {
-        println("$TAG: Marker create started, current step: ${_currentStep.value}")
+        logger.d { "Marker create started, current step: ${_currentStep.value}" }
         if (_currentStep.value == AudioTourStep.CREATE_MARKER_STARTED) {
             advanceToStep(AudioTourStep.CREATE_MARKER_DONE)
         }
     }
 
     fun onMarkerCreateDone() {
-        println("$TAG: Marker create done, current step: ${_currentStep.value}")
+        logger.d { "Marker create done, current step: ${_currentStep.value}" }
         if (_currentStep.value == AudioTourStep.CREATE_MARKER_DONE) {
             advanceToStep(AudioTourStep.OPEN_MARKERS)
         }
     }
 
     fun onMarkers() {
-        println("$TAG: Markers, current step: ${_currentStep.value}")
+        logger.d { "Markers, current step: ${_currentStep.value}" }
         if (_currentStep.value == AudioTourStep.OPEN_MARKERS) {
             advanceToStep(AudioTourStep.START_BEACON)
         }
     }
 
     fun onBeaconStarted() {
-        println("$TAG: Beacon started, current step: ${_currentStep.value}")
+        logger.d { "Beacon started, current step: ${_currentStep.value}" }
         if (_currentStep.value == AudioTourStep.START_BEACON) {
             advanceToStep(AudioTourStep.BEACON_DEMO)
         }
     }
 
     fun onBeaconStopped() {
-        println("$TAG: Beacon stopped, current step: ${_currentStep.value}")
+        logger.d { "Beacon stopped, current step: ${_currentStep.value}" }
         if (_currentStep.value == AudioTourStep.STOP_BEACON) {
             advanceToStep(AudioTourStep.MY_LOCATION_PROMPT)
         }
     }
 
     private fun advanceToStep(step: AudioTourStep) {
-        println("$TAG: Advancing to step: $step")
+        logger.d { "Advancing to step: $step" }
         if (_currentStep.value == AudioTourStep.NOT_STARTED)
             return
 

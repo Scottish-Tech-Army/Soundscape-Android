@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
+import org.scottishtecharmy.soundscape.logging.AppLog
 import platform.CoreLocation.CLDeviceOrientationLandscapeLeft
 import platform.CoreLocation.CLDeviceOrientationLandscapeRight
 import platform.CoreLocation.CLDeviceOrientationPortrait
@@ -19,6 +20,8 @@ import platform.UIKit.UIDeviceOrientation
 import platform.UIKit.UIDeviceOrientationDidChangeNotification
 import platform.darwin.NSObject
 import platform.darwin.NSObjectProtocol
+
+private val logger = AppLog.tag("HeadingDelegate")
 
 @OptIn(ExperimentalForeignApi::class)
 class IosDirectionProvider : DirectionProvider() {
@@ -152,6 +155,6 @@ private class HeadingDelegate(
     }
 
     override fun locationManager(manager: CLLocationManager, didFailWithError: NSError) {
-        println("Heading error: ${didFailWithError.localizedDescription}")
+        logger.d { "Heading error: ${didFailWithError.localizedDescription}" }
     }
 }

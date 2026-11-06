@@ -4,6 +4,7 @@ import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.cValue
 import kotlinx.coroutines.CoroutineDispatcher
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
 import platform.AVFAudio.AVAudio3DAngularOrientation
 import platform.AVFAudio.AVAudioChannelLayout
@@ -50,6 +51,8 @@ private const val SESSION_ACTIVATION_RETRY_INTERVAL_MS = 200
  * value IosSoundscapeService passes.
  */
 private const val DEFAULT_PROXIMITY_NEAR = 15.0
+
+private val logger = AppLog.tag("IosAudioEngine")
 
 /**
  * iOS audio engine implementing the KMP AudioEngine interface.
@@ -198,7 +201,7 @@ class IosAudioEngine : AudioEngine {
             sessionActive = AVAudioSession.sharedInstance().setActive(true, error = null)
         }
         if (sessionActive && waitedMs > 0) {
-            println("IosAudioEngine: Audio session activated after ${waitedMs}ms")
+            logger.d { "Audio session activated after ${waitedMs}ms" }
         }
 
         // Set up lock screen remote commands (always registered, but only
@@ -219,10 +222,10 @@ class IosAudioEngine : AudioEngine {
         if (started) {
             engineStarted = true
         } else {
-            println(
-                "IosAudioEngine: Engine failed to start (sessionActive=$sessionActive); " +
+            logger.d {
+                "Engine failed to start (sessionActive=$sessionActive); " +
                     "will retry on the next callout"
-            )
+            }
         }
     }
 
@@ -245,10 +248,10 @@ class IosAudioEngine : AudioEngine {
         )
         val activated = session.setActive(true, error = null)
         if (!categorySet || !activated) {
-            println(
-                "IosAudioEngine: Audio session setup failed " +
+            logger.d {
+                "Audio session setup failed " +
                     "(categorySet=$categorySet, activated=$activated, mixWithOthers=$mixWithOthers)"
-            )
+            }
         }
 
         publishNowPlaying()
@@ -261,7 +264,7 @@ class IosAudioEngine : AudioEngine {
      */
     private fun reconfigureAudioSession() {
         configureAudioSession()
-        println("IosAudioEngine: Audio session reconfigured (mixWithOthers=$mixWithOthers)")
+        logger.d { "Audio session reconfigured (mixWithOthers=$mixWithOthers)" }
     }
 
     /**
@@ -276,7 +279,7 @@ class IosAudioEngine : AudioEngine {
         val layout = try {
             AVAudioChannelLayout(layoutTag = kAudioChannelLayoutTag_Stereo)
         } catch (e: Exception) {
-            println("IosAudioEngine: Failed to create stereo channel layout: ${e.message}")
+            logger.e(e) { "Failed to create stereo channel layout" }
             return null
         }
         return AVAudioFormat(standardFormatWithSampleRate = sampleRate, channelLayout = layout)
@@ -570,7 +573,7 @@ class IosAudioEngine : AudioEngine {
         val player = BeaconPlayer(type, location.latitude, location.longitude)
 
         if (!player.loadAssets()) {
-            println("IosAudioEngine: Failed to load beacon assets for $currentBeaconType")
+            logger.d { "Failed to load beacon assets for $currentBeaconType" }
             return handle
         }
 
@@ -610,7 +613,7 @@ class IosAudioEngine : AudioEngine {
             spatialised = false
         )
         if (!player.loadAssets()) {
-            println("IosAudioEngine: Failed to load proximity beacon assets")
+            logger.d { "Failed to load proximity beacon assets" }
             return null
         }
 
@@ -756,21 +759,21 @@ class IosAudioEngine : AudioEngine {
         val typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? Long ?: return
 
         if (typeValue == AVAudioSessionInterruptionTypeBegan.toLong()) {
-            println("IosAudioEngine: Audio session interruption began")
+            logger.d { "Audio session interruption began" }
             needsReactivation = true
         } else if (typeValue == AVAudioSessionInterruptionTypeEnded.toLong()) {
-            println("IosAudioEngine: Audio session interruption ended")
+            logger.d { "Audio session interruption ended" }
             // Reactivate audio session
             val session = AVAudioSession.sharedInstance()
             val activated = session.setActive(true, error = null)
             needsReactivation = !activated
-            println("IosAudioEngine: Audio session reactivation after interruption: $activated")
+            logger.d { "Audio session reactivation after interruption: $activated" }
 
             // Restart engine if needed
             if (!engine.isRunning()) {
                 val restarted = engine.startAndReturnError(null)
                 engineStarted = restarted
-                println("IosAudioEngine: Engine restart after interruption: $restarted")
+                logger.d { "Engine restart after interruption: $restarted" }
             }
 
             // Whoever interrupted us — Siri, a call, another app — took the lock screen
@@ -782,7 +785,7 @@ class IosAudioEngine : AudioEngine {
     }
 
     private fun handleMediaServicesReset() {
-        println("IosAudioEngine: Media services were reset — reconfiguring")
+        logger.d { "Media services were reset — reconfiguring" }
         engineStarted = false
         environmentNodes.clear()
         ensureEngineStarted()

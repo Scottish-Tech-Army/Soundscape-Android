@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.intents.IncomingIntent
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.IosDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.IosCompositeHeadTrackingProvider
@@ -84,6 +85,8 @@ import platform.Foundation.NSURL
 import platform.Foundation.NSUTF8StringEncoding
 import platform.Foundation.create
 import platform.Foundation.writeToFile
+
+private val logger = AppLog.tag("IosSoundscapeService")
 
 /**
  * iOS equivalent of the Android SoundscapeServiceConnection + SoundscapeService.
@@ -248,7 +251,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         scope.launch {
             val result = actions.execute(action)
             if (result !is ActionResult.Ok) {
-                println("IosSoundscapeService: $action -> $result")
+                logger.d { "$action -> $result" }
             }
         }
     }
@@ -423,7 +426,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             `object` = null,
             queue = null
         ) { _ ->
-            println("App in FOREGROUND")
+            logger.d { "App in FOREGROUND" }
             geoEngine.appInForeground = true
         }
         center.addObserverForName(
@@ -431,7 +434,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             `object` = null,
             queue = null
         ) { _ ->
-            println("App NOT in FOREGROUND")
+            logger.d { "App NOT in FOREGROUND" }
             geoEngine.appInForeground = false
         }
     }
@@ -602,7 +605,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
                 )
             } catch (e: Exception) {
-                println("IosSoundscapeService: Failed to save route: ${e.message}")
+                logger.e(e) { "Failed to save route" }
             }
         }
     }
@@ -620,7 +623,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                     )
                 } ?: emptyList()
             } catch (e: Exception) {
-                println("IosSoundscapeService: Failed to load route: ${e.message}")
+                logger.e(e) { "Failed to load route" }
                 emptyList()
             }
         }
@@ -633,7 +636,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 routeDao.removeRoute(routeId)
                 markersOrRoutesChanged()
             } catch (e: Exception) {
-                println("IosSoundscapeService: Failed to delete route: ${e.message}")
+                logger.e(e) { "Failed to delete route" }
             }
         }
     }
@@ -650,7 +653,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
                 )
             } catch (e: Exception) {
-                println("IosSoundscapeService: Failed to save marker: ${e.message}")
+                logger.e(e) { "Failed to save marker" }
             }
         }
     }
@@ -661,7 +664,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 routeDao.removeMarker(markerId)
                 markersOrRoutesChanged()
             } catch (e: Exception) {
-                println("IosSoundscapeService: Failed to delete marker: ${e.message}")
+                logger.e(e) { "Failed to delete marker" }
             }
         }
     }

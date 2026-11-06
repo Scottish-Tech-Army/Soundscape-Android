@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.error_message_deleting_route
 import org.scottishtecharmy.soundscape.resources.error_message_route_not_found
@@ -23,6 +24,8 @@ import org.scottishtecharmy.soundscape.resources.error_message_saving_route
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyViewModel
 import org.scottishtecharmy.soundscape.services.ServiceConnection
+
+private val logger = AppLog.tag("AddAndEditRouteViewModel")
 
 open class AddAndEditRouteViewModel(
     private val routeDao: RouteDao,
@@ -101,7 +104,7 @@ open class AddAndEditRouteViewModel(
             try {
                 initializeRoute(routeData)
             } catch (e: Exception) {
-                println("AddAndEditRouteViewModel: Error loading route: ${e.message}")
+                logger.e(e) { "Error loading route" }
                 _uiState.value = _uiState.value.copy(
                     errorMessage = runBlocking { getString(Res.string.error_message_route_not_found) },
                 )
@@ -142,7 +145,7 @@ open class AddAndEditRouteViewModel(
                     routeDao.getRouteWithMarkers(routeId) ?: throw Exception("Route not found")
                 initializeRoute(route)
             } catch (e: Exception) {
-                println("AddAndEditRouteViewModel: Error loading route: ${e.message}")
+                logger.e(e) { "Error loading route" }
                 _uiState.value = _uiState.value.copy(
                     errorMessage = runBlocking { getString(Res.string.error_message_route_not_found) },
                 )
@@ -169,7 +172,7 @@ open class AddAndEditRouteViewModel(
                     actionType = ActionType.DELETE,
                 )
             } catch (e: Exception) {
-                println("AddAndEditRouteViewModel: Error deleting route: ${e.message}")
+                logger.e(e) { "Error deleting route" }
                 _uiState.value = _uiState.value.copy(
                     errorMessage = runBlocking { getString(Res.string.error_message_deleting_route) },
                 )
@@ -219,7 +222,7 @@ open class AddAndEditRouteViewModel(
                     actionType = ActionType.UPDATE,
                 )
             } catch (e: Exception) {
-                println("AddAndEditRouteViewModel: Error saving route: ${e.message}")
+                logger.e(e) { "Error saving route" }
                 _uiState.value = _uiState.value.copy(
                     errorMessage = runBlocking { getString(Res.string.error_message_saving_route) },
                 )

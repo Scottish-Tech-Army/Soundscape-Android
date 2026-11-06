@@ -36,6 +36,7 @@ import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.components.SlowLoadingIndicator
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.location_detail_add_waypoint_existing_hint
@@ -52,6 +53,8 @@ import org.scottishtecharmy.soundscape.screens.home.placesnearby.placesNearbyFol
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.process
+
+private val logger = AppLog.tag("AddWaypointsList")
 
 class AddWaypointsListViewModel : ViewModel() {
     private val _listState = LazyListState()
@@ -100,7 +103,7 @@ fun AddWaypointsList(
         }
     }
     val enabledCount = routeMemberState.count { it.value }
-    println("${uiState.routeMembers.size} ${uiState.markers.size} ${uiState.toggledMembers.size} -> $enabledCount")
+    logger.d { "${uiState.routeMembers.size} ${uiState.markers.size} ${uiState.toggledMembers.size} -> $enabledCount" }
 
     // Add PlacesNearby entries
     val levelZeroFolders = listOf(

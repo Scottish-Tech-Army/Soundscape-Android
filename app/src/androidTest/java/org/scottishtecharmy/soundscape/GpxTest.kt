@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape
 
-import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.launch
@@ -10,6 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 
 // The GPX parsing code requires various pieces of Android infrastructure, so
@@ -18,6 +18,8 @@ import org.scottishtecharmy.soundscape.utils.parseGpxFile
 
 @RunWith(AndroidJUnit4::class)
 class GpxTest {
+    private val logger = AppLog.tag("gpxTest")
+
     private fun testParsing(
         filename: String,
         expectedValues: List<MarkerEntity>,
@@ -43,10 +45,9 @@ class GpxTest {
         Assert.assertEquals(expectedDescription, routeData.route.description)
         var index = 0
         for (point in routeData.markers) {
-            Log.d(
-                "gpxTest",
+            logger.d {
                 "Point: " + point.name + " " + point.latitude + " " + point.longitude
-            )
+            }
 
             // Lookup the point in the expected values map
             Assert.assertEquals(point, expectedValues[index])
@@ -59,7 +60,7 @@ class GpxTest {
 
         // The parsing has succeeded, write the result to the database
         val roomDb = MarkersAndRoutesDatabaseProvider.getInstance(context)
-        Log.d("gpxTest", "Successfully opened an in-memory realm")
+        logger.d { "Successfully opened an in-memory realm" }
 
         val routesDao = roomDb.routeDao()
 
@@ -67,9 +68,9 @@ class GpxTest {
         runBlocking {
             launch {
                 // Round trip the routeData to the database
-                Log.d("gpxTest", "Inserting route")
+                logger.d { "Inserting route" }
                 id = routesDao.insertRouteWithNewMarkers(routeData.route, routeData.markers)
-                Log.d("gpxTest", "Retrieving route")
+                logger.d { "Retrieving route" }
                 val route = routesDao.getRouteWithMarkers(id)
                 Assert.assertEquals(expectedValues.size, route?.markers?.size)
                 Assert.assertEquals(routeData, route)
@@ -93,21 +94,21 @@ class GpxTest {
                 // Query waypoints directly
                 var waypoints = routesDao.getAllMarkers()
                 val waypointCount = waypoints.size
-                Log.d("gpxTest", "Retrieved waypoints: " + waypoints.size)
+                logger.d { "Retrieved waypoints: " + waypoints.size }
 
                 // Get the route for use later
                 var routeData = routesDao.getRouteWithMarkers(id)
 
                 // Delete the route and check that it's gone
-                Log.d("gpxTest", "Delete route")
+                logger.d { "Delete route" }
                 routesDao.removeRoute(routeData!!.route.routeId)
 
                 waypoints = routesDao.getAllMarkers()
-                Log.d("gpxTest", "Post delete waypoints: " + waypoints.size)
+                logger.d { "Post delete waypoints: " + waypoints.size }
                 Assert.assertEquals(waypointCount, waypoints.size)
 
                 // We allow "double insertion"
-                Log.d("gpxTest", "Attempt inserting duplicate route")
+                logger.d { "Attempt inserting duplicate route" }
                 routesDao.insertRouteWithNewMarkers(
                     routeData.route,
                     routeData.markers

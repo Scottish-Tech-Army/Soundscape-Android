@@ -1,7 +1,10 @@
 package org.scottishtecharmy.soundscape.geoengine.headtracking
 
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeDegrees
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.platform.currentTimeMillis
+
+private val logger = AppLog.tag("HeadCal")
 
 /**
  * Turns a head tracker's relative yaw into a geographic heading by keeping an offset between them.
@@ -94,11 +97,11 @@ class HeadphoneCalibrationManager(
         val now = currentTimeMillis()
         if (now - lastLogMillis < 1_000L) return
         lastLogMillis = now
-        println(
-            "[HeadCal] reference=${fmt(lastDeviceHeadingDegrees)}°" +
+        logger.d {
+            "reference=${fmt(lastDeviceHeadingDegrees)}°" +
                 " course=${fmt(lastCourseDegrees)}°" +
                 " head=${fmt(headingDegrees)}°"
-        )
+        }
     }
 
     private fun fmt(v: Double?): String = v?.let { (it * 10).toInt() / 10.0 }?.toString() ?: "—"

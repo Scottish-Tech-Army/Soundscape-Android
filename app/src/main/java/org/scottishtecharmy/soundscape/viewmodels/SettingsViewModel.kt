@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
 import android.content.Context
-import android.util.Log
 import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,6 +21,7 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackerState
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -88,7 +88,7 @@ class SettingsViewModel(
                 selectedStorageIndex = currentIndex
             )
             soundscapeServiceConnection.serviceBoundState.collect {
-                Log.d(TAG, "serviceBoundState $it")
+                logger.d { "serviceBoundState $it" }
                 val audioEngine = soundscapeServiceConnection.soundscapeService?.audioEngine
                 if (it && audioEngine != null) {
                     serviceBoundJob = viewModelScope.launch {
@@ -147,7 +147,7 @@ class SettingsViewModel(
                                     engineTypes = audioEngineTypes.map { engine -> "${engine.label}:::${engine.name}" },
                                 )
                             } else {
-                                Log.d(TAG, "Engine has gone uninitialized")
+                                logger.d { "Engine has gone uninitialized" }
                             }
                         }
                     }
@@ -189,5 +189,6 @@ class SettingsViewModel(
 
     companion object {
         private const val TAG = "SettingsViewModel"
+        private val logger = AppLog.tag(TAG)
     }
 }

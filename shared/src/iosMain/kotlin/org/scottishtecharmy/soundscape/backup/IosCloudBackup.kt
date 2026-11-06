@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.backup
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.utils.buildMarkersAndRoutesArchive
 import org.scottishtecharmy.soundscape.utils.decodeArchiveEnvelope
 import org.scottishtecharmy.soundscape.utils.encodeArchiveEnvelope
@@ -12,6 +13,8 @@ import platform.Foundation.NSNotificationCenter
 import platform.Foundation.NSOperationQueue
 import platform.Foundation.NSUbiquitousKeyValueStore
 import platform.Foundation.NSUbiquitousKeyValueStoreDidChangeExternallyNotification
+
+private val logger = AppLog.tag("IosCloudBackup")
 
 /**
  * Keeps a copy of the user's markers and routes in iCloud, so that deleting the app, replacing a
@@ -85,7 +88,7 @@ class IosCloudBackup(
         val archive = try {
             encodeArchiveEnvelope(buildMarkersAndRoutesArchive(dao))
         } catch (t: Throwable) {
-            println("IosCloudBackup: could not build archive: $t")
+            logger.e(t) { "Could not build archive" }
             return
         }
 
@@ -93,13 +96,13 @@ class IosCloudBackup(
         if (size > MAX_VALUE_BYTES) {
             // iCloud's per-key ceiling is 1 MB and it rejects the write outright, so there is
             // nothing to do but say so. It takes thousands of markers to get here.
-            println("IosCloudBackup: archive is $size bytes, over the ${MAX_VALUE_BYTES} limit - not backed up")
+            logger.d { "Archive is $size bytes, over the ${MAX_VALUE_BYTES} limit - not backed up" }
             return
         }
 
         store.setString(archive, forKey = ARCHIVE_KEY)
         store.synchronize()
-        println("IosCloudBackup: backed up $size bytes")
+        logger.d { "Backed up $size bytes" }
     }
 
     /**
@@ -118,19 +121,19 @@ class IosCloudBackup(
 
         val files = decodeArchiveEnvelope(json)
         if (files == null) {
-            println("IosCloudBackup: backup could not be read")
+            logger.d { "Backup could not be read" }
             return 0
         }
 
         val restored = try {
             restoreMarkersAndRoutesArchive(files, dao)
         } catch (t: Throwable) {
-            println("IosCloudBackup: restore failed: $t")
+            logger.e(t) { "Restore failed" }
             return 0
         }
 
         if (restored > 0) {
-            println("IosCloudBackup: restored $restored documents from iCloud")
+            logger.d { "Restored $restored documents from iCloud" }
             onRestored(restored)
         }
         return restored

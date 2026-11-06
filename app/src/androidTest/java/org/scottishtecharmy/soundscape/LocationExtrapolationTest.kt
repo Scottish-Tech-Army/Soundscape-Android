@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape
 
-import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Test
 import org.scottishtecharmy.soundscape.audio.AudioEngine
@@ -10,6 +9,7 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry.Companion.VEHICLE_
 import org.scottishtecharmy.soundscape.geoengine.utils.extrapolatePositionForward
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 
 /**
  * Audible demonstration of [extrapolatePositionForward]: a fixed 3D audio source reads out a
@@ -23,6 +23,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
  * There's no audio capture in this harness, so run it and listen - it doesn't assert anything.
  */
 class LocationExtrapolationTest {
+    private val logger = AppLog.tag(TAG)
 
     private val longSentence =
         "You're passing Marchmont Street on your right, followed by a pedestrian crossing " +
@@ -57,11 +58,10 @@ class LocationExtrapolationTest {
         val lateralOffsetMetres = 5.0
         val ruler = sourceLocation.createCheapRuler()
 
-        Log.d(
-            TAG,
+        logger.d {
             "Moving past source at $speedMps m/s - extrapolation " +
                 if (speedMps > VEHICLE_SPEED_THRESHOLD_MPS) "active" else "inactive (walking speed)"
-        )
+        }
 
         // Point on the route directly abeam the source, so the source is passed rather than
         // walked/driven straight over.

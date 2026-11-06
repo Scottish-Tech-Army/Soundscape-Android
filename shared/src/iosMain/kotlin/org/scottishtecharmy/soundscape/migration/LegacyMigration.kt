@@ -8,6 +8,7 @@ import okio.Path.Companion.toPath
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.network.createIosVectorTileClient
 import platform.Foundation.NSBundle
 import platform.Foundation.NSHomeDirectory
@@ -36,6 +37,9 @@ private val failedPayloadPath
 private const val PAYLOAD_FILE_NAME = "legacy-migration-payload.json"
 private const val FAILED_PAYLOAD_FILE_NAME = "legacy-migration-payload.failed.json"
 
+private val logger = AppLog.tag("LegacyMigration")
+private val markerNamerLogger = AppLog.tag("LegacyMarkerNamer")
+
 /**
  * Records the markers and routes read out of the legacy database, for the migration screen to
  * import. Returns false if the file couldn't be written, in which case the caller should leave its
@@ -44,10 +48,10 @@ private const val FAILED_PAYLOAD_FILE_NAME = "legacy-migration-payload.failed.js
 fun stageLegacyMigrationPayload(payloadJson: String): Boolean =
     try {
         FileSystem.SYSTEM.write(payloadPath) { writeUtf8(payloadJson) }
-        println("LegacyMigration: staged ${payloadJson.length} chars at $payloadPath")
+        logger.d { "Staged ${payloadJson.length} chars at $payloadPath" }
         true
     } catch (t: Throwable) {
-        println("LegacyMigration: could not stage payload: $t")
+        logger.e(t) { "Could not stage payload" }
         false
     }
 
@@ -70,7 +74,7 @@ suspend fun runPendingLegacyMigration(
     val payloadJson = try {
         FileSystem.SYSTEM.read(payloadPath) { readUtf8() }
     } catch (t: Throwable) {
-        println("LegacyMigration: could not read staged payload: $t")
+        logger.e(t) { "Could not read staged payload" }
         return LegacyImportResult.Unreadable
     }
 
@@ -89,13 +93,13 @@ suspend fun runPendingLegacyMigration(
     val namer = TileLegacyMarkerNamer(
         gridState = gridState,
         strings = ComposeLocalizedStrings(),
-        log = { message -> println("LegacyMarkerNamer: $message") },
+        log = { message -> markerNamerLogger.d { message } },
     )
 
     val result = try {
         importLegacyPayload(payloadJson, dao, namer, onProgress)
     } catch (t: Throwable) {
-        println("LegacyMigration: import failed: $t")
+        logger.e(t) { "Import failed" }
         LegacyImportResult.Unreadable
     } finally {
         gridState.stop()
@@ -106,29 +110,29 @@ suspend fun runPendingLegacyMigration(
         is LegacyImportResult.Imported -> {
             // Written to the database, so the staged copy has done its job. The legacy Realm
             // itself is still there - we never delete anything belonging to the old app.
-            println("LegacyMigration: imported ${result.count} markers + routes")
+            logger.d { "Imported ${result.count} markers + routes" }
             try {
                 FileSystem.SYSTEM.delete(payloadPath)
             } catch (t: Throwable) {
-                println("LegacyMigration: imported, but could not delete staged payload: $t")
+                logger.e(t) { "Imported, but could not delete staged payload" }
             }
         }
 
         LegacyImportResult.NeedsMapData -> {
             // Nothing was written. Leave the payload staged so the screen can offer to try again,
             // now or on the next launch.
-            println("LegacyMigration: no map data available; import not started")
+            logger.d { "No map data available; import not started" }
         }
 
         LegacyImportResult.Unreadable -> {
             // Retrying is pointless, so park the payload under another name rather than leave the
             // migration screen greeting the user on every launch from here on. The file stays on
             // disk for support, and the legacy database it was built from is untouched.
-            println("LegacyMigration: staged payload could not be used")
+            logger.d { "Staged payload could not be used" }
             try {
                 FileSystem.SYSTEM.atomicMove(payloadPath, failedPayloadPath)
             } catch (t: Throwable) {
-                println("LegacyMigration: could not park unusable payload: $t")
+                logger.e(t) { "Could not park unusable payload" }
             }
         }
     }

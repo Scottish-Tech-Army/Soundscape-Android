@@ -8,9 +8,14 @@ struct iOSApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
-        // Must be first: installs Kotlin/Native's setUnhandledExceptionHook so
-        // any uncaught exception thrown during LegacyMigrator, FirebaseBootstrap,
-        // or IosSoundscapeService construction (or any coroutine they spawn) is
+        // Must be first of all: wires up Kermit so every log call made during
+        // the steps below - including the crash hook installed right after this -
+        // is captured by AppLog's console writer and SupportLogBuffer.
+        UnhandledExceptionLoggerKt.installAppLogging()
+
+        // Installs Kotlin/Native's setUnhandledExceptionHook so any uncaught
+        // exception thrown during LegacyMigrator, FirebaseBootstrap, or
+        // IosSoundscapeService construction (or any coroutine they spawn) is
         // written to stderr before the process dies, instead of vanishing.
         UnhandledExceptionLoggerKt.installUnhandledExceptionLogger()
 

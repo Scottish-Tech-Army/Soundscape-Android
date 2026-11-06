@@ -13,6 +13,9 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteMarkerCrossRef
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
+
+private val logger = AppLog.tag("LegacyMigration")
 
 /**
  * Imports legacy markers and routes (read by the platform layer from the
@@ -202,7 +205,7 @@ private suspend fun nameForMarker(
     } catch (t: Throwable) {
         // A lookup that breaks isn't a lookup that couldn't reach the map - treat it as this one
         // marker having no name rather than stopping the whole import on it.
-        println("LegacyMigration: naming ${marker.entityKey} failed: $t")
+        logger.e(t) { "naming ${marker.entityKey} failed" }
         LegacyMarkerNameResult.NotFound
     }
 }

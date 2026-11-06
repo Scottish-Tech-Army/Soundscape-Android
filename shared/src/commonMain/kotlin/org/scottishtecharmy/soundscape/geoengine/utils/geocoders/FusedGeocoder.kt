@@ -7,9 +7,12 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.data.LocationType
 import org.scottishtecharmy.soundscape.utils.containsNumber
+
+private val logger = AppLog.tag("FusedGeocoder")
 
 /**
  * The FusedGeocoder uses Photon and platform geocoders together and picks the best results. The
@@ -65,17 +68,17 @@ class FusedGeocoder(
         var streetResult: LocationDescription? = null
         if (platformResults != null) {
             for (platformResult in platformResults) {
-                println("Platform: $platformResult")
+                logger.d { "Platform: $platformResult" }
                 if (platformResult.locationType == LocationType.StreetNumber) {
                     streetResult = platformResult
                     if (locationName.containsNumber()) {
                         streetResult.name =
                             streetResult.description?.substringBefore(", ") ?: streetResult.name
-                        println("Platform contains number: ${streetResult.name}")
+                        logger.d { "Platform contains number: ${streetResult.name}" }
                     }
 
                     results.add(streetResult)
-                    println("Use platform result")
+                    logger.d { "Use platform result" }
                     break
                 }
             }
@@ -83,16 +86,16 @@ class FusedGeocoder(
         val photonResults = if (geocoderList.size > 1) geocoderResults[1] else geocoderResults[0]
         if (photonResults != null) {
             for (photonResult in photonResults) {
-                println("Photon: $photonResult")
+                logger.d { "Photon: $photonResult" }
                 if (streetResult != null) {
-                    println("streetResult was set, see if we can improve the name")
+                    logger.d { "streetResult was set, see if we can improve the name" }
                     if (photonResult.locationType == LocationType.StreetNumber) {
                         if (gridState.ruler.distance(
                                 streetResult.location,
                                 photonResult.location
                             ) < 100.0
                         ) {
-                            println("Using photon result")
+                            logger.d { "Using photon result" }
                             // photonResult.name is only populated once something has called
                             // LocationDescription.process() on it (PhotonGeocoder itself doesn't -
                             // it defers that to whichever processor its caller wired up). Guard

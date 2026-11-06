@@ -2,6 +2,8 @@ package org.scottishtecharmy.soundscape
 
 import kotlin.experimental.ExperimentalNativeApi
 import kotlin.native.setUnhandledExceptionHook
+import org.scottishtecharmy.soundscape.logging.AppLog
+import org.scottishtecharmy.soundscape.platform.isDebugBuild
 
 private val install: Boolean by lazy {
     @OptIn(ExperimentalNativeApi::class)
@@ -28,4 +30,14 @@ private val install: Boolean by lazy {
  */
 fun installUnhandledExceptionLogger() {
     install
+}
+
+/**
+ * Public so Swift can invoke it from `iOSApp.init()`, before [installUnhandledExceptionLogger]
+ * and everything after it, so the crash hook itself and all of LegacyMigrator/FirebaseBootstrap/
+ * IosSoundscapeService construction log through Kermit/[AppLog] from the first moment of
+ * process startup.
+ */
+fun installAppLogging() {
+    AppLog.initialize(isDebugBuild)
 }

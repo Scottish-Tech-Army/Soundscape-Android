@@ -16,7 +16,10 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.speakCalloutCommon
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
+
+private val logger = AppLog.tag("CalloutController")
 
 /**
  * Drives the four "hear my surroundings" callout buttons and the user-initiated
@@ -59,7 +62,7 @@ class CalloutController(
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long {
         if (callout == null) return 0L
         if (!service.requestAudioFocus()) {
-            println("CalloutController: speakCallout: Could not get audio focus.")
+            logger.d { "speakCallout: Could not get audio focus." }
             return 0L
         }
         return speakCalloutCommon(
@@ -109,7 +112,7 @@ class CalloutController(
                 // plain root Job, not a SupervisorJob, so an uncaught
                 // exception would cancel it and silently disable every future
                 // callout button press for the rest of the service's lifetime.
-                println("CalloutController: $source callout failed: $e")
+                logger.e(e) { "$source callout failed" }
             } finally {
                 // Only clear if the flow is still us — if a newer callout
                 // started while we were cancelled, its coroutine already set
@@ -151,7 +154,7 @@ class CalloutController(
                 audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
                 awaitHandle(lastHandle)
             } else {
-                println("CalloutController: myLocation: Could not get audio focus.")
+                logger.d { "myLocation: Could not get audio focus." }
             }
         }
     }
@@ -217,7 +220,7 @@ class CalloutController(
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                println("CalloutController: $what failed: $e")
+                logger.e(e) { "$what failed" }
             }
         }
     }

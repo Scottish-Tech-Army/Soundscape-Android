@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.audio
 
 import kotlinx.cinterop.ExperimentalForeignApi
+import org.scottishtecharmy.soundscape.logging.AppLog
 import platform.AVFAudio.AVAudioChannelLayout
 import platform.AVFAudio.AVAudioEngine
 import platform.AVFAudio.AVAudioEnvironmentNode
@@ -13,6 +14,8 @@ import platform.AVFAudio.AVAudioSessionCategoryPlayback
 import platform.AVFAudio.setActive
 import platform.CoreAudioTypes.kAudioChannelLayoutTag_Stereo
 import kotlin.test.Test
+
+private val logger = AppLog.tag("AudioGraphTest")
 
 /**
  * Tests for the AVAudioEngine graph connections.
@@ -32,7 +35,7 @@ class AudioGraphTest {
             )
             session.setActive(true, error = null)
         } catch (e: Exception) {
-            println("SKIP: Audio session not available: ${e.message}")
+            logger.e(e) { "SKIP: Audio session not available" }
             return null
         }
 
@@ -44,12 +47,12 @@ class AudioGraphTest {
         try {
             engine.startAndReturnError(null)
         } catch (e: Exception) {
-            println("SKIP: Engine failed to start: ${e.message}")
+            logger.e(e) { "SKIP: Engine failed to start" }
             return null
         }
 
         if (!engine.isRunning()) {
-            println("SKIP: Engine not running")
+            logger.d { "SKIP: Engine not running" }
             return null
         }
         return engine
@@ -71,7 +74,7 @@ class AudioGraphTest {
         engine.attachNode(player)
         engine.connect(player, to = engine.mainMixerNode, format = null)
         player.play()
-        println("PASS: player → mainMixer, playing=${player.isPlaying()}")
+        logger.d { "PASS: player → mainMixer, playing=${player.isPlaying()}" }
         player.stop()
         engine.stop()
     }
@@ -84,20 +87,20 @@ class AudioGraphTest {
         engine.attachNode(player)
         engine.attachNode(env)
 
-        val mono = monoFloat32(44100.0) ?: run { println("SKIP: can't create mono format"); return }
+        val mono = monoFloat32(44100.0) ?: run { logger.d { "SKIP: can't create mono format" }; return }
         val stereo = createStereoFormat(44100.0)
-            ?: run { println("SKIP: can't create stereo format"); return }
+            ?: run { logger.d { "SKIP: can't create stereo format" }; return }
 
-        println("  mono: ${mono.channelCount}ch ${mono.sampleRate}Hz")
-        println("  stereo: ${stereo.channelCount}ch ${stereo.sampleRate}Hz")
+        logger.d { "  mono: ${mono.channelCount}ch ${mono.sampleRate}Hz" }
+        logger.d { "  stereo: ${stereo.channelCount}ch ${stereo.sampleRate}Hz" }
 
         try {
             engine.connect(player, to = env, format = mono)
             engine.connect(env, to = engine.mainMixerNode, format = stereo)
             player.play()
-            println("PASS: player →(mono44100)→ env →(stereo44100)→ mixer, playing=${player.isPlaying()}")
+            logger.d { "PASS: player →(mono44100)→ env →(stereo44100)→ mixer, playing=${player.isPlaying()}" }
         } catch (e: Exception) {
-            println("FAIL: ${e.message}")
+            logger.e(e) { "FAIL" }
         }
         player.stop()
         engine.stop()
@@ -111,16 +114,16 @@ class AudioGraphTest {
         engine.attachNode(player)
         engine.attachNode(env)
 
-        val mono = monoFloat32(22050.0) ?: run { println("SKIP"); return }
-        val stereo = createStereoFormat(22050.0) ?: run { println("SKIP"); return }
+        val mono = monoFloat32(22050.0) ?: run { logger.d { "SKIP" }; return }
+        val stereo = createStereoFormat(22050.0) ?: run { logger.d { "SKIP" }; return }
 
         try {
             engine.connect(player, to = env, format = mono)
             engine.connect(env, to = engine.mainMixerNode, format = stereo)
             player.play()
-            println("PASS: player →(mono22050)→ env →(stereo22050)→ mixer, playing=${player.isPlaying()}")
+            logger.d { "PASS: player →(mono22050)→ env →(stereo22050)→ mixer, playing=${player.isPlaying()}" }
         } catch (e: Exception) {
-            println("FAIL at 22050Hz: ${e.message}")
+            logger.e(e) { "FAIL at 22050Hz" }
         }
         player.stop()
         engine.stop()
@@ -142,12 +145,12 @@ class AudioGraphTest {
             engine.connect(player1, to = env, format = mono44)
             engine.connect(env, to = engine.mainMixerNode, format = stereo44)
             player1.play()
-            println("  44100Hz: playing=${player1.isPlaying()}")
+            logger.d { "  44100Hz: playing=${player1.isPlaying()}" }
             player1.stop()
             engine.disconnectNodeOutput(player1)
             engine.detachNode(player1)
         } catch (e: Exception) {
-            println("FAIL at 44100Hz: ${e.message}")
+            logger.e(e) { "FAIL at 44100Hz" }
             engine.stop()
             return
         }
@@ -163,10 +166,10 @@ class AudioGraphTest {
             engine.connect(player2, to = env, format = mono22)
             engine.connect(env, to = engine.mainMixerNode, format = stereo22)
             player2.play()
-            println("  22050Hz: playing=${player2.isPlaying()}")
-            println("PASS: switched sample rate on same env node")
+            logger.d { "  22050Hz: playing=${player2.isPlaying()}" }
+            logger.d { "PASS: switched sample rate on same env node" }
         } catch (e: Exception) {
-            println("FAIL switching to 22050Hz: ${e.message}")
+            logger.e(e) { "FAIL switching to 22050Hz" }
         }
         player2.stop()
         engine.stop()
@@ -195,9 +198,9 @@ class AudioGraphTest {
 
             player1.play()
             player2.play()
-            println("PASS: two env nodes, player1=${player1.isPlaying()}, player2=${player2.isPlaying()}")
+            logger.d { "PASS: two env nodes, player1=${player1.isPlaying()}, player2=${player2.isPlaying()}" }
         } catch (e: Exception) {
-            println("FAIL two env nodes: ${e.message}")
+            logger.e(e) { "FAIL two env nodes" }
         }
 
         player1.stop()
@@ -226,9 +229,9 @@ class AudioGraphTest {
         try {
             player.play()
             player.scheduleBuffer(buffer, completionHandler = null)
-            println("PASS: scheduleBuffer with matching format")
+            logger.d { "PASS: scheduleBuffer with matching format" }
         } catch (e: Exception) {
-            println("FAIL scheduleBuffer: ${e.message}")
+            logger.e(e) { "FAIL scheduleBuffer" }
         }
 
         player.stop()

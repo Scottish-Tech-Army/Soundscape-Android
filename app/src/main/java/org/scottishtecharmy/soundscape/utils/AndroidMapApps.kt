@@ -5,12 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.util.Log
 import androidx.core.net.toUri
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.MapApp
 
 private const val TAG = "AndroidMapApps"
+private val logger = AppLog.tag(TAG)
 
 private fun geoUri(desc: LocationDescription): Uri {
     val lat = formatCoordinate5(desc.location.latitude)
@@ -45,7 +46,7 @@ fun openInMapApp(context: Context, app: MapApp, desc: LocationDescription) {
         context.startActivity(intent)
     } catch (e: ActivityNotFoundException) {
         // Uninstalled between listing and tapping - fall back to letting the system pick.
-        Log.w(TAG, "${app.id} can't open geo: links, using the chooser", e)
+        logger.w(e) { "${app.id} can't open geo: links, using the chooser" }
         intent.setPackage(null)
         context.startActivity(Intent.createChooser(intent, null).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
     }

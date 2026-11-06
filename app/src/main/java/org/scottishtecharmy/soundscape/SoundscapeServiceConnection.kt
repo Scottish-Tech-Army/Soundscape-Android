@@ -4,7 +4,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,6 +12,7 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.ServiceConnection
@@ -56,7 +56,7 @@ class SoundscapeServiceConnection : ServiceConnection {
     }
 
     fun setStreetPreviewMode(on: Boolean, location: LngLatAlt? = null) {
-        Log.d(TAG, "setStreetPreviewMode $on")
+        logger.d { "setStreetPreviewMode $on" }
         soundscapeService?.setStreetPreviewMode(on, location)
     }
 
@@ -93,12 +93,12 @@ class SoundscapeServiceConnection : ServiceConnection {
 
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             // we've bound to ExampleLocationForegroundService, cast the IBinder and get ExampleLocationForegroundService instance.
-            Log.d(TAG, "onServiceConnected")
+            logger.d { "onServiceConnected" }
 
             val binder = service as SoundscapeBinder
             val boundService = binder.getSoundscapeService()
             if (boundService == null) {
-                Log.w(TAG, "onServiceConnected but underlying service already destroyed; ignoring")
+                logger.w { "onServiceConnected but underlying service already destroyed; ignoring" }
                 return
             }
             soundscapeService = boundService
@@ -107,14 +107,14 @@ class SoundscapeServiceConnection : ServiceConnection {
 
         override fun onServiceDisconnected(arg0: ComponentName) {
             // This is called when the connection with the service has been disconnected. Clean up.
-            Log.d(TAG, "onServiceDisconnected")
+            logger.d { "onServiceDisconnected" }
             _serviceBoundState.value = false
             soundscapeService = null
         }
     }
 
     fun tryToBindToServiceIfRunning(context: Context) {
-        Log.d(TAG, "tryToBindToServiceIfRunning " + serviceBoundState.value)
+        logger.d { "tryToBindToServiceIfRunning " + serviceBoundState.value }
 
         if (!serviceBoundState.value) {
             Intent(context, SoundscapeService::class.java).also { intent ->
@@ -124,7 +124,7 @@ class SoundscapeServiceConnection : ServiceConnection {
     }
 
     fun stopService(forSleep: Boolean = false) {
-        Log.d(TAG, "stopService forSleep=$forSleep")
+        logger.d { "stopService forSleep=$forSleep" }
         soundscapeService?.stopForegroundService(forSleep)
     }
 
@@ -150,5 +150,6 @@ class SoundscapeServiceConnection : ServiceConnection {
 
     companion object {
         private const val TAG = "SoundscapeServiceConnection"
+        private val logger = AppLog.tag(TAG)
     }
 }

@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.utils
 
 import android.content.Context
-import android.util.Log
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -16,6 +15,7 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.network.DownloadResult
 import org.scottishtecharmy.soundscape.network.FileDownloader
 import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
@@ -24,6 +24,8 @@ import org.scottishtecharmy.soundscape.network.createAndroidManifestClient
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader.Companion.TAG
 import java.io.File
 import java.lang.Thread.sleep
+
+private val logger = AppLog.tag(TAG)
 
 suspend fun downloadAndParseManifest(applicationContext: Context): FeatureCollection? {
 
@@ -42,12 +44,12 @@ suspend fun downloadAndParseManifest(applicationContext: Context): FeatureCollec
                 adapter.fromJson(json) ?: throw Exception("Manifest parse failed")
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error downloading manifest $retry", e)
+            logger.e(e) { "Error downloading manifest $retry" }
         }
         sleep(500)
     }
     // All retries failed
-    Log.e(TAG, "Error downloading manifest after all retries")
+    logger.e { "Error downloading manifest after all retries" }
     return null
 }
 
@@ -98,12 +100,12 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
         metadataJson: String? = null,
     ) {
         if (downloadJob?.isActive == true) {
-            Log.w(TAG, "Download is already in progress.")
+            logger.w { "Download is already in progress." }
             return
         }
 
         downloadJob = CoroutineScope(Dispatchers.IO).launch {
-            Log.i(TAG, "Starting download for URL: $fileUrl")
+            logger.i { "Starting download for URL: $fileUrl" }
 
             val tempFile = File("$outputFilePath.downloading")
             val finalFile = File(outputFilePath)
@@ -115,7 +117,7 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
                 val maxRetries = 10
                 var retries = maxRetries
                 while (retries > 0) {
-                    Log.d(TAG, "Download attempt $retries")
+                    logger.d { "Download attempt $retries" }
                     _downloadState.value = DownloadState.Caching
                     val result = fileDownloader.download(
                         url = fileUrl,
@@ -132,10 +134,9 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
                             // manifest, the file isn't ready yet - back off and retry exactly
                             // as we do for a 503, rather than publishing a truncated extract.
                             if (extractSize != null && tempFile.length() < extractSize.toLong()) {
-                                Log.d(
-                                    TAG,
-                                    "Extract not fully cached yet (${tempFile.length()} of ${extractSize.toLong()} bytes), retrying",
-                                )
+                                logger.d {
+                                    "Extract not fully cached yet (${tempFile.length()} of ${extractSize.toLong()} bytes), retrying"
+                                }
                                 waitBeforeRetry(this, firstAttempt = retries == maxRetries, extractSize = extractSize)
                                 --retries
                                 continue
@@ -162,12 +163,12 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
                             // attempt - via the rename(2) syscall, since tempFile and finalFile
                             // are always in the same directory.
                             if (tempFile.renameTo(finalFile)) {
-                                Log.i(TAG, "Download successful. File saved to: ${finalFile.path}")
+                                logger.i { "Download successful. File saved to: ${finalFile.path}" }
                                 if (metadataJson != null) {
                                     try {
                                         File("$outputFilePath.geojson").writeText(metadataJson)
                                     } catch (e: Exception) {
-                                        Log.e(TAG, "Failed to write extract metadata", e)
+                                        logger.e(e) { "Failed to write extract metadata" }
                                     }
                                 }
                                 // Clean up old versions before publishing Success - an observer
@@ -207,13 +208,13 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
                 // changes, so that nothing watching the state sees it still there.
                 tempFile.delete()
                 _downloadState.value = DownloadState.Canceled
-                Log.i(TAG, "Download was canceled $e")
+                logger.i { "Download was canceled $e" }
             } catch (e: Exception) {
                 // Handle other errors (network, file I/O, etc.)
                 tempFile.delete()
                 _downloadState.value =
                     DownloadState.Error(e.message ?: "An unknown error occurred")
-                Log.e(TAG, "Download failed", e)
+                logger.e(e) { "Download failed" }
             }
         }
     }
@@ -243,9 +244,9 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
         } ?: return
         for (sibling in siblings) {
             if (sibling.delete()) {
-                Log.i(TAG, "Deleted superseded extract version: ${sibling.path}")
+                logger.i { "Deleted superseded extract version: ${sibling.path}" }
             } else {
-                Log.w(TAG, "Failed to delete superseded extract version: ${sibling.path}")
+                logger.w { "Failed to delete superseded extract version: ${sibling.path}" }
             }
         }
     }
@@ -261,7 +262,7 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
         if (firstAttempt && extractSize != null) {
             cachingDuration = (extractSize / 10000000.0).toInt()
         }
-        Log.d(TAG, "Wait for $cachingDuration seconds before retrying.")
+        logger.d { "Wait for $cachingDuration seconds before retrying." }
         _downloadState.value = DownloadState.Caching
         while (cachingDuration > 0) {
             scope.ensureActive()

@@ -6,10 +6,13 @@ import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+
+private val logger = AppLog.tag("CalloutHistoryTest")
 
 class CalloutHistoryTest {
 
@@ -154,12 +157,12 @@ class CalloutHistoryTest {
                 ruler = ruler
             )
             if (filter.shouldUpdate(userGeometry, destination)) {
-                println("Updating on $distanceAway")
+                logger.d { "Updating on $distanceAway" }
                 calloutCount += 1
                 filter.update(userGeometry)
             }
         }
-        println("Callout count: $calloutCount")
+        logger.d { "Callout count: $calloutCount" }
         assertEquals(41, calloutCount)
     }
 }

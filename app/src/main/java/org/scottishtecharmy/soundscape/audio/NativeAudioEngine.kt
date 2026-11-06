@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
-import android.util.Log
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
@@ -26,6 +25,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_RATE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_KEY
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.first_launch_callouts_example_3
 import org.scottishtecharmy.soundscape.services.SoundscapeService
@@ -140,7 +140,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
             destroy(engineHandle)
             engineHandle = 0
 
-            Log.d(TAG, "Destroy TTS engine from NativeAudioEngine destroy")
+            logger.d { "Destroy TTS engine from NativeAudioEngine destroy" }
             ttsEngine.destroy()
         }
     }
@@ -169,10 +169,9 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                         )
 
                         if (ttsEngine.getCurrentLabelAndName() != engineLabelAndName) {
-                            Log.d(
-                                TAG,
+                            logger.d {
                                 "Destroy TTS engine due to SPEECH_ENGINE_KEY change: $engineLabelAndName vs. ${ttsEngine.getCurrentLabelAndName()}"
-                            )
+                            }
                             ttsEngine.destroy()
 
                             // Reset the current chosen voice as we've switched engine
@@ -182,9 +181,9 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                                     VOICE_TYPE_DEFAULT
                                 )
                             }
-                            Log.d(TAG, "Create new TtsEngine for $engineLabelAndName")
+                            logger.d { "Create new TtsEngine for $engineLabelAndName" }
                             ttsEngine = TtsEngine(this, engineLabelAndName)
-                            Log.d(TAG, "Initialize ttsEngine")
+                            logger.d { "Initialize ttsEngine" }
                             ttsEngine.initialize(context)
                             update = true
                         }
@@ -193,13 +192,13 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                         update = (preferences.getString(VOICE_TYPE_KEY, VOICE_TYPE_DEFAULT)
                                 != ttsEngine.getCurrentVoice())
                         if (update)
-                            Log.d(TAG, "VOICE_TYPE_KEY change")
+                            logger.d { "VOICE_TYPE_KEY change" }
                     }
                     if (!update && (key == SPEECH_RATE_KEY)) {
                         update = (preferences.getFloat(SPEECH_RATE_KEY, SPEECH_RATE_DEFAULT)
                                 != ttsEngine.getCurrentRate())
                         if (update)
-                            Log.d(TAG, "SPEECH_RATE_KEY change")
+                            logger.d { "SPEECH_RATE_KEY change" }
                     }
                     if (update) {
                         if (ttsEngine.checkTextToSpeechInitialization(false)) {
@@ -226,7 +225,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                 return
             }
             engineHandle = this.create(context.assets)
-            Log.d(TAG, "Create TTS engine from NativeAudioEngine initialize")
+            logger.d { "Create TTS engine from NativeAudioEngine initialize" }
             ttsEngine = TtsEngine(
                 this,
                 sharedPreferences?.getString(
@@ -234,7 +233,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                     SPEECH_ENGINE_DEFAULT
                 )
             )
-            Log.d(TAG, "Call initialize on ttsEngine")
+            logger.d { "Call initialize on ttsEngine" }
             ttsEngine.initialize(context)
 
             sharedPreferences?.let {
@@ -243,7 +242,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
             if (engineHandle != 0L) {
                 setBeaconEventsListener(engineHandle) // Setup the listener
             } else {
-                Log.e(TAG, "Failed to create native audio engine instance.")
+                logger.e { "Failed to create native audio engine instance." }
             }
         }
     }
@@ -264,7 +263,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
     override fun createBeacon(location: LngLatAlt, headingOnly: Boolean): Long {
         synchronized(engineMutex) {
             if (engineHandle != 0L) {
-                Log.d(TAG, "Call createNativeBeacon")
+                logger.d { "Call createNativeBeacon" }
                 return createNativeBeacon(
                     engineHandle,
                     AudioType.LOCALIZED.type,
@@ -282,7 +281,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
     override fun destroyBeacon(beaconHandle: Long) {
         synchronized(engineMutex) {
             if (beaconHandle != 0L) {
-                Log.d(TAG, "Call destroyNativeBeacon")
+                logger.d { "Call destroyNativeBeacon" }
                 destroyNativeBeacon(beaconHandle)
             }
         }
@@ -334,7 +333,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
         synchronized(engineMutex) {
             if (engineHandle != 0L) {
 
-                Log.d(TAG, "Call createNativeEarcon: $asset")
+                logger.d { "Call createNativeEarcon: $asset" }
                 return createNativeEarcon(
                     engineHandle,
                     asset,
@@ -409,7 +408,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
         ) ?: BEACON_TYPE_DEFAULT
         if (newBeaconType != beaconType) {
             setBeaconType(newBeaconType)
-            Log.d(TAG, "Beacon changed from $beaconType to $newBeaconType on $this")
+            logger.d { "Beacon changed from $beaconType to $newBeaconType on $this" }
             beaconType = newBeaconType
             return true
         }
@@ -484,6 +483,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
 
     companion object {
         private const val TAG = "NativeAudioEngine"
+        private val logger = AppLog.tag(TAG)
 
         init {
             System.loadLibrary("soundscape-audio")

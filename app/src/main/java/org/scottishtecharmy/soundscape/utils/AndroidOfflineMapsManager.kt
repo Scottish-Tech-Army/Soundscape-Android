@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.utils
 
 import android.content.Context
 import android.os.Environment
-import android.util.Log
 import androidx.preference.PreferenceManager
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +23,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
 import java.io.File
@@ -99,7 +99,7 @@ class AndroidOfflineMapsManager(
                 fc.features.forEach { feature -> annotateExtractSize(feature) }
                 _nearbyExtractsState.value = NearbyExtractsState.Loaded(fc)
             } else {
-                Log.w(TAG, "Manifest fetch failed")
+                logger.w { "Manifest fetch failed" }
                 _nearbyExtractsState.value = NearbyExtractsState.Error
             }
             refreshDownloaded()
@@ -162,7 +162,7 @@ class AndroidOfflineMapsManager(
                 .adapter(Feature::class.java)
                 .toJson(current)
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to encode extract metadata", e)
+            logger.e(e) { "Failed to encode extract metadata" }
             null
         }
         val extractSize = (current.properties?.get("extract-size") as? Number)?.toDouble()
@@ -206,5 +206,6 @@ class AndroidOfflineMapsManager(
 
     companion object {
         private const val TAG = "AndroidOfflineMaps"
+        private val logger = AppLog.tag(TAG)
     }
 }

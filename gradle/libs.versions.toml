@@ -3,6 +3,7 @@ agp = "9.4.0"
 commonmark = "0.29.0"
 intellijMarkdown = "0.7.18"
 json = "20260719"
+kermit = "2.1.0"
 kotlin = "2.4.21"
 maplibreCompose = "0.20.0"
 oboe = "1.10.0" # Vendored, not resolved by Gradle: this key is the source of truth for
@@ -114,6 +115,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 html-mermaid-dokka-plugin = { module = "com.glureau:html-mermaid-dokka-plugin", version.ref = "htmlMermaidDokkaPlugin" }
 json = { module = "org.json:json", version.ref = "json" }
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jtsCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }

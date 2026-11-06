@@ -9,9 +9,9 @@ import android.os.ParcelFileDescriptor
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
-import android.util.Log
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.io.IOException
@@ -64,7 +64,7 @@ class TtsEngine(
     }
 
     fun destroy() {
-        Log.d(TAG, "Destroy $engineLabelAndName TTS engine")
+        logger.d { "Destroy $engineLabelAndName TTS engine" }
 
         stop()
         textToSpeech.setOnUtteranceProgressListener(null)
@@ -83,7 +83,7 @@ class TtsEngine(
 
         audioEngine.ttsRunningStateChanged(false)
 
-        Log.d(TAG, "Open TTS engine: $engineLabelAndName")
+        logger.d { "Open TTS engine: $engineLabelAndName" }
         textToSpeech = if (engineLabelAndName.isNullOrEmpty())
             TextToSpeech(context, this)
         else {
@@ -97,7 +97,7 @@ class TtsEngine(
             analytics.crashSetCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
             TextToSpeech(context, this, engineLabelAndName.substringAfter(":::"))
         }
-        Log.d(TAG, "initialize returning")
+        logger.d { "initialize returning" }
     }
 
     fun checkTextToSpeechInitialization(block: Boolean): Boolean {
@@ -107,7 +107,7 @@ class TtsEngine(
                 return false
             Thread.sleep(100)
             timeout -= 100
-            Log.d(TAG, "$timeout")
+            logger.d { "$timeout" }
         }
 
         return true
@@ -117,11 +117,11 @@ class TtsEngine(
         synchronized(ttsSockets) {
             val sockets = ttsSockets[utteranceId]
             if (sockets != null) {
-                Log.d(TAG, "Closing socket pair $utteranceId")
+                logger.d { "Closing socket pair $utteranceId" }
                 sockets[0].closeWithError("Finished")
                 sockets[1].close()
             } else {
-                Log.d(TAG, "No socket pair $utteranceId")
+                logger.d { "No socket pair $utteranceId" }
             }
             ttsSockets.remove(utteranceId)
         }
@@ -145,10 +145,9 @@ class TtsEngine(
                 if (voice == null) continue
                 if (voice.name == voiceType) {
                     if (textToSpeechVoiceType != voice.name) {
-                        Log.d(
-                            TAG,
+                        logger.d {
                             "Voice changed from $textToSpeechVoiceType to ${voice.name} on $this"
-                        )
+                        }
                         textToSpeech.voice = voice
                         textToSpeechVoiceType = voice.name
                         change = true
@@ -164,7 +163,7 @@ class TtsEngine(
         )
         if (rate != textToSpeechRate) {
             textToSpeech.setSpeechRate(rate)
-            Log.d(TAG, "Speech rate changed from $textToSpeechRate to $rate on $this")
+            logger.d { "Speech rate changed from $textToSpeechRate to $rate on $this" }
             textToSpeechRate = rate
             change = change.or(true)
         }
@@ -172,10 +171,10 @@ class TtsEngine(
     }
 
     fun setSpeechLanguage(language: String): Boolean {
-        Log.d(TAG, "setSpeechLanguage to \"$language\"")
+        logger.d { "setSpeechLanguage to \"$language\"" }
         val result = textToSpeech.setLanguage(Locale.forLanguageTag(language))
         if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-            Log.e(TAG, "The Language not supported!")
+            logger.e { "The Language not supported!" }
             return false
         }
         return true
@@ -187,14 +186,13 @@ class TtsEngine(
         val engines = textToSpeech.engines.filter { it.name != defaultEngine }
 
         if (engines.isEmpty()) {
-            Log.w(TAG, "No alternative TTS engines available for fallback")
+            logger.w { "No alternative TTS engines available for fallback" }
             return
         }
 
-        Log.d(
-            TAG,
+        logger.d {
             "Default engine '$defaultEngine' doesn't support '$languageCode', searching ${engines.size} alternative engine(s)"
-        )
+        }
         tryNextEngine(ctx, languageCode, engines, 0)
     }
 
@@ -205,12 +203,12 @@ class TtsEngine(
         index: Int
     ) {
         if (index >= engines.size) {
-            Log.w(TAG, "No installed TTS engine supports language '$languageCode'")
+            logger.w { "No installed TTS engine supports language '$languageCode'" }
             return
         }
 
         val engineInfo = engines[index]
-        Log.d(TAG, "Trying engine '${engineInfo.label}' (${engineInfo.name}) for '$languageCode'")
+        logger.d { "Trying engine '${engineInfo.label}' (${engineInfo.name}) for '$languageCode'" }
 
         @Suppress("DEPRECATION")
         val locale = Locale(languageCode)
@@ -225,22 +223,21 @@ class TtsEngine(
 
                 if (result >= TextToSpeech.LANG_AVAILABLE) {
                     val labelAndName = "${engineInfo.label}:::${engineInfo.name}"
-                    Log.d(TAG, "Fallback engine found: $labelAndName supports '$languageCode'")
+                    logger.d { "Fallback engine found: $labelAndName supports '$languageCode'" }
                     tempTts?.shutdown()
                     sharedPreferences?.edit()?.apply {
                         putString(MainActivity.SPEECH_ENGINE_KEY, labelAndName)
                         apply()
                     }
                 } else {
-                    Log.d(
-                        TAG,
+                    logger.d {
                         "Engine '${engineInfo.label}' does not support '$languageCode', trying next"
-                    )
+                    }
                     tempTts?.shutdown()
                     tryNextEngine(context, languageCode, engines, index + 1)
                 }
             } else {
-                Log.d(TAG, "Engine '${engineInfo.label}' failed to initialize, trying next")
+                logger.d { "Engine '${engineInfo.label}' failed to initialize, trying next" }
                 tempTts?.shutdown()
                 tryNextEngine(context, languageCode, engines, index + 1)
             }
@@ -250,7 +247,7 @@ class TtsEngine(
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
 
-            Log.d(TAG, "Android version " + Build.VERSION.SDK_INT)
+            logger.d { "Android version " + Build.VERSION.SDK_INT }
 
             // Get the current locale and initialize the text to speech engine with it
             val languageCode = getCurrentLocale().toLanguageTag()
@@ -269,7 +266,7 @@ class TtsEngine(
 
                 override fun onDone(utteranceId: String) {
                     // TODO: This never seems to be called, why?
-                    Log.e(TAG, "OnDone $utteranceId")
+                    logger.e { "OnDone $utteranceId" }
                 }
 
                 @Deprecated(
@@ -277,12 +274,12 @@ class TtsEngine(
                     replaceWith = ReplaceWith("")
                 )
                 override fun onError(utteranceId: String) {
-                    Log.e(TAG, "OnError deprecated $utteranceId")
+                    logger.e { "OnError deprecated $utteranceId" }
                     clearOutUtteranceSockets(utteranceId)
                 }
 
                 override fun onStart(utteranceId: String) {
-                    Log.d(TAG, "OnStart $utteranceId")
+                    logger.d { "OnStart $utteranceId" }
                     currentUtteranceId?.let {
                         clearOutUtteranceSockets(it)
                     }
@@ -292,7 +289,7 @@ class TtsEngine(
                 override fun onError(utteranceId: String?, errorCode: Int) {
                     // This path is triggered when shutting down the AudioEngine with multiple
                     // speech queued.
-                    Log.d(TAG, "OnError $utteranceId")
+                    logger.d { "OnError $utteranceId" }
                     utteranceId?.let {
                         clearOutUtteranceSockets(it)
                     }
@@ -304,10 +301,9 @@ class TtsEngine(
                     audioFormat: Int,
                     channelCount: Int
                 ) {
-                    Log.d(
-                        TAG,
+                    logger.d {
                         "OnBeginSynthesis $utteranceId: $sampleRateInHz, $audioFormat, $channelCount"
-                    )
+                    }
 
                     utteranceId?.let { id ->
                         val format = when (audioFormat) {
@@ -317,7 +313,7 @@ class TtsEngine(
                             else -> 1
                         }
 
-                        Log.d(TAG, "Configure TTS audio for $utteranceId")
+                        logger.d { "Configure TTS audio for $utteranceId" }
                         audioEngine.textToSpeechAudioConfigCallback(
                             id,
                             sampleRateInHz,
@@ -328,14 +324,13 @@ class TtsEngine(
                 }
             })
             // Tell the flow listeners that the TextToSpeech is ready
-            Log.d(TAG, "textToSpeechInitialized")
+            logger.d { "textToSpeechInitialized" }
             textToSpeechInitialized = true
             audioEngine.ttsRunningStateChanged(true)
         } else {
-            Log.w(
-                TAG,
+            logger.w {
                 "onInit failed with status $status, $engineLabelAndName, $textToSpeechVoiceType"
-            )
+            }
             val params = mapOf(
                 "onInit status" to status,
                 "engine" to engineLabelAndName,
@@ -351,7 +346,7 @@ class TtsEngine(
                 return textToSpeech.engines
         } catch (e: Exception) {
             AnalyticsProvider.getInstance().logEvent("getAvailableEngines_error", null)
-            Log.e(TAG, "getAvailableEngines: $e")
+            logger.e { "getAvailableEngines: $e" }
         }
         return emptyList()
     }
@@ -364,7 +359,7 @@ class TtsEngine(
                 return textToSpeech.availableLanguages ?: emptySet()
         } catch (e: Exception) {
             AnalyticsProvider.getInstance().logEvent("getAvailableSpeechLanguages_error", null)
-            Log.e(TAG, "getAvailableSpeechVoices: $e")
+            logger.e { "getAvailableSpeechVoices: $e" }
         }
         return emptySet()
     }
@@ -377,7 +372,7 @@ class TtsEngine(
                 return textToSpeech.voices ?: emptySet()
         } catch (e: Exception) {
             AnalyticsProvider.getInstance().logEvent("getAvailableSpeechVoices_error", null)
-            Log.e(TAG, "getAvailableSpeechVoices: $e")
+            logger.e { "getAvailableSpeechVoices: $e" }
         }
         return emptySet()
     }
@@ -396,7 +391,7 @@ class TtsEngine(
         // and so that their playback ends now even if the queued stop() is held up.
         synchronized(ttsSockets) {
             for (ttsSocketPair in ttsSockets) {
-                Log.d("TTS", "Close socket pair for " + ttsSocketPair.value[1].fd.toString())
+                logger.d { "Close socket pair for " + ttsSocketPair.value[1].fd.toString() }
                 ttsSocketPair.value[0].closeWithError("Finished")
                 ttsSocketPair.value[1].close()
             }
@@ -445,7 +440,7 @@ class TtsEngine(
                         try {
                             if (ttsSockets.containsKey(utteranceId)) ttsSocket.dup() else null
                         } catch (e: IOException) {
-                            Log.e(TAG, "Couldn't duplicate socket for $utteranceId: $e")
+                            logger.e { "Couldn't duplicate socket for $utteranceId: $e" }
                             null
                         }
                     }
@@ -462,5 +457,6 @@ class TtsEngine(
 
     companion object {
         private const val TAG = "TTS"
+        private val logger = AppLog.tag(TAG)
     }
 }
