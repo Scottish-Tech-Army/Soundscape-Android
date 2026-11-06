@@ -416,23 +416,25 @@ class Way : MvtFeature() {
         if ((length > 20.0) || endsAtTileEdge())
             return false
 
-        // Look at the other end and check if it connects to a sidewalk associated with the mainWay
-        getOtherIntersection(intersection)?.let { otherIntersection ->
-            for (way in otherIntersection.members) {
-                if (way == this) continue
-                if (!way.isSidewalkOrCrossing()) {
-                    // This does connect to something that isn't a sidewalk, so it's not a simple
-                    // connector i.e. it may connect to a sidewalk, but it goes further.
-                    return false
-                } else if (way.properties?.get("pavement") == null) {
-                    confectNamesForRoad(way, gridState, strings)
-                }
-                // And then return true if it's the pavement for this Way
-                val pavement = way.properties?.get("pavement")
-                return ((pavement != null) && (pavement == mainWay.name))
+        // Look at the other end and check if it connects to a sidewalk associated with the mainWay.
+        // Every member there has to be looked at, not just the first: a service road whose first
+        // few metres end where the road's own pavement crosses it has [pavement, service road,
+        // pavement] at that node, and stopping at the pavement made the road a "connector".
+        val otherIntersection = getOtherIntersection(intersection) ?: return false
+        var reachesOwnPavement = false
+        for (way in otherIntersection.members) {
+            if (way === this) continue
+            if (!way.isSidewalkOrCrossing()) {
+                // This does connect to something that isn't a sidewalk, so it's not a simple
+                // connector i.e. it may connect to a sidewalk, but it goes further.
+                return false
+            } else if (way.properties?.get("pavement") == null) {
+                confectNamesForRoad(way, gridState, strings)
             }
+            val pavement = way.properties?.get("pavement")
+            if ((pavement != null) && (pavement == mainWay.name)) reachesOwnPavement = true
         }
-        return false
+        return reachesOwnPavement
     }
 
     fun followWays(
