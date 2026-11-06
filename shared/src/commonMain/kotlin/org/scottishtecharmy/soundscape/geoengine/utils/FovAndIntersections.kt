@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 
@@ -126,25 +127,30 @@ fun checkWhetherIntersectionIsOfInterest(
         return -1
 
     var needsFurtherChecking = 0
-    val setOfNames = mutableListOf<String>()
+    val setOfNames = mutableSetOf<String>()
     for (way in intersection.members) {
-        val roadName = way.name
-        val isMatch = testNearestRoad.name == roadName
-
-        if (isMatch) {
-            // Ignore the road we're on
-        } else if (roadName == null) {
+        // Pavements and crossings are never called out as roads leaving a junction (see
+        // addIntersectionCalloutFromDescription), so they mustn't make one interesting either -
+        // their confected "Pavement next to ..." name would otherwise count as a road's. Nor
+        // does a tile-edge joiner, which is only an artefact of the tiling.
+        if (way.isSidewalkOrCrossing() || (way.wayType == WayType.JOINER)) continue
+        // A road is named by its name or, failing that, its route number: an A road or motorway
+        // with only a ref is as much a road worth naming as one with a name, and is called out
+        // by its ref.
+        val roadKey = way.name ?: way.ref
+        if (roadKey == null) {
             // Give no points to ways named from their type
             // TODO: give negative points if it's also a dead end i.e. don't call out dead-end
             //  service roads? The current 'priority' isn't good enough, need a better way of
             //  classifying.
-        } else {
-            if (setOfNames.contains(roadName)) {
-                // Don't increment the priority if the name is here for the second time
-            } else {
-                needsFurtherChecking++
-                setOfNames.add(roadName)
-            }
+            continue
+        }
+        // Ignore the road we're on - recognised by name or by ref, as AlongWay's sameRoad does -
+        // and count each other road once however many of its pieces meet here.
+        val isOurRoad = ((way.name != null) && (way.name == testNearestRoad.name)) ||
+            ((way.ref != null) && (way.ref == testNearestRoad.ref))
+        if (!isOurRoad && setOfNames.add(roadKey)) {
+            needsFurtherChecking++
         }
     }
     return needsFurtherChecking

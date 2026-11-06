@@ -306,6 +306,23 @@ internal fun sameRoad(candidate: Way, name: String?, ref: String?): Boolean {
 }
 
 /**
+ * Whether two Ways are pieces of the same OSM way. WayGenerator splits a way at every node another
+ * way joins, and each piece keeps the way's osmId.
+ *
+ * A tile-edge JOINER carries no osmId of its own, but it is the zero-length link between the two
+ * halves of a way cut by a tile boundary (see GridState.joinTileEdgeIntersections), so it counts
+ * as the same way as whatever it joins. Joiners are paired by location rather than by way, so in
+ * the rare case that a different way ends within a metre of the boundary on the other side, that
+ * is treated as the same road too. Without this, the far side of every tile boundary
+ * would compare a road against a nameless joiner, and a side road or unnamed road carrying on
+ * across the boundary would be reported there as a junction.
+ */
+private fun sameOsmWay(a: Way, b: Way): Boolean {
+    if ((a.wayType == WayType.JOINER) || (b.wayType == WayType.JOINER)) return true
+    return (a.osmId != 0L) && (a.osmId == b.osmId)
+}
+
+/**
  * An Intersection found by a junction-lookahead walk, with how far along the network it is from
  * the querying cursor.
  */
@@ -467,9 +484,13 @@ private fun collectIntersectionsAhead(
     // further: a side road carrying on past the node where the main road's pavement crosses it is
     // not a junction, yet it never continues the main road by name, so it was being reported as one
     // - and, sitting on the pavement, it could be nearer the user than the junction it lies beyond.
+    // An unnamed road has no name or ref to compare, so it is also the same road if it is another
+    // piece of the same OSM way - which is what an unnamed service road cut in two by a pavement
+    // crossing it is.
     val singleArmIsSameRoad = (realArms.size == 1) &&
         (sameRoad(realArms.single(), roadName, roadRef) ||
-            sameRoad(realArms.single(), way.name, way.ref))
+            sameRoad(realArms.single(), way.name, way.ref) ||
+            sameOsmWay(realArms.single(), way))
     when {
         realArms.size >= 2 || (realArms.size == 1 && !singleArmIsSameRoad) -> {
             val ahead = IntersectionAhead(exit, travelledToExit, way, stepForwards)
