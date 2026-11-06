@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,7 +7,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.screens.onboarding.AudioOnboardingViewModel
+
+private val logger = AppLog.tag("AudioBeacon")
 
 // AudioBeacons, AudioBeaconItem, and getBeaconResourceId are now in shared module
 
@@ -38,7 +40,7 @@ fun AudioBeaconsScreen(
         },
         onBeaconSelected = { beacon ->
             viewModel.setAudioBeaconType(beacon)
-            Log.d("AudioBeacon", "Audio beacon category changed to $beacon")
+            logger.d { "Audio beacon category changed to $beacon" }
         },
     )
 }

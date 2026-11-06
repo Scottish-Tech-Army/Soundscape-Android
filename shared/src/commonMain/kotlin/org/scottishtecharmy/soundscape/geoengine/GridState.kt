@@ -46,6 +46,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.network.VectorTileClient
 import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import kotlin.concurrent.Volatile
@@ -98,6 +99,7 @@ open class GridState(
     val gridSize: Int = GRID_SIZE,
     passedInTreeContext: CloseableCoroutineDispatcher? = null
 ) {
+    private val logger = AppLog.tag(TAG)
 
     // HTTP connection to tile server; set by the platform layer before start().
     var tileClient: VectorTileClient? = null
@@ -1127,7 +1129,7 @@ open class GridState(
         val classifyTiming = measureTime {
             classifyPois(featureCollections, selection)
         }
-        println("Classify took $classifyTiming")
+        logger.d { "Classify took $classifyTiming" }
 
         val rtreeTiming = measureTime {
             // Create rtrees for each feature collection
@@ -1135,7 +1137,7 @@ open class GridState(
                 localTrees[index] = FeatureTree(fc)
             }
         }
-        println("R-Trees took $rtreeTiming")
+        logger.d { "R-Trees took $rtreeTiming" }
 
         // Needs both the ROADS_AND_PATHS and TRANSIT rtrees built above, but nothing else from
         // this function, so it can run before the tile-edge stitching below.
@@ -1150,16 +1152,16 @@ open class GridState(
         // meaningful against how many crossings there were to find.
         val waterwayCrossings = featureCollections[TreeId.ROADS_AND_PATHS.id].features
             .sumOf { (it as? Way)?.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)?.size ?: 0 }
-        println(
+        logger.d {
             "Crossings took $crossingTiming " +
                 "($railwayCrossings railway crossings, $waterwayCrossings waterway crossings, " +
                 "$waterPolygonCrossings water polygon crossings)"
-        )
+        }
 
         val nearestWayTiming = measureTime {
             attachNearestWays(featureCollections, localTrees)
         }
-        println("Nearest ways took $nearestWayTiming")
+        logger.d { "Nearest ways took $nearestWayTiming" }
 
         var transitStopsAttached = 0
         var railwayStopsAttached = 0
@@ -1172,11 +1174,11 @@ open class GridState(
             stationsAttached = attachStationsAsRailwayStops(featureCollections, localTrees)
             junctionsAttached = attachHighwayJunctionsToWays(featureCollections, localTrees)
         }
-        println(
+        logger.d {
             "Transit stops took $transitStopTiming " +
                 "($transitStopsAttached road stops, $railwayStopsAttached railway stops, " +
                 "$stationsAttached stations as stops, $junctionsAttached highway junctions)"
-        )
+        }
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
             joinTileEdgeIntersections(grid, newGridIntersections)
@@ -1228,7 +1230,7 @@ open class GridState(
     ): Boolean {
         // Check if we're still within the central area of our grid
         if (!pointIsWithinBoundingBox(location, centralBoundingBox)) {
-            //println("Update central grid area")
+            //logger.d { "Update central grid area" }
             // The current location has moved from within the central area, so get the
             // new grid and the new central area.
             val tileGrid = getTileGrid(location, zoomLevel, gridSize)
@@ -1277,7 +1279,7 @@ open class GridState(
                                     FeatureTree(collection.value)
                             generation++
                         }
-                        println("Time to process grid: $duration")
+                        logger.d { "Time to process grid: $duration" }
                     }
                 }
                 return true

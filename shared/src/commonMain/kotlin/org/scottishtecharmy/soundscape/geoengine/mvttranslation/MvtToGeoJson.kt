@@ -22,7 +22,10 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import org.scottishtecharmy.soundscape.logging.AppLog
 import vector_tile.Tile
+
+private val logger = AppLog.tag("MvtToGeoJson")
 
 
 /**
@@ -813,7 +816,7 @@ fun vectorTileToGeoJson(
         if (!layerIds.contains(layer.name)) {
             continue
         }
-        //println("Process layer: " + layer.name)
+        //logger.d { "Process layer: " + layer.name }
 
         // Of some layers only the farms are wanted - see farmClass - and the rest is turned away
         // on its tags before anything else is read
@@ -985,7 +988,7 @@ fun vectorTileToGeoJson(
                                     )
                                 )
                             } else {
-                                println("Interior ring without any exterior ring!")
+                                logger.d { "Interior ring without any exterior ring!" }
                             }
                         }
 
@@ -1049,7 +1052,7 @@ fun vectorTileToGeoJson(
                     if (layer.name == "transportation") {
                         for (line in lines) {
                             if (id == 0L) {
-                                println("Feature ID is zero for $name")
+                                logger.d { "Feature ID is zero for $name" }
                             }
                             if ((featureClass == "transit") || (featureClass == "rail")) {
                                 // Every railway goes into the network trains are matched against,

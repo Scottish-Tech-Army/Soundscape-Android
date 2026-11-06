@@ -59,6 +59,7 @@ import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.isAccuracyUsable
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.network.PhotonSearch
 import org.scottishtecharmy.soundscape.network.VectorTileClient
@@ -118,6 +119,8 @@ fun getNameTranslationKeys(): List<String> {
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 class GeoEngine {
+    private val logger = AppLog.tag(TAG)
+
     private val coroutineScope = CoroutineScope(Job())
 
     private var locationMonitoringJob: Job? = null
@@ -363,7 +366,7 @@ class GeoEngine {
 
         preferencesListener = PreferencesListener { key ->
             if (key == PreferenceKeys.RECORD_TRAVEL) {
-                println("GeoEngine: RECORD_TRAVEL changed")
+                logger.d { "RECORD_TRAVEL changed" }
                 recordTravel = preferencesProvider.getBoolean(
                     PreferenceKeys.RECORD_TRAVEL,
                     PreferenceDefaults.RECORD_TRAVEL
@@ -463,7 +466,7 @@ class GeoEngine {
                 runBlocking {
                     withContext(gridState.treeContext) {
                         gridState.markerTree = FeatureTree(featureCollection)
-                        println("GeoEngine: Marker tree size ${featureCollection.features.size}")
+                        logger.d { "Marker tree size ${featureCollection.features.size}" }
                     }
                 }
             }
@@ -504,7 +507,7 @@ class GeoEngine {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringLocation() {
-        println("GeoEngine: startTileGridService")
+        logger.d { "startTileGridService" }
         locationMonitoringJob?.cancel()
         locationMonitoringJob = coroutineScope.launch {
             locationProvider.filteredLocationFlow.collect { newLocation ->
@@ -644,7 +647,7 @@ class GeoEngine {
                                     )
                                 }
                                 val matchedWay = mapMatchFilter.matchedWay
-                                println("MapMatch: $mapMatchTime to get ${matchedWay?.getName(strings = localizedStrings)}")
+                                logger.d { "MapMatch: $mapMatchTime to get ${matchedWay?.getName(strings = localizedStrings)}" }
 
                                 railMapMatchFilter.filter(
                                     LngLatAlt(

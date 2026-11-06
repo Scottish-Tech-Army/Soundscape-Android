@@ -247,8 +247,6 @@ android {
     }
     lint {
         warning += "MissingTranslation"
-        // Timber is only a transitive dependency; it's never planted or used in this app, so
-        // don't flag Log usage until/unless that changes.
         // Dependency versions below are deliberately pinned (see comments in libs.versions.toml
         // and build.gradle.kts) or intentionally left alone - don't flag them as outdated.
         // mipmap-anydpi-v26 keeps its version qualifier deliberately: renaming it to the
@@ -256,7 +254,6 @@ android {
         // check stop recognizing the XML/PNG pair as an intentional API-gated fallback and
         // flag both as a conflict instead - a net regression.
         disable += setOf(
-            "LogNotTimber",
             "NewerVersionAvailable",
             "GradleDependency",
             "AndroidGradlePluginVersion",

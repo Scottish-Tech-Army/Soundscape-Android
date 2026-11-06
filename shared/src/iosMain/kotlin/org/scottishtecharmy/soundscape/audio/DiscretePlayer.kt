@@ -1,10 +1,13 @@
 package org.scottishtecharmy.soundscape.audio
 
 import kotlinx.cinterop.ExperimentalForeignApi
+import org.scottishtecharmy.soundscape.logging.AppLog
 import platform.AVFAudio.AVAudioFile
 import platform.AVFAudio.AVAudioPCMBuffer
 import platform.Foundation.NSBundle
 import platform.Foundation.NSURL
+
+private val logger = AppLog.tag("DiscretePlayer")
 
 /**
  * One-shot audio player for TTS utterances and earcon sound effects.
@@ -26,7 +29,7 @@ class DiscretePlayer(
     fun loadEarcon(assetName: String): Boolean {
         val path = NSBundle.mainBundle.pathForResource(assetName, "wav", "Sounds")
             ?: run {
-                println("DiscretePlayer: WAV not found: $assetName")
+                logger.d { "WAV not found: $assetName" }
                 return false
             }
 
@@ -48,7 +51,7 @@ class DiscretePlayer(
             earconBuffer = buffer
             return true
         } catch (e: Exception) {
-            println("DiscretePlayer: Failed to load audio file: $assetName (${e.message})")
+            logger.e(e) { "Failed to load audio file: $assetName" }
             return false
         }
     }

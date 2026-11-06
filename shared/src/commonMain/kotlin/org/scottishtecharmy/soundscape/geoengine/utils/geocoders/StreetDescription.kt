@@ -20,8 +20,11 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.logging.AppLog
 import kotlin.math.round
 import kotlin.math.sign
+
+private val logger = AppLog.tag("StreetDescription")
 
 /**
  * @param travelMode Describing a location to someone travelling by vehicle rather than on foot.
@@ -252,16 +255,16 @@ class StreetDescription(
             if (isDominantParity(even[0], odd[0]) && isDominantParity(odd[1], even[1])) {
                 leftMode = HouseNumberMode.EVEN
                 rightMode = HouseNumberMode.ODD
-                println("Odd on right side, even on left")
+                logger.d { "Odd on right side, even on left" }
                 return
             } else if (isDominantParity(odd[0], even[0]) && isDominantParity(even[1], odd[1])) {
                 leftMode = HouseNumberMode.ODD
                 rightMode = HouseNumberMode.EVEN
-                println("Odd on left side, even on right")
+                logger.d { "Odd on left side, even on right" }
                 return
             }
         }
-        println("Mixed house numbering")
+        logger.d { "Mixed house numbering" }
         leftMode = HouseNumberMode.MIXED
         rightMode = HouseNumberMode.MIXED
     }
@@ -934,13 +937,13 @@ class StreetDescription(
     }
 
     fun describeStreet() {
-        println("Describe $name")
+        logger.d { "Describe $name" }
         for (point in sortedDescriptivePoints) {
             val text = point.value.getText(null)
             when (point.value.side) {
-                null, Side.INLINE -> println("\t\t\t\t\t${point.key.toInt()}m (${text.text})")
-                Side.RIGHT -> println("\t\t\t\t\t${point.key.toInt()}m ${text.text}")
-                Side.LEFT -> println("${text.text}\t${point.key.toInt()}m")
+                null, Side.INLINE -> logger.d { "\t\t\t\t\t${point.key.toInt()}m (${text.text})" }
+                Side.RIGHT -> logger.d { "\t\t\t\t\t${point.key.toInt()}m ${text.text}" }
+                Side.LEFT -> logger.d { "${text.text}\t${point.key.toInt()}m" }
             }
         }
     }

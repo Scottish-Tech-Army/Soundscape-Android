@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import vector_tile.Tile
@@ -25,6 +26,8 @@ open class ProtomapsGridState(
     gridSize: Int = GRID_SIZE,
     passedInTreeContext: CloseableCoroutineDispatcher? = null
 ) : GridState(zoomLevel, gridSize, passedInTreeContext) {
+
+    private val logger = AppLog.tag("ProtomapsGridState")
 
     // We need an array of pmtile readers, one for each tile in the grid.
     var fileTileReaders = arrayOfNulls<PmTilesReader?>(gridSize * gridSize)
@@ -48,7 +51,7 @@ open class ProtomapsGridState(
         // Check for change in offline map extracts and update our file readers if there's a change
         val extracts = findExtractPaths(extractPath).toMutableList()
         if (extracts != currentExtracts) {
-            println("Change in offline extracts")
+            logger.d { "Change in offline extracts" }
             currentExtracts = extracts
             // These events don't really tell us very much, so mark them as costly
             if (currentExtracts.isEmpty())
@@ -95,7 +98,7 @@ open class ProtomapsGridState(
                     fileTileReaders[workerIndex]?.close()
                     fileTileReaders[workerIndex] = null
                     for (extract in currentExtracts) {
-                        println("Try $extract for worker $workerIndex")
+                        logger.d { "Try $extract for worker $workerIndex" }
                         reader = PmTilesReader(extract.toPath())
                         fileTile = reader.getTile(zoomLevel, x, y)
                         if (fileTile != null) {
@@ -119,7 +122,7 @@ open class ProtomapsGridState(
 
                 if (result != null) {
                     val requestTime = startMark.elapsedNow()
-                    println("Tile size ${Tile.ADAPTER.encodedSize(result)}")
+                    logger.d { "Tile size ${Tile.ADAPTER.encodedSize(result)}" }
                     var collections: Array<FeatureCollection>? = null
                     val mvtParseTime = measureTime {
                         collections = vectorTileToGeoJson(
@@ -141,19 +144,19 @@ open class ProtomapsGridState(
                         }
                     }
 
-                    println("Request time $requestTime")
-                    println("MVT parse time $mvtParseTime")
-                    println("Add to FeatureCollection time $addTime")
+                    logger.d { "Request time $requestTime" }
+                    logger.d { "MVT parse time $mvtParseTime" }
+                    logger.d { "Add to FeatureCollection time $addTime" }
 
                     ret = true
                 } else {
-                    println("No response for protomaps tile")
+                    logger.d { "No response for protomaps tile" }
                 }
             } catch (ce: CancellationException) {
                 // We have to rethrow cancellation exceptions
                 throw ce
             } catch (e: Exception) {
-                println("Exception getting protomaps tile $e")
+                logger.e(e) { "Exception getting protomaps tile" }
             }
         }
         return ret

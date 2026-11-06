@@ -2,6 +2,9 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
+
+private val logger = AppLog.tag("MvtGeometry")
 
 fun parseGeometry(
     cropToTile: Boolean,
@@ -40,7 +43,7 @@ fun parseGeometry(
                 }
 
                 else -> {
-                    println("Unknown command id $id")
+                    logger.d { "Unknown command id $id" }
                 }
             }
         } else {

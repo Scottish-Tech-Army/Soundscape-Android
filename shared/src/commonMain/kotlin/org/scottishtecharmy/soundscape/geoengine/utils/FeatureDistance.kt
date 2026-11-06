@@ -11,6 +11,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import org.scottishtecharmy.soundscape.logging.AppLog
+
+private val logger = AppLog.tag("FeatureDistance")
 
 fun featureHasEntrances(feature: Feature): Boolean {
     return (feature.properties?.get("has_entrances") == "yes")
@@ -106,7 +109,7 @@ fun getDistanceToFeature(
         }
 
         else -> {
-            println("Unknown type ${feature.geometry.type}")
+            logger.d { "Unknown type ${feature.geometry.type}" }
             require(false)
             return PointAndDistanceAndHeading()
         }

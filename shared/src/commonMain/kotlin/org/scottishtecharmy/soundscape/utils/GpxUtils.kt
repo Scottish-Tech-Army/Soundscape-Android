@@ -4,9 +4,12 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
+import org.scottishtecharmy.soundscape.logging.AppLog
+
+private val logger = AppLog.tag("gpx")
 
 fun parseGpxFile(input: String): RouteWithMarkers? {
-    println("gpx: Parsing GPX file")
+    logger.d { "Parsing GPX file" }
     try {
         val parsedGpx = parseGpx(input)
         val waypoints = mutableListOf<MarkerEntity>()
@@ -17,7 +20,7 @@ fun parseGpxFile(input: String): RouteWithMarkers? {
         // RoutePoints are found.
 
         parsedGpx.routes.forEach { route ->
-            println("gpx: RoutePoint " + route.routeName)
+            logger.d { "RoutePoint " + route.routeName }
             route.routePoints.forEach { waypoint ->
                 waypoints.add(
                     MarkerEntity(
@@ -31,7 +34,7 @@ fun parseGpxFile(input: String): RouteWithMarkers? {
         }
         if (waypoints.isEmpty()) {
             parsedGpx.waypoints.forEach { waypoint ->
-                println("gpx: WayPoint " + waypoint.name)
+                logger.d { "WayPoint " + waypoint.name }
                 waypoints.add(
                     MarkerEntity(
                         name = waypoint.name,
@@ -50,7 +53,7 @@ fun parseGpxFile(input: String): RouteWithMarkers? {
             waypoints
         )
     } catch (e: Exception) {
-        println("gpx: Exception whilst parsing GPX file: ${e.message}")
+        logger.e(e) { "Exception whilst parsing GPX file" }
         e.printStackTrace()
     }
 

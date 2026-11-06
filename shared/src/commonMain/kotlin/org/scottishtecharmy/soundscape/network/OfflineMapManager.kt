@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.platform.excludeFromCloudBackup
 import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
@@ -38,6 +39,8 @@ import org.scottishtecharmy.soundscape.utils.readExtractSchema
  * - Discovering downloaded extracts on disk
  * - Managing download state for the UI
  */
+private val logger = AppLog.tag("OfflineMapManager")
+
 class OfflineMapManager(
     private val manifestClient: ManifestClient,
     private val fileDownloader: FileDownloaderInterface,
@@ -151,7 +154,7 @@ class OfflineMapManager(
                     _nearbyExtractsState.value = NearbyExtractsState.Error
                 }
             } catch (e: Exception) {
-                println("OfflineMapManager: Error fetching manifest: ${e.message}")
+                logger.e(e) { "Error fetching manifest" }
                 _nearbyExtractsState.value = NearbyExtractsState.Error
             }
 
@@ -266,7 +269,7 @@ class OfflineMapManager(
                 writeUtf8(GeoJsonParser.toJson(stored))
             }
         } catch (e: Exception) {
-            println("OfflineMapManager: Error writing extract metadata: ${e.message}")
+            logger.e(e) { "Error writing extract metadata" }
         }
     }
 
@@ -293,7 +296,7 @@ class OfflineMapManager(
                 } catch (_: Exception) {
                 }
             } catch (e: Exception) {
-                println("OfflineMapManager: Error deleting old extract: ${e.message}")
+                logger.e(e) { "Error deleting old extract" }
             }
         }
     }
@@ -435,7 +438,7 @@ class OfflineMapManager(
             }
             refreshDownloaded()
         } catch (e: Exception) {
-            println("OfflineMapManager: Error deleting extract: ${e.message}")
+            logger.e(e) { "Error deleting extract" }
         }
     }
 

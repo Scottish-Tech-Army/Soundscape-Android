@@ -69,6 +69,10 @@ kotlin {
             implementation(libs.reorderable)
             implementation(libs.kable.core)
             implementation(libs.composepreferencelibrary)
+            // api, not implementation: :app's code constructs AppLog-returned Logger instances
+            // directly (e.g. `private val logger = AppLog.tag(TAG)`), so Kermit's types need to
+            // be visible on :app's compile classpath too, the same reason Room is api() above.
+            api(libs.kermit)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

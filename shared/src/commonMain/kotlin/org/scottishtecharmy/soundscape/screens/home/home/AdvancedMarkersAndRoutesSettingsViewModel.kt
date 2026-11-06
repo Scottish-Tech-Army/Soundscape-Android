@@ -6,10 +6,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.utils.GLOBAL_MARKERS_FILE_ROOT
 import org.scottishtecharmy.soundscape.utils.MarkersAndRoutesIo
 import org.scottishtecharmy.soundscape.utils.buildMarkersAndRoutesArchive
 import org.scottishtecharmy.soundscape.utils.restoreMarkersAndRoutesArchive
+
+private val logger = AppLog.tag("AdvancedMarkersAndRoutesSettingsViewModel")
 
 open class AdvancedMarkersAndRoutesSettingsViewModel(
     private val routeDao: RouteDao,
@@ -44,7 +47,7 @@ open class AdvancedMarkersAndRoutesSettingsViewModel(
             val files = try {
                 io.pickGpxZip()
             } catch (e: Exception) {
-                println("Failed to pick zip: ${e.message}")
+                logger.e(e) { "Failed to pick zip" }
                 null
             }
             if (files == null) return@launch
@@ -52,7 +55,7 @@ open class AdvancedMarkersAndRoutesSettingsViewModel(
                 val restored = restoreMarkersAndRoutesArchive(files, routeDao)
                 _userFeedback.value = if (restored > 0) successString else failureString
             } catch (e: Exception) {
-                println("Failed to import zip: ${e.message}")
+                logger.e(e) { "Failed to import zip" }
                 _userFeedback.value = failureString
             }
         }

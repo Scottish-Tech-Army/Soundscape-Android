@@ -4,6 +4,7 @@ import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.get
 import kotlinx.cinterop.set
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
+import org.scottishtecharmy.soundscape.logging.AppLog
 import platform.AVFAudio.AVAudioFile
 import platform.AVFAudio.AVAudioPCMBuffer
 import platform.AVFAudio.AVAudioPlayerNodeBufferInterrupts
@@ -11,6 +12,8 @@ import platform.AVFAudio.AVAudioPlayerNodeBufferLoops
 import platform.AVFAudio.AVAudioTime
 import platform.Foundation.NSBundle
 import platform.Foundation.NSURL
+
+private val logger = AppLog.tag("BeaconPlayer")
 
 /**
  * Continuous looped audio player for beacons with beat-aligned asset switching.
@@ -44,7 +47,7 @@ class BeaconPlayer(
             for (assetName in beaconType.assets) {
                 val path = NSBundle.mainBundle.pathForResource(assetName, "wav", "Sounds")
                     ?: run {
-                        println("BeaconPlayer: WAV not found: $assetName")
+                        logger.d { "WAV not found: $assetName" }
                         return false
                     }
 
@@ -70,7 +73,7 @@ class BeaconPlayer(
             layer.format = firstBuffer.format
             return true
         } catch (e: Exception) {
-            println("BeaconPlayer: Failed to load assets: ${e.message}")
+            logger.e(e) { "Failed to load assets" }
             return false
         }
     }
@@ -228,7 +231,7 @@ class BeaconPlayer(
         val result = try {
             AVAudioPCMBuffer(pCMFormat = source.format, frameCapacity = suffixLength.toUInt())
         } catch (e: Exception) {
-            println("BeaconPlayer: Failed to create buffer suffix: ${e.message}")
+            logger.e(e) { "Failed to create buffer suffix" }
             return null
         }
 

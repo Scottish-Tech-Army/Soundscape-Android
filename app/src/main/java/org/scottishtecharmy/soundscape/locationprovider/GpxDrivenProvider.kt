@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.locationprovider
 
 import android.content.Context
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -13,6 +12,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxLocationStream
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxTrackPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.platform.parseGpxTimestamp
 import java.io.InputStream
 
@@ -50,7 +50,7 @@ class GpxDrivenProvider {
 
     fun start(context: Context, assetPath: String = REPLAY_ASSET_PATH) {
         if (assetPath.isBlank()) {
-            Log.e(TAG, "No GPX asset named - set GpxDrivenProvider.REPLAY_ASSET_PATH")
+            logger.e { "No GPX asset named - set GpxDrivenProvider.REPLAY_ASSET_PATH" }
             return
         }
         parseGpxStream(context.assets.open(assetPath))
@@ -61,7 +61,7 @@ class GpxDrivenProvider {
             ?.trackPoints
             .orEmpty()
         if (points.isEmpty()) {
-            Log.e(TAG, "$assetPath holds no track points")
+            logger.e { "$assetPath holds no track points" }
             return
         }
 
@@ -69,11 +69,10 @@ class GpxDrivenProvider {
         // which stream the file holds - see GpxReplayLocationProvider.
         val provider = GpxReplayLocationProvider(gpx.locationStream)
         locationProvider = provider
-        Log.d(
-            TAG,
+        logger.d {
             "Replaying $assetPath: ${points.size} points, recorder v${gpx.recorderVersion}, " +
                 "${gpx.locationStream} stream"
-        )
+        }
 
         coroutineScope.launch {
             // Track points are replayed exactly as recorded, never interpolated between. A
@@ -112,7 +111,7 @@ class GpxDrivenProvider {
 
                 delay(waitBeforeNextPoint(points, index))
             }
-            Log.d(TAG, "Replay of $assetPath finished")
+            logger.d { "Replay of $assetPath finished" }
         }
     }
 
@@ -141,21 +140,22 @@ class GpxDrivenProvider {
     }
 
     fun parseGpxStream(input: InputStream) {
-        Log.d(TAG, "Parsing GPX file")
+        logger.d { "Parsing GPX file" }
 
         try {
             parsedGpx = parseGpx(input.bufferedReader().readText())
             if (parsedGpx == null) {
-                Log.e(TAG, "Error parsing GPX file")
+                logger.e { "Error parsing GPX file" }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Exception whilst parsing GPX file: ${e.message}")
+            logger.e { "Exception whilst parsing GPX file: ${e.message}" }
             e.printStackTrace()
         }
     }
 
     companion object {
         private const val TAG = "GpxDrivenProvider"
+        private val logger = AppLog.tag(TAG)
 
         /** Name of the file under `assets/` to replay. Set this to use the provider. */
         const val REPLAY_ASSET_PATH = ""

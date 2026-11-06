@@ -1,17 +1,23 @@
 package org.scottishtecharmy.soundscape
 
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
+import org.scottishtecharmy.soundscape.logging.SupportLogBuffer
 import org.scottishtecharmy.soundscape.platform.appVersionName
 import platform.AVFAudio.AVAudioSession
 import platform.AVFAudio.AVAudioSessionPortDescription
 import platform.AVFAudio.currentRoute
 import platform.Foundation.NSError
 import platform.Foundation.NSLocale
+import platform.Foundation.NSString
 import platform.Foundation.NSURL
+import platform.Foundation.NSUTF8StringEncoding
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.countryCode
+import platform.Foundation.create
 import platform.Foundation.currentLocale
+import platform.Foundation.dataUsingEncoding
 import platform.Foundation.languageCode
 import platform.MessageUI.MFMailComposeResult
 import platform.MessageUI.MFMailComposeViewController
@@ -22,7 +28,7 @@ import platform.darwin.NSObject
 
 private const val SUPPORT_RECIPIENT = "soundscape@scottishtecharmy.support"
 
-@OptIn(ExperimentalForeignApi::class)
+@OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
 internal fun presentContactSupport(service: IosSoundscapeService) {
     val subject = buildSupportSubject()
     val htmlBody = buildSupportHtmlBody(service)
@@ -32,6 +38,13 @@ internal fun presentContactSupport(service: IosSoundscapeService) {
         composer.setSubject(subject)
         composer.setToRecipients(listOf(SUPPORT_RECIPIENT))
         composer.setMessageBody(htmlBody, isHTML = true)
+        // Attaching the support log buffer is only possible via this in-app composer -
+        // the mailto: fallback below has no attachment mechanism.
+        val logData = NSString.create(string = SupportLogBuffer.dumpAsText())
+            .dataUsingEncoding(NSUTF8StringEncoding)
+        if (logData != null) {
+            composer.addAttachmentData(logData, "text/plain", "soundscape_log.txt")
+        }
         val delegate = MailComposeDelegate()
         composer.mailComposeDelegate = delegate
         retainedMailDelegates.add(delegate)

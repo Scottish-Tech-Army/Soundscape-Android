@@ -19,7 +19,6 @@ import android.os.Looper
 import android.os.StrictMode
 import android.provider.Settings
 import android.text.Html
-import android.util.Log
 import android.view.View
 import android.view.accessibility.AccessibilityManager
 import android.widget.Toast
@@ -58,6 +57,7 @@ import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
@@ -185,13 +185,13 @@ class MainActivity : AppCompatActivity() {
                 // The state of the theme light/dark setting has changed, so update the UI
                 _themeStateFlow.value = themeStateFlow.value.copy(themeIsLight = themeIsLight)
 
-                Log.e(TAG, "themeIsLight $themeIsLight")
+                logger.e { "themeIsLight $themeIsLight" }
             }
 
             THEME_CONTRAST_KEY -> {
                 val contrast = preferences.getString(THEME_CONTRAST_KEY, "High") ?: "High"
                 _themeStateFlow.value = themeStateFlow.value.copy(themeContrast = contrast)
-                Log.e(TAG, "themeContrast $contrast")
+                logger.e { "themeContrast $contrast" }
             }
 
             HINTS_KEY -> {
@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity() {
                     PreferenceKeys.MEDIA_CONTROLS_MODE,
                     PreferenceDefaults.MEDIA_CONTROLS_MODE
                 ) ?: PreferenceDefaults.MEDIA_CONTROLS_MODE
-                Log.e(TAG, "mediaControlsMode $mode")
+                logger.e { "mediaControlsMode $mode" }
                 soundscapeServiceConnection.soundscapeService?.updateMediaControls(mode)
             }
 
@@ -270,7 +270,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.d(TAG, "onResume")
+        logger.d { "onResume" }
 
         // If a foreground service start was deferred because the app wasn't yet in the foreground
         // (e.g. a permission result delivered before onResume), retry it now that we're resumed.
@@ -315,10 +315,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (change) {
-            Log.d(
-                TAG,
+            logger.d {
                 "Permissions have changed $locationPermission -> $locationPermissionGranted and $notificationPermission -> $notificationPermissionGranted"
-            )
+            }
             when (locationPermissionGranted) {
                 0 -> setServiceState(false)
                 1 -> setServiceState(true)
@@ -359,7 +358,7 @@ class MainActivity : AppCompatActivity() {
 //            StrictMode.VmPolicy.Builder()
 //                     .detectLeakedClosableObjects()
 //                     .penaltyListener(ContextCompat.getMainExecutor(this)) { violation ->
-//                         Log.e("MainActivity", "StrictMode VmPolicy violation", violation)
+//                         logger.e(violation) { "StrictMode VmPolicy violation" }
 //                     }
 //                     .build()
 //        )
@@ -472,7 +471,7 @@ class MainActivity : AppCompatActivity() {
                     player.setOnErrorListener { _, _, _ -> mainHandler.post { finishSplashSound() }; true }
                     player.start()
                 } catch (e: Exception) {
-                    Log.e(TAG, "Failed to play splash sound: $e")
+                    logger.e { "Failed to play splash sound: $e" }
                     finishSplashSound()
                 }
                 sharedPreferences.edit(commit = true) {
@@ -543,7 +542,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         for (pref in sharedPreferences.all) {
-            Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
+            logger.d { "Preference: " + pref.key + " = " + pref.value }
         }
         sharedPreferencesListener =
             SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
@@ -599,7 +598,7 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
-                Log.d(TAG, "serviceBoundState $it")
+                logger.d { "serviceBoundState $it" }
                 if (it) {
                     // The service has started
 
@@ -733,7 +732,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error with in-app review, falling back to Play Store", e)
+            logger.e(e) { "Error with in-app review, falling back to Play Store" }
             openPlayStoreListing()
         }
     }
@@ -879,7 +878,7 @@ class MainActivity : AppCompatActivity() {
         if (logPath != null) {
             val logFile = File(logPath)
             if (logFile.exists()) {
-                Log.d(TAG, "Attach log file from $logPath with authority ${packageName}.provider")
+                logger.d { "Attach log file from $logPath with authority ${packageName}.provider" }
                 // Get a content URI for the file using FileProvider
                 val logUri = FileProvider.getUriForFile(
                     this@MainActivity,
@@ -892,7 +891,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        Log.e(TAG, Html.fromHtml(bodyText.toString(), 0).toString())
+        logger.e { Html.fromHtml(bodyText.toString(), 0).toString() }
 
         // Send straight to the user's email app (no chooser) with the recipient,
         // subject, body and log attachment all pre-filled. A selector or a plain
@@ -911,20 +910,20 @@ class MainActivity : AppCompatActivity() {
         val emailPackage = emailActivity?.packageName
         val isSystemResolver = emailPackage == "android" || emailPackage == "com.android.intentresolver"
         if (emailActivity != null && emailPackage != null && !isSystemResolver) {
-            Log.d(TAG, "Sending support email via $emailPackage/${emailActivity.name}")
+            logger.d { "Sending support email via $emailPackage/${emailActivity.name}" }
             intent.component = ComponentName(emailPackage, emailActivity.name)
         } else {
-            Log.d(TAG, "No single email app resolved (got $emailPackage), using chooser")
+            logger.d { "No single email app resolved (got $emailPackage), using chooser" }
         }
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
-            Log.w(TAG, "Targeted email launch failed, falling back to chooser", e)
+            logger.w(e) { "Targeted email launch failed, falling back to chooser" }
             intent.component = null
             try {
                 startActivity(Intent.createChooser(intent, null))
             } catch (e: ActivityNotFoundException) {
-                Log.e(TAG, "No app available to contact support", e)
+                logger.e(e) { "No app available to contact support" }
             }
         }
     }
@@ -960,13 +959,13 @@ class MainActivity : AppCompatActivity() {
     fun startRouteByName(name: String) {
         val actions = soundscapeServiceConnection.soundscapeService?.actions
         if (actions == null) {
-            Log.w(TAG, "Service not running, can't start route by name: $name")
+            logger.w { "Service not running, can't start route by name: $name" }
             return
         }
         lifecycleScope.launch {
             val result = actions.execute(SoundscapeAction.StartRouteNamed(name))
             if (result !is ActionResult.Ok) {
-                Log.w(TAG, "Couldn't start route \"$name\": $result")
+                logger.w { "Couldn't start route \"$name\": $result" }
             }
         }
     }
@@ -980,7 +979,7 @@ class MainActivity : AppCompatActivity() {
         val service = soundscapeServiceConnection.soundscapeService
         val actions = service?.actions
         if (actions == null) {
-            Log.w(TAG, "Service not running, can't perform $action")
+            logger.w { "Service not running, can't perform $action" }
             return
         }
         lifecycleScope.launch {
@@ -1006,7 +1005,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        Log.d(TAG, "onNewIntent")
+        logger.d { "onNewIntent" }
         // Pop up to home page
         navigator.navigate(SharedRoutes.HOME)
         // And then parse the new intent which may take us to the LocationDetails screen
@@ -1068,14 +1067,13 @@ class MainActivity : AppCompatActivity() {
     // which may be deferred behind a permission request or to onResume
     private var resumeSleepPlaybackOnStart = false
     fun setServiceState(newServiceState: Boolean, sleeping: Boolean? = null) {
-        Log.d(
-            TAG,
+        logger.d {
             "setServiceState $newServiceState, sleeping = $sleeping, serviceSleeping = $serviceSleeping"
-        )
+        }
         // Bail out if we're a destroyed activity instance still being held by some caller —
         // ActivityResultLaunchers are unregistered on destroy and launch() would throw.
         if (isFinishing || isDestroyed) {
-            Log.w(TAG, "setServiceState called on finishing/destroyed activity; ignoring")
+            logger.w { "setServiceState called on finishing/destroyed activity; ignoring" }
             return
         }
         if (!serviceSleeping || (sleeping == false)) {
@@ -1112,7 +1110,7 @@ class MainActivity : AppCompatActivity() {
      * locations keep arriving once the phone is locked, and setServiceState can wake it in place.
      */
     fun setSnoozing(on: Boolean) {
-        Log.d(TAG, "setSnoozing $on")
+        logger.d { "setSnoozing $on" }
         if (isFinishing || isDestroyed) return
         if (on) {
             try {
@@ -1122,7 +1120,7 @@ class MainActivity : AppCompatActivity() {
                 )
             } catch (e: Exception) {
                 // Wake on leave then only works while the app stays in the foreground, as before
-                Log.w(TAG, "Couldn't start the service for wake on leave", e)
+                logger.w(e) { "Couldn't start the service for wake on leave" }
                 AnalyticsProvider.getInstance().crashLogNotes("Wake on leave service start failed: $e")
                 return
             }
@@ -1138,7 +1136,7 @@ class MainActivity : AppCompatActivity() {
      * It also tries to bind to the service to update the UI with location updates.
      */
     private fun startSoundscapeService() {
-        Log.e(TAG, "startSoundscapeService")
+        logger.e { "startSoundscapeService" }
         val serviceIntent = Intent(this, SoundscapeService::class.java)
             .putExtra(SoundscapeService.EXTRA_RESUME_SLEEP_PLAYBACK, resumeSleepPlaybackOnStart)
         try {
@@ -1154,7 +1152,7 @@ class MainActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
                 e is ForegroundServiceStartNotAllowedException
             ) {
-                Log.w(TAG, "startForegroundService not allowed yet; deferring to onResume")
+                logger.w { "startForegroundService not allowed yet; deferring to onResume" }
                 AnalyticsProvider.getInstance().crashLogNotes("startForegroundService not allowed; deferring to onResume")
                 pendingServiceStart = true
                 return
@@ -1168,6 +1166,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
+        private val logger = AppLog.tag(TAG)
         private const val SERVICE_SLEEPING_KEY = "service_sleeping"
 
         // SharedPreference keys and default values

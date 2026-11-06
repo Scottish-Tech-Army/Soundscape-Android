@@ -17,11 +17,14 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.utils.addressCountryCode
 
 /** How far the user has to move before the country their address is written in is looked up again. */
 private const val COUNTRY_LOOKUP_DISTANCE = 5000.0
+
+private val logger = AppLog.tag("PlacesNearbyViewModel")
 
 /**
  * Shared ViewModel backing the PlacesNearby screen on both Android and iOS.
@@ -114,13 +117,13 @@ open class PlacesNearbyViewModel(
                         val p = runCatching {
                             locationAndGrid.gridState.getFeatureCollection(TreeId.POIS)
                         }.getOrElse {
-                            println("PlacesNearbyViewModel: POIS lookup failed: ${it.message}")
+                            logger.e(it) { "POIS lookup failed" }
                             FeatureCollection()
                         }
                         val i = runCatching {
                             locationAndGrid.gridState.getFeatureCollection(TreeId.INTERSECTIONS)
                         }.getOrElse {
-                            println("PlacesNearbyViewModel: INTERSECTIONS lookup failed: ${it.message}")
+                            logger.e(it) { "INTERSECTIONS lookup failed" }
                             FeatureCollection()
                         }
                         p to i

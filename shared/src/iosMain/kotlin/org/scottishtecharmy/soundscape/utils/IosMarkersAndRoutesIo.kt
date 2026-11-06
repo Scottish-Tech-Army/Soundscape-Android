@@ -10,6 +10,7 @@ import okio.Path
 import okio.Path.Companion.toPath
 import okio.buffer
 import okio.openZip
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.presentTopViewController
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
@@ -27,6 +28,8 @@ import platform.UIKit.UIDocumentPickerDelegateProtocol
 import platform.UIKit.UIDocumentPickerMode
 import platform.UIKit.UIDocumentPickerViewController
 import platform.darwin.NSObject
+
+private val logger = AppLog.tag("IosMarkersAndRoutesIo")
 
 /**
  * iOS implementation of [MarkersAndRoutesIo]. Export packs the GPX files into
@@ -94,7 +97,7 @@ class IosMarkersAndRoutesIo : MarkersAndRoutesIo {
                 withContext(Dispatchers.Main) { presentShareSheet(finalUrl) }
             }
         } catch (e: Exception) {
-            println("IosMarkersAndRoutesIo: export failed: ${e.message}")
+            logger.e(e) { "Export failed" }
         }
     }
 
@@ -105,7 +108,7 @@ class IosMarkersAndRoutesIo : MarkersAndRoutesIo {
             try {
                 readZipEntries(pickedUrl)
             } catch (e: Exception) {
-                println("IosMarkersAndRoutesIo: import failed: ${e.message}")
+                logger.e(e) { "Import failed" }
                 null
             }
         }

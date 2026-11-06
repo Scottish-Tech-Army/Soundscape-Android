@@ -1,9 +1,12 @@
 package org.scottishtecharmy.soundscape
 
 import org.scottishtecharmy.soundscape.geoengine.utils.address.AddressFormatter
+import org.scottishtecharmy.soundscape.logging.AppLog
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+
+private val logger = AppLog.tag("AddressFormatterTest")
 
 class AddressFormatterTest {
 
@@ -14,7 +17,7 @@ class AddressFormatterTest {
         val json =
             """{"house_number":"48","road":"Station Road","city":"Glasgow","postcode":"G62 8AB","country_code":"GB"}"""
         val result = formatter.format(json)
-        println("GB result: [$result]")
+        logger.d { "GB result: [$result]" }
         assertTrue(result.contains("Station Road"), "Expected Station Road in: $result")
         assertTrue(result.contains("48"), "Expected 48 in: $result")
     }
@@ -26,7 +29,7 @@ class AddressFormatterTest {
         val json =
             """{"house_number":"123","road":"Main St","city":"Springfield","state":"Illinois","postcode":"62701","country_code":"US"}"""
         val result = formatter.format(json)
-        println("US result: [$result]")
+        logger.d { "US result: [$result]" }
         assertTrue(result.contains("Main St"), "Expected Main St in: $result")
         assertTrue(result.contains("Springfield"), "Expected Springfield in: $result")
     }
@@ -37,7 +40,7 @@ class AddressFormatterTest {
             AddressFormatter(abbreviate = false, appendCountry = true, appendUnknown = false)
         val json = """{"house_number":"10","road":"Main Street","city":"Springfield"}"""
         val result = formatter.format(json, "GB")
-        println("Fallback GB result: [$result]")
+        logger.d { "Fallback GB result: [$result]" }
         assertTrue(result.contains("Main Street"), "Expected Main Street in: $result")
     }
 
@@ -47,7 +50,7 @@ class AddressFormatterTest {
             AddressFormatter(abbreviate = false, appendCountry = false, appendUnknown = false)
         val json = """{"city":"Glasgow","neighbourhood":"Milngavie","country_code":"GB"}"""
         val result = formatter.format(json)
-        println("Fallback result: [$result]")
+        logger.d { "Fallback result: [$result]" }
         assertTrue(result.contains("Glasgow") || result.contains("Milngavie"), "Expected city/neighbourhood in: $result")
     }
 
@@ -214,11 +217,11 @@ class AddressFormatterTest {
                 val result = formatter.format(json, cc)
                 assertTrue(result.isNotBlank(), "Empty result for $cc")
             } catch (e: Exception) {
-                println("Failed for $cc: ${e.message}")
+                logger.e(e) { "Failed for $cc" }
                 failures++
             }
         }
-        println("Failures: $failures / ${countries.size}")
+        logger.d { "Failures: $failures / ${countries.size}" }
         assertTrue(failures == 0, "$failures countries failed")
     }
 }

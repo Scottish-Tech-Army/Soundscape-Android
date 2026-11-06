@@ -6,19 +6,20 @@ import android.os.StatFs
 import android.os.storage.StorageManager
 import android.os.storage.StorageVolume
 import android.text.format.Formatter
-import android.util.Log
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.utils.StorageUtils.StorageSpace
 import java.io.File
 
 object StorageUtils {
 
     const val TAG = "StorageUtils"
+    private val logger = AppLog.tag(TAG)
 
     data class StorageSpace(
         val path: String,
@@ -88,7 +89,7 @@ object StorageUtils {
                     )
                 )
             } catch (e: Exception) {
-                Log.e(TAG, "Error getting external storage space: ${e.message}")
+                logger.e { "Error getting external storage space: ${e.message}" }
             }
         }
         return storageSpaces

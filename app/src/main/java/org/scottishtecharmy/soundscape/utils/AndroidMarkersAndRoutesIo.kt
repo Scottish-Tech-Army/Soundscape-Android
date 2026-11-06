@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.utils
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -10,6 +9,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.CompletableDeferred
+import org.scottishtecharmy.soundscape.logging.AppLog
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -71,7 +71,7 @@ class AndroidMarkersAndRoutesIo(
                 }
                 cont.complete(files)
             } catch (e: Exception) {
-                Log.e(TAG, "Failed to read picked zip", e)
+                logger.e(e) { "Failed to read picked zip" }
                 cont.complete(null)
             }
         }
@@ -124,7 +124,7 @@ class AndroidMarkersAndRoutesIo(
             }
             appContext.startActivity(chooser)
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to create or share zip file", e)
+            logger.e(e) { "Failed to create or share zip file" }
         }
     }
 
@@ -141,5 +141,6 @@ class AndroidMarkersAndRoutesIo(
 
     companion object {
         private const val TAG = "AndroidMarkersAndRoutesIo"
+        private val logger = AppLog.tag(TAG)
     }
 }

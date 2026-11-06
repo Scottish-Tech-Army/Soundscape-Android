@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape
 
 import android.content.Context
 import android.os.Environment
-import android.util.Log
 import androidx.preference.PreferenceManager
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -37,6 +36,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
@@ -46,6 +46,7 @@ import org.scottishtecharmy.soundscape.utils.toLocationDescription
 
 @RunWith(AndroidJUnit4::class)
 class GeocoderTest {
+    private val logger = AppLog.tag("GeocoderTest")
 
     private suspend fun describeLocation(
         geocoder: SoundscapeGeocoder,
@@ -107,7 +108,7 @@ class GeocoderTest {
             results.forEachIndexed { index, result ->
                 if (result != null) {
                     val distance = cheapRuler.distance(result.location, location)
-                    Log.e("GeocoderTest", "${distance}m from ${list[index]}: $result")
+                    logger.e { "${distance}m from ${list[index]}: $result" }
                 }
             }
             // Return the results
@@ -321,11 +322,7 @@ class GeocoderTest {
                             findPlace(geocoder, searchString, nearbyLocation)
                         } catch (e: Exception) {
                             // If a geocoder fails, log the error and return null for that result
-                            Log.e(
-                                "GeocoderTest",
-                                "Geocoding failed for ${geocoder::class.simpleName}",
-                                e
-                            )
+                            logger.e(e) { "Geocoding failed for ${geocoder::class.simpleName}" }
                             null
                         }
                     }
@@ -338,10 +335,10 @@ class GeocoderTest {
                 if (result != null) {
                     if (result.isNotEmpty()) {
                         val distance = cheapRuler.distance(result.first().location, nearbyLocation)
-                        Log.e("GeocoderTest", "${distance}m from ${list[index]}: $result")
+                        logger.e { "${distance}m from ${list[index]}: $result" }
                     }
                 }
-            } ?: Log.e("GeocoderTest", "All geocoding operations timed out")
+            } ?: logger.e { "All geocoding operations timed out" }
         }
     }
 

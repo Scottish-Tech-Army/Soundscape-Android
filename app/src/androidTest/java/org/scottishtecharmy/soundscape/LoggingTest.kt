@@ -3,15 +3,13 @@ package org.scottishtecharmy.soundscape
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.utils.LogcatHelper
 import java.io.File
-import java.util.zip.ZipEntry
-import java.util.zip.ZipInputStream
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -25,35 +23,22 @@ class LoggingTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
+        val marker = "LoggingTest marker ${System.nanoTime()}"
+        AppLog.tag("LoggingTest").d { marker }
+
         var filename: String?
         runBlocking {
             filename = LogcatHelper.saveLogcatToFile(appContext)
         }
         assertNotNull(filename)
         val file = File(filename!!)
-        assertEquals(true, file.length() > 0)
+        assertTrue("Log file should exist", file.exists())
+        assertTrue("Log file should not be empty", file.length() > 0)
 
-        val unzip = ZipInputStream(file.inputStream())
-        var zipEntry: ZipEntry? = unzip.nextEntry
-        var count = 0
-        while (zipEntry != null) {
-            ++count
-
-            // Read the zip file entry
-            val buffer = ByteArray(8192)
-            var bytesRead: Int
-            var totalBytesInEntry = 0L
-
-            // Read from the stream in chunks until it's exhausted (-1)
-            while (unzip.read(buffer).also { bytesRead = it } != -1) {
-                totalBytesInEntry += bytesRead
-            }
-            assertTrue(
-                "The content of the zip entry '${zipEntry.name}' should not be empty.",
-                totalBytesInEntry > 0
-            )
-            zipEntry = unzip.nextEntry
-        }
-        assertEquals(1, count)
+        val content = file.readText()
+        assertTrue(
+            "Log file should contain the marker line we just logged",
+            content.contains(marker)
+        )
     }
 }

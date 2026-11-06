@@ -22,6 +22,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import org.scottishtecharmy.soundscape.logging.AppLog
+
+private val logger = AppLog.tag("GeoJsonParser")
 
 /**
  * KMP-compatible GeoJSON parser using kotlinx.serialization.json.
@@ -36,7 +39,7 @@ object GeoJsonParser {
             val root = json.parseToJsonElement(jsonString).jsonObject
             parseFeatureCollectionObj(root)
         } catch (e: Exception) {
-            println("GeoJsonParser: Failed to parse: ${e.message}")
+            logger.e(e) { "Failed to parse" }
             null
         }
     }
@@ -49,7 +52,7 @@ object GeoJsonParser {
         return try {
             parseFeature(json.parseToJsonElement(jsonString).jsonObject)
         } catch (e: Exception) {
-            println("GeoJsonParser: Failed to parse feature: ${e.message}")
+            logger.e(e) { "Failed to parse feature" }
             null
         }
     }

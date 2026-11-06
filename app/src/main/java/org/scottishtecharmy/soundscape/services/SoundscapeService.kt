@@ -21,7 +21,6 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.OptIn
 import androidx.core.app.NotificationCompat
@@ -93,6 +92,7 @@ import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuClient
 import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuHeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.bose.BoseFramesHeadTrackingProvider
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
 import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
@@ -219,32 +219,32 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     private val focusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
         when (focusChange) {
             AudioManager.AUDIOFOCUS_GAIN -> {
-                Log.d(TAG, "AUDIOFOCUS_GAIN: Focus gained.")
+                logger.d { "AUDIOFOCUS_GAIN: Focus gained." }
                 audioFocusGained = true
                 duckingAllowed = false
             }
 
             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK -> {
-                Log.d(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK: Focus gained.")
+                logger.d { "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK: Focus gained." }
                 audioFocusGained = true
                 duckingAllowed = false
             }
 
             AudioManager.AUDIOFOCUS_LOSS -> {
-                Log.d(TAG, "AUDIOFOCUS_LOSS: Focus lost permanently")
+                logger.d { "AUDIOFOCUS_LOSS: Focus lost permanently" }
                 abandonAudioFocus()
             }
 
             AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
                 // Temporarily lost focus. Pause playback.
-                Log.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT: Focus lost temporarily")
+                logger.d { "AUDIOFOCUS_LOSS_TRANSIENT: Focus lost temporarily" }
                 audioFocusGained = false
                 duckingAllowed = false
             }
 
             AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK -> {
                 // Temporarily lost focus, but you can duck (lower volume).
-                Log.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK: Ducking allowed")
+                logger.d { "AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK: Ducking allowed" }
 
                 audioFocusGained = false
                 duckingAllowed = true
@@ -585,7 +585,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     /** Ends wake on leave's snooze, starting the geo engine as a fresh service start would. */
     fun wakeFromSnooze() {
-        Log.d(TAG, "wakeFromSnooze")
+        logger.d { "wakeFromSnooze" }
         snoozing = false
         resumeSleepPlayback = true
         if (!started) startEngine()
@@ -597,7 +597,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
      * and nothing has played since, so saving again would forget what to resume.
      */
     fun stopSnooze() {
-        Log.d(TAG, "stopSnooze")
+        logger.d { "stopSnooze" }
         if (!snoozing) return
         abandonAudioFocus()
         stopSelf()
@@ -623,7 +623,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     @Suppress("WakelockTimeout")
     override fun onCreate() {
         super.onCreate()
-        Log.d(TAG, "onCreate $running")
+        logger.d { "onCreate $running" }
         runningInstance = this
 
         if (!running) {
@@ -716,7 +716,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
-        Log.d(TAG, "onTaskRemoved for service - ignoring, as we want to keep running")
+        logger.d { "onTaskRemoved for service - ignoring, as we want to keep running" }
     }
 
     override fun onDestroy() {
@@ -735,7 +735,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         }
         super.onDestroy()
 
-        Log.d(TAG, "onDestroy")
+        logger.d { "onDestroy" }
         audioMenu?.destroy()
         audioEngine.destroyBeacon(audioBeacon)
         audioBeacon = 0
@@ -799,7 +799,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                 // We were only re-asserting a foreground state we already hold (see
                 // onStartCommand()), e.g. from the background where the system refuses it. The
                 // service is still running in the foreground, so don't report a failed start.
-                Log.w(TAG, "startForeground re-assert refused", e)
+                logger.w(e) { "startForeground re-assert refused" }
                 analytics.crashLogNotes("startForeground re-assert refused: $e")
                 return false
             }
@@ -814,7 +814,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             // Any other failure (e.g. building or posting the notification) means the service did
             // not actually reach the foreground. Previously this was swallowed and the method went
             // on to report success, leaving `running = true` for a service that never started.
-            Log.e(TAG, "startAsForegroundService failed", e)
+            logger.e(e) { "startAsForegroundService failed" }
             analytics.crashLogNotes("startAsForegroundService failed: $e")
             analytics.logEvent("startAsForegroundServiceError", null)
             analytics.crashSetCustomKey("Service start success", "false")
@@ -1111,7 +1111,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
      */
     override fun isAudioEngineBusy(): Boolean {
         val depth = audioEngine.getQueueDepth()
-        //Log.d(TAG, "Queue depth: $depth")
+        //logger.d { "Queue depth: $depth" }
         return (depth > 0)
     }
 
@@ -1124,10 +1124,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     ) {
 
         if (!requestAudioFocus()) {
-            Log.w(TAG, "speakText: Could not get audio focus.")
+            logger.w { "speakText: Could not get audio focus." }
             return
         }
-        Log.d(TAG, "speakText $text")
+        logger.d { "speakText $text" }
         audioEngine.createTextToSpeech(text, type, latitude, longitude, heading)
     }
 
@@ -1137,7 +1137,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     override fun speak2dText(text: String, clearQueue: Boolean, earcon: String?) {
         if (!requestAudioFocus()) {
-            Log.w(TAG, "speak2dText: Could not get audio focus.")
+            logger.w { "speak2dText: Could not get audio focus." }
             return
         }
         if (clearQueue)
@@ -1254,11 +1254,11 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
                 return if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     audioFocusGained = true
-                    Log.d(TAG, "Audio focus request granted.")
+                    logger.d { "Audio focus request granted." }
                     true
                 } else {
                     // Assume loss if not granted
-                    Log.e(TAG, "Audio focus request failed.")
+                    logger.e { "Audio focus request failed." }
                     audioFocusGained = false
                     false
                 }
@@ -1270,7 +1270,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     }
 
     fun abandonAudioFocus() {
-        Log.d(TAG, "Abandoning audio focus.")
+        logger.d { "Abandoning audio focus." }
         audioFocusRequest?.let {
             audioManager.abandonAudioFocusRequest(it)
         }
@@ -1295,6 +1295,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     companion object {
         private const val TAG = "SoundscapeService"
+        private val logger = AppLog.tag(TAG)
 
         /** Intent action starting the service snoozed for wake on leave; see [snoozing]. */
         const val ACTION_SNOOZE = "org.scottishtecharmy.soundscape.SNOOZE"
