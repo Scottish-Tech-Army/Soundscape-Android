@@ -20,6 +20,13 @@ työtä, mukana on kaksikymmentä uutta kieltä ja pitkä lista korjauksia.
 Vanhempien versioiden tiedot löytyvät sivulta
 [Julkaisutiedot 1.x-versioille]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Muutokset ensimmäisen tuotantoversion 2.0.95 jälkeen
+
+Korjasimme useita versiossa 2.0.95 raportoituja ongelmia, ja tämä versio tekee myös ilmoituksista
+luotettavampia ja osoitteista tarkempia. Kävelyn ilmoitukset alkavat nyt aiemmin, kun nouset
+bussista tai autosta, ja Soundscape huomaa nopeammin, että junasi on lähtenyt asemalta. Risteykset
+kuvataan nyt oikein, kun kävelet jalkakäytävällä, joka on kartoitettu erikseen tiestä.
+
 ## Uutta versiossa 2.0
 
 * **Kuulutukset autolla, bussilla tai junalla matkustettaessa.** Soundscape tunnistaa, kun liikut

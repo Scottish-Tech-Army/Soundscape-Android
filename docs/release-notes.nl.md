@@ -21,6 +21,14 @@ is er een lange lijst met oplossingen.
 Opmerkingen bij oudere versies staan op de pagina
 [Releaseopmerkingen voor 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Wijzigingen sinds de eerste productieversie 2.0.95
+
+We hebben verschillende problemen opgelost die in 2.0.95 werden gemeld, en deze versie maakt de
+aankondigingen ook betrouwbaarder en de adressen nauwkeuriger. Aankondigingen tijdens het lopen
+beginnen nu eerder nadat u uit de bus of auto bent gestapt, en Soundscape merkt sneller dat uw trein
+het station heeft verlaten. Kruispunten worden nu juist beschreven wanneer u op een stoep loopt die
+los van de weg in kaart is gebracht.
+
 ## Nieuw in 2.0
 
 * **Meldingen tijdens het reizen met auto, bus of trein.** Soundscape merkt op wanneer u zich met

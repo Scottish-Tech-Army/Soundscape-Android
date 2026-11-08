@@ -20,6 +20,13 @@ novih jezika i dug je popis ispravaka.
 Bilješke za starija izdanja nalaze se na stranici
 [Bilješke o izdanjima 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Promjene od prvog produkcijskog izdanja 2.0.95
+
+Ispravili smo nekoliko problema prijavljenih u verziji 2.0.95, a ovo izdanje ujedno čini najave
+pouzdanijima i adrese točnijima. Najave tijekom hodanja sada počinju ranije nakon što izađete iz
+autobusa ili automobila, a Soundscape brže primijeti da je vaš vlak krenuo sa stanice. Raskrižja se
+sada ispravno opisuju kada hodate po nogostupu koji je na karti ucrtan odvojeno od ceste.
+
 ## Novosti u verziji 2.0
 
 * **Obavijesti tijekom putovanja automobilom, autobusom ili vlakom.** Soundscape prepoznaje da se

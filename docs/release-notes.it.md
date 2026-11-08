@@ -20,6 +20,14 @@ i luoghi, venti nuove lingue e un lungo elenco di correzioni.
 Le note delle versioni precedenti si trovano nella pagina
 [Note di rilascio per la 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Modifiche dalla prima versione di produzione 2.0.95
+
+Abbiamo corretto diversi problemi segnalati nella 2.0.95, e questa versione rende anche le notifiche
+più affidabili e gli indirizzi più precisi. Le notifiche a piedi ora iniziano prima dopo che scendi
+dall'autobus o dall'auto, e Soundscape si accorge più rapidamente che il tuo treno è partito dalla
+stazione. Gli incroci ora vengono descritti correttamente quando cammini su un marciapiede mappato
+separatamente dalla strada.
+
 ## Novità della versione 2.0
 
 * **Annunci durante i viaggi in auto, autobus o treno.** Soundscape riconosce quando ti muovi a

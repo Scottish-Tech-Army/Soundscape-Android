@@ -20,6 +20,13 @@ ngữ mới và một danh sách dài các bản sửa lỗi.
 Ghi chú của các phiên bản cũ hơn nằm ở trang
 [Ghi chú phát hành cho 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Thay đổi kể từ bản phát hành chính thức đầu tiên 2.0.95
+
+Chúng tôi đã sửa một số lỗi được báo cáo trong bản 2.0.95, và bản phát hành này cũng giúp các thông
+báo đáng tin cậy hơn và địa chỉ chính xác hơn. Thông báo khi đi bộ giờ bắt đầu sớm hơn sau khi bạn
+xuống xe buýt hoặc ô tô, và Soundscape nhận ra nhanh hơn khi tàu của bạn đã rời ga. Giao lộ giờ được
+mô tả chính xác khi bạn đi bộ trên vỉa hè được vẽ trên bản đồ tách biệt với đường.
+
 ## Có gì mới trong 2.0
 
 * **Thông báo khi đi ô tô, xe buýt hoặc tàu hỏa.** Soundscape nhận ra bạn đang di chuyển với tốc độ

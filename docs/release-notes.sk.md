@@ -20,6 +20,13 @@ jazykov a dlhý zoznam opráv.
 Poznámky k starším verziám nájdete na stránke
 [Poznámky k vydaniu pre 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Zmeny od prvého produkčného vydania 2.0.95
+
+Opravili sme niekoľko problémov nahlásených vo verzii 2.0.95 a toto vydanie navyše robí hlásenia
+spoľahlivejšími a adresy presnejšími. Hlásenia pri chôdzi sa teraz začínajú skôr, keď vystúpite z
+autobusu alebo z auta, a Soundscape rýchlejšie zistí, že váš vlak odišiel zo stanice. Križovatky sa
+teraz opisujú správne, keď idete po chodníku, ktorý je v mape zakreslený oddelene od cesty.
+
 ## Novinky vo verzii 2.0
 
 * **Hlásenia počas cesty autom, autobusom alebo vlakom.** Soundscape rozpozná, že sa pohybujete

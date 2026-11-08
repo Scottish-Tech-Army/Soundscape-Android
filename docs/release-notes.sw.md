@@ -20,6 +20,14 @@ lugha mpya ishirini, na orodha ndefu ya marekebisho.
 Maelezo ya matoleo ya zamani yako kwenye ukurasa wa
 [Maelezo ya toleo la 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Mabadiliko tangu toleo la kwanza rasmi 2.0.95
+
+Tumerekebisha matatizo kadhaa yaliyoripotiwa katika 2.0.95, na toleo hili pia linafanya matangazo
+yategemewe zaidi na anwani ziwe sahihi zaidi. Matangazo ya kutembea kwa miguu sasa huanza mapema
+zaidi baada ya kushuka kutoka kwenye basi au gari, na Soundscape hutambua haraka zaidi kwamba treni
+yako imeondoka kituoni. Makutano sasa yanaelezwa ipasavyo unapotembea kwenye njia ya miguu
+iliyochorwa kwenye ramani kando na barabara.
+
 ## Mapya katika 2.0
 
 * **Matangazo unaposafiri kwa gari, basi au treni.** Soundscape hutambua kuwa unasonga kwa mwendo wa

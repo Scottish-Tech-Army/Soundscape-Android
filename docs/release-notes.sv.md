@@ -20,6 +20,14 @@ platser beskrivs, tjugo nya språk och en lång lista med rättningar.
 Information om äldre versioner finns på sidan
 [Versionsinformation för 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Ändringar sedan den första produktionsversionen 2.0.95
+
+Vi har åtgärdat flera problem som rapporterades i 2.0.95, och den här versionen gör också
+informationsljuden mer tillförlitliga och adresserna mer exakta. Informationsljud när du går börjar
+nu tidigare efter att du har klivit av bussen eller ur bilen, och Soundscape märker snabbare att
+ditt tåg har lämnat stationen. Vägkorsningar beskrivs nu korrekt när du går på en trottoar som är
+kartlagd separat från vägen.
+
 ## Nyheter i 2.0
 
 * **Meddelanden under resor med bil, buss eller tåg.** Soundscape märker när du rör dig i hastighet

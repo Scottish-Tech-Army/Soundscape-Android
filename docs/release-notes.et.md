@@ -20,6 +20,13 @@ kakskümmend uut keelt ja pikk paranduste loend.
 Vanemate versioonide märkmed on lehel
 [1.x väljalaskemärkmed]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Muudatused pärast esimest tootmisversiooni 2.0.95
+
+Parandasime mitu versioonis 2.0.95 teatatud probleemi ning see versioon muudab ka häälteated
+usaldusväärsemaks ja aadressid täpsemaks. Kõndimise häälteated algavad nüüd varem, kui oled bussist
+või autost väljunud, ja Soundscape märkab kiiremini, et sinu rong on jaamast lahkunud. Ristmikke
+kirjeldatakse nüüd õigesti, kui kõnnid kõnniteel, mis on kaardile kantud teest eraldi.
+
 ## Mis on uut versioonis 2.0
 
 * **Teated auto, bussi või rongiga sõites.** Soundscape tunneb ära, et liigud kiirusega, ja kirjeldab

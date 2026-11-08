@@ -20,6 +20,14 @@ la description des lieux, vingt nouvelles langues et une longue liste de correct
 Les notes des versions précédentes se trouvent sur la page
 [Notes de version pour la 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Changements depuis la première version de production 2.0.95
+
+Nous avons corrigé plusieurs problèmes signalés dans la 2.0.95, et cette nouvelle version rend aussi
+les annonces plus fiables et les adresses plus précises. Les annonces à pied commencent désormais
+plus tôt après votre descente du bus ou de la voiture, et Soundscape remarque plus vite que votre
+train a quitté la gare. Les intersections sont maintenant décrites correctement lorsque vous marchez
+sur un trottoir cartographié séparément de la rue.
+
 ## Nouveautés de la version 2.0
 
 * **Annonces pendant les trajets en voiture, en bus ou en train.** Soundscape détecte que vous vous

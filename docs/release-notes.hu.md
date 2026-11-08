@@ -20,6 +20,14 @@ leírja, húsz új nyelv került be, és hosszú a javítások listája.
 A korábbi verziók megjegyzései a
 [Kiadási megjegyzések az 1.x-hez]({{ "/v1.0-release-notes.html" | relative_url }}) oldalon találhatók.
 
+## Változások az első éles kiadás, a 2.0.95 óta
+
+Kijavítottunk több, a 2.0.95-ben jelentett hibát, és ez a kiadás a bemondásokat is megbízhatóbbá, a
+címeket pedig pontosabbá teszi. A gyalogos bemondások most hamarabb elindulnak, miután leszállt a
+buszról vagy kiszállt az autóból, és a Soundscape gyorsabban észreveszi, ha a vonata kigördült az
+állomásról. A kereszteződések leírása most már helyes, amikor olyan járdán halad, amely az úttól
+külön van feltérképezve.
+
 ## Újdonságok a 2.0-ban
 
 * **Bemondások autóval, busszal vagy vonattal utazás közben.** A Soundscape felismeri, ha sebességgel
