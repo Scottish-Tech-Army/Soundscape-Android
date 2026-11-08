@@ -63,9 +63,14 @@ Below the **Enable head tracking** switch, Soundscape shows what the head tracke
 Nothing is said when you turn head tracking off yourself.
 
 ## Things to know
-* At a corner the audio can take a few seconds to settle. Your head usually turns before your body does, and your phone's GPS takes a moment to notice that you've changed direction.
-* Calibration needs a good GPS signal and a walking pace. Standing still, or walking very slowly, it won't improve.
-* If the audio seems to come from the wrong direction, walk straight for 10 to 20 seconds and it should correct itself.
+* Calibration needs a good GPS signal and a walking pace, or holding your phone flat and facing 
+  directly ahead.
+* The calibration algorithm assumes that the direction of travel and the direction that you 
+  are facing are the same. This is generally true, but if you sit on a train or a bus facing 
+  sideways or backwards then the calibration will be incorrect. This is not a new problem 
+  and happens without head tracking too. Once you start walking it will recalibrate.   
+* If the audio seems to come from the wrong direction, walk straight for 10 to 20 seconds and it 
+  will correct itself.
 
 ## Reporting problems
 We'd like to hear how head tracking works for you. If something goes wrong, a recording of the walk helps us see exactly what happened:
