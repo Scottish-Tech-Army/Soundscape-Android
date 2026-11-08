@@ -20,6 +20,13 @@ ný tungumál hafa bæst við og langur listi af lagfæringum.
 Nótur fyrir eldri útgáfur eru á síðunni
 [Útgáfunótur fyrir 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Breytingar frá fyrstu almennu útgáfunni 2.0.95
+
+Við höfum lagað nokkur vandamál sem tilkynnt var um í 2.0.95, og þessi útgáfa gerir einnig
+tilkynningar áreiðanlegri og heimilisföng nákvæmari. Tilkynningar á göngu byrja nú fyrr eftir að þú
+ferð út úr strætó eða bíl, og Soundscape tekur fyrr eftir því þegar lestin þín er farin af stöðinni.
+Gatnamótum er nú lýst rétt þegar þú gengur á gangstétt sem er kortlögð sér frá götunni.
+
 ## Nýtt í 2.0
 
 * **Tilkynningar á ferð með bíl, strætó eða lest.** Soundscape þekkir að þú ferð á hraða og lýsir

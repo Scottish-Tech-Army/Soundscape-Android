@@ -20,6 +20,14 @@ von Fehlerbehebungen.
 Hinweise zu älteren Versionen finden Sie auf der Seite
 [Versionshinweise für 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Änderungen seit der ersten Produktionsversion 2.0.95
+
+Wir haben mehrere Probleme behoben, die in 2.0.95 gemeldet wurden, und diese Version macht außerdem
+die Ansagen zuverlässiger und die Adressen genauer. Ansagen beim Gehen beginnen jetzt früher,
+nachdem Sie aus einem Bus oder Auto ausgestiegen sind, und Soundscape bemerkt schneller, dass Ihr
+Zug aus dem Bahnhof ausgefahren ist. Kreuzungen werden jetzt richtig beschrieben, wenn Sie auf einem
+Gehweg gehen, der getrennt von der Straße kartiert ist.
+
 ## Was ist neu in 2.0
 
 * **Ansagen während der Fahrt mit Auto, Bus oder Bahn.** Soundscape erkennt, wenn Sie sich mit

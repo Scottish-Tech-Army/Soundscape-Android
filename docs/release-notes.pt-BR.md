@@ -20,6 +20,14 @@ descritos, vinte novos idiomas e uma longa lista de correções.
 As notas de versões anteriores estão na página
 [Notas de versão da 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Mudanças desde a primeira versão de produção 2.0.95
+
+Corrigimos vários problemas relatados na 2.0.95, e esta versão também torna as notificações mais
+confiáveis e os endereços mais precisos. As notificações durante a caminhada agora começam mais cedo
+depois que você desce do ônibus ou do carro, e o Soundscape percebe mais rápido que o seu trem saiu
+da estação. Os cruzamentos agora são descritos corretamente quando você caminha por uma calçada
+mapeada separadamente da rua.
+
 ## Novidades da versão 2.0
 
 * **Avisos durante viagens de carro, ônibus ou trem.** O Soundscape reconhece quando você está se

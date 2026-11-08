@@ -20,6 +20,13 @@ kraji, dodanih je dvajset novih jezikov in dolg je seznam popravkov.
 Opombe za starejše različice so na strani
 [Opombe ob izdajah 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Spremembe od prve produkcijske izdaje 2.0.95
+
+Odpravili smo več težav, prijavljenih v različici 2.0.95, ta izdaja pa tudi naredi zvočna obvestila
+zanesljivejša in naslove natančnejše. Zvočna obvestila med hojo se zdaj začnejo prej, ko izstopite
+iz avtobusa ali avtomobila, Soundscape pa hitreje opazi, da je vaš vlak odpeljal s postaje. Križišča
+so zdaj pravilno opisana, ko hodite po pločniku, ki je na zemljevidu vrisan ločeno od ceste.
+
 ## Novosti v različici 2.0
 
 * **Obvestila med potovanjem z avtomobilom, avtobusom ali vlakom.** Soundscape prepozna, da se

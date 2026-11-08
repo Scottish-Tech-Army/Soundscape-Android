@@ -20,6 +20,14 @@ trenul, nu doar când mergeți pe jos. Există de asemenea multă muncă de mai 
 Notele pentru versiunile mai vechi se află pe pagina
 [Note de lansare pentru 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Modificări de la prima versiune de producție 2.0.95
+
+Am remediat mai multe probleme raportate în 2.0.95, iar această versiune face și anunțurile mai
+fiabile, și adresele mai precise. Anunțurile la mersul pe jos încep acum mai devreme după ce
+coborâți din autobuz sau din mașină, iar Soundscape observă mai repede că trenul dumneavoastră a
+plecat din gară. Intersecțiile sunt acum descrise corect atunci când mergeți pe un trotuar
+cartografiat separat de drum.
+
 ## Noutăți în 2.0
 
 * **Anunțuri în timpul călătoriei cu mașina, autobuzul sau trenul.** Soundscape recunoaște când vă

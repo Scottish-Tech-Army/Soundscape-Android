@@ -20,6 +20,13 @@ yeni dil ve uzun bir düzeltme listesi var.
 Daha eski sürümlerin notları
 [1.x sürüm notları]({{ "/v1.0-release-notes.html" | relative_url }}) sayfasında.
 
+## İlk kararlı sürüm 2.0.95'ten bu yana değişiklikler
+
+2.0.95'te bildirilen birkaç sorunu düzelttik; bu sürüm ayrıca anonsları daha güvenilir, adresleri de
+daha doğru hale getiriyor. Yürüyüş anonsları artık otobüsten veya arabadan indikten sonra daha erken
+başlıyor ve Soundscape treninizin istasyondan ayrıldığını daha çabuk fark ediyor. Yoldan ayrı olarak
+haritalanmış bir kaldırımda yürürken kavşaklar artık doğru şekilde tarif ediliyor.
+
 ## 2.0'daki yenilikler
 
 * **Arabayla, otobüsle veya trenle yolculuk sırasında bildirimler.** Soundscape hızla hareket

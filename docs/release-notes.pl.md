@@ -20,6 +20,14 @@ opisywane są miejsca, dwadzieścia nowych języków oraz długa lista poprawek.
 Informacje o starszych wersjach znajdują się na stronie
 [Informacje o wersjach 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Zmiany od pierwszego wydania produkcyjnego 2.0.95
+
+Naprawiliśmy kilka problemów zgłoszonych w wersji 2.0.95, a to wydanie sprawia też, że komunikaty są
+bardziej niezawodne, a adresy dokładniejsze. Komunikaty podczas chodzenia zaczynają się teraz
+wcześniej po wyjściu z autobusu lub samochodu, a Soundscape szybciej zauważa, że twój pociąg
+odjechał ze stacji. Skrzyżowania są teraz opisywane poprawnie, gdy idziesz chodnikiem zaznaczonym na
+mapie osobno od jezdni.
+
 ## Nowości w wersji 2.0
 
 * **Komunikaty podczas podróży samochodem, autobusem lub pociągiem.** Soundscape rozpoznaje, że

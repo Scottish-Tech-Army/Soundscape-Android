@@ -20,6 +20,13 @@ med feilrettinger.
 Merknader for eldre versjoner finnes på siden
 [Versjonsmerknader for 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Endringer siden den første produksjonsutgaven 2.0.95
+
+Vi har rettet flere problemer som ble rapportert i 2.0.95, og denne utgaven gjør også meldingene mer
+pålitelige og adressene mer nøyaktige. Meldinger når du går, starter nå tidligere etter at du har
+gått av bussen eller ut av bilen, og Soundscape merker raskere at toget ditt har kjørt fra
+stasjonen. Veikryss beskrives nå riktig når du går på et fortau som er kartlagt separat fra veien.
+
 ## Nytt i 2.0
 
 * **Meldinger under reiser med bil, buss eller tog.** Soundscape merker når du beveger deg i fart og

@@ -20,6 +20,14 @@ en lang liste af rettelser.
 Noter til ældre versioner findes på siden
 [Udgivelsesnoter for 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Ændringer siden den første produktionsudgave 2.0.95
+
+Vi har rettet flere problemer, som blev rapporteret i 2.0.95, og denne udgave gør også lydbeskederne
+mere pålidelige og adresserne mere præcise. Lydbeskeder, mens du går, starter nu hurtigere, når du
+står af bussen eller ud af bilen, og Soundscape opdager hurtigere, når dit tog er kørt fra
+stationen. Vejkryds beskrives nu korrekt, når du går på et fortov, der er kortlagt separat fra
+vejen.
+
 ## Nyt i 2.0
 
 * **Meldinger under rejser med bil, bus eller tog.** Soundscape registrerer, at du bevæger dig med

@@ -20,6 +20,14 @@ noves i una llarga llista de correccions.
 Les notes de versions anteriors són a la pàgina
 [Notes de la versió 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Canvis des de la primera versió de producció 2.0.95
+
+Hem corregit diversos problemes que se'ns van comunicar a la 2.0.95, i aquesta versió també fa que
+els avisos siguin més fiables i les adreces més precises. Els avisos mentre camineu ara comencen
+abans quan baixeu de l'autobús o del cotxe, i Soundscape detecta més ràpidament que el vostre tren
+ha sortit de l'estació. Les cruïlles ara es descriuen correctament quan camineu per una vorera
+cartografiada per separat de la carretera.
+
 ## Novetats de la 2.0
 
 * **Avisos mentre viatgeu amb cotxe, autobús o tren.** Soundscape reconeix que us desplaceu a certa

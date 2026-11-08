@@ -16,6 +16,14 @@ twenty new languages, and a long list of fixes.
 
 Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release-notes.md %}) page.
 
+## Changes since initial production release 2.0.95
+
+We've fixed several problems that were reported in 2.0.95, and this release also makes callouts
+more dependable and addresses more accurate. Walking callouts now start sooner after you get off a
+bus or out of a car, and Soundscape is quicker to notice when your train has pulled out of a
+station. Intersections are now described correctly when you're walking on a pavement that's mapped
+separately from the road.
+
 ## What's new in 2.0
 
 * **Callouts while travelling by car, bus or train.** Soundscape recognises when you're moving at

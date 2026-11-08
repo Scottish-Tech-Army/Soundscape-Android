@@ -21,6 +21,14 @@ panjang.
 Catatan untuk versi lama ada di halaman
 [Catatan rilis untuk 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Perubahan sejak rilis produksi pertama 2.0.95
+
+Kami telah memperbaiki beberapa masalah yang dilaporkan di 2.0.95, dan rilis ini juga membuat
+pemberitahuan lebih andal serta alamat lebih akurat. Pemberitahuan saat berjalan kaki kini dimulai
+lebih cepat setelah Anda turun dari bus atau mobil, dan Soundscape lebih cepat menyadari bahwa
+kereta Anda telah meninggalkan stasiun. Persimpangan kini dijelaskan dengan benar saat Anda berjalan
+di trotoar yang dipetakan terpisah dari jalan.
+
 ## Yang baru di 2.0
 
 * **Pengumuman saat bepergian dengan mobil, bus, atau kereta.** Soundscape mengenali bahwa Anda

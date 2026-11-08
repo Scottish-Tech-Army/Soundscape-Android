@@ -21,6 +21,14 @@ jerin gyare-gyare.
 Bayanan sigogin da suka gabata suna shafin
 [Bayanan sakin sigar 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
+## Canje-canje tun bayan sakin farko na 2.0.95
+
+Mun gyara matsaloli da dama da aka ba da rahotonsu a 2.0.95, kuma wannan sabon saki yana sa sanarwa
+ta fi dogaro, adireshi kuma su fi daidai. Sanarwar tafiya a kafa yanzu tana farawa da wuri bayan ka
+sauka daga bas ko mota, kuma Soundscape yana gane da sauri cewa jirgin kasanka ya bar tasha. Yanzu
+ana bayyana mahaɗar hanya daidai lokacin da kake tafiya a kan hanyar kafa da aka zana a taswira
+daban da titin mota.
+
 ## Sabbin abubuwa a 2.0
 
 * **Sanarwa yayin tafiya da mota, bas ko jirgin kasa.** Soundscape yana gane cewa kana tafiya da
