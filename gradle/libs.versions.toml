@@ -9,8 +9,8 @@ maplibreCompose = "0.20.0"
 oboe = "1.10.0" # Vendored, not resolved by Gradle: this key is the source of truth for
                 # scripts/update-oboe.sh, which pulls the prebuilts into jniLibs/ and
                 # cpp/oboe/include/. Bump it, run the script, then build and test.
-composeMultiplatform = "1.12.2"
-composeMaterial3 = "1.9.0"
+composeMultiplatform = "1.13.0-beta02"
+composeMaterial3 = "1.13.0-beta02"
 composeMaterialIconsExtended = "1.7.3"
 wire = "6.4.5"
 devtools-ksp = "2.3.12"

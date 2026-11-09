@@ -18,7 +18,9 @@ kotlin {
 
     android {
         namespace = "org.scottishtecharmy.soundscape.shared"
-        compileSdk = 37
+        // Compose Multiplatform 1.13.0-beta02's Android artifacts require compiling against
+        // 37.1 or later - see the migration note in its changelog.
+        compileSdk { version = release(37) { minorApiLevel = 1 } }
         minSdk = 30
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)

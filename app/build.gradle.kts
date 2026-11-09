@@ -16,7 +16,9 @@ plugins {
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 37
+    // Compose Multiplatform 1.13.0-beta02's Android artifacts require compiling against
+    // 37.1 or later - see the migration note in its changelog.
+    compileSdk { version = release(37) { minorApiLevel = 1 } }
 
     buildFeatures {
         buildConfig = true
