@@ -48,6 +48,7 @@ Migrated automatically:
   - App language
   - Beacon style (mapped to the closest equivalent in the new beacon set)
   - Speech rate (rescaled from the old 0–1 slider to the new 0.5×–2× range)
+  - TTS voice selection
   - Master "automatic callouts" toggle
   - Mix-with-other-audio
   - Marker sort preference (distance / alphabetical)

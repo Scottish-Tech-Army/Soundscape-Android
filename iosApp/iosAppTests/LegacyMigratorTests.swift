@@ -89,6 +89,24 @@ final class LegacyMigratorTests: XCTestCase {
         XCTAssertEqual(defaults.float(forKey: "SpeechRate"), 0.5, accuracy: 0.001)
     }
 
+    func testVoiceIdCopiesAcrossUnchanged() {
+        defaults.set("com.apple.voice.compact.en-GB.Daniel", forKey: "GDAAppleSynthVoice")
+        LegacyMigrator.migrateSettings(defaults: defaults)
+        XCTAssertEqual(defaults.string(forKey: "SelectedTtsVoiceId"), "com.apple.voice.compact.en-GB.Daniel")
+    }
+
+    func testEmptyVoiceIdIsIgnored() {
+        defaults.set("", forKey: "GDAAppleSynthVoice")
+        LegacyMigrator.migrateSettings(defaults: defaults)
+        XCTAssertNil(defaults.string(forKey: "SelectedTtsVoiceId"))
+    }
+
+    func testMissingVoiceIdIsIgnored() {
+        // No GDAAppleSynthVoice set at all - the legacy app never stored one for this user.
+        LegacyMigrator.migrateSettings(defaults: defaults)
+        XCTAssertNil(defaults.string(forKey: "SelectedTtsVoiceId"))
+    }
+
     func testV2BeaconNameMapsToCurrent() {
         defaults.set("V2Beacon", forKey: "GDASelectedBeaconName")
         LegacyMigrator.migrateSettings(defaults: defaults)
