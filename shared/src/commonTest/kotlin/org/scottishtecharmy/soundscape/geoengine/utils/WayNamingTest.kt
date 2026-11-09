@@ -87,6 +87,18 @@ private fun waterPolygon(name: String, vararg ring: LngLatAlt): MvtFeature =
         geometry = Polygon(arrayListOf(*ring, ring.first()))
     }
 
+/**
+ * An un-named water polygon, as a river's body of water arrives from extractNamedWaterPolygons:
+ * the polygon itself carries no name tag in OSM, only its centerline does. See
+ * GridState.attachRiverNamesToWaterPolygons, which fills [MvtFeature.name] in afterwards.
+ */
+private fun unnamedWaterPolygon(vararg ring: LngLatAlt): MvtFeature =
+    MvtFeature().apply {
+        this.featureType = "water"
+        this.featureValue = "named_water_polygon"
+        geometry = Polygon(arrayListOf(*ring, ring.first()))
+    }
+
 /** [base] moved [east] metres east and [north] metres north, for laying out test geometry. */
 private fun offset(base: LngLatAlt, east: Double, north: Double): LngLatAlt =
     getDestinationCoordinate(getDestinationCoordinate(base, 90.0, east), 0.0, north)
@@ -819,6 +831,125 @@ class WayNamingTest {
         gridState.featureTrees[TreeId.NAMED_WATER_POLYGONS.id] = FeatureTree(null)
 
         assertEquals("Path next to Allander Water", addWaterAdjacency(path, gridState, null))
+    }
+
+    // ============================================================================================
+    // GridState.attachRiverNamesToWaterPolygons
+    // ============================================================================================
+
+    /**
+     * Runs attachRiverNamesToWaterPolygons over a NAMED_WATERWAYS collection built from [waterways]
+     * and a NAMED_WATER_POLYGONS collection built from [polygons] - mirroring how processGridState
+     * builds one FeatureTree per collection - then returns the same (mutated in place) polygons.
+     */
+    private fun attachRiverNames(
+        waterways: List<MvtFeature>,
+        polygons: List<MvtFeature>,
+    ): List<MvtFeature> {
+        val gridState = GridState()
+        gridState.validateContext = false
+
+        val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+        for (waterway in waterways) featureCollections[TreeId.NAMED_WATERWAYS.id].addFeature(waterway)
+        for (polygon in polygons) featureCollections[TreeId.NAMED_WATER_POLYGONS.id].addFeature(polygon)
+
+        val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(featureCollections[it]) }
+        gridState.attachRiverNamesToWaterPolygons(featureCollections, localTrees)
+        return polygons
+    }
+
+    @Test
+    fun attachRiverNamesToWaterPolygons_centerlineInsidePolygon_namesThePolygon() {
+        // A wide river's bank, 20m-320m east of the origin - same shape as the reservoir in
+        // addWaterAdjacency_pathRoundLake_isNamedAfterTheLake - with its centerline running down
+        // the middle of it, 170m from the bank addWaterAdjacency will actually measure to.
+        val polygon = unnamedWaterPolygon(
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+            offset(waterOrigin, 320.0, 250.0),
+            offset(waterOrigin, 320.0, -50.0),
+        )
+        val centerline = waterway(
+            "Thames",
+            offset(waterOrigin, 170.0, -50.0),
+            offset(waterOrigin, 170.0, 250.0),
+        )
+
+        attachRiverNames(listOf(centerline), listOf(polygon))
+
+        assertEquals("Thames", polygon.name)
+    }
+
+    @Test
+    fun attachRiverNamesToWaterPolygons_centerlineOutsidePolygon_leavesItUnnamed() {
+        // Same polygon, but the centerline runs well outside it (past its eastern edge at 320m),
+        // so no vertex of it ever falls inside - no false positive just because they're nearby.
+        val polygon = unnamedWaterPolygon(
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+            offset(waterOrigin, 320.0, 250.0),
+            offset(waterOrigin, 320.0, -50.0),
+        )
+        val centerline = waterway(
+            "Thames",
+            offset(waterOrigin, 400.0, -50.0),
+            offset(waterOrigin, 400.0, 250.0),
+        )
+
+        attachRiverNames(listOf(centerline), listOf(polygon))
+
+        assertNull(polygon.name)
+    }
+
+    @Test
+    fun attachRiverNamesToWaterPolygons_alreadyNamedPolygon_isLeftAlone() {
+        // A lake or reservoir already carries its own name from OSM - a waterway centerline that
+        // happens to clip its edge must not overwrite it.
+        val lake = waterPolygon(
+            "Craigmaddie Reservoir",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+            offset(waterOrigin, 320.0, 250.0),
+            offset(waterOrigin, 320.0, -50.0),
+        )
+        val centerline = waterway(
+            "Thames",
+            offset(waterOrigin, 170.0, -50.0),
+            offset(waterOrigin, 170.0, 250.0),
+        )
+
+        attachRiverNames(listOf(centerline), listOf(lake))
+
+        assertEquals("Craigmaddie Reservoir", lake.name)
+    }
+
+    /**
+     * The end-to-end case from issue #1286: a path running along the bank of a wide river, which
+     * addWaterAdjacency alone could never name because the only named thing nearby - the river's
+     * centerline - runs down the middle of the water, 170m away and far past
+     * WATER_ADJACENCY_DISTANCE_METRES. Once attachRiverNamesToWaterPolygons has named the polygon
+     * from that same centerline, addWaterAdjacency measures to the polygon's shore - just 20m from
+     * the path - exactly as it already does for a named lake.
+     */
+    @Test
+    fun addWaterAdjacency_pathBesideRiverNamedFromItsCenterline_isNamedAfterTheRiver() {
+        val path = ridingPath()
+        val polygon = unnamedWaterPolygon(
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+            offset(waterOrigin, 320.0, 250.0),
+            offset(waterOrigin, 320.0, -50.0),
+        )
+        val centerline = waterway(
+            "Thames",
+            offset(waterOrigin, 170.0, -50.0),
+            offset(waterOrigin, 170.0, 250.0),
+        )
+        attachRiverNames(listOf(centerline), listOf(polygon))
+
+        val gridState = waterGridState(waterOrigin, polygon)
+
+        assertEquals("Path next to Thames", addWaterAdjacency(path, gridState, null))
     }
 
     @Test

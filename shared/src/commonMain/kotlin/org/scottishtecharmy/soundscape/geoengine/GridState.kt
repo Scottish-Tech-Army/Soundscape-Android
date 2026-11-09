@@ -411,6 +411,50 @@ open class GridState(
     private val waterPolygonSearchDistanceMetres = 100.0
 
     /**
+     * Names an un-named water polygon - a river's actual body of water - after the named waterway
+     * centerline that runs through it (see issue #1286). OSM tags a river's center-line with its
+     * name but leaves the polygon for the water itself un-named, which is why a path along the bank
+     * of a wide river never used to qualify for addWaterAdjacency's "Path next to X": the only named
+     * thing nearby was the centerline, often hundreds of metres away across the water.
+     *
+     * Every vertex of every named waterway (extractNamedWaterPolygons/extractNamedWaterways already
+     * restrict NAMED_WATERWAYS to river/canal/stream) is tested against NAMED_WATER_POLYGONS with
+     * getContainingPolygons - an un-named polygon containing that vertex is almost certainly the
+     * river's own bank, so its name is written straight onto the polygon Feature. This runs once per
+     * grid build, before attachWaterPolygonCrossings/attachRailwayCrossings below, so a bridge over
+     * a river that gets named here is also named correctly for crossing callouts.
+     *
+     * Matching is done on the centerline's own vertices rather than points resampled along it
+     * (compare WayNaming's sampleAlongLine). That's cheaper, but means a long, simplified straight
+     * stretch of centerline with no vertex inside a particular bend of the bank could leave that
+     * stretch unnamed - no worse than today, where the polygon is never named at all.
+     *
+     * Returns the number of polygons newly named.
+     */
+    internal fun attachRiverNamesToWaterPolygons(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val polygonTree = localTrees[TreeId.NAMED_WATER_POLYGONS.id]
+        var named = 0
+        for (waterway in featureCollections[TreeId.NAMED_WATERWAYS.id].features.filterIsInstance<MvtFeature>()) {
+            val line = waterway.geometry as? LineString ?: continue
+            val waterwayName = waterway.name ?: continue
+            for (coordinate in line.coordinates) {
+                val containing = polygonTree.getContainingPolygons(coordinate)
+                    .features.filterIsInstance<MvtFeature>()
+                for (polygon in containing) {
+                    if (polygon.name != null) continue
+                    polygon.name = waterwayName
+                    polygon.translatedName = waterway.translatedName
+                    named++
+                }
+            }
+        }
+        return named
+    }
+
+    /**
      * Records the named water a road bridge or tunnel crosses where that water is a *polygon* - a
      * firth, a bay, a tidal river - rather than a waterway line.
      *
@@ -1138,6 +1182,14 @@ open class GridState(
             }
         }
         logger.d { "R-Trees took $rtreeTiming" }
+
+        // Before the crossing attachment below, so that a river named here is also available to
+        // attachWaterPolygonCrossings for naming the bridges and tunnels over it.
+        var riverPolygonsNamed = 0
+        val riverNamingTiming = measureTime {
+            riverPolygonsNamed = attachRiverNamesToWaterPolygons(featureCollections, localTrees)
+        }
+        logger.d { "River polygon naming took $riverNamingTiming ($riverPolygonsNamed named)" }
 
         // Needs both the ROADS_AND_PATHS and TRANSIT rtrees built above, but nothing else from
         // this function, so it can run before the tile-edge stitching below.

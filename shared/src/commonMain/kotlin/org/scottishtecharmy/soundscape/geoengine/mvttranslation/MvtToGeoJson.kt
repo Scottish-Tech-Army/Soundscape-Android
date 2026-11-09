@@ -178,14 +178,14 @@ private fun extractNamedWaterPolygons(
                 }
                 firstInPair = !firstInPair
             }
-            if (name.isNullOrEmpty()) continue
-            val translatedName = translation.translationOf(name)
-
             if (feature.type == Tile.GeomType.LINESTRING) {
                 // A strait/sound (e.g. "Afon Menai / Menai Strait") is sometimes represented as a
                 // named centerline rather than a polygon - the crossing check in AutoCallout's
                 // wayCrossingInfo falls back to nearest-feature search for exactly this case, so a
-                // LineString works there just as well as a polygon.
+                // LineString works there just as well as a polygon. Unlike the polygon branch
+                // below, an unnamed one is genuinely useless, so it's dropped here.
+                if (name.isNullOrEmpty()) continue
+                val translatedName = translation.translationOf(name)
                 for (line in parseGeometry(true, feature.geometry)) {
                     if (line.isEmpty()) continue
                     val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
@@ -202,6 +202,14 @@ private fun extractNamedWaterPolygons(
                 continue
             }
 
+            // A polygon is kept even when it has no name, unlike the LineString branch above - a
+            // river's body of water is tagged in OSM without a name (only its centerline carries
+            // one), so dropping it here is exactly what left issue #1286's "Path next to Thames"
+            // unreachable. GridState.attachRiverNamesToWaterPolygons fills the name in afterwards
+            // from the named waterway centerline that runs through it; until then this polygon sits
+            // in NAMED_WATER_POLYGONS unnamed, which every existing consumer already tolerates
+            // (they all null-check water.name themselves).
+            val translatedName = if (name.isNullOrEmpty()) null else translation.translationOf(name)
             var lastClockwisePolygon: Polygon? = null
             for (ring in parseGeometry(false, feature.geometry)) {
                 if (ring.isEmpty()) continue
