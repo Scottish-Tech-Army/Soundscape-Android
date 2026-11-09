@@ -305,6 +305,14 @@ enum LegacyMigrator {
             defaults.set(clamped, forKey: "SpeechRate")
         }
 
+        // TTS voice. Both apps pick an AVSpeechSynthesisVoice by its system identifier, so the
+        // value carries over unchanged. A voice removed since (e.g. a deleted downloaded
+        // language) just fails to resolve at render time and falls back to the language's
+        // default voice - see TtsRenderer.render - so there's nothing to validate here.
+        if let legacyVoiceId = defaults.string(forKey: "GDAAppleSynthVoice"), !legacyVoiceId.isEmpty {
+            defaults.set(legacyVoiceId, forKey: "SelectedTtsVoiceId")
+        }
+
         // Beacon style. Legacy values include "V2Beacon", "Classic" and
         // some experimental names; new catalogue is the BEACON_TYPES map in
         // shared/audio/BeaconTypes.kt. Map to the closest equivalent.
