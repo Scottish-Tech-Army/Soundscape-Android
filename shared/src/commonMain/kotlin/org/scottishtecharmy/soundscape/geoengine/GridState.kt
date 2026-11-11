@@ -682,10 +682,9 @@ open class GridState(
      * The nearest way to [poi] which identifies itself, or null if there isn't one within
      * [nearestWaySearchDistanceMetres] of it.
      *
-     * getNearbyCollection rather than getNearestCollection: the latter passes its metre distance
-     * into RTree.nearest as a planar degree bound and asks for an unbounded k, so it ends up
-     * walking the whole tree. This is a properly pruned box search, and it already deduplicates
-     * the per-segment rtree entries back down to whole Ways.
+     * getNearbyCollection rather than getNearestCollection: nothing here needs the results in
+     * distance order, and the box search already deduplicates the per-segment rtree entries back
+     * down to whole Ways.
      */
     private fun nearestNamedWay(
         tree: FeatureTree,
