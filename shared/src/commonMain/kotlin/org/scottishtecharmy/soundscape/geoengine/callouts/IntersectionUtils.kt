@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.IntersectionAhead
 import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.WayCursor
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateSmallestAngleBetweenLines
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
@@ -47,6 +48,24 @@ import kotlin.math.abs
  */
 private const val minimumSpokenDistanceMetres = 5.0
 
+/**
+ * How far beyond a junction with nothing new to name one with a named road can be and still be
+ * taken as the same junction - see walkForIntersection.
+ */
+private const val SAME_JUNCTION_METRES = 15.0
+
+/**
+ * How far beyond the junction being announced another can be and still be described as part of
+ * it - see IntersectionDescription.alsoAt.
+ */
+private const val JUNCTION_CLUSTER_METRES = 8.0
+
+/** Junction nodes are exact points, so a callout about one only needs to match that point. */
+private const val SAME_NODE_METRES = 1.0
+
+/** What every junction callout is matched against the callout history by - see above. */
+private const val JUNCTION_DEDUP_TEXT = "junction"
+
 data class IntersectionDescription(
     var nearestRoad: Way? = null,
     val userGeometry: UserGeometry = UserGeometry(),
@@ -66,6 +85,13 @@ data class IntersectionDescription(
      * intersection, so it can be relied on as the approach arm once that has run.
      */
     val centreLineDistance: Double? = null,
+    /**
+     * The other nodes of the same junction, each with the Way the search arrived on: nodes a few
+     * metres from [intersection] which someone walking through meets as part of one junction - a
+     * footpath and a service road leaving a street 3m apart, say. Their arms are described along
+     * with [intersection]'s - see [SAME_JUNCTION_METRES].
+     */
+    val alsoAt: List<Pair<Intersection, Way>> = emptyList(),
 )
 
 /**
@@ -101,6 +127,7 @@ private data class IntersectionCandidate(
     val intersection: Intersection,
     val distance: Double?,
     val arrivingWay: Way?,
+    val via: List<Intersection> = emptyList(),
 )
 
 /**
@@ -146,11 +173,15 @@ private fun distanceAlongWayTo(
  */
 var forceLegacyIntersectionSearch = false
 
+/** Test-only: when set, [walkForIntersection] reports every candidate and its choice here. */
+var junctionSearchTrace: ((String) -> Unit)? = null
+
 fun getRoadsDescriptionFromFov(
     gridState: GridState,
     userGeometry: UserGeometry,
     strings: LocalizedStrings?,
     minimumTier: RoadTier = RoadTier.OTHER,
+    calloutHistory: CalloutHistory? = null,
 ): IntersectionDescription {
 
     // Without a heading there's no telling which junction the user will reach next - the nearest
@@ -259,7 +290,8 @@ fun getRoadsDescriptionFromFov(
         }
         if (cursor != null) {
             return walkForIntersection(
-                cursor, nearestRoad, userGeometry, gridState, strings, minimumTier, triangle
+                cursor, nearestRoad, userGeometry, gridState, strings, minimumTier, triangle,
+                calloutHistory
             )
         }
     }
@@ -270,18 +302,49 @@ fun getRoadsDescriptionFromFov(
 }
 
 /**
+ * Whether [intersection] has an arm with no name or ref which the user could take - a path or a
+ * service road - other than the one they arrive on. A junction with nothing new to name is still
+ * worth announcing for that, but not one whose other arms are all the road the user is on.
+ */
+private fun hasUnnamedArm(
+    intersection: Intersection,
+    arriving: Way?,
+    gridState: GridState,
+    strings: LocalizedStrings?,
+): Boolean = intersection.members.any { arm ->
+    (arm.name == null) && (arm.ref == null) &&
+        arm.isJunctionArm(intersection, arriving, gridState, strings)
+}
+
+/** How far an arm can bend away from straight on and still be the road carrying on. */
+private const val STRAIGHT_ON_DEGREES = 45.0
+
+/**
+ * Whether the road the user arrives at [intersection] on stops there, so that they have to turn:
+ * no arm carries on within [STRAIGHT_ON_DEGREES] of straight on. Where the road they're on goes
+ * off both left and right - "Minerva Street goes left, Minerva Street goes right" - there's nothing
+ * new to name, but they still need to know.
+ */
+private fun roadEnds(
+    intersection: Intersection,
+    arriving: Way?,
+    gridState: GridState,
+    strings: LocalizedStrings?,
+): Boolean {
+    if (arriving == null) return false
+    val straightOn = (arriving.heading(intersection) + 180.0) % 360.0
+    val arms = intersection.members.filter { it.isJunctionArm(intersection, arriving, gridState, strings) }
+    return arms.isNotEmpty() && arms.none {
+        calculateHeadingOffset(straightOn, it.heading(intersection)) <= STRAIGHT_ON_DEGREES
+    }
+}
+
+/**
  * The steady-state intersection search: walk the Way graph ahead of [cursor] (see
  * [org.scottishtecharmy.soundscape.geoengine.utils.forEachIntersectionAhead]) for candidates, then
- * choose among them exactly as [legacyIntersectionSearch] does - sorted nearest-first *as the crow
- * flies* from the user, first one with priority (see [checkWhetherIntersectionIsOfInterest])
- * greater than zero, or the highest-priority one if none does.
- *
- * Crow-fly rather than the walk's own network distance for that ordering/choice: on a bend, the
- * network-nearest junction and the crow-fly-nearest one are not always the same one, and it is the
- * crow-fly-nearest that historically got the tie-break here (legacyIntersectionSearch's candidates
- * come from sortedByDistanceTo, a crow-fly sort). The chosen candidate's network distance - its
- * [org.scottishtecharmy.soundscape.geoengine.utils.IntersectionAhead.distance] - is still what
- * ends up spoken; only the *choice* between candidates uses crow-fly, matching history.
+ * choose the nearest along the walk which is worth announcing (see [hasUnnamedArm] and
+ * [checkWhetherIntersectionIsOfInterest]). The walk only follows the way the user goes by not
+ * turning, so the nearest junction along it is the next one they come to.
  *
  * No rtree search and no Dijkstra to measure that network distance or check reachability:
  * [nearestRoad] is already known - MapMatchFilter computes it every location tick regardless of
@@ -305,19 +368,29 @@ private fun walkForIntersection(
     strings: LocalizedStrings?,
     minimumTier: RoadTier,
     triangle: Triangle,
+    calloutHistory: CalloutHistory?,
 ): IntersectionDescription {
     val fovPolygon = createPolygonFromTriangle(triangle)
     val userLocation = userGeometry.mapMatchedLocation?.point ?: userGeometry.location
     val candidates = mutableListOf<IntersectionCandidate>()
+    // Announced junctions where the road ends - see worthAnnouncing below.
+    val turnsAt = mutableListOf<Intersection>()
     forEachIntersectionAhead(cursor, userGeometry.fovDistance, gridState, strings) { found ->
         if (!polygonContainsCoordinates(found.intersection.location, fovPolygon)) {
+            junctionSearchTrace?.invoke("  x ${found.intersection.location.latitude},${found.intersection.location.longitude} net=${found.distance.toInt()} outside field of view")
             return@forEachIntersectionAhead true
         }
 
         // Within 5m of the user there's nothing new to say - the same trim
         // legacyIntersectionSearch applies, now measured along the network rather than as the
         // crow flies.
-        if (found.distance < 5.0) return@forEachIntersectionAhead true
+        if (found.distance < 5.0) {
+            // ...but one the user is about to turn at still stops the search looking past it.
+            if ((calloutHistory?.covers(JUNCTION_DEDUP_TEXT, found.intersection.location) == true) &&
+                roadEnds(found.intersection, found.arrivingWay, gridState, strings)
+            ) turnsAt.add(found.intersection)
+            return@forEachIntersectionAhead true
+        }
 
         // Skip intersections which only offer roads less important than the verbosity setting
         // asks for, e.g. a service road or footpath off a street. Scored against the fixed
@@ -330,29 +403,127 @@ private fun walkForIntersection(
                 found.intersection, nearestRoad, minimumTier, gridState, strings,
                 comingFromBearing(userGeometry, found.intersection.location)
             )
-        ) return@forEachIntersectionAhead true
+        ) {
+            junctionSearchTrace?.invoke("  x ${found.intersection.location.latitude},${found.intersection.location.longitude} net=${found.distance.toInt()} below road tier")
+            return@forEachIntersectionAhead true
+        }
 
         // We aim to skip 'simple' intersections e.g. ones where the only roads involved have the
         // same name.
         val priority = checkWhetherIntersectionIsOfInterest(found.intersection, nearestRoad)
         candidates.add(
-            IntersectionCandidate(priority, found.intersection, found.distance, found.arrivingWay)
+            IntersectionCandidate(
+                priority, found.intersection, found.distance, found.arrivingWay, found.via
+            )
         )
         true // Every candidate within range is needed before the crow-fly choice below can be made.
     }
-    if (candidates.isEmpty()) return IntersectionDescription(nearestRoad, userGeometry)
+    // The junction announced is the next one the user comes to that is worth announcing - the
+    // nearest along the walk. Whether a junction is worth announcing is decided by the junction
+    // alone. It used to depend on what else was in range: one with only unnamed paths off it was
+    // announced when there was nothing better, but passed over for a junction with a named road
+    // beyond it, so the user could be told about a junction they'd only reach after another.
+    //
+    // A junction which has already been announced is looked past, so that the next one can be
+    // announced as early as any other rather than only once the user is through the first. The
+    // order still holds: they are announced in the order the user reaches them.
+    // Not past one where the road ends, though: the user has to turn there, so whatever lies
+    // beyond it is somewhere they won't go.
+    val announced = candidates.filter { candidate ->
+        calloutHistory?.covers(JUNCTION_DEDUP_TEXT, candidate.intersection.location) == true
+    }
+    announced.filter { roadEnds(it.intersection, it.arrivingWay, gridState, strings) }
+        .forEach { turnsAt.add(it.intersection) }
+    val worthAnnouncing = candidates.filter { candidate ->
+        (candidate !in announced) && candidate.via.none { v -> turnsAt.any { it === v } }
+    }.filter { candidate ->
+        (candidate.priority > 0) ||
+            ((candidate.priority == 0) && (
+                hasUnnamedArm(candidate.intersection, candidate.arrivingWay, gridState, strings) ||
+                    roadEnds(candidate.intersection, candidate.arrivingWay, gridState, strings)
+                ))
+    }
+    val nearest = worthAnnouncing.minByOrNull { it.distance ?: Double.MAX_VALUE }
+    // A junction with only unnamed paths or service roads off it, a few metres short of one with
+    // a named road, is part of the same junction to someone walking through - a footpath stub at
+    // the corner, say - and the named road is what describes it.
+    val candidate = if ((nearest != null) && (nearest.priority <= 0)) {
+        val reach = (nearest.distance ?: 0.0) + SAME_JUNCTION_METRES
+        worthAnnouncing
+            .filter { (it.priority > 0) && ((it.distance ?: Double.MAX_VALUE) <= reach) }
+            .minByOrNull { it.distance ?: Double.MAX_VALUE } ?: nearest
+    } else {
+        nearest
+    }
+        // Where the road only changes name ahead, that node is still the one described - as before,
+        // it says nothing (see addIntersectionCalloutFromDescription), rather than "Ahead <road>".
+        ?: candidates.filter { it.priority < 0 }.minByOrNull { it.distance ?: Double.MAX_VALUE }
+    junctionSearchTrace?.let { trace ->
+        trace("road=${nearestRoad.name ?: nearestRoad.featureValue} matched=${userGeometry.mapMatchedWay?.name ?: userGeometry.mapMatchedWay?.featureValue}")
+        for (c in candidates) {
+            val l = c.intersection.location
+            val crow = userGeometry.ruler.distance(userLocation, l).toInt()
+            trace(
+                (if (c === candidate) "* " else "  ") + "${l.latitude},${l.longitude} " +
+                    "p=${c.priority} net=${c.distance?.toInt()} crow=$crow via=${c.via.size}" +
+                    (if (c in worthAnnouncing) "" else " (not worth announcing)") +
+                    " on=${c.arrivingWay?.name ?: c.arrivingWay?.featureValue} arms=" +
+                    c.intersection.members.joinToString("|") { m ->
+                        (m.name ?: m.featureValue ?: "?") +
+                            (m.properties?.get("footway")?.let { "($it)" } ?: "") +
+                            "/${m.length.toInt()}m" +
+                            (if (m.isJunctionArm(c.intersection, c.arrivingWay, gridState, strings)) "" else "-")
+                    }
+            )
+        }
+    }
+    if (candidate == null) return IntersectionDescription(nearestRoad, userGeometry)
 
-    val sortedByCrowFlyDistance =
-        candidates.sortedBy { userGeometry.ruler.distance(userLocation, it.intersection.location) }
-    val candidate = sortedByCrowFlyDistance.firstOrNull { it.priority > 0 }
-        ?: sortedByCrowFlyDistance.maxByOrNull { it.priority }
-        ?: return IntersectionDescription(nearestRoad, userGeometry)
+    // The rest of the junction: the junctions worth announcing that lie just beyond this one, and
+    // any just before it which gave way to it above. Someone walking through meets them all as one
+    // junction, and announcing each separately said "Intersection in 30 metres" and then, a few
+    // seconds later, "Intersection in 5 metres" for what is to them the same place.
+    val alsoAt = if (candidate.priority >= 0) {
+        val at = candidate.distance ?: 0.0
+        worthAnnouncing.filter { other ->
+            (other !== candidate) && (other.arrivingWay != null) && (other.distance != null) &&
+                (
+                    ((other.distance <= at + JUNCTION_CLUSTER_METRES) &&
+                        other.via.any { it === candidate.intersection }) ||
+                    ((other.distance >= at - SAME_JUNCTION_METRES) &&
+                        candidate.via.any { it === other.intersection })
+                )
+        }.sortedBy { it.distance }.map { it.intersection to it.arrivingWay!! }
+    } else {
+        emptyList()
+    }
+    // The walk doesn't go on from a junction where the road ends, so it finds nothing beyond a
+    // T junction - but a side road a few metres along either way is part of the same junction,
+    // and the user is past it as soon as they've turned. So also take any junction one short arm
+    // away, in any direction.
+    val neighbours = if (candidate.priority >= 0) {
+        candidate.intersection.members.mapNotNull { arm ->
+            if ((arm === candidate.arrivingWay) || (arm.length > JUNCTION_CLUSTER_METRES) ||
+                !arm.isJunctionArm(candidate.intersection, candidate.arrivingWay, gridState, strings)
+            ) return@mapNotNull null
+            val far = arm.getOtherIntersection(candidate.intersection) ?: return@mapNotNull null
+            if ((far === candidate.intersection) || (far.members.size <= 2) ||
+                alsoAt.any { it.first === far }
+            ) return@mapNotNull null
+            val worth = (checkWhetherIntersectionIsOfInterest(far, nearestRoad) > 0) ||
+                hasUnnamedArm(far, arm, gridState, strings)
+            if (worth) far to arm else null
+        }
+    } else {
+        emptyList()
+    }
 
     return IntersectionDescription(
         candidate.arrivingWay ?: nearestRoad,
         userGeometry,
         candidate.intersection,
-        candidate.distance
+        candidate.distance,
+        alsoAt + neighbours,
     )
 }
 
@@ -679,7 +850,13 @@ fun addIntersectionCalloutFromDescription(
         },
         isPoint = true,
         isGeneric = false,
-        calloutHistory = calloutHistory
+        calloutHistory = calloutHistory,
+        // The callout covers every node of the junction it describes (see
+        // IntersectionDescription.alsoAt), so none of the others is announced after it. Matched
+        // by place alone, since each node has a name of its own.
+        dedupText = JUNCTION_DEDUP_TEXT,
+        matchRadiusMetres = SAME_NODE_METRES,
+        alsoCovers = description.alsoAt.map { it.first.location },
     )
     if (calloutHistory?.find(trackedCallout) == true) {
         return null
@@ -692,7 +869,15 @@ fun addIntersectionCalloutFromDescription(
 
     val directions = getCombinedDirectionSegments(incomingHeading)
     val intersectionResults = trackedCallout.positionedStrings.toMutableList()
-    for (way in description.intersection.members) {
+    // The short Ways joining the nodes of one junction to each other are inside it, not roads
+    // leaving it. Each node was reached along one of them, or - for a node before
+    // description.intersection - is left along the one description.intersection is reached by.
+    // Directions at every node are from the way the user walks into description.intersection.
+    val insideJunction = description.alsoAt.map { it.second } +
+        listOfNotNull(description.nearestRoad.takeIf { description.alsoAt.isNotEmpty() })
+    val nodes = listOf(description.intersection) + description.alsoAt.map { it.first }
+    for (node in nodes) for (way in node.members) {
+        if ((node !== description.intersection) && insideJunction.any { it === way }) continue
 
         // Pavements aren't called out. A footway is only found to be one as its name is confected,
         // so that has to happen before asking - otherwise the first callout at a junction says
@@ -702,7 +887,7 @@ fun addIntersectionCalloutFromDescription(
         if (way.properties?.get("pavement") != null)
             continue
 
-        val wayHeading = way.heading(description.intersection)
+        val wayHeading = way.heading(node)
         val direction = directions.indexOfFirst { segment ->
             segment.contains(wayHeading)
         }
@@ -741,13 +926,14 @@ fun addIntersectionCalloutFromDescription(
             }
 
             val destinationText = way.getName(
-                way.intersections[WayEnd.START.id] == description.intersection,
+                way.intersections[WayEnd.START.id] == node,
                 gridState,
                 localized
             )
             val intersectionCallout =
                 localized?.get(directionKey, destinationText)
                     ?: "\t$destinationText $unlocalizedDirection"
+            if (intersectionResults.any { it.text == intersectionCallout }) continue
             intersectionResults.add(
                 PositionedString(
                     text = intersectionCallout,

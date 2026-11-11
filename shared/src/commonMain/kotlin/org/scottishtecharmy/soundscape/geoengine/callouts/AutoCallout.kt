@@ -1264,7 +1264,8 @@ class AutoCallout(
             gridState,
             userGeometry,
             localized,
-            verbosity().minimumIntersectionTier
+            verbosity().minimumIntersectionTier,
+            intersectionCalloutHistory
         )
 
         // Hold off until the junction is within the announce band. The callout history is keyed

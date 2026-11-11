@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.toPreference
+import org.scottishtecharmy.soundscape.geoengine.callouts.junctionSearchTrace
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
 import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
@@ -4504,7 +4505,10 @@ class MvtTileTest {
         gpxFilename: String,
         calloutFilename: String,
         geojsonFilename: String,
-        preferences: PreferencesProvider? = null
+        preferences: PreferencesProvider? = null,
+        startIndex: Int = 0,
+        endIndex: Int = Int.MAX_VALUE,
+        junctionTracer: JunctionTracer? = null,
     ): Int {
 
         val gridState = FileGridState()
@@ -4525,8 +4529,6 @@ class MvtTileTest {
         val recordsCourses = gps.features.any { it.properties?.get("heading") != null }
         val travelHeadingEstimator = TravelHeadingEstimator()
         val collection = FeatureCollection()
-        val startIndex = 0
-        val endIndex = gps.features.size
         val autoCallout = AutoCallout(null, preferences)
         val callOutText = FileOutputStream(testOutputFile(calloutFilename))
         var calloutCount = 0
@@ -4773,12 +4775,17 @@ class MvtTileTest {
                 }
                 lastOnTrain = onTrain
 
+                junctionTracer?.update(index + startIndex, userGeometry, gridState)
                 val callout = autoCallout.updateLocation(
                     userGeometry,
                     gridState,
                     settlementGrid
                 )
                 if (callout != null) {
+                    junctionTracer?.callout(index + startIndex, callout)
+                    // Clips number their callouts by GPX point, so they can be found in the trace
+                    if (junctionTracer != null)
+                        callOutText.write("\n[${index + startIndex}]".toByteArray())
                     // We've got a new callout, so add it to our geoJSON as a triangle for the
                     // FOV that was used to create it, along with the text from the callouts. With
                     // no heading there was no FOV, so the callout is placed at the location.
@@ -4912,6 +4919,94 @@ class MvtTileTest {
             assertEquals("Junctions announced on $drive", junctions, announced)
         }
     }
+
+    /**
+     * Short stretches of the recorded walks through the places junction callouts find hardest:
+     * the Moor Road / Strathblane Road junction, Milngavie's pedestrian precinct, and Craigdhu
+     * Road with its pavements mapped as separate ways. Each starts far enough back for the map
+     * matcher to settle. Much quicker than [testCallouts], and each clip writes a junction trace
+     * (see [JunctionTracer]) to gpxFiles/clips/<clip>-junctions.txt checking that every junction
+     * callout describes the next junction the user actually comes to.
+     */
+    @Category(NightlyOnlyTest::class)
+    @Test
+    fun testJunctionClips() {
+        val only = System.getProperty("junctionClip") ?: System.getenv("JUNCTION_CLIP")
+        val summary = StringBuilder()
+        var totalWrong = 0
+        for (clip in junctionClips) {
+            if ((only != null) && !clip.name.contains(only)) continue
+            val tracer = JunctionTracer()
+            val searchLog = StringBuilder()
+            junctionSearchTrace = { searchLog.append("[${tracer.currentIndex}] $it\n") }
+            testMovingGrid(
+                "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/${clip.gpx}.gpx",
+                "gpxFiles/clips/${clip.name}.txt",
+                "gpxFiles/clips/${clip.name}.geojson",
+                startIndex = clip.start,
+                endIndex = clip.end,
+                junctionTracer = tracer,
+            )
+            junctionSearchTrace = null
+            testOutputFile("gpxFiles/clips/${clip.name}-search.txt").writeText(searchLog.toString())
+            val (report, wrong) = tracer.report()
+            testOutputFile("gpxFiles/clips/${clip.name}-junctions.txt").writeText(report)
+            summary.append("${clip.name}: $wrong\n")
+            totalWrong += wrong
+        }
+        summary.append("total: $totalWrong\n")
+        testOutputFile("gpxFiles/clips/summary.txt").writeText(summary.toString())
+        println(summary)
+    }
+
+    private class JunctionClip(val name: String, val gpx: String, val start: Int, val end: Int)
+
+    private val junctionClips = listOf(
+        // Moor Road / Strathblane Road
+        JunctionClip("moor-WalkFromTesco", "WalkFromTesco-pixel", 600, 880),
+        JunctionClip("moor-WalkToTesco", "WalkToTesco-samsung", 220, 470),
+        JunctionClip("moor-ToTown", "ToTown", 220, 470),
+        JunctionClip("moor-travel", "travel", 150, 330),
+        JunctionClip("moor-travel-3", "travel-3", 80, 260),
+        JunctionClip("moor-TreeCoveredWalk", "TreeCoveredWalk-iphone", 2150, 2380),
+        // The precinct: Douglas Street, Station Road, Main Street
+        JunctionClip("precinct-WalkFromTesco", "WalkFromTesco-pixel", 0, 330),
+        JunctionClip("precinct-tesco-out", "tesco", 100, 200),
+        JunctionClip("precinct-tesco-back", "tesco", 470, 620),
+        JunctionClip("precinct-travel", "travel", 600, 780),
+        JunctionClip("precinct-TreeCoveredWalk", "TreeCoveredWalk-iphone", 800, 1000),
+        // Craigdhu Road and its mapped pavements
+        JunctionClip("craigdhu-travel-3", "travel-3", 850, 1340),
+        JunctionClip("craigdhu-travel-2", "travel-2", 1120, 1510),
+        JunctionClip("craigdhu-TreeCoveredWalk", "TreeCoveredWalk-iphone", 980, 1300),
+        // Junctions lost by the first round of junction search changes
+        JunctionClip("woodburn-ToTown", "ToTown", 640, 790),
+        JunctionClip("fulton-ToWaverley", "ToWaverley", 650, 780),
+        JunctionClip("keystone-travel-2", "travel-2", 800, 930),
+        JunctionClip("rupert-bristol-bus", "bristol-bus", 720, 940),
+        JunctionClip("glasgowcross-train-2", "train-2", 80, 280),
+        JunctionClip("finnieston-train-2", "train-2", 1620, 1780),
+        JunctionClip("gallowgate-ToFabricBazaar", "ToFabricBazaar-iOS", 800, 920),
+        JunctionClip("earlscourt-London-tube", "London-tube", 1170, 1290),
+        JunctionClip("victoria-travel-2", "travel-2", 450, 570),
+        JunctionClip("milngavieroad-BusTrip", "BusTripToMilngavie", 1990, 2110),
+        // Ede (NL): a neighbourhood of unnamed paths, none of them mapped as pavements. A
+        // synthetic walk (one fix a second, a little GPS noise) mostly on those paths.
+        JunctionClip("enkalaan-all", "Enkalaan-synthetic", 0, Int.MAX_VALUE),
+        // A footway drawn with a 2m jog into the service road it joins, then a turn onto a path
+        // a few metres on, with Enkalaan straight ahead beyond it.
+        JunctionClip("enkalaan-jog", "Enkalaan-synthetic", 20, 110),
+        // Off a path onto Sponzenstraat and straight off it again onto another path.
+        JunctionClip("enkalaan-sponzenstraat", "Enkalaan-synthetic", 180, 240),
+        // On the bus out of Milngavie past the M&S car park and onto Woodburn Way.
+        JunctionClip("woodburnway-ToBalloch", "ToBalloch", 0, 250),
+        // Walking south down Finnieston Street, past the paths either side of the road.
+        JunctionClip("finniestonst-train-1", "train-1", 1030, 1150),
+        // Off the footpaths onto Firpark Court, beside the steps down to Firpark Close.
+        JunctionClip("firpark-ToFabricBazaar", "ToFabricBazaar-iOS", 60, 200),
+        // Up Station Road to the Glasgow Road / Baldernock Road / Strathblane Road junction.
+        JunctionClip("stationrd-tesco", "tesco", 560, 680),
+    )
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Category(NightlyOnlyTest::class)

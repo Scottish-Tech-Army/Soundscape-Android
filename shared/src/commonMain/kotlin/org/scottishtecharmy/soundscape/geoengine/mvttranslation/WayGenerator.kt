@@ -525,12 +525,36 @@ class Way : MvtFeature() {
      * @param fromIntersection is the intersection which the way is part of and from which we want
      * the heading to be calculated
      * @return the absolute heading of the way as it leaves the intersection
+     *
+     * Measured to a point [HEADING_SAMPLE_METRES] along the way rather than to its next vertex.
+     * Paths in particular are often drawn with a jog of a metre or two into the node they join -
+     * a footpath heading west whose last 2m turn north onto a service road, say - and the bearing
+     * of that jog said the path arrived from the south, so the service road it carries straight
+     * on into was described as going left.
      */
     fun heading(fromIntersection: Intersection): Double {
-        val nextLocation = if (fromIntersection == intersections[WayEnd.START.id])
-            (geometry as LineString).coordinates.drop(1).first()
-        else
-            (geometry as LineString).coordinates.dropLast(1).last()
+        val coordinates = (geometry as LineString).coordinates
+        val forwards = (fromIntersection == intersections[WayEnd.START.id])
+        val ruler = fromIntersection.location.createCheapRuler()
+        var nextLocation = if (forwards) coordinates[1] else coordinates[coordinates.size - 2]
+        var travelled = 0.0
+        for (step in 1 until coordinates.size) {
+            val p0 = if (forwards) coordinates[step - 1] else coordinates[coordinates.size - step]
+            val p1 = if (forwards) coordinates[step] else coordinates[coordinates.size - 1 - step]
+            val d = ruler.distance(p0, p1)
+            nextLocation = p1
+            if (travelled + d >= HEADING_SAMPLE_METRES) {
+                if (d > 0.0) {
+                    val f = (HEADING_SAMPLE_METRES - travelled) / d
+                    nextLocation = LngLatAlt(
+                        p0.longitude + (p1.longitude - p0.longitude) * f,
+                        p0.latitude + (p1.latitude - p0.latitude) * f
+                    )
+                }
+                break
+            }
+            travelled += d
+        }
 
         return bearingFromTwoPoints(fromIntersection.location, nextLocation)
     }
@@ -1157,3 +1181,10 @@ class WayGenerator(val transit: Boolean = false) {
         }
     }
 }
+
+/**
+ * How far along a Way its heading out of a junction is measured over - see Way.heading. Long
+ * enough to see past a jog drawn into the node, short enough to still be the direction the way
+ * leaves in rather than where a bend takes it.
+ */
+private const val HEADING_SAMPLE_METRES = 10.0
