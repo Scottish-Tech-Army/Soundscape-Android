@@ -150,6 +150,15 @@ Also in this layer:
 * **NAPTAN attributes** for UK bus stops, which is how stops get the name that's actually on the timetable and the sign: `naptanCode`, `naptanAtcoCode`, `naptanBearing`, `naptanCommonName`, `naptanStreet`, `naptanLandmark`, `naptanIndicator` and `naptanLocalityName`, from the corresponding `naptan:*` tags. `Bearing` gives the direction a stop serves.
 * **Address attributes**: `street`, `housenumber`, `block_number`, `neighbourhood`, `quarter` and `suburb`, from the matching `addr:*` tags.
 * **`artwork_type`** on `tourism=artwork` POIs (`mural`, `statue`, `sculpture`...). OpenMapTiles puts artworks in the `art_gallery` class alongside galleries and arts centres, so without this an unnamed mural could only be called out as "Artwork". Pitches need nothing extra: as upstream, their `subclass` is already the `sport` tag, which the app uses to call out a Skate Park or Football Pitch rather than a Sports Field. Likewise `tourism=information` POIs carry the `information` tag as their `subclass`, so a Signpost, Tactile Map or Information Board is called out rather than plain Information.
+* **Type tags** that say what kind of thing a POI is, where its subclass alone is too vague to call out. Each is emitted at maxzoom, under the OSM tag's own name and with its value unchanged, only on its own subclass and only when the tag is present:
+  * `shelter_type` on `amenity=shelter` (`public_transport`, `picnic_shelter`, `weather_shelter`, `lean_to`...), so a bus shelter can be told apart from a shelter on a hillside.
+  * `memorial` on `historic=memorial` (`plaque`, `war_memorial`, `statue`, `stone`, `stolperstein`...).
+  * `recycling_type` on `amenity=recycling` (`container` or `centre`), since a recycling centre is a site rather than a bin.
+  * `vending` on `amenity=vending_machine` (`parking_tickets`, `public_transport_tickets`, `drinks`...).
+  * `social_facility` on `amenity=social_facility` (`nursing_home`, `group_home`, `food_bank`, `shelter`...).
+  * `fountain` on `amenity=fountain` (`decorative`, `drinking`, `bubbler`...), as some drinking fountains are tagged this way rather than `amenity=drinking_water`.
+  * `community_centre` on `amenity=community_centre` (`village_hall`, `youth_centre`...).
+  * `parking` on `amenity=parking` (`surface`, `multi-storey`, `underground`, `street_side`...).
 
 #### `housenumber` layer
 The same address attributes — `street`, `block_number`, `neighbourhood`, `quarter`, `suburb` — plus `housename` from `addr:housename`.
