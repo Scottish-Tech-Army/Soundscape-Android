@@ -116,6 +116,15 @@ fun addSidewalk(
     return found
 }
 
+/**
+ * An unnamed bridge - usually the man_made=bridge outline drawn around a bridge - is something a
+ * way passes over rather than somewhere it goes, and the way already says so ("Path via bridge").
+ * As a destination it was "Path to Bridge", even "Motorway to Bridge", which tells nobody where
+ * the way leads. A named bridge is a place in its own right and stays.
+ */
+private fun isUnnamedBridge(feature: Feature): Boolean =
+    (feature as? MvtFeature)?.let { (it.featureClass == "bridge") && (it.name == null) } == true
+
 fun checkNearbyPoi(
     tree: FeatureTree,
     location: LngLatAlt,
@@ -123,17 +132,17 @@ fun checkNearbyPoi(
     ruler: Ruler
 ): Feature? {
 
-    // Get the nearest 2 features so that we can exclude polygonPoiToCompare.
-    // Otherwise we never find features within other Polygons like parks.
+    // Get the nearest few features so that we can exclude polygonPoiToCompare and an unnamed
+    // bridge. Otherwise we never find features within other Polygons like parks.
     val nearbyPois = tree.getNearestCollection(
         location = location,
         distance = 20.0,
-        2,
+        3,
         ruler = ruler
     )
     for (poi in nearbyPois) {
         // Return the startPoi so long as we haven't matched against the polygonEndPoi
-        if (poi != polygonPoiToCompare) {
+        if ((poi != polygonPoiToCompare) && !isUnnamedBridge(poi)) {
             return poi
         }
     }
@@ -206,8 +215,10 @@ fun addPoiDestinations(
     // up with confusing confections inside parks where a path is described "to Park" when the
     // whole path is within the park, but one end is nearer the edge of it.
     val poiTree = gridState.getFeatureTree(TreeId.POIS)
-    val polygonStartPoi = poiTree.getContainingPolygons(startLocation).features.firstOrNull()
-    val polygonEndPoi = poiTree.getContainingPolygons(endLocation).features.firstOrNull()
+    val polygonStartPoi = poiTree.getContainingPolygons(startLocation).features
+        .firstOrNull { !isUnnamedBridge(it) }
+    val polygonEndPoi = poiTree.getContainingPolygons(endLocation).features
+        .firstOrNull { !isUnnamedBridge(it) }
     if ((polygonEndPoi != null) || (polygonStartPoi != null)) {
         if (polygonEndPoi != polygonStartPoi) {
             // The way crosses across a polygon boundary
