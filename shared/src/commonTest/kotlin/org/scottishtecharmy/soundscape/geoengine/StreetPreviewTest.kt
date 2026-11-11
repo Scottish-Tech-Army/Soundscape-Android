@@ -338,7 +338,10 @@ class StreetPreviewTest {
         sp.go(userGeometry(fixture.j1Location, phoneHeading = 2.0), fixture.gridState, locationProvider, null)
 
         val actualLastHeading = sp.getLastHeading()
-        val firstWayBasedHeading = (fixture.wayNorth.heading(fixture.j3) + 180.0) % 360.0
+        // The direction travelled along the first leg - into j2 along wayNorth. (Asking wayNorth
+        // for its heading out of j3, which isn't one of its ends, gives a bearing from somewhere
+        // along it, and how far off that is depends on how far along Way.heading samples.)
+        val firstWayBasedHeading = (fixture.wayNorth.heading(fixture.j2) + 180.0) % 360.0
         val lastWayBasedHeading = (fixture.wayContinue.heading(fixture.j3) + 180.0) % 360.0
 
         assertEquals(lastWayBasedHeading, actualLastHeading, 0.0001)

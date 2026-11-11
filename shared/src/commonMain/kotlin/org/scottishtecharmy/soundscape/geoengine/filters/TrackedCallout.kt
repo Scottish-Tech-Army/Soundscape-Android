@@ -41,6 +41,11 @@ class TrackedCallout(
      * asked for when its own earlier callout is looked up.
      */
     val matchRadiusMetres: Double = 10.0,
+    /**
+     * Other places this callout also covers, matched like [location]: the other nodes of a
+     * junction described in the same callout, say, so that none of them is announced again.
+     */
+    val alsoCovers: List<LngLatAlt> = emptyList(),
 ) {
     /** When this was last relevant - set when made, and moved on by [CalloutHistory.refresh]. */
     var time = userGeometry?.timestampMilliseconds ?: 0L
@@ -62,7 +67,8 @@ class TrackedCallout(
             // If the TrackedCallout isn't for a point i.e. it's a Polygon, then we can't compare
             // it's location, as the nearest point on a Polygon changes as we move.
             return (other.comparableText == comparableText)
-                    && (!isPoint || ruler.distance(location, other.location) < matchRadiusMetres)
+                    && (!isPoint || ruler.distance(location, other.location) < matchRadiusMetres ||
+                        alsoCovers.any { ruler.distance(it, other.location) < matchRadiusMetres })
         }
         return false
     }
@@ -142,6 +148,13 @@ class CalloutHistory(
             }
         }
     }
+
+    /**
+     * Whether a callout recorded with [dedupText] already covers [location] - its own location or
+     * one of its [TrackedCallout.alsoCovers] - within its match radius.
+     */
+    fun covers(dedupText: String, location: LngLatAlt): Boolean =
+        find(TrackedCallout(trackedText = dedupText, location = location, isPoint = true))
 
     fun find(callout: TrackedCallout): Boolean {
         for (tc in history) {

@@ -337,6 +337,11 @@ data class IntersectionAhead(
     val arrivingWay: Way,
     /** Whether the walk was travelling [arrivingWay]'s own START-to-END direction on arrival. */
     val arrivingForwards: Boolean,
+    /**
+     * The junctions the walk reported on its way here, nearest first. A junction can't be reached
+     * without passing through these, so they come before it whatever their crow-fly distances.
+     */
+    val via: List<Intersection> = emptyList(),
 )
 
 /**
@@ -389,11 +394,14 @@ fun forEachIntersectionAhead(
  * fork into same-named one-way carriageways or quietly rename at an unremarkable node constantly;
  * either would silently cut the search short of the junction actually being asked about (see the
  * "complex intersection" fixtures in app/src/test/.../ComplexIntersections.kt, and
- * [collectIntersectionsAhead]'s own comment). So this instead explores every real arm at each
- * junction it passes through looking for something better, gathering everything found within
- * [maxDistance] and merging the results by distance - a small, distance-bounded local search
- * rather than a single path, but still nothing like the cost of the FeatureTree/Dijkstra search it
- * replaces: a real junction's fan-out is small, and [MAX_WAYS_WALKED] bounds the total regardless.
+ * [collectIntersectionsAhead]'s own comment). So at each junction it passes through it carries on
+ * along every arm the user would take by not turning - each arm continuing the road, so both
+ * carriageways where it splits, or else the arm nearest straight on - gathering everything found
+ * within [maxDistance] and merging the results by distance. Side roads aren't walked: a junction
+ * down one is only reached by turning, so it's never the next junction ahead. It never steps from
+ * a road onto a pavement or crossing either, only across tile joiners, though a walk starting on a
+ * path does. [MAX_WAYS_WALKED] bounds
+ * the total.
  */
 private fun walkIntersectionsOneDirection(
     cursor: WayCursor,
@@ -422,10 +430,7 @@ private fun walkIntersectionsOneDirection(
         gridState = gridState,
         strings = strings,
         continuation = continuation,
-        // Shared across every branch of the search, not per-branch: it is what keeps a fork that
-        // rejoins itself (a short one-way loop around a block, say) from being walked forever, and
-        // MAX_WAYS_WALKED is a budget on the whole search, not on any one path through it.
-        visited = mutableSetOf(),
+        onPath = cursor.way.isSidewalkOrCrossing() || cursor.way.isPath(),
         found = found,
     )
     for (result in found.values.sortedBy { it.distance }) {
@@ -433,6 +438,27 @@ private fun walkIntersectionsOneDirection(
     }
 }
 
+/** One Way still to be walked by [collectIntersectionsAhead], and how the walk got to it. */
+private class PendingWay(
+    val way: Way,
+    val stepForwards: Boolean,
+    val entry: Double,
+    /** Metres walked before stepping on to [way]. */
+    val travelled: Double,
+    /** The junctions reported on the way here, nearest first - see [IntersectionAhead.via]. */
+    val via: List<Intersection>,
+)
+
+/**
+ * Walks every Way reachable ahead of the starting one, nearest first: always taking next the
+ * pending Way the walk reached soonest. Each Way is walked once - the shared visited set is what
+ * keeps a fork that rejoins itself (a short one-way loop around a block, say) from being walked
+ * forever, and [MAX_WAYS_WALKED] is a budget on the whole search, not on any one path through it -
+ * so taking them nearest first means each is walked from its nearest approach. Depth first, the
+ * first branch could go all the way round a loop and use up the Ways which were the direct route
+ * to a junction - the other carriageway of a road which splits in two before meeting another, say
+ * - so the junction would only be recorded as reached the long way round, through others.
+ */
 private fun collectIntersectionsAhead(
     way: Way,
     stepForwards: Boolean,
@@ -444,13 +470,43 @@ private fun collectIntersectionsAhead(
     gridState: GridState,
     strings: LocalizedStrings?,
     continuation: WayContinuation,
-    visited: MutableSet<Way>,
+    onPath: Boolean,
     found: MutableMap<Intersection, IntersectionAhead>,
 ) {
-    if (!visited.add(way)) return
-    if (visited.size > MAX_WAYS_WALKED) return
+    val visited = mutableSetOf<Way>()
+    val pending = mutableListOf(PendingWay(way, stepForwards, entry, travelled, emptyList()))
+    while (pending.isNotEmpty()) {
+        val next = pending.minBy { it.travelled }
+        pending.remove(next)
+        if (!visited.add(next.way)) continue
+        if (visited.size > MAX_WAYS_WALKED) return
+        walkOneWayForIntersections(
+            next, roadName, roadRef, maxDistance, gridState, strings, continuation, onPath,
+            found, pending
+        )
+    }
+}
 
-    val travelledToExit = travelled + if (stepForwards) way.length - entry else entry
+/**
+ * Walks [step]'s Way to its far end, records the junction there if it's a real one, and queues
+ * the Ways leading on from it in [pending].
+ */
+private fun walkOneWayForIntersections(
+    step: PendingWay,
+    roadName: String?,
+    roadRef: String?,
+    maxDistance: Double,
+    gridState: GridState,
+    strings: LocalizedStrings?,
+    continuation: WayContinuation,
+    onPath: Boolean,
+    found: MutableMap<Intersection, IntersectionAhead>,
+    pending: MutableList<PendingWay>,
+) {
+    val way = step.way
+    val stepForwards = step.stepForwards
+    val via = step.via
+    val travelledToExit = step.travelled + if (stepForwards) way.length - step.entry else step.entry
     if (travelledToExit > maxDistance) return
 
     // Walked here rather than by calling Way.followWays for the same reason walkOneDirection is:
@@ -462,11 +518,13 @@ private fun collectIntersectionsAhead(
         way.intersections[WayEnd.START.id]
     } ?: return
 
-    fun continueOnto(next: Way) {
+    fun continueOnto(next: Way, nextVia: List<Intersection> = via) {
         val nextForwards = (next.intersections[WayEnd.START.id] === exit)
-        collectIntersectionsAhead(
-            next, nextForwards, if (nextForwards) 0.0 else next.length, travelledToExit,
-            roadName, roadRef, maxDistance, gridState, strings, continuation, visited, found
+        pending.add(
+            PendingWay(
+                next, nextForwards, if (nextForwards) 0.0 else next.length, travelledToExit,
+                nextVia
+            )
         )
     }
 
@@ -493,32 +551,82 @@ private fun collectIntersectionsAhead(
             sameOsmWay(realArms.single(), way))
     when {
         realArms.size >= 2 || (realArms.size == 1 && !singleArmIsSameRoad) -> {
-            val ahead = IntersectionAhead(exit, travelledToExit, way, stepForwards)
+            val ahead = IntersectionAhead(exit, travelledToExit, way, stepForwards, via)
             val alreadyFound = found[exit]
-            if ((alreadyFound == null) || (ahead.distance < alreadyFound.distance)) {
+            if (alreadyFound == null) {
                 found[exit] = ahead
+            } else {
+                // Reached again by another route - e.g. along the other carriageway of a road
+                // that splits in two before the junction. Keep the nearer arrival, but only the
+                // junctions which every route found so far passes through: one that some route
+                // avoids isn't one the user has to come to first.
+                val nearer = if (ahead.distance < alreadyFound.distance) ahead else alreadyFound
+                val other = if (nearer === ahead) alreadyFound else ahead
+                found[exit] = nearer.copy(
+                    via = nearer.via.filter { passed -> other.via.any { it === passed } }
+                )
             }
             if (continuation == WayContinuation.STRAIGHT_ON) return
-            // Explore every real arm looking for something better further on - not just whichever
-            // continues the road by name. Unlike walkOneDirection's own same-road-only
-            // continuation (right for "when's the next crossing on this named road"), a junction
-            // search that gave up here whenever the road being followed happens to rename at this
-            // very node - a common, unremarkable event - would silently stop looking for the more
-            // interesting junction that is often just beyond it.
-            for (next in realArms) continueOnto(next)
+            // Carry on only the way the user would go if they didn't turn here. A junction down a
+            // side road is one they only come to by turning, so it's never the next one ahead,
+            // however near it is - but the search used to walk every arm, and such a junction
+            // could be chosen over the one actually ahead.
+            val viaHere = via + exit
+            for (next in continuingArms(exit, way, realArms, roadName, roadRef)) {
+                continueOnto(next, viaHere)
+            }
         }
         // The one real arm continues the same road - walk through without reporting, same as a
         // plain pass-through node.
         realArms.size == 1 -> continueOnto(realArms.single())
-        // Nothing real here (only sidewalks/crossings/joiners, or a genuine dead end) but there's
-        // exactly one physical way through regardless - take it, the same forced continuation
-        // walkOneDirection makes.
-        candidates.size == 1 -> continueOnto(candidates.single())
-        // Several non-real exits (a node built only of pavement stubs and tile joiners) - explore
-        // all of them rather than guess, the same reasoning as the reported-junction case above.
-        candidates.isNotEmpty() -> for (next in candidates) continueOnto(next)
-        // No continuation at all: the road dead-ends here.
-        else -> return
+        // Nothing real here: only pavements, crossings, tile joiners, or a genuine dead end. A
+        // walk along a road only crosses tile joiners. Stepping onto the pavements and crossings
+        // took it on to junctions of the pavement network, which were then described as junctions
+        // on the road ("Path goes left") and never reached. A walk that starts on a path or a
+        // pavement can carry on along pavements and crossings, which is where it's going.
+        else -> {
+            val onward = if (onPath) {
+                candidates
+            } else {
+                candidates.filter { it.wayType == WayType.JOINER }
+            }
+            for (next in onward) continueOnto(next)
+        }
+    }
+}
+
+/** How far an arm can bend away from straight on and still be where the road goes. */
+private const val STRAIGHT_ON_DEGREES = 45.0
+
+/**
+ * The arms at [junction] which carry on from [arriving] for someone who doesn't turn: those
+ * continuing the road by name, ref or OSM way - more than one where it splits into two
+ * carriageways - or, where none does, the arm nearest straight on, if one is within
+ * [STRAIGHT_ON_DEGREES]. A road which renames at a junction carries on that way.
+ */
+private fun continuingArms(
+    junction: Intersection,
+    arriving: Way,
+    realArms: List<Way>,
+    roadName: String?,
+    roadRef: String?,
+): List<Way> {
+    // A node reported only because one way gives way to another has nowhere else to go, however
+    // sharply it bends
+    if (realArms.size == 1) return realArms
+    val same = realArms.filter {
+        sameRoad(it, roadName, roadRef) || sameRoad(it, arriving.name, arriving.ref) ||
+            sameOsmWay(it, arriving)
+    }
+    if (same.isNotEmpty()) return same
+    val straightOn = (arriving.heading(junction) + 180.0) % 360.0
+    val straightest = realArms.minByOrNull {
+        calculateHeadingOffset(straightOn, it.heading(junction))
+    } ?: return emptyList()
+    return if (calculateHeadingOffset(straightOn, straightest.heading(junction)) <= STRAIGHT_ON_DEGREES) {
+        listOf(straightest)
+    } else {
+        emptyList()
     }
 }
 

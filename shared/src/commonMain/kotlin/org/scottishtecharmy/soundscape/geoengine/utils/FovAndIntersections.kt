@@ -145,10 +145,16 @@ fun checkWhetherIntersectionIsOfInterest(
             //  classifying.
             continue
         }
-        // Ignore the road we're on - recognised by name or by ref, as AlongWay's sameRoad does -
-        // and count each other road once however many of its pieces meet here.
-        val isOurRoad = ((way.name != null) && (way.name == testNearestRoad.name)) ||
-            ((way.ref != null) && (way.ref == testNearestRoad.ref))
+        // Ignore the road we're on, and count each other road once however many of its pieces
+        // meet here. Two named roads are the same road only if their names match: a route number
+        // runs on along streets of different names - the B8030 is Station Road and then Woodburn
+        // Way - and to someone walking, the street a junction leads to is a different one. The
+        // ref only decides when one of them has no name.
+        val isOurRoad = if ((way.name != null) && (testNearestRoad.name != null)) {
+            way.name == testNearestRoad.name
+        } else {
+            (way.ref != null) && (way.ref == testNearestRoad.ref)
+        }
         if (!isOurRoad && setOfNames.add(roadKey)) {
             needsFurtherChecking++
         }
