@@ -31,6 +31,8 @@ import org.scottishtecharmy.soundscape.geoengine.filters.OnFootDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.BARRIER_END
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.BARRIER_START
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
@@ -4153,6 +4155,64 @@ class MvtTileTest {
         val outputFile = FileOutputStream(testOutputFile("confected-names.geojson"))
         outputFile.write(adapter.toJson(roads).toByteArray())
         outputFile.close()
+    }
+
+    /**
+     * The names of the Ways of OSM way [osmWayId] within [radius] of [location] which end at a
+     * gate, each read leaving its other end if that's at a junction - the way a callout at that
+     * junction describes it.
+     */
+    private fun namesFromJunctionEnd(
+        location: LngLatAlt,
+        osmWayId: Long,
+        radius: Double = 200.0
+    ): List<String> {
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 2)
+        traverseIntersectionsConfectingNames(gridState.gridIntersections)
+        // Way osmIds are the OSM id with the element type appended - 2 for a way
+        val osmId = osmWayId * 10 + 2
+        return gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+            .getNearestCollection(location, radius, 50, gridState.ruler)
+            .map { it as Way }
+            .filter { it.osmId == osmId }
+            .mapNotNull { way ->
+                val gateAtEnd = way.properties?.get(BARRIER_END) != null
+                val gateAtStart = way.properties?.get(BARRIER_START) != null
+                when {
+                    gateAtEnd && (way.intersections[WayEnd.START.id] != null) ->
+                        way.getName(true, gridState, null)
+                    gateAtStart && (way.intersections[WayEnd.END.id] != null) ->
+                        way.getName(false, gridState, null)
+                    else -> null
+                }
+            }
+    }
+
+    /**
+     * The delivery road behind Tesco in Milngavie is behind a locked, no-access gate a few metres
+     * from the junction. It used to be called "Service to Tesco"; the stretch up to the gate is
+     * now just the gate. https://www.openstreetmap.org/node/12027507688
+     */
+    @Test
+    fun testServiceRoadToLockedGateIsNotNamedAfterWhatIsBeyondIt() {
+        val gate = LngLatAlt(-4.3143499, 55.9403561)
+        val names = namesFromJunctionEnd(gate, 1323646455L)
+        assertEquals(listOf("Locked gate"), names)
+        // The road beyond the gate is cut off from the network, so nothing leads to Tesco
+        val beyond = namesFromJunctionEnd(gate, 1298272085L)
+        assertTrue("$beyond", beyond.isEmpty())
+    }
+
+    /**
+     * Commissioner's Walk has a locked gate a few metres from its Moor Road end, so from the far
+     * junction it leads to the gate, and from Moor Road it's barely more than the gate itself.
+     * https://www.openstreetmap.org/node/2098378412
+     */
+    @Test
+    fun testRoadThroughLockedGateEndsAtTheGate() {
+        val gate = LngLatAlt(-4.3107572, 55.9452760)
+        val names = namesFromJunctionEnd(gate, 123890722L)
+        assertEquals(setOf("Service to locked gate", "Locked gate"), names.toSet())
     }
 
     @Test

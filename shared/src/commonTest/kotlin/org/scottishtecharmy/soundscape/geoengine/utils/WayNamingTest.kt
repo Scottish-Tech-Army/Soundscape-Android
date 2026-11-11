@@ -4,6 +4,8 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.BARRIER_END
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.GateKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -449,6 +451,29 @@ class WayNamingTest {
         assertTrue(added)
         assertEquals("Main Entrance", target.properties?.get("destination:forward"))
         assertNull(target.properties?.get("destination:backward"))
+    }
+
+    @Test
+    fun addPoiDestinations_entranceBeyondLockedGateIsNotTheDestination() {
+        // The Tesco delivery road: the way ends at a locked gate, and the store entrance is just
+        // the other side of it. The road doesn't lead to the store for anyone who can't get
+        // through the gate.
+        val start = LngLatAlt(-2.657, 51.430)
+        val end = getDestinationCoordinate(start, 0.0, 50.0)
+        val target = way(name = null, start = start, end = end).apply {
+            properties = hashMapOf(BARRIER_END to GateKind.LOCKED.tag)
+        }
+
+        val gridState = GridState()
+        gridState.validateContext = false
+        gridState.featureTrees[TreeId.ENTRANCES.id] = FeatureTree(
+            FeatureCollection().apply { addFeature(poi("Tesco", getDestinationCoordinate(end, 0.0, 5.0))) }
+        )
+
+        val added = addPoiDestinations(target, gridState, null)
+
+        assertFalse(added)
+        assertNull(target.properties?.get("destination:forward"))
     }
 
     @Test
