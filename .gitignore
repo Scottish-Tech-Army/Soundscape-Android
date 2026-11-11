@@ -64,3 +64,6 @@ scripts/migration_mapping.csv
 # Map extracts dropped in the project root for one-off analysis; test tiles live under
 # app/src/test/res and are downloaded, not committed.
 /*.pmtiles
+
+# Local-only Claude Code skill
+.claude/skills/refresh-test-extracts/
