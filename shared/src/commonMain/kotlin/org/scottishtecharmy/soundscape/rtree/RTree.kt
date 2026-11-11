@@ -5,11 +5,17 @@ import kotlin.math.sqrt
 
 data class Entry<T, out G : Geometry>(val value: T, val geometry: G)
 
-private sealed class QItem<T, G : Geometry>(val dist: Double) : Comparable<QItem<T, G>> {
-    class NodeItem<T, G : Geometry>(dist: Double, val node: Node<T, G>) : QItem<T, G>(dist)
-    class EntryItem<T, G : Geometry>(dist: Double, val entry: Entry<T, G>) : QItem<T, G>(dist)
+// Ties on distance go to whichever was pushed first. Without that, the order of equally near
+// entries (ways meeting at a node, say) depended on the heap's shape, so changing maxDistance
+// could reorder results that were all well within it.
+private sealed class QItem<T, G : Geometry>(val dist: Double, val seq: Int) : Comparable<QItem<T, G>> {
+    class NodeItem<T, G : Geometry>(dist: Double, seq: Int, val node: Node<T, G>) : QItem<T, G>(dist, seq)
+    class EntryItem<T, G : Geometry>(dist: Double, seq: Int, val entry: Entry<T, G>) : QItem<T, G>(dist, seq)
 
-    override fun compareTo(other: QItem<T, G>): Int = dist.compareTo(other.dist)
+    override fun compareTo(other: QItem<T, G>): Int {
+        val byDist = dist.compareTo(other.dist)
+        return if (byDist != 0) byDist else seq.compareTo(other.seq)
+    }
 }
 
 private class MinHeap<E : Comparable<E>> {
@@ -95,7 +101,8 @@ class RTree<T, G : Geometry> private constructor(
     ): List<Entry<T, G>> {
         if (root == null || maxCount <= 0) return emptyList()
         val pq = MinHeap<QItem<T, G>>()
-        pq.push(QItem.NodeItem(root.mbr.distanceToPoint(px, py), root))
+        var seq = 0
+        pq.push(QItem.NodeItem(root.mbr.distanceToPoint(px, py), seq++, root))
         val results = ArrayList<Entry<T, G>>(minOf(maxCount, 16))
         while (!pq.isEmpty() && results.size < maxCount) {
             val item = pq.pop()
@@ -104,12 +111,12 @@ class RTree<T, G : Geometry> private constructor(
                 is QItem.NodeItem<T, G> -> when (val n = item.node) {
                     is Leaf -> for (e in n.entries) {
                         val d = e.geometry.distanceToPoint(px, py)
-                        if (d <= maxDistance) pq.push(QItem.EntryItem(d, e))
+                        if (d <= maxDistance) pq.push(QItem.EntryItem(d, seq++, e))
                     }
 
                     is Branch -> for (c in n.children) {
                         val d = c.mbr.distanceToPoint(px, py)
-                        if (d <= maxDistance) pq.push(QItem.NodeItem(d, c))
+                        if (d <= maxDistance) pq.push(QItem.NodeItem(d, seq++, c))
                     }
                 }
 

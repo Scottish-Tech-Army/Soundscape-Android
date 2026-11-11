@@ -191,7 +191,16 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         // fail soft with no results rather than crash.
         val tree = tree ?: return emptyList()
         val k = if (maxCount < 1) Int.MAX_VALUE else maxCount
-        return tree.nearest(from.longitude, from.latitude, distance, k).filter { entry ->
+        // The tree measures in degrees, and distance is in metres. Passing metres straight
+        // through meant a 20m search was a 20 degree one, so every search with no count limit
+        // walked the whole tree before the filter below threw nearly all of it away. A point
+        // within distance metres is at most that many metres' worth of degrees away on each
+        // axis, and a degree of longitude is the shorter, so this bounds the search without
+        // losing anything the filter would keep.
+        val degrees = if (distance.isInfinite()) distance else
+            1.5 * distance / (EARTH_RADIUS_METERS * cos(toRadians(from.latitude)).coerceAtLeast(0.01)) *
+                (180 / PI)
+        return tree.nearest(from.longitude, from.latitude, degrees, k).filter { entry ->
             entryWithinDistance(entry, distance, from, ruler)
         }
     }
