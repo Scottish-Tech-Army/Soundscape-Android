@@ -53,6 +53,10 @@ private fun Way.isShortDeadEnd() =
         ((properties?.containsKey("dead-end:forward") == true) ||
             (properties?.containsKey("dead-end:backward") == true))
 
+// How much worse a replacement can fit than a matched follower which is only sitting a tick out
+// for its heading - see MapMatchFilter.filter
+private const val SIDELINED_MATCH_FRECHET_FACTOR = 2.0
+
 // How many ticks after the match is lost a new match must still be reachable from the old one
 private const val LOST_MATCH_GRACE_TICKS = 5
 
@@ -64,6 +68,22 @@ private const val GRACE_TICKS_AFTER_LOSING_CONFIDENCE = 5
 // How far the vehicle has to have moved since the last fix for the bearing between them to say
 // which way it is going along a road - see travellingAgainstOneway.
 private const val ONEWAY_MINIMUM_MOVEMENT_METRES = 15.0
+
+// How far back along the track the bearing that is compared with each road's direction is taken
+// from. The bearing between consecutive fixes is no use on foot: they are a metre or two apart and
+// GPS noise is around half a metre, so it swings by 20-30 degrees from fix to fix and regularly
+// went past the 45 degree tolerance on a road the user was walking straight along. Every follower
+// was rejected at once, the matched one included - two thirds of the single-fix dropouts in the
+// GPX replays. Measured from a fix further back the noise is much smaller, but the bearing then
+// lags a turn, so a follower onto the new way is accepted a fix or two later. 5m cut the dropouts
+// from 571 to 237 but announced the junctions at Douglas Street and Christine's on the Green
+// (travel-3) too late to be any use; 3m cut them to 322 and kept both. In a vehicle consecutive
+// fixes are already further apart than this, so nothing changes there.
+private const val HEADING_BASELINE_METRES = 3.0
+
+// How many recent fixes are kept to find that baseline. Standing still for longer than this leaves
+// no fix far enough back, and the heading check is skipped rather than using a stale bearing.
+private const val HEADING_BASELINE_FIXES = 10
 
 // How far from a oneway road's own direction the travel bearing has to be before the vehicle is
 // taken to be going against it. Not 90: the bearing is the chord between two fixes, which cuts
@@ -467,11 +487,17 @@ class RoadFollower(
         return false
     }
 
+    /**
+     * @param travelHeading the user's direction of travel over the last few metres (see
+     * HEADING_BASELINE_METRES), or NaN when there isn't one - the follower is then judged on
+     * distance alone.
+     */
     fun update(
         gpsLocation: LngLatAlt,
         collection: FeatureCollection,
         ruler: CheapRuler,
-        drivingSelection: Boolean
+        drivingSelection: Boolean,
+        travelHeading: Double = Double.NaN
     ): RoadFollowerStatus {
 
         if (ils.line == null)
@@ -490,7 +516,6 @@ class RoadFollower(
         }
 
         // Update radius
-        var gpsHeading = Double.NaN
         var pointGap = 0.0
         var dMin = 0.0
         var directionChange = false
@@ -521,7 +546,6 @@ class RoadFollower(
                 averagePointGap *= 0.9
                 averagePointGap += (0.1 * pointGap)
             }
-            gpsHeading = bearingFromTwoPoints(lastLocation, gpsLocation)
         }
 
         ils.line?.let { line ->
@@ -652,10 +676,11 @@ class RoadFollower(
         }
 
         val roadHeading = nearestPoint?.heading
-        if (!gpsHeading.isNaN() && roadHeading != null) {
-            val headingDifference = calculateSmallestAngleBetweenLines(gpsHeading, roadHeading)
-            // gpsHeading is the straight-line bearing of the chord between this and the last GPS
-            // fix, compared against the road's local tangent heading at the matched point. For
+        if (!travelHeading.isNaN() && roadHeading != null) {
+            val headingDifference = calculateSmallestAngleBetweenLines(travelHeading, roadHeading)
+            // travelHeading is the straight-line bearing of the chord back to a fix at least
+            // HEADING_BASELINE_METRES behind - the last fix itself in a vehicle - compared
+            // against the road's local tangent heading at the matched point. For
             // widely-spaced samples (e.g. driving), that chord can cut across a bend in the road,
             // so it legitimately differs more from the local tangent than it would for the dense,
             // closely-spaced samples this 45 degree tolerance was originally tuned for - widen it
@@ -734,6 +759,8 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
     var matchedWay: Way? = null
     var matchedFollower: RoadFollower? = null
     var lastLocation: LngLatAlt? = null
+    // The last few fixes, for the direction of travel - see HEADING_BASELINE_METRES.
+    private val recentLocations = ArrayDeque<LngLatAlt>()
 
     // The match from just before it was lost. A tick with no qualifying follower clears the match,
     // and without this the next tick could pick any nearby way with no check that it can be
@@ -949,10 +976,29 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
                 (gridState.ruler.distance(it, location) >= ONEWAY_MINIMUM_MOVEMENT_METRES)
         }?.let { bearingFromTwoPoints(it, location) }
 
+        // The rail matcher keeps the bearing from the last fix. On a platform it is as noisy as it
+        // is on foot anywhere, and RailMatchArbiter has come to rely on that: the rail match
+        // dropping out as somebody walks off along the platform is part of what ends the ride.
+        // With the steadier bearing, TransferAtQueenStreet held the Edinburgh and Glasgow line along the
+        // Waverley platform for a minute longer and lost the walk's callouts, and ended the ride
+        // at the Haymarket stop instead of riding through it. At train speed fixes are already
+        // further apart than HEADING_BASELINE_METRES, so this only matters at a standstill.
+        val baselineMetres = if (networkTree == TreeId.TRANSIT) 0.0 else HEADING_BASELINE_METRES
+        val baselineHeading = recentLocations.lastOrNull {
+            gridState.ruler.distance(it, location) >= baselineMetres
+        }?.let { bearingFromTwoPoints(it, location) } ?: Double.NaN
+        if (recentLocations.lastOrNull() != location) {
+            recentLocations.addLast(location)
+            if (recentLocations.size > HEADING_BASELINE_FIXES) recentLocations.removeFirst()
+        }
+
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
         val previouslyMatchedFollower = matchedFollower
         var previousMatchFrechet: Double? = null
+        // The previously matched follower's frechetAverage when it's sitting this tick out only
+        // because the heading has swung (e.g. turning a corner) - see the check after the loop.
+        var sidelinedMatchFrechet: Double? = null
         // The follower whose raw (unsmoothed) GPS-to-road distance is the smallest this tick,
         // regardless of its frechetAverage - see the raw-distance override below, which needs
         // this rather than just lowestFollower, since a follower that's clearly the best
@@ -964,7 +1010,9 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
         val followerIterator = followerList.listIterator()
         while (followerIterator.hasNext()) {
             val follower = followerIterator.next()
-            val frechetStatus = follower.update(location, collection, gridState.ruler, drivingSelection)
+            val frechetStatus = follower.update(
+                location, collection, gridState.ruler, drivingSelection, baselineHeading
+            )
 
             if (frechetStatus.state == RoadFollowerState.DISTANT) {
                 followerIterator.remove()
@@ -973,6 +1021,8 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             if ((frechetStatus.state == RoadFollowerState.ANGLED_AWAY) ||
                 (frechetStatus.state == RoadFollowerState.DIRECTION_CHANGED)
             ) {
+                if (follower === previouslyMatchedFollower)
+                    sidelinedMatchFrechet = frechetStatus.frechetAverage
                 continue
             }
 
@@ -1125,6 +1175,16 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             ) {
                 lowestFollower = previouslyMatchedFollower
                 lowestFrechet = previousMatchFrechet
+            }
+        }
+
+        // When the matched follower sits a tick out only because the heading is swinging, e.g.
+        // turning a corner, don't hand the match to whatever's left if it's a much worse fit - a
+        // road 12m away which has never fitted the track can otherwise win by default for that
+        // one tick, and an intersection callout fires from it. No match for the tick is better.
+        sidelinedMatchFrechet?.let { sidelined ->
+            if ((lowestFollower != null) && (lowestFrechet > sidelined * SIDELINED_MATCH_FRECHET_FACTOR)) {
+                lowestFollower = null
             }
         }
 
