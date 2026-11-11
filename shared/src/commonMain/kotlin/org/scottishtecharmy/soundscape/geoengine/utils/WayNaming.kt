@@ -2,6 +2,9 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.BARRIER_END
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.BARRIER_START
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.GateKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -150,8 +153,9 @@ fun addPoiDestinations(
 
     val startIntersection = way.intersections[WayEnd.START.id]
     val endIntersection = way.intersections[WayEnd.END.id]
+    val waysFromStart = mutableListOf<Pair<Boolean, Way>>()
+    val waysFromEnd = mutableListOf<Pair<Boolean, Way>>()
     if (startIntersection != null) {
-        val waysFromStart = mutableListOf<Pair<Boolean, Way>>()
         way.followWays(startIntersection, waysFromStart)
         // When followWays from the start intersection will head towards the end of the line
         endLocation = if (waysFromStart.last().first)
@@ -160,7 +164,6 @@ fun addPoiDestinations(
             (waysFromStart.last().second.geometry as LineString).coordinates.first()
     }
     if (endIntersection != null) {
-        val waysFromEnd = mutableListOf<Pair<Boolean, Way>>()
         way.followWays(endIntersection, waysFromEnd)
         // When followWays from the end intersection will head towards the start of the line
         startLocation = if (waysFromEnd.last().first)
@@ -169,9 +172,20 @@ fun addPoiDestinations(
             (waysFromEnd.last().second.geometry as LineString).coordinates.first()
     }
 
+    // An end at a gate that can't be got through stays a dead end: whatever is the other side of
+    // the gate isn't where the way leads. waysFromStart heads towards the END of the line.
+    val startAtGate = if (endIntersection != null)
+        waysFromEnd.lastOrNull()?.let { farEndBarrier(it) } != null
+    else
+        way.properties?.get(BARRIER_START) != null
+    val endAtGate = if (startIntersection != null)
+        waysFromStart.lastOrNull()?.let { farEndBarrier(it) } != null
+    else
+        way.properties?.get(BARRIER_END) != null
+
     // Only add in destinations tag if they don't already exist
-    val startDestinationAdded = way.properties?.get("destination:backward") != null
-    val endDestinationAdded = way.properties?.get("destination:forward") != null
+    val startDestinationAdded = startAtGate || (way.properties?.get("destination:backward") != null)
+    val endDestinationAdded = endAtGate || (way.properties?.get("destination:forward") != null)
 
     if (startDestinationAdded && endDestinationAdded) return false
 
@@ -226,6 +240,9 @@ fun addPoiDestinations(
     if (endPoi == null) {
         endPoi = safetyTree.getContainingPolygons(endLocation).features.firstOrNull()
     }
+
+    if (startAtGate) startPoi = null
+    if (endAtGate) endPoi = null
 
     var addedDestinations = false
 
@@ -515,6 +532,27 @@ fun confectNamesForRoad(
  * is what decides if it's worth announcing - see intersectionMeetsRoadTier.
  */
 const val DESTINATION_KIND = "destination-kind"
+
+/** The "dead-end:*" value of a way that just ends - see also [GateKind] for one ending at a gate */
+const val DEAD_END = "dead-end"
+
+/**
+ * Appended to a GateKind tag in "dead-end:*" when the way to the gate is under
+ * [SHORT_GATE_APPROACH_METRES], and is described as just the gate.
+ */
+const val GATE_ONLY_SUFFIX = "-only"
+const val SHORT_GATE_APPROACH_METRES = 20.0
+
+/**
+ * The gate at the far end of [wayAndDirection], as followWays returns it - forwards means it was
+ * entered at its START, so the far end is its END.
+ */
+fun farEndBarrier(wayAndDirection: Pair<Boolean, Way>): GateKind? =
+    GateKind.fromTag(
+        wayAndDirection.second.properties?.get(
+            if (wayAndDirection.first) BARRIER_END else BARRIER_START
+        )
+    )
 const val DESTINATION_KIND_ROAD = "road"
 
 fun setDestinationTag(
@@ -603,9 +641,17 @@ fun traverseIntersectionsConfectingNames(
             if ((way.first and (way.second.intersections[WayEnd.END.id] == null)) or
                 (!way.first and (way.second.intersections[WayEnd.START.id] == null))
             ) {
+                // A dead end at a gate that can't be got through is described as that gate, and a
+                // way that's barely more than the approach to it as just the gate
+                val deadEnd = farEndBarrier(way)?.let { gate ->
+                    if (ways.sumOf { it.second.length } < SHORT_GATE_APPROACH_METRES)
+                        gate.tag + GATE_ONLY_SUFFIX
+                    else
+                        gate.tag
+                } ?: DEAD_END
                 for (eachWay in ways) {
                     // We currently label all roads, even named ones, with Dead End
-                    setDestinationTag(eachWay.second, !eachWay.first, "dead-end", true, "")
+                    setDestinationTag(eachWay.second, !eachWay.first, deadEnd, true, "")
                 }
             }
         }

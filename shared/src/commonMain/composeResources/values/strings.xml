@@ -1288,6 +1288,18 @@
     <string name="confect_name_to_dead_end">%1$s to dead end</string>
     <!-- As confect_name_to_dead_end, plus what the way passes on its way to the dead end, e.g. "Path to dead end via steps". %1$s is the kind of way or a road's name, %2$s is what it passes (steps, tunnel, bridge). -->
     <string name="confect_name_to_dead_end_via">%1$s to dead end via %2$s</string>
+    <!-- Describes a way that ends at a locked gate you can't get through, e.g. "Service road to locked gate" or "Commissioner's Walk to locked gate". %1$s is either the kind of way (Path, Track, Service road...) or a road's own name, so don't make it agree with %1$s. Like confect_name_to_dead_end, the way is what ends, at the gate. -->
+    <string name="confect_name_to_locked_gate">%1$s to locked gate</string>
+    <!-- As confect_name_to_locked_gate, plus what the way passes on its way to the gate, e.g. "Path to locked gate via bridge". %1$s is the kind of way or a road's name, %2$s is what it passes (steps, tunnel, bridge). -->
+    <string name="confect_name_to_locked_gate_via">%1$s to locked gate via %2$s</string>
+    <!-- Describes a very short unnamed way that is little more than the approach to a locked gate, so it is called just that -->
+    <string name="confect_name_locked_gate">Locked gate</string>
+    <!-- Describes a way that ends at a gate signed or mapped as no access, e.g. "Service road to no-access gate". The gate may not be locked, but the public isn't allowed through it - use your language's usual wording for a no-entry or no-access gate, not "locked". %1$s is either the kind of way (Path, Track, Service road...) or a road's own name, so don't make it agree with %1$s. -->
+    <string name="confect_name_to_no_access_gate">%1$s to no-access gate</string>
+    <!-- As confect_name_to_no_access_gate, plus what the way passes on its way to the gate, e.g. "Path to no-access gate via bridge". %1$s is the kind of way or a road's name, %2$s is what it passes (steps, tunnel, bridge). -->
+    <string name="confect_name_to_no_access_gate_via">%1$s to no-access gate via %2$s</string>
+    <!-- Describes a very short unnamed way that is little more than the approach to a no-access gate (one the public isn't allowed through, though it may not be locked), so it is called just that -->
+    <string name="confect_name_no_access_gate">No-access gate</string>
     <!-- Offscreen maps screen title - offline maps are map files which can be downloaded by the app so that the app can work without Internet -->
     <string name="offline_maps_title">Offline maps</string>
     <!-- Offscreen maps details title - this screen describes a single offline map extract that can be downloaded. -->

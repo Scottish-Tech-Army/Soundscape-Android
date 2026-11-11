@@ -55,6 +55,12 @@ import org.scottishtecharmy.soundscape.resources.confect_name_pavement_next_to
 import org.scottishtecharmy.soundscape.resources.confect_name_to
 import org.scottishtecharmy.soundscape.resources.confect_name_to_dead_end
 import org.scottishtecharmy.soundscape.resources.confect_name_to_dead_end_via
+import org.scottishtecharmy.soundscape.resources.confect_name_to_locked_gate
+import org.scottishtecharmy.soundscape.resources.confect_name_to_locked_gate_via
+import org.scottishtecharmy.soundscape.resources.confect_name_locked_gate
+import org.scottishtecharmy.soundscape.resources.confect_name_to_no_access_gate
+import org.scottishtecharmy.soundscape.resources.confect_name_to_no_access_gate_via
+import org.scottishtecharmy.soundscape.resources.confect_name_no_access_gate
 import org.scottishtecharmy.soundscape.resources.confect_name_to_via
 import org.scottishtecharmy.soundscape.resources.confect_name_via
 import org.scottishtecharmy.soundscape.resources.directions_along_facing_e
@@ -287,6 +293,12 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ConfectNameJoins -> Res.string.confect_name_joins
         StringKey.ConfectNameToDeadEnd -> Res.string.confect_name_to_dead_end
         StringKey.ConfectNameToDeadEndVia -> Res.string.confect_name_to_dead_end_via
+        StringKey.ConfectNameToLockedGate -> Res.string.confect_name_to_locked_gate
+        StringKey.ConfectNameToLockedGateVia -> Res.string.confect_name_to_locked_gate_via
+        StringKey.ConfectNameLockedGate -> Res.string.confect_name_locked_gate
+        StringKey.ConfectNameToNoAccessGate -> Res.string.confect_name_to_no_access_gate
+        StringKey.ConfectNameToNoAccessGateVia -> Res.string.confect_name_to_no_access_gate_via
+        StringKey.ConfectNameNoAccessGate -> Res.string.confect_name_no_access_gate
         StringKey.ConfectNamePavementNextTo -> Res.string.confect_name_pavement_next_to
         StringKey.ConfectNamePavement -> Res.string.confect_name_pavement
         StringKey.ConfectNameNextTo -> Res.string.confect_name_next_to

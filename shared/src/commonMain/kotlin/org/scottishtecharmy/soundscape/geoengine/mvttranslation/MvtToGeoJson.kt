@@ -1028,6 +1028,17 @@ fun vectorTileToGeoJson(
                                     Point(coordinate)
                                 )
 
+                                if ((layer.name == "poi") &&
+                                    ((featureSubClass == "gate") || (featureSubClass == "lift_gate"))
+                                ) {
+                                    // A gate that can't be got through ends the road there - see
+                                    // WayGenerator.addBarrier
+                                    gateKind(properties)?.let { kind ->
+                                        for (gatePoint in point)
+                                            wayGenerator.addBarrier(gatePoint, kind)
+                                    }
+                                }
+
                                 if (featureClass == "entrance") {
                                     // If the access is set to no, then don't add the entrance
                                     if ((properties?.get("access") != "no")) {
@@ -1403,6 +1414,26 @@ fun hasTag(feature: Tile.Feature, tag: Pair<Int, Int>): Boolean {
  *
  * @return a map of properties that can be used in the same way as those from soundscape-backend
  */
+
+private val FOOT_ALLOWED = setOf("yes", "designated", "permissive")
+
+/**
+ * Whether a gate from the poi layer stops someone on foot, and if so how it's described. A locked
+ * gate and a no-access one mean subtly different things, varying with the local law, so they're
+ * kept apart; one tagged both is described as locked. A gate which lets pedestrians through
+ * doesn't stop anyone Soundscape guides, however locked it is to vehicles, and foot=no is no access
+ * for someone on foot. The tile carries the OSM locked, access and foot values unchanged.
+ */
+fun gateKind(properties: Map<String, Any?>?): GateKind? {
+    if (properties == null) return null
+    if (properties["foot"] in FOOT_ALLOWED) return null
+    return when {
+        properties["locked"] == "yes" -> GateKind.LOCKED
+        properties["access"] == "no" -> GateKind.NO_ACCESS
+        properties["foot"] == "no" -> GateKind.NO_ACCESS
+        else -> null
+    }
+}
 
 fun translateProperties(feature: MvtFeature): Boolean {
     // This mapping is constructed from the class description in:

@@ -48,6 +48,14 @@ private const val RAW_DISTANCE_OVERRIDE_MINIMUM_METRES = 10.0
 // to kick in and bypass the frechetAverage hysteresis.
 private const val RAW_DISTANCE_OVERRIDE_RATIO = 0.3
 
+private fun Way.isShortDeadEnd() =
+    (length < 20.0) &&
+        ((properties?.containsKey("dead-end:forward") == true) ||
+            (properties?.containsKey("dead-end:backward") == true))
+
+// How many ticks after the match is lost a new match must still be reachable from the old one
+private const val LOST_MATCH_GRACE_TICKS = 5
+
 // See MapMatchFilter.isMatchConfident/updateMatchConfidence - how many ticks matchedWay can stay
 // non-null without matchedFollower itself individually reaching LOCKED-level confidence (e.g.
 // while its route is being handed off to a freshly-extended follower) before confidence is lost.
@@ -727,6 +735,16 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
     var matchedFollower: RoadFollower? = null
     var lastLocation: LngLatAlt? = null
 
+    // The match from just before it was lost. A tick with no qualifying follower clears the match,
+    // and without this the next tick could pick any nearby way with no check that it can be
+    // reached - e.g. the far side of a locked gate on a road running alongside the real one. For a
+    // few ticks a new match still has to be reachable from where the old one was. Not used on the
+    // railway network: its lines don't reliably share nodes where they meet (e.g. the Argyle and
+    // North Clyde lines at Partick), so it would reject the right line and end a train ride.
+    private var lostMatchPoint: LngLatAlt? = null
+    private var lostMatchWay: Way? = null
+    private var lostMatchTicks = 0
+
     /**
      * True once [matchedWay] has been tracked consistently for a real stretch, rather than just
      * this one tick - see RoadFollower's LOCKED state, which uses the same frechetQueue-size bar.
@@ -781,6 +799,12 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
 
             // Skip JOINERS
             if (member.value.wayType == WayType.JOINER) continue
+
+            // Skip short dead ends, as extendFollowerList does for the ways it finds nearby. A
+            // stub which runs alongside the road being followed, e.g. the few metres of road
+            // between a junction and a locked gate, would otherwise catch the follower and leave
+            // it stuck at the stub's end.
+            if (member.value.isShortDeadEnd()) continue
             if (!extended) {
                 // Try and extend the follower to this way
                 if (follower.extendToNewWay(member.value, ruler)) {
@@ -840,14 +864,10 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
                     added = true
                     break
                 }
-                if ((way.properties?.containsKey("dead-end:forward") == true) ||
-                    (way.properties?.containsKey("dead-end:backward") == true)
-                ) {
-                    // The way is a dead end, don't follow it if it's also short
-                    if (way.length < 20.0) {
-                        added = true
-                        break
-                    }
+                // The way is a dead end, don't follow it if it's also short
+                if (way.isShortDeadEnd()) {
+                    added = true
+                    break
                 }
             }
             if (!added) {
@@ -986,7 +1006,7 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
 
             if (frechetStatus.frechetAverage < lowestFrechet) {
                 var skip = false
-                matchedWay?.let { matched ->
+                (matchedWay ?: lostMatchWay)?.let { matched ->
                     if (matched != way) {
                         // Can we get to this followers matched location from the last matched
                         // location via the road/path network?
@@ -1030,12 +1050,15 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
                             // update(). If that invariant is ever violated we can't run the
                             // Dijkstra check, so treat this candidate as not a good enough match
                             // rather than crash.
-                            val fromPoint = matchedLocation?.point
+                            val fromPoint = matchedLocation?.point ?: lostMatchPoint
                             val toPoint = follower.chosen()?.point
                             if (fromPoint == null || toPoint == null) {
                                 skip = true
                             } else {
-                                val testDistance = (follower.averagePointGap * 8) + 15.0
+                                // After a lost match, also allow for how far we've moved since
+                                var testDistance = (follower.averagePointGap * 8) + 15.0
+                                if (matchedLocation == null)
+                                    testDistance += gridState.ruler.distance(fromPoint, location)
                                 val shortestDistance = findShortestDistance(
                                     fromPoint,
                                     matched,
@@ -1112,9 +1135,21 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             matchedWay = lowestFollower.currentNearestRoad
             val color = lowestFollower.color
             matchedLocation?.let { matchedLocation ->
+                lostMatchWay = null
+                lostMatchPoint = null
                 updateMatchConfidence()
                 return Triple(matchedLocation.point, matchedWay, color)
             }
+        }
+        val lostWay = matchedWay
+        val lostPoint = matchedLocation?.point
+        if ((lostWay != null) && (lostPoint != null) && (networkTree != TreeId.TRANSIT)) {
+            lostMatchWay = lostWay
+            lostMatchPoint = lostPoint
+            lostMatchTicks = 0
+        } else if (++lostMatchTicks > LOST_MATCH_GRACE_TICKS) {
+            lostMatchWay = null
+            lostMatchPoint = null
         }
         matchedLocation = null
         matchedFollower = null

@@ -1,7 +1,9 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.utils.DEAD_END
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
+import org.scottishtecharmy.soundscape.geoengine.utils.GATE_ONLY_SUFFIX
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
@@ -252,10 +254,16 @@ class Way : MvtFeature() {
                     }
 
                     if (destinationModifier != null) {
-                        if (destinationModifier == "dead-end") {
+                        if (isDeadEnd(destinationModifier)) {
                             if (noGenericDeadEnds)
                                 return ""
-                            return deadEndName(result, passesString, strings)
+                            return deadEndName(
+                                destinationModifier,
+                                result,
+                                passesString,
+                                strings,
+                                gateOnly = true
+                            )
                         }
 
                         return if (passesString.isNotEmpty()) {
@@ -289,8 +297,9 @@ class Way : MvtFeature() {
                 properties?.get("dead-end:backward")
         }
         if (destinationModifier != null) {
-            if (destinationModifier == "dead-end") {
-                return deadEndName(result, passesString, strings)
+            if (isDeadEnd(destinationModifier)) {
+                // A named way keeps its name however short the way to the gate is
+                return deadEndName(destinationModifier, result, passesString, strings, gateOnly = false)
             }
             return if (passesString.isNotEmpty()) {
                 strings?.getOrNull(
@@ -639,18 +648,59 @@ class Way : MvtFeature() {
     }
 }
 
+/** Whether a "dead-end:*" tag value is a dead end, plain or at a gate - see setDestinationTag */
+fun isDeadEnd(value: Any?): Boolean =
+    (value == DEAD_END) || (gateOfDeadEnd(value) != null)
+
+private fun gateOfDeadEnd(value: Any?): GateKind? =
+    GateKind.fromTag(value) ?: GateKind.fromTag((value as? String)?.removeSuffix(GATE_ONLY_SUFFIX))
+
 /**
  * "Path to dead end", with what the way passes if anything. A template of its own rather than
  * confect_name_to with "dead end" as the destination, because some languages describe the way
  * itself as ending ("Pad, doodlopend") instead of as leading somewhere.
+ *
+ * A dead end at a gate that can't be got through is "Path to locked gate" or "Path to no-access
+ * gate" instead, and when the way is short enough to be just the approach to the gate - and
+ * [gateOnly] allows it, which it doesn't for a named way - the gate on its own.
  */
-private fun deadEndName(way: String, passes: String, strings: LocalizedStrings?): String =
-    if (passes.isNotEmpty()) {
-        strings?.getOrNull(StringKey.ConfectNameToDeadEndVia, way, passes)
-            ?: "$way to dead end via $passes"
-    } else {
-        strings?.getOrNull(StringKey.ConfectNameToDeadEnd, way) ?: "$way to dead end"
+private fun deadEndName(
+    deadEnd: Any,
+    way: String,
+    passes: String,
+    strings: LocalizedStrings?,
+    gateOnly: Boolean
+): String {
+    when (gateOfDeadEnd(deadEnd)) {
+        GateKind.LOCKED -> {
+            if (gateOnly && (deadEnd as String).endsWith(GATE_ONLY_SUFFIX))
+                return strings?.getOrNull(StringKey.ConfectNameLockedGate) ?: "Locked gate"
+            return if (passes.isNotEmpty())
+                strings?.getOrNull(StringKey.ConfectNameToLockedGateVia, way, passes)
+                    ?: "$way to locked gate via $passes"
+            else
+                strings?.getOrNull(StringKey.ConfectNameToLockedGate, way) ?: "$way to locked gate"
+        }
+
+        GateKind.NO_ACCESS -> {
+            if (gateOnly && (deadEnd as String).endsWith(GATE_ONLY_SUFFIX))
+                return strings?.getOrNull(StringKey.ConfectNameNoAccessGate) ?: "No-access gate"
+            return if (passes.isNotEmpty())
+                strings?.getOrNull(StringKey.ConfectNameToNoAccessGateVia, way, passes)
+                    ?: "$way to no-access gate via $passes"
+            else
+                strings?.getOrNull(StringKey.ConfectNameToNoAccessGate, way)
+                    ?: "$way to no-access gate"
+        }
+
+        null -> return if (passes.isNotEmpty()) {
+            strings?.getOrNull(StringKey.ConfectNameToDeadEndVia, way, passes)
+                ?: "$way to dead end via $passes"
+        } else {
+            strings?.getOrNull(StringKey.ConfectNameToDeadEnd, way) ?: "$way to dead end"
+        }
     }
+}
 
 fun convertBackToTileCoordinates(
     location: LngLatAlt,
@@ -667,6 +717,23 @@ fun convertBackToTileCoordinates(
     return Pair(xInt, yInt)
 }
 
+/**
+ * A gate that stops someone on foot - see gateKind. [tag] is its value in a Way's
+ * [BARRIER_START]/[BARRIER_END] property, and in the "dead-end:*" tag of the ways leading to it.
+ */
+enum class GateKind(val tag: String) {
+    LOCKED("locked-gate"),
+    NO_ACCESS("no-access-gate");
+
+    companion object {
+        fun fromTag(tag: Any?): GateKind? = entries.firstOrNull { it.tag == tag }
+    }
+}
+
+/** Set on a Way whose START or END is at a gate that can't be got through, to its GateKind tag. */
+const val BARRIER_START = "barrier:start"
+const val BARRIER_END = "barrier:end"
+
 class WayGenerator(val transit: Boolean = false) {
 
     /**
@@ -677,6 +744,16 @@ class WayGenerator(val transit: Boolean = false) {
      */
     private val highwayNodes: HashMap<Int, Int> = hashMapOf()
     private val wayFeatures = mutableListOf<MvtFeature>()
+
+    /**
+     * The nodes, keyed as [highwayNodes] is, at which there's a gate which can't be got through.
+     * generateWays ends the Way at each, leaving no Intersection there, so that nothing that walks
+     * the Way graph - name confection, the junction walk, Dijkstra - goes through the gate.
+     */
+    private val barrierNodes: HashMap<Int, GateKind> = hashMapOf()
+
+    /** How many lines start or end at each node, keyed as [highwayNodes] is */
+    private val lineEnds: HashMap<Int, Int> = hashMapOf()
 
     private val ways = mutableListOf<Way>()
 
@@ -763,7 +840,7 @@ class WayGenerator(val transit: Boolean = false) {
      *
      */
     fun addLine(line: ArrayList<Pair<Int, Int>>) {
-        for (point in line) {
+        for ((index, point) in line.withIndex()) {
             if ((point.first < 0) || (point.first > 4095) ||
                 (point.second < 0) || (point.second > 4095)
             ) {
@@ -779,11 +856,39 @@ class WayGenerator(val transit: Boolean = false) {
             } else {
                 highwayNodes[coordinateKey] = currentCount + 1
             }
+            if ((index == 0) || (index == line.lastIndex))
+                lineEnds[coordinateKey] = (lineEnds[coordinateKey] ?: 0) + 1
         }
     }
 
+    /**
+     * Whether a gate at [coordinateKey] stands across a single way: one in the middle of a line,
+     * or where two lines meet end to end. A gate on a junction node, of a T or more, is left alone,
+     * as there's no telling which of the ways it stands across.
+     */
+    private fun gateIsOnSingleWay(coordinateKey: Int): Boolean =
+        when (highwayNodes[coordinateKey] ?: 0) {
+            1 -> true
+            2 -> (lineEnds[coordinateKey] ?: 0) == 2
+            else -> false
+        }
+
     fun addFeature(feature: MvtFeature) {
         wayFeatures.add(feature)
+    }
+
+    /**
+     * Records a gate which can't be got through at [point], in tile coordinates. A gate is a node
+     * on the way it's on, so it has the same coordinates as that node and generateWays finds it by
+     * its coordinate key.
+     */
+    fun addBarrier(point: Pair<Int, Int>, kind: GateKind) {
+        if ((point.first < 0) || (point.first > 4095) ||
+            (point.second < 0) || (point.second > 4095)
+        ) {
+            return
+        }
+        barrierNodes[point.first.shl(12) + point.second] = kind
     }
 
     /**
@@ -859,6 +964,8 @@ class WayGenerator(val transit: Boolean = false) {
                 var segmentIndex = 0
                 var coordinateKey: Int
                 var tileEdge = false
+                // The gate the current Way starts at, if it starts at one
+                var startBarrier: GateKind? = null
                 for (coordinate in line.coordinates) {
 
                     tileEdge =
@@ -894,7 +1001,31 @@ class WayGenerator(val transit: Boolean = false) {
                     val tileCoordinates =
                         convertBackToTileCoordinates(coordinate, tileZoom)
                     coordinateKey = tileCoordinates.first.shl(12) + tileCoordinates.second
-                    if (!tileEdge) highwayNodes[coordinateKey]?.let {
+                    val barrier = if (tileEdge) null else barrierNodes[coordinateKey]
+                    // A gate in the middle of a way, or where two ways meet end to end, ends the
+                    // Way there with no Intersection, so that it's a dead end from either side
+                    if ((barrier != null) && gateIsOnSingleWay(coordinateKey)) {
+                        if (currentSegment.coordinates.size > 1) {
+                            addSegmentFeatureToWay(
+                                feature,
+                                currentSegment,
+                                currentSegmentLength,
+                                segmentIndex,
+                                currentWay
+                            )
+                            ++segmentIndex
+                            startBarrier?.let { currentWay.setProperty(BARRIER_START, it.tag) }
+                            currentWay.setProperty(BARRIER_END, barrier.tag)
+                            ways.add(currentWay)
+                            currentWay.intersections[WayEnd.START.id]?.members?.add(currentWay)
+
+                            currentSegment = LineString()
+                            currentSegmentLength = 0.0
+                            currentSegment.coordinates.add(coordinate)
+                        }
+                        currentWay = Way()
+                        startBarrier = barrier
+                    } else if (!tileEdge) highwayNodes[coordinateKey]?.let {
                         if (it > 1) {
                             // Create an intersection if we don't have one already
                             var intersection = intersections.get(coordinate)
@@ -915,6 +1046,7 @@ class WayGenerator(val transit: Boolean = false) {
                                     currentWay
                                 )
                                 ++segmentIndex
+                                startBarrier?.let { currentWay.setProperty(BARRIER_START, it.tag) }
                                 currentWay.intersections[WayEnd.END.id] = intersection
                                 ways.add(currentWay)
 
@@ -932,6 +1064,7 @@ class WayGenerator(val transit: Boolean = false) {
                             currentWay = Way().also { way ->
                                 way.intersections[WayEnd.START.id] = intersection
                             }
+                            startBarrier = null
                         }
                     }
                 }
@@ -944,6 +1077,7 @@ class WayGenerator(val transit: Boolean = false) {
                         segmentIndex,
                         currentWay
                     )
+                    startBarrier?.let { currentWay.setProperty(BARRIER_START, it.tag) }
                     ways.add(currentWay)
                     // Add completed way to intersection at start if there is one
                     currentWay.intersections[WayEnd.START.id]?.members?.add(currentWay)

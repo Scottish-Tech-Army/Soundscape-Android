@@ -34,7 +34,7 @@ const val MANIFEST_NAME = "manifest.geojson.gz"
  * server has a newer one - see isExtractOutdated. Bump this only when the app starts relying on
  * new tile contents, not for routine map rebuilds.
  */
-const val WANTED_EXTRACT_SCHEMA = 1
+const val WANTED_EXTRACT_SCHEMA = 2
 
 /**
  * It's also useful to be able to use tiles served up locally when testing. When I
