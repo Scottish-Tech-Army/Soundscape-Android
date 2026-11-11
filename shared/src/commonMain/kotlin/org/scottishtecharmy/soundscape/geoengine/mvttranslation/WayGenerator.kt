@@ -4,6 +4,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.utils.DEAD_END
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.GATE_ONLY_SUFFIX
+import org.scottishtecharmy.soundscape.geoengine.utils.INFERRED_PAVEMENT
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
@@ -379,6 +380,8 @@ class Way : MvtFeature() {
         val footway = properties?.get("footway")
         val bicycle = properties?.get("bicycle")
         return ((footway == "sidewalk") ||
+                // An untagged path found running alongside a road - see markUntaggedPavements
+                (properties?.get(INFERRED_PAVEMENT) != null) ||
                 (footway == "crossing") ||
                 (bicycle == "designated") ||
                 ((featureType == "highway") && (featureValue == "cycleway")))

@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
@@ -667,4 +668,108 @@ fun traverseIntersectionsConfectingNames(
             }
         }
     }
+}
+
+/** Marks a path [markUntaggedPavements] decided is really a road's pavement. */
+const val INFERRED_PAVEMENT = "pavement:inferred"
+
+/** How far from a road's centre-line a path can run and still be its pavement. */
+private const val inferredPavementMaxOffsetMetres = 12.0
+
+/** Closer than this, a path is on the road rather than beside it. */
+private const val inferredPavementMinOffsetMetres = 1.5
+
+/** How much the path's offset from the road can vary along it - it has to run alongside. */
+private const val inferredPavementOffsetToleranceMetres = 4.0
+
+/** How far the path's direction can be from the road's. */
+private const val inferredPavementMaxAngleDegrees = 25.0
+
+/** Whether two ways are on the same level: the same layer, and both or neither a bridge or tunnel. */
+private fun sameLevel(a: Way, b: Way): Boolean =
+    ((a.properties?.get("layer")?.toString() ?: "0") == (b.properties?.get("layer")?.toString() ?: "0")) &&
+        (a.properties?.get("brunnel") == b.properties?.get("brunnel"))
+
+/**
+ * Marks the unnamed footways and paths which are really a road's pavement, though they carry no
+ * `footway=sidewalk` tag, so that [Way.isSidewalkOrCrossing] treats them as one - and
+ * [addSidewalk] names them "Pavement next to <road>" - exactly as it does a tagged pavement.
+ *
+ * Plenty of places map pavements as separate ways without saying what they are. The paths along
+ * Akulaan in Ede are plain `highway=footway`, run its length ten metres from the centre-line, and
+ * were described as "Path to Akulaan" - a path somewhere else, rather than the pavement of the
+ * road the user is walking along.
+ *
+ * Each Way here runs between two junctions, so a pavement is judged a stretch at a time. A stretch
+ * counts when its start, middle and end all lie beside one and the same named road, at much the
+ * same distance from it, running the same way. A path which merely meets a road, crosses it, or
+ * strays near it for part of its length fails one of those.
+ */
+fun markUntaggedPavements(paths: FeatureCollection, roadTree: FeatureTree, ruler: Ruler): Int {
+    var marked = 0
+    for (feature in paths) {
+        val path = feature as? Way ?: continue
+        if (path.featureType != "highway") continue
+        if (path.featureValue !in setOf("footway", "path")) continue
+        if ((path.name != null) || (path.properties?.get("footway") != null)) continue
+        if (path.isSidewalkOrCrossing()) continue
+        val line = path.geometry as LineString
+        val length = path.length
+        if (length < 2 * inferredPavementMinOffsetMetres) continue
+
+        val samples = listOf(
+            line.coordinates.first(),
+            ruler.along(line, length / 2),
+            line.coordinates.last(),
+        )
+        val middleHeading = ruler.distanceToLineString(samples[1], line).heading
+
+        // The named roads near the middle of the path are the only ones it could be beside.
+        val nearMiddle = roadTree.getNearestCollection(
+            location = samples[1],
+            distance = inferredPavementMaxOffsetMetres,
+            maxCount = 10,
+            ruler = ruler
+        )
+        val beside = nearMiddle.firstOrNull { candidate ->
+            val road = candidate as Way
+            val name = road.name ?: return@firstOrNull false
+            if (road.isSidewalkOrCrossing() || road.isPath()) return@firstOrNull false
+            // A road nobody can walk along has no pavement, and a path on another level - the
+            // underpass beneath the Clydeside Expressway at Finnieston - only passes by.
+            if (road.properties?.get("foot") == "no") return@firstOrNull false
+            if (!sameLevel(path, road)) return@firstOrNull false
+            // The road can be in several pieces, so each sample is measured to the nearest piece
+            // carrying the same name.
+            val offsets = samples.map { sample ->
+                roadTree.getNearestCollection(
+                    location = sample,
+                    distance = inferredPavementMaxOffsetMetres,
+                    maxCount = 10,
+                    ruler = ruler
+                ).mapNotNull { other ->
+                    val otherRoad = other as Way
+                    if (otherRoad.name != name) null
+                    else ruler.distanceToLineString(sample, otherRoad.geometry as LineString)
+                }.minByOrNull { it.distance }
+            }
+            if (offsets.any { it == null }) return@firstOrNull false
+            val distances = offsets.map { it!!.distance }
+            if (distances.any {
+                    (it < inferredPavementMinOffsetMetres) || (it > inferredPavementMaxOffsetMetres)
+                }
+            ) return@firstOrNull false
+            if (distances.max() - distances.min() > inferredPavementOffsetToleranceMetres) {
+                return@firstOrNull false
+            }
+            calculateSmallestAngleBetweenLines(middleHeading, offsets[1]!!.heading) <=
+                inferredPavementMaxAngleDegrees
+        }
+        if (beside != null) {
+            val properties = path.properties ?: HashMap<String, Any?>().also { path.properties = it }
+            properties[INFERRED_PAVEMENT] = "yes"
+            marked++
+        }
+    }
+    return marked
 }

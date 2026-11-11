@@ -35,6 +35,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getSideOfLine
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
+import org.scottishtecharmy.soundscape.geoengine.utils.markUntaggedPavements
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
@@ -1208,6 +1209,15 @@ open class GridState(
                 "($railwayCrossings railway crossings, $waterwayCrossings waterway crossings, " +
                 "$waterPolygonCrossings water polygon crossings)"
         }
+
+        // Before anything names the paths or decides which arms of a junction are pavements.
+        var pavementsInferred = 0
+        val pavementTiming = measureTime {
+            pavementsInferred = markUntaggedPavements(
+                featureCollections[TreeId.ROADS_AND_PATHS.id], localTrees[TreeId.ROADS.id], ruler
+            )
+        }
+        logger.d { "Pavement inference took $pavementTiming ($pavementsInferred paths)" }
 
         val nearestWayTiming = measureTime {
             attachNearestWays(featureCollections, localTrees)
