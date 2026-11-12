@@ -370,4 +370,98 @@ class IntersectionUtilsTest {
         val second = addIntersectionCalloutFromDescription(description, null, history, fixture.gridState)
         assertNull(second)
     }
+
+    // ---- Arm order (issue #1283) ---------------------------------------------------------------
+
+    private fun road(name: String, from: LngLatAlt, to: LngLatAlt, start: Intersection?, end: Intersection?) =
+        Way().apply {
+            this.name = name
+            featureType = "highway"
+            featureValue = "residential"
+            geometry = LineString(from, to)
+            length = org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler(from.latitude).distance(from, to)
+            start?.let { intersections[WayEnd.START.id] = it }
+            end?.let { intersections[WayEnd.END.id] = it }
+        }
+
+    private fun node(at: LngLatAlt) = Intersection().apply {
+        location = at
+        geometry = Point(at)
+    }
+
+    private fun gridStateFor(vararg ways: Way): GridState = GridState().apply {
+        validateContext = false
+        featureTrees[TreeId.ROADS_AND_PATHS.id] = FeatureTree(
+            FeatureCollection().apply { ways.forEach { addFeature(it) } }
+        )
+    }
+
+    @Test
+    fun addIntersectionCallout_twoArmsAhead_areOrderedLeftToRight() {
+        // Walking north into a fork: one road bears 20 degrees left, the other 20 degrees right.
+        // Both continue ahead, and the right one is listed first at the node.
+        val origin = LngLatAlt(-2.657, 51.430)
+        val junction = node(origin)
+        val approach = road("Fork Road", getDestinationCoordinate(origin, 180.0, 30.0), origin, null, junction)
+        val rightFork = road("Right Fork", origin, getDestinationCoordinate(origin, 20.0, 40.0), junction, null)
+        val leftFork = road("Left Fork", origin, getDestinationCoordinate(origin, 340.0, 40.0), junction, null)
+        junction.members = mutableListOf(approach, rightFork, leftFork)
+
+        val description = IntersectionDescription(
+            nearestRoad = approach,
+            userGeometry = UserGeometry(
+                location = getDestinationCoordinate(origin, 180.0, 20.0), phoneHeading = 0.0
+            ),
+            intersection = junction,
+        )
+        val callout = addIntersectionCalloutFromDescription(
+            description, null, null, gridStateFor(approach, rightFork, leftFork)
+        )
+
+        assertNotNull(callout)
+        assertEquals(
+            listOf("\tLeft Fork continues ahead", "\tRight Fork continues ahead"),
+            callout.positionedStrings.drop(1).map { it.text }
+        )
+    }
+
+    @Test
+    fun addIntersectionCallout_staggeredJunction_ordersArmsClockwiseFromTheLeft() {
+        // Walking north. A road goes left at a node 6m short of the junction described, and another
+        // goes left at the junction itself, where the road the user is on carries straight on.
+        // Going clockwise from the left the nearer one comes first, though the junction described
+        // is the farther node and its arms are looked at first.
+        val origin = LngLatAlt(-2.657, 51.430)
+        val near = node(getDestinationCoordinate(origin, 180.0, 6.0))
+        val far = node(origin)
+        val approach = road(
+            "Main Street", getDestinationCoordinate(origin, 180.0, 40.0), near.location, null, near
+        )
+        val link = road("Main Street", near.location, origin, near, far)
+        val nearLane = road(
+            "Near Lane", near.location, getDestinationCoordinate(near.location, 270.0, 40.0), near, null
+        )
+        val farLane = road("Far Lane", origin, getDestinationCoordinate(origin, 270.0, 40.0), far, null)
+        val onward = road("High Street", origin, getDestinationCoordinate(origin, 0.0, 40.0), far, null)
+        near.members = mutableListOf(approach, link, nearLane)
+        far.members = mutableListOf(link, farLane, onward)
+
+        val description = IntersectionDescription(
+            nearestRoad = link,
+            userGeometry = UserGeometry(
+                location = getDestinationCoordinate(origin, 180.0, 25.0), phoneHeading = 0.0
+            ),
+            intersection = far,
+            alsoAt = listOf(near to link),
+        )
+        val callout = addIntersectionCalloutFromDescription(
+            description, null, null, gridStateFor(approach, link, nearLane, farLane, onward)
+        )
+
+        assertNotNull(callout)
+        assertEquals(
+            listOf("\tNear Lane goes left", "\tFar Lane goes left", "\tHigh Street continues ahead"),
+            callout.positionedStrings.drop(1).map { it.text }
+        )
+    }
 }

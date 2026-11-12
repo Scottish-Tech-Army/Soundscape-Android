@@ -900,6 +900,8 @@ fun addIntersectionCalloutFromDescription(
 
     val directions = getCombinedDirectionSegments(incomingHeading)
     val intersectionResults = trackedCallout.positionedStrings.toMutableList()
+    // Each arm with the angle it is sorted on - see armOrderAngle.
+    val armResults = mutableListOf<Pair<Double, PositionedString>>()
     // The short Ways joining the nodes of one junction to each other are inside it, not roads
     // leaving it. Each node was reached along one of them, or - for a node before
     // description.intersection - is left along the one description.intersection is reached by.
@@ -964,20 +966,69 @@ fun addIntersectionCalloutFromDescription(
             val intersectionCallout =
                 localized?.get(directionKey, destinationText)
                     ?: "\t$destinationText $unlocalizedDirection"
-            if (intersectionResults.any { it.text == intersectionCallout }) continue
-            intersectionResults.add(
-                PositionedString(
-                    text = intersectionCallout,
-                    type = AudioType.COMPASS,
-                    heading = presentationHeading
-                )
+            if (armResults.any { it.second.text == intersectionCallout }) continue
+            armResults.add(
+                armOrderAngle(way, node, description.intersection, incomingHeading, gridState) to
+                    PositionedString(
+                        text = intersectionCallout,
+                        type = AudioType.COMPASS,
+                        heading = presentationHeading
+                    )
             )
         }
     }
-    // Order intersection callout by heading from left to right
-    intersectionResults.sortBy { it.heading }
+    // Clockwise from the left: the arms going left, then ahead, then right, and within each of
+    // those by the way they actually go. Sorting on presentationHeading alone, which is only left,
+    // ahead or right, left two arms going the same way in whatever order they were found - "X
+    // continues ahead, Y continues ahead" with Y to the left of X (issue #1283).
+    armResults.sortWith(compareBy({ it.second.heading }, { it.first }))
+    intersectionResults.addAll(armResults.map { it.second })
     trackedCallout.positionedStrings = intersectionResults
     return trackedCallout
+}
+
+// How far along an arm the point is taken that says which way it goes - see armOrderAngle.
+private const val ARM_ORDER_METRES = 20.0
+
+/**
+ * Where [arm], leaving [node], comes in a junction callout's clockwise order, as an angle from
+ * -180 (behind, on the left) through 0 (straight ahead) to 180 (behind, on the right) relative to
+ * [travelHeading], the direction the user walks into [junction].
+ *
+ * Measured from [junction] - the node the callout describes - to a point [ARM_ORDER_METRES] out
+ * along the arm, not from the arm's own bearing at its node. The arms of a staggered junction
+ * leave from several nodes a few metres apart, and a road going left a few metres further on comes
+ * after one going left at the junction itself, though both leave at a right angle.
+ */
+private fun armOrderAngle(
+    arm: Way,
+    node: Intersection,
+    junction: Intersection,
+    travelHeading: Double,
+    gridState: GridState,
+): Double {
+    val ruler = gridState.ruler
+    val coordinates = (arm.geometry as LineString).coordinates
+    val outward = if (arm.intersections[WayEnd.START.id] === node) coordinates else coordinates.reversed()
+    var point = outward.last()
+    var travelled = 0.0
+    for (i in 1 until outward.size) {
+        val d = ruler.distance(outward[i - 1], outward[i])
+        if (travelled + d >= ARM_ORDER_METRES) {
+            val f = if (d > 0.0) (ARM_ORDER_METRES - travelled) / d else 0.0
+            point = LngLatAlt(
+                outward[i - 1].longitude + (outward[i].longitude - outward[i - 1].longitude) * f,
+                outward[i - 1].latitude + (outward[i].latitude - outward[i - 1].latitude) * f
+            )
+            break
+        }
+        travelled += d
+    }
+    val bearing = bearingFromTwoPoints(junction.location, point)
+    var relative = (bearing - travelHeading) % 360.0
+    if (relative > 180.0) relative -= 360.0
+    if (relative <= -180.0) relative += 360.0
+    return relative
 }
 
 /**
