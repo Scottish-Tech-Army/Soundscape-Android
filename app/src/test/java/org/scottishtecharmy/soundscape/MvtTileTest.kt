@@ -1132,7 +1132,7 @@ class MvtTileTest {
 
     /**
      * The Menai Strait, unlike the Firth of Forth, is represented in the `water` layer as a
-     * named LineString ("Afon Menai / Menai Strait", class=strait) rather than a named polygon -
+     * named LineString ("Afon Menai", class=strait) rather than a named polygon -
      * found via a worldwide test extract (too large - ~92GB - to keep as a permanent local test
      * fixture, so this reads directly from that path and skips itself if it's not present).
      * extractNamedWaterPolygons handles both shapes, and it is specifically the line-intersection
@@ -1160,8 +1160,8 @@ class MvtTileTest {
 
         val menaiStrait = geojson[TreeId.NAMED_WATER_POLYGONS.id].features
             .filterIsInstance<MvtFeature>()
-            .find { it.name == "Afon Menai / Menai Strait" }
-        assertNotNull("Expected the Afon Menai / Menai Strait water feature", menaiStrait)
+            .find { it.name == "Afon Menai" }
+        assertNotNull("Expected the Afon Menai (Menai Strait) water feature", menaiStrait)
         assertEquals("LineString", menaiStrait!!.geometry.type)
 
         val straitCoordinates = (menaiStrait.geometry as LineString).coordinates
@@ -1204,7 +1204,7 @@ class MvtTileTest {
             )
         )
         val attached = bridgeWay.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING).single()
-        assertEquals("Afon Menai / Menai Strait", attached.name)
+        assertEquals("Afon Menai", attached.name)
         assertEquals(AlongWayPosition.OVER, attached.position)
 
         // Part-way onto the bridge with the water ahead: the crossing is announced when it comes
@@ -1250,17 +1250,21 @@ class MvtTileTest {
         val allWays = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
             .filterIsInstance<Way>()
 
+        // The bridge the grid build attached the Firth to, and the user a little short of where it
+        // recorded the crossing - within the lookahead, as they would be walking onto it. Where
+        // the crossing falls depends on how the bridge is split into Ways and where its points
+        // lie, which moves as OSM is edited.
         var bridgeWay: Way? = null
         var crossingPoint: LngLatAlt? = null
-        for (way in allWays) {
+        for (way in allWays.filterIsInstance<Way>()) {
             if (way.properties?.get("brunnel") != "bridge") continue
-            val coordinate = (way.geometry as? LineString)?.coordinates
-                ?.firstOrNull { waterTree.getContainingPolygons(it).features.isNotEmpty() }
-            if (coordinate != null) {
-                bridgeWay = way
-                crossingPoint = coordinate
-                break
-            }
+            val crossing = way.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)
+                .firstOrNull { it.name == "Firth of Forth" } ?: continue
+            bridgeWay = way
+            crossingPoint = gridState.ruler.along(
+                way.geometry as LineString, maxOf(0.0, crossing.distanceFromStart - 30.0)
+            )
+            break
         }
         assertNotNull("Expected to find a bridge Way crossing the Firth of Forth", bridgeWay)
 

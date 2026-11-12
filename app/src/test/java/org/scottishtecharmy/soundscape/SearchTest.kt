@@ -115,10 +115,11 @@ class SearchTest {
     )
 
     @Test
-    fun offlineReverseGeocode_dougalstonAvenueBetweenBriarwellRoadAndConnellCrescentToDeadEnd() = assertOfflineReverseGeocode(
+    fun offlineReverseGeocode_dougalstonAvenueBetweenStepsPathAndConnellCrescentToDeadEnd() = assertOfflineReverseGeocode(
         LngLatAlt(-4.3069511, 55.9400774),
         90.0,
-        "On Dougalston Avenue between Briarwell Road and Connell Crescent to dead end"
+        // A path with steps up to Dougalston Gardens North joins nearer than Briarwell Road
+        "On Dougalston Avenue between Path to Dougalston Gardens North via steps and Connell Crescent to dead end"
     )
 
     // Regression test: an unnamed path with no adjacent named road matched into its "pavement"

@@ -70,12 +70,12 @@ class PmtilesValidationTest {
 
     /**
      * The fixture was built by a planetiler-openmaptiles which writes the "soundscape:schema"
-     * metadata entry, at schema 1.
+     * metadata entry, at schema 2.
      */
     @Test
     fun versionedExtractHasItsSchema() {
         assumeTrue("fixture not present", fixture.exists())
-        assertEquals(1, readExtractSchema(fixture.path))
+        assertEquals(2, readExtractSchema(fixture.path))
     }
 
     /** An unmodified copy must also pass (guards the copy/corrupt machinery itself). */
