@@ -5010,6 +5010,8 @@ class MvtTileTest {
         JunctionClip("firpark-ToFabricBazaar", "ToFabricBazaar-iOS", 60, 200),
         // Up Station Road to the Glasgow Road / Baldernock Road / Strathblane Road junction.
         JunctionClip("stationrd-tesco", "tesco", 560, 680),
+        // Crossing Buchanan Street away from any junction.
+        JunctionClip("buchanan-travel-4", "travel-4", 2050, 2300),
     )
 
     @OptIn(ExperimentalCoroutinesApi::class)
