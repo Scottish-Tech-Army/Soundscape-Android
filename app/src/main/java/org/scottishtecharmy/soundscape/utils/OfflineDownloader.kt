@@ -99,12 +99,20 @@ class OfflineDownloader(injectedFileDownloader: FileDownloader? = null) {
         logicalBaseName: String? = null,
         metadataJson: String? = null,
     ) {
-        if (downloadJob?.isActive == true) {
+        val previousJob = downloadJob
+        if (previousJob != null && previousJob.isActive) {
             logger.w { "Download is already in progress." }
             return
         }
 
         downloadJob = CoroutineScope(Dispatchers.IO).launch {
+            // If the previous download was cancelled rather than finished, its job stops
+            // being "active" the instant cancellation is requested - well before its
+            // coroutine body has actually unwound and run its cleanup (deleting the temp
+            // file, writing the final Canceled state). Join it first so that coroutine is
+            // fully done before this one reuses the same fileDownloader/_downloadState.
+            previousJob?.join()
+
             logger.i { "Starting download for URL: $fileUrl" }
 
             val tempFile = File("$outputFilePath.downloading")

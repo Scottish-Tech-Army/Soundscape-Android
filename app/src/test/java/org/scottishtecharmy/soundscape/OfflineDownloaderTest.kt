@@ -7,7 +7,11 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import org.junit.Assert.assertEquals
@@ -289,6 +293,94 @@ class OfflineDownloaderTest {
 
             assertTrue("expected Error but was $state", state is DownloadState.Error)
             assertTrue("no sidecar for a failed download", tempDir.listFiles().isNullOrEmpty())
+        } finally {
+            tempDir.deleteRecursively()
+        }
+    }
+
+    /**
+     * Regression test for a cancelled download that's slow to actually unwind (e.g. still
+     * waiting on a connection, like issue #1288's "still at 0%" UK extract). Job.isActive
+     * becomes false the instant cancelDownload() is called - well before the cancelled
+     * coroutine's own cleanup (and its belated Canceled state write) has run - so a new
+     * download started right after must wait for that cleanup rather than racing it, or its
+     * own success can be clobbered by the old download's delayed Canceled write.
+     */
+    @Test
+    fun newDownloadWaitsForPreviousCancellationToFinishUnwinding() {
+        val tempDir = File(System.getProperty("java.io.tmpdir"), "offline-dl-${System.nanoTime()}")
+        tempDir.mkdirs()
+        try {
+            val ukPath = File(tempDir, "uk-gb.v1.bin").path
+            val glasgowPath = File(tempDir, "glasgow-gb.v2.bin").path
+
+            // Signalled once the UK request has received its first 503, so the test can wait
+            // for that precisely rather than guessing with a fixed delay.
+            val ukFirstResponseReceived = CompletableDeferred<Unit>()
+            val httpClient = HttpClient(
+                MockEngine { request ->
+                    if (request.url.encodedPath.contains("uk")) {
+                        // Every attempt reports "still caching" - this drives the UK download
+                        // into waitBeforeRetry()'s backoff loop, which only checks for
+                        // cancellation once per second (via Thread.sleep(1000) between
+                        // ensureActive() calls) rather than at every suspension point. That's
+                        // a real, deterministic "slow to unwind" window, unlike relying on
+                        // however fast the mock engine happens to propagate cancellation.
+                        ukFirstResponseReceived.complete(Unit)
+                        respond(
+                            content = ByteReadChannel(ByteArray(0)),
+                            status = HttpStatusCode.ServiceUnavailable,
+                            headers = headersOf(HttpHeaders.ContentLength, "0"),
+                        )
+                    } else {
+                        respond(
+                            content = ByteReadChannel(ByteArray(10) { 'A'.code.toByte() }),
+                            status = HttpStatusCode.OK,
+                            headers = headersOf(HttpHeaders.ContentLength, "10"),
+                        )
+                    }
+                },
+            )
+
+            val downloader = OfflineDownloader(createFileDownloader(httpClient))
+            val observedStates = mutableListOf<DownloadState>()
+            val collectJob = CoroutineScope(Dispatchers.Default).launch {
+                downloader.downloadState.collect { observedStates.add(it) }
+            }
+
+            // extractSize of 10_000_000 makes waitBeforeRetry()'s first-attempt backoff exactly
+            // one second (its estimate is extractSize / 10_000_000 seconds).
+            downloader.startDownload("https://example.test/uk", ukPath, extractSize = 10_000_000.0)
+            runBlocking { withTimeout(5_000) { ukFirstResponseReceived.await() } }
+            // Give the UK coroutine time to reach past its one ensureActive() check at the top
+            // of waitBeforeRetry() and into the one-second Thread.sleep(1000) - that synchronous
+            // path (HttpError branch -> waitBeforeRetry entry -> ensureActive) runs in
+            // microseconds, so this is a generous margin, not a race.
+            Thread.sleep(20)
+            downloader.cancelDownload()
+            downloader.startDownload("https://example.test/glasgow", glasgowPath, extractSize = null)
+
+            runBlocking {
+                withTimeout(5_000) {
+                    downloader.downloadState.first {
+                        it is DownloadState.Success || it is DownloadState.Error
+                    }
+                }
+            }
+            // Let the UK download's one-second backoff sleep finish, notice the cancellation,
+            // and write its belated Canceled state too.
+            Thread.sleep(1_200)
+            collectJob.cancel()
+
+            val canceledIndex = observedStates.indexOfFirst { it is DownloadState.Canceled }
+            val successIndex = observedStates.indexOfFirst { it is DownloadState.Success }
+            assertTrue("expected a Canceled state, got $observedStates", canceledIndex >= 0)
+            assertTrue("expected a Success state, got $observedStates", successIndex >= 0)
+            assertTrue(
+                "the Glasgow download's Success must not be overwritten by the UK " +
+                    "download's belated Canceled state: $observedStates",
+                successIndex > canceledIndex,
+            )
         } finally {
             tempDir.deleteRecursively()
         }
