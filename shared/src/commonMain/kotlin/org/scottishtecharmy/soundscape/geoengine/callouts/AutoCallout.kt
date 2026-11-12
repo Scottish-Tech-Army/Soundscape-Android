@@ -35,6 +35,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.forEachAlongWayFeatureAhe
 import org.scottishtecharmy.soundscape.geoengine.utils.nextAlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.orderPoisForSpeech
+import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
@@ -42,6 +44,12 @@ import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+
+// How close to the junction last announced, and still short of it, the user has to be for
+// "Ahead <road>" to stay quiet - see AutoCallout.buildCalloutForIntersections. The junction search
+// stops seeing a junction 5m short of it, and the walk up to the node can be longer than that
+// where the user is on a pavement set back from the centre-line.
+private const val NEAR_ANNOUNCED_JUNCTION_METRES = 15.0
 
 class AutoCallout(
     private val localized: LocalizedStrings?,
@@ -71,6 +79,12 @@ class AutoCallout(
     private val intersectionFilter = LocationUpdateFilter(2000, 3.0)
     private val intersectionCalloutHistory =
         CalloutHistory(CalloutVerbosity.DETAILED.roadHistoryExpiryMs)
+    /**
+     * The nodes of the junction most recently announced, so that "Ahead <road>" stays quiet
+     * through it - see buildCalloutForIntersections. Not the callout history: a junction
+     * announced 30m ahead at walking pace has often expired from it by the time it's reached.
+     */
+    private var lastAnnouncedJunction: List<LngLatAlt> = emptyList()
     private val poiCalloutHistory = CalloutHistory(
         CalloutVerbosity.DETAILED.poiHistoryExpiryMs,
         CalloutVerbosity.DETAILED.poiHistoryTrimRadiusMetres
@@ -1280,14 +1294,33 @@ class AutoCallout(
             }
         }
 
+        // Nor the road ahead while the user is still short of the junction last announced - its
+        // callout named the road carrying on ahead. The junction search stops seeing a junction
+        // 5m short of it, and "Ahead <road>" used to follow there almost every time. Once they are
+        // past it, naming the road they're now on is what tells them they took the right one.
+        if (roadsDescription.intersection == null) {
+            val heading = userGeometry.heading()
+            val shortOfAnnounced = (heading != null) && lastAnnouncedJunction.any { node ->
+                (userGeometry.ruler.distance(userGeometry.location, node) < NEAR_ANNOUNCED_JUNCTION_METRES) &&
+                    (calculateHeadingOffset(heading, bearingFromTwoPoints(userGeometry.location, node)) < 90.0)
+            }
+            if (shortOfAnnounced) return null
+        }
+
         // Don't describe the road we're on if there's an intersection
-        return addIntersectionCalloutFromDescription(
+        val callout = addIntersectionCalloutFromDescription(
             roadsDescription,
             localized,
             intersectionCalloutHistory,
             gridState,
             speakDistance = intersectionDistanceEnabled()
         )
+        val junction = roadsDescription.intersection
+        if ((callout != null) && (junction != null)) {
+            lastAnnouncedJunction =
+                listOf(junction.location) + roadsDescription.alsoAt.map { it.first.location }
+        }
+        return callout
     }
 
     /**

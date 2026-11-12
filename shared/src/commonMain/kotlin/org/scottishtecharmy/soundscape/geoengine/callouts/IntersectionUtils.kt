@@ -92,6 +92,12 @@ data class IntersectionDescription(
      * with [intersection]'s - see [SAME_JUNCTION_METRES].
      */
     val alsoAt: List<Pair<Intersection, Way>> = emptyList(),
+    /**
+     * There's no [intersection] to describe only because the next junction ahead has already been
+     * announced. Its callout named the road carrying on ahead, so "Ahead <road>" now would only
+     * repeat it - see addIntersectionCalloutFromDescription.
+     */
+    val announcedAhead: Boolean = false,
 )
 
 /**
@@ -485,7 +491,11 @@ private fun walkForIntersection(
             )
         }
     }
-    if (candidate == null) return IntersectionDescription(nearestRoad, userGeometry)
+    if (candidate == null) {
+        return IntersectionDescription(
+            nearestRoad, userGeometry, announcedAhead = announced.isNotEmpty()
+        )
+    }
 
     // The rest of the junction: the junctions worth announcing that lie just beyond this one, and
     // any just before it which gave way to it above. Someone walking through meets them all as one
@@ -757,6 +767,10 @@ fun addIntersectionCalloutFromDescription(
 
     // Report nearby road
     if (description.intersection == null) {
+        // Not while a junction that has been announced is still ahead: "Grange Avenue goes left,
+        // Buchanan Street continues ahead" followed a few seconds later by "Ahead Buchanan
+        // Street" only repeats it. AutoCallout also keeps it quiet through the junction itself.
+        if (description.announcedAhead) return null
         description.nearestRoad?.let { nearestRoad ->
 
             // Figure out which direction we're travelling along the way
