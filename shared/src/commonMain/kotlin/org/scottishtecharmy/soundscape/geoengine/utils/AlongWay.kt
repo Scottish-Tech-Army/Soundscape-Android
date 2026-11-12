@@ -342,6 +342,12 @@ data class IntersectionAhead(
      * without passing through these, so they come before it whatever their crow-fly distances.
      */
     val via: List<Intersection> = emptyList(),
+    /**
+     * Whether the road bends away here while another arm carries straight on, so the walk went
+     * one way and the user may well go the other - see continuingArms. Like a junction where the
+     * road ends, it's a fork: nothing beyond it is certain to be ahead of the user.
+     */
+    val forks: Boolean = false,
 )
 
 /**
@@ -447,6 +453,12 @@ private class PendingWay(
     val travelled: Double,
     /** The junctions reported on the way here, nearest first - see [IntersectionAhead.via]. */
     val via: List<Intersection>,
+    /**
+     * The last Way walked which isn't a tile-edge joiner, and the Intersection it was left by. A
+     * joiner is a zero-length link between two tiles, so it says nothing about which arms of the
+     * junction beyond it carry the road on - see continuingArms.
+     */
+    val lastReal: Pair<Way, Intersection>? = null,
 )
 
 /**
@@ -479,11 +491,41 @@ private fun collectIntersectionsAhead(
         val next = pending.minBy { it.travelled }
         pending.remove(next)
         if (!visited.add(next.way)) continue
-        if (visited.size > MAX_WAYS_WALKED) return
+        if (visited.size > MAX_WAYS_WALKED) break
         walkOneWayForIntersections(
             next, roadName, roadRef, maxDistance, gridState, strings, continuation, onPath,
             found, pending
         )
+    }
+    trimViaToEveryRoute(found)
+}
+
+/**
+ * When a junction is reached by a second route, its own via is cut down to the junctions both
+ * routes pass (see walkOneWayForIntersections), but the Ways beyond it were queued carrying the
+ * first route's whole via, so every junction found beyond it still lists junctions the second
+ * route avoids. Rebuild each via from the junction before it - the last entry - whose own via is
+ * already trimmed, keeping only what both say was passed.
+ */
+private fun trimViaToEveryRoute(found: MutableMap<Intersection, IntersectionAhead>) {
+    val trimmed = HashMap<Intersection, List<Intersection>>()
+    val inProgress = HashSet<Intersection>()
+    fun trimmedVia(junction: Intersection): List<Intersection> {
+        trimmed[junction]?.let { return it }
+        val ahead = found[junction] ?: return emptyList()
+        val before = ahead.via.lastOrNull()
+        // A cycle can't come from a nearest-first walk, but don't recurse forever if it does
+        if ((before == null) || !inProgress.add(junction)) return ahead.via
+        val viaBefore = trimmedVia(before) + before
+        inProgress.remove(junction)
+        val result = viaBefore.filter { passed -> ahead.via.any { it === passed } }
+        trimmed[junction] = result
+        return result
+    }
+    for (junction in found.keys.toList()) {
+        val ahead = found[junction] ?: continue
+        val via = trimmedVia(junction)
+        if (via.size != ahead.via.size) found[junction] = ahead.copy(via = via)
     }
 }
 
@@ -518,12 +560,14 @@ private fun walkOneWayForIntersections(
         way.intersections[WayEnd.START.id]
     } ?: return
 
+    val lastReal = if (way.wayType == WayType.JOINER) (step.lastReal ?: (way to exit)) else (way to exit)
+
     fun continueOnto(next: Way, nextVia: List<Intersection> = via) {
         val nextForwards = (next.intersections[WayEnd.START.id] === exit)
         pending.add(
             PendingWay(
                 next, nextForwards, if (nextForwards) 0.0 else next.length, travelledToExit,
-                nextVia
+                nextVia, lastReal
             )
         )
     }
@@ -551,7 +595,11 @@ private fun walkOneWayForIntersections(
             sameOsmWay(realArms.single(), way))
     when {
         realArms.size >= 2 || (realArms.size == 1 && !singleArmIsSameRoad) -> {
-            val ahead = IntersectionAhead(exit, travelledToExit, way, stepForwards, via)
+            val onward = continuingArms(exit, lastReal, realArms, roadName, roadRef)
+            val forks = onward.isNotEmpty() &&
+                onward.none { isStraightOn(lastReal, it, exit) } &&
+                realArms.any { arm -> onward.none { it === arm } && isStraightOn(lastReal, arm, exit) }
+            val ahead = IntersectionAhead(exit, travelledToExit, way, stepForwards, via, forks)
             val alreadyFound = found[exit]
             if (alreadyFound == null) {
                 found[exit] = ahead
@@ -572,7 +620,7 @@ private fun walkOneWayForIntersections(
             // however near it is - but the search used to walk every arm, and such a junction
             // could be chosen over the one actually ahead.
             val viaHere = via + exit
-            for (next in continuingArms(exit, way, realArms, roadName, roadRef)) {
+            for (next in onward) {
                 continueOnto(next, viaHere)
             }
         }
@@ -599,18 +647,33 @@ private fun walkOneWayForIntersections(
 private const val STRAIGHT_ON_DEGREES = 45.0
 
 /**
- * The arms at [junction] which carry on from [arriving] for someone who doesn't turn: those
+ * Whether [arm] leaves [junction] within [STRAIGHT_ON_DEGREES] of straight on for someone arriving
+ * along [arrivingAt] - see continuingArms for why that's the real Way, not a tile-edge joiner.
+ */
+private fun isStraightOn(arrivingAt: Pair<Way, Intersection>, arm: Way, junction: Intersection): Boolean {
+    val (arriving, arrivedAt) = arrivingAt
+    val straightOn = (arriving.heading(arrivedAt) + 180.0) % 360.0
+    return calculateHeadingOffset(straightOn, arm.heading(junction)) <= STRAIGHT_ON_DEGREES
+}
+
+/**
+ * The arms at [junction] which carry on from [arrivingAt] for someone who doesn't turn: those
  * continuing the road by name, ref or OSM way - more than one where it splits into two
  * carriageways - or, where none does, the arm nearest straight on, if one is within
  * [STRAIGHT_ON_DEGREES]. A road which renames at a junction carries on that way.
  */
 private fun continuingArms(
     junction: Intersection,
-    arriving: Way,
+    arrivingAt: Pair<Way, Intersection>,
     realArms: List<Way>,
     roadName: String?,
     roadRef: String?,
 ): List<Way> {
+    // The Way the walk arrived on and the Intersection at its end - not a tile-edge joiner, which
+    // would pass sameOsmWay for every arm and has no heading of its own, but the real Way before
+    // it. Across a joiner that Intersection is the one the other side of the tile edge, at the
+    // same place as the junction.
+    val (arriving, arrivedAt) = arrivingAt
     // A node reported only because one way gives way to another has nowhere else to go, however
     // sharply it bends
     if (realArms.size == 1) return realArms
@@ -618,16 +681,15 @@ private fun continuingArms(
         sameRoad(it, roadName, roadRef) || sameRoad(it, arriving.name, arriving.ref) ||
             sameOsmWay(it, arriving)
     }
+    // Followed even where it bends away and another arm goes straight on: the walk can't tell
+    // which the user will take. That junction is flagged as a fork (IntersectionAhead.forks), so
+    // nothing found beyond it is announced before the user is through it.
     if (same.isNotEmpty()) return same
-    val straightOn = (arriving.heading(junction) + 180.0) % 360.0
+    val straightOn = (arriving.heading(arrivedAt) + 180.0) % 360.0
     val straightest = realArms.minByOrNull {
         calculateHeadingOffset(straightOn, it.heading(junction))
     } ?: return emptyList()
-    return if (calculateHeadingOffset(straightOn, straightest.heading(junction)) <= STRAIGHT_ON_DEGREES) {
-        listOf(straightest)
-    } else {
-        emptyList()
-    }
+    return if (isStraightOn(arrivingAt, straightest, junction)) listOf(straightest) else emptyList()
 }
 
 /**
