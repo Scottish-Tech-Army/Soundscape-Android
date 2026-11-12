@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -574,5 +575,125 @@ class AlongWayTest {
             "Ahead",
             nextAlongWayFeature(WayCursor(way, 100.0, forwards = true), 500.0)?.feature?.name
         )
+    }
+
+    /** A point [eastMetres] east and [northMetres] north of the origin. */
+    private fun at(eastMetres: Double, northMetres: Double) =
+        ruler.offset(origin, eastMetres, northMetres)
+
+    /** A Way along [points], joined to [from] at its START and [to] at its END. */
+    private fun wayBetween(
+        name: String,
+        from: Intersection?,
+        to: Intersection?,
+        vararg points: LngLatAlt,
+    ): Way = Way().apply {
+        this.name = name
+        featureType = "highway"
+        featureValue = "residential"
+        geometry = LineString(*points)
+        length = points.toList().zipWithNext { a, b -> ruler.distance(a, b) }.sum()
+        from?.let { intersections[WayEnd.START.id] = it; it.members.add(this) }
+        to?.let { intersections[WayEnd.END.id] = it; it.members.add(this) }
+    }
+
+    private fun junctionsAhead(cursor: WayCursor): List<IntersectionAhead> {
+        val gridState = GridState()
+        gridState.validateContext = false
+        val found = mutableListOf<IntersectionAhead>()
+        forEachIntersectionAhead(cursor, 500.0, gridState, null) { found.add(it); true }
+        return found
+    }
+
+    @Test
+    fun junctionWalkAcrossATileJoinerKeepsToTheRoad() {
+        // Main Street crosses a tile edge exactly where Side Road leaves it, so the junction is
+        // the far side of a zero-length joiner. The joiner matches every arm as "the same OSM way"
+        // and has no direction of its own, so the walk used to carry on down Side Road too, and
+        // found the junction along it as if it were ahead.
+        val edgeA = intersectionAt(at(100.0, 0.0))
+        val edgeB = intersectionAt(at(100.0, 0.0))
+        val approach = wayBetween("Main Street", null, edgeA, at(0.0, 0.0), at(100.0, 0.0))
+        wayBetween("", edgeA, edgeB, at(100.0, 0.0), at(100.0, 0.0)).apply {
+            name = null
+            wayType = WayType.JOINER
+            length = 0.0
+        }
+        val ahead = intersectionAt(at(160.0, 0.0))
+        val sideJunction = intersectionAt(at(100.0, 40.0))
+        wayBetween("Main Street", edgeB, ahead, at(100.0, 0.0), at(160.0, 0.0))
+        wayBetween("Side Road", edgeB, sideJunction, at(100.0, 0.0), at(100.0, 40.0))
+        // Something at each of the two further junctions, so that both are real ones
+        wayBetween("Main Street", ahead, null, at(160.0, 0.0), at(300.0, 0.0))
+        wayBetween("Ahead Road", ahead, null, at(160.0, 0.0), at(160.0, 80.0))
+        wayBetween("Side Road", sideJunction, null, at(100.0, 40.0), at(100.0, 200.0))
+        wayBetween("Down Side Road", sideJunction, null, at(100.0, 40.0), at(20.0, 40.0))
+
+        val found = junctionsAhead(WayCursor(approach, 50.0, forwards = true))
+
+        assertTrue(found.any { it.intersection === edgeB }, "the junction at the tile edge")
+        assertTrue(found.any { it.intersection === ahead }, "the junction ahead on Main Street")
+        assertFalse(found.any { it.intersection === sideJunction }, "a junction down Side Road")
+    }
+
+    @Test
+    fun aJunctionWhereTheRoadBendsAwayFromStraightOnIsAFork() {
+        // Main Street turns left at J, and a path carries straight on. The walk follows Main
+        // Street round the bend, but the user may well go straight on, so J is flagged as a fork.
+        val j = intersectionAt(at(100.0, 0.0))
+        val k = intersectionAt(at(100.0, 80.0))
+        val approach = wayBetween("Main Street", null, j, at(0.0, 0.0), at(100.0, 0.0))
+        wayBetween("Main Street", j, k, at(100.0, 0.0), at(100.0, 80.0))
+        wayBetween("", j, null, at(100.0, 0.0), at(200.0, 0.0)).apply {
+            name = null
+            featureValue = "footway"
+        }
+        wayBetween("Main Street", k, null, at(100.0, 80.0), at(100.0, 200.0))
+        wayBetween("Cross Road", k, null, at(100.0, 80.0), at(200.0, 80.0))
+
+        val found = junctionsAhead(WayCursor(approach, 50.0, forwards = true))
+
+        assertTrue(found.single { it.intersection === j }.forks, "J is a fork")
+        assertFalse(found.single { it.intersection === k }.forks, "K is not")
+    }
+
+    @Test
+    fun aJunctionWhereTheRoadCarriesStraightOnIsNotAFork() {
+        val j = intersectionAt(at(100.0, 0.0))
+        val approach = wayBetween("Main Street", null, j, at(0.0, 0.0), at(100.0, 0.0))
+        wayBetween("Main Street", j, null, at(100.0, 0.0), at(200.0, 10.0))
+        wayBetween("Side Road", j, null, at(100.0, 0.0), at(100.0, 80.0))
+
+        val found = junctionsAhead(WayCursor(approach, 50.0, forwards = true))
+
+        assertFalse(found.single { it.intersection === j }.forks)
+    }
+
+    @Test
+    fun junctionsBeyondASplitOnlyListWhatEveryRoutePasses() {
+        // Main Street splits at S into two carriageways which meet again at J, with K beyond.
+        // Side Road leaves the northern carriageway at X. Someone on the southern carriageway
+        // never passes X, so K mustn't list it among the junctions passed on the way, though the
+        // walk reaches J first along the northern carriageway, the shorter of the two.
+        val s = intersectionAt(at(100.0, 0.0))
+        val x = intersectionAt(at(150.0, 5.0))
+        val j = intersectionAt(at(200.0, 0.0))
+        val k = intersectionAt(at(260.0, 0.0))
+        val approach = wayBetween("Main Street", null, s, at(0.0, 0.0), at(100.0, 0.0))
+        wayBetween("Main Street", s, x, at(100.0, 0.0), at(150.0, 5.0))
+        wayBetween("Main Street", x, j, at(150.0, 5.0), at(200.0, 0.0))
+        wayBetween("Side Road", x, null, at(150.0, 5.0), at(150.0, 100.0))
+        wayBetween("Main Street", s, j, at(100.0, 0.0), at(150.0, -20.0), at(200.0, 0.0))
+        wayBetween("Main Street", j, k, at(200.0, 0.0), at(260.0, 0.0))
+        wayBetween("Main Street", k, null, at(260.0, 0.0), at(400.0, 0.0))
+        wayBetween("Other Road", k, null, at(260.0, 0.0), at(260.0, -80.0))
+
+        val found = junctionsAhead(WayCursor(approach, 50.0, forwards = true))
+
+        val atJ = found.single { it.intersection === j }
+        val atK = found.single { it.intersection === k }
+        assertFalse(atJ.via.any { it === x }, "J lists X")
+        assertFalse(atK.via.any { it === x }, "K lists X")
+        assertTrue(atK.via.any { it === s } && atK.via.any { it === j }, "K lists S and J")
     }
 }

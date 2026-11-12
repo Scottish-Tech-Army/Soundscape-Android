@@ -373,9 +373,11 @@ private fun walkForIntersection(
     val fovPolygon = createPolygonFromTriangle(triangle)
     val userLocation = userGeometry.mapMatchedLocation?.point ?: userGeometry.location
     val candidates = mutableListOf<IntersectionCandidate>()
-    // Announced junctions where the road ends - see worthAnnouncing below.
+    // Announced junctions where the road ends or forks - see worthAnnouncing below.
     val turnsAt = mutableListOf<Intersection>()
+    val forksAt = mutableListOf<Intersection>()
     forEachIntersectionAhead(cursor, userGeometry.fovDistance, gridState, strings) { found ->
+        if (found.forks) forksAt.add(found.intersection)
         if (!polygonContainsCoordinates(found.intersection.location, fovPolygon)) {
             junctionSearchTrace?.invoke("  x ${found.intersection.location.latitude},${found.intersection.location.longitude} net=${found.distance.toInt()} outside field of view")
             return@forEachIntersectionAhead true
@@ -387,7 +389,7 @@ private fun walkForIntersection(
         if (found.distance < 5.0) {
             // ...but one the user is about to turn at still stops the search looking past it.
             if ((calloutHistory?.covers(JUNCTION_DEDUP_TEXT, found.intersection.location) == true) &&
-                roadEnds(found.intersection, found.arrivingWay, gridState, strings)
+                (found.forks || roadEnds(found.intersection, found.arrivingWay, gridState, strings))
             ) turnsAt.add(found.intersection)
             return@forEachIntersectionAhead true
         }
@@ -428,11 +430,17 @@ private fun walkForIntersection(
     // announced as early as any other rather than only once the user is through the first. The
     // order still holds: they are announced in the order the user reaches them.
     // Not past one where the road ends, though: the user has to turn there, so whatever lies
-    // beyond it is somewhere they won't go.
+    // beyond it is somewhere they won't go. Nor past one where the road bends away while another
+    // arm goes straight on: the walk followed the road, and the user is as likely to carry
+    // straight on (in the replay traces, more likely), so what lies beyond may be on the branch
+    // they don't take.
     val announced = candidates.filter { candidate ->
         calloutHistory?.covers(JUNCTION_DEDUP_TEXT, candidate.intersection.location) == true
     }
-    announced.filter { roadEnds(it.intersection, it.arrivingWay, gridState, strings) }
+    announced.filter { c ->
+        forksAt.any { it === c.intersection } ||
+            roadEnds(c.intersection, c.arrivingWay, gridState, strings)
+    }
         .forEach { turnsAt.add(it.intersection) }
     val worthAnnouncing = candidates.filter { candidate ->
         (candidate !in announced) && candidate.via.none { v -> turnsAt.any { it === v } }
@@ -509,6 +517,15 @@ private fun walkForIntersection(
             val far = arm.getOtherIntersection(candidate.intersection) ?: return@mapNotNull null
             if ((far === candidate.intersection) || (far.members.size <= 2) ||
                 alsoAt.any { it.first === far }
+            ) return@mapNotNull null
+            // The same filters every junction the walk finds goes through: one already announced
+            // isn't described again, and one offering only roads below the verbosity setting
+            // isn't described at all.
+            if (calloutHistory?.covers(JUNCTION_DEDUP_TEXT, far.location) == true) return@mapNotNull null
+            if (!intersectionMeetsRoadTier(
+                    far, nearestRoad, minimumTier, gridState, strings,
+                    comingFromBearing(userGeometry, far.location)
+                )
             ) return@mapNotNull null
             val worth = (checkWhetherIntersectionIsOfInterest(far, nearestRoad) > 0) ||
                 hasUnnamedArm(far, arm, gridState, strings)
