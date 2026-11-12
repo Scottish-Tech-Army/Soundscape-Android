@@ -36,6 +36,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.markUntaggedPavements
+import org.scottishtecharmy.soundscape.rtree.PerfCounters
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
@@ -1301,13 +1302,14 @@ open class GridState(
             val newGridIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
             val newGridTransitIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
             val newGridStreetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
+            PerfCounters.startGridBuild()
             if (updateTileGrid(
                     tileGrid,
                     featureCollections,
                     newGridIntersections,
                     newGridStreetNumberMap,
                     newGridTransitIntersections
-                )
+                ).also { PerfCounters.endGridBuild() }
             ) {
                 // We have got a new grid, so create our new central region
                 centralBoundingBox = tileGrid.centralBoundingBox
@@ -1323,6 +1325,8 @@ open class GridState(
                             ruler = CheapRuler(location.latitude)
                             gridIntersections.clear()
                             gridTransitIntersections.clear()
+                            // Still part of building the grid - see PerfCounters.
+                            PerfCounters.gridBuild = true
                             processGridState(
                                 featureCollections,
                                 selection,
@@ -1334,6 +1338,7 @@ open class GridState(
                                 tileGrid,
                                 strings
                             )
+                            PerfCounters.endGridBuild()
                             gridStreetNumberTreeMap.clear()
                             for (collection in newGridStreetNumberMap)
                                 gridStreetNumberTreeMap[collection.key] =
