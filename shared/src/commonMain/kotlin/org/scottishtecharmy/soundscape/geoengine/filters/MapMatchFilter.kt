@@ -770,6 +770,10 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
     // North Clyde lines at Partick), so it would reject the right line and end a train ride.
     private var lostMatchPoint: LngLatAlt? = null
     private var lostMatchWay: Way? = null
+    // The follower that held that match - see the lost-follower check in filter. Unlike the two
+    // above it is kept past the grace ticks, for as long as the follower is still being tracked:
+    // crossing a wide road on the diagonal can easily take longer than they last.
+    private var lostMatchFollower: RoadFollower? = null
     private var lostMatchTicks = 0
 
     /**
@@ -999,6 +1003,9 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
         // The previously matched follower's frechetAverage when it's sitting this tick out only
         // because the heading has swung (e.g. turning a corner) - see the check after the loop.
         var sidelinedMatchFrechet: Double? = null
+        // How far the road whose match was lost a tick or two ago is from this fix, when it's
+        // sitting this tick out only for its heading - see the check after the loop.
+        var sidelinedLostDistance: Double? = null
         // The follower whose raw (unsmoothed) GPS-to-road distance is the smallest this tick,
         // regardless of its frechetAverage - see the raw-distance override below, which needs
         // this rather than just lowestFollower, since a follower that's clearly the best
@@ -1015,6 +1022,7 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             )
 
             if (frechetStatus.state == RoadFollowerState.DISTANT) {
+                if (follower === lostMatchFollower) lostMatchFollower = null
                 followerIterator.remove()
                 continue
             }
@@ -1023,6 +1031,8 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             ) {
                 if (follower === previouslyMatchedFollower)
                     sidelinedMatchFrechet = frechetStatus.frechetAverage
+                else if ((previouslyMatchedFollower == null) && (follower === lostMatchFollower))
+                    sidelinedLostDistance = follower.nearestPoint?.distance
                 continue
             }
 
@@ -1188,6 +1198,23 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             }
         }
 
+        // The same while the match is lost, compared by distance rather than fit. Crossing
+        // Buchanan Street on the diagonal (travel-4) set it aside for its heading. The first tick
+        // had no match, from the check above, but by the next there was no matched follower to
+        // compare with, and Kersland Drive won from 14m away with the user 0.3m from Buchanan
+        // Street. Comparing fit instead held the match off a neighbouring footway beside the
+        // Clydeside Expressway tunnel (train-1) until the grace ticks ran out and the expressway
+        // itself won. Uses the raw-distance override's thresholds the other way round.
+        sidelinedLostDistance?.let { lostDistance ->
+            val winnerDistance = lowestFollower?.nearestPoint?.distance
+            if ((winnerDistance != null) &&
+                (winnerDistance >= RAW_DISTANCE_OVERRIDE_MINIMUM_METRES) &&
+                (lostDistance < winnerDistance * RAW_DISTANCE_OVERRIDE_RATIO)
+            ) {
+                lowestFollower = null
+            }
+        }
+
         lastLocation = location
         if (lowestFollower != null) {
             matchedLocation = lowestFollower.chosen()
@@ -1197,6 +1224,7 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             matchedLocation?.let { matchedLocation ->
                 lostMatchWay = null
                 lostMatchPoint = null
+                lostMatchFollower = null
                 updateMatchConfidence()
                 return Triple(matchedLocation.point, matchedWay, color)
             }
@@ -1206,6 +1234,7 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
         if ((lostWay != null) && (lostPoint != null) && (networkTree != TreeId.TRANSIT)) {
             lostMatchWay = lostWay
             lostMatchPoint = lostPoint
+            lostMatchFollower = matchedFollower
             lostMatchTicks = 0
         } else if (++lostMatchTicks > LOST_MATCH_GRACE_TICKS) {
             lostMatchWay = null
