@@ -102,41 +102,41 @@ class TileUtilsTest {
             CityTile(
                 "Tehran", tehranTestLocation,
                 TileCounts(
-                    crossings = 288, paths = 799, intersections = 1982, entrances = 12,
-                    pois = 1437, mobility = 472, objects = 11, information = 1, places = 684,
-                    landmarks = 224, safety = 12,
+                    crossings = 288, paths = 799, intersections = 1979, entrances = 12,
+                    pois = 1444, mobility = 471, objects = 13, information = 1, places = 688,
+                    landmarks = 225, safety = 12,
                 )
             ),
             CityTile(
                 "San Salvador", sanSalvadorTestLocation,
                 TileCounts(
-                    crossings = 159, paths = 1007, intersections = 2532, entrances = 53,
-                    pois = 1451, mobility = 309, objects = 131, information = 1, places = 574,
+                    crossings = 159, paths = 1007, intersections = 2530, entrances = 53,
+                    pois = 1450, mobility = 309, objects = 131, information = 1, places = 573,
                     landmarks = 267, safety = 86,
                 )
             ),
             CityTile(
                 "Paris", parisTestLocation,
                 TileCounts(
-                    crossings = 962, paths = 7001, intersections = 6680, entrances = 284,
-                    pois = 8037, mobility = 1392, objects = 743, information = 150, places = 4183,
-                    landmarks = 1168, safety = 175,
+                    crossings = 962, paths = 7002, intersections = 6677, entrances = 288,
+                    pois = 8072, mobility = 1390, objects = 743, information = 150, places = 4211,
+                    landmarks = 1172, safety = 175,
                 )
             ),
             CityTile(
                 "Buenos Aires", buenosAiresTestLocation,
                 TileCounts(
-                    crossings = 86, paths = 963, intersections = 1277, entrances = 89,
-                    pois = 3057, mobility = 557, objects = 114, information = 1, places = 1510,
-                    landmarks = 620, safety = 140,
+                    crossings = 98, paths = 1009, intersections = 1313, entrances = 86,
+                    pois = 3092, mobility = 570, objects = 114, information = 1, places = 1530,
+                    landmarks = 617, safety = 142,
                 )
             ),
             CityTile(
                 "Osaka", osakaTestLocation,
                 TileCounts(
-                    crossings = 688, paths = 5363, intersections = 5997, entrances = 338,
-                    pois = 7039, mobility = 1043, objects = 385, information = 149, places = 4198,
-                    landmarks = 677, safety = 403,
+                    crossings = 699, paths = 5512, intersections = 6165, entrances = 338,
+                    pois = 7410, mobility = 1067, objects = 472, information = 158, places = 4402,
+                    landmarks = 687, safety = 420,
                 )
             ),
         )
