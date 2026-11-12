@@ -79,6 +79,7 @@ class RTree<T, G : Geometry> private constructor(
     fun isEmpty(): Boolean = root == null
 
     fun search(box: Rectangle): Sequence<Entry<T, G>> {
+        PerfCounters.searchCall()
         if (root == null) return emptySequence()
         val out = mutableListOf<Entry<T, G>>()
         searchNode(root, box, out)
@@ -86,6 +87,7 @@ class RTree<T, G : Geometry> private constructor(
     }
 
     private fun searchNode(node: Node<T, G>, box: Rectangle, out: MutableList<Entry<T, G>>) {
+        PerfCounters.searchNode()
         if (!node.mbr.intersects(box)) return
         when (node) {
             is Leaf -> for (e in node.entries) if (e.geometry.intersects(box)) out.add(e)
@@ -99,6 +101,7 @@ class RTree<T, G : Geometry> private constructor(
         maxDistance: Double = Double.POSITIVE_INFINITY,
         maxCount: Int = Int.MAX_VALUE
     ): List<Entry<T, G>> {
+        PerfCounters.nearestCall()
         if (root == null || maxCount <= 0) return emptyList()
         val pq = MinHeap<QItem<T, G>>()
         var seq = 0
@@ -106,6 +109,7 @@ class RTree<T, G : Geometry> private constructor(
         val results = ArrayList<Entry<T, G>>(minOf(maxCount, 16))
         while (!pq.isEmpty() && results.size < maxCount) {
             val item = pq.pop()
+            PerfCounters.nearestPop()
             if (item.dist > maxDistance) break
             when (item) {
                 is QItem.NodeItem<T, G> -> when (val n = item.node) {

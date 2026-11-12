@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import junit.framework.TestCase.assertEquals
+import org.scottishtecharmy.soundscape.rtree.PerfCounters
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNotNull
@@ -5021,6 +5022,9 @@ class MvtTileTest {
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
 
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
+        // How many searches the replay took, for comparing a change against the commit before it
+        // - see PerfCounters.
+        PerfCounters.reset()
         for (file in directoryEntries) {
             // Reference-file comparison against gpxFiles/${file}.txt removed for now - the
             // reference fixtures need regenerating to match the water/rail crossing rework (see
@@ -5032,6 +5036,7 @@ class MvtTileTest {
                 "gpxFiles/${file.nameWithoutExtension}.geojson"
             )
         }
+        testOutputFile("perf-counters.txt").writeText(PerfCounters.report())
     }
 
     fun testStreetNumbers(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {

@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import org.scottishtecharmy.soundscape.rtree.PerfCounters
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
@@ -20,6 +21,7 @@ fun dijkstraOnWaysWithLoops(
 ): Double {
 
     dijkstraRunCount++
+    PerfCounters.dijkstraCall()
 
     // Return distances, previous nodes are in the Intersection internal data
     // The priority queue is sorted by the closest node to the target, but also contains the current
@@ -38,6 +40,7 @@ fun dijkstraOnWaysWithLoops(
 
     while (priorityQueue.isNotEmpty()) {
         val (node, currentDist) = priorityQueue.poll() ?: break
+        PerfCounters.dijkstraPop()
         if (visited.add(node to currentDist)) {
             // The node popped here is only guaranteed to have its final (minimal) distance once
             // it's been taken off the priority queue - the queue is ordered by totalDist plus an
