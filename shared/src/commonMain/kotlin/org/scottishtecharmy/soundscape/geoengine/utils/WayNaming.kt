@@ -731,6 +731,26 @@ fun markUntaggedPavements(paths: FeatureCollection, roadTree: FeatureTree, ruler
             maxCount = 10,
             ruler = ruler
         )
+        // The roads near each sample, for measuring the offset to whichever candidate is tried
+        // below. The same for every candidate, so searched once - and only once a candidate gets
+        // that far. The middle sample's are nearMiddle's.
+        val nearSamples by lazy {
+            listOf(
+                roadTree.getNearestCollection(
+                    location = samples[0],
+                    distance = inferredPavementMaxOffsetMetres,
+                    maxCount = 10,
+                    ruler = ruler
+                ),
+                nearMiddle,
+                roadTree.getNearestCollection(
+                    location = samples[2],
+                    distance = inferredPavementMaxOffsetMetres,
+                    maxCount = 10,
+                    ruler = ruler
+                ),
+            )
+        }
         val beside = nearMiddle.firstOrNull { candidate ->
             val road = candidate as Way
             val name = road.name ?: return@firstOrNull false
@@ -741,13 +761,8 @@ fun markUntaggedPavements(paths: FeatureCollection, roadTree: FeatureTree, ruler
             if (!sameLevel(path, road)) return@firstOrNull false
             // The road can be in several pieces, so each sample is measured to the nearest piece
             // carrying the same name.
-            val offsets = samples.map { sample ->
-                roadTree.getNearestCollection(
-                    location = sample,
-                    distance = inferredPavementMaxOffsetMetres,
-                    maxCount = 10,
-                    ruler = ruler
-                ).mapNotNull { other ->
+            val offsets = samples.zip(nearSamples) { sample, nearby ->
+                nearby.mapNotNull { other ->
                     val otherRoad = other as Way
                     if (otherRoad.name != name) null
                     else ruler.distanceToLineString(sample, otherRoad.geometry as LineString)
