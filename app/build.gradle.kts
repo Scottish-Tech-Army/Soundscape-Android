@@ -388,7 +388,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.service)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.core.ktx)
+    androidTestImplementation(libs.core.ktx)
 //    implementation(libs.androidx.benchmark.common)
     implementation(libs.androidx.lifecycle.runtime.compose.android)
     implementation(libs.androidx.media3.session)
