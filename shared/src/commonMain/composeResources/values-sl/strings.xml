@@ -1766,6 +1766,12 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="open_in_app_change">Izbira druge aplikacije</string>
     <string name="confect_name_to_dead_end">%1$s do slepe ulice</string>
     <string name="confect_name_to_dead_end_via">%1$s do slepe ulice prek %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s do zaklenjenih vrat</string>
+    <string name="confect_name_to_locked_gate_via">%1$s do zaklenjenih vrat prek %2$s</string>
+    <string name="confect_name_locked_gate">Zaklenjena vrata</string>
+    <string name="confect_name_to_no_access_gate">%1$s do vrat s prepovedjo prehoda</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s do vrat s prepovedjo prehoda prek %2$s</string>
+    <string name="confect_name_no_access_gate">Vrata s prepovedjo prehoda</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

@@ -1734,6 +1734,12 @@
     <string name="open_in_app_change">دوسری ایپ منتخب کریں</string>
     <string name="confect_name_to_dead_end">%1$s بند گلی تک</string>
     <string name="confect_name_to_dead_end_via">%1$s بذریعہ %2$s بند گلی تک</string>
+    <string name="confect_name_to_locked_gate">%1$s تالا لگے گیٹ تک</string>
+    <string name="confect_name_to_locked_gate_via">%1$s بذریعہ %2$s تالا لگے گیٹ تک</string>
+    <string name="confect_name_locked_gate">تالا لگا گیٹ</string>
+    <string name="confect_name_to_no_access_gate">%1$s داخلہ ممنوع گیٹ تک</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s بذریعہ %2$s داخلہ ممنوع گیٹ تک</string>
+    <string name="confect_name_no_access_gate">داخلہ ممنوع گیٹ</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

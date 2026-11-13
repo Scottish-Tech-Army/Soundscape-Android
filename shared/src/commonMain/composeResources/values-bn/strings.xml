@@ -1734,6 +1734,12 @@
     <string name="open_in_app_change">অন্য অ্যাপ বেছে নিন</string>
     <string name="confect_name_to_dead_end">শেষ প্রান্ত পর্যন্ত %1$s</string>
     <string name="confect_name_to_dead_end_via">%2$s হয়ে শেষ প্রান্ত পর্যন্ত %1$s</string>
+    <string name="confect_name_to_locked_gate">তালাবন্ধ গেট পর্যন্ত %1$s</string>
+    <string name="confect_name_to_locked_gate_via">%2$s হয়ে তালাবন্ধ গেট পর্যন্ত %1$s</string>
+    <string name="confect_name_locked_gate">তালাবন্ধ গেট</string>
+    <string name="confect_name_to_no_access_gate">প্রবেশ নিষেধ গেট পর্যন্ত %1$s</string>
+    <string name="confect_name_to_no_access_gate_via">%2$s হয়ে প্রবেশ নিষেধ গেট পর্যন্ত %1$s</string>
+    <string name="confect_name_no_access_gate">প্রবেশ নিষেধ গেট</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

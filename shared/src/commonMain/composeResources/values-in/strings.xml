@@ -1718,6 +1718,12 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="open_in_app_change">Pilih aplikasi lain</string>
     <string name="confect_name_to_dead_end">%1$s ke jalan buntu</string>
     <string name="confect_name_to_dead_end_via">%1$s ke jalan buntu melalui %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s ke gerbang terkunci</string>
+    <string name="confect_name_to_locked_gate_via">%1$s ke gerbang terkunci melalui %2$s</string>
+    <string name="confect_name_locked_gate">Gerbang terkunci</string>
+    <string name="confect_name_to_no_access_gate">%1$s ke gerbang dilarang masuk</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s ke gerbang dilarang masuk melalui %2$s</string>
+    <string name="confect_name_no_access_gate">Gerbang dilarang masuk</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

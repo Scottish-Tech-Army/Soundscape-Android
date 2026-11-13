@@ -1750,6 +1750,12 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="open_in_app_change">Choisir une autre appli</string>
     <string name="confect_name_to_dead_end">%1$s sans issue</string>
     <string name="confect_name_to_dead_end_via">%1$s sans issue via %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s jusqu’à une barrière fermée à clé</string>
+    <string name="confect_name_to_locked_gate_via">%1$s jusqu’à une barrière fermée à clé via %2$s</string>
+    <string name="confect_name_locked_gate">Barrière fermée à clé</string>
+    <string name="confect_name_to_no_access_gate">%1$s jusqu’à une barrière à accès interdit</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s jusqu’à une barrière à accès interdit via %2$s</string>
+    <string name="confect_name_no_access_gate">Barrière à accès interdit</string>
     <string name="relative_clock_hour_1">1 heure</string>
     <string name="relative_clock_hour_2">2 heures</string>
     <string name="relative_clock_hour_3">3 heures</string>

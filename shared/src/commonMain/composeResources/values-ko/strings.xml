@@ -1718,6 +1718,12 @@
     <string name="open_in_app_change">다른 앱 선택</string>
     <string name="confect_name_to_dead_end">막다른 길(으)로 이어지는 %1$s</string>
     <string name="confect_name_to_dead_end_via">%2$s을(를) 지나 막다른 길(으)로 이어지는 %1$s</string>
+    <string name="confect_name_to_locked_gate">잠긴 문으로 이어지는 %1$s</string>
+    <string name="confect_name_to_locked_gate_via">%2$s을(를) 지나 잠긴 문으로 이어지는 %1$s</string>
+    <string name="confect_name_locked_gate">잠긴 문</string>
+    <string name="confect_name_to_no_access_gate">출입 금지 문으로 이어지는 %1$s</string>
+    <string name="confect_name_to_no_access_gate_via">%2$s을(를) 지나 출입 금지 문으로 이어지는 %1$s</string>
+    <string name="confect_name_no_access_gate">출입 금지 문</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

@@ -1734,6 +1734,12 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="open_in_app_change">Andere app kiezen</string>
     <string name="confect_name_to_dead_end">%1$s, doodlopend</string>
     <string name="confect_name_to_dead_end_via">%1$s via %2$s, doodlopend</string>
+    <string name="confect_name_to_locked_gate">%1$s, naar hek op slot</string>
+    <string name="confect_name_to_locked_gate_via">%1$s via %2$s, naar hek op slot</string>
+    <string name="confect_name_locked_gate">Hek op slot</string>
+    <string name="confect_name_to_no_access_gate">%1$s, naar hek met verboden toegang</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s via %2$s, naar hek met verboden toegang</string>
+    <string name="confect_name_no_access_gate">Hek met verboden toegang</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

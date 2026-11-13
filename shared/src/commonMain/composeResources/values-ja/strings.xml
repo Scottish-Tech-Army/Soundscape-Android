@@ -1718,6 +1718,12 @@
     <string name="open_in_app_change">別のアプリを選択</string>
     <string name="confect_name_to_dead_end">%1$s（行き止まり）</string>
     <string name="confect_name_to_dead_end_via">%1$s（%2$s 経由、行き止まり）</string>
+    <string name="confect_name_to_locked_gate">%1$s（施錠されたゲートまで）</string>
+    <string name="confect_name_to_locked_gate_via">%1$s（%2$s 経由、施錠されたゲートまで）</string>
+    <string name="confect_name_locked_gate">施錠されたゲート</string>
+    <string name="confect_name_to_no_access_gate">%1$s（立入禁止のゲートまで）</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s（%2$s 経由、立入禁止のゲートまで）</string>
+    <string name="confect_name_no_access_gate">立入禁止のゲート</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

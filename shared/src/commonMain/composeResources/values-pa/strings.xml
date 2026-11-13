@@ -668,6 +668,12 @@
     <string name="confect_name_next_to">%2$s ਦੇ ਨਾਲ %1$s</string>
     <string name="confect_name_to_dead_end">%1$s, ਬੰਦ ਗਲੀ ਵੱਲ</string>
     <string name="confect_name_to_dead_end_via">%1$s, ਬੰਦ ਗਲੀ ਵੱਲ, %2$s ਰਾਹੀਂ</string>
+    <string name="confect_name_to_locked_gate">%1$s, ਤਾਲਾਬੰਦ ਗੇਟ ਵੱਲ</string>
+    <string name="confect_name_to_locked_gate_via">%1$s, ਤਾਲਾਬੰਦ ਗੇਟ ਵੱਲ, %2$s ਰਾਹੀਂ</string>
+    <string name="confect_name_locked_gate">ਤਾਲਾਬੰਦ ਗੇਟ</string>
+    <string name="confect_name_to_no_access_gate">%1$s, ਦਾਖ਼ਲਾ ਮਨ੍ਹਾ ਵਾਲੇ ਗੇਟ ਵੱਲ</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s, ਦਾਖ਼ਲਾ ਮਨ੍ਹਾ ਵਾਲੇ ਗੇਟ ਵੱਲ, %2$s ਰਾਹੀਂ</string>
+    <string name="confect_name_no_access_gate">ਦਾਖ਼ਲਾ ਮਨ੍ਹਾ ਵਾਲਾ ਗੇਟ</string>
     <string name="offline_maps_title">ਆਫ਼ਲਾਈਨ ਨਕਸ਼ੇ</string>
     <string name="offline_map_details_title">ਆਫ਼ਲਾਈਨ ਨਕਸ਼ੇ ਦੇ ਵੇਰਵੇ</string>
     <string name="offline_maps_loading">ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ…</string>

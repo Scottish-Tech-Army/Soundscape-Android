@@ -1734,6 +1734,12 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="open_in_app_change">Choose a different app</string>
     <string name="confect_name_to_dead_end">%1$s to dead end</string>
     <string name="confect_name_to_dead_end_via">%1$s to dead end via %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s to locked gate</string>
+    <string name="confect_name_to_locked_gate_via">%1$s to locked gate via %2$s</string>
+    <string name="confect_name_locked_gate">Locked gate</string>
+    <string name="confect_name_to_no_access_gate">%1$s to no-access gate</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s to no-access gate via %2$s</string>
+    <string name="confect_name_no_access_gate">No-access gate</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

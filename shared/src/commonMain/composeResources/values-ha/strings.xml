@@ -1734,6 +1734,12 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="open_in_app_change">Zaɓi wata manhaja</string>
     <string name="confect_name_to_dead_end">%1$s zuwa titin da babu fita</string>
     <string name="confect_name_to_dead_end_via">%1$s zuwa titin da babu fita ta %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s zuwa ƙofar shinge da aka kulle</string>
+    <string name="confect_name_to_locked_gate_via">%1$s zuwa ƙofar shinge da aka kulle ta %2$s</string>
+    <string name="confect_name_locked_gate">Ƙofar shinge da aka kulle</string>
+    <string name="confect_name_to_no_access_gate">%1$s zuwa ƙofar shinge da aka hana shiga</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s zuwa ƙofar shinge da aka hana shiga ta %2$s</string>
+    <string name="confect_name_no_access_gate">Ƙofar shinge da aka hana shiga</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

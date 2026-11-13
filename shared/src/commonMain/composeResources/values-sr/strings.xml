@@ -1750,6 +1750,12 @@
     <string name="open_in_app_change">Изабери другу апликацију</string>
     <string name="confect_name_to_dead_end">%1$s до ћорсокака</string>
     <string name="confect_name_to_dead_end_via">%1$s до ћорсокака преко %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s до закључане капије</string>
+    <string name="confect_name_to_locked_gate_via">%1$s до закључане капије преко %2$s</string>
+    <string name="confect_name_locked_gate">Закључана капија</string>
+    <string name="confect_name_to_no_access_gate">%1$s до капије са забраном пролаза</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s до капије са забраном пролаза преко %2$s</string>
+    <string name="confect_name_no_access_gate">Капија са забраном пролаза</string>
     <string name="relative_clock_hour_1">1 сат</string>
     <string name="relative_clock_hour_2">2 сата</string>
     <string name="relative_clock_hour_3">3 сата</string>

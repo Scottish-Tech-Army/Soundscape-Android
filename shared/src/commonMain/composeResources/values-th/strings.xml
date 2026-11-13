@@ -1718,6 +1718,12 @@
     <string name="open_in_app_change">เลือกแอปอื่น</string>
     <string name="confect_name_to_dead_end">%1$s ไปยังทางตัน</string>
     <string name="confect_name_to_dead_end_via">%1$s ไปยังทางตัน ผ่าน %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s ไปยังประตูที่ล็อกอยู่</string>
+    <string name="confect_name_to_locked_gate_via">%1$s ไปยังประตูที่ล็อกอยู่ ผ่าน %2$s</string>
+    <string name="confect_name_locked_gate">ประตูที่ล็อกอยู่</string>
+    <string name="confect_name_to_no_access_gate">%1$s ไปยังประตูห้ามเข้า</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s ไปยังประตูห้ามเข้า ผ่าน %2$s</string>
+    <string name="confect_name_no_access_gate">ประตูห้ามเข้า</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

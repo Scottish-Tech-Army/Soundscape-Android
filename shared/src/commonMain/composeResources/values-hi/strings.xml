@@ -1734,6 +1734,12 @@
     <string name="open_in_app_change">कोई दूसरा ऐप चुनें</string>
     <string name="confect_name_to_dead_end">%1$s से बंद गली तक</string>
     <string name="confect_name_to_dead_end_via">%1$s से बंद गली, %2$s के रास्ते</string>
+    <string name="confect_name_to_locked_gate">%1$s, ताला लगे गेट तक</string>
+    <string name="confect_name_to_locked_gate_via">%1$s, %2$s के रास्ते ताला लगे गेट तक</string>
+    <string name="confect_name_locked_gate">ताला लगा गेट</string>
+    <string name="confect_name_to_no_access_gate">%1$s, प्रवेश वर्जित गेट तक</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s, %2$s के रास्ते प्रवेश वर्जित गेट तक</string>
+    <string name="confect_name_no_access_gate">प्रवेश वर्जित गेट</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

@@ -1734,6 +1734,12 @@
     <string name="open_in_app_change">వేరే యాప్‌ను ఎంచుకో</string>
     <string name="confect_name_to_dead_end">డెడ్ ఎండ్‌కు వెళ్ళే %1$s</string>
     <string name="confect_name_to_dead_end_via">%2$s మీదుగా డెడ్ ఎండ్‌కు వెళ్ళే %1$s</string>
+    <string name="confect_name_to_locked_gate">తాళం వేసిన గేటుకు వెళ్ళే %1$s</string>
+    <string name="confect_name_to_locked_gate_via">%2$s మీదుగా తాళం వేసిన గేటుకు వెళ్ళే %1$s</string>
+    <string name="confect_name_locked_gate">తాళం వేసిన గేటు</string>
+    <string name="confect_name_to_no_access_gate">ప్రవేశం నిషేధించిన గేటుకు వెళ్ళే %1$s</string>
+    <string name="confect_name_to_no_access_gate_via">%2$s మీదుగా ప్రవేశం నిషేధించిన గేటుకు వెళ్ళే %1$s</string>
+    <string name="confect_name_no_access_gate">ప్రవేశం నిషేధించిన గేటు</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

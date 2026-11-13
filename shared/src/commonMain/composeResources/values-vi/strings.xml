@@ -1718,6 +1718,12 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="open_in_app_change">Chọn ứng dụng khác</string>
     <string name="confect_name_to_dead_end">%1$s đến đường cụt</string>
     <string name="confect_name_to_dead_end_via">%1$s đến đường cụt qua %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s đến cổng bị khóa</string>
+    <string name="confect_name_to_locked_gate_via">%1$s đến cổng bị khóa qua %2$s</string>
+    <string name="confect_name_locked_gate">Cổng bị khóa</string>
+    <string name="confect_name_to_no_access_gate">%1$s đến cổng cấm vào</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s đến cổng cấm vào qua %2$s</string>
+    <string name="confect_name_no_access_gate">Cổng cấm vào</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>
