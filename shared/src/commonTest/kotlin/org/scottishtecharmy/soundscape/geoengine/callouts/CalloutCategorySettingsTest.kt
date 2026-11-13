@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeadin
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
@@ -291,8 +292,9 @@ class CalloutCategorySettingsTest {
     @Test
     fun aTrainIsStillHeldWhileItStandsAtAPlatform() {
         val autoCallout = AutoCallout(null, FakePreferences())
-        val grid = poiGrid()
-        val railway = Way().apply { name = "Some Line" }
+        // The platform is beside the line, so walking up it is still within reach of the railway.
+        val railway = railwayAt(10.0)
+        val grid = poiGrid(railway)
         autoCallout.updateLocation(
             UserGeometry(
                 location = userLocation,
@@ -318,6 +320,41 @@ class CalloutCategorySettingsTest {
         )
         assertNull(autoCallout.updateLocation(stood, grid, GridState()))
         assertNull(autoCallout.updateLocation(walkingFix(100_000L), grid, GridState()))
+    }
+
+    /**
+     * Off the lock, walking, and nowhere near any line: the passenger has left the station, and is
+     * told about it straight away rather than once the train window has run out.
+     */
+    @Test
+    fun aPassengerWhoHasWalkedClearOfTheRailwayIsNotHeld() {
+        val autoCallout = AutoCallout(null, FakePreferences())
+        val railway = railwayAt(100.0)
+        val grid = poiGrid(railway)
+        autoCallout.updateLocation(
+            UserGeometry(
+                location = userLocation,
+                phoneHeading = 0.0,
+                speed = 15.0,
+                mapMatchedRailway = railway,
+                timestampMilliseconds = 1000L,
+            ),
+            grid,
+            GridState()
+        )
+        assertNotNull(
+            autoCallout.updateLocation(walkingFix(21_000L, onFoot = true), grid, GridState())
+        )
+    }
+
+    /** A railway running north-south [metres] east of [userLocation]. */
+    private fun railwayAt(metres: Double) = Way().apply {
+        name = "Some Line"
+        val abreast = getDestinationCoordinate(userLocation, 90.0, metres)
+        geometry = LineString(
+            getDestinationCoordinate(abreast, 0.0, 200.0),
+            getDestinationCoordinate(abreast, 180.0, 200.0)
+        )
     }
 
     private val userLocation = LngLatAlt(-2.657, 51.430)
@@ -349,8 +386,11 @@ class CalloutCategorySettingsTest {
     }
 
     /** A grid holding one named place POI, 5m north of [userLocation] and well within range. */
-    private fun poiGrid(): GridState {
+    private fun poiGrid(railway: Way? = null): GridState {
         val grid = GridState().apply { validateContext = false }
+        if (railway != null)
+            grid.featureTrees[TreeId.TRANSIT.id] =
+                FeatureTree(FeatureCollection().apply { addFeature(railway) })
         val shop = poi("Corner Shop", SuperCategoryId.PLACE).apply {
             geometry = Point(getDestinationCoordinate(userLocation, 0.0, 5.0))
         }

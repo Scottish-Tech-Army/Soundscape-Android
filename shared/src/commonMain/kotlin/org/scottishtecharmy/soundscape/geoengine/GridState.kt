@@ -915,30 +915,6 @@ open class GridState(
     // lines - which is the guess railway=stop exists to remove.
     private val stationWayToleranceMetres = 100.0
 
-    // The transit stop kinds that are railway stations. TRANSIT_STOPS carries bus and tram stops
-    // and ferry terminals too, and none of those belongs on a railway. Subway stations are left
-    // out: metro lines carry railway=stop nodes of their own in every extract with one, and a
-    // metro station stood in on every line within reach would give its name to the surface
-    // railways that pass over it without calling.
-    private val railwayStationValues = setOf("station", "train_station")
-
-    /**
-     * Whether [feature] is a station in its own right, rather than a building belonging to one.
-     *
-     * building=train_station arrives here as featureType "building", and it marks a *structure*,
-     * not a stop: a station commonly has several of them - entrances, booking halls, the buildings
-     * either side of the tracks - so taking them would put a stop on the line several times over
-     * for one station. Worse, the tag stays on the building when it stops being a station: South
-     * West Community Cycles at Pollokshaws West is a bike shop in the old station building, and
-     * was being announced to passengers as somewhere the train was about to call.
-     *
-     * railway=station is the operational record and is what is left. Nothing is lost by dropping
-     * the buildings - every station in the test extracts has such a point within about a hundred
-     * metres of its building, including the ones whose building carries the fuller name.
-     */
-    private fun isARailwayStation(feature: MvtFeature) =
-        (feature.featureValue in railwayStationValues) && (feature.featureType != "building")
-
     /**
      * Attaches named railway stations as RAILWAY_STOP along-way features, for lines that have no
      * railway=stop node of their own.
@@ -1686,6 +1662,30 @@ private fun getHighwayJunctionsFromTileFeatureCollection(tileFeatureCollection: 
     }
     return junctionsFeatureCollection
 }
+
+// The transit stop kinds that are railway stations. TRANSIT_STOPS carries bus and tram stops
+// and ferry terminals too, and none of those belongs on a railway. Subway stations are left
+// out: metro lines carry railway=stop nodes of their own in every extract with one, and a
+// metro station stood in on every line within reach would give its name to the surface
+// railways that pass over it without calling.
+private val railwayStationValues = setOf("station", "train_station")
+
+/**
+ * Whether [feature] is a station in its own right, rather than a building belonging to one.
+ *
+ * building=train_station arrives here as featureType "building", and it marks a *structure*,
+ * not a stop: a station commonly has several of them - entrances, booking halls, the buildings
+ * either side of the tracks - so taking them would put a stop on the line several times over
+ * for one station. Worse, the tag stays on the building when it stops being a station: South
+ * West Community Cycles at Pollokshaws West is a bike shop in the old station building, and
+ * was being announced to passengers as somewhere the train was about to call.
+ *
+ * railway=station is the operational record and is what is left. Nothing is lost by dropping
+ * the buildings - every station in the test extracts has such a point within about a hundred
+ * metres of its building, including the ones whose building carries the fuller name.
+ */
+fun isARailwayStation(feature: MvtFeature) =
+    (feature.featureValue in railwayStationValues) && (feature.featureType != "building")
 
 /**
  * Parses out the `railway=stop` and `railway=tram_stop` nodes, which OSM places on the line itself
