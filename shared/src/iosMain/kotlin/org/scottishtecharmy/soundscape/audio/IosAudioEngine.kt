@@ -371,21 +371,29 @@ class IosAudioEngine : AudioEngine {
         longitude: Double,
         heading: Double
     ): Long {
-        val handle = nextHandle++
-        val queuedSound = QueuedSound(
-            handle = handle,
-            isTts = true,
-            text = text,
-            audioType = type,
-            latitude = latitude,
-            longitude = longitude,
-            heading = heading,
-        )
+        // Only the handle needs to be synchronous. Everything else here touches
+        // currentDiscreteHandle/discreteQueue and (via playQueued) the AVAudioEngine
+        // graph, all of which are only safe to mutate from audioQueue — see the class
+        // comment on [audioQueue]. Callers used to be trusted to already be on that
+        // queue (true for calloutController, false for e.g. saveMarker/saveRoute),
+        // so dispatch here instead of relying on that.
+        val handle = withActivePlayersLock { nextHandle++ }
+        dispatch_async(audioQueue) {
+            val queuedSound = QueuedSound(
+                handle = handle,
+                isTts = true,
+                text = text,
+                audioType = type,
+                latitude = latitude,
+                longitude = longitude,
+                heading = heading,
+            )
 
-        if (currentDiscreteHandle == null) {
-            playQueued(queuedSound)
-        } else {
-            discreteQueue.addLast(queuedSound)
+            if (currentDiscreteHandle == null) {
+                playQueued(queuedSound)
+            } else {
+                discreteQueue.addLast(queuedSound)
+            }
         }
         return handle
     }
@@ -397,27 +405,30 @@ class IosAudioEngine : AudioEngine {
         longitude: Double,
         heading: Double
     ): Long {
-        val handle = nextHandle++
+        // See createTextToSpeech: everything but the handle must run on audioQueue.
+        val handle = withActivePlayersLock { nextHandle++ }
 
         // Extract asset name from Android-style path
         val assetName = asset
             .removePrefix("file:///android_asset/Sounds/")
             .removeSuffix(".wav")
 
-        val queuedSound = QueuedSound(
-            handle = handle,
-            isTts = false,
-            assetName = assetName,
-            audioType = type,
-            latitude = latitude,
-            longitude = longitude,
-            heading = heading,
-        )
+        dispatch_async(audioQueue) {
+            val queuedSound = QueuedSound(
+                handle = handle,
+                isTts = false,
+                assetName = assetName,
+                audioType = type,
+                latitude = latitude,
+                longitude = longitude,
+                heading = heading,
+            )
 
-        if (currentDiscreteHandle == null) {
-            playQueued(queuedSound)
-        } else {
-            discreteQueue.addLast(queuedSound)
+            if (currentDiscreteHandle == null) {
+                playQueued(queuedSound)
+            } else {
+                discreteQueue.addLast(queuedSound)
+            }
         }
         return handle
     }
@@ -518,34 +529,44 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun clearTextToSpeechQueue() {
-        // Cancel any in-progress TTS rendering
+        // Cancel any in-progress TTS rendering. This is independent of audioQueue
+        // (it just signals the renderer), so it runs immediately rather than
+        // waiting its turn behind whatever else is queued.
         ttsRenderer.cancel()
 
-        // Match Android's ClearQueue: nuke *everything* queued behind the current
-        // sound (TTS and earcons alike). Filtering just isTts here left earcons
-        // piled up so callouts kept playing beeps long after the user cancelled.
-        discreteQueue.clear()
+        // Everything below touches discreteQueue/currentDiscreteHandle and (via
+        // player.stop() -> layer.disconnect/detach) the AVAudioEngine graph, so it
+        // must run on audioQueue like every other graph-touching entry point —
+        // see the class comment on [audioQueue]. Dispatching (rather than requiring
+        // the caller to already be on audioQueue) is what lets this be called from
+        // callout cancellation, the onboarding flow, RoutePlayer, etc.
+        dispatch_async(audioQueue) {
+            // Match Android's ClearQueue: nuke *everything* queued behind the current
+            // sound (TTS and earcons alike). Filtering just isTts here left earcons
+            // piled up so callouts kept playing beeps long after the user cancelled.
+            discreteQueue.clear()
 
-        // Stop the current sound only if it's TTS — matches Android where
-        // ttsEngine.stop() cancels in-flight TTS but leaves currently-playing
-        // earcons/beacons alone. Removing from activePlayers *before* stop() so
-        // that a TTS render callback already dispatched to the main queue for
-        // this handle sees the sound as cancelled and bails on its own
-        // containsKey check; otherwise it would attach a zombie node behind our
-        // back. Clearing currentDiscreteHandle here also lets the next enqueued
-        // sound play immediately instead of stacking behind the async
-        // onDiscreteComplete.
-        val currentHandle = currentDiscreteHandle ?: return
-        val stopped = withActivePlayersLock {
-            val entry = activePlayers[currentHandle]
-            if (entry is PlayerEntry.Discrete && entry.isTts) {
-                activePlayers.remove(currentHandle)
-                entry
-            } else null
-        }
-        if (stopped != null) {
-            currentDiscreteHandle = null
-            stopped.player.stop()
+            // Stop the current sound only if it's TTS — matches Android where
+            // ttsEngine.stop() cancels in-flight TTS but leaves currently-playing
+            // earcons/beacons alone. Removing from activePlayers *before* stop() so
+            // that a TTS render callback already dispatched to the audio queue for
+            // this handle sees the sound as cancelled and bails on its own
+            // containsKey check; otherwise it would attach a zombie node behind our
+            // back. Clearing currentDiscreteHandle here also lets the next enqueued
+            // sound play immediately instead of stacking behind the async
+            // onDiscreteComplete.
+            val currentHandle = currentDiscreteHandle ?: return@dispatch_async
+            val stopped = withActivePlayersLock {
+                val entry = activePlayers[currentHandle]
+                if (entry is PlayerEntry.Discrete && entry.isTts) {
+                    activePlayers.remove(currentHandle)
+                    entry
+                } else null
+            }
+            if (stopped != null) {
+                currentDiscreteHandle = null
+                stopped.player.stop()
+            }
         }
     }
 
@@ -564,39 +585,47 @@ class IosAudioEngine : AudioEngine {
     // --- AudioEngine Interface: Beacons ---
 
     override fun createBeacon(location: LngLatAlt, headingOnly: Boolean): Long {
-        ensureEngineStarted()
-        val handle = nextHandle++
+        // Only the handle needs to be synchronous — the rest attaches/connects nodes
+        // on the AVAudioEngine graph, which (like every other graph-touching entry
+        // point) must run on audioQueue. See the class comment on [audioQueue]: this
+        // used to be safe only when the caller happened to already be on that queue,
+        // which callers like RoutePlayer/BeaconPreviewController/the onboarding flow
+        // are not.
+        val handle = withActivePlayersLock { nextHandle++ }
+        dispatch_async(audioQueue) {
+            ensureEngineStarted()
 
-        val type = BEACON_TYPES[currentBeaconType]
-            ?: BEACON_TYPES["Current"]
-            ?: error("BEACON_TYPES is missing its \"Current\" entry")
-        val player = BeaconPlayer(type, location.latitude, location.longitude)
+            val type = BEACON_TYPES[currentBeaconType]
+                ?: BEACON_TYPES["Current"]
+                ?: error("BEACON_TYPES is missing its \"Current\" entry")
+            val player = BeaconPlayer(type, location.latitude, location.longitude)
 
-        if (!player.loadAssets()) {
-            logger.d { "Failed to load beacon assets for $currentBeaconType" }
-            return handle
-        }
+            if (!player.loadAssets()) {
+                logger.d { "Failed to load beacon assets for $currentBeaconType" }
+                return@dispatch_async
+            }
 
-        player.layer.attach(engine)
-        connectLayerToEnvironment(player.layer)
-        player.startPlaying()
-        player.setMuted(beaconMuted)
+            player.layer.attach(engine)
+            connectLayerToEnvironment(player.layer)
+            player.startPlaying()
+            player.setMuted(withActivePlayersLock { beaconMuted })
 
-        // The distance beacon plays alongside the directional one, telling the user how
-        // close the destination is. A heading-only beacon (the settings preview) has no
-        // real destination to be close to, so it gets none.
-        val proximityPlayer = if (headingOnly) null else createProximityPlayer(location)
+            // The distance beacon plays alongside the directional one, telling the user
+            // how close the destination is. A heading-only beacon (the settings preview)
+            // has no real destination to be close to, so it gets none.
+            val proximityPlayer = if (headingOnly) null else createProximityPlayer(location)
 
-        // Apply initial geometry
-        player.updateForGeometry(
-            listenerLatitude, listenerLongitude, listenerHeading, proximityNear
-        )
-        proximityPlayer?.updateForGeometry(
-            listenerLatitude, listenerLongitude, listenerHeading, proximityNear
-        )
+            // Apply initial geometry
+            player.updateForGeometry(
+                listenerLatitude, listenerLongitude, listenerHeading, proximityNear
+            )
+            proximityPlayer?.updateForGeometry(
+                listenerLatitude, listenerLongitude, listenerHeading, proximityNear
+            )
 
-        withActivePlayersLock {
-            activePlayers[handle] = PlayerEntry.Beacon(player, proximityPlayer)
+            withActivePlayersLock {
+                activePlayers[handle] = PlayerEntry.Beacon(player, proximityPlayer)
+            }
         }
         return handle
     }
@@ -620,11 +649,18 @@ class IosAudioEngine : AudioEngine {
         player.layer.attach(engine)
         player.layer.connect(engine.mainMixerNode)
         player.startPlaying()
-        player.setMuted(beaconMuted)
+        player.setMuted(withActivePlayersLock { beaconMuted })
         return player
     }
 
     override fun destroyBeacon(beaconHandle: Long) {
+        // player.stop() disconnects/detaches the node from the AVAudioEngine graph,
+        // so this must run on audioQueue — see the class comment on [audioQueue].
+        dispatch_async(audioQueue) { destroyBeaconOnQueue(beaconHandle) }
+    }
+
+    /** Must only be called from audioQueue. Shared by [destroyBeacon] and [onAllBeaconsCleared]. */
+    private fun destroyBeaconOnQueue(beaconHandle: Long) {
         val entry = withActivePlayersLock { activePlayers.remove(beaconHandle) }
         if (entry is PlayerEntry.Beacon) {
             entry.players.forEach { it.stop() }
@@ -632,14 +668,23 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun toggleBeaconMute(): Boolean {
-        beaconMuted = !beaconMuted
-        val beacons = withActivePlayersLock {
-            activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
+        // The flag flip is cheap and returned synchronously (callers want the new
+        // state immediately). Applying it to the nodes touches the AVAudioEngine
+        // graph's mixing parameters, so that part is deferred to audioQueue like
+        // every other graph-touching entry point.
+        val newState = withActivePlayersLock {
+            beaconMuted = !beaconMuted
+            beaconMuted
         }
-        for (entry in beacons) {
-            entry.players.forEach { it.setMuted(beaconMuted) }
+        dispatch_async(audioQueue) {
+            val beacons = withActivePlayersLock {
+                activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
+            }
+            for (entry in beacons) {
+                entry.players.forEach { it.setMuted(newState) }
+            }
         }
-        return beaconMuted
+        return newState
     }
 
     // --- AudioEngine Interface: Geometry ---
@@ -652,34 +697,45 @@ class IosAudioEngine : AudioEngine {
         duckingAllowed: Boolean,
         proximityNear: Double
     ) {
-        this.listenerLatitude = listenerLatitude
-        this.listenerLongitude = listenerLongitude
-        this.listenerHeading = listenerHeading
-        this.proximityNear = proximityNear
+        // GeoEngine calls this directly from its own location-monitoring coroutine,
+        // not from audioQueue. Setting envNode.listenerAngularOrientation and a
+        // beacon's node position both touch the live AVAudioEngine graph, so — like
+        // every other graph-touching entry point (see the class comment on
+        // [audioQueue]) — that work must be serialized onto audioQueue rather than
+        // racing attach/connect/disconnect calls happening there for callouts and
+        // beacons. That race is what caused the AURemoteIO render-thread crash this
+        // fixes: listenerAngularOrientation was being set concurrently with the
+        // engine's node graph being mutated from audioQueue.
+        dispatch_async(audioQueue) {
+            this.listenerLatitude = listenerLatitude
+            this.listenerLongitude = listenerLongitude
+            this.listenerHeading = listenerHeading
+            this.proximityNear = proximityNear
 
-        // Update listener orientation on all environment nodes
-        if (listenerHeading != null) {
-            val orientation = cValue<AVAudio3DAngularOrientation> {
-                yaw = listenerHeading.toFloat()
-                pitch = 0f
-                roll = 0f
+            // Update listener orientation on all environment nodes
+            if (listenerHeading != null) {
+                val orientation = cValue<AVAudio3DAngularOrientation> {
+                    yaw = listenerHeading.toFloat()
+                    pitch = 0f
+                    roll = 0f
+                }
+                for (envNode in environmentNodes) {
+                    envNode.listenerAngularOrientation = orientation
+                }
             }
-            for (envNode in environmentNodes) {
-                envNode.listenerAngularOrientation = orientation
-            }
-        }
 
-        // Update all active beacon players with new geometry. Snapshot under
-        // the lock so we don't iterate the live map (which can be mutated on
-        // the main queue by onDiscreteComplete or by other callers).
-        val beacons = withActivePlayersLock {
-            activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
-        }
-        for (entry in beacons) {
-            entry.players.forEach {
-                it.updateForGeometry(
-                    listenerLatitude, listenerLongitude, this.listenerHeading, proximityNear
-                )
+            // Update all active beacon players with new geometry. Snapshot under
+            // the lock so we don't iterate the live map (which can be mutated by
+            // onDiscreteComplete or by other callers also running on audioQueue).
+            val beacons = withActivePlayersLock {
+                activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
+            }
+            for (entry in beacons) {
+                entry.players.forEach {
+                    it.updateForGeometry(
+                        listenerLatitude, listenerLongitude, this.listenerHeading, proximityNear
+                    )
+                }
             }
         }
     }
@@ -712,13 +768,18 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun onAllBeaconsCleared() {
-        val beaconHandles = withActivePlayersLock {
-            activePlayers.entries
-                .filter { it.value is PlayerEntry.Beacon }
-                .map { it.key }
-        }
-        for (handle in beaconHandles) {
-            destroyBeacon(handle)
+        // See destroyBeacon: stopping a beacon touches the AVAudioEngine graph, so
+        // this runs on audioQueue. Calling destroyBeaconOnQueue directly (rather
+        // than the dispatch-wrapped destroyBeacon) avoids queuing N separate hops.
+        dispatch_async(audioQueue) {
+            val beaconHandles = withActivePlayersLock {
+                activePlayers.entries
+                    .filter { it.value is PlayerEntry.Beacon }
+                    .map { it.key }
+            }
+            for (handle in beaconHandles) {
+                destroyBeaconOnQueue(handle)
+            }
         }
     }
 
