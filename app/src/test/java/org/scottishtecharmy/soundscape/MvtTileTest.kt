@@ -5013,6 +5013,9 @@ class MvtTileTest {
         JunctionClip("stationrd-tesco", "tesco", 560, 680),
         // Crossing Buchanan Street away from any junction.
         JunctionClip("buchanan-travel-4", "travel-4", 2050, 2300),
+        // Off the Edinburgh tram at Princes Street and along the north pavement (synthetic: the
+        // tram arrives at 428 and the walk starts at 429).
+        JunctionClip("tram-edinburgh", "EdinburghTram-synthetic", 0, Int.MAX_VALUE),
     )
 
     @OptIn(ExperimentalCoroutinesApi::class)
