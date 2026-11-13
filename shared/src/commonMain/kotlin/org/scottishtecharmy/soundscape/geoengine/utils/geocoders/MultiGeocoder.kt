@@ -1,7 +1,11 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
@@ -33,6 +37,8 @@ class MultiGeocoder(
      * there's nothing to recognise it with, and every search is then for a name.
      */
     private val categoryMatcher: suspend () -> SearchCategoryMatcher? = { null },
+    private val onlineTimeoutWithFallbackMs: Long = ONLINE_TIMEOUT_WITH_FALLBACK_MS,
+    private val onlineTimeoutWithoutFallbackMs: Long = ONLINE_TIMEOUT_WITHOUT_FALLBACK_MS,
 ) : SoundscapeGeocoder() {
 
     private val fusedGeocoder = FusedGeocoder(gridState, photonGeocoder, platformGeocoder)
@@ -156,9 +162,8 @@ class MultiGeocoder(
     }
 
     /**
-     * The network geocoders' answer on its own, with no falling back to the offline one, or null
-     * straight away when [searchesOffline]. For a caller which asks [offlineGeocoder] itself, so
-     * that it can decide how long the network is worth waiting for.
+     * The network geocoders' answer on its own, with no falling back to the offline one and no
+     * time limit, or null straight away when [searchesOffline].
      */
     suspend fun getOnlineAddressFromLngLat(
         userGeometry: UserGeometry,
@@ -169,23 +174,65 @@ class MultiGeocoder(
         return fusedGeocoder.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
     }
 
+    /**
+     * A name or address for where [userGeometry] is, from the network geocoders when they answer
+     * in time and otherwise from the offline one.
+     *
+     * The offline geocoder is asked first. It reads the map data already loaded around the user,
+     * so it is quick, but it only has an answer when there is some. Whether it has one decides how
+     * long the network is worth waiting for:
+     *
+     *  - an offline answer, and a network: the network is given a short while to do better
+     *  - no offline answer, but a network: it is the only source, so it gets its full timeout
+     *  - no network, or the setting says offline: the offline answer is used straight away
+     *
+     * Without the time limit a poor connection - or one that claims to be up but where DNS never
+     * answers - held My Location silent for as long as the slowest network geocoder took, and the
+     * platform geocoder has no timeout of its own.
+     *
+     * [accept] is applied to each answer before it's chosen, so that a caller which can't use an
+     * answer - one which is somewhere else, say - gets the other one instead.
+     */
+    suspend fun getAddressFromLngLat(
+        userGeometry: UserGeometry,
+        localizedStrings: LocalizedStrings?,
+        ignoreHouseNumbers: Boolean,
+        accept: (LocationDescription?) -> LocationDescription?,
+    ): LocationDescription? = withContext(gridState.treeContext) {
+        // On the TreeContext throughout: the offline geocoder needs it, and it means the timeout
+        // below is always measured in real time
+        val offline = accept(
+            offlineGeocoder.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
+        )
+        if (searchesOffline()) return@withContext offline
+
+        // The lookup runs in a scope of its own, and only the wait for it is timed. A timeout
+        // around the lookup itself can only end when the lookup lets it, and the platform
+        // geocoder doesn't: on Android 12 and earlier it's a blocking call.
+        val lookup = CoroutineScope(Job()).async(gridState.treeContext) {
+            accept(getOnlineAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers))
+        }
+        val timeout =
+            if (offline != null) onlineTimeoutWithFallbackMs else onlineTimeoutWithoutFallbackMs
+        val online = withTimeoutOrNull(timeout) { lookup.await() }
+        lookup.cancel()
+        online ?: offline
+    }
+
     override suspend fun getAddressFromLngLat(
         userGeometry: UserGeometry,
         localizedStrings: LocalizedStrings?,
         ignoreHouseNumbers: Boolean
-    ): LocationDescription? {
-        val firstGeocoder = pickGeocoder()
-        var results =
-            firstGeocoder?.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
-        if (results == null) {
-            if (firstGeocoder != offlineGeocoder) {
-                results = offlineGeocoder.getAddressFromLngLat(
-                    userGeometry,
-                    localizedStrings,
-                    ignoreHouseNumbers
-                )
-            }
-        }
-        return results
+    ): LocationDescription? =
+        getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers) { it }
+
+    companion object {
+        // How long the network geocoders are waited for when the offline one has already
+        // answered...
+        const val ONLINE_TIMEOUT_WITH_FALLBACK_MS = 4000L
+
+        // ...and when it hasn't, so that they are the only hope of a name. Photon's own HTTP
+        // timeout is 10 seconds, and this stops the platform geocoder taking longer still.
+        const val ONLINE_TIMEOUT_WITHOUT_FALLBACK_MS = 10000L
     }
 }

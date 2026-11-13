@@ -2,6 +2,7 @@
 
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.test.runTest
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
@@ -27,6 +28,8 @@ import kotlin.test.assertTrue
 private class MultiFakePhotonSearch(
     private val searchResult: FeatureCollection? = FeatureCollection(),
     private val reverseResult: FeatureCollection? = FeatureCollection(),
+    /** A reverse geocode which never answers, like a connection where DNS never does */
+    private val reverseNeverAnswers: Boolean = false,
 ) : PhotonSearch {
     var searchCallCount = 0
     var reverseCallCount = 0
@@ -49,6 +52,7 @@ private class MultiFakePhotonSearch(
         language: String?,
     ): FeatureCollection? {
         reverseCallCount++
+        if (reverseNeverAnswers) awaitCancellation()
         return reverseResult
     }
 }
@@ -107,6 +111,8 @@ class MultiGeocoderTest {
         // marker/feature into a LocationDescription with a usable `.name`. Mirror that default
         // here rather than the class's own no-op default, so these tests reflect real behaviour.
         processor: (LocationDescription) -> Unit = { it.process() },
+        onlineTimeoutWithFallbackMs: Long = MultiGeocoder.ONLINE_TIMEOUT_WITH_FALLBACK_MS,
+        onlineTimeoutWithoutFallbackMs: Long = MultiGeocoder.ONLINE_TIMEOUT_WITHOUT_FALLBACK_MS,
     ): MultiGeocoder {
         val photonGeocoder = PhotonGeocoder(photonSearch)
         return MultiGeocoder(
@@ -117,7 +123,21 @@ class MultiGeocoderTest {
             processor = processor,
             hasNetwork = hasNetwork,
             geocoderMode = geocoderMode,
+            onlineTimeoutWithFallbackMs = onlineTimeoutWithFallbackMs,
+            onlineTimeoutWithoutFallbackMs = onlineTimeoutWithoutFallbackMs,
         )
+    }
+
+    private fun gridStateWithLocalCafe(): GridState {
+        val gridState = buildGridState()
+        val poiLocation = getDestinationCoordinate(withinDefaultGridLocation, 90.0, 50.0)
+        val poi = MvtFeature().apply {
+            name = "Local Cafe"
+            geometry = Point(poiLocation)
+        }
+        gridState.featureTrees[TreeId.POIS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(poi) })
+        return gridState
     }
 
     // ---- getOnlineAddressFromLngLat: the network answer alone, for GeoEngine's timed wait --------
@@ -338,5 +358,84 @@ class MultiGeocoderTest {
         val result = multiGeocoder.getAddressFromLngLat(UserGeometry(location = origin), null, false)
 
         assertNull(result)
+    }
+
+    // ---- getAddressFromLngLat: the network is only waited for so long ----------------------------
+
+    @Test
+    fun getAddressFromLngLat_networkNeverAnswers_givesOfflineAnswerAfterShortTimeout() = runTest {
+        val photonSearch = MultiFakePhotonSearch(reverseNeverAnswers = true)
+        val multiGeocoder = buildMultiGeocoder(
+            gridState = gridStateWithLocalCafe(),
+            photonSearch = photonSearch,
+            hasNetwork = { true },
+            onlineTimeoutWithFallbackMs = 200,
+            onlineTimeoutWithoutFallbackMs = 60_000,
+        )
+
+        // The test fails on runTest's own timeout if the network is waited for indefinitely, or
+        // for the long timeout which is only for when there's no offline answer
+        val result = multiGeocoder.getAddressFromLngLat(
+            UserGeometry(location = withinDefaultGridLocation), null, false
+        )
+
+        assertEquals("Local Cafe", result?.name)
+        assertEquals(1, photonSearch.reverseCallCount)
+    }
+
+    @Test
+    fun getAddressFromLngLat_networkNeverAnswersAndNoOfflineAnswer_givesNullAfterLongTimeout() =
+        runTest {
+            val photonSearch = MultiFakePhotonSearch(reverseNeverAnswers = true)
+            val multiGeocoder = buildMultiGeocoder(
+                photonSearch = photonSearch,
+                hasNetwork = { true },
+                onlineTimeoutWithFallbackMs = 60_000,
+                onlineTimeoutWithoutFallbackMs = 200,
+            )
+
+            val result =
+                multiGeocoder.getAddressFromLngLat(UserGeometry(location = origin), null, false)
+
+            assertNull(result)
+            assertEquals(1, photonSearch.reverseCallCount)
+        }
+
+    @Test
+    fun getAddressFromLngLat_networkAnswersInTime_isPreferredToOfflineAnswer() = runTest {
+        val cafe = multiPhotonFeature(withinDefaultGridLocation, "Costa")
+        val photonSearch = MultiFakePhotonSearch(
+            reverseResult = FeatureCollection().apply { addFeature(cafe) }
+        )
+        val multiGeocoder = buildMultiGeocoder(
+            gridState = gridStateWithLocalCafe(),
+            photonSearch = photonSearch,
+            hasNetwork = { true },
+        )
+
+        val result = multiGeocoder.getAddressFromLngLat(
+            UserGeometry(location = withinDefaultGridLocation), null, false
+        )
+
+        assertEquals(cafe, result?.feature)
+    }
+
+    @Test
+    fun getAddressFromLngLat_unacceptedNetworkAnswer_givesOfflineAnswer() = runTest {
+        val cafe = multiPhotonFeature(withinDefaultGridLocation, "Costa")
+        val photonSearch = MultiFakePhotonSearch(
+            reverseResult = FeatureCollection().apply { addFeature(cafe) }
+        )
+        val multiGeocoder = buildMultiGeocoder(
+            gridState = gridStateWithLocalCafe(),
+            photonSearch = photonSearch,
+            hasNetwork = { true },
+        )
+
+        val result = multiGeocoder.getAddressFromLngLat(
+            UserGeometry(location = withinDefaultGridLocation), null, false
+        ) { it?.takeIf { answer -> answer.feature != cafe } }
+
+        assertEquals("Local Cafe", result?.name)
     }
 }
