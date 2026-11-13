@@ -27,7 +27,10 @@ Mun gyara matsaloli da dama da aka ba da rahotonsu a 2.0.95, kuma wannan sabon s
 ta fi dogaro, adireshi kuma su fi daidai. Sanarwar tafiya a kafa yanzu tana farawa da wuri bayan ka
 sauka daga bas ko mota, kuma Soundscape yana gane da sauri cewa jirgin kasanka ya bar tasha. Yanzu
 ana bayyana mahaɗar hanya daidai lokacin da kake tafiya a kan hanyar kafa da aka zana a taswira
-daban da titin mota.
+daban da titin mota. Tun daga 2.0.99, sanarwar mahaɗar hanya ta fi bayyana kuma ta fi daidai, kuma
+Soundscape yanzu yana gaya maka lokacin da hanya ta ƙare a ƙofar shinge da ba za ka iya wucewa ba.
+Mun kuma gyara matsalar da *Wurina* ke yin shiru idan haɗin intanet ba shi da ƙarfi, da wata matsala
+wajen sauke taswirori don amfani ba tare da intanet ba.
 
 ## Sabbin abubuwa a 2.0
 

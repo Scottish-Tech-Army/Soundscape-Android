@@ -26,7 +26,10 @@ Am remediat mai multe probleme raportate în 2.0.95, iar această versiune face 
 fiabile, și adresele mai precise. Anunțurile la mersul pe jos încep acum mai devreme după ce
 coborâți din autobuz sau din mașină, iar Soundscape observă mai repede că trenul dumneavoastră a
 plecat din gară. Intersecțiile sunt acum descrise corect atunci când mergeți pe un trotuar
-cartografiat separat de drum.
+cartografiat separat de drum. Începând cu 2.0.99, anunțurile despre intersecții sunt mai clare și
+mai precise, iar Soundscape vă spune acum când un drum se termină la o poartă prin care nu puteți
+trece. Am remediat și faptul că *Locația mea* rămânea tăcută la o conexiune slabă la rețea, precum
+și o problemă la descărcarea hărților offline.
 
 ## Noutăți în 2.0
 

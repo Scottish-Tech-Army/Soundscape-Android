@@ -27,7 +27,10 @@ Kami telah memperbaiki beberapa masalah yang dilaporkan di 2.0.95, dan rilis ini
 pemberitahuan lebih andal serta alamat lebih akurat. Pemberitahuan saat berjalan kaki kini dimulai
 lebih cepat setelah Anda turun dari bus atau mobil, dan Soundscape lebih cepat menyadari bahwa
 kereta Anda telah meninggalkan stasiun. Persimpangan kini dijelaskan dengan benar saat Anda berjalan
-di trotoar yang dipetakan terpisah dari jalan.
+di trotoar yang dipetakan terpisah dari jalan. Sejak 2.0.99, pemberitahuan persimpangan lebih jelas
+dan akurat, dan Soundscape kini memberi tahu Anda saat sebuah jalan berakhir di gerbang yang tidak
+bisa Anda lewati. Kami juga memperbaiki *Lokasi Saya* yang diam saat koneksi jaringan lemah, serta
+masalah saat mengunduh peta offline.
 
 ## Yang baru di 2.0
 

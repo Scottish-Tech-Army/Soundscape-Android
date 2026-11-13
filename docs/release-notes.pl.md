@@ -26,7 +26,10 @@ Naprawiliśmy kilka problemów zgłoszonych w wersji 2.0.95, a to wydanie sprawi
 bardziej niezawodne, a adresy dokładniejsze. Komunikaty podczas chodzenia zaczynają się teraz
 wcześniej po wyjściu z autobusu lub samochodu, a Soundscape szybciej zauważa, że twój pociąg
 odjechał ze stacji. Skrzyżowania są teraz opisywane poprawnie, gdy idziesz chodnikiem zaznaczonym na
-mapie osobno od jezdni.
+mapie osobno od jezdni. Od wersji 2.0.99 komunikaty o skrzyżowaniach są wyraźniejsze i
+dokładniejsze, a Soundscape informuje teraz, gdy droga kończy się bramą, przez którą nie można
+przejść. Naprawiliśmy też milczenie funkcji *Moja lokalizacja* przy słabym połączeniu z siecią oraz
+problem z pobieraniem map offline.
 
 ## Nowości w wersji 2.0
 

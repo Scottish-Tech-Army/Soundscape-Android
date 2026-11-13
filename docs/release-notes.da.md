@@ -26,7 +26,10 @@ Vi har rettet flere problemer, som blev rapporteret i 2.0.95, og denne udgave g�
 mere pålidelige og adresserne mere præcise. Lydbeskeder, mens du går, starter nu hurtigere, når du
 står af bussen eller ud af bilen, og Soundscape opdager hurtigere, når dit tog er kørt fra
 stationen. Vejkryds beskrives nu korrekt, når du går på et fortov, der er kortlagt separat fra
-vejen.
+vejen. Siden 2.0.99 er lydbeskeder om vejkryds tydeligere og mere præcise, og Soundscape fortæller
+dig nu, når en vej ender ved en port, du ikke kan komme igennem. Vi har også rettet, at *Min
+placering* forblev tavs ved en dårlig netværksforbindelse, og et problem med at downloade
+offlinekort.
 
 ## Nyt i 2.0
 

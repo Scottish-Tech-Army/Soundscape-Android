@@ -26,7 +26,10 @@ Wir haben mehrere Probleme behoben, die in 2.0.95 gemeldet wurden, und diese Ver
 die Ansagen zuverlässiger und die Adressen genauer. Ansagen beim Gehen beginnen jetzt früher,
 nachdem Sie aus einem Bus oder Auto ausgestiegen sind, und Soundscape bemerkt schneller, dass Ihr
 Zug aus dem Bahnhof ausgefahren ist. Kreuzungen werden jetzt richtig beschrieben, wenn Sie auf einem
-Gehweg gehen, der getrennt von der Straße kartiert ist.
+Gehweg gehen, der getrennt von der Straße kartiert ist. Seit 2.0.99 sind die Ansagen an Kreuzungen
+klarer und genauer, und Soundscape sagt Ihnen jetzt, wenn ein Weg an einem Tor endet, durch das Sie
+nicht hindurchkommen. Außerdem haben wir behoben, dass *Mein Standort* bei schlechter Netzverbindung
+stumm blieb, sowie ein Problem beim Herunterladen von Offline-Karten.
 
 ## Was ist neu in 2.0
 

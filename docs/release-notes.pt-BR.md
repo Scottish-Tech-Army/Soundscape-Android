@@ -26,7 +26,10 @@ Corrigimos vários problemas relatados na 2.0.95, e esta versão também torna a
 confiáveis e os endereços mais precisos. As notificações durante a caminhada agora começam mais cedo
 depois que você desce do ônibus ou do carro, e o Soundscape percebe mais rápido que o seu trem saiu
 da estação. Os cruzamentos agora são descritos corretamente quando você caminha por uma calçada
-mapeada separadamente da rua.
+mapeada separadamente da rua. Desde a 2.0.99, as notificações de cruzamentos estão mais claras e
+precisas, e o Soundscape agora avisa quando uma via termina em um portão pelo qual você não pode
+passar. Também corrigimos o *Minha Localização*, que ficava em silêncio com conexão de rede fraca, e
+um problema ao baixar mapas offline.
 
 ## Novidades da versão 2.0
 

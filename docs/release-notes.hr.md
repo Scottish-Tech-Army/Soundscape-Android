@@ -25,7 +25,10 @@ Bilješke za starija izdanja nalaze se na stranici
 Ispravili smo nekoliko problema prijavljenih u verziji 2.0.95, a ovo izdanje ujedno čini najave
 pouzdanijima i adrese točnijima. Najave tijekom hodanja sada počinju ranije nakon što izađete iz
 autobusa ili automobila, a Soundscape brže primijeti da je vaš vlak krenuo sa stanice. Raskrižja se
-sada ispravno opisuju kada hodate po nogostupu koji je na karti ucrtan odvojeno od ceste.
+sada ispravno opisuju kada hodate po nogostupu koji je na karti ucrtan odvojeno od ceste. Od verzije
+2.0.99 najave raskrižja jasnije su i točnije, a Soundscape vam sada kaže kada put završava kod vrata
+kroz koja ne možete proći. Ispravili smo i to da je *Moja lokacija* šutjela pri slaboj mrežnoj vezi
+te problem s preuzimanjem izvanmrežnih karata.
 
 ## Novosti u verziji 2.0
 

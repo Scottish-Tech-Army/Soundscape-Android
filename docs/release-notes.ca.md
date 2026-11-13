@@ -26,7 +26,10 @@ Hem corregit diversos problemes que se'ns van comunicar a la 2.0.95, i aquesta v
 els avisos siguin més fiables i les adreces més precises. Els avisos mentre camineu ara comencen
 abans quan baixeu de l'autobús o del cotxe, i Soundscape detecta més ràpidament que el vostre tren
 ha sortit de l'estació. Les cruïlles ara es descriuen correctament quan camineu per una vorera
-cartografiada per separat de la carretera.
+cartografiada per separat de la carretera. Des de la 2.0.99, els avisos de cruïlles són més clars i
+precisos, i Soundscape ara us avisa quan una via acaba en una porta que no podeu travessar. També
+hem corregit que *La meva ubicació* es quedés en silenci amb una connexió de xarxa feble, i un
+problema en baixar mapes fora de línia.
 
 ## Novetats de la 2.0
 

@@ -25,7 +25,10 @@ Vanemate versioonide märkmed on lehel
 Parandasime mitu versioonis 2.0.95 teatatud probleemi ning see versioon muudab ka häälteated
 usaldusväärsemaks ja aadressid täpsemaks. Kõndimise häälteated algavad nüüd varem, kui oled bussist
 või autost väljunud, ja Soundscape märkab kiiremini, et sinu rong on jaamast lahkunud. Ristmikke
-kirjeldatakse nüüd õigesti, kui kõnnid kõnniteel, mis on kaardile kantud teest eraldi.
+kirjeldatakse nüüd õigesti, kui kõnnid kõnniteel, mis on kaardile kantud teest eraldi. Alates
+versioonist 2.0.99 on ristmike häälteated selgemad ja täpsemad ning Soundscape ütleb nüüd, kui tee
+lõpeb väravaga, millest sa läbi ei pääse. Parandasime ka vea, mille tõttu *Minu asukoht* jäi nõrga
+võrguühenduse korral vait, ning probleemi võrguühenduseta kaartide allalaadimisel.
 
 ## Mis on uut versioonis 2.0
 

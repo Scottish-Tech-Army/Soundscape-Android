@@ -26,7 +26,10 @@ Kijavítottunk több, a 2.0.95-ben jelentett hibát, és ez a kiadás a bemondá
 címeket pedig pontosabbá teszi. A gyalogos bemondások most hamarabb elindulnak, miután leszállt a
 buszról vagy kiszállt az autóból, és a Soundscape gyorsabban észreveszi, ha a vonata kigördült az
 állomásról. A kereszteződések leírása most már helyes, amikor olyan járdán halad, amely az úttól
-külön van feltérképezve.
+külön van feltérképezve. A 2.0.99 óta a kereszteződések bemondásai érthetőbbek és pontosabbak, és a
+Soundscape most szól, ha egy út olyan kapunál ér véget, amelyen nem lehet átjutni. Kijavítottuk azt
+is, hogy a *Saját helyzetem* gyenge hálózati kapcsolatnál néma maradt, valamint egy hibát az offline
+térképek letöltésében.
 
 ## Újdonságok a 2.0-ban
 

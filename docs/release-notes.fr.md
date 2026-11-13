@@ -26,7 +26,11 @@ Nous avons corrigé plusieurs problèmes signalés dans la 2.0.95, et cette nouv
 les annonces plus fiables et les adresses plus précises. Les annonces à pied commencent désormais
 plus tôt après votre descente du bus ou de la voiture, et Soundscape remarque plus vite que votre
 train a quitté la gare. Les intersections sont maintenant décrites correctement lorsque vous marchez
-sur un trottoir cartographié séparément de la rue.
+sur un trottoir cartographié séparément de la rue. Depuis la 2.0.99, les annonces d’intersections
+sont plus claires et plus précises, et Soundscape vous signale désormais quand une voie se termine à
+une barrière que vous ne pouvez pas franchir. Nous avons aussi corrigé le silence de *Mon
+emplacement* en cas de mauvaise connexion réseau, ainsi qu’un problème de téléchargement des cartes
+hors ligne.
 
 ## Nouveautés de la version 2.0
 

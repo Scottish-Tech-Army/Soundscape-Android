@@ -26,7 +26,10 @@ Hemos corregido varios problemas que se nos comunicaron en la 2.0.95, y esta ver
 que los avisos sean más fiables y las direcciones más precisas. Los avisos al caminar ahora empiezan
 antes cuando te bajas del autobús o del coche, y Soundscape detecta antes que tu tren ha salido de
 la estación. Los cruces ahora se describen correctamente cuando caminas por una acera cartografiada
-por separado de la calle.
+por separado de la calle. Desde la 2.0.99, los avisos de cruces son más claros y precisos, y
+Soundscape ahora te avisa cuando una vía termina en una puerta que no puedes cruzar. También hemos
+corregido que *Mi ubicación* se quedara en silencio con una conexión de red débil, y un problema al
+descargar mapas sin conexión.
 
 ## Novedades de la versión 2.0
 

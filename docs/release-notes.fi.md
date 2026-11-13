@@ -25,7 +25,10 @@ Vanhempien versioiden tiedot löytyvät sivulta
 Korjasimme useita versiossa 2.0.95 raportoituja ongelmia, ja tämä versio tekee myös ilmoituksista
 luotettavampia ja osoitteista tarkempia. Kävelyn ilmoitukset alkavat nyt aiemmin, kun nouset
 bussista tai autosta, ja Soundscape huomaa nopeammin, että junasi on lähtenyt asemalta. Risteykset
-kuvataan nyt oikein, kun kävelet jalkakäytävällä, joka on kartoitettu erikseen tiestä.
+kuvataan nyt oikein, kun kävelet jalkakäytävällä, joka on kartoitettu erikseen tiestä. Versiosta
+2.0.99 alkaen risteysten ilmoitukset ovat selkeämpiä ja tarkempia, ja Soundscape kertoo nyt, kun tie
+päättyy porttiin, josta et pääse läpi. Korjasimme myös vian, jonka vuoksi *Oma sijaintini* jäi
+hiljaiseksi heikolla verkkoyhteydellä, sekä ongelman offline-karttojen lataamisessa.
 
 ## Uutta versiossa 2.0
 

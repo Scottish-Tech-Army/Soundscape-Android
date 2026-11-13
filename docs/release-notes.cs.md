@@ -25,7 +25,10 @@ Poznámky ke starším verzím najdete na stránce
 Opravili jsme několik problémů nahlášených ve verzi 2.0.95 a toto vydání navíc zvyšuje spolehlivost
 hlášení a přesnost adres. Hlášení při chůzi teď začínají dříve, když vystoupíte z autobusu nebo z
 auta, a Soundscape rychleji pozná, že váš vlak odjel ze stanice. Křižovatky se teď popisují správně,
-když jdete po chodníku, který je v mapě zakreslen odděleně od silnice.
+když jdete po chodníku, který je v mapě zakreslen odděleně od silnice. Od verze 2.0.99 jsou hlášení
+křižovatek srozumitelnější a přesnější a Soundscape vám teď řekne, když cesta končí u brány, kterou
+nelze projít. Opravili jsme také to, že *Moje poloha* při slabém připojení k síti mlčela, a problém
+se stahováním offline map.
 
 ## Novinky ve verzi 2.0
 

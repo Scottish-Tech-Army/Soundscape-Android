@@ -24,7 +24,9 @@ We've fixed several problems that were reported in 2.0.95, and this release also
 more dependable and addresses more accurate. Walking callouts now start sooner after you get off a
 bus or out of a car, and Soundscape is quicker to notice when your train has pulled out of a
 station. Intersections are now described correctly when you're walking on a pavement that's mapped
-separately from the road.
+separately from the road. Since 2.0.99, intersection callouts are clearer and more accurate, and
+Soundscape now tells you when a road ends at a gate you can't get through. We've also fixed *My
+Location* going silent on a poor network connection, and a problem with downloading offline maps.
 
 ## What's new in 2.0
 
