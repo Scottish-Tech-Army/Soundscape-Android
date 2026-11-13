@@ -25,7 +25,10 @@ Nótur fyrir eldri útgáfur eru á síðunni
 Við höfum lagað nokkur vandamál sem tilkynnt var um í 2.0.95, og þessi útgáfa gerir einnig
 tilkynningar áreiðanlegri og heimilisföng nákvæmari. Tilkynningar á göngu byrja nú fyrr eftir að þú
 ferð út úr strætó eða bíl, og Soundscape tekur fyrr eftir því þegar lestin þín er farin af stöðinni.
-Gatnamótum er nú lýst rétt þegar þú gengur á gangstétt sem er kortlögð sér frá götunni.
+Gatnamótum er nú lýst rétt þegar þú gengur á gangstétt sem er kortlögð sér frá götunni. Frá útgáfu
+2.0.99 eru tilkynningar um gatnamót skýrari og nákvæmari, og Soundscape lætur þig nú vita þegar
+vegur endar við hlið sem þú kemst ekki í gegnum. Við lagfærðum líka að *Mín staðsetning* þagði þegar
+nettenging var léleg, og vandamál við niðurhal ónettengdra korta.
 
 ## Nýtt í 2.0
 

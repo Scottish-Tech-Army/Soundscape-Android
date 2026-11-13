@@ -25,7 +25,10 @@ Ghi chú của các phiên bản cũ hơn nằm ở trang
 Chúng tôi đã sửa một số lỗi được báo cáo trong bản 2.0.95, và bản phát hành này cũng giúp các thông
 báo đáng tin cậy hơn và địa chỉ chính xác hơn. Thông báo khi đi bộ giờ bắt đầu sớm hơn sau khi bạn
 xuống xe buýt hoặc ô tô, và Soundscape nhận ra nhanh hơn khi tàu của bạn đã rời ga. Giao lộ giờ được
-mô tả chính xác khi bạn đi bộ trên vỉa hè được vẽ trên bản đồ tách biệt với đường.
+mô tả chính xác khi bạn đi bộ trên vỉa hè được vẽ trên bản đồ tách biệt với đường. Từ bản 2.0.99,
+thông báo về giao lộ rõ ràng và chính xác hơn, và Soundscape giờ sẽ cho bạn biết khi một con đường
+kết thúc ở một cổng mà bạn không thể đi qua. Chúng tôi cũng đã sửa lỗi *Vị trí của tôi* im lặng khi
+kết nối mạng yếu, và một lỗi khi tải bản đồ ngoại tuyến.
 
 ## Có gì mới trong 2.0
 

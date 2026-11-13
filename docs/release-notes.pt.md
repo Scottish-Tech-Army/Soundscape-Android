@@ -25,7 +25,10 @@ As notas de versões anteriores estão na página
 Corrigimos vários problemas comunicados na 2.0.95, e esta versão torna também os avisos mais fiáveis
 e os endereços mais precisos. Os avisos a pé começam agora mais cedo depois de sair do autocarro ou
 do carro, e o Soundscape apercebe-se mais depressa de que o comboio saiu da estação. Os cruzamentos
-são agora descritos corretamente quando caminha num passeio mapeado separadamente da estrada.
+são agora descritos corretamente quando caminha num passeio mapeado separadamente da estrada. Desde
+a 2.0.99, os avisos de cruzamentos estão mais claros e precisos, e o Soundscape avisa agora quando
+uma via termina num portão que não consegue atravessar. Corrigimos também o silêncio de *A Minha
+Localização* com uma ligação de rede fraca, e um problema ao transferir mapas offline.
 
 ## Novidades da versão 2.0
 

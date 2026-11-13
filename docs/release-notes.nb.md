@@ -26,6 +26,9 @@ Vi har rettet flere problemer som ble rapportert i 2.0.95, og denne utgaven gjø
 pålitelige og adressene mer nøyaktige. Meldinger når du går, starter nå tidligere etter at du har
 gått av bussen eller ut av bilen, og Soundscape merker raskere at toget ditt har kjørt fra
 stasjonen. Veikryss beskrives nå riktig når du går på et fortau som er kartlagt separat fra veien.
+Siden 2.0.99 er meldinger om veikryss tydeligere og mer nøyaktige, og Soundscape sier nå fra når en
+vei ender ved en port du ikke kommer gjennom. Vi har også rettet at *Min posisjon* var stille ved
+dårlig nettverkstilkobling, og et problem med nedlasting av frakoblede kart.
 
 ## Nytt i 2.0
 

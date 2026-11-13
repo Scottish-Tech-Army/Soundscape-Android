@@ -26,7 +26,10 @@ Abbiamo corretto diversi problemi segnalati nella 2.0.95, e questa versione rend
 più affidabili e gli indirizzi più precisi. Le notifiche a piedi ora iniziano prima dopo che scendi
 dall'autobus o dall'auto, e Soundscape si accorge più rapidamente che il tuo treno è partito dalla
 stazione. Gli incroci ora vengono descritti correttamente quando cammini su un marciapiede mappato
-separatamente dalla strada.
+separatamente dalla strada. Dalla 2.0.99, le notifiche sugli incroci sono più chiare e precise, e
+Soundscape ora ti avvisa quando una strada finisce a un cancello che non puoi attraversare. Abbiamo
+anche corretto il silenzio di *La mia posizione* con una connessione di rete debole, e un problema
+nello scaricare le mappe offline.
 
 ## Novità della versione 2.0
 

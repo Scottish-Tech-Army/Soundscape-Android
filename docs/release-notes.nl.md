@@ -27,7 +27,10 @@ We hebben verschillende problemen opgelost die in 2.0.95 werden gemeld, en deze 
 aankondigingen ook betrouwbaarder en de adressen nauwkeuriger. Aankondigingen tijdens het lopen
 beginnen nu eerder nadat u uit de bus of auto bent gestapt, en Soundscape merkt sneller dat uw trein
 het station heeft verlaten. Kruispunten worden nu juist beschreven wanneer u op een stoep loopt die
-los van de weg in kaart is gebracht.
+los van de weg in kaart is gebracht. Sinds 2.0.99 zijn de aankondigingen van kruispunten duidelijker
+en nauwkeuriger, en Soundscape meldt nu wanneer een weg eindigt bij een hek waar u niet door kunt.
+We hebben ook opgelost dat *Mijn locatie* stil bleef bij een slechte netwerkverbinding, en een
+probleem met het downloaden van offline kaarten.
 
 ## Nieuw in 2.0
 

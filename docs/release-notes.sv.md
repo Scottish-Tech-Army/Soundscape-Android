@@ -26,7 +26,10 @@ Vi har åtgärdat flera problem som rapporterades i 2.0.95, och den här version
 informationsljuden mer tillförlitliga och adresserna mer exakta. Informationsljud när du går börjar
 nu tidigare efter att du har klivit av bussen eller ur bilen, och Soundscape märker snabbare att
 ditt tåg har lämnat stationen. Vägkorsningar beskrivs nu korrekt när du går på en trottoar som är
-kartlagd separat från vägen.
+kartlagd separat från vägen. Sedan 2.0.99 är informationsljuden om vägkorsningar tydligare och mer
+exakta, och Soundscape säger nu till när en väg slutar vid en grind som du inte kommer igenom. Vi
+har också åtgärdat att *Min plats* var tyst vid dålig nätverksanslutning, och ett problem med att
+ladda ned offlinekartor.
 
 ## Nyheter i 2.0
 

@@ -25,7 +25,10 @@ Opombe za starejše različice so na strani
 Odpravili smo več težav, prijavljenih v različici 2.0.95, ta izdaja pa tudi naredi zvočna obvestila
 zanesljivejša in naslove natančnejše. Zvočna obvestila med hojo se zdaj začnejo prej, ko izstopite
 iz avtobusa ali avtomobila, Soundscape pa hitreje opazi, da je vaš vlak odpeljal s postaje. Križišča
-so zdaj pravilno opisana, ko hodite po pločniku, ki je na zemljevidu vrisan ločeno od ceste.
+so zdaj pravilno opisana, ko hodite po pločniku, ki je na zemljevidu vrisan ločeno od ceste. Od
+različice 2.0.99 so zvočna obvestila o križiščih jasnejša in natančnejša, Soundscape pa vam zdaj
+pove, ko se pot konča pri vratih, skozi katera ne morete. Odpravili smo tudi težavo, da je *Moja
+lokacija* ob šibki omrežni povezavi molčala, in težavo pri prenosu zemljevidov brez povezave.
 
 ## Novosti v različici 2.0
 

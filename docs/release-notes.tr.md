@@ -25,7 +25,10 @@ Daha eski sürümlerin notları
 2.0.95'te bildirilen birkaç sorunu düzelttik; bu sürüm ayrıca anonsları daha güvenilir, adresleri de
 daha doğru hale getiriyor. Yürüyüş anonsları artık otobüsten veya arabadan indikten sonra daha erken
 başlıyor ve Soundscape treninizin istasyondan ayrıldığını daha çabuk fark ediyor. Yoldan ayrı olarak
-haritalanmış bir kaldırımda yürürken kavşaklar artık doğru şekilde tarif ediliyor.
+haritalanmış bir kaldırımda yürürken kavşaklar artık doğru şekilde tarif ediliyor. 2.0.99'dan bu
+yana kavşak anonsları daha anlaşılır ve daha doğru; Soundscape artık bir yol geçemeyeceğiniz bir
+kapıda sona erdiğinde bunu söylüyor. Ayrıca zayıf ağ bağlantısında *Konumum* özelliğinin sessiz
+kalmasını ve çevrimdışı harita indirmeyle ilgili bir sorunu düzelttik.
 
 ## 2.0'daki yenilikler
 

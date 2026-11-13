@@ -26,7 +26,10 @@ Tumerekebisha matatizo kadhaa yaliyoripotiwa katika 2.0.95, na toleo hili pia li
 yategemewe zaidi na anwani ziwe sahihi zaidi. Matangazo ya kutembea kwa miguu sasa huanza mapema
 zaidi baada ya kushuka kutoka kwenye basi au gari, na Soundscape hutambua haraka zaidi kwamba treni
 yako imeondoka kituoni. Makutano sasa yanaelezwa ipasavyo unapotembea kwenye njia ya miguu
-iliyochorwa kwenye ramani kando na barabara.
+iliyochorwa kwenye ramani kando na barabara. Tangu 2.0.99, matangazo ya makutano ni wazi zaidi na
+sahihi zaidi, na Soundscape sasa hukuambia barabara inapoishia kwenye lango ambalo huwezi kupita.
+Pia tumerekebisha tatizo la *Mahali Nilipo* kukaa kimya muunganisho wa mtandao ukiwa dhaifu, na
+tatizo la kupakua ramani za nje ya mtandao.
 
 ## Mapya katika 2.0
 
