@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.audio
 
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
@@ -17,6 +16,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.speakCalloutCommon
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.logging.AppLog
+import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
 
 private val logger = AppLog.tag("CalloutController")
@@ -145,7 +145,7 @@ class CalloutController(
                 // geocoding — play the enter earcon immediately so the user hears
                 // the action registered.
                 audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
-                val results = withContext(Dispatchers.Default) { geoEngine.myLocation() }
+                val results = withContext(ioDispatcher) { geoEngine.myLocation() }
                 ensureActive()
                 var lastHandle = 0L
                 if (results != null) {
@@ -161,7 +161,7 @@ class CalloutController(
 
     fun whatsAroundMe() {
         startCallout(TourButton.AROUND_ME) {
-            val results = withContext(Dispatchers.Default) { geoEngine.whatsAroundMe() }
+            val results = withContext(ioDispatcher) { geoEngine.whatsAroundMe() }
             ensureActive()
             var lastHandle = 0L
             if (results != null && results.positionedStrings.isNotEmpty()) {
@@ -173,7 +173,7 @@ class CalloutController(
 
     fun aheadOfMe() {
         startCallout(TourButton.AHEAD_OF_ME) {
-            val results = withContext(Dispatchers.Default) { geoEngine.aheadOfMe() }
+            val results = withContext(ioDispatcher) { geoEngine.aheadOfMe() }
             ensureActive()
             var lastHandle = 0L
             if (results != null) {
@@ -185,7 +185,7 @@ class CalloutController(
 
     fun nearbyMarkers() {
         startCallout(TourButton.NEARBY_MARKERS) {
-            val results = withContext(Dispatchers.Default) { geoEngine.nearbyMarkers() }
+            val results = withContext(ioDispatcher) { geoEngine.nearbyMarkers() }
             ensureActive()
             val lastHandle = speakCallout(results, true)
             awaitHandle(lastHandle)
@@ -214,7 +214,7 @@ class CalloutController(
         calloutJob = scope.launch {
             audioEngine.clearTextToSpeechQueue()
             try {
-                val results = withContext(Dispatchers.Default) { build() }
+                val results = withContext(ioDispatcher) { build() }
                 ensureActive()
                 awaitHandle(speakCallout(results, false))
             } catch (e: CancellationException) {
