@@ -987,6 +987,41 @@ class MvtTileTest {
     }
 
     /**
+     * The path and steps down from Milngavie Road to Hillfoot station stop about 25m short of the
+     * station node, with nothing mapped onwards to the platforms - so the path was "Path to dead
+     * end via steps". A path that just stops beside a station is the way to the station.
+     * https://www.openstreetmap.org/way/135920625
+     */
+    @Test
+    fun testDeadEndPathBesideAStationIsNamedForIt() {
+        val junction = LngLatAlt(-4.3202210, 55.9205377)
+        val gridState = getGridStateForLocation(junction, MAX_ZOOM_LEVEL, 2)
+        traverseIntersectionsConfectingNames(gridState.gridIntersections)
+        // Way osmIds are the OSM id with the element type appended - 2 for a way
+        val osmId = 135920625L * 10 + 2
+        val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+            .getNearestCollection(junction, 100.0, 50, gridState.ruler)
+            .map { it as Way }
+            .filter { it.osmId == osmId }
+        assertTrue("Expected the path off Milngavie Road", ways.isNotEmpty())
+        // Read leaving the Milngavie Road end, the way the junction callout describes it.
+        val names = ways.mapNotNull { way ->
+            val atStart = way.intersections[WayEnd.START.id]?.let {
+                gridState.ruler.distance(it.location, junction) < 3.0
+            } == true
+            val atEnd = way.intersections[WayEnd.END.id]?.let {
+                gridState.ruler.distance(it.location, junction) < 3.0
+            } == true
+            when {
+                atStart -> way.getName(true, gridState, null)
+                atEnd -> way.getName(false, gridState, null)
+                else -> null
+            }
+        }
+        assertEquals(listOf("Path to Hillfoot Train Station via steps"), names)
+    }
+
+    /**
      * A road that merely crosses a river is beside it only for the few metres either side of the
      * bridge, so it must not pick up the river's name. Strathblane Road crosses the Allander Water
      * in Milngavie and is named anyway; this checks the un-named ways around the crossing too.
@@ -4763,7 +4798,7 @@ class MvtTileTest {
                 if (stationary != lastStationary) {
                     val displacement = stationaryDetector.displacementMetres
                     callOutText.write(
-                        ("\nStationary: $stationary" +
+                        ((if (junctionTracer != null) "\n[${index + startIndex}]" else "") + "\nStationary: $stationary" +
                             (displacement?.let { " (${it.roundToInt()}m over the window)" } ?: "") +
                             "\n").toByteArray()
                     )
@@ -4772,7 +4807,7 @@ class MvtTileTest {
                 val onTrain = userGeometry.mapMatchedRailway
                 if ((onTrain != null) != (lastOnTrain != null)) {
                     callOutText.write(
-                        ("\nTrain: " +
+                        ((if (junctionTracer != null) "\n[${index + startIndex}]" else "") + "\nTrain: " +
                             (onTrain?.let { "on ${it.getName(null, gridState, null, true)}" }
                                 ?: "off") +
                             "\n").toByteArray()
@@ -4926,6 +4961,37 @@ class MvtTileTest {
     }
 
     /**
+     * Off the train at Milngavie and up the platform to Station Road (pixel.gpx, 2026-11-13). The
+     * rail lock let go at 4337, the walk was seen at 4350 already 40m from the line, and yet
+     * nothing was said until 4431 - all the way up Station Road - while the 60s train window ran
+     * out. A passenger who has walked clear of the railway has left the station.
+     */
+    @Test
+    fun testWalkingAwayFromTheRailwayEndsTheTrainWindow() {
+        val output = "gpxFiles/clips/trainoff-window.txt"
+        testMovingGrid(
+            "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/pixel.gpx",
+            output,
+            "gpxFiles/clips/trainoff-window.geojson",
+            startIndex = 3990,
+            endIndex = 4460,
+            // Only for the GPX point numbers it has the trace write against each callout
+            junctionTracer = JunctionTracer(),
+        )
+        val text = testOutputFile(output).readText()
+        val trainOff = Regex("""\[(\d+)]\nTrain: off""").find(text)?.groupValues?.get(1)?.toInt()
+        assertNotNull("Expected the replay to see the train arrive and the lock let go", trainOff)
+        val firstCalloutAfter = Regex("""\[(\d+)]\nCallout""").findAll(text)
+            .map { it.groupValues[1].toInt() }
+            .firstOrNull { it > trainOff!! }
+        assertNotNull("Expected a callout on the walk away from the station", firstCalloutAfter)
+        assertTrue(
+            "First callout after leaving the train came at $firstCalloutAfter, lock let go at $trainOff",
+            firstCalloutAfter!! <= 4360
+        )
+    }
+
+    /**
      * Short stretches of the recorded walks through the places junction callouts find hardest:
      * the Moor Road / Strathblane Road junction, Milngavie's pedestrian precinct, and Craigdhu
      * Road with its pavements mapped as separate ways. Each starts far enough back for the map
@@ -5016,6 +5082,15 @@ class MvtTileTest {
         // Off the Edinburgh tram at Princes Street and along the north pavement (synthetic: the
         // tram arrives at 428 and the walk starts at 429).
         JunctionClip("tram-edinburgh", "EdinburghTram-synthetic", 0, Int.MAX_VALUE),
+        // 2026-11-13 walk (pixel.gpx): down Douglas Street past the West Highland Way going off
+        // to the right.
+        JunctionClip("whw-pixel", "pixel", 600, 880),
+        // Main Street at the Burnbrae roundabout, where Main Street itself goes unannounced.
+        JunctionClip("mainstreet-pixel", "pixel", 1580, 1800),
+        // Milngavie Road to the path down to Hillfoot station.
+        JunctionClip("hillfoot-pixel", "pixel", 3200, 3460),
+        // Off the train at Milngavie and up Station Road / Buchanan Street.
+        JunctionClip("trainoff-pixel", "pixel", 3990, 4500),
     )
 
     @OptIn(ExperimentalCoroutinesApi::class)

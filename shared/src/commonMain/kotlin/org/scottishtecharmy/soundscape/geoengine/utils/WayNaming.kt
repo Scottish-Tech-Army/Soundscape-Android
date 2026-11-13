@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.isARailwayStation
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.BARRIER_END
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.BARRIER_START
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.GateKind
@@ -150,6 +151,34 @@ fun checkNearbyPoi(
     return null
 }
 
+/**
+ * How far from a railway station a way can stop and still be the way to it. Wider than the 20m
+ * other destinations are looked for within, because a station node usually sits in the middle of
+ * its forecourt or booking hall rather than where the paths to it end - at Hillfoot it's 25m from
+ * the foot of the steps. Only dead ends are looked at, so a path that carries on past a station
+ * isn't named after it.
+ */
+private const val STATION_DEAD_END_METRES = 40.0
+
+/** The junction at the far end of [wayAndDirection], as followWays returns it - see [farEndBarrier]. */
+private fun farEndIntersection(wayAndDirection: Pair<Boolean, Way>): Intersection? =
+    wayAndDirection.second.intersections[
+        if (wayAndDirection.first) WayEnd.END.id else WayEnd.START.id
+    ]
+
+/** The nearest named railway station within [STATION_DEAD_END_METRES] of [location], if any. */
+private fun stationBeside(location: LngLatAlt, gridState: GridState): Feature? =
+    gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+        .getNearestCollection(
+            location = location,
+            distance = STATION_DEAD_END_METRES,
+            maxCount = 5,
+            ruler = gridState.ruler
+        )
+        .firstOrNull { feature ->
+            (feature is MvtFeature) && isARailwayStation(feature) && (feature.name != null)
+        }
+
 fun addPoiDestinations(
     way: Way,
     gridState: GridState,
@@ -252,6 +281,22 @@ fun addPoiDestinations(
     if (endPoi == null) {
         endPoi = safetyTree.getContainingPolygons(endLocation).features.firstOrNull()
     }
+
+    // A way that just stops beside a railway station leads to the station: the path and steps
+    // down from Milngavie Road to Hillfoot finish 25m from the station node, with nothing mapped
+    // across the forecourt to the platforms, and were "Path to dead end via steps".
+    val startIsDeadEnd = if (endIntersection != null)
+        farEndIntersection(waysFromEnd.last()) == null
+    else
+        startIntersection == null
+    val endIsDeadEnd = if (startIntersection != null)
+        farEndIntersection(waysFromStart.last()) == null
+    else
+        endIntersection == null
+    if ((startPoi == null) && startIsDeadEnd)
+        startPoi = stationBeside(startLocation, gridState)
+    if ((endPoi == null) && endIsDeadEnd)
+        endPoi = stationBeside(endLocation, gridState)
 
     if (startAtGate) startPoi = null
     if (endAtGate) endPoi = null

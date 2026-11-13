@@ -51,6 +51,11 @@ import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 // where the user is on a pavement set back from the centre-line.
 private const val NEAR_ANNOUNCED_JUNCTION_METRES = 15.0
 
+// How far from every railway line a passenger off the train has to have walked to have left the
+// station - see AutoCallout.recentlyOnTrain. Walking up the platform at Milngavie the user was
+// 3-5m from the track, and 40m from it by the time they were seen to be on foot.
+private const val CLEAR_OF_RAILWAY_METRES = 30.0
+
 class AutoCallout(
     private val localized: LocalizedStrings?,
     private val preferences: PreferencesProvider?,
@@ -163,8 +168,21 @@ class AutoCallout(
         // walking along. Without this a synthetic ride to Princes Street (EdinburghTram-synthetic)
         // walked off the tram at 429, was seen to be on foot at 432 and heard nothing until 485.
         if (lastTrainWasTram && userGeometry.onFootAfterVehicle) return false
+        // Nor once a train passenger has walked away from the railway altogether. Off the end of
+        // the platform at Milngavie the rail lock let go 20s after the walk began, the walk was
+        // seen 13s later, 40m from the line - and the window still kept everything quiet for
+        // another 50s, all the way up Station Road. The window is there for the platform and the
+        // station, and someone off the lock, walking, and out of reach of every line has left both.
+        if (walkedClearOfRailway) return false
         return (userGeometry.timestampMilliseconds - last) < trainStickyWindowMs
     }
+
+    /**
+     * Whether the user, off the rail lock and seen walking since their last train, is further
+     * than [CLEAR_OF_RAILWAY_METRES] from any line - see recentlyOnTrain. Set by
+     * buildCalloutForRoadSense, which runs on every update ahead of the pedestrian builders.
+     */
+    private var walkedClearOfRailway = false
 
     /**
      * How long after last being in any vehicle (car/bus/train - see UserGeometry.inVehicle) we
@@ -338,6 +356,14 @@ class AutoCallout(
                 lastTrainWasTram = userGeometry.mapMatchedRailway?.featureValue == "tram"
             }
         }
+        // Measured here, on every update and before the pedestrian builders read it - see
+        // recentlyOnTrain. Only looked up once the user is off the lock and walking, so a ride
+        // costs nothing.
+        walkedClearOfRailway = !onTrain && userGeometry.onFootAfterVehicle &&
+            (lastTrainTimestampMs != null) &&
+            (gridState.getFeatureTree(TreeId.TRANSIT).getNearestFeature(
+                userGeometry.location, gridState.ruler, CLEAR_OF_RAILWAY_METRES
+            ) == null)
 
         // "1.2 km since Partick" is a statement about progress along one ride, and says nothing
         // at all once that ride is over. Changing trains at Glasgow Queen Street used to leave the
