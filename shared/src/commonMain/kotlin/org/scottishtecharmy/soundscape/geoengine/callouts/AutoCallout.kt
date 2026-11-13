@@ -134,6 +134,8 @@ class AutoCallout(
     private val lastStationTracker = LastStationTracker()
     private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
+    // Whether the line last ridden was a tramway - see recentlyOnTrain.
+    private var lastTrainWasTram = false
     private var lastVehicleTimestampMs: Long? = null
 
     // How close a large POI (see TreeId.LANDMARK_POIS) needs to be to be called out as "passed"
@@ -155,6 +157,12 @@ class AutoCallout(
 
     private fun recentlyOnTrain(userGeometry: UserGeometry): Boolean {
         val last = lastTrainTimestampMs ?: return false
+        // Someone seen walking off a tram has finished the ride. The window waits out the walk up
+        // a railway platform and through a station, where the rail lock outlives the ride and the
+        // street above is the wrong thing to describe; a tram stop is on the street they are now
+        // walking along. Without this a synthetic ride to Princes Street (EdinburghTram-synthetic)
+        // walked off the tram at 429, was seen to be on foot at 432 and heard nothing until 485.
+        if (lastTrainWasTram && userGeometry.onFootAfterVehicle) return false
         return (userGeometry.timestampMilliseconds - last) < trainStickyWindowMs
     }
 
@@ -327,6 +335,7 @@ class AutoCallout(
             lastVehicleTimestampMs = userGeometry.timestampMilliseconds
             if (onTrain) {
                 lastTrainTimestampMs = userGeometry.timestampMilliseconds
+                lastTrainWasTram = userGeometry.mapMatchedRailway?.featureValue == "tram"
             }
         }
 
