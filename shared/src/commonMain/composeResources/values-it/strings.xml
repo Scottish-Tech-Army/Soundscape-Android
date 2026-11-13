@@ -1750,6 +1750,12 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="open_in_app_change">Scegli un'altra app</string>
     <string name="confect_name_to_dead_end">%1$s senza uscita</string>
     <string name="confect_name_to_dead_end_via">%1$s senza uscita tramite %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s fino a un cancello chiuso a chiave</string>
+    <string name="confect_name_to_locked_gate_via">%1$s fino a un cancello chiuso a chiave tramite %2$s</string>
+    <string name="confect_name_locked_gate">Cancello chiuso a chiave</string>
+    <string name="confect_name_to_no_access_gate">%1$s fino a un cancello con divieto di accesso</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s fino a un cancello con divieto di accesso tramite %2$s</string>
+    <string name="confect_name_no_access_gate">Cancello con divieto di accesso</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

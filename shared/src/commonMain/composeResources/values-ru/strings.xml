@@ -1766,6 +1766,12 @@
     <string name="open_in_app_change">Выбрать другое приложение</string>
     <string name="confect_name_to_dead_end">%1$s к тупику</string>
     <string name="confect_name_to_dead_end_via">%1$s к тупику через %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s к запертым воротам</string>
+    <string name="confect_name_to_locked_gate_via">%1$s к запертым воротам через %2$s</string>
+    <string name="confect_name_locked_gate">Запертые ворота</string>
+    <string name="confect_name_to_no_access_gate">%1$s к закрытым для прохода воротам</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s к закрытым для прохода воротам через %2$s</string>
+    <string name="confect_name_no_access_gate">Закрытые для прохода ворота</string>
     <string name="relative_clock_hour_1">1 час</string>
     <string name="relative_clock_hour_2">2 часа</string>
     <string name="relative_clock_hour_3">3 часа</string>

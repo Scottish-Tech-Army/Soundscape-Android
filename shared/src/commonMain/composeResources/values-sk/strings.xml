@@ -1766,6 +1766,12 @@ Ak narazíte na akýkoľvek problém, aj keď sa zdá byť malý, dajte nám o �
     <string name="open_in_app_change">Vybrať inú aplikáciu</string>
     <string name="confect_name_to_dead_end">%1$s do slepej ulice</string>
     <string name="confect_name_to_dead_end_via">%1$s do slepej ulice cez %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s k zamknutej bráne</string>
+    <string name="confect_name_to_locked_gate_via">%1$s k zamknutej bráne cez %2$s</string>
+    <string name="confect_name_locked_gate">Zamknutá brána</string>
+    <string name="confect_name_to_no_access_gate">%1$s k bráne so zákazom vstupu</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s k bráne so zákazom vstupu cez %2$s</string>
+    <string name="confect_name_no_access_gate">Brána so zákazom vstupu</string>
     <string name="relative_clock_hour_1">prvej</string>
     <string name="relative_clock_hour_2">druhej</string>
     <string name="relative_clock_hour_3">tretej</string>

@@ -1734,6 +1734,12 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="open_in_app_change">Valitse toinen sovellus</string>
     <string name="confect_name_to_dead_end">%1$s kohteeseen umpikuja</string>
     <string name="confect_name_to_dead_end_via">%1$s kohteeseen umpikuja kulkien %2$s kautta</string>
+    <string name="confect_name_to_locked_gate">%1$s lukitulle portille</string>
+    <string name="confect_name_to_locked_gate_via">%1$s lukitulle portille kulkien %2$s kautta</string>
+    <string name="confect_name_locked_gate">Lukittu portti</string>
+    <string name="confect_name_to_no_access_gate">%1$s portille, jonka läpi pääsy on kielletty</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s portille kulkien %2$s kautta, pääsy portista kielletty</string>
+    <string name="confect_name_no_access_gate">Portti, jonka läpi pääsy on kielletty</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

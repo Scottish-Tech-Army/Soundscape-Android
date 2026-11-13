@@ -1766,6 +1766,12 @@
     <string name="open_in_app_change">Вибрати іншу програму</string>
     <string name="confect_name_to_dead_end">%1$s, напрямок: тупик</string>
     <string name="confect_name_to_dead_end_via">%1$s, напрямок: тупик, через %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s, напрямок: замкнені ворота</string>
+    <string name="confect_name_to_locked_gate_via">%1$s, напрямок: замкнені ворота, через %2$s</string>
+    <string name="confect_name_locked_gate">Замкнені ворота</string>
+    <string name="confect_name_to_no_access_gate">%1$s, напрямок: ворота із забороною проходу</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s, напрямок: ворота із забороною проходу, через %2$s</string>
+    <string name="confect_name_no_access_gate">Ворота із забороною проходу</string>
     <string name="relative_clock_hour_1">першій</string>
     <string name="relative_clock_hour_2">другій</string>
     <string name="relative_clock_hour_3">третій</string>

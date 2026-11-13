@@ -1734,6 +1734,12 @@
     <string name="open_in_app_change">Избиране на друго приложение</string>
     <string name="confect_name_to_dead_end">%1$s към задънена улица</string>
     <string name="confect_name_to_dead_end_via">%1$s към задънена улица през %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s към заключена порта</string>
+    <string name="confect_name_to_locked_gate_via">%1$s към заключена порта през %2$s</string>
+    <string name="confect_name_locked_gate">Заключена порта</string>
+    <string name="confect_name_to_no_access_gate">%1$s към порта със забранен достъп</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s към порта със забранен достъп през %2$s</string>
+    <string name="confect_name_no_access_gate">Порта със забранен достъп</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

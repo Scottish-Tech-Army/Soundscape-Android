@@ -1734,6 +1734,12 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="open_in_app_change">Başka bir uygulama seç</string>
     <string name="confect_name_to_dead_end">Çıkmaza giden %1$s</string>
     <string name="confect_name_to_dead_end_via">%2$s üzerinden çıkmaza giden %1$s</string>
+    <string name="confect_name_to_locked_gate">Kilitli kapıya giden %1$s</string>
+    <string name="confect_name_to_locked_gate_via">%2$s üzerinden kilitli kapıya giden %1$s</string>
+    <string name="confect_name_locked_gate">Kilitli kapı</string>
+    <string name="confect_name_to_no_access_gate">Girişi yasak kapıya giden %1$s</string>
+    <string name="confect_name_to_no_access_gate_via">%2$s üzerinden girişi yasak kapıya giden %1$s</string>
+    <string name="confect_name_no_access_gate">Girişi yasak kapı</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

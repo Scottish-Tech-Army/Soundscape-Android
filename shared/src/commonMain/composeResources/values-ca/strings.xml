@@ -1750,6 +1750,12 @@ Continua informant-nos de qualsevol problema, per petit que sigui, mitjançant �
     <string name="open_in_app_change">Tria una altra aplicació</string>
     <string name="confect_name_to_dead_end">%1$s, sense sortida</string>
     <string name="confect_name_to_dead_end_via">%1$s per %2$s, sense sortida</string>
+    <string name="confect_name_to_locked_gate">%1$s fins a una porta tancada amb clau</string>
+    <string name="confect_name_to_locked_gate_via">%1$s per %2$s fins a una porta tancada amb clau</string>
+    <string name="confect_name_locked_gate">Porta tancada amb clau</string>
+    <string name="confect_name_to_no_access_gate">%1$s fins a una porta d'accés prohibit</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s per %2$s fins a una porta d'accés prohibit</string>
+    <string name="confect_name_no_access_gate">Porta d'accés prohibit</string>
     <string name="relative_clock_hour_1">la una</string>
     <string name="relative_clock_hour_2">les dues</string>
     <string name="relative_clock_hour_3">les 3</string>

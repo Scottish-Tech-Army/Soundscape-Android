@@ -1734,6 +1734,12 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="open_in_app_change">Chagua programu nyingine</string>
     <string name="confect_name_to_dead_end">%1$s hadi mwisho wa barabara</string>
     <string name="confect_name_to_dead_end_via">%1$s hadi mwisho wa barabara kupitia %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s hadi lango lililofungwa kwa kufuli</string>
+    <string name="confect_name_to_locked_gate_via">%1$s hadi lango lililofungwa kwa kufuli kupitia %2$s</string>
+    <string name="confect_name_locked_gate">Lango lililofungwa kwa kufuli</string>
+    <string name="confect_name_to_no_access_gate">%1$s hadi lango lenye marufuku ya kuingia</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s hadi lango lenye marufuku ya kuingia kupitia %2$s</string>
+    <string name="confect_name_no_access_gate">Lango lenye marufuku ya kuingia</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

@@ -1750,6 +1750,12 @@ Sigue informándonos de cualquier problema, por pequeño que sea, a través de �
     <string name="open_in_app_change">Elegir otra aplicación</string>
     <string name="confect_name_to_dead_end">%1$s {es:hacia un callejón sin salida}</string>
     <string name="confect_name_to_dead_end_via">%1$s {es:hacia un callejón sin salida} vía %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s hacia una puerta cerrada con llave</string>
+    <string name="confect_name_to_locked_gate_via">%1$s hacia una puerta cerrada con llave vía %2$s</string>
+    <string name="confect_name_locked_gate">Puerta cerrada con llave</string>
+    <string name="confect_name_to_no_access_gate">%1$s hacia una puerta de acceso prohibido</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s hacia una puerta de acceso prohibido vía %2$s</string>
+    <string name="confect_name_no_access_gate">Puerta de acceso prohibido</string>
     <string name="relative_clock_hour_1">la una</string>
     <string name="relative_clock_hour_2">las 2</string>
     <string name="relative_clock_hour_3">las 3</string>

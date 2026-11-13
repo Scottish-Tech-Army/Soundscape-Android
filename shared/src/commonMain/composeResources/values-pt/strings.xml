@@ -1750,6 +1750,12 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="open_in_app_change">Escolher outra aplicação</string>
     <string name="confect_name_to_dead_end">%1$s {pt:para beco sem saída}</string>
     <string name="confect_name_to_dead_end_via">%1$s {pt:para beco sem saída} via %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s para portão trancado</string>
+    <string name="confect_name_to_locked_gate_via">%1$s para portão trancado via %2$s</string>
+    <string name="confect_name_locked_gate">Portão trancado</string>
+    <string name="confect_name_to_no_access_gate">%1$s para portão de acesso proibido</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s para portão de acesso proibido via %2$s</string>
+    <string name="confect_name_no_access_gate">Portão de acesso proibido</string>
     <string name="relative_clock_hour_1">à 1 hora</string>
     <string name="relative_clock_hour_2">às 2 horas</string>
     <string name="relative_clock_hour_3">às 3 horas</string>

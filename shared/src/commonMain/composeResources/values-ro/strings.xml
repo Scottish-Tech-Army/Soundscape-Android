@@ -1750,6 +1750,12 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="open_in_app_change">Alege altă aplicație</string>
     <string name="confect_name_to_dead_end">%1$s spre fundătură</string>
     <string name="confect_name_to_dead_end_via">%1$s spre fundătură prin %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s spre poartă încuiată</string>
+    <string name="confect_name_to_locked_gate_via">%1$s spre poartă încuiată prin %2$s</string>
+    <string name="confect_name_locked_gate">Poartă încuiată</string>
+    <string name="confect_name_to_no_access_gate">%1$s spre poartă cu acces interzis</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s spre poartă cu acces interzis prin %2$s</string>
+    <string name="confect_name_no_access_gate">Poartă cu acces interzis</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">două</string>
     <string name="relative_clock_hour_3">3</string>

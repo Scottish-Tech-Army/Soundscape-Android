@@ -1734,6 +1734,12 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="open_in_app_change">Velg en annen app</string>
     <string name="confect_name_to_dead_end">%1$s til blindvei</string>
     <string name="confect_name_to_dead_end_via">%1$s til blindvei via %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s til låst port</string>
+    <string name="confect_name_to_locked_gate_via">%1$s til låst port via %2$s</string>
+    <string name="confect_name_locked_gate">Låst port</string>
+    <string name="confect_name_to_no_access_gate">%1$s til port med adgang forbudt</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s til port med adgang forbudt via %2$s</string>
+    <string name="confect_name_no_access_gate">Port med adgang forbudt</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>

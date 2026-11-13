@@ -1734,6 +1734,12 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="open_in_app_change">Velja annað forrit</string>
     <string name="confect_name_to_dead_end">%1$s til blindgötu</string>
     <string name="confect_name_to_dead_end_via">%1$s til blindgötu um %2$s</string>
+    <string name="confect_name_to_locked_gate">%1$s að læstu hliði</string>
+    <string name="confect_name_to_locked_gate_via">%1$s að læstu hliði um %2$s</string>
+    <string name="confect_name_locked_gate">Læst hlið</string>
+    <string name="confect_name_to_no_access_gate">%1$s að hliði, aðgangur bannaður</string>
+    <string name="confect_name_to_no_access_gate_via">%1$s að hliði um %2$s, aðgangur bannaður</string>
+    <string name="confect_name_no_access_gate">Hlið, aðgangur bannaður</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>
