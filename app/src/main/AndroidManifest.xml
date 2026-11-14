@@ -205,6 +205,12 @@
         <meta-data
             android:name="google_analytics_automatic_screen_reporting_enabled"
             android:value="false" />
+        <!-- Never collect the advertising ID. The AD_ID permission is removed above, which zeroes
+             the ID for apps targeting Android 13+, but Firebase's own switch makes it certain on
+             every Android version, so Play Console's "doesn't use advertising ID" holds. -->
+        <meta-data
+            android:name="google_analytics_adid_collection_enabled"
+            android:value="false" />
 
         <!-- Disable Firebase auto-initialization at app startup -->
         <provider
