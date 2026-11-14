@@ -122,7 +122,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     val geoEngine = GeoEngine()
     private var geoEngineStarted = false
     private val gpxRecorder = GpxRecorder()
-    private val stepProvider = IosStepProvider()
+    val stepProvider = IosStepProvider()
 
     // Callout buttons and user-initiated-TTS-interrupt behaviour — implementation
     // lives in shared CalloutController so iOS and Android stay in lockstep. Runs

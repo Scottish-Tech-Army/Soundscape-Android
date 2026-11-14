@@ -14,7 +14,6 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.platform.requestLocationPermission
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
@@ -132,7 +131,6 @@ fun SharedOnboardingNavHost(
         composable(OnboardingRoutes.PERMISSIONS) {
             PermissionsScreen(
                 onContinue = {
-                    requestLocationPermission()
                     navController.navigate(OnboardingRoutes.AUDIO_BEACONS)
                 },
             )

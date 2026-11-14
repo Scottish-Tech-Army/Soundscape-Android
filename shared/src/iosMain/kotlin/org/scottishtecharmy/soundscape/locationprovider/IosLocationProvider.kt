@@ -8,6 +8,10 @@ import platform.CoreLocation.CLActivityTypeOther
 import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
+import platform.CoreLocation.kCLAuthorizationStatusAuthorizedAlways
+import platform.CoreLocation.kCLAuthorizationStatusAuthorizedWhenInUse
+import platform.CoreLocation.kCLAuthorizationStatusDenied
+import platform.CoreLocation.kCLAuthorizationStatusRestricted
 import platform.CoreLocation.kCLDistanceFilterNone
 import platform.CoreLocation.kCLLocationAccuracyBest
 import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
@@ -97,6 +101,18 @@ class IosLocationProvider : LocationProvider() {
 
     fun requestPermission() {
         locationManager.requestAlwaysAuthorization()
+    }
+
+    fun isPermissionGranted(): Boolean {
+        val status = locationManager.authorizationStatus
+        return status == kCLAuthorizationStatusAuthorizedAlways ||
+            status == kCLAuthorizationStatusAuthorizedWhenInUse
+    }
+
+    /** True once the user has said no - requestPermission() won't show the system prompt again. */
+    fun isPermissionDenied(): Boolean {
+        val status = locationManager.authorizationStatus
+        return status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted
     }
 
     override fun start(accuracy: Accuracy) {
