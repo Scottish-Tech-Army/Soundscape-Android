@@ -31,6 +31,8 @@ import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
 import org.scottishtecharmy.soundscape.geoengine.filters.OnFootDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
+import org.scottishtecharmy.soundscape.geoengine.filters.StepTracker
+import org.scottishtecharmy.soundscape.locationprovider.StepSnapshot
 import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.BARRIER_END
@@ -70,6 +72,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
 import org.scottishtecharmy.soundscape.locationprovider.GpxReplayLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.toSoundscapeLocation
+import org.scottishtecharmy.soundscape.platform.formatGpxTimestamp
 import org.scottishtecharmy.soundscape.platform.parseGpxTimestamp
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
@@ -224,6 +227,7 @@ internal fun parseGpxFromFile(filename: String): FeatureCollection {
                     // tell the two apart.
                     tp.bearingAccuracyDegrees?.let { set("bearingAccuracy", it.toDouble()) }
                     parseGpxTimestamp(tp.time)?.let { set("time", it.toDouble()) }
+                    tp.steps?.let { set("steps", it) }
                     set(FILTERED_LON, filtered.longitude)
                     set(FILTERED_LAT, filtered.latitude)
                 }
@@ -4549,6 +4553,8 @@ class MvtTileTest {
         startIndex: Int = 0,
         endIndex: Int = Int.MAX_VALUE,
         junctionTracer: JunctionTracer? = null,
+        // False replays as if the phone had no pedometer, for comparing against the steps
+        useSteps: Boolean = true,
     ): Int {
 
         val gridState = FileGridState()
@@ -4563,6 +4569,7 @@ class MvtTileTest {
         val railMatchArbiter = RailMatchArbiter()
         val stationaryDetector = StationaryDetector()
         val onFootDetector = OnFootDetector()
+        val stepTracker = StepTracker()
         val headingHold = HeadingHold()
         val gps = parseGpxFromFile(gpxFilename)
         // See recordedTravelHeading
@@ -4603,6 +4610,7 @@ class MvtTileTest {
         // Previous values of the two states the markers below report on when they change.
         var lastStationary = false
         var lastOnTrain: Way? = null
+        var lastOnFoot = false
         gps.features.filterIndexed { index, _ ->
             (index > startIndex) and (index < endIndex)
         }.forEachIndexed { index, position ->
@@ -4702,13 +4710,20 @@ class MvtTileTest {
                 val courseIsTrustworthy = (position.properties?.get("heading") != null) &&
                     (bearingAccuracy != null) &&
                     (bearingAccuracy < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES)
+                // From the recording's own pedometer, where it has one - see StepTracker. A
+                // recording without steps leaves both detectors exactly as they were.
+                val stepping = stepTracker.update(
+                    (position.properties?.get("steps") as? StepSnapshot?)?.takeIf { useSteps },
+                    timestamp
+                )
                 val stationary = stationaryDetector.update(
                     LngLatAlt(rawLocation.longitude, rawLocation.latitude),
                     accuracy,
                     courseIsTrustworthy,
-                    timestamp
+                    timestamp,
+                    stepping,
                 )
-                onFootDetector.update(speed, courseIsTrustworthy, timestamp)
+                onFootDetector.update(speed, courseIsTrustworthy, timestamp, stepping)
 
                 // Update the nearest road filter with our new location
                 val mapMatchedResult = mapMatchFilter.filter(
@@ -4782,7 +4797,8 @@ class MvtTileTest {
                     unobservedMillis = unobservedMillis,
                     stationary = stationary,
                     stationaryMillis = stationaryDetector.stationaryMillis,
-                    onFootAfterVehicle = onFootDetector.isOnFoot
+                    onFootAfterVehicle = onFootDetector.isOnFoot,
+                    stepping = stepping,
                 )
                 // Fed once per fix from the geometry the callouts use, as GeoEngine does.
                 val holdCourse = (position.properties?.get("heading") as? Double?)?.takeIf {
@@ -4814,6 +4830,16 @@ class MvtTileTest {
                     )
                 }
                 lastOnTrain = onTrain
+                if (onFootDetector.isOnFoot != lastOnFoot) {
+                    callOutText.write(
+                        ((if (junctionTracer != null) "\n[${index + startIndex}]" else "") +
+                            "\nOn foot after vehicle: ${onFootDetector.isOnFoot}" +
+                            // The time too, since how soon this comes is the point of it
+                            (if (gpxHasClock) " at ${formatGpxTimestamp(timestamp).substring(11, 19)}" else "") +
+                            "\n").toByteArray()
+                    )
+                    lastOnFoot = onFootDetector.isOnFoot
+                }
 
                 junctionTracer?.update(index + startIndex, userGeometry, gridState)
                 val callout = autoCallout.updateLocation(
@@ -5092,6 +5118,26 @@ class MvtTileTest {
         // Off the train at Milngavie and up Station Road / Buchanan Street.
         JunctionClip("trainoff-pixel", "pixel", 3990, 4500),
     )
+
+    /**
+     * Replays the recordings that carry pedometer data twice, with the steps and as if the phone
+     * had none, writing gpxFiles/<name>-steps.txt and <name>-nosteps.txt to compare - see
+     * StepTracker. shops-steps is a drive to Tesco and Waitrose in Milngavie, walking round both.
+     */
+    @Test
+    fun testStepsReplay() {
+        for (name in listOf("shops-steps")) {
+            for (useSteps in listOf(true, false)) {
+                val suffix = if (useSteps) "steps" else "nosteps"
+                testMovingGrid(
+                    "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$name.gpx",
+                    "gpxFiles/$name-$suffix.txt",
+                    "gpxFiles/$name-$suffix.geojson",
+                    useSteps = useSteps,
+                )
+            }
+        }
+    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Category(NightlyOnlyTest::class)

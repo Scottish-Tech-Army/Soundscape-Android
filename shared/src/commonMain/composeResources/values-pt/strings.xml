@@ -604,6 +604,7 @@ Procuramos sempre melhorar as nossas traduções e, no mesmo site das notas de v
 Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «Contactar o apoio ao cliente» no menu principal.
 </string>
     <string name="menu_open_source_licenses">Licenças de código aberto</string>
+    <string name="menu_privacy_policy">Política de privacidade</string>
     <string name="osm_tag_ferry_terminal">Terminal de ferry</string>
     <string name="osm_tag_ferry_terminal_named">Terminal de ferry %1$s</string>
     <string name="osm_office">Escritório</string>
@@ -1374,6 +1375,8 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="menu_main_menu">Menu principal</string>
     <string name="first_launch_permissions_record_audio">Gravar áudio</string>
     <string name="first_launch_permissions_required_for_voice_control">Esta permissão é opcional, mas é necessária se quiser utilizar comandos de voz para controlar a aplicação</string>
+    <string name="first_launch_permissions_physical_activity">Atividade física</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obrigatória. O Soundscape usa o contador de passos do telemóvel para saber quando está a andar, por exemplo quando saiu de um veículo ou parou. Os dados dos seus passos ficam no telemóvel.</string>
     <string name="menu_media_controls">Controlos Multimédia</string>
     <string name="settings_section_media_controls">Modo dos controlos multimédia</string>
     <string name="settings_section_media_controls_description">Esta definição controla o funcionamento dos botões de controlo multimédia dos seus auscultadores ou do comando remoto.</string>

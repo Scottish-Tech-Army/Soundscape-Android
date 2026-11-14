@@ -606,6 +606,8 @@
     <string name="first_launch_permissions_notification">ਸੂਚਨਾਵਾਂ</string>
     <string name="first_launch_permissions_record_audio">ਆਡੀਓ ਰਿਕਾਰਡ ਕਰੋ</string>
     <string name="first_launch_permissions_required_for_voice_control">ਇਹ ਇਜਾਜ਼ਤ ਚੋਣਵੀਂ ਹੈ, ਪਰ ਜੇ ਤੁਸੀਂ ਐਪ ਨੂੰ ਆਵਾਜ਼ੀ ਹੁਕਮਾਂ ਨਾਲ ਕੰਟਰੋਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਲੋੜੀਂਦੀ ਹੈ</string>
+    <string name="first_launch_permissions_physical_activity">ਸਰੀਰਕ ਗਤੀਵਿਧੀ</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">ਲੋੜੀਂਦੀ। Soundscape ਇਹ ਜਾਣਨ ਲਈ ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੇ ਸਟੈਪ ਕਾਊਂਟਰ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਤੁਰ ਰਹੇ ਹੋ, ਜਿਵੇਂ ਜਦੋਂ ਤੁਸੀਂ ਕਿਸੇ ਵਾਹਨ ਤੋਂ ਉਤਰੇ ਹੋ ਜਾਂ ਰੁਕ ਗਏ ਹੋ। ਤੁਹਾਡੇ ਕਦਮਾਂ ਦਾ ਡਾਟਾ ਤੁਹਾਡੇ ਫ਼ੋਨ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ।</string>
     <string name="battery_optimization_title">ਪਿਛੋਕੜ ਵਿੱਚ ਬੈਟਰੀ ਦੀ ਵਰਤੋਂ</string>
     <string name="battery_optimization_message">ਫ਼ੋਨ ਲਾਕ ਹੋਣ 'ਤੇ ਵੀ ਆਵਾਜ਼ੀ ਨੈਵੀਗੇਸ਼ਨ ਦਿੰਦੇ ਰਹਿਣ ਲਈ Soundscape ਨੂੰ ਬੈਟਰੀ ਦੀ ਬਿਨਾਂ ਰੋਕ ਵਰਤੋਂ ਦੀ ਲੋੜ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਅਗਲੇ ਡਾਇਲਾਗ ਵਿੱਚ ਬੈਟਰੀ ਦੀ ਬਿਨਾਂ ਰੋਕ ਵਰਤੋਂ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ। ਜੇ ਤੁਸੀਂ Soundscape ਬੰਦ ਕਰਦੇ ਹੋ, ਤਾਂ ਸਾਰੀਆਂ ਸੇਵਾਵਾਂ ਰੁਕ ਜਾਣਗੀਆਂ ਅਤੇ ਐਪ ਬੈਟਰੀ ਨਹੀਂ ਵਰਤੇਗੀ।</string>
     <string name="notification_text">Soundscape ਦੀ ਟਿਕਾਣਾ ਸੇਵਾ ਫ਼ੋਨ ਲਾਕ ਹੋਣ 'ਤੇ ਵੀ ਚੱਲਦੀ ਹੈ।</string>
@@ -741,6 +743,7 @@
     <string name="new_version_info_completed">ਨਵੀਂ ਰਿਲੀਜ਼ ਵਾਲਾ ਡਾਇਲਾਗ ਬੰਦ ਕਰੋ</string>
     <string name="new_version_info_release_notes">ਪੂਰੇ ਰਿਲੀਜ਼ ਨੋਟ</string>
     <string name="menu_open_source_licenses">ਓਪਨ ਸੋਰਸ ਲਾਇਸੈਂਸ</string>
+    <string name="menu_privacy_policy">ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
     <string name="new_version_info_details">
 ਇਹ Soundscape ਦੀ ਇੱਕ ਵੱਡੀ ਬੀਟਾ ਰਿਲੀਜ਼ ਹੈ, ਜਿਸ ਵਿੱਚ ਬਹੁਤ ਸਾਰੇ ਸੁਧਾਰ ਅਤੇ ਬਦਲਾਅ ਸ਼ਾਮਲ ਹਨ।
 

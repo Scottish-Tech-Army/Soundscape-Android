@@ -1164,6 +1164,10 @@
     <string name="first_launch_permissions_record_audio">Record audio</string>
     <!-- The app will run without record audio permissions, but voice control won't be available -->
     <string name="first_launch_permissions_required_for_voice_control">This permission is optional, but is required if you want to use voice commands to control the app</string>
+    <!-- Physical activity is the Android permission that lets the app read the phone's step counter -->
+    <string name="first_launch_permissions_physical_activity">Physical activity</string>
+    <!-- Shown before the app asks for the physical activity permission, as Google Play requires: what the data is, what it's for, and that it stays on the phone -->
+    <string name="first_launch_permissions_physical_activity_disclosure">Required. Soundscape uses your phone’s step counter to tell when you are walking, for example when you have got out of a vehicle or stopped. Your step data stays on your phone.</string>
     <!-- Battery optimization - needed so that Android doesn't stop the app working in the background -->
     <string name="battery_optimization_title">Background Battery Usage</string>
     <string name="battery_optimization_message">Soundscape requires unrestricted battery usage to keep providing audio navigation when your phone is locked. Please allow unrestricted battery usage in the next dialog. If you close Soundscape, all services will stop and the app will no longer use battery.</string>
@@ -1438,6 +1442,8 @@
     <string name="new_version_info_release_notes">Full release notes</string>
     <!-- Title of screen that contains all of the information about the open source licenses of the packages used within the app -->
     <string name="menu_open_source_licenses">Open source licenses</string>
+    <!-- Button on the About page which opens the privacy policy on the Soundscape website -->
+    <string name="menu_privacy_policy">Privacy policy</string>
     <!-- Text for dialog which explains what is new in the current release. Rendered as plain text, split into sentences - avoid markdown syntax. UI names: “Full release notes” is `new_version_info_release_notes`; “Offline maps” is `offline_maps_title`; “Contact support” is the main menu item. -->
     <string name="new_version_info_details">
 This is a major Beta release for Soundscape containing lots of improvements and changes.

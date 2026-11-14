@@ -51,6 +51,8 @@ import kotlin.math.abs
  * @param onFootAfterVehicle is true if the user has been seen to walk away since last travelling at
  * vehicle speed, which ends AutoCallout's vehicle sticky window early. Decided by OnFootDetector and
  * handed in, for the same reason as [stationary].
+ * @param stepping is true if the phone's pedometer has counted steps in the last few seconds.
+ * Decided by StepTracker and handed in. Only ever positive evidence: see StepTracker.
  *
  * The heading prioritization comes from iOS - see https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/364
  *
@@ -77,6 +79,7 @@ class UserGeometry(
     val stationary: Boolean = false,
     val stationaryMillis: Long = 0L,
     val onFootAfterVehicle: Boolean = false,
+    val stepping: Boolean = false,
     private val headingMode: HeadingMode = HeadingMode.CourseAuto,
     private var travelHeading: Double? = null,
     private var headHeading: Double? = null,
@@ -103,7 +106,9 @@ class UserGeometry(
         // read as walking about. Whether the user has actually gone anywhere is a question about
         // the last half minute, so StationaryDetector answers it and gets the veto; the speed
         // check stays as the fast path for everything the window hasn't decided yet.
-        return (speed > 0.2) && !stationary
+        // Steps answer it outright, and in about a second (see StepTracker), but only one way:
+        // no steps is not evidence of standing still.
+        return stepping || ((speed > 0.2) && !stationary)
     }
 
     /**

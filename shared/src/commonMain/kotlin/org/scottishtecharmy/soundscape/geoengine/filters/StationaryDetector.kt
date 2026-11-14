@@ -152,6 +152,8 @@ class StationaryDetector {
      * Call once per location update the geoengine has accepted, before anything that reads the
      * verdict. Returns [isStationary].
      *
+     * [stepping] is StepTracker's verdict for this fix: steps vetoes a stationary verdict.
+     *
      * [courseIsTrustworthy] must be derived from the *GPS course* - the direction of travel
      * Android reports alongside the fix, gated on its own bearing accuracy - and never from the
      * phone's compass or the head tracker. Someone standing still holding the phone up to read the
@@ -164,6 +166,7 @@ class StationaryDetector {
         accuracyMetres: Double?,
         courseIsTrustworthy: Boolean,
         timestampMilliseconds: Long,
+        stepping: Boolean = false,
     ): Boolean {
         // Too poor a fix to say anything about twenty metres, so it isn't evidence either way and
         // doesn't advance anything - not the deque, not the clock, and not the verdict. 25-50m is
@@ -199,7 +202,7 @@ class StationaryDetector {
             samples.removeFirst()
         }
 
-        isStationary = decide()
+        isStationary = decide(stepping)
         return isStationary
     }
 
@@ -222,7 +225,20 @@ class StationaryDetector {
         return isStationary
     }
 
-    private fun decide(): Boolean {
+    private fun decide(stepping: Boolean): Boolean {
+        // Steps are the fastest answer of all - see StepTracker - and like the course below they
+        // can only ever end a stationary spell, never start one, since no steps proves nothing.
+        // Ended the same way, by starting the window again, for the same reason.
+        if (stepping) {
+            if (isStationary) {
+                val newest = samples.last()
+                samples.clear()
+                samples.addLast(newest)
+                displacementMetres = null
+            }
+            return false
+        }
+
         // Android's own opinion of its course is a far faster answer than displacement can be: of
         // the fixes recorded while genuinely standing still, 2% carried a course it rated accurate
         // to better than 45 degrees, against 80% of those recorded while walking. So a short run of

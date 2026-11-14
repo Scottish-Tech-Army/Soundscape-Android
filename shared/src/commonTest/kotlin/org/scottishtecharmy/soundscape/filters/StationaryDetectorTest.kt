@@ -218,4 +218,26 @@ class StationaryDetectorTest {
         detector.run(16, 15_000L) { jitter(it, 8.0) }
         assertTrue((detector.displacementMetres ?: 999.0) < 25.0)
     }
+
+    /** Steps end a stationary spell on the spot, and it takes a whole new window to return. */
+    @Test
+    fun testStepsEndAStationarySpellAtOnce() {
+        val detector = StationaryDetector()
+        assertTrue(detector.run(31, 0L) { jitter(it, 8.0) })
+
+        assertFalse(detector.update(jitter(31, 8.0), 10.0, false, 31_000L, stepping = true))
+        assertFalse(detector.run(20, 32_000L) { jitter(it, 8.0) }, "the window started again")
+        assertTrue(detector.run(15, 52_000L) { jitter(it, 8.0) })
+    }
+
+    /** No steps is not evidence of standing still, so steps can never start a spell. */
+    @Test
+    fun testStepsNeverMakeSomebodyStationary() {
+        val detector = StationaryDetector()
+        var stationary = false
+        for (i in 0 until 40) {
+            stationary = detector.update(at(i * 1.4, 0.0), 10.0, true, i * 1000L, stepping = false)
+        }
+        assertFalse(stationary)
+    }
 }

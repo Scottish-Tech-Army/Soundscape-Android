@@ -213,7 +213,6 @@ fun SharedHomeScreen(
                 toggleTutorial = toggleTutorial,
                 tutorialRunning = tutorialRunning,
                 recordingEnabled = recordingEnabled,
-                newReleaseDialog = newReleaseDialog,
                 exitApp = exitApp,
             )
         }

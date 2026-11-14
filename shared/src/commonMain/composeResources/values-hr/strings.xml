@@ -1285,6 +1285,8 @@
     <string name="first_launch_permissions_notification">Obavijesti</string>
     <string name="first_launch_permissions_record_audio">Snimanje zvuka</string>
     <string name="first_launch_permissions_required_for_voice_control">Ova dozvola nije obavezna, ali je potrebna ako želite koristiti glasovne naredbe za upravljanje aplikacijom</string>
+    <string name="first_launch_permissions_physical_activity">Tjelesna aktivnost</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obavezno. Soundscape koristi brojač koraka na vašem telefonu kako bi prepoznao kada hodate, primjerice kada ste izašli iz vozila ili stali. Podaci o vašim koracima ostaju na vašem telefonu.</string>
     <string name="battery_optimization_title">Potrošnja baterije u pozadini</string>
     <string name="battery_optimization_message">Soundscapeu je potrebna neograničena potrošnja baterije kako bi mogao nastaviti pružati zvučnu navigaciju dok je telefon zaključan. Dopustite neograničenu potrošnju baterije u sljedećem dijaloškom okviru. Ako zatvorite Soundscape, sve usluge će se zaustaviti i aplikacija više neće trošiti bateriju.</string>
     <string name="notification_text">Usluga lokacije Soundscapea radi čak i kada je telefon zaključan.</string>
@@ -1410,6 +1412,7 @@
     <string name="new_version_info_text">Informacije o novom izdanju</string>
     <string name="new_version_info_completed">Zatvori dijaloški okvir o novom izdanju</string>
     <string name="menu_open_source_licenses">Licence otvorenog koda</string>
+    <string name="menu_privacy_policy">Pravila o privatnosti</string>
     <string name="new_version_info_details">
 Ovo je veliko beta izdanje aplikacije Soundscape s mnogo poboljšanja i promjena.
 

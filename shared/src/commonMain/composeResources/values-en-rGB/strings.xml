@@ -600,6 +600,7 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="new_version_info_text">Release Notes</string>
     <string name="new_version_info_completed">Close Release Notes</string>
     <string name="menu_open_source_licenses">Open-source Licences</string>
+    <string name="menu_privacy_policy">Privacy policy</string>
     <string name="osm_tag_ferry_terminal">Ferry Terminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Ferry Terminal</string>
     <string name="osm_office">Office</string>
@@ -1370,6 +1371,8 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="menu_main_menu">Top menu</string>
     <string name="first_launch_permissions_record_audio">Record audio</string>
     <string name="first_launch_permissions_required_for_voice_control">This permission is optional, but required if you want to use voice commands to control the app</string>
+    <string name="first_launch_permissions_physical_activity">Physical activity</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Required. Soundscape uses your phone’s step counter to tell when you are walking, for example when you have got out of a vehicle or stopped. Your step data stays on your phone.</string>
     <string name="menu_media_controls">Media Controls</string>
     <string name="settings_section_media_controls">Media controls mode</string>
     <string name="settings_section_media_controls_description">This setting controls how the media control buttons on your headphones or remote work.</string>

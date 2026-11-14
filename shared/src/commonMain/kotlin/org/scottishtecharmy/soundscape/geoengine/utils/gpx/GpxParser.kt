@@ -1,5 +1,8 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.gpx
 
+import org.scottishtecharmy.soundscape.locationprovider.StepSnapshot
+import org.scottishtecharmy.soundscape.platform.parseGpxTimestamp
+
 fun parseGpx(input: String): GpxData {
     val tokens = tokenize(input)
     return buildGpx(tokens)
@@ -271,6 +274,7 @@ private fun readTrackPoint(reader: TokenReader, attrs: Map<String, String>): Gpx
     var bearing: Float? = null
     var accuracy: Float? = null
     var bearingAccuracyDegrees: Float? = null
+    var steps: StepSnapshot? = null
 
     while (reader.hasNext()) {
         when (val t = reader.next()) {
@@ -282,6 +286,7 @@ private fun readTrackPoint(reader: TokenReader, attrs: Map<String, String>): Gpx
                 "accuracy" -> accuracy = reader.readTextContent("accuracy").toFloatOrNull()
                 "bearingAccuracyDegrees" -> bearingAccuracyDegrees =
                     reader.readTextContent("bearingAccuracyDegrees").toFloatOrNull()
+                "extensions" -> steps = readExtensions(reader)
                 else -> reader.skipToEndTag(t.localName)
             }
 
@@ -290,6 +295,54 @@ private fun readTrackPoint(reader: TokenReader, attrs: Map<String, String>): Gpx
         }
     }
     return GpxTrackPoint(
-        lat, lon, ele, time, speed, bearing, accuracy, bearingAccuracyDegrees
+        lat, lon, ele, time, speed, bearing, accuracy, bearingAccuracyDegrees, steps
     )
+}
+
+/**
+ * A track point's `<extensions>`, of which only `<steps>` is read here. Head tracking is read
+ * from the raw text by HeadTrackerReplay instead.
+ */
+private fun readExtensions(reader: TokenReader): StepSnapshot? {
+    var steps: StepSnapshot? = null
+    while (reader.hasNext()) {
+        when (val t = reader.next()) {
+            is XmlToken.StartTag -> when (t.localName) {
+                "steps" -> steps = readSteps(reader)
+                else -> reader.skipToEndTag(t.localName)
+            }
+            is XmlToken.EndTag -> if (t.localName == "extensions") break
+            is XmlToken.Text -> {}
+        }
+    }
+    return steps
+}
+
+private fun readSteps(reader: TokenReader): StepSnapshot {
+    var steps = StepSnapshot()
+    while (reader.hasNext()) {
+        when (val t = reader.next()) {
+            is XmlToken.StartTag -> when (t.localName) {
+                "detected" -> steps = steps.copy(
+                    detectedSteps = reader.readTextContent("detected").toLongOrNull()
+                )
+                "lastStep" -> steps = steps.copy(
+                    lastStepMillis = parseGpxTimestamp(reader.readTextContent("lastStep"))
+                )
+                "counter" -> steps = steps.copy(
+                    counterSteps = reader.readTextContent("counter").toLongOrNull()
+                )
+                "counterTime" -> steps = steps.copy(
+                    counterMillis = parseGpxTimestamp(reader.readTextContent("counterTime"))
+                )
+                "cadence" -> steps = steps.copy(
+                    cadence = reader.readTextContent("cadence").toDoubleOrNull()
+                )
+                else -> reader.skipToEndTag(t.localName)
+            }
+            is XmlToken.EndTag -> if (t.localName == "steps") break
+            is XmlToken.Text -> {}
+        }
+    }
+    return steps
 }

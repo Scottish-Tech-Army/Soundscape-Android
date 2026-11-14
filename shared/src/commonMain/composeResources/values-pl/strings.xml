@@ -608,6 +608,7 @@ Stale staramy się ulepszać nasze tłumaczenia, a w tej samej witrynie co infor
 Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomocą opcji „Kontakt z pomocą techniczną” w menu głównym.
 </string>
     <string name="menu_open_source_licenses">Licencje open source</string>
+    <string name="menu_privacy_policy">Polityka prywatności</string>
     <string name="osm_tag_ferry_terminal">Terminal promowy</string>
     <string name="osm_tag_ferry_terminal_named">Terminal promowy – %1$s</string>
     <string name="osm_office">Biuro</string>
@@ -1378,6 +1379,8 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="menu_main_menu">Menu główne</string>
     <string name="first_launch_permissions_record_audio">Nagrywanie dźwięku</string>
     <string name="first_launch_permissions_required_for_voice_control">To uprawnienie jest opcjonalne, ale jest wymagane, jeśli chcesz używać poleceń głosowych do sterowania aplikacją</string>
+    <string name="first_launch_permissions_physical_activity">Aktywność fizyczna</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Wymagane. Soundscape korzysta z krokomierza w telefonie, aby rozpoznać, kiedy idziesz, na przykład gdy wysiądziesz z pojazdu lub się zatrzymasz. Dane o Twoich krokach pozostają w telefonie.</string>
     <string name="menu_media_controls">Sterowanie przyciskami multimedialnymi</string>
     <string name="settings_section_media_controls">Tryb sterowania przyciskami multimedialnymi</string>
     <string name="settings_section_media_controls_description">To ustawienie decyduje o tym, jak działają przyciski sterowania mediami w słuchawkach lub pilocie.</string>

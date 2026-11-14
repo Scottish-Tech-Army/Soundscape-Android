@@ -439,6 +439,7 @@
     <string name="new_version_info_text">নতুন সংস্করণের তথ্য</string>
     <string name="new_version_info_completed">নতুন সংস্করণ ডায়ালগ বন্ধ করুন</string>
     <string name="menu_open_source_licenses">ওপেন সোর্স লাইসেন্স</string>
+    <string name="menu_privacy_policy">গোপনীয়তা নীতি</string>
     <string name="new_version_info_details">
 এটি Soundscape-এর একটি বড় বেটা রিলিজ, যাতে অনেক উন্নতি ও পরিবর্তন রয়েছে।
 
@@ -1505,6 +1506,8 @@
     <string name="first_launch_permissions_notification">নোটিফিকেশন</string>
     <string name="first_launch_permissions_record_audio">অডিও রেকর্ড করুন</string>
     <string name="first_launch_permissions_required_for_voice_control">এই অনুমতিটি ঐচ্ছিক, তবে আপনি যদি অ্যাপ নিয়ন্ত্রণে ভয়েস কমান্ড ব্যবহার করতে চান তাহলে এটি প্রয়োজনীয়</string>
+    <string name="first_launch_permissions_physical_activity">শারীরিক কার্যকলাপ</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">আবশ্যক। আপনি কখন হাঁটছেন তা বোঝার জন্য Soundscape আপনার ফোনের স্টেপ কাউন্টার ব্যবহার করে, যেমন আপনি কখন কোনো যানবাহন থেকে নেমেছেন বা থেমেছেন। আপনার পদক্ষেপের ডেটা আপনার ফোনেই থাকে।</string>
     <string name="battery_optimization_title">ব্যাকগ্রাউন্ড ব্যাটারি ব্যবহার</string>
     <string name="battery_optimization_message">আপনার ফোন লক থাকা অবস্থায় অডিও নেভিগেশন প্রদান অব্যাহত রাখতে Soundscape-এর অবাধ ব্যাটারি ব্যবহারের প্রয়োজন। অনুগ্রহ করে পরবর্তী ডায়ালগে অবাধ ব্যাটারি ব্যবহারের অনুমতি দিন। আপনি Soundscape বন্ধ করলে, সব সার্ভিস বন্ধ হয়ে যাবে এবং অ্যাপটি আর ব্যাটারি ব্যবহার করবে না।</string>
     <string name="notification_text">ফোন লক থাকা অবস্থাতেও Soundscape লোকেশন সার্ভিস চলতে থাকে।</string>

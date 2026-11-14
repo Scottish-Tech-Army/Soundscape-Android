@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.heading
@@ -187,6 +188,8 @@ import org.scottishtecharmy.soundscape.resources.markers_title
 import org.scottishtecharmy.soundscape.resources.menu_audio_tutorial
 import org.scottishtecharmy.soundscape.resources.menu_help
 import org.scottishtecharmy.soundscape.resources.menu_open_source_licenses
+import org.scottishtecharmy.soundscape.resources.menu_privacy_policy
+import org.scottishtecharmy.soundscape.resources.new_version_info_release_notes
 import org.scottishtecharmy.soundscape.resources.microsoft_copyright
 import org.scottishtecharmy.soundscape.resources.oboe_copyright
 import org.scottishtecharmy.soundscape.resources.openmaptiles_copyright
@@ -651,6 +654,38 @@ fun SharedHelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
+                    // At the top of the About page: the privacy policy, which Google Play wants
+                    // reachable from within the app, and the release notes, both on the website.
+                    if (sections.titleId == Res.string.settings_about_app) {
+                        item {
+                            val uriHandler = LocalUriHandler.current
+                            CustomButton(
+                                onClick = { runCatching { uriHandler.openUri(PRIVACY_POLICY_URL) } },
+                                text = stringResource(Res.string.menu_privacy_policy),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .smallPadding()
+                                    .testTag("helpScreenPrivacyPolicy"),
+                                shape = RoundedCornerShape(spacing.extraSmall),
+                                textStyle = MaterialTheme.typography.bodyLarge,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                        item {
+                            val uriHandler = LocalUriHandler.current
+                            CustomButton(
+                                onClick = { runCatching { uriHandler.openUri(releaseNotesUrl()) } },
+                                text = stringResource(Res.string.new_version_info_release_notes),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .smallPadding()
+                                    .testTag("helpScreenReleaseNotes"),
+                                shape = RoundedCornerShape(spacing.extraSmall),
+                                textStyle = MaterialTheme.typography.bodyLarge,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                    }
                     items(sections.sections) { section ->
                         Box(
                             modifier = Modifier.semantics(mergeDescendants = true) {}
@@ -741,6 +776,7 @@ fun SharedHelpScreen(
                             )
                         }
                     }
+
                 }
             }
         }

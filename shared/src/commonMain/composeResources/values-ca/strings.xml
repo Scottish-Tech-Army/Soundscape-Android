@@ -554,6 +554,8 @@
     <string name="first_launch_permissions_notification">Notificacions</string>
     <string name="first_launch_permissions_record_audio">Enregistrament d'àudio</string>
     <string name="first_launch_permissions_required_for_voice_control">Aquest permís és opcional, però és necessari si voleu utilitzar ordres de veu per controlar l'aplicació</string>
+    <string name="first_launch_permissions_physical_activity">Activitat física</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obligatori. Soundscape fa servir el comptador de passos del telèfon per saber quan camines, per exemple quan has baixat d’un vehicle o t’has aturat. Les dades dels teus passos es queden al telèfon.</string>
     <string name="battery_optimization_title">Ús de la bateria en segon pla</string>
     <string name="battery_optimization_message">Soundscape necessita un ús de bateria sense restriccions per continuar proporcionant navegació per àudio quan el telèfon estigui bloquejat. Permeteu l'ús de bateria sense restriccions al següent diàleg. Si tanqueu Soundscape, tots els serveis s'aturaran i l'aplicació deixarà d'utilitzar bateria.</string>
     <string name="notification_text">El servei d'ubicació de Soundscape s'executa fins i tot quan el telèfon està bloquejat.</string>
@@ -679,6 +681,7 @@
     <string name="new_version_info_text">Informació de la nova versió</string>
     <string name="new_version_info_completed">Tanca el diàleg de la nova versió</string>
     <string name="menu_open_source_licenses">Llicències de codi obert</string>
+    <string name="menu_privacy_policy">Política de privadesa</string>
     <string name="new_version_info_details">
 Aquesta és una versió beta important de Soundscape amb moltes millores i canvis.
 

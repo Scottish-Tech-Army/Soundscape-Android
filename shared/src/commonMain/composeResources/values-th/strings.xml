@@ -838,6 +838,7 @@
     <string name="new_version_info_text">ข้อมูลเวอร์ชันใหม่</string>
     <string name="new_version_info_completed">ปิดหน้าต่างข้อมูลเวอร์ชันใหม่</string>
     <string name="menu_open_source_licenses">ใบอนุญาตโอเพนซอร์ส</string>
+    <string name="menu_privacy_policy">นโยบายความเป็นส่วนตัว</string>
     <string name="new_version_info_details">
 นี่คือ Soundscape รุ่นเบต้าครั้งใหญ่ที่มาพร้อมการปรับปรุงและการเปลี่ยนแปลงมากมาย
 
@@ -1489,6 +1490,8 @@
     <string name="first_launch_permissions_notification">การแจ้งเตือน</string>
     <string name="first_launch_permissions_record_audio">บันทึกเสียง</string>
     <string name="first_launch_permissions_required_for_voice_control">สิทธิ์นี้ไม่บังคับ แต่จำเป็นหากคุณต้องการใช้คำสั่งเสียงเพื่อควบคุมแอป</string>
+    <string name="first_launch_permissions_physical_activity">กิจกรรมทางกาย</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">จำเป็น Soundscape ใช้ตัวนับก้าวในโทรศัพท์ของคุณเพื่อรู้ว่าคุณกำลังเดินอยู่หรือไม่ เช่น เมื่อคุณลงจากยานพาหนะหรือหยุดเดิน ข้อมูลก้าวเดินของคุณจะอยู่ในโทรศัพท์ของคุณเท่านั้น</string>
     <string name="battery_optimization_title">การใช้แบตเตอรี่เบื้องหลัง</string>
     <string name="battery_optimization_message">Soundscape ต้องการการใช้แบตเตอรี่แบบไม่จำกัดเพื่อให้บริการนำทางด้วยเสียงต่อไปได้แม้ในขณะที่โทรศัพท์ของคุณล็อกอยู่ กรุณาอนุญาตการใช้แบตเตอรี่แบบไม่จำกัดในกล่องโต้ตอบถัดไป หากคุณปิด Soundscape บริการทั้งหมดจะหยุดทำงานและแอปจะไม่ใช้แบตเตอรี่อีกต่อไป</string>
     <string name="notification_text">บริการตำแหน่งที่ตั้งของ Soundscape ทำงานแม้ในขณะที่โทรศัพท์ล็อกอยู่</string>

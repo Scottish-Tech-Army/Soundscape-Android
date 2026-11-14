@@ -605,6 +605,7 @@
     <string name="new_version_info_text">Bayanin Sabon Fitowa</string>
     <string name="new_version_info_completed">Rufe Tattaunawar Sabon Fitowa</string>
     <string name="menu_open_source_licenses">Lasisin Buɗaɗɗiyar Software</string>
+    <string name="menu_privacy_policy">Manufar Sirri</string>
     <string name="new_version_info_details">
 Wannan babban sakin Beta ne na Soundscape wanda ke ƙunshe da gyare-gyare da sauye-sauye da yawa.
 
@@ -1505,6 +1506,8 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="first_launch_permissions_notification">Sanarwa</string>
     <string name="first_launch_permissions_record_audio">Yin Rikodin Sauti</string>
     <string name="first_launch_permissions_required_for_voice_control">Wannan izinin na zaɓi ne, amma ana bukatarsa idan kuna son amfani da umarnin murya don sarrafa manhajar</string>
+    <string name="first_launch_permissions_physical_activity">Motsa jiki</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Ana bukata. Soundscape na amfani da ma’aunin matakai na wayarka don sanin lokacin da kake tafiya da ƙafa, misali idan ka sauka daga abin hawa ko ka tsaya. Bayanan matakanka suna zama a wayarka.</string>
     <string name="battery_optimization_title">Amfanin Batir a Bango</string>
     <string name="battery_optimization_message">Soundscape tana bukatar amfani da batir ba tare da wani ƙuntatawa ba domin ta ci gaba da ba da jagorar sauti idan wayarku tana kulle. Da fatan za ku ba da izinin amfani da batir ba tare da ƙuntatawa ba a akwatin tattaunawar da zai biyo baya. Idan kuka rufe Soundscape, dukkan sabis za su tsaya kuma manhajar ba za ta ƙara amfani da batir ba.</string>
     <string name="notification_text">Sabis na wurin Soundscape yana aiki ko da wayar tana kulle.</string>

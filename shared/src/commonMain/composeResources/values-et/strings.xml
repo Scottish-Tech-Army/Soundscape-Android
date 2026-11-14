@@ -457,6 +457,8 @@
     <string name="first_launch_permissions_notification">Teavitused</string>
     <string name="first_launch_permissions_record_audio">Heli salvestamine</string>
     <string name="first_launch_permissions_required_for_voice_control">See luba on valikuline, kuid on vajalik, kui soovid rakendust juhtida häälkäskluste abil</string>
+    <string name="first_launch_permissions_physical_activity">Kehaline aktiivsus</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Nõutav. Soundscape kasutab teie telefoni sammuloendurit, et teada saada, millal te kõnnite, näiteks kui olete sõidukist väljunud või peatunud. Teie sammuandmed jäävad teie telefoni.</string>
     <string name="battery_optimization_title">Aku kasutamine taustal</string>
     <string name="battery_optimization_message">Soundscape vajab piiramatut akukasutust, et pakkuda helinavigatsiooni ka siis, kui telefon on lukustatud. Palun luba järgmises dialoogis piiramatu akukasutus. Kui sulged Soundscape'i, peatuvad kõik teenused ja rakendus ei kasuta enam akut.</string>
     <string name="notification_text">Soundscape'i asukohateenus töötab ka siis, kui telefon on lukus.</string>
@@ -581,6 +583,7 @@
     <string name="new_version_info_text">Uue versiooni teave</string>
     <string name="new_version_info_completed">Sulge uue versiooni dialoog</string>
     <string name="menu_open_source_licenses">Avatud lähtekoodi litsentsid</string>
+    <string name="menu_privacy_policy">Privaatsuspoliitika</string>
     <string name="new_version_info_details">
 See on Soundscape'i suur beetaversioon, mis sisaldab palju täiustusi ja muudatusi.
 

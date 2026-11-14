@@ -1301,6 +1301,8 @@
     <string name="first_launch_permissions_notification">Oznámení</string>
     <string name="first_launch_permissions_record_audio">Nahrávat zvuk</string>
     <string name="first_launch_permissions_required_for_voice_control">Toto oprávnění je volitelné, ale je vyžadováno, pokud chcete aplikaci ovládat pomocí hlasových příkazů</string>
+    <string name="first_launch_permissions_physical_activity">Fyzická aktivita</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Vyžadováno. Soundscape používá krokoměr ve vašem telefonu, aby poznal, kdy jdete pěšky, například když jste vystoupili z vozidla nebo se zastavili. Údaje o vašich krocích zůstávají ve vašem telefonu.</string>
     <string name="battery_optimization_title">Spotřeba baterie na pozadí</string>
     <string name="battery_optimization_message">Soundscape vyžaduje neomezené používání baterie, aby mohl i nadále poskytovat zvukovou navigaci, když je telefon uzamčený. Povolte prosím neomezené používání baterie v následujícím dialogu. Pokud Soundscape zavřete, všechny služby se zastaví a aplikace přestane spotřebovávat baterii.</string>
     <string name="notification_text">Služba určování polohy Soundscape běží i tehdy, když je telefon uzamčený.</string>
@@ -1426,6 +1428,7 @@
     <string name="new_version_info_text">Informace o nové verzi</string>
     <string name="new_version_info_completed">Zavřít dialog o nové verzi</string>
     <string name="menu_open_source_licenses">Licence open source</string>
+    <string name="menu_privacy_policy">Zásady ochrany osobních údajů</string>
     <string name="new_version_info_details">
 Toto je velká beta verze aplikace Soundscape se spoustou vylepšení a změn.
 

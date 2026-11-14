@@ -600,6 +600,7 @@
 Παρακαλούμε συνεχίστε να αναφέρετε τυχόν προβλήματα, όσο μικρά κι αν είναι, μέσω της επιλογής «Επικοινωνία με την υποστήριξη» στο κύριο μενού.
 </string>
     <string name="menu_open_source_licenses">Άδειες ανοιχτού κώδικα</string>
+    <string name="menu_privacy_policy">Πολιτική απορρήτου</string>
     <string name="osm_tag_ferry_terminal">Τερματικός σταθμός φέρι</string>
     <string name="osm_tag_ferry_terminal_named">Τερματικός σταθμός φέρι %1$s</string>
     <string name="osm_office">Γραφείο</string>
@@ -1370,6 +1371,8 @@
     <string name="menu_main_menu">Κύριο μενού</string>
     <string name="first_launch_permissions_record_audio">Καταγραφή ήχου</string>
     <string name="first_launch_permissions_required_for_voice_control">Αυτή η άδεια είναι προαιρετική, αλλά απαιτείται εάν θέλετε να χρησιμοποιήσετε φωνητικές εντολές για να ελέγξετε την εφαρμογή</string>
+    <string name="first_launch_permissions_physical_activity">Σωματική δραστηριότητα</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Απαιτείται. Το Soundscape χρησιμοποιεί τον μετρητή βημάτων του τηλεφώνου σας για να καταλαβαίνει πότε περπατάτε, για παράδειγμα όταν έχετε κατέβει από ένα όχημα ή έχετε σταματήσει. Τα δεδομένα των βημάτων σας παραμένουν στο τηλέφωνό σας.</string>
     <string name="menu_media_controls">Στοιχεία ελέγχου πολυμέσων</string>
     <string name="settings_section_media_controls">Λειτουργία ελέγχου πολυμέσων</string>
     <string name="settings_section_media_controls_description">Αυτή η ρύθμιση καθορίζει τον τρόπο λειτουργίας των κουμπιών ελέγχου πολυμέσων στα ακουστικά ή στο τηλεχειριστήριό σας.</string>

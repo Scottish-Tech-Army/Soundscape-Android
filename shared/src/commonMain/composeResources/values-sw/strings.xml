@@ -1031,6 +1031,7 @@
     <string name="new_version_info_text">Taarifa za toleo jipya</string>
     <string name="new_version_info_completed">Funga dirisha la toleo jipya</string>
     <string name="menu_open_source_licenses">Leseni za chanzo huria</string>
+    <string name="menu_privacy_policy">Sera ya faragha</string>
     <string name="new_version_info_details">
 Hili ni toleo kubwa la Beta la Soundscape lenye maboresho na mabadiliko mengi.
 
@@ -1505,6 +1506,8 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="first_launch_permissions_notification">Arifa</string>
     <string name="first_launch_permissions_record_audio">Rekodi sauti</string>
     <string name="first_launch_permissions_required_for_voice_control">Ruhusa hii si ya lazima, lakini inahitajika ikiwa unataka kutumia amri za sauti kudhibiti programu</string>
+    <string name="first_launch_permissions_physical_activity">Shughuli za kimwili</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Inahitajika. Soundscape hutumia kihesabu hatua cha simu yako kujua unapotembea, kwa mfano unaposhuka kwenye gari au unaposimama. Data ya hatua zako hubaki kwenye simu yako.</string>
     <string name="battery_optimization_title">Matumizi ya Betri Nyuma</string>
     <string name="battery_optimization_message">Soundscape inahitaji matumizi ya betri yasiyozuiliwa ili kuendelea kutoa maelekezo ya sauti wakati simu yako imefungwa. Tafadhali ruhusu matumizi ya betri yasiyozuiliwa kwenye kidirisha kinachofuata. Ukifunga Soundscape, huduma zote zitasimama na programu haitatumia betri tena.</string>
     <string name="notification_text">Huduma ya mahali ya Soundscape hufanya kazi hata simu ikiwa imefungwa.</string>

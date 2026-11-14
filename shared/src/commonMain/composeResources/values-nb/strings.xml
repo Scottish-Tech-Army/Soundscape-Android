@@ -600,6 +600,7 @@ Vi jobber hele tiden med å forbedre oversettelsene våre, og på det samme nett
 Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via «Kontakt brukerstøtte» i hovedmenyen.
 </string>
     <string name="menu_open_source_licenses">Lisenser for åpen kildekode</string>
+    <string name="menu_privacy_policy">Personvernerklæring</string>
     <string name="osm_tag_ferry_terminal">Fergeterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s-fergeterminal</string>
     <string name="osm_office">Kontor</string>
@@ -1370,6 +1371,8 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="menu_main_menu">Toppmeny</string>
     <string name="first_launch_permissions_record_audio">Spille inn lyd</string>
     <string name="first_launch_permissions_required_for_voice_control">Denne tillatelsen er valgfri, men kreves hvis du vil bruke talekommandoer for å styre appen</string>
+    <string name="first_launch_permissions_physical_activity">Fysisk aktivitet</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obligatorisk. Soundscape bruker skritteller på telefonen for å vite når du går, for eksempel når du har gått ut av et kjøretøy eller har stoppet. Skrittdataene dine blir værende på telefonen.</string>
     <string name="menu_media_controls">Mediekontroller</string>
     <string name="settings_section_media_controls">Modus for mediekontroller</string>
     <string name="settings_section_media_controls_description">Denne innstillingen styrer hvordan mediekontrollknappene på hodetelefonene eller fjernkontrollen fungerer.</string>

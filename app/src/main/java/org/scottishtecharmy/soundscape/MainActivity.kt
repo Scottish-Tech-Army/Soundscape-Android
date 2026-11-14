@@ -57,12 +57,17 @@ import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
+import org.scottishtecharmy.soundscape.locationprovider.AndroidStepProvider
 import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_physical_activity
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_physical_activity_disclosure
+import org.scottishtecharmy.soundscape.resources.general_alert_cancel
 import org.scottishtecharmy.soundscape.resources.permissions_required
+import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.onboarding.battery.requestBatteryOptimizationExemption
@@ -117,6 +122,12 @@ class MainActivity : AppCompatActivity() {
             soundscapeServiceConnection.soundscapeService?.applyHeadTrackingEnabled()
         }
 
+    // The step sensors. Onboarding requires this on any phone with step hardware, so this is for
+    // users who onboarded before it was on that list. AndroidStepProvider checks the permission
+    // again on every recorded fix, so the answer needs no handling here.
+    private val activityRecognitionPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
+
     // we need location permission to be able to start the service
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -125,6 +136,7 @@ class MainActivity : AppCompatActivity() {
             permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
                 // Precise location access granted, service can run
                 startSoundscapeService()
+                requestActivityRecognitionOnce()
             }
 
             else -> {
@@ -1036,6 +1048,39 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Asks for ACTIVITY_RECOGNITION once, after location has been dealt with, so the two system
+     * dialogs aren't stacked. Only once: somebody who says no isn't asked again on every launch.
+     *
+     * Google Play requires an in-app disclosure of what the data is and how it's used immediately
+     * before the system prompt, with the user accepting it, so the prompt only follows Continue.
+     * Onboarding shows the same text on the permission's row, which has to be tapped.
+     */
+    private fun requestActivityRecognitionOnce() {
+        if (sharedPreferences.getBoolean(ACTIVITY_RECOGNITION_ASKED_KEY, false)) return
+        if (!AndroidStepProvider.hasStepSensor(this)) return
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) ==
+            android.content.pm.PackageManager.PERMISSION_GRANTED
+        ) return
+        sharedPreferences.edit { putBoolean(ACTIVITY_RECOGNITION_ASKED_KEY, true) }
+        val (title, message, accept, decline) = kotlinx.coroutines.runBlocking {
+            listOf(
+                getString(Res.string.first_launch_permissions_physical_activity),
+                getString(Res.string.first_launch_permissions_physical_activity_disclosure),
+                getString(Res.string.ui_continue),
+                getString(Res.string.general_alert_cancel),
+            )
+        }
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(accept) { _, _ ->
+                activityRecognitionPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION)
+            }
+            .setNegativeButton(decline, null)
+            .show()
+    }
+
     private fun checkAndRequestLocationPermissions() {
         when (ContextCompat.checkSelfPermission(
             this,
@@ -1044,6 +1089,7 @@ class MainActivity : AppCompatActivity() {
             android.content.pm.PackageManager.PERMISSION_GRANTED -> {
                 // permission already granted
                 startSoundscapeService()
+                requestActivityRecognitionOnce()
             }
 
             else -> {
@@ -1219,6 +1265,7 @@ class MainActivity : AppCompatActivity() {
         const val RELATIVE_DIRECTION_KEY = "RelativeDirectionMode"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
+        const val ACTIVITY_RECOGNITION_ASKED_KEY = "ActivityRecognitionAsked"
         const val AUDIO_TOUR_SHOWN_KEY = "AudioTourShown"
     }
 }

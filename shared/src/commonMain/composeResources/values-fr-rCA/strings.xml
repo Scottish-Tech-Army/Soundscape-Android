@@ -604,6 +604,7 @@ Nous cherchons toujours à améliorer nos traductions, et sur le même site web 
 Merci de continuer à nous signaler tout problème, aussi minime soit-il, via « Contacter le support » dans le menu principal.
 </string>
     <string name="menu_open_source_licenses">Licences open source</string>
+    <string name="menu_privacy_policy">Politique de confidentialité</string>
     <string name="osm_tag_ferry_terminal">Terminal de traversier</string>
     <string name="osm_tag_ferry_terminal_named">Terminal de traversier %1$s</string>
     <string name="osm_office">Bureau</string>
@@ -1374,6 +1375,8 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="menu_main_menu">Menu principal</string>
     <string name="first_launch_permissions_record_audio">Enregistrer l’audio</string>
     <string name="first_launch_permissions_required_for_voice_control">Cette autorisation est facultative, mais requise si vous souhaitez utiliser des commandes vocales pour contrôler l’appli</string>
+    <string name="first_launch_permissions_physical_activity">Activité physique</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obligatoire. Soundscape utilise le podomètre de votre téléphone pour savoir quand vous marchez, par exemple quand vous êtes descendu d’un véhicule ou que vous vous êtes arrêté. Les données de vos pas restent sur votre téléphone.</string>
     <string name="menu_media_controls">Contrôles multimédias</string>
     <string name="settings_section_media_controls">Mode des contrôles multimédias</string>
     <string name="settings_section_media_controls_description">Ce réglage détermine le fonctionnement des boutons de contrôle multimédia de votre casque ou de votre télécommande.</string>

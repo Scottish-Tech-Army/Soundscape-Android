@@ -628,6 +628,8 @@
     <string name="first_launch_permissions_notification">الإشعارات</string>
     <string name="first_launch_permissions_record_audio">تسجيل الصوت</string>
     <string name="first_launch_permissions_required_for_voice_control">هذا الإذن اختياري، ولكنه مطلوب إذا كنت تريد استخدام الأوامر الصوتية للتحكم في التطبيق</string>
+    <string name="first_launch_permissions_physical_activity">النشاط البدني</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">مطلوب. يستخدم Soundscape عدّاد الخطوات في هاتفك لمعرفة متى تكون ماشيًا، مثلًا عندما تنزل من مركبة أو تتوقف. تبقى بيانات خطواتك على هاتفك.</string>
     <string name="battery_optimization_title">استخدام البطارية في الخلفية</string>
     <string name="battery_optimization_message">يتطلب Soundscape استخدامًا غير مقيّد للبطارية لمواصلة تقديم التنقل الصوتي عندما يكون هاتفك مقفلاً. يُرجى السماح بالاستخدام غير المقيّد للبطارية في مربع الحوار التالي. إذا أغلقت Soundscape، فستتوقف جميع الخدمات ولن يستخدم التطبيق البطارية بعد ذلك.</string>
     <string name="notification_text">تعمل خدمة تحديد الموقع الخاصة بـ Soundscape حتى عندما يكون الهاتف مقفلاً.</string>
@@ -994,6 +996,7 @@
     <string name="new_version_info_text">معلومات الإصدار الجديد</string>
     <string name="new_version_info_completed">إغلاق مربع حوار الإصدار الجديد</string>
     <string name="menu_open_source_licenses">تراخيص المصادر المفتوحة</string>
+    <string name="menu_privacy_policy">سياسة الخصوصية</string>
     <string name="new_version_info_details">
 هذا إصدار تجريبي (Beta) رئيسي من Soundscape يتضمن الكثير من التحسينات والتغييرات.
 

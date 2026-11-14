@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.gpx
 
+import org.scottishtecharmy.soundscape.locationprovider.StepSnapshot
+
 data class GpxData(
     val metadata: GpxMetadata = GpxMetadata(),
     val waypoints: List<GpxWaypoint> = emptyList(),
@@ -87,4 +89,6 @@ data class GpxTrackPoint(
      * only which way they were pointed. See StationaryDetector.
      */
     val bearingAccuracyDegrees: Float? = null,
+    /** The pedometer's state when the point was recorded, from its `<extensions>`, if any. */
+    val steps: StepSnapshot? = null,
 )

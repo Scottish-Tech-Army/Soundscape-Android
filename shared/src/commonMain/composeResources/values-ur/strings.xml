@@ -423,6 +423,7 @@
     <string name="new_version_info_text">نئے ورژن کی معلومات</string>
     <string name="new_version_info_completed">نئے ورژن کا ڈائیلاگ بند کریں</string>
     <string name="menu_open_source_licenses">اوپن سورس لائسنس</string>
+    <string name="menu_privacy_policy">رازداری کی پالیسی</string>
     <string name="new_version_info_details">
 یہ Soundscape کی ایک بڑی بیٹا ریلیز ہے جس میں بہت سی بہتریاں اور تبدیلیاں شامل ہیں۔
 
@@ -1505,6 +1506,8 @@
     <string name="first_launch_permissions_notification">اطلاعات</string>
     <string name="first_launch_permissions_record_audio">آڈیو ریکارڈ کریں</string>
     <string name="first_launch_permissions_required_for_voice_control">یہ اجازت اختیاری ہے، لیکن اگر آپ ایپ کو کنٹرول کرنے کے لیے وائس کمانڈز استعمال کرنا چاہتے ہیں تو یہ درکار ہے</string>
+    <string name="first_launch_permissions_physical_activity">جسمانی سرگرمی</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">ضروری۔ Soundscape آپ کے فون کا قدم شمار استعمال کرتا ہے تاکہ معلوم ہو کہ آپ کب چل رہے ہیں، مثلاً جب آپ کسی گاڑی سے اترے ہوں یا رک گئے ہوں۔ آپ کے قدموں کا ڈیٹا آپ کے فون پر ہی رہتا ہے۔</string>
     <string name="battery_optimization_title">پس منظر میں بیٹری کا استعمال</string>
     <string name="battery_optimization_message">آپ کا فون لاک ہونے پر بھی آڈیو نیویگیشن فراہم کرتے رہنے کے لیے Soundscape کو غیر محدود بیٹری استعمال کی ضرورت ہے۔ براہ کرم اگلے ڈائیلاگ میں غیر محدود بیٹری استعمال کی اجازت دیں۔ اگر آپ Soundscape بند کر دیتے ہیں، تو تمام سروسز رک جائیں گی اور ایپ مزید بیٹری استعمال نہیں کرے گی۔</string>
     <string name="notification_text">Soundscape کی لوکیشن سروس فون لاک ہونے پر بھی چلتی رہتی ہے۔</string>

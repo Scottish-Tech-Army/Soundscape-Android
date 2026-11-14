@@ -600,6 +600,7 @@ Við viljum alltaf bæta þýðingarnar okkar og á sama vef og útgáfuupplýsi
 Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hversu lítil þau eru, í gegnum „Hafa samband við þjónustuver“ í aðalvalmyndinni.
 </string>
     <string name="menu_open_source_licenses">Leyfi opins hugbúnaðar</string>
+    <string name="menu_privacy_policy">Persónuverndarstefna</string>
     <string name="osm_tag_ferry_terminal">Ferjuhöfn</string>
     <string name="osm_tag_ferry_terminal_named">%1$s ferjuhöfn</string>
     <string name="osm_office">Skrifstofa</string>
@@ -1370,6 +1371,8 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="menu_main_menu">Aðalvalmynd</string>
     <string name="first_launch_permissions_record_audio">Upptaka hljóðs</string>
     <string name="first_launch_permissions_required_for_voice_control">Þetta leyfi er valfrjálst, en nauðsynlegt ef þú vilt nota raddskipanir til að stýra forritinu</string>
+    <string name="first_launch_permissions_physical_activity">Líkamleg hreyfing</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Nauðsynlegt. Soundscape notar skrefateljara símans til að greina hvenær þú ert að ganga, til dæmis þegar þú ert kominn út úr ökutæki eða hefur stoppað. Skrefagögnin þín verða áfram í símanum þínum.</string>
     <string name="menu_media_controls">Fjölmiðlastýringar</string>
     <string name="settings_section_media_controls">Hamur fjölmiðlastýringa</string>
     <string name="settings_section_media_controls_description">Þessi stilling ræður því hvernig fjölmiðlahnapparnir á heyrnartólunum þínum eða fjarstýringunni virka.</string>

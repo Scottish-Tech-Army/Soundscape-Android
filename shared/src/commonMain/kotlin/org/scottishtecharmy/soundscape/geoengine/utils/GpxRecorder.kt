@@ -5,13 +5,19 @@ import kotlinx.coroutines.sync.withLock
 import org.scottishtecharmy.soundscape.geoengine.LocationRecorder
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingDebug
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.locationprovider.StepSnapshot
 import org.scottishtecharmy.soundscape.platform.formatGpxTimestamp
 
 class GpxRecorder : LocationRecorder {
 
     val bufferMutex = Mutex()
     val maxBufferSize = 3600        // 1 location per second for an hour
-    private val buffer: MutableList<Pair<SoundscapeLocation, HeadTrackingDebug?>> = mutableListOf()
+    private class Entry(
+        val location: SoundscapeLocation,
+        val head: HeadTrackingDebug?,
+        val steps: StepSnapshot?,
+    )
+    private val buffer: MutableList<Entry> = mutableListOf()
 
     /**
      * Gives the head tracker's state to record with each fix, or null when there's no tracker
@@ -20,11 +26,18 @@ class GpxRecorder : LocationRecorder {
      */
     var headTracking: (() -> HeadTrackingDebug?)? = null
 
+    /**
+     * Gives the pedometer's state to record with each fix, or null when there's none. Written as
+     * an `<extensions>` element alongside the head tracking, for the same reason.
+     */
+    var steps: (() -> StepSnapshot?)? = null
+
     suspend fun generateGpx(): String {
         val builder = StringBuilder()
         builder.append(GPX_HEADER)
         bufferMutex.withLock {
-            for ((location, head) in buffer) {
+            for (entry in buffer) {
+                val location = entry.location
                 builder.append("<trkpt lat=\"").append(location.latitude)
                     .append("\" lon=\"").append(location.longitude).append("\">\n")
                 builder.append("<ele>0.0</ele>\n")
@@ -51,7 +64,12 @@ class GpxRecorder : LocationRecorder {
                 builder.append("<time>")
                     .append(formatGpxTimestamp(location.timestampMilliseconds))
                     .append("</time>\n")
-                head?.let { appendHeadTracking(builder, it) }
+                if (entry.head != null || entry.steps != null) {
+                    builder.append("<extensions>\n")
+                    entry.head?.let { appendHeadTracking(builder, it) }
+                    entry.steps?.let { appendSteps(builder, it) }
+                    builder.append("</extensions>\n")
+                }
                 builder.append("</trkpt>\n")
             }
         }
@@ -60,7 +78,7 @@ class GpxRecorder : LocationRecorder {
     }
 
     private fun appendHeadTracking(builder: StringBuilder, head: HeadTrackingDebug) {
-        builder.append("<extensions>\n<headTracking>\n")
+        builder.append("<headTracking>\n")
         builder.append("<status>").append(head.status.name).append("</status>\n")
         head.device?.let { builder.append("<device>").append(it).append("</device>\n") }
         appendDegrees(builder, "heading", head.headingDegrees)
@@ -83,7 +101,24 @@ class GpxRecorder : LocationRecorder {
             builder.append("<input device=\"").append(device).append("\">\n")
                 .append(input).append("</input>\n")
         }
-        builder.append("</headTracking>\n</extensions>\n")
+        builder.append("</headTracking>\n")
+    }
+
+    private fun appendSteps(builder: StringBuilder, steps: StepSnapshot) {
+        builder.append("<steps>\n")
+        steps.detectedSteps?.let { builder.append("<detected>").append(it).append("</detected>\n") }
+        steps.lastStepMillis?.let {
+            builder.append("<lastStep>").append(formatGpxTimestamp(it)).append("</lastStep>\n")
+        }
+        steps.counterSteps?.let { builder.append("<counter>").append(it).append("</counter>\n") }
+        steps.counterMillis?.let {
+            builder.append("<counterTime>").append(formatGpxTimestamp(it)).append("</counterTime>\n")
+        }
+        steps.cadence?.let {
+            builder.append("<cadence>").append(kotlin.math.round(it * 100.0) / 100.0)
+                .append("</cadence>\n")
+        }
+        builder.append("</steps>\n")
     }
 
     // To a tenth of a degree, left out when there's no value, as for the fix's own fields
@@ -108,7 +143,7 @@ class GpxRecorder : LocationRecorder {
 
     override suspend fun storeLocation(location: SoundscapeLocation) {
         bufferMutex.withLock {
-            buffer.add(location to headTracking?.invoke())
+            buffer.add(Entry(location, headTracking?.invoke(), steps?.invoke()))
             if (buffer.size > maxBufferSize)
                 buffer.removeAt(0)
         }

@@ -600,6 +600,7 @@ Vi försöker hela tiden förbättra våra översättningar, och på samma webbp
 Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kontakta supporten” i huvudmenyn.
 </string>
     <string name="menu_open_source_licenses">Licenser för öppen källkod</string>
+    <string name="menu_privacy_policy">Integritetspolicy</string>
     <string name="osm_tag_ferry_terminal">Färjeterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s färjeterminal</string>
     <string name="osm_office">Kontor</string>
@@ -1370,6 +1371,8 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="menu_main_menu">Huvudmeny</string>
     <string name="first_launch_permissions_record_audio">Spela in ljud</string>
     <string name="first_launch_permissions_required_for_voice_control">Den här behörigheten är frivillig, men krävs om du vill använda röstkommandon för att styra appen</string>
+    <string name="first_launch_permissions_physical_activity">Fysisk aktivitet</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obligatoriskt. Soundscape använder telefonens stegräknare för att veta när du går, till exempel när du har klivit ur ett fordon eller stannat. Dina stegdata stannar på telefonen.</string>
     <string name="menu_media_controls">Mediereglage</string>
     <string name="settings_section_media_controls">Läge för mediereglage</string>
     <string name="settings_section_media_controls_description">Den här inställningen styr hur mediereglageknapparna på dina hörlurar eller din fjärrkontroll fungerar.</string>

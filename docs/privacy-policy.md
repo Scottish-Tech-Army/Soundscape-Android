@@ -7,7 +7,7 @@ has_toc: false
 
 # Soundscape Privacy Policy
 
-Last Updated: 17th September 2026
+Last Updated: 14th November 2026
 
 ## Introduction
 Welcome to Soundscape. This Privacy Policy is meant to help you understand what data we collect, why we collect it, and what we do with it. This is important; we hope you will take the time to read it carefully.
@@ -18,6 +18,13 @@ This policy covers the Soundscape app on both Android and iOS. The two apps are 
 Soundscape has no accounts and no sign-in. The markers and routes you create, the settings you choose, and any offline maps you download are stored on your phone. Soundscape never sends them to us, and we have no way to see them.
 
 Your phone's own backup service may copy your markers, routes and settings to your personal cloud account, so that they can be restored if you set up a new phone: this is Google's backup service on Android and iCloud Backup on iOS. Those backups belong to your Google or Apple account rather than to us, we have no access to them, and they are handled under Google's and Apple's own privacy policies. Both services encrypt the backup in transit and while it is stored. On Android it is additionally encrypted with a key derived from your screen lock, which Google cannot read, so a screen lock is worth setting. On iOS the same is true of iCloud Backup only if you have turned on Advanced Data Protection; otherwise Apple holds the keys. You can turn the backup off entirely in your phone's settings.
+
+## Physical activity (step) data
+On phones that have a step counter, Soundscape asks for permission to use it: the "Physical activity" permission on Android, and "Motion & Fitness" on iOS. Soundscape reads how many steps you have taken and when, and uses it only to tell whether you are walking right now - for example, to notice sooner that you have got out of a car or bus, or that you have stopped. It doesn't read any other health or fitness information, and it doesn't count calories, distance or exercise.
+
+Your step data is used on your phone as you go and is not kept. It is never sent to us, and it is not part of the usage information or crash reports described below.
+
+The one exception is a travel recording, a debugging feature you switch on in Settings. While it is on, the recording includes your step counts alongside your locations, and it stays on your phone until you choose to share it - for example, by emailing it to us to help with a problem. You can turn off travel recording at any time, and you can withdraw the permission in your phone's settings.
 
 ## Information We Collect
 We may collect the following types of information:

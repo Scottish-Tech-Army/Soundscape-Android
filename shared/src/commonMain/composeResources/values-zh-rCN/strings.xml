@@ -1058,6 +1058,7 @@
     <string name="new_version_info_text">新版本信息</string>
     <string name="new_version_info_completed">关闭新版本对话框</string>
     <string name="menu_open_source_licenses">开源许可证</string>
+    <string name="menu_privacy_policy">隐私政策</string>
     <string name="new_version_info_details">
 这是 Soundscape 的一个重要测试版（Beta）版本，包含大量改进和变化。
 
@@ -1366,6 +1367,8 @@
     <string name="menu_main_menu">顶层菜单</string>
     <string name="first_launch_permissions_record_audio">录制音频</string>
     <string name="first_launch_permissions_required_for_voice_control">此权限为可选，但如果您想使用语音命令来控制应用，则需要授予此权限</string>
+    <string name="first_launch_permissions_physical_activity">身体活动</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">必需。Soundscape 使用手机的计步器来判断您何时在步行，例如您下车或停下来的时候。您的步数数据只保留在手机上。</string>
     <string name="menu_media_controls">媒体控制</string>
     <string name="settings_section_media_controls">媒体控制模式</string>
     <string name="settings_section_media_controls_description">此设置决定您的耳机或遥控器上的媒体控制按钮如何工作。</string>

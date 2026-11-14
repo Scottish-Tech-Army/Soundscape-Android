@@ -439,6 +439,7 @@
     <string name="new_version_info_text">Thông tin phiên bản mới</string>
     <string name="new_version_info_completed">Đóng hộp thoại phiên bản mới</string>
     <string name="menu_open_source_licenses">Giấy phép mã nguồn mở</string>
+    <string name="menu_privacy_policy">Chính sách quyền riêng tư</string>
     <string name="new_version_info_details">
 Đây là một bản phát hành Beta lớn của Soundscape với rất nhiều cải tiến và thay đổi.
 
@@ -1489,6 +1490,8 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="first_launch_permissions_notification">Thông báo</string>
     <string name="first_launch_permissions_record_audio">Ghi âm</string>
     <string name="first_launch_permissions_required_for_voice_control">Quyền này là tùy chọn, nhưng bắt buộc nếu bạn muốn sử dụng lệnh thoại để điều khiển ứng dụng</string>
+    <string name="first_launch_permissions_physical_activity">Hoạt động thể chất</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Bắt buộc. Soundscape dùng bộ đếm bước của điện thoại để biết khi nào bạn đang đi bộ, ví dụ khi bạn vừa xuống xe hoặc dừng lại. Dữ liệu bước chân của bạn chỉ ở trên điện thoại.</string>
     <string name="battery_optimization_title">Mức sử dụng Pin ở Chế độ Nền</string>
     <string name="battery_optimization_message">Soundscape cần được sử dụng pin không giới hạn để tiếp tục cung cấp điều hướng bằng âm thanh khi điện thoại của bạn bị khóa. Vui lòng cho phép sử dụng pin không giới hạn trong hộp thoại tiếp theo. Nếu bạn đóng Soundscape, mọi dịch vụ sẽ dừng lại và ứng dụng sẽ không còn sử dụng pin nữa.</string>
     <string name="notification_text">Dịch vụ vị trí của Soundscape vẫn chạy ngay cả khi điện thoại bị khóa.</string>

@@ -80,4 +80,38 @@ class OnFootDetectorTest {
         val detector = OnFootDetector()
         for (second in 1..60) assertFalse(detector.update(1.4, true, second * 1000L))
     }
+
+    /**
+     * Steps at walking speed need no grace period, since braking doesn't make the pedometer
+     * count - only five seconds clear of vehicle speed.
+     */
+    @Test
+    fun stepsAtWalkingSpeedAreOnFootAfterFiveSeconds() {
+        val detector = OnFootDetector()
+        detector.update(10.0, true, 0L)
+        for (second in 1..5) {
+            assertFalse(detector.update(0.5, false, second * 1000L, stepping = true))
+        }
+        assertTrue(detector.update(0.5, false, 6_000L, stepping = true))
+    }
+
+    /** The pedometer counts on rough roads and while braking - see StepTracker. */
+    @Test
+    fun stepsAtAnythingAboveWalkingSpeedAreNotOnFoot() {
+        val detector = OnFootDetector()
+        detector.update(10.0, true, 0L)
+        for (second in 1..4) {
+            assertFalse(detector.update(4.5, false, second * 1000L, stepping = true))
+        }
+        // Still within 5s of the 4.5 m/s fixes
+        assertFalse(detector.update(1.0, false, 5_000L, stepping = true))
+        assertFalse(detector.update(1.0, false, 9_000L, stepping = true))
+        assertTrue(detector.update(1.0, false, 10_000L, stepping = true))
+    }
+
+    @Test
+    fun stepsWithNoVehicleFirstAreNotOnFootAfterOne() {
+        val detector = OnFootDetector()
+        assertFalse(detector.update(1.0, true, 1_000L, stepping = true))
+    }
 }
