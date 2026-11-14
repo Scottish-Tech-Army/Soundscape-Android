@@ -72,6 +72,13 @@ class IosAudioEngine : AudioEngine {
     private var nextHandle = 1L
     private val activePlayers = mutableMapOf<Long, PlayerEntry>()
 
+    // Handles allocated by createTextToSpeech/createEarcon/createBeacon but not yet
+    // filed into activePlayers/discreteQueue by their dispatch_async(audioQueue) block.
+    // Without this, isHandleActive would see neither set during that gap and report
+    // the handle as already finished — awaitHandle (CalloutController) would then
+    // return instantly instead of waiting for the sound to actually play.
+    private val pendingHandles = mutableSetOf<Long>()
+
     // activePlayers is touched from multiple threads: from coroutine dispatchers
     // (updateGeometry, createBeacon, speakCallout, ...) and from [audioQueue]
     // completion callbacks. mutableMapOf is not thread-safe, so guard every
@@ -377,8 +384,9 @@ class IosAudioEngine : AudioEngine {
         // comment on [audioQueue]. Callers used to be trusted to already be on that
         // queue (true for calloutController, false for e.g. saveMarker/saveRoute),
         // so dispatch here instead of relying on that.
-        val handle = withActivePlayersLock { nextHandle++ }
+        val handle = withActivePlayersLock { val h = nextHandle++; pendingHandles.add(h); h }
         dispatch_async(audioQueue) {
+            withActivePlayersLock { pendingHandles.remove(handle) }
             val queuedSound = QueuedSound(
                 handle = handle,
                 isTts = true,
@@ -406,7 +414,7 @@ class IosAudioEngine : AudioEngine {
         heading: Double
     ): Long {
         // See createTextToSpeech: everything but the handle must run on audioQueue.
-        val handle = withActivePlayersLock { nextHandle++ }
+        val handle = withActivePlayersLock { val h = nextHandle++; pendingHandles.add(h); h }
 
         // Extract asset name from Android-style path
         val assetName = asset
@@ -414,6 +422,7 @@ class IosAudioEngine : AudioEngine {
             .removeSuffix(".wav")
 
         dispatch_async(audioQueue) {
+            withActivePlayersLock { pendingHandles.remove(handle) }
             val queuedSound = QueuedSound(
                 handle = handle,
                 isTts = false,
@@ -576,7 +585,9 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun isHandleActive(handle: Long): Boolean {
-        if (withActivePlayersLock { activePlayers.containsKey(handle) }) return true
+        if (withActivePlayersLock { activePlayers.containsKey(handle) || pendingHandles.contains(handle) }) {
+            return true
+        }
         // A handle enqueued behind the currently-playing sound isn't in activePlayers
         // yet — treat it as active so awaitHandle waits for its whole turn.
         return discreteQueue.any { it.handle == handle }
