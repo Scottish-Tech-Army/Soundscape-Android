@@ -29,6 +29,9 @@ são agora descritos corretamente quando caminha num passeio mapeado separadamen
 a 2.0.99, os avisos de cruzamentos estão mais claros e precisos, e o Soundscape avisa agora quando
 uma via termina num portão que não consegue atravessar. Corrigimos também o silêncio de *A Minha
 Localização* com uma ligação de rede fraca, e um problema ao transferir mapas offline.
+O Soundscape pode agora usar o contador de passos do telemóvel para saber quando está a andar, pelo
+que se apercebe mais cedo de que saiu de um veículo ou parou, e ao abrir esta versão pela primeira
+vez ser-lhe-á pedida uma nova permissão, *Atividade física* (*Movimento e fitness* no iPhone).
 
 ## Novidades da versão 2.0
 

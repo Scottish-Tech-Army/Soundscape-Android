@@ -30,6 +30,10 @@ por separado de la calle. Desde la 2.0.99, los avisos de cruces son más claros 
 Soundscape ahora te avisa cuando una vía termina en una puerta que no puedes cruzar. También hemos
 corregido que *Mi ubicación* se quedara en silencio con una conexión de red débil, y un problema al
 descargar mapas sin conexión.
+Soundscape ahora puede usar el contador de pasos de tu teléfono para saber cuándo estás caminando,
+así que se da cuenta antes de que te has bajado de un vehículo o te has detenido, y la primera vez
+que abras esta versión se te pedirá un nuevo permiso, *Actividad física* (*Movimiento y forma
+física* en iPhone).
 
 ## Novedades de la versión 2.0
 

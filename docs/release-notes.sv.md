@@ -30,6 +30,9 @@ kartlagd separat från vägen. Sedan 2.0.99 är informationsljuden om vägkorsni
 exakta, och Soundscape säger nu till när en väg slutar vid en grind som du inte kommer igenom. Vi
 har också åtgärdat att *Min plats* var tyst vid dålig nätverksanslutning, och ett problem med att
 ladda ned offlinekartor.
+Soundscape kan nu använda telefonens stegräknare för att veta när du går, så att den tidigare märker
+att du har klivit ur ett fordon eller stannat, och du blir ombedd att ge en ny behörighet, *Fysisk
+aktivitet* (*Rörelse och fitness* på iPhone), första gången du öppnar den här versionen.
 
 ## Nyheter i 2.0
 

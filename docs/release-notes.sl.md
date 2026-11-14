@@ -29,6 +29,9 @@ so zdaj pravilno opisana, ko hodite po pločniku, ki je na zemljevidu vrisan lo�
 različice 2.0.99 so zvočna obvestila o križiščih jasnejša in natančnejša, Soundscape pa vam zdaj
 pove, ko se pot konča pri vratih, skozi katera ne morete. Odpravili smo tudi težavo, da je *Moja
 lokacija* ob šibki omrežni povezavi molčala, in težavo pri prenosu zemljevidov brez povezave.
+Soundscape lahko zdaj s števcem korakov v telefonu prepozna, kdaj hodite, zato prej opazi, da ste
+izstopili iz vozila ali se ustavili, ob prvem odprtju te različice pa boste naprošeni za novo
+dovoljenje *Telesna dejavnost* (v iPhonu *Gibanje in telesna pripravljenost*).
 
 ## Novosti v različici 2.0
 

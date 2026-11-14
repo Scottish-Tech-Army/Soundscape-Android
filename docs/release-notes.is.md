@@ -29,6 +29,10 @@ Gatnamótum er nú lýst rétt þegar þú gengur á gangstétt sem er kortlög�
 2.0.99 eru tilkynningar um gatnamót skýrari og nákvæmari, og Soundscape lætur þig nú vita þegar
 vegur endar við hlið sem þú kemst ekki í gegnum. Við lagfærðum líka að *Mín staðsetning* þagði þegar
 nettenging var léleg, og vandamál við niðurhal ónettengdra korta.
+Soundscape getur nú notað skrefateljara símans til að greina hvenær þú ert að ganga, svo það tekur
+fyrr eftir því að þú ert kominn út úr ökutæki eða hefur stoppað, og þegar þú opnar þessa útgáfu í
+fyrsta sinn verður þú beðinn um nýtt leyfi, *Líkamleg hreyfing* (*Hreyfing og líkamlegt ástand* á
+iPhone).
 
 ## Nýtt í 2.0
 

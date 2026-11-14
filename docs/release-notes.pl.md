@@ -30,6 +30,10 @@ mapie osobno od jezdni. Od wersji 2.0.99 komunikaty o skrzyżowaniach są wyraź
 dokładniejsze, a Soundscape informuje teraz, gdy droga kończy się bramą, przez którą nie można
 przejść. Naprawiliśmy też milczenie funkcji *Moja lokalizacja* przy słabym połączeniu z siecią oraz
 problem z pobieraniem map offline.
+Soundscape może teraz korzystać z krokomierza w telefonie, aby rozpoznać, kiedy idziesz, dzięki
+czemu szybciej zauważa, że wysiadłeś z pojazdu lub się zatrzymałeś, a przy pierwszym otwarciu tej
+wersji pojawi się prośba o nowe uprawnienie *Aktywność fizyczna* (na iPhonie *Ruch i aktywność
+fizyczna*).
 
 ## Nowości w wersji 2.0
 

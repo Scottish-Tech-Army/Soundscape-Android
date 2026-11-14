@@ -31,6 +31,10 @@ d’intersections sont plus claires et plus précises, et Soundscape vous signal
 voie se termine à une barrière que vous ne pouvez pas franchir. Nous avons aussi corrigé le silence
 de *Mon emplacement* en cas de mauvaise connexion réseau, ainsi qu’un problème de téléchargement des
 cartes hors ligne.
+Soundscape peut désormais utiliser le podomètre de votre téléphone pour savoir quand vous marchez :
+il remarque ainsi plus tôt que vous êtes descendu d’un véhicule ou que vous vous êtes arrêté, et une
+nouvelle autorisation, *Activité physique* (*Mouvement et forme physique* sur iPhone), vous sera
+demandée à la première ouverture de cette version.
 
 ## Nouveautés de la version 2.0
 

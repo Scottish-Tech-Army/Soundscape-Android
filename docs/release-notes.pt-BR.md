@@ -30,6 +30,10 @@ mapeada separadamente da rua. Desde a 2.0.99, as notificações de cruzamentos e
 precisas, e o Soundscape agora avisa quando uma via termina em um portão pelo qual você não pode
 passar. Também corrigimos o *Minha Localização*, que ficava em silêncio com conexão de rede fraca, e
 um problema ao baixar mapas offline.
+O Soundscape agora pode usar o contador de passos do seu celular para saber quando você está
+andando, então percebe mais cedo que você desceu de um veículo ou parou, e ao abrir esta versão pela
+primeira vez você verá o pedido de uma nova permissão, *Atividade física* (*Movimento e Preparo
+Físico* no iPhone).
 
 ## Novidades da versão 2.0
 

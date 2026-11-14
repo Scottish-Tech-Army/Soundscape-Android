@@ -30,6 +30,9 @@ cartografiada per separat de la carretera. Des de la 2.0.99, els avisos de cruï
 precisos, i Soundscape ara us avisa quan una via acaba en una porta que no podeu travessar. També
 hem corregit que *La meva ubicació* es quedés en silenci amb una connexió de xarxa feble, i un
 problema en baixar mapes fora de línia.
+Ara Soundscape pot fer servir el comptador de passos del telèfon per saber quan camineu, de manera
+que s’adona abans que heu baixat d’un vehicle o us heu aturat, i quan obriu aquesta versió per
+primer cop se us demanarà un permís nou, *Activitat física* (*Moviment i fitness* a l’iPhone).
 
 ## Novetats de la 2.0
 

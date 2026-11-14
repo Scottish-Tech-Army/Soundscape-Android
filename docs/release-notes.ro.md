@@ -30,6 +30,10 @@ cartografiat separat de drum. Începând cu 2.0.99, anunțurile despre intersec�
 mai precise, iar Soundscape vă spune acum când un drum se termină la o poartă prin care nu puteți
 trece. Am remediat și faptul că *Locația mea* rămânea tăcută la o conexiune slabă la rețea, precum
 și o problemă la descărcarea hărților offline.
+Soundscape poate folosi acum contorul de pași al telefonului pentru a ști când mergeți pe jos, așa
+că observă mai repede că ați coborât dintr-un vehicul sau v-ați oprit, iar când deschideți această
+versiune prima dată, vi se va cere o nouă permisiune, *Activitate fizică* (*Mișcare și fitness* pe
+iPhone).
 
 ## Noutăți în 2.0
 

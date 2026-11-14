@@ -31,6 +31,9 @@ daban da titin mota. Tun daga 2.0.99, sanarwar mahaɗar hanya ta fi bayyana kuma
 Soundscape yanzu yana gaya maka lokacin da hanya ta ƙare a ƙofar shinge da ba za ka iya wucewa ba.
 Mun kuma gyara matsalar da *Wurina* ke yin shiru idan haɗin intanet ba shi da ƙarfi, da wata matsala
 wajen sauke taswirori don amfani ba tare da intanet ba.
+Yanzu Soundscape na iya amfani da ma’aunin matakai na wayarka don sanin lokacin da kake tafiya da
+ƙafa, don haka zai lura da wuri cewa ka sauka daga abin hawa ko ka tsaya, kuma za a nemi sabon izini
+na *Motsa jiki* (*Motsi da Lafiyar Jiki* a iPhone) lokacin da ka fara buɗe wannan sigar.
 
 ## Sabbin abubuwa a 2.0
 

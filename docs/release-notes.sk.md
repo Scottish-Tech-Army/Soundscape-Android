@@ -29,6 +29,9 @@ teraz opisujú správne, keď idete po chodníku, ktorý je v mape zakreslený o
 verzie 2.0.99 sú hlásenia križovatiek zrozumiteľnejšie a presnejšie a Soundscape vám teraz povie,
 keď cesta končí pri bráne, cez ktorú sa nedá prejsť. Opravili sme aj to, že *Moja poloha* pri slabom
 pripojení k sieti mlčala, a problém so sťahovaním offline máp.
+Soundscape teraz môže pomocou krokomeru v telefóne rozpoznať, kedy kráčate, takže skôr zistí, že ste
+vystúpili z vozidla alebo sa zastavili, a pri prvom otvorení tejto verzie budete požiadaní o nové
+povolenie *Fyzická aktivita* (na iPhone *Pohyb a fitness*).
 
 ## Novinky vo verzii 2.0
 

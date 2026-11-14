@@ -29,6 +29,9 @@ sada ispravno opisuju kada hodate po nogostupu koji je na karti ucrtan odvojeno 
 2.0.99 najave raskrižja jasnije su i točnije, a Soundscape vam sada kaže kada put završava kod vrata
 kroz koja ne možete proći. Ispravili smo i to da je *Moja lokacija* šutjela pri slaboj mrežnoj vezi
 te problem s preuzimanjem izvanmrežnih karata.
+Soundscape sada može koristiti brojač koraka na vašem telefonu kako bi prepoznao kada hodate, pa
+ranije primjećuje da ste izašli iz vozila ili stali, a kada prvi put otvorite ovu verziju, zatražit
+će se od vas nova dozvola *Tjelesna aktivnost* (na iPhoneu *Kretanje i fitness*).
 
 ## Novosti u verziji 2.0
 

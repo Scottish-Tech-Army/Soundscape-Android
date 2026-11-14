@@ -31,6 +31,10 @@ los van de weg in kaart is gebracht. Sinds 2.0.99 zijn de aankondigingen van kru
 en nauwkeuriger, en Soundscape meldt nu wanneer een weg eindigt bij een hek waar u niet door kunt.
 We hebben ook opgelost dat *Mijn locatie* stil bleef bij een slechte netwerkverbinding, en een
 probleem met het downloaden van offline kaarten.
+Soundscape kan nu de stappenteller van uw telefoon gebruiken om te weten wanneer u loopt, zodat het
+eerder merkt dat u uit een voertuig bent gestapt of bent blijven staan, en de eerste keer dat u deze
+versie opent, wordt u om een nieuwe toestemming gevraagd: *Fysieke activiteit* (*Beweging en
+conditie* op iPhone).
 
 ## Nieuw in 2.0
 
