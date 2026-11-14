@@ -24,10 +24,10 @@ class IosStepProvider : StepProvider {
     }
 
     private fun start() {
-        started = true
         if (!CMPedometer.isStepCountingAvailable()) return
         val status = CMPedometer.authorizationStatus()
         if (status == CMAuthorizationStatusDenied || status == CMAuthorizationStatusRestricted) return
+        started = true
         pedometer.startPedometerUpdatesFromDate(NSDate()) { data, error ->
             if (data == null || error != null) return@startPedometerUpdatesFromDate
             state.value = StepSnapshot(
