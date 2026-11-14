@@ -1564,6 +1564,7 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="directions_cardinal_north_west_bound">Mot nordvest</string>
     <string name="first_launch_permissions_granted">Tillatelse gitt</string>
     <string name="first_launch_permissions_not_granted">Ikke gitt ennå</string>
+    <string name="first_launch_permissions_denied">Avslått. Trykk for å tillate det i Innstillinger.</string>
     <string name="talkback_double_tap_template">Dobbelttrykk for å %1$s</string>
     <string name="menu_manage_locale">Region</string>
     <string name="callouts_audio_beacon_distance">Lydsignalet er for øyeblikket %1$s unna</string>
@@ -1635,7 +1636,7 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="directions_generic_tram">trikk</string>
     <string name="ios_permission_location_when_in_use">Soundscape trenger posisjonen din for å gi lydnavigasjon og beskrive omgivelsene dine.</string>
     <string name="ios_permission_location_always">Soundscape trenger posisjonen din for å gi lydnavigasjon også når appen kjører i bakgrunnen.</string>
-    <string name="ios_permission_motion">Soundscape bruker bevegelsesdata for å registrere hvilken retning du står mot, og plassere lydmeldingene i forhold til omgivelsene dine.</string>
+    <string name="ios_permission_motion">Soundscape bruker bevegelsesdata for å registrere hvilken retning du står mot, når du går, og plassere lydmeldingene i forhold til omgivelsene dine.</string>
     <string name="ios_permission_bluetooth">Soundscape bruker Bluetooth for å finne og koble til hodetelefoner med hodesporing og andre lydenheter.</string>
     <string name="route_detail_edit_remove_waypoint_hint">fjerne dette veipunktet fra ruten</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s blir fjernet fra denne ruten. Selve markøren blir ikke slettet. Vil du fortsette?</string>

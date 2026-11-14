@@ -1379,6 +1379,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="first_launch_permissions_required">Izin ini wajib diberikan</string>
     <string name="first_launch_permissions_granted">Izin diberikan</string>
     <string name="first_launch_permissions_not_granted">Belum diberikan</string>
+    <string name="first_launch_permissions_denied">Ditolak. Ketuk untuk mengizinkannya di Pengaturan.</string>
     <string name="permissions_required">Aplikasi ini memerlukan izin lokasi agar dapat berjalan.</string>
     <string name="permissions_button">Ubah izin di pengaturan aplikasi</string>
     <string name="first_launch_beacon_title">Pilih Suar Audio</string>
@@ -1619,7 +1620,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="directions_generic_tram">trem</string>
     <string name="ios_permission_location_when_in_use">Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio dan menjelaskan lingkungan sekitar Anda.</string>
     <string name="ios_permission_location_always">Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio bahkan saat aplikasi berjalan di latar belakang.</string>
-    <string name="ios_permission_motion">Soundscape menggunakan data gerakan untuk mendeteksi arah hadap Anda dan menyesuaikan pemberitahuan audio dengan lingkungan sekitar Anda.</string>
+    <string name="ios_permission_motion">Soundscape menggunakan data gerakan untuk mendeteksi arah hadap Anda, mengetahui kapan Anda berjalan, dan menyesuaikan pemberitahuan audio dengan lingkungan sekitar Anda.</string>
     <string name="ios_permission_bluetooth">Soundscape menggunakan Bluetooth untuk menemukan dan terhubung ke headphone dengan pelacakan kepala serta perangkat audio lainnya.</string>
     <string name="route_detail_edit_remove_waypoint_hint">mengeluarkan titik rute ini dari rute</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s akan dikeluarkan dari rute ini. Penanda itu sendiri tidak akan dihapus. Apakah Anda ingin melanjutkan?</string>

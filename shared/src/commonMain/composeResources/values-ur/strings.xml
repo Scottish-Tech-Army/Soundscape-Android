@@ -1395,6 +1395,7 @@
     <string name="first_launch_permissions_required">یہ اجازت درکار ہے</string>
     <string name="first_launch_permissions_granted">اجازت دے دی گئی</string>
     <string name="first_launch_permissions_not_granted">ابھی تک اجازت نہیں دی گئی</string>
+    <string name="first_launch_permissions_denied">مسترد۔ سیٹنگز میں اجازت دینے کے لیے تھپتھپائیں۔</string>
     <string name="permissions_required">ایپ کو چلنے کے لیے مقام کی اجازت درکار ہے۔</string>
     <string name="permissions_button">ایپ کی سیٹنگز میں اجازتیں تبدیل کریں</string>
     <string name="first_launch_beacon_title">آڈیو بیکن منتخب کریں</string>
@@ -1635,7 +1636,7 @@
     <string name="directions_generic_tram">ٹرام</string>
     <string name="ios_permission_location_when_in_use">Soundscape کو آڈیو نیویگیشن فراہم کرنے اور آپ کے ارد گرد کے ماحول کی تفصیل بتانے کے لیے آپ کے مقام کی ضرورت ہے۔</string>
     <string name="ios_permission_location_always">Soundscape کو ایپ کے پس منظر میں ہونے کے باوجود آڈیو نیویگیشن فراہم کرنے کے لیے آپ کے مقام کی ضرورت ہے۔</string>
-    <string name="ios_permission_motion">Soundscape حرکت کے ڈیٹا کا استعمال کرتے ہوئے آپ کے رخ کی سمت معلوم کرتا ہے اور آڈیو کالآؤٹس کو آپ کے ارد گرد کے ماحول کے مطابق ترتیب دیتا ہے۔</string>
+    <string name="ios_permission_motion">Soundscape حرکت کے ڈیٹا کا استعمال کرتے ہوئے آپ کے رخ کی سمت معلوم کرتا ہے، یہ جانتا ہے کہ آپ کب چل رہے ہیں، اور آڈیو کالآؤٹس کو آپ کے ارد گرد کے ماحول کے مطابق ترتیب دیتا ہے۔</string>
     <string name="ios_permission_bluetooth">Soundscape ہیڈ ٹریکنگ والے ہیڈفونز اور دیگر آڈیو آلات کو دریافت کرنے اور ان سے منسلک ہونے کے لیے بلوٹوتھ استعمال کرتا ہے۔</string>
     <string name="route_detail_edit_remove_waypoint_hint">اس ویپوائنٹ کو روٹ سے ہٹانے</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s کو اس روٹ سے ہٹا دیا جائے گا۔ مارکر خود حذف نہیں ہوگا۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>

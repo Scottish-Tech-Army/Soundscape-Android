@@ -1564,6 +1564,7 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="directions_cardinal_north_west_bound">Suuntana luode</string>
     <string name="first_launch_permissions_granted">Käyttöoikeus myönnetty</string>
     <string name="first_launch_permissions_not_granted">Ei vielä myönnetty</string>
+    <string name="first_launch_permissions_denied">Estetty. Napauta salliaksesi sen Asetuksissa.</string>
     <string name="talkback_double_tap_template">Kaksoisnapauta %1$s</string>
     <string name="menu_manage_locale">Alueasetukset</string>
     <string name="callouts_audio_beacon_distance">Majakka on tällä hetkellä %1$s päässä</string>
@@ -1635,7 +1636,7 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="directions_generic_tram">raitiovaunu</string>
     <string name="ios_permission_location_when_in_use">Soundscape tarvitsee sijaintisi tarjotakseen ääninavigointia ja kuvaillakseen ympäristöäsi.</string>
     <string name="ios_permission_location_always">Soundscape tarvitsee sijaintisi tarjotakseen ääninavigointia myös silloin, kun sovellus on taustalla.</string>
-    <string name="ios_permission_motion">Soundscape käyttää liikedataa tunnistaakseen, mihin suuntaan olet kääntyneenä, ja suunnatakseen ääni-ilmoitukset ympäristöösi.</string>
+    <string name="ios_permission_motion">Soundscape käyttää liikedataa tunnistaakseen, mihin suuntaan olet kääntyneenä, milloin kävelet, ja suunnatakseen ääni-ilmoitukset ympäristöösi.</string>
     <string name="ios_permission_bluetooth">Soundscape käyttää Bluetoothia löytääkseen pään seurantaa tukevat kuulokkeet ja muut äänilaitteet ja muodostaakseen niihin yhteyden.</string>
     <string name="route_detail_edit_remove_waypoint_hint">poistaaksesi tämän reittipisteen reitiltä</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s poistetaan tältä reitiltä. Itse merkitsintä ei poisteta. Haluatko jatkaa?</string>

@@ -1565,6 +1565,7 @@
     <string name="directions_cardinal_north_west_bound">به سمت شمال غربی</string>
     <string name="first_launch_permissions_granted">مجوز داده شد</string>
     <string name="first_launch_permissions_not_granted">هنوز داده نشده</string>
+    <string name="first_launch_permissions_denied">رد شد. برای اجازه دادن در تنظیمات، ضربه بزنید.</string>
     <string name="talkback_double_tap_template">دو بار ضربه بزنید تا %1$s</string>
     <string name="menu_manage_locale">تنظیمات محلی</string>
     <string name="callouts_audio_beacon_distance">جهت‌نما در حال حاضر %1$s فاصله دارد</string>
@@ -1636,7 +1637,7 @@
     <string name="directions_generic_tram">تراموا</string>
     <string name="ios_permission_location_when_in_use">ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی و توصیف محیط پیرامون شما به موقعیت مکانی شما نیاز دارد.</string>
     <string name="ios_permission_location_always">ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی حتی زمانی که اپلیکیشن در پس‌زمینه است، به موقعیت مکانی شما نیاز دارد.</string>
-    <string name="ios_permission_motion">ساند‌اسکیپ از داده‌های حرکتی استفاده می‌کند تا جهتی را که رو به آن ایستاده‌اید تشخیص دهد و اعلان‌های صوتی را نسبت به محیط پیرامون شما جهت‌دهی کند.</string>
+    <string name="ios_permission_motion">ساند‌اسکیپ از داده‌های حرکتی استفاده می‌کند تا جهتی را که رو به آن ایستاده‌اید تشخیص دهد، بفهمد چه زمانی در حال راه رفتن هستید و اعلان‌های صوتی را نسبت به محیط پیرامون شما جهت‌دهی کند.</string>
     <string name="ios_permission_bluetooth">ساند‌اسکیپ از بلوتوث برای یافتن هدفون‌های دارای ردیابی سر و دیگر دستگاه‌های صوتی و اتصال به آنها استفاده می‌کند.</string>
     <string name="route_detail_edit_remove_waypoint_hint">این نقطه‌ی بین‌راهی را از مسیر بردارید</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s از این مسیر برداشته می‌شود. خود نشانه حذف نمی‌شود. آیا می‌خواهید ادامه دهید؟</string>

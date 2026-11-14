@@ -1379,6 +1379,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="first_launch_permissions_required">Quyền này là bắt buộc</string>
     <string name="first_launch_permissions_granted">Đã cấp quyền</string>
     <string name="first_launch_permissions_not_granted">Chưa được cấp</string>
+    <string name="first_launch_permissions_denied">Đã bị từ chối. Chạm để cho phép trong Cài đặt.</string>
     <string name="permissions_required">Ứng dụng cần quyền truy cập vị trí để có thể hoạt động.</string>
     <string name="permissions_button">Thay đổi quyền trong cài đặt ứng dụng</string>
     <string name="first_launch_beacon_title">Chọn đèn hiệu âm thanh</string>
@@ -1619,7 +1620,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="directions_generic_tram">tàu điện</string>
     <string name="ios_permission_location_when_in_use">Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh và mô tả không gian xung quanh bạn.</string>
     <string name="ios_permission_location_always">Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh ngay cả khi ứng dụng chạy nền.</string>
-    <string name="ios_permission_motion">Soundscape sử dụng dữ liệu chuyển động để xác định hướng bạn đang quay mặt và định hướng các thông báo âm thanh theo không gian xung quanh bạn.</string>
+    <string name="ios_permission_motion">Soundscape sử dụng dữ liệu chuyển động để xác định hướng bạn đang quay mặt, biết khi nào bạn đang đi bộ và định hướng các thông báo âm thanh theo không gian xung quanh bạn.</string>
     <string name="ios_permission_bluetooth">Soundscape sử dụng Bluetooth để tìm và kết nối với tai nghe có theo dõi chuyển động đầu và các thiết bị âm thanh khác.</string>
     <string name="route_detail_edit_remove_waypoint_hint">bỏ điểm dừng này khỏi lộ trình</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s sẽ bị bỏ khỏi lộ trình này. Bản thân điểm đánh dấu sẽ không bị xóa. Bạn có muốn tiếp tục không?</string>

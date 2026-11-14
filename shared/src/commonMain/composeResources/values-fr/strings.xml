@@ -1580,6 +1580,7 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="directions_cardinal_north_west_bound">Direction nord-ouest</string>
     <string name="first_launch_permissions_granted">Autorisation accordée</string>
     <string name="first_launch_permissions_not_granted">Pas encore accordée</string>
+    <string name="first_launch_permissions_denied">Refusée. Touchez pour l’autoriser dans Réglages.</string>
     <string name="talkback_double_tap_template">Appuyez deux fois pour %1$s</string>
     <string name="menu_manage_locale">Paramètres régionaux</string>
     <string name="callouts_audio_beacon_distance">La balise sonore se trouve actuellement à %1$s</string>
@@ -1651,7 +1652,7 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="directions_generic_tram">le tram</string>
     <string name="ios_permission_location_when_in_use">Soundscape a besoin de votre position pour fournir la navigation audio et décrire votre environnement.</string>
     <string name="ios_permission_location_always">Soundscape a besoin de votre position pour fournir la navigation audio même lorsque l’application est en arrière-plan.</string>
-    <string name="ios_permission_motion">Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les annonces audio par rapport à votre environnement.</string>
+    <string name="ios_permission_motion">Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné, savoir quand vous marchez et orienter les annonces audio par rapport à votre environnement.</string>
     <string name="ios_permission_bluetooth">Soundscape utilise le Bluetooth pour détecter les casques avec suivi de la tête et les autres appareils audio, et s’y connecter.</string>
     <string name="route_detail_edit_remove_waypoint_hint">retirer cette étape de l’itinéraire</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">L’étape %1$s sera retirée de cet itinéraire. Le marqueur lui-même ne sera pas supprimé. Voulez-vous continuer ?</string>

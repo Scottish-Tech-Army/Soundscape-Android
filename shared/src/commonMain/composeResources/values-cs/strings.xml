@@ -1190,6 +1190,7 @@
     <string name="first_launch_permissions_required">Toto oprávnění je vyžadováno</string>
     <string name="first_launch_permissions_granted">Oprávnění uděleno</string>
     <string name="first_launch_permissions_not_granted">Zatím neuděleno</string>
+    <string name="first_launch_permissions_denied">Zamítnuto. Klepnutím ho povolíte v Nastavení.</string>
     <string name="permissions_required">Aplikace ke svému fungování vyžaduje oprávnění k poloze.</string>
     <string name="permissions_button">Změnit oprávnění v nastavení aplikace</string>
     <string name="first_launch_beacon_title">Vyberte zvukový maják</string>
@@ -1667,7 +1668,7 @@ Nahlašujte nám prosím i nadále jakékoli problémy, ať jsou sebemenší, pr
     <string name="directions_generic_tram">tramvajové trati</string>
     <string name="ios_permission_location_when_in_use">Soundscape potřebuje vaši polohu, aby mohl poskytovat zvukovou navigaci a popisovat vaše okolí.</string>
     <string name="ios_permission_location_always">Soundscape potřebuje vaši polohu, aby mohl poskytovat zvukovou navigaci, i když je aplikace na pozadí.</string>
-    <string name="ios_permission_motion">Soundscape používá pohybová data k rozpoznání směru, kterým jste otočeni, a k nasměrování zvukových hlášení podle vašeho okolí.</string>
+    <string name="ios_permission_motion">Soundscape používá pohybová data k rozpoznání směru, kterým jste otočeni, k poznání, kdy jdete pěšky, a k nasměrování zvukových hlášení podle vašeho okolí.</string>
     <string name="ios_permission_bluetooth">Soundscape používá Bluetooth k vyhledání sluchátek se sledováním polohy hlavy a dalších zvukových zařízení a k připojení k nim.</string>
     <string name="route_detail_edit_remove_waypoint_hint">odeberete tento trasový bod z trasy</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Bod %1$s bude odebrán z této trasy. Samotná značka nebude smazána. Chcete pokračovat?</string>

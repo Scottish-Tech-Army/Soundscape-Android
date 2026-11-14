@@ -1580,6 +1580,7 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="directions_cardinal_north_west_bound">Indo para noroeste</string>
     <string name="first_launch_permissions_granted">Permissão concedida</string>
     <string name="first_launch_permissions_not_granted">Ainda não concedida</string>
+    <string name="first_launch_permissions_denied">Negada. Toque para permiti-la em Ajustes.</string>
     <string name="talkback_double_tap_template">Toque duas vezes para %1$s</string>
     <string name="menu_manage_locale">Configurações regionais</string>
     <string name="callouts_audio_beacon_distance">O sinalizador está atualmente a %1$s de distância</string>
@@ -1651,7 +1652,7 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="directions_generic_tram">bonde</string>
     <string name="ios_permission_location_when_in_use">O Soundscape precisa da sua localização para fornecer navegação por áudio e descrever seus arredores.</string>
     <string name="ios_permission_location_always">O Soundscape precisa da sua localização para fornecer navegação por áudio mesmo quando o aplicativo está em segundo plano.</string>
-    <string name="ios_permission_motion">O Soundscape usa dados de movimento para detectar a direção para a qual você está voltado e orientar as notificações de áudio em relação aos seus arredores.</string>
+    <string name="ios_permission_motion">O Soundscape usa dados de movimento para detectar a direção para a qual você está voltado, saber quando você está andando e orientar as notificações de áudio em relação aos seus arredores.</string>
     <string name="ios_permission_bluetooth">O Soundscape usa Bluetooth para descobrir fones de ouvido com rastreamento de cabeça e outros dispositivos de áudio e conectar-se a eles.</string>
     <string name="route_detail_edit_remove_waypoint_hint">remover este localizador da rota</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">O localizador %1$s será removido desta rota. O favorito em si não será excluído. Deseja continuar?</string>

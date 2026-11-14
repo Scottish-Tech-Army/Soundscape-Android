@@ -1395,6 +1395,7 @@
     <string name="first_launch_permissions_required">ఈ అనుమతి అవసరం</string>
     <string name="first_launch_permissions_granted">అనుమతి మంజూరు చేయబడింది</string>
     <string name="first_launch_permissions_not_granted">ఇంకా మంజూరు కాలేదు</string>
+    <string name="first_launch_permissions_denied">తిరస్కరించబడింది. సెట్టింగ్‌లలో అనుమతించడానికి నొక్కండి.</string>
     <string name="permissions_required">యాప్ నడవడానికి లొకేషన్ అనుమతులు అవసరం.</string>
     <string name="permissions_button">యాప్ సెట్టింగ్‌లలో అనుమతులను మార్చండి</string>
     <string name="first_launch_beacon_title">ఆడియో బీకాన్‌ను ఎంచుకోండి</string>
@@ -1635,7 +1636,7 @@
     <string name="directions_generic_tram">ట్రామ్</string>
     <string name="ios_permission_location_when_in_use">ఆడియో నావిగేషన్ అందించడానికి మరియు మీ పరిసరాలను వివరించడానికి Soundscapeకు మీ లొకేషన్ అవసరం.</string>
     <string name="ios_permission_location_always">యాప్ బ్యాక్‌గ్రౌండ్‌లో ఉన్నప్పుడు కూడా ఆడియో నావిగేషన్ అందించడానికి Soundscapeకు మీ లొకేషన్ అవసరం.</string>
-    <string name="ios_permission_motion">మీరు ఏ దిశ వైపు ముఖం పెట్టి ఉన్నారో గుర్తించడానికి మరియు కాలౌట్‌లను మీ పరిసరాలకు అనుగుణంగా ఉంచడానికి Soundscape మోషన్ డేటాను ఉపయోగిస్తుంది.</string>
+    <string name="ios_permission_motion">మీరు ఏ దిశ వైపు ముఖం పెట్టి ఉన్నారో గుర్తించడానికి, మీరు ఎప్పుడు నడుస్తున్నారో తెలుసుకోవడానికి మరియు కాలౌట్‌లను మీ పరిసరాలకు అనుగుణంగా ఉంచడానికి Soundscape మోషన్ డేటాను ఉపయోగిస్తుంది.</string>
     <string name="ios_permission_bluetooth">హెడ్ ట్రాకింగ్ ఉన్న హెడ్‌ఫోన్‌లను మరియు ఇతర ఆడియో పరికరాలను కనుగొని వాటికి కనెక్ట్ కావడానికి Soundscape బ్లూటూత్‌ను ఉపయోగిస్తుంది.</string>
     <string name="route_detail_edit_remove_waypoint_hint">ఈ వేపాయింట్‌ను రూట్ నుండి తీసివేయడానికి</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s ఈ రూట్ నుండి తీసివేయబడుతుంది. మార్కర్ తొలగించబడదు. మీరు కొనసాగించాలనుకుంటున్నారా?</string>

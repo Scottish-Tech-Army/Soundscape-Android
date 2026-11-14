@@ -1150,49 +1150,49 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يستخدم Soundscape بيانات الحركة لتحديد الاتجاه الذي تواجهه وتوجيه النداءات الصوتية نحو ما يحيط بك."
+            "value": "يستخدم Soundscape بيانات الحركة لتحديد الاتجاه الذي تواجهه، ومعرفة متى تكون ماشيًا، وتوجيه النداءات الصوتية نحو ما يحيط بك."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape използва данни за движение, за да определи посоката, в която сте обърнати, и да насочи аудио съобщенията спрямо околността Ви."
+            "value": "Soundscape използва данни за движение, за да определи посоката, в която сте обърнати, да разбере кога вървите и да насочи аудио съобщенията спрямо околността Ви."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "আপনি কোন দিকে মুখ করে আছেন তা শনাক্ত করতে এবং ঘোষণাগুলো আপনার চারপাশের পরিবেশ অনুযায়ী সাজাতে Soundscape গতিবিধি ডেটা ব্যবহার করে।"
+            "value": "আপনি কোন দিকে মুখ করে আছেন তা শনাক্ত করতে, আপনি কখন হাঁটছেন তা বুঝতে এবং ঘোষণাগুলো আপনার চারপাশের পরিবেশ অনুযায়ী সাজাতে Soundscape গতিবিধি ডেটা ব্যবহার করে।"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape utilitza dades de moviment per detectar cap a on estàs orientat i orientar els avisos de veu respecte al teu entorn."
+            "value": "Soundscape utilitza dades de moviment per detectar cap a on estàs orientat, saber quan camines i orientar els avisos de veu respecte al teu entorn."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape používá pohybová data k rozpoznání směru, kterým jste otočeni, a k nasměrování zvukových hlášení podle vašeho okolí."
+            "value": "Soundscape používá pohybová data k rozpoznání směru, kterým jste otočeni, k poznání, kdy jdete pěšky, a k nasměrování zvukových hlášení podle vašeho okolí."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape bruger bevægelsesdata til at registrere, hvilken retning du vender, og til at placere lydbeskederne i forhold til dine omgivelser."
+            "value": "Soundscape bruger bevægelsesdata til at registrere, hvilken retning du vender, til at registrere, hvornår du går, og til at placere lydbeskederne i forhold til dine omgivelser."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape verwendet Bewegungsdaten, um Ihre Blickrichtung zu erkennen und Audio-Hinweise an Ihrer Umgebung auszurichten."
+            "value": "Soundscape verwendet Bewegungsdaten, um Ihre Blickrichtung zu erkennen, festzustellen, wann Sie gehen, und Audio-Hinweise an Ihrer Umgebung auszurichten."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το Soundscape χρησιμοποιεί δεδομένα κίνησης για να εντοπίζει την κατεύθυνση προς την οποία κοιτάτε και να προσανατολίζει τις ηχητικές επεξηγήσεις ως προς το περιβάλλον σας."
+            "value": "Το Soundscape χρησιμοποιεί δεδομένα κίνησης για να εντοπίζει την κατεύθυνση προς την οποία κοιτάτε, να καταλαβαίνει πότε περπατάτε και να προσανατολίζει τις ηχητικές επεξηγήσεις ως προς το περιβάλλον σας."
           }
         },
         "en": {
@@ -1204,229 +1204,229 @@
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings."
+            "value": "Soundscape uses motion data to detect the direction you are facing, tell when you are walking, and orient audio callouts to your surroundings."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape usa datos de movimiento para detectar la dirección hacia la que miras y orientar los avisos de audio respecto a tu entorno."
+            "value": "Soundscape usa datos de movimiento para detectar la dirección hacia la que miras, saber cuándo estás caminando y orientar los avisos de audio respecto a tu entorno."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape kasutab liikumisandmeid, et tuvastada suund, kuhu te näoga olete, ja suunata häälteated vastavalt teie ümbrusele."
+            "value": "Soundscape kasutab liikumisandmeid, et tuvastada suund, kuhu te näoga olete, teada saada, millal te kõnnite, ja suunata häälteated vastavalt teie ümbrusele."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ساند‌اسکیپ از داده‌های حرکتی استفاده می‌کند تا جهتی را که رو به آن ایستاده‌اید تشخیص دهد و اعلان‌های صوتی را نسبت به محیط پیرامون شما جهت‌دهی کند."
+            "value": "ساند‌اسکیپ از داده‌های حرکتی استفاده می‌کند تا جهتی را که رو به آن ایستاده‌اید تشخیص دهد، بفهمد چه زمانی در حال راه رفتن هستید و اعلان‌های صوتی را نسبت به محیط پیرامون شما جهت‌دهی کند."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape käyttää liikedataa tunnistaakseen, mihin suuntaan olet kääntyneenä, ja suunnatakseen ääni-ilmoitukset ympäristöösi."
+            "value": "Soundscape käyttää liikedataa tunnistaakseen, mihin suuntaan olet kääntyneenä, milloin kävelet, ja suunnatakseen ääni-ilmoitukset ympäristöösi."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les annonces audio par rapport à votre environnement."
+            "value": "Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné, savoir quand vous marchez et orienter les annonces audio par rapport à votre environnement."
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les annonces audio par rapport à votre environnement."
+            "value": "Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné, savoir quand vous marchez et orienter les annonces audio par rapport à votre environnement."
           }
         },
         "ha": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape tana amfani da bayanan motsi domin gane inda kuke fuskanta da kuma daidaita sanarwowin sauti da abin da ke kewaye da ku."
+            "value": "Soundscape tana amfani da bayanan motsi domin gane inda kuke fuskanta, sanin lokacin da kuke tafiya da ƙafa, da kuma daidaita sanarwowin sauti da abin da ke kewaye da ku."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape मोशन डेटा का उपयोग करके यह पता लगाता है कि आपका मुख किस दिशा में है और कॉलआउट को आपके परिवेश के अनुसार दिशा देता है।"
+            "value": "Soundscape मोशन डेटा का उपयोग करके यह पता लगाता है कि आपका मुख किस दिशा में है और आप कब चल रहे हैं, और कॉलआउट को आपके परिवेश के अनुसार दिशा देता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape koristi podatke o pokretu kako bi otkrio smjer u kojem ste okrenuti i uskladio zvučne najave s vašom okolinom."
+            "value": "Soundscape koristi podatke o pokretu kako bi otkrio smjer u kojem ste okrenuti, prepoznao kada hodate i uskladio zvučne najave s vašom okolinom."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, és a bemondásokat a környezetéhez igazítsa."
+            "value": "A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, mikor sétál, és a bemondásokat a környezetéhez igazítsa."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape menggunakan data gerakan untuk mendeteksi arah hadap Anda dan menyesuaikan pemberitahuan audio dengan lingkungan sekitar Anda."
+            "value": "Soundscape menggunakan data gerakan untuk mendeteksi arah hadap Anda, mengetahui kapan Anda berjalan, dan menyesuaikan pemberitahuan audio dengan lingkungan sekitar Anda."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape notar hreyfigögn til að greina í hvaða átt þú snýrð og staðsetja hljóðtilkynningar miðað við umhverfi þitt."
+            "value": "Soundscape notar hreyfigögn til að greina í hvaða átt þú snýrð, hvenær þú ert að ganga og staðsetja hljóðtilkynningar miðað við umhverfi þitt."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape utilizza i dati di movimento per rilevare la direzione verso cui sei rivolto e orientare le notifiche audio rispetto ai tuoi dintorni."
+            "value": "Soundscape utilizza i dati di movimento per rilevare la direzione verso cui sei rivolto, capire quando stai camminando e orientare le notifiche audio rispetto ai tuoi dintorni."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape は、あなたが向いている方向を検出し、コールアウトを周囲に合わせて定位するためにモーションデータを使用します。"
+            "value": "Soundscape は、あなたが向いている方向を検出し、歩いているかどうかを判断し、コールアウトを周囲に合わせて定位するためにモーションデータを使用します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape는 동작 데이터를 사용하여 사용자가 향하는 방향을 감지하고 오디오 안내를 주변 환경에 맞춰 배치합니다."
+            "value": "Soundscape는 동작 데이터를 사용하여 사용자가 향하는 방향을 감지하고, 걷고 있는지 파악하며, 오디오 안내를 주변 환경에 맞춰 배치합니다."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुमचे तोंड कोणत्या दिशेला आहे हे ओळखण्यासाठी आणि ध्वनी सूचना तुमच्या परिसरानुसार दिशाबद्ध करण्यासाठी Soundscape गती डेटा वापरते."
+            "value": "तुमचे तोंड कोणत्या दिशेला आहे हे ओळखण्यासाठी, तुम्ही कधी चालत आहात हे समजण्यासाठी आणि ध्वनी सूचना तुमच्या परिसरानुसार दिशाबद्ध करण्यासाठी Soundscape गती डेटा वापरते."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape bruker bevegelsesdata for å registrere hvilken retning du står mot, og plassere lydmeldingene i forhold til omgivelsene dine."
+            "value": "Soundscape bruker bevegelsesdata for å registrere hvilken retning du står mot, når du går, og plassere lydmeldingene i forhold til omgivelsene dine."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape gebruikt bewegingsgegevens om te bepalen welke richting u op kijkt en om de audio-aankondigingen op uw omgeving af te stemmen."
+            "value": "Soundscape gebruikt bewegingsgegevens om te bepalen welke richting u op kijkt, wanneer u loopt, en om de audio-aankondigingen op uw omgeving af te stemmen."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape ਹਰਕਤ ਡਾਟਾ ਵਰਤ ਕੇ ਪਤਾ ਕਰਦਾ ਹੈ ਕਿ ਤੁਹਾਡਾ ਮੂੰਹ ਕਿਸ ਦਿਸ਼ਾ ਵੱਲ ਹੈ, ਅਤੇ ਘੋਸ਼ਣਾਵਾਂ ਨੂੰ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਮੁਤਾਬਕ ਦਿਸ਼ਾ ਦਿੰਦਾ ਹੈ।"
+            "value": "Soundscape ਹਰਕਤ ਡਾਟਾ ਵਰਤ ਕੇ ਪਤਾ ਕਰਦਾ ਹੈ ਕਿ ਤੁਹਾਡਾ ਮੂੰਹ ਕਿਸ ਦਿਸ਼ਾ ਵੱਲ ਹੈ ਅਤੇ ਤੁਸੀਂ ਕਦੋਂ ਤੁਰ ਰਹੇ ਹੋ, ਅਤੇ ਘੋਸ਼ਣਾਵਾਂ ਨੂੰ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਮੁਤਾਬਕ ਦਿਸ਼ਾ ਦਿੰਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape wykorzystuje dane ruchu, aby wykryć kierunek, w którym jesteś zwrócony, i dopasować powiadomienia głosowe do Twojego otoczenia."
+            "value": "Soundscape wykorzystuje dane ruchu, aby wykryć kierunek, w którym jesteś zwrócony, rozpoznać, kiedy idziesz, i dopasować powiadomienia głosowe do Twojego otoczenia."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Soundscape utiliza dados de movimento para detetar a direção para a qual está virado e orientar os avisos de áudio em relação às suas imediações."
+            "value": "O Soundscape utiliza dados de movimento para detetar a direção para a qual está virado, saber quando está a andar e orientar os avisos de áudio em relação às suas imediações."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Soundscape usa dados de movimento para detectar a direção para a qual você está voltado e orientar as notificações de áudio em relação aos seus arredores."
+            "value": "O Soundscape usa dados de movimento para detectar a direção para a qual você está voltado, saber quando você está andando e orientar as notificações de áudio em relação aos seus arredores."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape folosește date de mișcare pentru a detecta direcția în care ești orientat și pentru a orienta anunțurile audio în raport cu împrejurimile tale."
+            "value": "Soundscape folosește date de mișcare pentru a detecta direcția în care ești orientat, pentru a ști când mergi pe jos și pentru a orienta anunțurile audio în raport cu împrejurimile tale."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape использует данные движения, чтобы определять направление, в котором вы повёрнуты, и располагать звуковые уточнения относительно вашего окружения."
+            "value": "Soundscape использует данные движения, чтобы определять направление, в котором вы повёрнуты, понимать, когда вы идёте пешком, и располагать звуковые уточнения относительно вашего окружения."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape používa pohybové dáta na rozpoznanie smeru, ktorým ste otočení, a na nasmerovanie zvukových hlásení podľa vášho okolia."
+            "value": "Soundscape používa pohybové dáta na rozpoznanie smeru, ktorým ste otočení, na zistenie, kedy kráčate, a na nasmerovanie zvukových hlásení podľa vášho okolia."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape uporablja podatke o gibanju, da zazna smer, v katero ste obrnjeni, in zvočna obvestila umesti glede na vašo okolico."
+            "value": "Soundscape uporablja podatke o gibanju, da zazna smer, v katero ste obrnjeni, prepozna, kdaj hodite, in zvočna obvestila umesti glede na vašo okolico."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape користи податке о кретању да би открио правац у коме сте окренути и ускладио звучне најаве са вашом околином."
+            "value": "Soundscape користи податке о кретању да би открио правац у коме сте окренути, препознао када ходате и ускладио звучне најаве са вашом околином."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape använder rörelsedata för att känna av vilken riktning du är vänd mot och placera informationsljuden i förhållande till dina omgivningar."
+            "value": "Soundscape använder rörelsedata för att känna av vilken riktning du är vänd mot, när du går och placera informationsljuden i förhållande till dina omgivningar."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape hutumia data ya mwendo kutambua upande uliouelekea na kupanga matangazo ya sauti kulingana na mazingira yanayokuzunguka."
+            "value": "Soundscape hutumia data ya mwendo kutambua upande uliouelekea, kujua unapotembea, na kupanga matangazo ya sauti kulingana na mazingira yanayokuzunguka."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "நீங்கள் எந்தத் திசையை நோக்கி உள்ளீர்கள் என்பதைக் கண்டறியவும், அறிவிப்புகளை உங்கள் சுற்றுப்புறத்திற்கு ஏற்ப திசைப்படுத்தவும் Soundscape இயக்கத் தரவைப் பயன்படுத்துகிறது."
+            "value": "நீங்கள் எந்தத் திசையை நோக்கி உள்ளீர்கள் என்பதைக் கண்டறியவும், நீங்கள் எப்போது நடக்கிறீர்கள் என்பதை அறியவும், அறிவிப்புகளை உங்கள் சுற்றுப்புறத்திற்கு ஏற்ப திசைப்படுத்தவும் Soundscape இயக்கத் தரவைப் பயன்படுத்துகிறது."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "మీరు ఏ దిశ వైపు ముఖం పెట్టి ఉన్నారో గుర్తించడానికి మరియు కాలౌట్‌లను మీ పరిసరాలకు అనుగుణంగా ఉంచడానికి Soundscape మోషన్ డేటాను ఉపయోగిస్తుంది."
+            "value": "మీరు ఏ దిశ వైపు ముఖం పెట్టి ఉన్నారో గుర్తించడానికి, మీరు ఎప్పుడు నడుస్తున్నారో తెలుసుకోవడానికి మరియు కాలౌట్‌లను మీ పరిసరాలకు అనుగుణంగా ఉంచడానికి Soundscape మోషన్ డేటాను ఉపయోగిస్తుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape ใช้ข้อมูลการเคลื่อนไหวเพื่อตรวจจับทิศทางที่คุณหันหน้าไป และจัดวางการแจ้งเตือนด้วยเสียงให้สอดคล้องกับสภาพแวดล้อมรอบตัวคุณ"
+            "value": "Soundscape ใช้ข้อมูลการเคลื่อนไหวเพื่อตรวจจับทิศทางที่คุณหันหน้าไป รู้ว่าคุณกำลังเดินอยู่หรือไม่ และจัดวางการแจ้งเตือนด้วยเสียงให้สอดคล้องกับสภาพแวดล้อมรอบตัวคุณ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape, baktığınız yönü algılamak ve sesli anonsları çevrenize göre yönlendirmek için hareket verilerini kullanır."
+            "value": "Soundscape, baktığınız yönü algılamak, ne zaman yürüdüğünüzü anlamak ve sesli anonsları çevrenize göre yönlendirmek için hareket verilerini kullanır."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape використовує дані руху, щоб визначати напрямок, у який ви повернені, і спрямовувати звукові оголошення відповідно до вашого оточення."
+            "value": "Soundscape використовує дані руху, щоб визначати напрямок, у який ви повернені, розуміти, коли ви йдете пішки, і спрямовувати звукові оголошення відповідно до вашого оточення."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape حرکت کے ڈیٹا کا استعمال کرتے ہوئے آپ کے رخ کی سمت معلوم کرتا ہے اور آڈیو کالآؤٹس کو آپ کے ارد گرد کے ماحول کے مطابق ترتیب دیتا ہے۔"
+            "value": "Soundscape حرکت کے ڈیٹا کا استعمال کرتے ہوئے آپ کے رخ کی سمت معلوم کرتا ہے، یہ جانتا ہے کہ آپ کب چل رہے ہیں، اور آڈیو کالآؤٹس کو آپ کے ارد گرد کے ماحول کے مطابق ترتیب دیتا ہے۔"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape sử dụng dữ liệu chuyển động để xác định hướng bạn đang quay mặt và định hướng các thông báo âm thanh theo không gian xung quanh bạn."
+            "value": "Soundscape sử dụng dữ liệu chuyển động để xác định hướng bạn đang quay mặt, biết khi nào bạn đang đi bộ và định hướng các thông báo âm thanh theo không gian xung quanh bạn."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape 使用运动数据来检测您面朝的方向，并将语音提示的方位与您周围的环境对应起来。"
+            "value": "Soundscape 使用运动数据来检测您面朝的方向、判断您何时在步行，并将语音提示的方位与您周围的环境对应起来。"
           }
         }
       }

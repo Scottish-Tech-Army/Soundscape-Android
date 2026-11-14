@@ -1174,6 +1174,7 @@
     <string name="first_launch_permissions_required">Ova dozvola je obavezna</string>
     <string name="first_launch_permissions_granted">Dozvola odobrena</string>
     <string name="first_launch_permissions_not_granted">Još nije odobrena</string>
+    <string name="first_launch_permissions_denied">Odbijena. Dodirnite da je dopustite u Postavkama.</string>
     <string name="permissions_required">Aplikaciji su za rad potrebne dozvole za lokaciju.</string>
     <string name="permissions_button">Promijeni dozvole u postavkama aplikacije</string>
     <string name="first_launch_beacon_title">Odaberite zvučni svjetionik</string>
@@ -1651,7 +1652,7 @@ Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, pute
     <string name="directions_generic_tram">tramvaju</string>
     <string name="ios_permission_location_when_in_use">Soundscapeu je potrebna vaša lokacija kako bi pružao zvučnu navigaciju i opisivao vašu okolinu.</string>
     <string name="ios_permission_location_always">Soundscapeu je potrebna vaša lokacija kako bi pružao zvučnu navigaciju i kada je aplikacija u pozadini.</string>
-    <string name="ios_permission_motion">Soundscape koristi podatke o pokretu kako bi otkrio smjer u kojem ste okrenuti i uskladio zvučne najave s vašom okolinom.</string>
+    <string name="ios_permission_motion">Soundscape koristi podatke o pokretu kako bi otkrio smjer u kojem ste okrenuti, prepoznao kada hodate i uskladio zvučne najave s vašom okolinom.</string>
     <string name="ios_permission_bluetooth">Soundscape koristi Bluetooth za pronalaženje slušalica s praćenjem pokreta glave i drugih zvučnih uređaja te povezivanje s njima.</string>
     <string name="route_detail_edit_remove_waypoint_hint">uklonili ovu putnu točku s rute</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Putna točka %1$s bit će uklonjena s ove rute. Sama oznaka neće biti izbrisana. Želite li nastaviti?</string>

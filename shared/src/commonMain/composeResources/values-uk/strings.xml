@@ -1596,6 +1596,7 @@
     <string name="directions_cardinal_north_west_bound">На північний захід</string>
     <string name="first_launch_permissions_granted">Дозвіл надано</string>
     <string name="first_launch_permissions_not_granted">Ще не надано</string>
+    <string name="first_launch_permissions_denied">Відхилено. Торкніться, щоб дозволити в Параметрах.</string>
     <string name="talkback_double_tap_template">Двічі торкніться, щоб %1$s</string>
     <string name="menu_manage_locale">Регіональні параметри</string>
     <string name="callouts_audio_beacon_distance">Маячок зараз за %1$s</string>
@@ -1667,7 +1668,7 @@
     <string name="directions_generic_tram">трамвай</string>
     <string name="ios_permission_location_when_in_use">Soundscape потрібне ваше місцезнаходження, щоб надавати аудіонавігацію та описувати ваше оточення.</string>
     <string name="ios_permission_location_always">Soundscape потрібне ваше місцезнаходження, щоб надавати аудіонавігацію навіть тоді, коли програма працює у фоновому режимі.</string>
-    <string name="ios_permission_motion">Soundscape використовує дані руху, щоб визначати напрямок, у який ви повернені, і спрямовувати звукові оголошення відповідно до вашого оточення.</string>
+    <string name="ios_permission_motion">Soundscape використовує дані руху, щоб визначати напрямок, у який ви повернені, розуміти, коли ви йдете пішки, і спрямовувати звукові оголошення відповідно до вашого оточення.</string>
     <string name="ios_permission_bluetooth">Soundscape використовує Bluetooth, щоб знаходити навушники з відстеженням голови та інші аудіопристрої й підключатися до них.</string>
     <string name="route_detail_edit_remove_waypoint_hint">прибрати цю зупинку з маршруту</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Зупинку %1$s буде прибрано з цього маршруту. Саму мітку не буде видалено. Хочете продовжити?</string>

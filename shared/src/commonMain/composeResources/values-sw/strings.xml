@@ -1395,6 +1395,7 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="first_launch_permissions_required">Ruhusa hii inahitajika</string>
     <string name="first_launch_permissions_granted">Ruhusa imetolewa</string>
     <string name="first_launch_permissions_not_granted">Bado haijatolewa</string>
+    <string name="first_launch_permissions_denied">Imekataliwa. Gusa ili kuiruhusu kwenye Mipangilio.</string>
     <string name="permissions_required">Programu hii inahitaji ruhusa za mahali ili iweze kufanya kazi.</string>
     <string name="permissions_button">Badilisha ruhusa katika mipangilio ya programu</string>
     <string name="first_launch_beacon_title">Chagua Beacon ya Sauti</string>
@@ -1635,7 +1636,7 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="directions_generic_tram">tramu</string>
     <string name="ios_permission_location_when_in_use">Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti na kueleza mazingira yanayokuzunguka.</string>
     <string name="ios_permission_location_always">Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti hata wakati programu iko chinichini.</string>
-    <string name="ios_permission_motion">Soundscape hutumia data ya mwendo kutambua upande uliouelekea na kupanga matangazo ya sauti kulingana na mazingira yanayokuzunguka.</string>
+    <string name="ios_permission_motion">Soundscape hutumia data ya mwendo kutambua upande uliouelekea, kujua unapotembea, na kupanga matangazo ya sauti kulingana na mazingira yanayokuzunguka.</string>
     <string name="ios_permission_bluetooth">Soundscape hutumia Bluetooth kutafuta na kuunganisha vipokea sauti vyenye ufuatiliaji wa kichwa na vifaa vingine vya sauti.</string>
     <string name="route_detail_edit_remove_waypoint_hint">kuondoa kituo hiki kwenye njia</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Kituo %1$s kitaondolewa kwenye njia hii. Alama yenyewe haitafutwa. Je, unataka kuendelea?</string>

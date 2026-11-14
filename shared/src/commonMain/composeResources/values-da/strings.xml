@@ -1564,6 +1564,7 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="directions_cardinal_north_west_bound">Mod nordvest</string>
     <string name="first_launch_permissions_granted">Tilladelse givet</string>
     <string name="first_launch_permissions_not_granted">Endnu ikke givet</string>
+    <string name="first_launch_permissions_denied">Afvist. Tryk for at tillade det i Indstillinger.</string>
     <string name="talkback_double_tap_template">Dobbelttryk for at %1$s</string>
     <string name="menu_manage_locale">Regionale indstillinger</string>
     <string name="callouts_audio_beacon_distance">Lydfyret er i øjeblikket %1$s væk</string>
@@ -1635,7 +1636,7 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="directions_generic_tram">sporvogn</string>
     <string name="ios_permission_location_when_in_use">Soundscape har brug for din placering for at kunne levere lydnavigation og beskrive dine omgivelser.</string>
     <string name="ios_permission_location_always">Soundscape har brug for din placering for at kunne levere lydnavigation, også når appen kører i baggrunden.</string>
-    <string name="ios_permission_motion">Soundscape bruger bevægelsesdata til at registrere, hvilken retning du vender, og til at placere lydbeskederne i forhold til dine omgivelser.</string>
+    <string name="ios_permission_motion">Soundscape bruger bevægelsesdata til at registrere, hvilken retning du vender, til at registrere, hvornår du går, og til at placere lydbeskederne i forhold til dine omgivelser.</string>
     <string name="ios_permission_bluetooth">Soundscape bruger Bluetooth til at finde og oprette forbindelse til hovedtelefoner med hovedsporing og andre lydenheder.</string>
     <string name="route_detail_edit_remove_waypoint_hint">fjerne dette vejpunkt fra ruten</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s bliver fjernet fra denne rute. Selve mærket bliver ikke slettet. Vil du fortsætte?</string>

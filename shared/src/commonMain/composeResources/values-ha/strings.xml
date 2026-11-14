@@ -1395,6 +1395,7 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="first_launch_permissions_required">Ana bukatar wannan izinin</string>
     <string name="first_launch_permissions_granted">An ba da izini</string>
     <string name="first_launch_permissions_not_granted">Ba a ba da izini ba tukuna</string>
+    <string name="first_launch_permissions_denied">An ƙi. Taɓa don ba da izini a Saituna.</string>
     <string name="permissions_required">Manhajar tana bukatar izinin wuri domin ta iya yin aiki.</string>
     <string name="permissions_button">Canza izinai a cikin saitunan manhaja</string>
     <string name="first_launch_beacon_title">Zaɓi Siginar Sauti</string>
@@ -1635,7 +1636,7 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="directions_generic_tram">tram</string>
     <string name="ios_permission_location_when_in_use">Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti da kuma bayyana abin da ke kewaye da ku.</string>
     <string name="ios_permission_location_always">Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti ko da manhajar tana aiki a baya.</string>
-    <string name="ios_permission_motion">Soundscape tana amfani da bayanan motsi domin gane inda kuke fuskanta da kuma daidaita sanarwowin sauti da abin da ke kewaye da ku.</string>
+    <string name="ios_permission_motion">Soundscape tana amfani da bayanan motsi domin gane inda kuke fuskanta, sanin lokacin da kuke tafiya da ƙafa, da kuma daidaita sanarwowin sauti da abin da ke kewaye da ku.</string>
     <string name="ios_permission_bluetooth">Soundscape tana amfani da Bluetooth domin gano belun kunne masu bin diddigin kai da sauran na'urorin sauti sannan ta haɗa da su.</string>
     <string name="route_detail_edit_remove_waypoint_hint">cire wannan matsayi daga tafarki</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Za a cire %1$s daga wannan tafarki. Ba za a share alamar kanta ba. Kana son ci gaba?</string>

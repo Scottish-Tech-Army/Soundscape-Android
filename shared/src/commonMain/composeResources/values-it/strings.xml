@@ -1580,6 +1580,7 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="directions_cardinal_north_west_bound">Direzione nord ovest</string>
     <string name="first_launch_permissions_granted">Autorizzazione concessa</string>
     <string name="first_launch_permissions_not_granted">Non ancora concessa</string>
+    <string name="first_launch_permissions_denied">Negata. Tocca per consentirla in Impostazioni.</string>
     <string name="talkback_double_tap_template">Tocca due volte per %1$s</string>
     <string name="menu_manage_locale">Impostazioni locali</string>
     <string name="callouts_audio_beacon_distance">L'audiofaro si trova attualmente a %1$s</string>
@@ -1651,7 +1652,7 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="directions_generic_tram">tram</string>
     <string name="ios_permission_location_when_in_use">Soundscape ha bisogno della tua posizione per fornire la navigazione audio e descrivere i tuoi dintorni.</string>
     <string name="ios_permission_location_always">Soundscape ha bisogno della tua posizione per fornire la navigazione audio anche quando l'app è in background.</string>
-    <string name="ios_permission_motion">Soundscape utilizza i dati di movimento per rilevare la direzione verso cui sei rivolto e orientare le notifiche audio rispetto ai tuoi dintorni.</string>
+    <string name="ios_permission_motion">Soundscape utilizza i dati di movimento per rilevare la direzione verso cui sei rivolto, capire quando stai camminando e orientare le notifiche audio rispetto ai tuoi dintorni.</string>
     <string name="ios_permission_bluetooth">Soundscape utilizza il Bluetooth per rilevare auricolari con tracciamento della testa e altri dispositivi audio e connettersi a essi.</string>
     <string name="route_detail_edit_remove_waypoint_hint">rimuovere questo waypoint dal percorso</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s verrà rimosso da questo percorso. L'indicatore stesso non verrà eliminato. Vuoi continuare?</string>

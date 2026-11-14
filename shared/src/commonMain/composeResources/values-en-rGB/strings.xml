@@ -1564,6 +1564,7 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="directions_cardinal_north_west_bound">Northwestbound</string>
     <string name="first_launch_permissions_granted">Permission granted</string>
     <string name="first_launch_permissions_not_granted">Not yet granted</string>
+    <string name="first_launch_permissions_denied">Denied. Tap to allow it in Settings.</string>
     <string name="talkback_double_tap_template">Double tap to %1$s</string>
     <string name="menu_manage_locale">Locale</string>
     <string name="callouts_audio_beacon_distance">Beacon is currently %1$s away</string>
@@ -1635,7 +1636,7 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="directions_generic_tram">tram</string>
     <string name="ios_permission_location_when_in_use">Soundscape needs your location to provide audio navigation and describe your surroundings.</string>
     <string name="ios_permission_location_always">Soundscape needs your location to provide audio navigation even when the app is in the background.</string>
-    <string name="ios_permission_motion">Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings.</string>
+    <string name="ios_permission_motion">Soundscape uses motion data to detect the direction you are facing, tell when you are walking, and orient audio callouts to your surroundings.</string>
     <string name="ios_permission_bluetooth">Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices.</string>
     <string name="route_detail_edit_remove_waypoint_hint">remove this waypoint from the route</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s will be removed from this route. The marker itself will not be deleted. Do you want to continue?</string>

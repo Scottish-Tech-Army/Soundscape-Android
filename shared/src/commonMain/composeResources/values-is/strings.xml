@@ -1564,6 +1564,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="directions_cardinal_north_west_bound">Norðvestur</string>
     <string name="first_launch_permissions_granted">Leyfi veitt</string>
     <string name="first_launch_permissions_not_granted">Ekki enn veitt</string>
+    <string name="first_launch_permissions_denied">Hafnað. Ýttu til að leyfa það í Stillingum.</string>
     <string name="talkback_double_tap_template">Tvíbankaðu til að %1$s</string>
     <string name="menu_manage_locale">Staðfærsla</string>
     <string name="callouts_audio_beacon_distance">Hljóðvitinn er nú í %1$s fjarlægð</string>
@@ -1635,7 +1636,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="directions_generic_tram">sporvagn</string>
     <string name="ios_permission_location_when_in_use">Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn og lýsa umhverfi þínu.</string>
     <string name="ios_permission_location_always">Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn jafnvel þegar forritið er í bakgrunni.</string>
-    <string name="ios_permission_motion">Soundscape notar hreyfigögn til að greina í hvaða átt þú snýrð og staðsetja hljóðtilkynningar miðað við umhverfi þitt.</string>
+    <string name="ios_permission_motion">Soundscape notar hreyfigögn til að greina í hvaða átt þú snýrð, hvenær þú ert að ganga og staðsetja hljóðtilkynningar miðað við umhverfi þitt.</string>
     <string name="ios_permission_bluetooth">Soundscape notar Bluetooth til að finna heyrnartól með höfuðrakningu og önnur hljóðtæki og tengjast þeim.</string>
     <string name="route_detail_edit_remove_waypoint_hint">fjarlægja þennan leiðarpunkt úr leiðinni</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s verður fjarlægt úr þessari leið. Merkinu sjálfu verður ekki eytt. Viltu halda áfram?</string>

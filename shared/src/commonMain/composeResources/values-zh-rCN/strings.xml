@@ -1548,6 +1548,7 @@
     <string name="directions_cardinal_north_west_bound">西北行</string>
     <string name="first_launch_permissions_granted">权限已授予</string>
     <string name="first_launch_permissions_not_granted">尚未授予</string>
+    <string name="first_launch_permissions_denied">已拒绝。轻点以在“设置”中允许。</string>
     <string name="talkback_double_tap_template">双击以%1$s</string>
     <string name="menu_manage_locale">区域设置</string>
     <string name="callouts_audio_beacon_distance">信标当前距离%1$s</string>
@@ -1619,7 +1620,7 @@
     <string name="directions_generic_tram">有轨电车</string>
     <string name="ios_permission_location_when_in_use">Soundscape 需要您的位置信息，以便提供音频导航并描述您周围的环境。</string>
     <string name="ios_permission_location_always">Soundscape 需要您的位置信息，以便在应用处于后台时仍能提供音频导航。</string>
-    <string name="ios_permission_motion">Soundscape 使用运动数据来检测您面朝的方向，并将语音提示的方位与您周围的环境对应起来。</string>
+    <string name="ios_permission_motion">Soundscape 使用运动数据来检测您面朝的方向、判断您何时在步行，并将语音提示的方位与您周围的环境对应起来。</string>
     <string name="ios_permission_bluetooth">Soundscape 使用蓝牙来发现并连接支持头部追踪的耳机及其他音频设备。</string>
     <string name="route_detail_edit_remove_waypoint_hint">从路线中移除此航点</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s 将从此路线中移除。标记点本身不会被删除。确定要继续吗？</string>

@@ -1564,6 +1564,7 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="directions_cardinal_north_west_bound">Mot nordväst</string>
     <string name="first_launch_permissions_granted">Behörighet beviljad</string>
     <string name="first_launch_permissions_not_granted">Ännu inte beviljad</string>
+    <string name="first_launch_permissions_denied">Nekad. Tryck för att tillåta den i Inställningar.</string>
     <string name="talkback_double_tap_template">Dubbeltryck för att %1$s</string>
     <string name="menu_manage_locale">Regioninställningar</string>
     <string name="callouts_audio_beacon_distance">Ljudfyren är just nu %1$s bort</string>
@@ -1635,7 +1636,7 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="directions_generic_tram">spårvagn</string>
     <string name="ios_permission_location_when_in_use">Soundscape behöver din plats för att kunna ge ljudnavigering och beskriva dina omgivningar.</string>
     <string name="ios_permission_location_always">Soundscape behöver din plats för att kunna ge ljudnavigering även när appen körs i bakgrunden.</string>
-    <string name="ios_permission_motion">Soundscape använder rörelsedata för att känna av vilken riktning du är vänd mot och placera informationsljuden i förhållande till dina omgivningar.</string>
+    <string name="ios_permission_motion">Soundscape använder rörelsedata för att känna av vilken riktning du är vänd mot, när du går och placera informationsljuden i förhållande till dina omgivningar.</string>
     <string name="ios_permission_bluetooth">Soundscape använder Bluetooth för att hitta och ansluta till hörlurar med huvudspårning och andra ljudenheter.</string>
     <string name="route_detail_edit_remove_waypoint_hint">ta bort den här brytpunkten från rutten</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s tas bort från den här rutten. Själva platsmarkören finns kvar. Vill du fortsätta?</string>

@@ -443,6 +443,7 @@
     <string name="first_launch_permissions_required">Aquest permís és obligatori</string>
     <string name="first_launch_permissions_granted">Permís concedit</string>
     <string name="first_launch_permissions_not_granted">Encara no concedit</string>
+    <string name="first_launch_permissions_denied">Denegat. Toca per permetre-ho a Configuració.</string>
     <string name="permissions_required">L'aplicació necessita permisos d'ubicació per poder funcionar.</string>
     <string name="permissions_button">Canvia els permisos a la configuració de l'aplicació</string>
     <string name="first_launch_beacon_title">Tria una balisa sonora</string>
@@ -1651,7 +1652,7 @@ Continua informant-nos de qualsevol problema, per petit que sigui, mitjançant �
     <string name="directions_generic_tram">tramvia</string>
     <string name="ios_permission_location_when_in_use">Soundscape necessita la teva ubicació per proporcionar navegació per àudio i descriure el teu entorn.</string>
     <string name="ios_permission_location_always">Soundscape necessita la teva ubicació per proporcionar navegació per àudio fins i tot quan l'aplicació està en segon pla.</string>
-    <string name="ios_permission_motion">Soundscape utilitza dades de moviment per detectar cap a on estàs orientat i orientar els avisos de veu respecte al teu entorn.</string>
+    <string name="ios_permission_motion">Soundscape utilitza dades de moviment per detectar cap a on estàs orientat, saber quan camines i orientar els avisos de veu respecte al teu entorn.</string>
     <string name="ios_permission_bluetooth">Soundscape utilitza el Bluetooth per detectar auriculars amb seguiment del cap i altres dispositius d'àudio, i connectar-s'hi.</string>
     <string name="route_detail_edit_remove_waypoint_hint">treure aquest punt de ruta de la ruta</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s es traurà d'aquesta ruta. El marcador en si no se suprimirà. Voleu continuar?</string>

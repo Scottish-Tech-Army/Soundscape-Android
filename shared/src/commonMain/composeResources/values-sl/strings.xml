@@ -1387,6 +1387,7 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="first_launch_permissions_required">To dovoljenje je obvezno</string>
     <string name="first_launch_permissions_granted">Dovoljenje odobreno</string>
     <string name="first_launch_permissions_not_granted">Še ni odobreno</string>
+    <string name="first_launch_permissions_denied">Zavrnjeno. Tapnite, da ga dovolite v Nastavitvah.</string>
     <string name="permissions_required">Aplikacija za delovanje potrebuje dovoljenje za lokacijo.</string>
     <string name="permissions_button">Spremenite dovoljenja v nastavitvah aplikacije</string>
     <string name="first_launch_beacon_title">Izberite zvočni svetilnik</string>
@@ -1667,7 +1668,7 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="directions_generic_tram">tramvaj</string>
     <string name="ios_permission_location_when_in_use">Soundscape potrebuje vašo lokacijo, da lahko zagotavlja zvočno navigacijo in opisuje vašo okolico.</string>
     <string name="ios_permission_location_always">Soundscape potrebuje vašo lokacijo, da lahko zagotavlja zvočno navigacijo tudi takrat, ko aplikacija deluje v ozadju.</string>
-    <string name="ios_permission_motion">Soundscape uporablja podatke o gibanju, da zazna smer, v katero ste obrnjeni, in zvočna obvestila umesti glede na vašo okolico.</string>
+    <string name="ios_permission_motion">Soundscape uporablja podatke o gibanju, da zazna smer, v katero ste obrnjeni, prepozna, kdaj hodite, in zvočna obvestila umesti glede na vašo okolico.</string>
     <string name="ios_permission_bluetooth">Soundscape uporablja Bluetooth za iskanje slušalk s sledenjem glavi in drugih zvočnih naprav ter za povezovanje z njimi.</string>
     <string name="route_detail_edit_remove_waypoint_hint">odstranitev te točke poti iz poti</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Točka %1$s bo odstranjena s te poti. Sama oznaka ne bo izbrisana. Ali želite nadaljevati?</string>
