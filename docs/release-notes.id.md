@@ -31,6 +31,10 @@ di trotoar yang dipetakan terpisah dari jalan. Sejak 2.0.99, pemberitahuan persi
 dan akurat, dan Soundscape kini memberi tahu Anda saat sebuah jalan berakhir di gerbang yang tidak
 bisa Anda lewati. Kami juga memperbaiki *Lokasi Saya* yang diam saat koneksi jaringan lemah, serta
 masalah saat mengunduh peta offline.
+Soundscape kini dapat menggunakan penghitung langkah di ponsel Anda untuk mengetahui kapan Anda
+berjalan, sehingga lebih cepat menyadari bahwa Anda turun dari kendaraan atau berhenti, dan saat
+pertama kali membuka versi ini, Anda akan diminta izin baru *Aktivitas fisik* (*Gerakan dan
+Kebugaran* di iPhone).
 
 ## Yang baru di 2.0
 

@@ -30,6 +30,10 @@ separatamente dalla strada. Dalla 2.0.99, le notifiche sugli incroci sono più c
 Soundscape ora ti avvisa quando una strada finisce a un cancello che non puoi attraversare. Abbiamo
 anche corretto il silenzio di *La mia posizione* con una connessione di rete debole, e un problema
 nello scaricare le mappe offline.
+Soundscape ora può usare il contapassi del telefono per capire quando stai camminando, così si
+accorge prima che sei sceso da un veicolo o ti sei fermato, e la prima volta che apri questa
+versione ti verrà chiesta una nuova autorizzazione, *Attività fisica* (*Movimento e fitness* su
+iPhone).
 
 ## Novità della versione 2.0
 

@@ -29,6 +29,9 @@ když jdete po chodníku, který je v mapě zakreslen odděleně od silnice. Od 
 křižovatek srozumitelnější a přesnější a Soundscape vám teď řekne, když cesta končí u brány, kterou
 nelze projít. Opravili jsme také to, že *Moje poloha* při slabém připojení k síti mlčela, a problém
 se stahováním offline map.
+Soundscape teď může pomocí krokoměru ve vašem telefonu poznat, kdy jdete pěšky, takže dříve zjistí,
+že jste vystoupili z vozidla nebo se zastavili, a při prvním otevření této verze budete požádáni o
+nové oprávnění *Fyzická aktivita* (na iPhonu *Pohyb a kondice*).
 
 ## Novinky ve verzi 2.0
 

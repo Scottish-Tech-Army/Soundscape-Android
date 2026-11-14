@@ -29,6 +29,9 @@ mô tả chính xác khi bạn đi bộ trên vỉa hè được vẽ trên bả
 thông báo về giao lộ rõ ràng và chính xác hơn, và Soundscape giờ sẽ cho bạn biết khi một con đường
 kết thúc ở một cổng mà bạn không thể đi qua. Chúng tôi cũng đã sửa lỗi *Vị trí của tôi* im lặng khi
 kết nối mạng yếu, và một lỗi khi tải bản đồ ngoại tuyến.
+Giờ đây Soundscape có thể dùng bộ đếm bước của điện thoại để biết khi nào bạn đang đi bộ, nhờ đó
+nhận ra sớm hơn rằng bạn đã xuống xe hoặc dừng lại, và khi mở phiên bản này lần đầu, bạn sẽ được yêu
+cầu cấp quyền mới *Hoạt động thể chất* (*Chuyển động và Thể dục* trên iPhone).
 
 ## Có gì mới trong 2.0
 

@@ -25,6 +25,9 @@ station. Intersections are now described correctly when you're walking on a pave
 separately from the road. Since 2.0.99, intersection callouts are clearer and more accurate, and
 Soundscape now tells you when a road ends at a gate you can't get through. We've also fixed *My
 Location* going silent on a poor network connection, and a problem with downloading offline maps.
+Soundscape can now use your phone's step counter to tell when you're walking, so it notices sooner
+that you've got out of a vehicle or stopped, and you'll be asked for a new *Physical activity*
+permission (*Motion & Fitness* on iPhone) when you first open this version.
 
 ## What's new in 2.0
 
