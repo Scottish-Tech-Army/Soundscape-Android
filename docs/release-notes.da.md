@@ -30,6 +30,10 @@ vejen. Siden 2.0.99 er lydbeskeder om vejkryds tydeligere og mere præcise, og S
 dig nu, når en vej ender ved en port, du ikke kan komme igennem. Vi har også rettet, at *Min
 placering* forblev tavs ved en dårlig netværksforbindelse, og et problem med at downloade
 offlinekort.
+Soundscape kan nu bruge din telefons skridttæller til at registrere, hvornår du går, så den
+hurtigere opdager, at du er steget ud af et køretøj eller er stoppet, og du bliver bedt om en ny
+tilladelse, *Fysisk aktivitet* (*Motion & fitness* på iPhone), når du åbner denne version første
+gang.
 
 ## Nyt i 2.0
 

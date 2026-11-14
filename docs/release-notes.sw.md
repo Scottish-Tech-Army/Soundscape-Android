@@ -30,6 +30,9 @@ iliyochorwa kwenye ramani kando na barabara. Tangu 2.0.99, matangazo ya makutano
 sahihi zaidi, na Soundscape sasa hukuambia barabara inapoishia kwenye lango ambalo huwezi kupita.
 Pia tumerekebisha tatizo la *Mahali Nilipo* kukaa kimya muunganisho wa mtandao ukiwa dhaifu, na
 tatizo la kupakua ramani za nje ya mtandao.
+Sasa Soundscape inaweza kutumia kihesabu hatua cha simu yako kujua unapotembea, hivyo inatambua
+mapema kwamba umeshuka kwenye gari au umesimama, na utaombwa ruhusa mpya ya *Shughuli za kimwili*
+(*Mwendo na Afya ya Mwili* kwenye iPhone) unapofungua toleo hili kwa mara ya kwanza.
 
 ## Mapya katika 2.0
 

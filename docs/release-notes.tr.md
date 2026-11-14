@@ -29,6 +29,9 @@ haritalanmış bir kaldırımda yürürken kavşaklar artık doğru şekilde tar
 yana kavşak anonsları daha anlaşılır ve daha doğru; Soundscape artık bir yol geçemeyeceğiniz bir
 kapıda sona erdiğinde bunu söylüyor. Ayrıca zayıf ağ bağlantısında *Konumum* özelliğinin sessiz
 kalmasını ve çevrimdışı harita indirmeyle ilgili bir sorunu düzelttik.
+Soundscape artık yürüdüğünüzü anlamak için telefonunuzun adım sayarını kullanabiliyor; böylece bir
+araçtan indiğinizi ya da durduğunuzu daha erken fark ediyor. Bu sürümü ilk açtığınızda sizden yeni
+bir izin istenecek: *Fiziksel aktivite* (iPhone’da *Hareket ve Kondisyon*).
 
 ## 2.0'daki yenilikler
 

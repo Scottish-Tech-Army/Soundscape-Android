@@ -30,6 +30,10 @@ Gehweg gehen, der getrennt von der Straße kartiert ist. Seit 2.0.99 sind die An
 klarer und genauer, und Soundscape sagt Ihnen jetzt, wenn ein Weg an einem Tor endet, durch das Sie
 nicht hindurchkommen. Außerdem haben wir behoben, dass *Mein Standort* bei schlechter Netzverbindung
 stumm blieb, sowie ein Problem beim Herunterladen von Offline-Karten.
+Soundscape kann jetzt den Schrittzähler Ihres Telefons nutzen, um zu erkennen, wann Sie gehen, und
+bemerkt dadurch früher, dass Sie aus einem Fahrzeug ausgestiegen oder stehen geblieben sind. Beim
+ersten Öffnen dieser Version werden Sie um eine neue Berechtigung gebeten: *Körperliche Aktivität*
+(auf dem iPhone *Bewegung und Fitness*).
 
 ## Was ist neu in 2.0
 

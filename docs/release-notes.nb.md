@@ -29,6 +29,9 @@ stasjonen. Veikryss beskrives nå riktig når du går på et fortau som er kartl
 Siden 2.0.99 er meldinger om veikryss tydeligere og mer nøyaktige, og Soundscape sier nå fra når en
 vei ender ved en port du ikke kommer gjennom. Vi har også rettet at *Min posisjon* var stille ved
 dårlig nettverkstilkobling, og et problem med nedlasting av frakoblede kart.
+Soundscape kan nå bruke skritttelleren på telefonen for å vite når du går, slik at den raskere
+merker at du har gått ut av et kjøretøy eller har stoppet, og du blir bedt om en ny tillatelse,
+*Fysisk aktivitet* (*Bevegelse og aktivitet* på iPhone), første gang du åpner denne versjonen.
 
 ## Nytt i 2.0
 

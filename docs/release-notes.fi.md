@@ -29,6 +29,9 @@ kuvataan nyt oikein, kun kävelet jalkakäytävällä, joka on kartoitettu eriks
 2.0.99 alkaen risteysten ilmoitukset ovat selkeämpiä ja tarkempia, ja Soundscape kertoo nyt, kun tie
 päättyy porttiin, josta et pääse läpi. Korjasimme myös vian, jonka vuoksi *Oma sijaintini* jäi
 hiljaiseksi heikolla verkkoyhteydellä, sekä ongelman offline-karttojen lataamisessa.
+Soundscape voi nyt käyttää puhelimesi askelmittaria tunnistaakseen, milloin kävelet, joten se huomaa
+aiemmin, että olet noussut ajoneuvosta tai pysähtynyt, ja kun avaat tämän version ensimmäisen
+kerran, sinulta pyydetään uutta *Fyysinen aktiivisuus* -lupaa (iPhonessa *Liike ja kuntoilu*).
 
 ## Uutta versiossa 2.0
 

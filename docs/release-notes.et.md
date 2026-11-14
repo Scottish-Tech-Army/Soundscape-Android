@@ -29,6 +29,9 @@ kirjeldatakse nüüd õigesti, kui kõnnid kõnniteel, mis on kaardile kantud te
 versioonist 2.0.99 on ristmike häälteated selgemad ja täpsemad ning Soundscape ütleb nüüd, kui tee
 lõpeb väravaga, millest sa läbi ei pääse. Parandasime ka vea, mille tõttu *Minu asukoht* jäi nõrga
 võrguühenduse korral vait, ning probleemi võrguühenduseta kaartide allalaadimisel.
+Soundscape saab nüüd kasutada su telefoni sammuloendurit, et teada, millal sa kõnnid, nii et ta
+märkab varem, et oled sõidukist väljunud või peatunud, ja selle versiooni esmakordsel avamisel
+küsitakse sinult uut luba *Kehaline aktiivsus* (iPhone’is *Liikumine ja vormisolek*).
 
 ## Mis on uut versioonis 2.0
 

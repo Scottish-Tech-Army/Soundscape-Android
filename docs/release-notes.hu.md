@@ -30,6 +30,9 @@ külön van feltérképezve. A 2.0.99 óta a kereszteződések bemondásai érth
 Soundscape most szól, ha egy út olyan kapunál ér véget, amelyen nem lehet átjutni. Kijavítottuk azt
 is, hogy a *Saját helyzetem* gyenge hálózati kapcsolatnál néma maradt, valamint egy hibát az offline
 térképek letöltésében.
+A Soundscape mostantól a telefonja lépésszámlálóját is használhatja annak felismerésére, hogy mikor
+sétál, így hamarabb észreveszi, ha kiszállt egy járműből vagy megállt, és amikor először megnyitja
+ezt a verziót, egy új, *Fizikai aktivitás* engedélyt kér Öntől (iPhone-on *Mozgás és fittség*).
 
 ## Újdonságok a 2.0-ban
 
