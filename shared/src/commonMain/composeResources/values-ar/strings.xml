@@ -1528,6 +1528,7 @@
     <string name="first_launch_permissions_required">هذا الإذن مطلوب</string>
     <string name="first_launch_permissions_granted">تم منح الإذن</string>
     <string name="first_launch_permissions_not_granted">لم يُمنح بعد</string>
+    <string name="first_launch_permissions_denied">مرفوض. انقر للسماح به من الإعدادات.</string>
     <string name="permissions_required">يتطلب التطبيق أذونات الموقع لكي يعمل.</string>
     <string name="permissions_button">تغيير الأذونات في إعدادات التطبيق</string>
     <string name="first_launch_beacon_title">اختر منارة صوتية</string>
@@ -1699,7 +1700,7 @@
     <string name="directions_generic_tram">ترام</string>
     <string name="ios_permission_location_when_in_use">يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي ووصف ما يحيط بك.</string>
     <string name="ios_permission_location_always">يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي حتى عندما يكون التطبيق في الخلفية.</string>
-    <string name="ios_permission_motion">يستخدم Soundscape بيانات الحركة لتحديد الاتجاه الذي تواجهه وتوجيه النداءات الصوتية نحو ما يحيط بك.</string>
+    <string name="ios_permission_motion">يستخدم Soundscape بيانات الحركة لتحديد الاتجاه الذي تواجهه، ومعرفة متى تكون ماشيًا، وتوجيه النداءات الصوتية نحو ما يحيط بك.</string>
     <string name="ios_permission_bluetooth">يستخدم Soundscape البلوتوث لاكتشاف سماعات الرأس المزوّدة بتتبع حركة الرأس والأجهزة الصوتية الأخرى والاتصال بها.</string>
     <string name="route_detail_edit_remove_waypoint_hint">إزالة نقطة المسار هذه من المسار</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">ستتم إزالة %1$s من هذا المسار. لن يتم حذف العلامة نفسها. هل تريد المتابعة؟</string>

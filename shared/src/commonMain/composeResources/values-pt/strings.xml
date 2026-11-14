@@ -1580,6 +1580,7 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="directions_cardinal_north_west_bound">Em direção a noroeste</string>
     <string name="first_launch_permissions_granted">Permissão concedida</string>
     <string name="first_launch_permissions_not_granted">Ainda não concedida</string>
+    <string name="first_launch_permissions_denied">Negada. Toque para a permitir nas Definições.</string>
     <string name="talkback_double_tap_template">Toque duas vezes para %1$s</string>
     <string name="menu_manage_locale">Configurações regionais</string>
     <string name="callouts_audio_beacon_distance">O sinal está atualmente a %1$s de distância</string>
@@ -1651,7 +1652,7 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="directions_generic_tram">elétrico</string>
     <string name="ios_permission_location_when_in_use">O Soundscape necessita da sua localização para fornecer navegação por áudio e descrever as suas imediações.</string>
     <string name="ios_permission_location_always">O Soundscape necessita da sua localização para fornecer navegação por áudio mesmo quando a aplicação está em segundo plano.</string>
-    <string name="ios_permission_motion">O Soundscape utiliza dados de movimento para detetar a direção para a qual está virado e orientar os avisos de áudio em relação às suas imediações.</string>
+    <string name="ios_permission_motion">O Soundscape utiliza dados de movimento para detetar a direção para a qual está virado, saber quando está a andar e orientar os avisos de áudio em relação às suas imediações.</string>
     <string name="ios_permission_bluetooth">O Soundscape utiliza o Bluetooth para detetar auscultadores com rastreio da cabeça e outros dispositivos de áudio, e ligar-se a eles.</string>
     <string name="route_detail_edit_remove_waypoint_hint">remover este ponto de passagem da rota</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">O ponto de passagem %1$s será removido desta rota. O próprio marco não será eliminado. Pretende continuar?</string>

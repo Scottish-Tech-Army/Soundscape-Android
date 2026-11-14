@@ -1564,6 +1564,7 @@
     <string name="directions_cardinal_north_west_bound">Κατεύθυνση βορειοδυτικά</string>
     <string name="first_launch_permissions_granted">Η άδεια χορηγήθηκε</string>
     <string name="first_launch_permissions_not_granted">Δεν έχει χορηγηθεί ακόμα</string>
+    <string name="first_launch_permissions_denied">Απορρίφθηκε. Πατήστε για να την επιτρέψετε από τις Ρυθμίσεις.</string>
     <string name="talkback_double_tap_template">Πατήστε δύο φορές για να %1$s</string>
     <string name="menu_manage_locale">Τοπικές ρυθμίσεις</string>
     <string name="callouts_audio_beacon_distance">Το ηχητικό σήμα βρίσκεται αυτήν τη στιγμή σε απόσταση %1$s</string>
@@ -1635,7 +1636,7 @@
     <string name="directions_generic_tram">τραμ</string>
     <string name="ios_permission_location_when_in_use">Το Soundscape χρειάζεται την τοποθεσία σας για να παρέχει ηχητική πλοήγηση και να περιγράφει το περιβάλλον σας.</string>
     <string name="ios_permission_location_always">Το Soundscape χρειάζεται την τοποθεσία σας για να παρέχει ηχητική πλοήγηση ακόμη και όταν η εφαρμογή βρίσκεται στο παρασκήνιο.</string>
-    <string name="ios_permission_motion">Το Soundscape χρησιμοποιεί δεδομένα κίνησης για να εντοπίζει την κατεύθυνση προς την οποία κοιτάτε και να προσανατολίζει τις ηχητικές επεξηγήσεις ως προς το περιβάλλον σας.</string>
+    <string name="ios_permission_motion">Το Soundscape χρησιμοποιεί δεδομένα κίνησης για να εντοπίζει την κατεύθυνση προς την οποία κοιτάτε, να καταλαβαίνει πότε περπατάτε και να προσανατολίζει τις ηχητικές επεξηγήσεις ως προς το περιβάλλον σας.</string>
     <string name="ios_permission_bluetooth">Το Soundscape χρησιμοποιεί Bluetooth για να εντοπίζει ακουστικά με παρακολούθηση κεφαλής και άλλες συσκευές ήχου και να συνδέεται σε αυτά.</string>
     <string name="route_detail_edit_remove_waypoint_hint">αφαιρέσετε αυτό το σημείο πορείας από τη διαδρομή</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Το σημείο %1$s θα αφαιρεθεί από αυτή τη διαδρομή. Ο ίδιος ο δείκτης δεν θα διαγραφεί. Θέλετε να συνεχίσετε;</string>

@@ -1564,6 +1564,7 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="directions_cardinal_north_west_bound">Kuzeybatı yönü</string>
     <string name="first_launch_permissions_granted">İzin verildi</string>
     <string name="first_launch_permissions_not_granted">Henüz verilmedi</string>
+    <string name="first_launch_permissions_denied">Reddedildi. Ayarlar’da izin vermek için dokunun.</string>
     <string name="menu_manage_locale">Yerel ayar</string>
     <string name="talkback_double_tap_template">%1$s için çift dokunun</string>
     <string name="callouts_audio_beacon_distance">İşaret şu anda %1$s uzaklıkta</string>
@@ -1635,7 +1636,7 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="directions_generic_tram">tramvay</string>
     <string name="ios_permission_location_when_in_use">Soundscape, sesli gezinme sağlamak ve çevrenizi betimlemek için konumunuza ihtiyaç duyar.</string>
     <string name="ios_permission_location_always">Soundscape, uygulama arka plandayken bile sesli gezinme sağlamak için konumunuza ihtiyaç duyar.</string>
-    <string name="ios_permission_motion">Soundscape, baktığınız yönü algılamak ve sesli anonsları çevrenize göre yönlendirmek için hareket verilerini kullanır.</string>
+    <string name="ios_permission_motion">Soundscape, baktığınız yönü algılamak, ne zaman yürüdüğünüzü anlamak ve sesli anonsları çevrenize göre yönlendirmek için hareket verilerini kullanır.</string>
     <string name="ios_permission_bluetooth">Soundscape, baş takibi olan kulaklıkları ve diğer ses cihazlarını bulup bunlara bağlanmak için Bluetooth kullanır.</string>
     <string name="route_detail_edit_remove_waypoint_hint">bu ara noktayı rotadan kaldırmak</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s bu rotadan kaldırılacak. Kayıtlı noktanın kendisi silinmeyecek. Devam etmek istiyor musunuz?</string>

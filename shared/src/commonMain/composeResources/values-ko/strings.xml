@@ -413,6 +413,7 @@
     <string name="first_launch_permissions_required">이 권한은 필수입니다</string>
     <string name="first_launch_permissions_granted">권한이 허용됨</string>
     <string name="first_launch_permissions_not_granted">아직 허용되지 않음</string>
+    <string name="first_launch_permissions_denied">거부됨. 탭하여 설정에서 허용하세요.</string>
     <string name="permissions_required">이 앱을 실행하려면 위치 권한이 필요합니다.</string>
     <string name="permissions_button">앱 설정에서 권한 변경하기</string>
     <string name="first_launch_beacon_title">오디오 비콘 선택</string>
@@ -1619,7 +1620,7 @@
     <string name="directions_generic_tram">트램</string>
     <string name="ios_permission_location_when_in_use">Soundscape는 오디오 내비게이션을 제공하고 주변 환경을 설명하기 위해 위치 정보가 필요합니다.</string>
     <string name="ios_permission_location_always">Soundscape는 앱이 백그라운드에 있을 때도 오디오 내비게이션을 제공하기 위해 위치 정보가 필요합니다.</string>
-    <string name="ios_permission_motion">Soundscape는 동작 데이터를 사용하여 사용자가 향하는 방향을 감지하고 오디오 안내를 주변 환경에 맞춰 배치합니다.</string>
+    <string name="ios_permission_motion">Soundscape는 동작 데이터를 사용하여 사용자가 향하는 방향을 감지하고, 걷고 있는지 파악하며, 오디오 안내를 주변 환경에 맞춰 배치합니다.</string>
     <string name="ios_permission_bluetooth">Soundscape는 블루투스를 사용하여 헤드 트래킹 헤드폰 및 기타 오디오 기기를 검색하고 연결합니다.</string>
     <string name="route_detail_edit_remove_waypoint_hint">이 경유지를 경로에서 제거하기</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s 경유지가 이 경로에서 제거됩니다. 마커 자체는 삭제되지 않습니다. 계속하시겠습니까?</string>

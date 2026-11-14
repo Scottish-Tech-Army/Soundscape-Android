@@ -1140,6 +1140,7 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="directions_cardinal_north_west_bound">Loode suunas</string>
     <string name="first_launch_permissions_granted">Luba antud</string>
     <string name="first_launch_permissions_not_granted">Veel andmata</string>
+    <string name="first_launch_permissions_denied">Keelatud. Puudutage, et lubada see seadetes.</string>
     <string name="menu_manage_locale">Piirkond</string>
     <string name="osm_motorway">Kiirtee</string>
     <string name="osm_trunk">Peamaantee</string>
@@ -1635,7 +1636,7 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="directions_generic_tram">trammis</string>
     <string name="ios_permission_location_when_in_use">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ja kirjeldada teie ümbrust.</string>
     <string name="ios_permission_location_always">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ka siis, kui rakendus töötab taustal.</string>
-    <string name="ios_permission_motion">Soundscape kasutab liikumisandmeid, et tuvastada suund, kuhu te näoga olete, ja suunata häälteated vastavalt teie ümbrusele.</string>
+    <string name="ios_permission_motion">Soundscape kasutab liikumisandmeid, et tuvastada suund, kuhu te näoga olete, teada saada, millal te kõnnite, ja suunata häälteated vastavalt teie ümbrusele.</string>
     <string name="ios_permission_bluetooth">Soundscape kasutab Bluetoothi, et leida pea jälgimisega kõrvaklappe ja muid heliseadmeid ning nendega ühenduda.</string>
     <string name="route_detail_edit_remove_waypoint_hint">eemaldada see teekonnapunkt marsruudilt</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s eemaldatakse sellelt marsruudilt. Markerit ennast ei kustutata. Kas soovid jätkata?</string>

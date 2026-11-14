@@ -1596,6 +1596,7 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="directions_cardinal_north_west_bound">W kierunku północno-zachodnim</string>
     <string name="first_launch_permissions_granted">Uprawnienie przyznane</string>
     <string name="first_launch_permissions_not_granted">Jeszcze nie przyznano</string>
+    <string name="first_launch_permissions_denied">Odmówiono. Stuknij, aby zezwolić w Ustawieniach.</string>
     <string name="talkback_double_tap_template">Stuknij dwukrotnie, aby %1$s</string>
     <string name="menu_manage_locale">Ustawienia regionalne</string>
     <string name="callouts_audio_beacon_distance">Do celu: %1$s</string>
@@ -1667,7 +1668,7 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="directions_generic_tram">linii tramwajowej</string>
     <string name="ios_permission_location_when_in_use">Soundscape potrzebuje Twojej lokalizacji, aby zapewniać nawigację audio i opisywać Twoje otoczenie.</string>
     <string name="ios_permission_location_always">Soundscape potrzebuje Twojej lokalizacji, aby zapewniać nawigację audio nawet wtedy, gdy aplikacja działa w tle.</string>
-    <string name="ios_permission_motion">Soundscape wykorzystuje dane ruchu, aby wykryć kierunek, w którym jesteś zwrócony, i dopasować powiadomienia głosowe do Twojego otoczenia.</string>
+    <string name="ios_permission_motion">Soundscape wykorzystuje dane ruchu, aby wykryć kierunek, w którym jesteś zwrócony, rozpoznać, kiedy idziesz, i dopasować powiadomienia głosowe do Twojego otoczenia.</string>
     <string name="ios_permission_bluetooth">Soundscape używa Bluetooth, aby wykrywać słuchawki ze śledzeniem ruchu głowy oraz inne urządzenia audio i łączyć się z nimi.</string>
     <string name="route_detail_edit_remove_waypoint_hint">usunąć ten punkt trasy z trasy</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Punkt %1$s zostanie usunięty z tej trasy. Sam znacznik pozostanie zapisany. Czy chcesz kontynuować?</string>

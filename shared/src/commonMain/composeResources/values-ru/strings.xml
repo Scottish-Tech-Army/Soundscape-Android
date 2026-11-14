@@ -1596,6 +1596,7 @@
     <string name="directions_cardinal_north_west_bound">На северо-запад</string>
     <string name="first_launch_permissions_granted">Разрешение предоставлено</string>
     <string name="first_launch_permissions_not_granted">Пока не предоставлено</string>
+    <string name="first_launch_permissions_denied">Отклонено. Нажмите, чтобы разрешить в Настройках.</string>
     <string name="talkback_double_tap_template">Дважды нажмите, чтобы %1$s</string>
     <string name="menu_manage_locale">Региональные параметры</string>
     <string name="callouts_audio_beacon_distance">До маяка сейчас %1$s</string>
@@ -1667,7 +1668,7 @@
     <string name="directions_generic_tram">трамвай</string>
     <string name="ios_permission_location_when_in_use">Soundscape нужно ваше местоположение, чтобы обеспечивать аудионавигацию и описывать ваше окружение.</string>
     <string name="ios_permission_location_always">Soundscape нужно ваше местоположение, чтобы обеспечивать аудионавигацию, даже когда приложение работает в фоновом режиме.</string>
-    <string name="ios_permission_motion">Soundscape использует данные движения, чтобы определять направление, в котором вы повёрнуты, и располагать звуковые уточнения относительно вашего окружения.</string>
+    <string name="ios_permission_motion">Soundscape использует данные движения, чтобы определять направление, в котором вы повёрнуты, понимать, когда вы идёте пешком, и располагать звуковые уточнения относительно вашего окружения.</string>
     <string name="ios_permission_bluetooth">Soundscape использует Bluetooth, чтобы находить наушники с отслеживанием головы и другие аудиоустройства и подключаться к ним.</string>
     <string name="route_detail_edit_remove_waypoint_hint">убрать эту путевую точку из маршрута</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">Точка %1$s будет убрана из этого маршрута. Сама отметка не будет удалена. Вы хотите продолжить?</string>

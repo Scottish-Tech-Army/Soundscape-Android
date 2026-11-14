@@ -490,6 +490,7 @@
     <string name="first_launch_permissions_required">ਇਹ ਇਜਾਜ਼ਤ ਲੋੜੀਂਦੀ ਹੈ</string>
     <string name="first_launch_permissions_granted">ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਗਈ</string>
     <string name="first_launch_permissions_not_granted">ਹਾਲੇ ਨਹੀਂ ਦਿੱਤੀ ਗਈ</string>
+    <string name="first_launch_permissions_denied">ਇਨਕਾਰ ਕੀਤੀ ਗਈ। ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਜਾਜ਼ਤ ਦੇਣ ਲਈ ਟੈਪ ਕਰੋ।</string>
     <string name="permissions_required">ਐਪ ਨੂੰ ਚੱਲਣ ਲਈ ਟਿਕਾਣੇ ਦੀਆਂ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ।</string>
     <string name="permissions_button">ਐਪ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਜਾਜ਼ਤਾਂ ਬਦਲੋ</string>
     <string name="first_launch_beacon_title">ਇੱਕ ਆਡੀਓ ਬੀਕਨ ਚੁਣੋ</string>
@@ -1672,7 +1673,7 @@
     <string name="action_no_route_active">ਕੋਈ ਰੂਟ ਨਹੀਂ ਚੱਲ ਰਿਹਾ</string>
     <string name="ios_permission_location_when_in_use">ਆਵਾਜ਼ੀ ਨੈਵੀਗੇਸ਼ਨ ਦੇਣ ਅਤੇ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਦਾ ਵਰਣਨ ਕਰਨ ਲਈ Soundscape ਨੂੰ ਤੁਹਾਡੇ ਟਿਕਾਣੇ ਦੀ ਲੋੜ ਹੈ।</string>
     <string name="ios_permission_location_always">ਐਪ ਪਿਛੋਕੜ ਵਿੱਚ ਹੋਣ 'ਤੇ ਵੀ ਆਵਾਜ਼ੀ ਨੈਵੀਗੇਸ਼ਨ ਦੇਣ ਲਈ Soundscape ਨੂੰ ਤੁਹਾਡੇ ਟਿਕਾਣੇ ਦੀ ਲੋੜ ਹੈ।</string>
-    <string name="ios_permission_motion">Soundscape ਹਰਕਤ ਡਾਟਾ ਵਰਤ ਕੇ ਪਤਾ ਕਰਦਾ ਹੈ ਕਿ ਤੁਹਾਡਾ ਮੂੰਹ ਕਿਸ ਦਿਸ਼ਾ ਵੱਲ ਹੈ, ਅਤੇ ਘੋਸ਼ਣਾਵਾਂ ਨੂੰ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਮੁਤਾਬਕ ਦਿਸ਼ਾ ਦਿੰਦਾ ਹੈ।</string>
+    <string name="ios_permission_motion">Soundscape ਹਰਕਤ ਡਾਟਾ ਵਰਤ ਕੇ ਪਤਾ ਕਰਦਾ ਹੈ ਕਿ ਤੁਹਾਡਾ ਮੂੰਹ ਕਿਸ ਦਿਸ਼ਾ ਵੱਲ ਹੈ ਅਤੇ ਤੁਸੀਂ ਕਦੋਂ ਤੁਰ ਰਹੇ ਹੋ, ਅਤੇ ਘੋਸ਼ਣਾਵਾਂ ਨੂੰ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਮੁਤਾਬਕ ਦਿਸ਼ਾ ਦਿੰਦਾ ਹੈ।</string>
     <string name="ios_permission_bluetooth">Soundscape ਸਿਰ ਦੀ ਟਰੈਕਿੰਗ ਵਾਲੇ ਹੈੱਡਫ਼ੋਨ ਅਤੇ ਹੋਰ ਆਡੀਓ ਡਿਵਾਈਸਾਂ ਲੱਭਣ ਅਤੇ ਉਨ੍ਹਾਂ ਨਾਲ ਜੁੜਨ ਲਈ ਬਲੂਟੁੱਥ ਵਰਤਦਾ ਹੈ।</string>
     <string name="siri_type_callout">ਘੋਸ਼ਣਾ</string>
     <string name="siri_type_route_command">ਰੂਟ ਹੁਕਮ</string>

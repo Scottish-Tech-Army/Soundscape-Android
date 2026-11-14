@@ -1548,6 +1548,7 @@
     <string name="directions_cardinal_north_west_bound">北西方面</string>
     <string name="first_launch_permissions_granted">許可済み</string>
     <string name="first_launch_permissions_not_granted">未許可</string>
+    <string name="first_launch_permissions_denied">拒否されています。タップして「設定」で許可してください。</string>
     <string name="talkback_double_tap_template">ダブルタップして%1$s</string>
     <string name="menu_manage_locale">ロケール</string>
     <string name="callouts_audio_beacon_distance">ビーコンまで現在 %1$s です</string>
@@ -1619,7 +1620,7 @@
     <string name="directions_generic_tram">トラム</string>
     <string name="ios_permission_location_when_in_use">Soundscape は、音声ナビを提供し、周囲の状況をお伝えするために位置情報を必要とします。</string>
     <string name="ios_permission_location_always">Soundscape は、アプリがバックグラウンドにあるときも音声ナビを提供するために位置情報を必要とします。</string>
-    <string name="ios_permission_motion">Soundscape は、あなたが向いている方向を検出し、コールアウトを周囲に合わせて定位するためにモーションデータを使用します。</string>
+    <string name="ios_permission_motion">Soundscape は、あなたが向いている方向を検出し、歩いているかどうかを判断し、コールアウトを周囲に合わせて定位するためにモーションデータを使用します。</string>
     <string name="ios_permission_bluetooth">Soundscape は、ヘッドトラッキング対応ヘッドホンやその他のオーディオ機器を検出して接続するために Bluetooth を使用します。</string>
     <string name="route_detail_edit_remove_waypoint_hint">このウェイポイントをルートから外します</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s をこのルートから外します。マーカー自体は削除されません。続行しますか?</string>

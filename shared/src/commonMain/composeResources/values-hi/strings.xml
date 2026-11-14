@@ -1564,6 +1564,7 @@
     <string name="directions_cardinal_north_west_bound">उत्तर-पश्चिम की ओर</string>
     <string name="first_launch_permissions_granted">अनुमति दी गई</string>
     <string name="first_launch_permissions_not_granted">अभी तक नहीं दी गई</string>
+    <string name="first_launch_permissions_denied">अस्वीकृत। सेटिंग्स में अनुमति देने के लिए टैप करें।</string>
     <string name="talkback_double_tap_template">दो बार टैप करें %1$s</string>
     <string name="menu_manage_locale">क्षेत्रीय सेटिंग्स</string>
     <string name="callouts_audio_beacon_distance">बीकन इस समय %1$s दूर है</string>
@@ -1635,7 +1636,7 @@
     <string name="directions_generic_tram">ट्राम</string>
     <string name="ios_permission_location_when_in_use">Soundscape को ऑडियो नेविगेशन प्रदान करने और आपके परिवेश का वर्णन करने के लिए आपके स्थान की आवश्यकता है।</string>
     <string name="ios_permission_location_always">Soundscape को ऐप के बैकग्राउंड में होने पर भी ऑडियो नेविगेशन प्रदान करने के लिए आपके स्थान की आवश्यकता है।</string>
-    <string name="ios_permission_motion">Soundscape मोशन डेटा का उपयोग करके यह पता लगाता है कि आपका मुख किस दिशा में है और कॉलआउट को आपके परिवेश के अनुसार दिशा देता है।</string>
+    <string name="ios_permission_motion">Soundscape मोशन डेटा का उपयोग करके यह पता लगाता है कि आपका मुख किस दिशा में है और आप कब चल रहे हैं, और कॉलआउट को आपके परिवेश के अनुसार दिशा देता है।</string>
     <string name="ios_permission_bluetooth">Soundscape हेड ट्रैकिंग वाले हेडफ़ोन और अन्य ऑडियो डिवाइस खोजने और उनसे कनेक्ट करने के लिए ब्लूटूथ का उपयोग करता है।</string>
     <string name="route_detail_edit_remove_waypoint_hint">इस मार्ग बिंदु को मार्ग से हटाएँ</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s को इस मार्ग से हटा दिया जाएगा। मार्कर स्वयं बना रहेगा। क्या आप जारी रखना चाहते हैं?</string>

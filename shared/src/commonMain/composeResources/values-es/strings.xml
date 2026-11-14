@@ -1580,6 +1580,7 @@ Sigue informándonos de cualquier problema, por pequeño que sea, a través de �
     <string name="directions_cardinal_north_west_bound">Hacia el noroeste</string>
     <string name="first_launch_permissions_granted">Permiso concedido</string>
     <string name="first_launch_permissions_not_granted">Aún no concedido</string>
+    <string name="first_launch_permissions_denied">Denegado. Toca para permitirlo en Ajustes.</string>
     <string name="talkback_double_tap_template">Pulsa dos veces para %1$s</string>
     <string name="menu_manage_locale">Configuración regional</string>
     <string name="callouts_audio_beacon_distance">La señal está actualmente a %1$s</string>
@@ -1651,7 +1652,7 @@ Sigue informándonos de cualquier problema, por pequeño que sea, a través de �
     <string name="directions_generic_tram">tranvía</string>
     <string name="ios_permission_location_when_in_use">Soundscape necesita tu ubicación para proporcionar navegación por audio y describir tu entorno.</string>
     <string name="ios_permission_location_always">Soundscape necesita tu ubicación para proporcionar navegación por audio incluso cuando la aplicación está en segundo plano.</string>
-    <string name="ios_permission_motion">Soundscape usa datos de movimiento para detectar la dirección hacia la que miras y orientar los avisos de audio respecto a tu entorno.</string>
+    <string name="ios_permission_motion">Soundscape usa datos de movimiento para detectar la dirección hacia la que miras, saber cuándo estás caminando y orientar los avisos de audio respecto a tu entorno.</string>
     <string name="ios_permission_bluetooth">Soundscape usa Bluetooth para detectar auriculares con seguimiento de la cabeza y otros dispositivos de audio, y conectarse a ellos.</string>
     <string name="route_detail_edit_remove_waypoint_hint">quitar este punto de ruta de la ruta</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s se quitará de esta ruta. El marcador en sí no se eliminará. ¿Deseas continuar?</string>

@@ -1564,6 +1564,7 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="directions_cardinal_north_west_bound">Richting noordwesten</string>
     <string name="first_launch_permissions_granted">Toestemming verleend</string>
     <string name="first_launch_permissions_not_granted">Nog niet verleend</string>
+    <string name="first_launch_permissions_denied">Geweigerd. Tik om het toe te staan in Instellingen.</string>
     <string name="talkback_double_tap_template">Dubbeltik: %1$s</string>
     <string name="menu_manage_locale">Landinstellingen</string>
     <string name="callouts_audio_beacon_distance">Het baken is momenteel %1$s verwijderd</string>
@@ -1635,7 +1636,7 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="directions_generic_tram">tram</string>
     <string name="ios_permission_location_when_in_use">Soundscape heeft uw locatie nodig om audio-navigatie te bieden en uw omgeving te beschrijven.</string>
     <string name="ios_permission_location_always">Soundscape heeft uw locatie nodig om audio-navigatie te bieden, zelfs wanneer de app op de achtergrond draait.</string>
-    <string name="ios_permission_motion">Soundscape gebruikt bewegingsgegevens om te bepalen welke richting u op kijkt en om de audio-aankondigingen op uw omgeving af te stemmen.</string>
+    <string name="ios_permission_motion">Soundscape gebruikt bewegingsgegevens om te bepalen welke richting u op kijkt, wanneer u loopt, en om de audio-aankondigingen op uw omgeving af te stemmen.</string>
     <string name="ios_permission_bluetooth">Soundscape gebruikt Bluetooth om koptelefoons met hoofdtracking en andere audioapparaten te vinden en er verbinding mee te maken.</string>
     <string name="route_detail_edit_remove_waypoint_hint">dit routepunt uit de route verwijderen</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s wordt uit deze route verwijderd. De markering zelf blijft bestaan. Wilt u doorgaan?</string>

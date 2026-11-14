@@ -1158,6 +1158,7 @@
     <string name="first_launch_permissions_required">Ez az engedély kötelező</string>
     <string name="first_launch_permissions_granted">Az engedély megadva</string>
     <string name="first_launch_permissions_not_granted">Még nincs megadva</string>
+    <string name="first_launch_permissions_denied">Elutasítva. Koppintson, hogy engedélyezze a Beállításokban.</string>
     <string name="permissions_required">Az alkalmazás működéséhez helyadat-engedélyekre van szükség.</string>
     <string name="permissions_button">Engedélyek módosítása az alkalmazás beállításaiban</string>
     <string name="first_launch_beacon_title">Válasszon irányjelző hangot</string>
@@ -1635,7 +1636,7 @@ Kérjük, továbbra is jelezze nekünk a felmerülő problémákat, bármilyen k
     <string name="directions_generic_tram">villamos</string>
     <string name="ios_permission_location_when_in_use">A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson és leírja a környezetét.</string>
     <string name="ios_permission_location_always">A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson akkor is, amikor az alkalmazás a háttérben fut.</string>
-    <string name="ios_permission_motion">A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, és a bemondásokat a környezetéhez igazítsa.</string>
+    <string name="ios_permission_motion">A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, mikor sétál, és a bemondásokat a környezetéhez igazítsa.</string>
     <string name="ios_permission_bluetooth">A Soundscape Bluetooth-t használ a fejkövetést támogató fejhallgatók és egyéb hangeszközök megkereséséhez és a hozzájuk való csatlakozáshoz.</string>
     <string name="route_detail_edit_remove_waypoint_hint">az útvonalpont eltávolítása az útvonalból</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s kikerül ebből az útvonalból. Maga a jelölő nem törlődik. Szeretné folytatni?</string>

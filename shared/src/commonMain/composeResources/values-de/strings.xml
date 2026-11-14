@@ -1564,6 +1564,7 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="directions_cardinal_north_west_bound">Richtung Nordwesten</string>
     <string name="first_launch_permissions_granted">Berechtigung erteilt</string>
     <string name="first_launch_permissions_not_granted">Noch nicht erteilt</string>
+    <string name="first_launch_permissions_denied">Abgelehnt. Tippen Sie, um es in den Einstellungen zu erlauben.</string>
     <string name="talkback_double_tap_template">Doppeltippen, um %1$s</string>
     <string name="menu_manage_locale">Gebietsschema</string>
     <string name="callouts_audio_beacon_distance">Das Beacon ist derzeit %1$s entfernt</string>
@@ -1635,7 +1636,7 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="directions_generic_tram">Straßenbahn</string>
     <string name="ios_permission_location_when_in_use">Soundscape benötigt Ihren Standort, um Audio-Navigation zu bieten und Ihre Umgebung zu beschreiben.</string>
     <string name="ios_permission_location_always">Soundscape benötigt Ihren Standort, um Audio-Navigation auch dann zu bieten, wenn die App im Hintergrund ist.</string>
-    <string name="ios_permission_motion">Soundscape verwendet Bewegungsdaten, um Ihre Blickrichtung zu erkennen und Audio-Hinweise an Ihrer Umgebung auszurichten.</string>
+    <string name="ios_permission_motion">Soundscape verwendet Bewegungsdaten, um Ihre Blickrichtung zu erkennen, festzustellen, wann Sie gehen, und Audio-Hinweise an Ihrer Umgebung auszurichten.</string>
     <string name="ios_permission_bluetooth">Soundscape verwendet Bluetooth, um Kopfhörer mit Head-Tracking und andere Audiogeräte zu finden und sich mit ihnen zu verbinden.</string>
     <string name="route_detail_edit_remove_waypoint_hint">diesen Wegpunkt aus der Route entfernen</string>
     <string name="route_detail_edit_remove_waypoint_alert_message">%1$s wird aus dieser Route entfernt. Die Markierung selbst wird nicht gelöscht. Möchten Sie fortfahren?</string>
