@@ -29,19 +29,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
-    <!-- Firebase Analytics brings in the advertising ID permissions. Soundscape has no ads and
-         doesn't use the ID, and keeping them would mean declaring advertising ID use to Google
-         Play, so they're removed. Analytics works without them. -->
-    <uses-permission
-        android:name="com.google.android.gms.permission.AD_ID"
-        tools:node="remove" />
-    <uses-permission
-        android:name="android.permission.ACCESS_ADSERVICES_AD_ID"
-        tools:node="remove" />
-    <uses-permission
-        android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION"
-        tools:node="remove" />
-
     <!-- UnusedTranslation is ignored because lint doesn't know that Indonesian's resource folder,
          values-in (the shortcut strings generateShortcutStrings writes), is the language
          locales_config declares as "id". Resources still match on the old ISO code, so the
