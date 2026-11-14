@@ -12,7 +12,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.automirrored.rounded.Comment
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.automirrored.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Download
@@ -28,7 +27,6 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -45,7 +43,6 @@ import org.scottishtecharmy.soundscape.resources.menu_exit_app
 import org.scottishtecharmy.soundscape.resources.menu_help
 import org.scottishtecharmy.soundscape.resources.menu_rate
 import org.scottishtecharmy.soundscape.resources.menu_share_recorded_route
-import org.scottishtecharmy.soundscape.resources.new_version_info_text
 import org.scottishtecharmy.soundscape.resources.offline_maps_title
 import org.scottishtecharmy.soundscape.resources.settings_about_app
 import org.scottishtecharmy.soundscape.resources.settings_screen_title
@@ -63,7 +60,6 @@ fun SharedDrawerContent(
     toggleTutorial: () -> Unit,
     tutorialRunning: Boolean,
     recordingEnabled: Boolean,
-    newReleaseDialog: MutableState<Boolean>?,
     exitApp: (() -> Unit)? = null,
 ) {
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
@@ -169,12 +165,6 @@ fun SharedDrawerContent(
                         label = stringResource(Res.string.settings_about_app),
                         icon = Icons.AutoMirrored.Rounded.HelpOutline,
                         modifier = Modifier.testTag("menuAboutSoundscape"),
-                    )
-                    DrawerMenuItem(
-                        onClick = { newReleaseDialog?.value = true },
-                        label = stringResource(Res.string.new_version_info_text),
-                        icon = Icons.AutoMirrored.Rounded.Comment,
-                        modifier = Modifier.testTag("newReleaseInfo"),
                     )
 
                     if (recordingEnabled) {

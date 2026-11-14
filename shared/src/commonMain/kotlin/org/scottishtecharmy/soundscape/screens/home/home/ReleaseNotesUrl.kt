@@ -7,6 +7,9 @@ import org.scottishtecharmy.soundscape.screens.onboarding.language.supportedLang
 
 private const val WEBSITE = "https://scottish-tech-army.github.io/Soundscape-Android"
 
+/** Only written in English, so the same page whatever language the app is in. */
+const val PRIVACY_POLICY_URL = "$WEBSITE/privacy-policy.html"
+
 /**
  * The release notes page on the website, in the language the app is showing.
  *

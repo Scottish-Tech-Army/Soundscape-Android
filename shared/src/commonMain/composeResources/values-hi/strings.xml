@@ -517,6 +517,7 @@
     <string name="new_version_info_text">नई रिलीज़ की जानकारी</string>
     <string name="new_version_info_completed">नई रिलीज़ डायलॉग बंद करें</string>
     <string name="menu_open_source_licenses">ओपन सोर्स लाइसेंस</string>
+    <string name="menu_privacy_policy">गोपनीयता नीति</string>
     <string name="new_version_info_details">
 यह Soundscape का एक बड़ा बीटा रिलीज़ है, जिसमें कई सुधार और बदलाव शामिल हैं।
 
@@ -1370,6 +1371,8 @@
     <string name="menu_main_menu">शीर्ष मेनू</string>
     <string name="first_launch_permissions_record_audio">ऑडियो रिकॉर्ड करें</string>
     <string name="first_launch_permissions_required_for_voice_control">यह अनुमति वैकल्पिक है, लेकिन यदि आप ऐप को वॉइस कमांड से नियंत्रित करना चाहते हैं तो इसकी आवश्यकता होगी</string>
+    <string name="first_launch_permissions_physical_activity">शारीरिक गतिविधि</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">आवश्यक। Soundscape आपके फ़ोन के स्टेप काउंटर का उपयोग यह जानने के लिए करता है कि आप कब चल रहे हैं, उदाहरण के लिए जब आप किसी वाहन से उतरे हों या रुक गए हों। आपके कदमों का डेटा आपके फ़ोन पर ही रहता है।</string>
     <string name="menu_media_controls">मीडिया नियंत्रण</string>
     <string name="settings_section_media_controls">मीडिया नियंत्रण मोड</string>
     <string name="settings_section_media_controls_description">यह सेटिंग नियंत्रित करती है कि आपके हेडफ़ोन या रिमोट के मीडिया नियंत्रण बटन कैसे काम करेंगे।</string>

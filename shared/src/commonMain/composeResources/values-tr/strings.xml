@@ -527,6 +527,7 @@
     <string name="new_version_info_text">Yeni sürüm bilgileri</string>
     <string name="new_version_info_completed">Yeni sürüm iletişim kutusunu kapat</string>
     <string name="menu_open_source_licenses">Açık kaynak lisansları</string>
+    <string name="menu_privacy_policy">Gizlilik politikası</string>
     <string name="new_version_info_details">
 Bu, birçok iyileştirme ve değişiklik içeren büyük bir Soundscape Beta sürümüdür.
 
@@ -1370,6 +1371,8 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="menu_main_menu">Üst Menü</string>
     <string name="first_launch_permissions_record_audio">Ses kaydı</string>
     <string name="first_launch_permissions_required_for_voice_control">Bu izin isteğe bağlıdır, ancak uygulamayı sesli komutlarla kontrol etmek istiyorsanız gereklidir</string>
+    <string name="first_launch_permissions_physical_activity">Fiziksel aktivite</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Gerekli. Soundscape, örneğin bir araçtan indiğinizde ya da durduğunuzda, yürüyüp yürümediğinizi anlamak için telefonunuzun adım sayarını kullanır. Adım verileriniz telefonunuzda kalır.</string>
     <string name="menu_media_controls">Medya Kontrolleri</string>
     <string name="settings_section_media_controls">Medya Kontrolleri Modu</string>
     <string name="settings_section_media_controls_description">Bu ayar, kulaklığınızdaki veya uzaktan kumandanızdaki medya kontrol düğmelerinin nasıl çalışacağını belirler.</string>

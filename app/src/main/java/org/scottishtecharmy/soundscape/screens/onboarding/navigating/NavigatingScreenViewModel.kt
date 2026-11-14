@@ -1,18 +1,13 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 
-import android.os.Build
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+// Every permission NavigatingScreen lists is required: it only lists the ones that apply to
+// this phone.
 fun requiredPermissionsGranted(permissionsStatus: Map<Permission, Boolean>): Boolean =
-    permissionsStatus.filterKeys {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            it == Permission.ACCESS_FINE_LOCATION || it == Permission.POST_NOTIFICATIONS
-        } else {
-            it == Permission.ACCESS_FINE_LOCATION
-        }
-    }.none { !it.value }
+    permissionsStatus.values.all { it }
 
 data class NavigatingScreenState(
     val permissionsStatus: Map<Permission, Boolean>

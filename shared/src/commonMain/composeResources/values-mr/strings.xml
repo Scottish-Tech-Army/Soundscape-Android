@@ -781,6 +781,8 @@
     <string name="first_launch_permissions_notification">सूचना</string>
     <string name="first_launch_permissions_record_audio">ऑडिओ रेकॉर्ड करा</string>
     <string name="first_launch_permissions_required_for_voice_control">ही परवानगी ऐच्छिक आहे, परंतु अॅप नियंत्रित करण्यासाठी व्हॉइस कमांड वापरायच्या असल्यास आवश्यक आहे</string>
+    <string name="first_launch_permissions_physical_activity">शारीरिक हालचाल</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">आवश्यक. तुम्ही कधी चालत आहात हे ओळखण्यासाठी Soundscape तुमच्या फोनचा स्टेप काउंटर वापरते, उदाहरणार्थ तुम्ही वाहनातून उतरला असाल किंवा थांबला असाल तेव्हा. तुमच्या पावलांचा डेटा तुमच्या फोनवरच राहतो.</string>
     <string name="battery_optimization_title">बॅकग्राउंड बॅटरी वापर</string>
     <string name="battery_optimization_message">तुमचा फोन लॉक असतानाही ऑडिओ नेव्हिगेशन सुरू ठेवण्यासाठी Soundscape ला अनिर्बंधित बॅटरी वापराची आवश्यकता आहे. कृपया पुढील डायलॉगमध्ये अनिर्बंधित बॅटरी वापराला परवानगी द्या. जर तुम्ही Soundscape बंद केले, तर सर्व सेवा थांबतील आणि अ‍ॅप यापुढे बॅटरी वापरणार नाही.</string>
     <string name="notification_text">फोन लॉक असतानाही Soundscape स्थान सेवा सुरू राहते.</string>
@@ -906,6 +908,7 @@
     <string name="new_version_info_text">नवीन आवृत्तीची माहिती</string>
     <string name="new_version_info_completed">नवीन आवृत्ती डायलॉग बंद करा</string>
     <string name="menu_open_source_licenses">ओपन सोर्स परवाने</string>
+    <string name="menu_privacy_policy">गोपनीयता धोरण</string>
     <string name="new_version_info_details">
 हे Soundscape चे एक मोठे बीटा रिलीज आहे, ज्यामध्ये अनेक सुधारणा आणि बदल आहेत.
 

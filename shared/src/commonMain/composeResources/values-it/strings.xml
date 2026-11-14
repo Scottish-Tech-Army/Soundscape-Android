@@ -604,6 +604,7 @@ Cerchiamo sempre di migliorare le nostre traduzioni e sullo stesso sito delle no
 Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta l'assistenza» nel menu principale.
 </string>
     <string name="menu_open_source_licenses">Licenze open source</string>
+    <string name="menu_privacy_policy">Informativa sulla privacy</string>
     <string name="osm_tag_ferry_terminal">Terminal dei traghetti</string>
     <string name="osm_tag_ferry_terminal_named">Terminal dei traghetti %1$s</string>
     <string name="osm_office">Ufficio</string>
@@ -1374,6 +1375,8 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="menu_main_menu">Menu principale</string>
     <string name="first_launch_permissions_record_audio">Registra audio</string>
     <string name="first_launch_permissions_required_for_voice_control">Questa autorizzazione è facoltativa, ma è necessaria se desideri utilizzare i comandi vocali per controllare l'app</string>
+    <string name="first_launch_permissions_physical_activity">Attività fisica</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obbligatoria. Soundscape usa il contapassi del telefono per capire quando stai camminando, per esempio quando sei sceso da un veicolo o ti sei fermato. I dati sui tuoi passi restano sul telefono.</string>
     <string name="menu_media_controls">Controlli multimediali</string>
     <string name="settings_section_media_controls">Modalità dei controlli multimediali</string>
     <string name="settings_section_media_controls_description">Questa impostazione determina il funzionamento dei pulsanti dei controlli multimediali sugli auricolari o sul telecomando.</string>

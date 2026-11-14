@@ -352,6 +352,7 @@
     <string name="new_version_info_text">Informacije o novi različici</string>
     <string name="new_version_info_completed">Zapri pogovorno okno o novi različici</string>
     <string name="menu_open_source_licenses">Licence odprte kode</string>
+    <string name="menu_privacy_policy">Pravilnik o zasebnosti</string>
     <string name="new_version_info_details">
 To je velika beta izdaja aplikacije Soundscape s številnimi izboljšavami in spremembami.
 
@@ -1497,6 +1498,8 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="first_launch_permissions_notification">Obvestila</string>
     <string name="first_launch_permissions_record_audio">Snemanje zvoka</string>
     <string name="first_launch_permissions_required_for_voice_control">To dovoljenje ni obvezno, je pa potrebno, če želite aplikacijo upravljati z glasovnimi ukazi</string>
+    <string name="first_launch_permissions_physical_activity">Telesna dejavnost</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obvezno. Soundscape uporablja števec korakov v telefonu, da prepozna, kdaj hodite, na primer ko ste izstopili iz vozila ali se ustavili. Podatki o vaših korakih ostanejo v telefonu.</string>
     <string name="battery_optimization_title">Poraba baterije v ozadju</string>
     <string name="battery_optimization_message">Soundscape za neprekinjeno zagotavljanje zvočne navigacije, tudi ko je telefon zaklenjen, potrebuje neomejeno porabo baterije. V naslednjem pogovornem oknu dovolite neomejeno porabo baterije. Če aplikacijo Soundscape zaprete, se vse storitve ustavijo in aplikacija ne bo več porabljala baterije.</string>
     <string name="notification_text">Storitev za določanje lokacije Soundscape deluje tudi, ko je telefon zaklenjen.</string>

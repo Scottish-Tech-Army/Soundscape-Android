@@ -604,6 +604,7 @@ Estamos sempre buscando melhorar nossas traduções e, no mesmo site das notas d
 Continue relatando quaisquer problemas, por menores que sejam, por meio de “Contatar o suporte” no menu principal.
 </string>
     <string name="menu_open_source_licenses">Licenças de código aberto</string>
+    <string name="menu_privacy_policy">Política de privacidade</string>
     <string name="osm_tag_ferry_terminal">Terminal de Balsa</string>
     <string name="osm_tag_ferry_terminal_named">Terminal de Balsa %1$s</string>
     <string name="osm_office">Escritório</string>
@@ -1374,6 +1375,8 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="menu_main_menu">Menu principal</string>
     <string name="first_launch_permissions_record_audio">Gravar áudio</string>
     <string name="first_launch_permissions_required_for_voice_control">Esta permissão é opcional, mas é necessária se você quiser usar comandos de voz para controlar o aplicativo</string>
+    <string name="first_launch_permissions_physical_activity">Atividade física</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Obrigatória. O Soundscape usa o contador de passos do celular para saber quando você está andando, por exemplo quando desceu de um veículo ou parou. Os dados dos seus passos ficam no celular.</string>
     <string name="menu_media_controls">Controles de Mídia</string>
     <string name="settings_section_media_controls">Modo dos controles de mídia</string>
     <string name="settings_section_media_controls_description">Esta configuração define como funcionam os botões de controle de mídia dos seus fones de ouvido ou do controle remoto.</string>

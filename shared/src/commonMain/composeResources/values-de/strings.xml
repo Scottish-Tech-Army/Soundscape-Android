@@ -600,6 +600,7 @@ Wir möchten unsere Übersetzungen ständig verbessern, und auf derselben Websit
 Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support kontaktieren“ im Hauptmenü.
 </string>
     <string name="menu_open_source_licenses">Open-Source-Lizenzen</string>
+    <string name="menu_privacy_policy">Datenschutzerklärung</string>
     <string name="osm_tag_ferry_terminal">Fährterminal</string>
     <string name="osm_tag_ferry_terminal_named">Fährterminal %1$s</string>
     <string name="osm_office">Büro</string>
@@ -1370,6 +1371,8 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="menu_main_menu">Hauptmenü</string>
     <string name="first_launch_permissions_record_audio">Audio aufnehmen</string>
     <string name="first_launch_permissions_required_for_voice_control">Diese Berechtigung ist optional, wird jedoch benötigt, wenn Sie Sprachbefehle zur Steuerung der App verwenden möchten</string>
+    <string name="first_launch_permissions_physical_activity">Körperliche Aktivität</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Erforderlich. Soundscape nutzt den Schrittzähler Ihres Telefons, um zu erkennen, wann Sie gehen, zum Beispiel wenn Sie aus einem Fahrzeug ausgestiegen oder stehen geblieben sind. Ihre Schrittdaten bleiben auf Ihrem Telefon.</string>
     <string name="menu_media_controls">Mediensteuerungen</string>
     <string name="settings_section_media_controls">Modus der Mediensteuerung</string>
     <string name="settings_section_media_controls_description">Diese Einstellung legt fest, wie die Mediensteuertasten an Ihren Kopfhörern oder Ihrer Fernbedienung funktionieren.</string>

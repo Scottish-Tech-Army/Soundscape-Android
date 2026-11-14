@@ -27,6 +27,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
 import org.scottishtecharmy.soundscape.geoengine.filters.OnFootDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
+import org.scottishtecharmy.soundscape.geoengine.filters.StepTracker
 import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
@@ -52,6 +53,7 @@ import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
+import org.scottishtecharmy.soundscape.locationprovider.StepProvider
 import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
@@ -146,6 +148,9 @@ class GeoEngine {
     // Whether the user has walked away from a vehicle - see OnFootDetector. Driven alongside
     // stationaryDetector, from the same stream and the same course flag.
     private var onFootDetector = OnFootDetector()
+    // Whether the pedometer has counted steps in the last few seconds - see StepTracker. Read
+    // ahead of both detectors above, which take it as evidence.
+    private val stepTracker = StepTracker()
     // The last trusted travel heading, kept through a pause - see HeadingHold. Updated once per
     // location update below, read by every UserGeometry built.
     private var headingHold = HeadingHold()
@@ -295,7 +300,8 @@ class GeoEngine {
             // minute of them. See StationaryDetector.
             stationary = userStationary,
             stationaryMillis = stationaryDetector.stationaryMillis,
-            onFootAfterVehicle = onFootDetector.isOnFoot
+            onFootAfterVehicle = onFootDetector.isOnFoot,
+            stepping = stepTracker.isStepping,
         )
     }
 
@@ -312,6 +318,12 @@ class GeoEngine {
 
     private var recordTravel = false
     var locationRecorder: LocationRecorder? = null
+
+    /**
+     * The phone's pedometer, read once per location update. Null, or a provider with nothing to
+     * report, leaves everything as it was without steps - see StepTracker.
+     */
+    var stepProvider: StepProvider? = null
 
     // Whether any location has yet made it past the accuracy gate in startMonitoringLocation - see
     // isAccuracyUsable for why the first fix is let through however inaccurate it is.
@@ -614,6 +626,10 @@ class GeoEngine {
                                     unfilteredLocation.hasBearingAccuracy &&
                                     (unfilteredLocation.bearingAccuracyDegrees <
                                         MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES)
+                                val stepping = stepTracker.update(
+                                    stepProvider?.snapshot(),
+                                    nowMillis
+                                )
                                 userStationary = stationaryDetector.update(
                                     LngLatAlt(
                                         unfilteredLocation.longitude,
@@ -624,12 +640,14 @@ class GeoEngine {
                                     else
                                         null,
                                     courseIsTrustworthy,
-                                    nowMillis
+                                    nowMillis,
+                                    stepping,
                                 )
                                 onFootDetector.update(
                                     unfilteredSpeed,
                                     courseIsTrustworthy,
-                                    nowMillis
+                                    nowMillis,
+                                    stepping,
                                 )
 
                                 val mapMatchTime = measureTime {

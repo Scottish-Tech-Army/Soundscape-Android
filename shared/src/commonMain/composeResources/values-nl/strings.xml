@@ -600,6 +600,7 @@ We willen onze vertalingen altijd verbeteren en op dezelfde website als de relea
 Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteuning” in het hoofdmenu.
 </string>
     <string name="menu_open_source_licenses">Open-sourcelicenties</string>
+    <string name="menu_privacy_policy">Privacybeleid</string>
     <string name="osm_tag_ferry_terminal">Veerterminal</string>
     <string name="osm_tag_ferry_terminal_named">Veerterminal %1$s</string>
     <string name="osm_office">Kantoor</string>
@@ -1370,6 +1371,8 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="menu_main_menu">Hoofdmenu</string>
     <string name="first_launch_permissions_record_audio">Audio opnemen</string>
     <string name="first_launch_permissions_required_for_voice_control">Deze toestemming is optioneel, maar is vereist als u spraakopdrachten wilt gebruiken om de app te bedienen</string>
+    <string name="first_launch_permissions_physical_activity">Fysieke activiteit</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Verplicht. Soundscape gebruikt de stappenteller van uw telefoon om te weten wanneer u loopt, bijvoorbeeld als u uit een voertuig bent gestapt of bent blijven staan. Uw stapgegevens blijven op uw telefoon.</string>
     <string name="menu_media_controls">Mediaregelaars</string>
     <string name="settings_section_media_controls">Modus voor mediaregelaars</string>
     <string name="settings_section_media_controls_description">Deze instelling bepaalt hoe de mediaknoppen op uw koptelefoon of afstandsbediening werken.</string>

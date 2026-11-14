@@ -600,6 +600,7 @@ Pyrimme jatkuvasti parantamaan käännöksiämme, ja samalla verkkosivustolla ku
 Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahansa, päävalikon ”Ota yhteyttä tukeen” -vaihtoehdon kautta.
 </string>
     <string name="menu_open_source_licenses">Avoimen lähdekoodin lisenssit</string>
+    <string name="menu_privacy_policy">Tietosuojakäytäntö</string>
     <string name="osm_tag_ferry_terminal">Lauttaterminaali</string>
     <string name="osm_tag_ferry_terminal_named">%1$s lauttaterminaali</string>
     <string name="osm_office">Toimisto</string>
@@ -1370,6 +1371,8 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="menu_main_menu">Päävalikko</string>
     <string name="first_launch_permissions_record_audio">Äänen tallennus</string>
     <string name="first_launch_permissions_required_for_voice_control">Tämä käyttöoikeus on valinnainen, mutta se tarvitaan, jos haluat käyttää puhekomentoja sovelluksen ohjaamiseen</string>
+    <string name="first_launch_permissions_physical_activity">Fyysinen aktiivisuus</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Pakollinen. Soundscape käyttää puhelimesi askelmittaria tunnistaakseen, milloin kävelet, esimerkiksi kun olet noussut ajoneuvosta tai pysähtynyt. Askeltietosi pysyvät puhelimessasi.</string>
     <string name="menu_media_controls">Mediasäätimet</string>
     <string name="settings_section_media_controls">Mediasäätimien tila</string>
     <string name="settings_section_media_controls_description">Tämä asetus määrittää, miten kuulokkeidesi tai kauko-ohjaimesi mediasäätöpainikkeet toimivat.</string>

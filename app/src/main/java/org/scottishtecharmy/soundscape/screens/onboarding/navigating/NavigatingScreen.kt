@@ -23,6 +23,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.DirectionsWalk
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.rounded.LocationOn
@@ -58,10 +59,13 @@ import org.scottishtecharmy.soundscape.resources.first_launch_permissions_grante
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_location
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_message
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_not_granted
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_physical_activity
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_physical_activity_disclosure
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_notification
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_required
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_title
 import org.scottishtecharmy.soundscape.resources.ui_continue
+import org.scottishtecharmy.soundscape.locationprovider.AndroidStepProvider
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
@@ -86,6 +90,16 @@ enum class Permission(
         Res.string.first_launch_permissions_notification,
         Res.string.first_launch_permissions_required,
     ),
+
+    // The step sensors, which AndroidStepProvider reads. Only asked for on a phone that has
+    // one - see NavigatingScreen.
+    ACTIVITY_RECOGNITION(
+        Manifest.permission.ACTIVITY_RECOGNITION,
+        Icons.AutoMirrored.Rounded.DirectionsWalk,
+        Res.string.first_launch_permissions_physical_activity,
+        // Google Play requires saying what the data is and how it's used before asking for it
+        Res.string.first_launch_permissions_physical_activity_disclosure,
+    ),
 }
 
 @Composable
@@ -101,21 +115,22 @@ fun NavigatingScreen(
 ) {
     val uiState = vm.state.collectAsStateWithLifecycle()
 
+    val context = LocalContext.current
     val permissionsToRequest = remember {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            listOf(
-                Permission.ACCESS_FINE_LOCATION,
-                Permission.POST_NOTIFICATIONS
-            )
-        } else {
-            listOf(
-                Permission.ACCESS_FINE_LOCATION
-            )
+        buildList {
+            add(Permission.ACCESS_FINE_LOCATION)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                add(Permission.POST_NOTIFICATIONS)
+            }
+            // Without a step detector or counter there is nothing for it to grant
+            if (AndroidStepProvider.hasStepSensor(context)) {
+                add(Permission.ACTIVITY_RECOGNITION)
+            }
         }
     }
 
     val permissionsStatus = permissionsToRequest.associateWith {
-        when (LocalContext.current.checkSelfPermission(it.manifestIdentifier)) {
+        when (context.checkSelfPermission(it.manifestIdentifier)) {
             PackageManager.PERMISSION_GRANTED -> true
             else -> false
         }

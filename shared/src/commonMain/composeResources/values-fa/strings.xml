@@ -601,6 +601,7 @@
 لطفاً همچنان هرگونه مشکلی را، هر چقدر هم کوچک، از طریق «تماس با پشتیبانی» در منوی اصلی گزارش دهید.
 </string>
     <string name="menu_open_source_licenses">مجوزهای متن‌باز</string>
+    <string name="menu_privacy_policy">سیاست حفظ حریم خصوصی</string>
     <string name="osm_tag_ferry_terminal">پایانه کشتی</string>
     <string name="osm_tag_ferry_terminal_named">پایانه کشتی %1$s</string>
     <string name="osm_office">دفتر</string>
@@ -1371,6 +1372,8 @@
     <string name="menu_main_menu">منوی اصلی</string>
     <string name="first_launch_permissions_record_audio">ضبط صدا</string>
     <string name="first_launch_permissions_required_for_voice_control">این مجوز اختیاری است، اما در صورتی که مایل باشید از فرمان‌های صوتی برای کنترل اپلیکیشن استفاده کنید، لازم است</string>
+    <string name="first_launch_permissions_physical_activity">فعالیت بدنی</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">الزامی. Soundscape از گام‌شمار تلفن شما استفاده می‌کند تا بفهمد چه زمانی در حال راه رفتن هستید، مثلاً وقتی از وسیلهٔ نقلیه پیاده شده‌اید یا ایستاده‌اید. داده‌های گام‌های شما روی تلفنتان می‌ماند.</string>
     <string name="menu_media_controls">کنترل‌های رسانه‌ای</string>
     <string name="settings_section_media_controls">حالت کنترل‌های رسانه‌ای</string>
     <string name="settings_section_media_controls_description">این تنظیم مشخص می‌کند دکمه‌های کنترل رسانه روی هدفون یا کنترل از راه دور شما چگونه کار کنند.</string>

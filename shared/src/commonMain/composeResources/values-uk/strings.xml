@@ -608,6 +608,7 @@
 Будь ласка, і надалі повідомляйте про будь-які проблеми, з якими ви стикаєтеся, якими б незначними вони не були, за допомогою «Звернутися до служби підтримки» в головному меню.
 </string>
     <string name="menu_open_source_licenses">Ліцензії з відкритим кодом</string>
+    <string name="menu_privacy_policy">Політика конфіденційності</string>
     <string name="osm_tag_ferry_terminal">Поромний термінал</string>
     <string name="osm_tag_ferry_terminal_named">Поромний термінал %1$s</string>
     <string name="osm_office">Офіс</string>
@@ -1378,6 +1379,8 @@
     <string name="menu_main_menu">Головне меню</string>
     <string name="first_launch_permissions_record_audio">Запис аудіо</string>
     <string name="first_launch_permissions_required_for_voice_control">Цей дозвіл необов'язковий, але потрібен, якщо ви хочете використовувати голосові команди для керування додатком</string>
+    <string name="first_launch_permissions_physical_activity">Фізична активність</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Обов’язково. Soundscape використовує крокомір телефона, щоб розуміти, коли ви йдете пішки, наприклад коли ви вийшли з транспорту або зупинилися. Дані про ваші кроки залишаються на телефоні.</string>
     <string name="menu_media_controls">Керування медіа</string>
     <string name="settings_section_media_controls">Режим керування медіа</string>
     <string name="settings_section_media_controls_description">Цей параметр визначає, як працюватимуть кнопки керування медіа на ваших навушниках або пульті.</string>

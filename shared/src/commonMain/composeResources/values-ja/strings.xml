@@ -596,6 +596,7 @@
 どんなに些細な問題でも、引き続きメインメニューの「サポートに連絡」からご報告ください。
 </string>
     <string name="menu_open_source_licenses">オープンソースライセンス</string>
+    <string name="menu_privacy_policy">プライバシーポリシー</string>
     <string name="osm_tag_ferry_terminal">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named">%1$s フェリーターミナル</string>
     <string name="osm_office">事務所</string>
@@ -1366,6 +1367,8 @@
     <string name="menu_main_menu">トップメニュー</string>
     <string name="first_launch_permissions_record_audio">音声を録音</string>
     <string name="first_launch_permissions_required_for_voice_control">この許可は任意ですが、音声コマンドでアプリを操作したい場合は必要です</string>
+    <string name="first_launch_permissions_physical_activity">身体活動</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">必須です。Soundscape はスマートフォンの歩数計を使って、乗り物から降りたときや立ち止まったときなど、あなたが歩いているかどうかを判断します。歩数のデータはスマートフォンの外に送信されません。</string>
     <string name="menu_media_controls">メディアコントロール</string>
     <string name="settings_section_media_controls">メディアコントロールのモード</string>
     <string name="settings_section_media_controls_description">この設定によって、ヘッドホンやリモコンのメディアコントロールボタンの動作が決まります。</string>

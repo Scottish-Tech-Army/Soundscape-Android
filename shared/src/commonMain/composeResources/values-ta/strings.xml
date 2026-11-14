@@ -481,6 +481,7 @@
     <string name="new_version_info_text">புதிய பதிப்பு தகவல்</string>
     <string name="new_version_info_completed">புதிய பதிப்பு உரையாடலை மூடு</string>
     <string name="menu_open_source_licenses">திறந்த மூல உரிமங்கள்</string>
+    <string name="menu_privacy_policy">தனியுரிமைக் கொள்கை</string>
     <string name="new_version_info_details">
 இது பல மேம்பாடுகளையும் மாற்றங்களையும் கொண்ட Soundscape-இன் ஒரு பெரிய பீட்டா வெளியீடு.
 
@@ -1505,6 +1506,8 @@
     <string name="first_launch_permissions_notification">அறிவிப்புகள்</string>
     <string name="first_launch_permissions_record_audio">ஆடியோ பதிவு</string>
     <string name="first_launch_permissions_required_for_voice_control">இந்த அனுமதி விருப்பமானது, ஆனால் பயன்பாட்டைக் கட்டுப்படுத்த குரல் கட்டளைகளைப் பயன்படுத்த விரும்பினால் இது அவசியம்</string>
+    <string name="first_launch_permissions_physical_activity">உடல் செயல்பாடு</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">அவசியமானது. நீங்கள் எப்போது நடக்கிறீர்கள் என்பதை அறிய, எடுத்துக்காட்டாக வாகனத்திலிருந்து இறங்கியபோது அல்லது நின்றபோது, Soundscape உங்கள் ஃபோனின் அடி எண்ணியைப் பயன்படுத்துகிறது. உங்கள் அடிகள் பற்றிய தரவு உங்கள் ஃபோனிலேயே இருக்கும்.</string>
     <string name="battery_optimization_title">பின்னணி பேட்டரி பயன்பாடு</string>
     <string name="battery_optimization_message">உங்கள் தொலைபேசி பூட்டப்பட்டிருக்கும்போது ஆடியோ வழிசெலுத்தலைத் தொடர்ந்து வழங்க, Soundscape க்கு கட்டுப்பாடற்ற பேட்டரி பயன்பாடு தேவை. அடுத்த உரையாடலில் கட்டுப்பாடற்ற பேட்டரி பயன்பாட்டை அனுமதிக்கவும். நீங்கள் Soundscape ஐ மூடினால், அனைத்து சேவைகளும் நிற்கும், மேலும் செயலி இனி பேட்டரியைப் பயன்படுத்தாது.</string>
     <string name="notification_text">தொலைபேசி பூட்டப்பட்டிருக்கும்போதும் Soundscape இருப்பிடச் சேவை இயங்கும்.</string>

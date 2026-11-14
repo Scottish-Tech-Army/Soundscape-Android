@@ -521,6 +521,7 @@
     <string name="new_version_info_text">Informații despre noua versiune</string>
     <string name="new_version_info_completed">Închide dialogul noii versiuni</string>
     <string name="menu_open_source_licenses">Licențe open source</string>
+    <string name="menu_privacy_policy">Politica de confidențialitate</string>
     <string name="new_version_info_details">
 Aceasta este o versiune beta importantă a Soundscape, cu multe îmbunătățiri și modificări.
 
@@ -1374,6 +1375,8 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="menu_main_menu">Meniu principal</string>
     <string name="first_launch_permissions_record_audio">Înregistrare audio</string>
     <string name="first_launch_permissions_required_for_voice_control">Această permisiune este opțională, dar este necesară dacă dorești să folosești comenzi vocale pentru a controla aplicația</string>
+    <string name="first_launch_permissions_physical_activity">Activitate fizică</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Necesară. Soundscape folosește contorul de pași al telefonului pentru a ști când mergi pe jos, de exemplu când ai coborât dintr-un vehicul sau te-ai oprit. Datele despre pașii tăi rămân pe telefon.</string>
     <string name="menu_media_controls">Controale media</string>
     <string name="settings_section_media_controls">Modul controalelor media</string>
     <string name="settings_section_media_controls_description">Această setare stabilește cum funcționează butoanele de control media de pe căști sau de pe telecomandă.</string>

@@ -1074,7 +1074,6 @@ fun PreviewDrawerContent() {
         toggleTutorial = {},
         tutorialRunning = false,
         recordingEnabled = false,
-        newReleaseDialog = null,
     )
 }
 

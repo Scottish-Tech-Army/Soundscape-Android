@@ -600,6 +600,7 @@ Vi arbejder hele tiden på at forbedre vores oversættelser, og på det samme we
 Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er, via »Kontakt support« i hovedmenuen.
 </string>
     <string name="menu_open_source_licenses">Open source-licenser</string>
+    <string name="menu_privacy_policy">Privatlivspolitik</string>
     <string name="osm_office">Kontor</string>
     <string name="osm_school">Skole</string>
     <string name="osm_roof">Tag</string>
@@ -1370,6 +1371,8 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="menu_main_menu">Topmenu</string>
     <string name="first_launch_permissions_record_audio">Optag lyd</string>
     <string name="first_launch_permissions_required_for_voice_control">Denne tilladelse er valgfri, men kræves, hvis du vil bruge stemmekommandoer til at styre appen</string>
+    <string name="first_launch_permissions_physical_activity">Fysisk aktivitet</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Påkrævet. Soundscape bruger din telefons skridttæller til at registrere, hvornår du går, f.eks. når du er steget ud af et køretøj eller er stoppet. Dine skridtdata forbliver på din telefon.</string>
     <string name="menu_media_controls">Mediebetjeninger</string>
     <string name="settings_section_media_controls">Mediebetjeningsfunktion</string>
     <string name="settings_section_media_controls_description">Denne indstilling styrer, hvordan mediebetjeningsknapperne på dine hovedtelefoner eller din fjernbetjening fungerer.</string>

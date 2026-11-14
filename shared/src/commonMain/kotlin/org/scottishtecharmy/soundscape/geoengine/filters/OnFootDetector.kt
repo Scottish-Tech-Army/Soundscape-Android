@@ -52,6 +52,18 @@ class OnFootDetector {
     private val samples = ArrayDeque<Sample>()
     private var lastVehicleMillis: Long? = null
 
+    /**
+     * Every fix's speed over the last [stepSpeedWindowMillis], for the steps verdict. Kept apart
+     * from [samples], which only start filling once the grace period is over.
+     */
+    private val recentSpeeds = ArrayDeque<Pair<Long, Double>>()
+
+    /**
+     * How long the speed must have stayed at walking pace for steps to count. The same as
+     * StepTracker's window, so the steps and the speed describe the same few seconds.
+     */
+    private val stepSpeedWindowMillis = 5_000L
+
     /** Latched until the next fix at vehicle speed, so a break in the course can't flip it back. */
     var isOnFoot: Boolean = false
         private set
@@ -60,7 +72,16 @@ class OnFootDetector {
      * Call once per location update the geoengine has accepted. [courseIsTrustworthy] means the
      * same as it does for StationaryDetector.update, and has the same caveats.
      */
-    fun update(speed: Double, courseIsTrustworthy: Boolean, timestampMilliseconds: Long): Boolean {
+    fun update(
+        speed: Double,
+        courseIsTrustworthy: Boolean,
+        timestampMilliseconds: Long,
+        stepping: Boolean = false,
+    ): Boolean {
+        recentSpeeds.addLast(timestampMilliseconds to speed)
+        while (timestampMilliseconds - recentSpeeds.first().first > stepSpeedWindowMillis) {
+            recentSpeeds.removeFirst()
+        }
         if (speed > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS) {
             lastVehicleMillis = timestampMilliseconds
             samples.clear()
@@ -68,7 +89,19 @@ class OnFootDetector {
             return false
         }
         val lastVehicle = lastVehicleMillis ?: return false
-        if (isOnFoot || (timestampMilliseconds - lastVehicle < graceMillis)) return isOnFoot
+        if (isOnFoot) return true
+
+        // Steps at walking speed, which needs no grace period: braking gives the course a burst
+        // of accuracy, but it doesn't make the pedometer count. Walking speed because steps alone
+        // aren't enough - the pedometer counts on rough roads and while braking (see StepTracker).
+        // On shops-steps this calls the walk 28s sooner at Tesco and 14s sooner at Waitrose. At
+        // the end of the journey it changes nothing: the car was still doing 2.6 m/s within the
+        // last few seconds of the first steps, and the course-based test below got there first.
+        if (stepping && recentSpeeds.all { it.second <= maximumWalkingSpeedMps }) {
+            isOnFoot = true
+            return true
+        }
+        if (timestampMilliseconds - lastVehicle < graceMillis) return false
 
         samples.addLast(Sample(timestampMilliseconds, speed, courseIsTrustworthy))
         while (timestampMilliseconds - samples.first().timestampMilliseconds > windowMillis) {

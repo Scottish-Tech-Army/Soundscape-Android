@@ -69,4 +69,19 @@ class NavigatingScreenViewModelTest {
 
         assert(currentState.permissionsStatus[Permission.ACCESS_FINE_LOCATION] == false)
     }
+
+    @Test
+    fun navigatingScreenViewModel_ActivityRecognitionListed_ContinueWaitsForIt() {
+        viewModel.permissionsRequired(
+            mapOf(
+                Permission.ACCESS_FINE_LOCATION to true,
+                Permission.ACTIVITY_RECOGNITION to false,
+            )
+        )
+        assert(!viewModel.state.value.continueEnabled)
+
+        viewModel.onPermissionResult(Permission.ACTIVITY_RECOGNITION, true)
+
+        assert(viewModel.state.value.continueEnabled)
+    }
 }

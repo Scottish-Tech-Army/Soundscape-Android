@@ -43,6 +43,7 @@ import org.scottishtecharmy.soundscape.intents.IncomingIntent
 import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.IosDirectionProvider
+import org.scottishtecharmy.soundscape.locationprovider.IosStepProvider
 import org.scottishtecharmy.soundscape.locationprovider.IosCompositeHeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.IosLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
@@ -121,6 +122,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     val geoEngine = GeoEngine()
     private var geoEngineStarted = false
     private val gpxRecorder = GpxRecorder()
+    private val stepProvider = IosStepProvider()
 
     // Callout buttons and user-initiated-TTS-interrupt behaviour — implementation
     // lives in shared CalloutController so iOS and Android stay in lockstep. Runs
@@ -460,7 +462,9 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 )
             )
         }
+        gpxRecorder.steps = { stepProvider.snapshot() }
         geoEngine.locationRecorder = gpxRecorder
+        geoEngine.stepProvider = stepProvider
 
         geoEngine.start(
             newLocationProvider = locationProvider,
@@ -947,6 +951,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         }
         iosLocationProvider.destroy()
         directionProvider.destroy()
+        stepProvider.stop()
     }
 
     companion object {

@@ -245,6 +245,7 @@
     <string name="new_version_info_text">Informasi rilis baru</string>
     <string name="new_version_info_completed">Tutup dialog rilis baru</string>
     <string name="menu_open_source_licenses">Lisensi sumber terbuka</string>
+    <string name="menu_privacy_policy">Kebijakan privasi</string>
     <string name="new_version_info_details">
 Ini adalah rilis Beta besar untuk Soundscape yang berisi banyak peningkatan dan perubahan.
 
@@ -1489,6 +1490,8 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="first_launch_permissions_notification">Notifikasi</string>
     <string name="first_launch_permissions_record_audio">Rekam audio</string>
     <string name="first_launch_permissions_required_for_voice_control">Izin ini bersifat opsional, tetapi diperlukan jika Anda ingin menggunakan perintah suara untuk mengontrol aplikasi</string>
+    <string name="first_launch_permissions_physical_activity">Aktivitas fisik</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Wajib. Soundscape menggunakan penghitung langkah di ponsel Anda untuk mengetahui kapan Anda berjalan, misalnya saat Anda turun dari kendaraan atau berhenti. Data langkah Anda tetap berada di ponsel Anda.</string>
     <string name="battery_optimization_title">Penggunaan Baterai Latar Belakang</string>
     <string name="battery_optimization_message">Soundscape memerlukan penggunaan baterai tanpa batasan agar dapat terus menyediakan navigasi audio saat ponsel Anda terkunci. Mohon izinkan penggunaan baterai tanpa batasan pada dialog berikutnya. Jika Anda menutup Soundscape, semua layanan akan berhenti dan aplikasi tidak akan lagi menggunakan baterai.</string>
     <string name="notification_text">Layanan lokasi Soundscape tetap berjalan meskipun ponsel terkunci.</string>

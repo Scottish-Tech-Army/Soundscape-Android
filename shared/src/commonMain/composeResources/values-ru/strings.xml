@@ -608,6 +608,7 @@
 Пожалуйста, продолжайте сообщать о любых проблемах, какими бы незначительными они ни были, через «Связаться со службой поддержки» в главном меню.
 </string>
     <string name="menu_open_source_licenses">Лицензии с открытым исходным кодом</string>
+    <string name="menu_privacy_policy">Политика конфиденциальности</string>
     <string name="osm_tag_ferry_terminal">Паромный терминал</string>
     <string name="osm_tag_ferry_terminal_named">Паромный терминал %1$s</string>
     <string name="osm_office">Офис</string>
@@ -1378,6 +1379,8 @@
     <string name="menu_main_menu">Верхнее меню</string>
     <string name="first_launch_permissions_record_audio">Запись аудио</string>
     <string name="first_launch_permissions_required_for_voice_control">Это разрешение необязательно, но требуется, если вы хотите управлять приложением с помощью голосовых команд</string>
+    <string name="first_launch_permissions_physical_activity">Физическая активность</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Обязательно. Soundscape использует шагомер телефона, чтобы понимать, когда вы идёте пешком, например когда вы вышли из транспорта или остановились. Данные о ваших шагах остаются на телефоне.</string>
     <string name="menu_media_controls">Элементы управления мультимедиа</string>
     <string name="settings_section_media_controls">Режим управления мультимедиа</string>
     <string name="settings_section_media_controls_description">Эта настройка определяет, как работают кнопки управления мультимедиа на ваших наушниках или пульте.</string>

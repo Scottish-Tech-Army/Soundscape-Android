@@ -338,6 +338,7 @@
     <string name="new_version_info_text">Информация за новото издание</string>
     <string name="new_version_info_completed">Затваряне на диалоговия прозорец за новото издание</string>
     <string name="menu_open_source_licenses">Лицензи с отворен код</string>
+    <string name="menu_privacy_policy">Политика за поверителност</string>
     <string name="new_version_info_details">
 Това е голямо бета издание на Soundscape с много подобрения и промени.
 
@@ -1465,6 +1466,8 @@
     <string name="first_launch_permissions_notification">Известия</string>
     <string name="first_launch_permissions_record_audio">Запис на звук</string>
     <string name="first_launch_permissions_required_for_voice_control">Това разрешение е незадължително, но е необходимо, ако искате да управлявате приложението с гласови команди</string>
+    <string name="first_launch_permissions_physical_activity">Физическа активност</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Задължително. Soundscape използва брояча на стъпки на телефона Ви, за да разбере кога вървите, например когато сте слезли от превозно средство или сте спрели. Данните за стъпките Ви остават на телефона Ви.</string>
     <string name="battery_optimization_title">Използване на батерията на заден план</string>
     <string name="battery_optimization_message">Soundscape изисква неограничено използване на батерията, за да продължи да предоставя аудио навигация, докато телефонът Ви е заключен. Моля, разрешете неограниченото използване на батерията в следващия диалогов прозорец. Ако затворите Soundscape, всички услуги ще спрат и приложението повече няма да използва батерия.</string>
     <string name="notification_text">Услугата за местоположение на Soundscape работи дори когато телефонът е заключен.</string>

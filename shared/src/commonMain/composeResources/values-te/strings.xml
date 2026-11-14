@@ -799,6 +799,7 @@
     <string name="new_version_info_text">కొత్త వెర్షన్ సమాచారం</string>
     <string name="new_version_info_completed">కొత్త వెర్షన్ డైలాగ్‌ను మూసివేయండి</string>
     <string name="menu_open_source_licenses">ఓపెన్ సోర్స్ లైసెన్స్‌లు</string>
+    <string name="menu_privacy_policy">గోప్యతా విధానం</string>
     <string name="new_version_info_details">
 ఇది అనేక మెరుగుదలలు మరియు మార్పులతో కూడిన Soundscape యొక్క పెద్ద బీటా విడుదల.
 
@@ -1505,6 +1506,8 @@
     <string name="first_launch_permissions_notification">నోటిఫికేషన్‌లు</string>
     <string name="first_launch_permissions_record_audio">ఆడియో రికార్డ్ చేయండి</string>
     <string name="first_launch_permissions_required_for_voice_control">ఈ అనుమతి ఐచ్ఛికం, కానీ యాప్‌ను నియంత్రించడానికి వాయిస్ కమాండ్‌లను ఉపయోగించాలనుకుంటే ఇది అవసరం</string>
+    <string name="first_launch_permissions_physical_activity">శారీరక కార్యకలాపం</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">అవసరం. మీరు ఎప్పుడు నడుస్తున్నారో తెలుసుకోవడానికి Soundscape మీ ఫోన్‌లోని స్టెప్ కౌంటర్‌ను ఉపయోగిస్తుంది, ఉదాహరణకు మీరు వాహనం దిగినప్పుడు లేదా ఆగినప్పుడు. మీ అడుగుల డేటా మీ ఫోన్‌లోనే ఉంటుంది.</string>
     <string name="battery_optimization_title">బ్యాక్‌గ్రౌండ్ బ్యాటరీ వినియోగం</string>
     <string name="battery_optimization_message">మీ ఫోన్ లాక్‌లో ఉన్నప్పుడు ఆడియో నావిగేషన్‌ను అందిస్తూనే ఉండటానికి Soundscapeకు అపరిమిత బ్యాటరీ వినియోగం అవసరం. దయచేసి తదుపరి డైలాగ్‌లో అపరిమిత బ్యాటరీ వినియోగాన్ని అనుమతించండి. మీరు Soundscapeను మూసివేస్తే, అన్ని సర్వీసులు ఆగిపోతాయి మరియు యాప్ ఇక బ్యాటరీని ఉపయోగించదు.</string>
     <string name="notification_text">ఫోన్ లాక్‌లో ఉన్నప్పుడు కూడా Soundscape లొకేషన్ సర్వీస్ నడుస్తుంది.</string>

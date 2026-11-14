@@ -1269,6 +1269,8 @@
     <string name="first_launch_permissions_notification">Értesítések</string>
     <string name="first_launch_permissions_record_audio">Hangrögzítés</string>
     <string name="first_launch_permissions_required_for_voice_control">Ez az engedély opcionális, de szükséges, ha hangparancsokkal szeretné vezérelni az alkalmazást</string>
+    <string name="first_launch_permissions_physical_activity">Fizikai aktivitás</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">Kötelező. A Soundscape a telefonja lépésszámlálóját használja annak felismerésére, hogy mikor sétál, például amikor kiszállt egy járműből vagy megállt. A lépésadatai a telefonján maradnak.</string>
     <string name="battery_optimization_title">Háttérbeli akkumulátorhasználat</string>
     <string name="battery_optimization_message">A Soundscape-nek korlátlan akkumulátorhasználatra van szüksége ahhoz, hogy a telefon zárolt állapotában is folytatni tudja a hangos navigációt. Kérjük, engedélyezze a korlátlan akkumulátorhasználatot a következő párbeszédpanelen. Ha bezárja a Soundscape-et, minden szolgáltatás leáll, és az alkalmazás többé nem fog akkumulátort használni.</string>
     <string name="notification_text">A Soundscape helyszolgáltatása akkor is fut, amikor a telefon zárolva van.</string>
@@ -1394,6 +1396,7 @@
     <string name="new_version_info_text">Új kiadás információi</string>
     <string name="new_version_info_completed">Új kiadás párbeszédpanel bezárása</string>
     <string name="menu_open_source_licenses">Nyílt forráskódú licencek</string>
+    <string name="menu_privacy_policy">Adatvédelmi irányelvek</string>
     <string name="new_version_info_details">
 Ez a Soundscape egy jelentős béta kiadása, amely számos fejlesztést és változást tartalmaz.
 

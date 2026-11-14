@@ -71,6 +71,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.headtracking.HeadTrackerAnnouncer
 import org.scottishtecharmy.soundscape.geoengine.headtracking.text
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
+import org.scottishtecharmy.soundscape.locationprovider.AndroidStepProvider
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -256,6 +257,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     private var geoEngine = GeoEngine()
     lateinit var localizedContext: Context
     private var gpxRecorder: GpxRecorder? = null
+    private val stepProvider by lazy { AndroidStepProvider(application) }
     private lateinit var networkUtils: NetworkUtils
 
     private fun startGeoEngine(streetPreviewEnabled: Boolean) {
@@ -289,8 +291,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                     )
                 headTrackingProvider?.takeDebugSnapshot(includeInput)
             }
+            steps = { stepProvider.snapshot() }
         }
         geoEngine.locationRecorder = gpxRecorder
+        geoEngine.stepProvider = stepProvider
 
         geoEngine.start(
             newLocationProvider = locationProvider,
@@ -742,6 +746,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         audioEngine.destroy()
 
         headsetBatteryMonitor.stop()
+        stepProvider.stop()
         headHeadingForwarderJob?.cancel()
         headHeadingForwarderJob = null
         headTrackingProvider?.destroy()

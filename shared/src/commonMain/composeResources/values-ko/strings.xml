@@ -524,6 +524,8 @@
     <string name="first_launch_permissions_notification">알림</string>
     <string name="first_launch_permissions_record_audio">오디오 녹음</string>
     <string name="first_launch_permissions_required_for_voice_control">이 권한은 선택 사항이지만, 음성 명령으로 앱을 제어하려면 필요합니다</string>
+    <string name="first_launch_permissions_physical_activity">신체 활동</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">필수입니다. Soundscape는 휴대전화의 걸음 수 측정기를 사용해 차량에서 내렸거나 멈춰 섰을 때처럼 사용자가 걷고 있는지를 파악합니다. 걸음 데이터는 휴대전화에만 저장됩니다.</string>
     <string name="battery_optimization_title">백그라운드 배터리 사용</string>
     <string name="battery_optimization_message">Soundscape는 휴대폰이 잠겨 있을 때도 오디오 내비게이션을 계속 제공하기 위해 배터리 사용 제한 없음이 필요합니다. 다음 대화 상자에서 배터리 사용 제한 없음을 허용해 주세요. Soundscape를 종료하면 모든 서비스가 중지되며 앱은 더 이상 배터리를 사용하지 않습니다.</string>
     <string name="notification_text">Soundscape 위치 서비스는 휴대폰이 잠겨 있을 때도 실행됩니다.</string>
@@ -649,6 +651,7 @@
     <string name="new_version_info_text">새 버전 정보</string>
     <string name="new_version_info_completed">새 버전 안내 창 닫기</string>
     <string name="menu_open_source_licenses">오픈소스 라이선스</string>
+    <string name="menu_privacy_policy">개인정보처리방침</string>
     <string name="new_version_info_details">
 이번 버전은 많은 개선 사항과 변경 사항이 포함된 Soundscape의 대규모 베타 릴리스입니다.
 

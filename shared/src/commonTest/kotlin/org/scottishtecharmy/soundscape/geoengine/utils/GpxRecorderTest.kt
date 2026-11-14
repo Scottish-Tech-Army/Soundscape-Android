@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingDebug
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingStatus
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.locationprovider.StepSnapshot
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -212,5 +213,50 @@ class GpxRecorderTest {
         assertTrue(gpx.contains("<source>Course</source>"))
         assertTrue(gpx.contains("<time>1970-01-01T00:00:59.000Z</time>"))
         assertEquals(parseGpx(plain), parseGpx(gpx))
+    }
+
+    @Test
+    fun stepsAreRecordedAsAnExtensionAndReadBack() = runTest {
+        val location = SoundscapeLocation(
+            latitude = 55.9,
+            longitude = -4.3,
+            timestampMilliseconds = 60_000L,
+        )
+        val plain = GpxRecorder().apply { storeLocation(location) }.generateGpx()
+        val recorder = GpxRecorder()
+        recorder.steps = {
+            StepSnapshot(
+                detectedSteps = 12,
+                lastStepMillis = 59_500L,
+                counterSteps = 10,
+                counterMillis = 58_000L,
+                cadence = 1.876,
+            )
+        }
+        recorder.storeLocation(location)
+        val gpx = recorder.generateGpx()
+
+        assertEquals(1, Regex("<extensions>").findAll(gpx).count())
+        assertTrue(gpx.contains("<detected>12</detected>"))
+        assertTrue(gpx.contains("<lastStep>1970-01-01T00:00:59.500Z</lastStep>"))
+        assertTrue(gpx.contains("<counter>10</counter>"))
+        assertTrue(gpx.contains("<counterTime>1970-01-01T00:00:58.000Z</counterTime>"))
+        assertTrue(gpx.contains("<cadence>1.88</cadence>"))
+
+        // Read back onto the track point, and nothing else about the point changes
+        val parsed = parseGpx(gpx)
+        val point = parsed.tracks.single().trackSegments.single().trackPoints.single()
+        assertEquals(
+            StepSnapshot(
+                detectedSteps = 12,
+                lastStepMillis = 59_500L,
+                counterSteps = 10,
+                counterMillis = 58_000L,
+                cadence = 1.88,
+            ),
+            point.steps,
+        )
+        val plainPoint = parseGpx(plain).tracks.single().trackSegments.single().trackPoints.single()
+        assertEquals(plainPoint, point.copy(steps = null))
     }
 }
