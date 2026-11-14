@@ -933,6 +933,8 @@
     <string name="first_launch_permissions_granted">Permission granted</string>
     <!-- Accessibility description read by screen readers for the status icon next to a permission row that has not been granted yet -->
     <string name="first_launch_permissions_not_granted">Not yet granted</string>
+    <!-- iOS only: shown instead of first_launch_permissions_required once the user has said no to the system prompt, since iOS won't show that prompt again - tapping this row instead opens the Settings app so they can allow it there -->
+    <string name="first_launch_permissions_denied">Denied. Tap to allow it in Settings.</string>
     <!-- Text to indicate that a permission is required -->
     <string name="permissions_required">The app requires location permissions to be able to run.</string>
     <string name="permissions_button">Change the permissions in app settings</string>
@@ -3257,8 +3259,8 @@ Please continue to report any problems, however small, through “Contact suppor
     <!-- Asked when the app needs to keep describing your surroundings with the screen off
          or another app in front. -->
     <string name="ios_permission_location_always">Soundscape needs your location to provide audio navigation even when the app is in the background.</string>
-    <!-- Asked for the compass and head-tracking sensors, which give callouts a direction. -->
-    <string name="ios_permission_motion">Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings.</string>
+    <!-- Asked for the compass and head-tracking sensors, and the step counter. -->
+    <string name="ios_permission_motion">Soundscape uses motion data to detect the direction you are facing, tell when you are walking, and orient audio callouts to your surroundings.</string>
     <!-- Asked before scanning for head-tracking headphones. Covers both of the Bluetooth
          keys iOS asks under. -->
     <string name="ios_permission_bluetooth">Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices.</string>
