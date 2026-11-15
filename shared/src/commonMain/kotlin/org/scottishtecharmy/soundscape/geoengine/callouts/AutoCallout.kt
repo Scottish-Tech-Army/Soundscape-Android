@@ -173,14 +173,20 @@ class AutoCallout(
         // seen 13s later, 40m from the line - and the window still kept everything quiet for
         // another 50s, all the way up Station Road. The window is there for the platform and the
         // station, and someone off the lock, walking, and out of reach of every line has left both.
+        // Or off the lock and counting steps, however near the line - see walkedClearOfRailway.
         if (walkedClearOfRailway) return false
         return (userGeometry.timestampMilliseconds - last) < trainStickyWindowMs
     }
 
     /**
-     * Whether the user, off the rail lock and seen walking since their last train, is further
-     * than [CLEAR_OF_RAILWAY_METRES] from any line - see recentlyOnTrain. Set by
-     * buildCalloutForRoadSense, which runs on every update ahead of the pedestrian builders.
+     * Whether the user, off the rail lock and seen walking since their last train, has left the
+     * railway behind - see recentlyOnTrain. Either the pedometer is counting, or, for a phone
+     * without one (or a user who takes no steps), they are further than [CLEAR_OF_RAILWAY_METRES]
+     * from any line. The distance alone wasn't enough at Partick, where the North Clyde Line and
+     * the Subway both run within 30m of the street outside, and the window ran its whole minute
+     * after the walk had been seen. Once set it holds until the next train, so a pause to cross
+     * a road doesn't bring the window back. Set by buildCalloutForRoadSense, which runs on every
+     * update ahead of the pedestrian builders.
      */
     private var walkedClearOfRailway = false
 
@@ -359,11 +365,16 @@ class AutoCallout(
         // Measured here, on every update and before the pedestrian builders read it - see
         // recentlyOnTrain. Only looked up once the user is off the lock and walking, so a ride
         // costs nothing.
-        walkedClearOfRailway = !onTrain && userGeometry.onFootAfterVehicle &&
-            (lastTrainTimestampMs != null) &&
-            (gridState.getFeatureTree(TreeId.TRANSIT).getNearestFeature(
-                userGeometry.location, gridState.ruler, CLEAR_OF_RAILWAY_METRES
-            ) == null)
+        if (onTrain) {
+            walkedClearOfRailway = false
+        } else if (!walkedClearOfRailway) {
+            walkedClearOfRailway = userGeometry.onFootAfterVehicle &&
+                (lastTrainTimestampMs != null) &&
+                (userGeometry.stepping ||
+                    (gridState.getFeatureTree(TreeId.TRANSIT).getNearestFeature(
+                        userGeometry.location, gridState.ruler, CLEAR_OF_RAILWAY_METRES
+                    ) == null))
+        }
 
         // "1.2 km since Partick" is a statement about progress along one ride, and says nothing
         // at all once that ride is over. Changing trains at Glasgow Queen Street used to leave the
