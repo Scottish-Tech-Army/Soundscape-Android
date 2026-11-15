@@ -332,6 +332,13 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 applyHeadTrackingEnabled()
             }
 
+            PreferenceKeys.FIRST_LAUNCH -> {
+                // SharedOnboardingNavHost's onFinish (SharedNavGraph.kt) writes this to
+                // false right before navigating to Home — the signal that onboarding has
+                // finished and it's now safe to let the geo engine's callouts start.
+                releaseGeoEngineStartAfterOnboarding()
+            }
+
             PreferenceKeys.SELECTED_TTS_VOICE_ID -> {
                 audioEngine.setSpeechVoice(
                     preferencesProvider.getString(
@@ -393,18 +400,35 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         )
         preferencesProvider.addListener(preferencesListener)
         // Starting the geo engine is what brings up location updates, and its first
-        // callouts are TTS. On iOS that lands on top of the Double Tap attribution clip
-        // the splash plays on a new minor version (SplashView.swift), so Swift asks us to
-        // hold the start back until the clip has finished. Nothing holds it on the
-        // background launches the system makes to perform an App Intent, where no splash
-        // runs and nothing would ever release the hold.
-        if (claimSplashHold(this)) {
-            // Backstop, mirroring MainActivity's maxSplashDelay: if the splash never
-            // reports back (a released AVAudioPlayer, a view that never appeared) start
-            // anyway rather than leaving the app without location or callouts.
+        // callouts are TTS. Two things must be out of the way before that's safe: the
+        // Double Tap attribution clip the splash plays on a new minor version
+        // (SplashView.swift), where Swift asks us to hold the start back until the clip
+        // has finished, and - on a first-ever launch - the onboarding flow, whose own
+        // screens the engine's callouts would otherwise talk over. (Android doesn't have
+        // this second problem: its onboarding runs in a separate Activity that never
+        // starts the service at all - see OnboardingActivity.kt.) Nothing holds either on
+        // the background launches the system makes to perform an App Intent, where no
+        // splash or onboarding UI runs and nothing would release the splash hold; that
+        // can't happen for the onboarding hold, since Siri has no vocabulary to invoke an
+        // App Intent with until the app has been opened once.
+        if (preferencesProvider.getBoolean(PreferenceKeys.FIRST_LAUNCH, PreferenceDefaults.FIRST_LAUNCH)) {
+            holdGeoEngineStartForOnboarding()
+        }
+        if (claimStartHold(this)) {
+            // Backstops, mirroring MainActivity's maxSplashDelay: if the splash never
+            // reports back (a released AVAudioPlayer, a view that never appeared), or
+            // onboarding never flips FIRST_LAUNCH to false (a nav-graph bug, or a deep
+            // link that reaches Home without going through FinishScreen), start anyway
+            // rather than leaving the app without location or callouts forever. The
+            // onboarding one is long because onboarding is legitimately user-paced and
+            // must never be cut off mid-flow in ordinary use.
             scope.launch {
                 kotlinx.coroutines.delay(SPLASH_HOLD_TIMEOUT_MS)
                 releaseGeoEngineStartAfterSplash()
+            }
+            scope.launch {
+                kotlinx.coroutines.delay(ONBOARDING_HOLD_TIMEOUT_MS)
+                releaseGeoEngineStartAfterOnboarding()
             }
         } else {
             startGeoEngine()
@@ -488,7 +512,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     /**
      * Starts the geo engine unless it is already running. Only used to run a start that
-     * [claimSplashHold] deferred — every other path goes through [startGeoEngine] directly,
+     * [claimStartHold] deferred — every other path goes through [startGeoEngine] directly,
      * because they each want a fresh start with different providers.
      */
     private fun startGeoEngineIfNotStarted() {
@@ -993,20 +1017,31 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             analyticsFactory = factory
         }
 
-        // --- Splash gate ---
+        // --- Geo engine start gate ---
         //
-        // The Double Tap attribution clip plays over the splash on the first launch of a
-        // new minor version, and the geo engine's first callout would otherwise talk over
-        // it. Swift sets the hold before the clip starts and releases it when the clip
-        // finishes; the service defers its geo engine start in between.
+        // Two things can each hold the geo engine's start back, because its first callout
+        // is TTS and both would otherwise be talked over or interrupted: the Double Tap
+        // attribution clip that plays over the splash on the first launch of a new minor
+        // version (splashHold - Swift sets this before the clip starts and releases it
+        // when the clip finishes), and the onboarding flow on a first-ever launch
+        // (onboardingHold - the service sets this itself from [PreferenceKeys.FIRST_LAUNCH]
+        // and releases it when that preference flips to false). The geo engine starts once
+        // neither is set.
         //
         // Guarded by its own lock rather than [lock]: the service's init runs while
         // getInstance() holds [lock], and NSLock is not reentrant.
         private val splashGateLock = NSLock()
         private var splashHold = false
-        private var serviceAwaitingSplash: IosSoundscapeService? = null
+        private var onboardingHold = false
+        private var serviceAwaitingStart: IosSoundscapeService? = null
 
         private const val SPLASH_HOLD_TIMEOUT_MS = 8_000L
+
+        // Onboarding is user-paced and can legitimately run for minutes, so this backstop is
+        // only insurance against FIRST_LAUNCH never flipping to false - e.g. a bug in the
+        // onboarding nav graph, or a deep link that reaches Home without going through
+        // FinishScreen's onFinish. It must never fire during an ordinary run-through.
+        private const val ONBOARDING_HOLD_TIMEOUT_MS = 10 * 60_000L
 
         /**
          * Defers the geo engine start of the next service construction until
@@ -1026,32 +1061,85 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         }
 
         /**
-         * Lets a held geo engine start proceed. Called from Swift when the Double Tap clip
-         * finishes or errors, from its safety-net timer, and from the service's own
-         * timeout. Safe to call repeatedly and when no hold was ever set.
+         * Defers the geo engine start of this service construction until
+         * [releaseGeoEngineStartAfterOnboarding]. Called from this service's own init, so -
+         * unlike the splash hold - it needs no help from Swift: by the time init runs the
+         * decision only depends on a Kotlin-side preference.
+         */
+        private fun holdGeoEngineStartForOnboarding() {
+            splashGateLock.lock()
+            try {
+                onboardingHold = true
+            } finally {
+                splashGateLock.unlock()
+            }
+        }
+
+        /**
+         * Lets a held geo engine start proceed once the splash hold is satisfied. Called
+         * from Swift when the Double Tap clip finishes or errors, from its safety-net
+         * timer, and from the service's own timeout. Safe to call repeatedly and when no
+         * hold was ever set. The engine only actually starts once [onboardingHold] has
+         * also cleared.
          */
         fun releaseGeoEngineStartAfterSplash() {
             splashGateLock.lock()
             val waiting = try {
                 splashHold = false
-                serviceAwaitingSplash.also { serviceAwaitingSplash = null }
+                if (splashHold || onboardingHold) null
+                else serviceAwaitingStart.also { serviceAwaitingStart = null }
             } finally {
                 splashGateLock.unlock()
             }
-            waiting?.startGeoEngineIfNotStarted()
+            startDeferred(waiting)
         }
 
         /**
-         * Registers [service] as the one waiting on the splash, if a hold is in force.
-         * Taking both decisions under the one lock is what closes the race between a
-         * service still inside its constructor (so [INSTANCE] is still null, and a release
-         * would have nothing to start) and a release arriving on the main thread.
+         * Lets a held geo engine start proceed once onboarding is satisfied. Called from
+         * this service's own [PreferencesListener] when [PreferenceKeys.FIRST_LAUNCH] flips
+         * to false — the write [SharedOnboardingNavHost]'s onFinish makes right before
+         * navigating to Home — and from the service's own backstop timeout. Safe to call
+         * repeatedly and when no hold was ever set. The engine only actually starts once
+         * [splashHold] has also cleared.
          */
-        private fun claimSplashHold(service: IosSoundscapeService): Boolean {
+        private fun releaseGeoEngineStartAfterOnboarding() {
+            splashGateLock.lock()
+            val waiting = try {
+                onboardingHold = false
+                if (splashHold || onboardingHold) null
+                else serviceAwaitingStart.also { serviceAwaitingStart = null }
+            } finally {
+                splashGateLock.unlock()
+            }
+            startDeferred(waiting)
+        }
+
+        /**
+         * Starts [service]'s geo engine on its own scope rather than on the caller's stack.
+         * [releaseGeoEngineStartAfterOnboarding] can run synchronously inside
+         * [IosPreferencesProvider.notifyChangedKeys]'s listener loop (SharedNavGraph's
+         * onFinish writes FIRST_LAUNCH on the same call that fires it) — starting the geo
+         * engine from there once registered a preferences listener of its own partway
+         * through and mutated that same listener list mid-iteration, crashing with
+         * ConcurrentModificationException. Dispatching here, as the splash backstop timer
+         * already did, keeps every start off whatever stack triggered the release.
+         */
+        private fun startDeferred(service: IosSoundscapeService?) {
+            service?.scope?.launch { service.startGeoEngineIfNotStarted() }
+        }
+
+        /**
+         * Registers [service] as the one waiting on the splash and/or onboarding, if
+         * either hold is in force. Taking both decisions under the one lock is what closes
+         * the race between a service still inside its constructor (so [INSTANCE] is still
+         * null, and a release would have nothing to start) and a release arriving on
+         * another thread.
+         */
+        private fun claimStartHold(service: IosSoundscapeService): Boolean {
             splashGateLock.lock()
             try {
-                if (!splashHold) return false
-                serviceAwaitingSplash = service
+                if (!splashHold && !onboardingHold) return false
+                serviceAwaitingStart = service
                 return true
             } finally {
                 splashGateLock.unlock()
