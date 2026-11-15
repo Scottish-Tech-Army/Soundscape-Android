@@ -683,7 +683,7 @@ class GeoEngine {
                                 // to be got off at.
                                 arbitratedRailway = railMatchArbiter.update(
                                     mapMatchFilter, railMapMatchFilter, unfilteredSpeed,
-                                    userStationary
+                                    userStationary, stepping
                                 )
                             }
                         }

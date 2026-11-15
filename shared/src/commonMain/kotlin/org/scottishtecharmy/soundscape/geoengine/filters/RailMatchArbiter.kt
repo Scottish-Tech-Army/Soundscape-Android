@@ -110,6 +110,36 @@ class RailMatchArbiter {
     private val releaseTicksAtAStop = 35
 
     /**
+     * How many updates to hold the lock while the rail matcher has lost the line but the user is
+     * still at train speed. A train doesn't leave its line between stations, but its fixes do: on
+     * the 2026-11-15 rides to Partick and back they ran 20-55m off the track for up to 22
+     * consecutive updates at 10-24 m/s, more than MapMatchFilter will follow, and on the ordinary
+     * [releaseTicks] the ride ended 11 times, taking 15-130 updates each time to be earned again,
+     * with walking callouts in between. Still bounded, so a lock wrongly earned beside a road that
+     * then leaves the line does end.
+     */
+    private val releaseTicksAtSpeed = 30
+
+    /**
+     * How many consecutive updates of the pedometer counting at walking pace end a ride, wherever
+     * the user is. Walking up the platform at Partick the fixes stayed 1-12m from the track for
+     * three minutes, inside [onTheLineDistanceMetres], so nothing else could end it - while the
+     * pedometer was counting 110 steps a minute. Nobody walks for this long on a train that is
+     * moving, and one that has stopped is somewhere they can get off. Across both 2026-11-15
+     * recordings, the only runs this long while locked were the three real exits (19-34s).
+     * Standing up and going to the door before the train stops is not one: the passenger did that
+     * every time they got off, and it was 6-14 steps while the train was still doing 1-12 m/s, then a
+     * wait at the door. The run that ends the ride only began once the doors had opened.
+     */
+    private val walkOffTicks = 8
+
+    /** No faster than this is a train standing at a platform, as far as GPS speed can say. */
+    private val standingSpeedMps = 0.5
+
+    /** Faster than this the steps are a vehicle's, not a walk - see OnFootDetector. */
+    private val maximumWalkingSpeedMps = 2.5
+
+    /**
      * How near the line the fix has to stay, within reach of a stop, for the railway to go on
      * explaining it by itself. A train is on the track, so its fixes sit within a few metres of the
      * centreline even in a city - through Yorkhill and Kelvinhaugh the Argyle Line match ran 3-10m,
@@ -135,6 +165,19 @@ class RailMatchArbiter {
 
     private var consecutivePasses = 0
     private var ticksSinceLastPass = 0
+
+    /** Updates since the last pass that the rail match was lost at speed - see releaseTicksAtSpeed. */
+    private var ticksLostAtSpeed = 0
+
+    /** Consecutive updates stepping at walking pace - see walkOffTicks. */
+    private var steppingTicks = 0
+
+    /**
+     * Whether the last confident rail match was within reach of a stop, for a dropout to be judged
+     * by: a matcher that has lost the line has no nearAStop of its own to offer.
+     */
+    private var lastNearAStop = false
+
     private var onTrain = false
 
     /**
@@ -151,22 +194,38 @@ class RailMatchArbiter {
         road: MapMatchFilter,
         rail: MapMatchFilter,
         speed: Double,
-        stationary: Boolean = false
+        stationary: Boolean = false,
+        stepping: Boolean = false,
     ): Way? =
-        update(road.matchState(), rail.railMatchState(stopWithinReachMetres), speed, stationary)
+        update(
+            road.matchState(), rail.railMatchState(stopWithinReachMetres), speed, stationary,
+            stepping
+        )
 
     /**
      * [stationary] is StationaryDetector's verdict - whether the user has actually gone anywhere
      * lately, which instantaneous speed cannot say. Defaulted because the existing tests are all
      * about a train at line speed, where it is false and irrelevant; the two production-shaped
-     * callers (GeoEngine, MvtTileTest.testMovingGrid) pass it explicitly.
+     * callers (GeoEngine, MvtTileTest.testMovingGrid) pass it explicitly. [stepping] is
+     * StepTracker's verdict, and ends a ride on its own - see walkOffTicks.
      */
     fun update(
         road: MatchState,
         rail: MatchState,
         speed: Double,
-        stationary: Boolean = false
+        stationary: Boolean = false,
+        stepping: Boolean = false,
     ): Way? {
+        // Walking off the train ends the ride however near the track the walk is. Ahead of
+        // everything else, the tunnel rule included: at Partick the lock went on to hop from the
+        // platform to the Glasgow Subway tunnel beneath it, which holds a lock unconditionally.
+        steppingTicks = if (stepping && (speed <= maximumWalkingSpeedMps)) steppingTicks + 1 else 0
+        if (onTrain && (steppingTicks >= walkOffTicks)) {
+            consecutivePasses = 0
+            release()
+            return null
+        }
+
         val railway = rail.way.takeIf { rail.confident }
         if (railway == null) {
             // A confident match with no way to show for it is not a contradiction: MapMatchFilter
@@ -184,10 +243,33 @@ class RailMatchArbiter {
             // who has not gone anywhere has not stepped off, whatever the matcher can see this
             // tick. They will start moving eventually, and that is what ends it.
             if (onTrain && stationary) return lastRailway
-            fail()
+            // Nor is still travelling at train speed: the fix has wandered off the line, the
+            // train hasn't - see releaseTicksAtSpeed. Counted apart from the other failures so
+            // that a dropout on the approach doesn't use up the dwell's allowance.
+            if (onTrain && (speed > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS)) {
+                consecutivePasses = 0
+                ticksLostAtSpeed++
+                if (ticksLostAtSpeed > releaseTicksAtSpeed) release()
+                return if (onTrain) lastRailway else null
+            }
+            // Lost the line within reach of a stop, but not at walking pace: standing in a dwell,
+            // which it is until StationaryDetector can say otherwise, or pulling away from one
+            // at 2.5-5 m/s. Either way the same wait as releaseTicksAtAStop. The matcher
+            // routinely loses the line for 7-11 updates in a dwell before the detector's window
+            // has filled, and leaving Bearsden and Westerton the iPhone lost it as the train
+            // gathered speed. Somebody moving at walking pace with no line to match has got off,
+            // though, and in a big station like Glasgow Central the line keeps coming back for a
+            // tick among the platforms, which would otherwise hold the lock for as long as the
+            // walk through the concourse lasted.
+            val walkingPace = (speed > standingSpeedMps) && (speed <= maximumWalkingSpeedMps)
+            fail(
+                if (onTrain && lastNearAStop && !walkingPace) releaseTicksAtAStop
+                else releaseTicks
+            )
             return if (onTrain) lastRailway else null
         }
         lastRailway = railway
+        lastNearAStop = rail.nearAStop
 
         if (onTrain) {
             if (!railStillExplainsThePosition(road, rail, speed, stationary)) {
@@ -303,15 +385,20 @@ class RailMatchArbiter {
     private fun pass() {
         consecutivePasses++
         ticksSinceLastPass = 0
+        ticksLostAtSpeed = 0
     }
 
     private fun fail(tolerance: Int = releaseTicks) {
         consecutivePasses = 0
         ticksSinceLastPass++
-        if (ticksSinceLastPass > tolerance) {
-            onTrain = false
-            lastRailway = null
-        }
+        if (ticksSinceLastPass > tolerance) release()
+    }
+
+    private fun release() {
+        onTrain = false
+        lastRailway = null
+        lastNearAStop = false
+        ticksLostAtSpeed = 0
     }
 }
 

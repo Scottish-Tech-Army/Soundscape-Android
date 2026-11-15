@@ -4786,7 +4786,7 @@ class MvtTileTest {
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
                     mapMatchedRailway = railMatchArbiter.update(
-                        mapMatchFilter, railMapMatchFilter, speed, stationary
+                        mapMatchFilter, railMapMatchFilter, speed, stationary, stepping
                     ),
                     timestampMilliseconds = timestamp,
                     heldHeading = headingHold.heading(
@@ -5015,6 +5015,60 @@ class MvtTileTest {
             "First callout after leaving the train came at $firstCalloutAfter, lock let go at $trainOff",
             firstCalloutAfter!! <= 4360
         )
+    }
+
+    /**
+     * Off the train on 2026-11-15, recorded on a Pixel and an iPhone at once: at Partick, at
+     * Westerton (changing for Milngavie) and at Milngavie. Walking up the platform at Partick
+     * the Pixel's fixes stayed 1-12m from the track, so the rail lock held for over three
+     * minutes and the first walking callout came 208s after the walk was seen; the iPhone, off
+     * the lock sooner, still waited out the whole train window because the railway and the
+     * Subway both run within 30m of Merkland Street. The pedometer was counting throughout, and with it neither the lock nor
+     * the window has to wait for the walk to get away from the track.
+     *
+     * Each exit is timed from [walkFrom], the fix at which the recording's own pedometer shows
+     * the walk off the train (4 steps in 5s, at walking pace - see StepTracker), rather than from
+     * OnFootDetector: into Milngavie the iPhone's speed lagged the Pixel's, still giving 1.0-1.6
+     * m/s with a steady course for 30s after the train had stopped, which the detector took for a
+     * walk 40s before anyone stepped off. Each time, the passenger stood up and went to the
+     * door before the train had stopped, and those steps don't count either: it's stepping
+     * off that the callouts wait for.
+     */
+    @Test
+    fun testStepsOffTheTrainStartTheWalkingCallouts() {
+        class Exit(val name: String, val gpx: String, val start: Int, val end: Int, val walkFrom: Int)
+        val exits = listOf(
+            Exit("partick-pixel", "pixel-merged", 2500, 3100, 2739),
+            Exit("partick-ios", "ios-merged", 1750, 2100, 1971),
+            // Not 7689-7694: those are standing up and going to the door while the train was
+            // still slowing at 1-4 m/s. Stepping off came after the doors opened, at 7707.
+            Exit("westerton-pixel", "pixel-merged", 7500, 7850, 7707),
+            Exit("westerton-ios", "ios-merged", 5550, 5850, 5735),
+            Exit("milngavie-pixel", "pixel-merged", 8850, 9093, 9026),
+            Exit("milngavie-ios", "ios-merged", 6600, 6879, 6824),
+        )
+        val delays = exits.associate { exit ->
+            val output = "gpxFiles/clips/trainoff-${exit.name}.txt"
+            testMovingGrid(
+                "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/${exit.gpx}.gpx",
+                output,
+                "gpxFiles/clips/trainoff-${exit.name}.geojson",
+                startIndex = exit.start,
+                endIndex = exit.end,
+                // Only for the GPX point numbers it has the trace write against each callout
+                junctionTracer = JunctionTracer(),
+            )
+            val text = testOutputFile(output).readText()
+            val firstCallout = Regex("""\[(\d+)]\nCallout""").findAll(text)
+                .map { it.groupValues[1].toInt() }
+                .firstOrNull { it >= exit.walkFrom }
+            assertNotNull("Expected a callout on the walk away at ${exit.name}", firstCallout)
+            exit.name to (firstCallout!! - exit.walkFrom)
+        }
+        println("Fixes from the first steps to the first callout: $delays")
+        for ((name, delay) in delays) {
+            assertTrue("First walking callout at $name came $delay fixes after the walk", delay <= 15)
+        }
     }
 
     /**

@@ -128,11 +128,109 @@ class RailMatchArbiterTest {
     fun testLosingRailConfidenceEndsIt() {
         val arbiter = RailMatchArbiter()
         repeat(11) { arbiter.update(noMatch(), rail(2.0), travelling) }
-        repeat(6) { arbiter.update(noMatch(), rail(2.0, confident = false), travelling) }
+        repeat(30) { arbiter.update(noMatch(), rail(2.0, confident = false), travelling) }
         assertNull(
             arbiter.update(noMatch(), rail(2.0, confident = false), travelling),
             "No confident rail match means no train",
         )
+    }
+
+    /**
+     * The 2026-11-15 rides: at line speed the fixes ran 20-55m off the track for up to 22 updates,
+     * the rail matcher lost the line, and the ride ended - 11 times over two recordings.
+     */
+    @Test
+    fun testLosingTheLineAtSpeedDoesNotEndTheRide() {
+        val arbiter = RailMatchArbiter()
+        repeat(11) { arbiter.update(noMatch(), rail(2.0), travelling) }
+        repeat(30) {
+            assertEquals(
+                railway,
+                arbiter.update(noMatch(), noMatch(), travelling),
+                "A train doesn't leave its line between stations",
+            )
+        }
+        // And a dropout at speed doesn't use up the dwell's allowance as the train slows into
+        // the next stop.
+        arbiter.update(noMatch(), railAtAStop(5.0), travelling)
+        repeat(20) { arbiter.update(noMatch(), noMatch(), travelling) }
+        repeat(35) {
+            assertEquals(railway, arbiter.update(noMatch(), noMatch(), stopped))
+        }
+    }
+
+    /** The matcher losing the line for a few updates in a dwell, before StationaryDetector knows. */
+    @Test
+    fun testLosingTheLineAtAStopIsADwell() {
+        val arbiter = RailMatchArbiter()
+        repeat(11) { arbiter.update(noMatch(), railAtAStop(2.0), travelling) }
+        repeat(35) {
+            assertEquals(
+                railway,
+                arbiter.update(road(10.0), noMatch(), stopped),
+                "Losing the line at a platform should wait for the stationary verdict",
+            )
+        }
+        assertNull(arbiter.update(road(10.0), noMatch(), stopped))
+    }
+
+    /** Leaving Bearsden and Westerton the iPhone lost the line as the train gathered speed. */
+    @Test
+    fun testLosingTheLineAsTheTrainPullsAwayIsADwell() {
+        val arbiter = RailMatchArbiter()
+        repeat(11) { arbiter.update(noMatch(), railAtAStop(2.0), travelling) }
+        repeat(35) { assertEquals(railway, arbiter.update(road(4.0), noMatch(), 3.6)) }
+        // But at walking pace it's somebody who got off
+        val walker = RailMatchArbiter()
+        repeat(11) { walker.update(noMatch(), railAtAStop(2.0), travelling) }
+        repeat(5) { walker.update(road(4.0), noMatch(), 1.3) }
+        assertNull(walker.update(road(4.0), noMatch(), 1.3))
+    }
+
+    /**
+     * Partick: walking up the platform 1-12m from the track for three minutes, which nothing but
+     * the pedometer could tell apart from a dwell.
+     */
+    @Test
+    fun testWalkingOffTheTrainEndsTheRideBesideTheTrack() {
+        val arbiter = RailMatchArbiter()
+        repeat(11) { arbiter.update(noMatch(), railAtAStop(2.0), travelling) }
+        repeat(7) {
+            assertEquals(
+                railway,
+                arbiter.update(road(10.0), railAtAStop(3.0), 1.2, stepping = true),
+            )
+        }
+        assertNull(
+            arbiter.update(road(10.0), railAtAStop(3.0), 1.2, stepping = true),
+            "Walking along the platform is getting off the train",
+        )
+        // And walking along beside the line doesn't earn it back
+        repeat(50) { assertNull(arbiter.update(noMatch(), rail(2.0), 1.2, stepping = true)) }
+    }
+
+    /** Steps counted at train speed are the train's, as on a rough road - see StepTracker. */
+    @Test
+    fun testStepsOnAMovingTrainDoNotEndTheRide() {
+        val arbiter = RailMatchArbiter()
+        repeat(11) { arbiter.update(noMatch(), rail(2.0), travelling) }
+        repeat(100) {
+            assertEquals(railway, arbiter.update(noMatch(), rail(2.0), travelling, stepping = true))
+        }
+        // Nor do a few steps at a stop - finding a seat, or standing up ready to get off
+        repeat(5) {
+            assertEquals(
+                railway,
+                arbiter.update(noMatch(), railAtAStop(2.0), stopped, stepping = true)
+            )
+        }
+        assertEquals(railway, arbiter.update(noMatch(), railAtAStop(2.0), stopped))
+        repeat(5) {
+            assertEquals(
+                railway,
+                arbiter.update(noMatch(), railAtAStop(2.0), stopped, stepping = true)
+            )
+        }
     }
 
     /**
@@ -285,9 +383,9 @@ class RailMatchArbiterTest {
         repeat(10) { arbiter.update(road(1.0), railTunnel(8.0), travelling) }
 
 
-        repeat(5) { arbiter.update(road(1.0), railTunnel(8.0, confident = false), travelling) }
+        repeat(5) { arbiter.update(road(1.0), railTunnel(8.0, confident = false), stopped) }
         assertNull(
-            arbiter.update(road(1.0), railTunnel(8.0, confident = false), travelling),
+            arbiter.update(road(1.0), railTunnel(8.0, confident = false), stopped),
             "Walking away from the line underground should end the train journey",
         )
     }
