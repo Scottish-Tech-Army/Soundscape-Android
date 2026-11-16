@@ -568,8 +568,8 @@ fun confectNamesForRoad(
     // rtree searches take time and so we should avoid them where possible.
 
     val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
-    val cycleway = (road.featureType == "highway") && (road.featureValue == "cycleway")
-    if ((road.name == null) || cycleway) {
+    // A named cycle-only path is still named as the pavement of the road it runs beside
+    if ((road.name == null) || road.isCycleOnlyPath()) {
 
         if (addSidewalk(road, roadTree, gridState.ruler, strings)) {
             return road.name
@@ -736,9 +736,9 @@ private fun sameLevel(a: Way, b: Way): Boolean =
         (a.properties?.get("brunnel") == b.properties?.get("brunnel"))
 
 /**
- * Marks the unnamed footways and paths which are really a road's pavement, though they carry no
- * `footway=sidewalk` tag, so that [Way.isSidewalkOrCrossing] treats them as one - and
- * [addSidewalk] names them "Pavement next to <road>" - exactly as it does a tagged pavement.
+ * Marks the unnamed footways, paths and shared-use cycleways which are really a road's pavement,
+ * though they carry no `footway=sidewalk` tag, so that [Way.isSidewalkOrCrossing] treats them as
+ * one - and [addSidewalk] names them "Pavement next to <road>" - exactly as it does a tagged pavement.
  *
  * Plenty of places map pavements as separate ways without saying what they are. The paths along
  * Akulaan in Ede are plain `highway=footway`, run its length ten metres from the centre-line, and
@@ -755,7 +755,8 @@ fun markUntaggedPavements(paths: FeatureCollection, roadTree: FeatureTree, ruler
     for (feature in paths) {
         val path = feature as? Way ?: continue
         if (path.featureType != "highway") continue
-        if (path.featureValue !in setOf("footway", "path")) continue
+        // A shared-use cycleway beside a road is its pavement as much as a footway is
+        if (path.featureValue !in setOf("footway", "path", "cycleway")) continue
         if ((path.name != null) || (path.properties?.get("footway") != null)) continue
         if (path.isSidewalkOrCrossing()) continue
         val line = path.geometry as LineString

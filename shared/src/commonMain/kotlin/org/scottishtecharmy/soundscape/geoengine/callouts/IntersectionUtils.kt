@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -326,6 +327,101 @@ private fun hasUnnamedArm(
 private const val STRAIGHT_ON_DEGREES = 45.0
 
 /**
+ * How far beyond an announced junction another can be and still only repeat it - see
+ * [repeatsAnnouncedJunction].
+ */
+private const val REPEAT_JUNCTION_METRES = 20.0
+
+/** What an arm is called, leaving [node] - the name a junction callout gives it. */
+private fun armName(arm: Way, node: Intersection, gridState: GridState, strings: LocalizedStrings?) =
+    arm.getName(arm.intersections[WayEnd.START.id] === node, gridState, strings)
+
+/**
+ * Whether [intersection], arrived at along [arriving], has nothing to say that the junction at the
+ * other end of [arriving] - announced, and only a few metres back - didn't already say. Every arm
+ * which turns off here leads somewhere that junction's callout named, and anything else carries
+ * straight on as the way the user is on.
+ *
+ * Beside Milngavie station two paths 12m apart both drop to the station's main entrance. Each
+ * junction was announced as "Path to Milngavie Station Main entrance goes left, Path continues
+ * ahead", word for word, the second only a few seconds after the first.
+ *
+ * Only an arm with something more specific than its class - a name, or where it goes - counts as
+ * named before: two arms that are both just "Path" needn't lead to the same place.
+ */
+private fun repeatsAnnouncedJunction(
+    intersection: Intersection,
+    arriving: Way?,
+    gridState: GridState,
+    strings: LocalizedStrings?,
+    calloutHistory: CalloutHistory?,
+): Boolean {
+    if ((arriving == null) || (calloutHistory == null)) return false
+    if (arriving.wayType == WayType.JOINER) return false
+    if (arriving.length > REPEAT_JUNCTION_METRES) return false
+    val before = arriving.getOtherIntersection(intersection) ?: return false
+    if (before === intersection) return false
+    if (!calloutHistory.covers(JUNCTION_DEDUP_TEXT, before.location)) return false
+
+    // Each specific name announced there, with the sides it went off on. The user walks from
+    // there towards [intersection], which is the way [arriving] leaves it.
+    val travelling = arriving.heading(before)
+    val namedBefore = HashMap<String, MutableSet<Boolean>>()
+    for (arm in before.members) {
+        if ((arm === arriving) || (arm.properties?.get("pavement") != null)) continue
+        val name = arm.getName(
+            arm.intersections[WayEnd.START.id] === before, gridState, strings,
+            nonGenericOnly = true
+        )
+        if (name.isEmpty()) continue
+        namedBefore.getOrPut(name) { mutableSetOf() }.add(goesLeft(travelling, arm.heading(before)))
+    }
+    val straightOn = (arriving.heading(intersection) + 180.0) % 360.0
+    val arrivingName = armName(arriving, before, gridState, strings)
+    var turnsOff = 0
+    for (arm in intersection.members) {
+        if (!arm.isJunctionArm(intersection, arriving, gridState, strings)) continue
+        val name = armName(arm, intersection, gridState, strings)
+        if (calculateHeadingOffset(straightOn, arm.heading(intersection)) <= STRAIGHT_ON_DEGREES) {
+            if ((name == arrivingName) || (name in namedBefore)) continue
+            return false
+        }
+        // The same name off the other side of the road is somewhere else: "Service to car park
+        // goes right" and then "goes left" on Finnieston Street are two car parks.
+        val specific = arm.getName(
+            arm.intersections[WayEnd.START.id] === intersection, gridState, strings,
+            nonGenericOnly = true
+        )
+        if (specific.isEmpty()) return false
+        val sides = namedBefore[specific] ?: return false
+        if (goesLeft(straightOn, arm.heading(intersection)) !in sides) return false
+        // A junction a short arm away is described along with this one (see walkForIntersection's
+        // neighbours), so what it offers has to have been named too: on Milngavie Road at
+        // Hillfoot, a second entrance to the service road to Bears Way is also where the bridge
+        // to West End Outdoors leaves.
+        if (arm.length <= JUNCTION_CLUSTER_METRES) {
+            val far = arm.getOtherIntersection(intersection)
+            if ((far != null) && (far !== intersection) && (far !== before)) {
+                for (beyond in far.members) {
+                    if ((beyond === arm) || !beyond.isJunctionArm(far, arm, gridState, strings)) continue
+                    val beyondName = beyond.getName(
+                        beyond.intersections[WayEnd.START.id] === far, gridState, strings,
+                        nonGenericOnly = true
+                    )
+                    if (beyondName.isEmpty() || (beyondName !in namedBefore)) return false
+                }
+            }
+        }
+        turnsOff++
+    }
+    return turnsOff > 0
+}
+
+/** Whether a way leaving at [heading] goes off to the left of someone travelling at [travelling]. */
+private fun goesLeft(travelling: Double, heading: Double): Boolean =
+    (((heading - travelling) % 360.0) + 360.0) % 360.0 > 180.0
+
+/**
  * Whether the road the user arrives at [intersection] on stops there, so that they have to turn:
  * no arm carries on within [STRAIGHT_ON_DEGREES] of straight on. Where the road they're on goes
  * off both left and right - "Minerva Street goes left, Minerva Street goes right" - there's nothing
@@ -440,8 +536,12 @@ private fun walkForIntersection(
     // arm goes straight on: the walk followed the road, and the user is as likely to carry
     // straight on (in the replay traces, more likely), so what lies beyond may be on the branch
     // they don't take.
+    // One which only repeats a junction just announced is treated as announced along with it.
     val announced = candidates.filter { candidate ->
-        calloutHistory?.covers(JUNCTION_DEDUP_TEXT, candidate.intersection.location) == true
+        (calloutHistory?.covers(JUNCTION_DEDUP_TEXT, candidate.intersection.location) == true) ||
+            repeatsAnnouncedJunction(
+                candidate.intersection, candidate.arrivingWay, gridState, strings, calloutHistory
+            )
     }
     announced.filter { c ->
         forksAt.any { it === c.intersection } ||
