@@ -461,10 +461,20 @@ class Way : MvtFeature() {
         return reachesOwnPavement
     }
 
+    /**
+     * Follows this Way away from [fromIntersection] and on through every node where it simply
+     * carries on, adding each Way and the direction it was walked to [ways].
+     *
+     * With [throughPavements], a node where nothing but pavements and crossings join is walked
+     * through too, when exactly one other Way carries on from it: a driveway off Milngavie Road at
+     * Hillfoot crosses Bears Way, the cycle path that is the road's pavement, 4m in, and it's
+     * where the driveway goes beyond that which names it.
+     */
     fun followWays(
         fromIntersection: Intersection,
         ways: MutableList<Pair<Boolean, Way>>,
         depth: Int = 0,
+        throughPavements: Boolean = false,
         optionalEarlyPredicate: ((Way, Way?) -> Boolean)? = null
     ) {
 
@@ -503,8 +513,19 @@ class Way : MvtFeature() {
             // We have a next intersection and it's only got 2 ways, so follow it onwards
             for (way in nextIntersection.members) {
                 if (way != this) {
-                    way.followWays(nextIntersection, ways, depth + 1, optionalEarlyPredicate)
+                    way.followWays(
+                        nextIntersection, ways, depth + 1, throughPavements, optionalEarlyPredicate
+                    )
                 }
+            }
+        } else if (throughPavements && (nextIntersection != null) && !isSidewalkOrCrossing()) {
+            val onward = nextIntersection.members.filter { way ->
+                (way !== this) && (way.wayType != WayType.JOINER) && !way.isSidewalkOrCrossing()
+            }
+            if ((onward.size == 1) && (onward.size < nextIntersection.members.size - 1)) {
+                onward.single().followWays(
+                    nextIntersection, ways, depth + 1, throughPavements, optionalEarlyPredicate
+                )
             }
         }
     }

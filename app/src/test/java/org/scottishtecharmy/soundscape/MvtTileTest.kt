@@ -1029,6 +1029,30 @@ class MvtTileTest {
     }
 
     /**
+     * Bears Way is a cycle path beside Milngavie Road, treated as the road's pavement. The
+     * driveways off the road at Hillfoot cross it a few metres in, and were each announced as
+     * "Service to Bears Way". A pavement is never where a way leads: the driveway is named for
+     * where it goes beyond the cycle path.
+     */
+    @Test
+    fun testDrivewayAcrossBearsWayIsNotNamedForIt() {
+        val gridState = getGridStateForLocation(LngLatAlt(-4.318386, 55.922937), MAX_ZOOM_LEVEL, 2)
+        traverseIntersectionsConfectingNames(gridState.gridIntersections)
+        val names = mutableListOf<String>()
+        for (junction in listOf(LngLatAlt(-4.318386, 55.922937), LngLatAlt(-4.318434, 55.922835))) {
+            val intersection = gridState.getFeatureTree(TreeId.INTERSECTIONS)
+                .getNearestFeature(junction, gridState.ruler, 2.0) as Intersection
+            for (way in intersection.members) {
+                if (way.featureValue != "service") continue
+                names.add(way.getName(way.intersections[WayEnd.START.id] === intersection, gridState, null))
+            }
+        }
+        println("Driveways off Milngavie Road at Hillfoot: $names")
+        assertTrue("Expected the driveways off Milngavie Road", names.isNotEmpty())
+        assertTrue(names.toString(), names.none { it.contains("Bears Way") })
+    }
+
+    /**
      * A road that merely crosses a river is beside it only for the few metres either side of the
      * bridge, so it must not pick up the river's name. Strathblane Road crosses the Allander Water
      * in Milngavie and is named anyway; this checks the un-named ways around the crossing too.
