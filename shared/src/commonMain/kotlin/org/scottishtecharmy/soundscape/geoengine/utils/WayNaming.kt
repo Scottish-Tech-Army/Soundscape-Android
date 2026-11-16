@@ -244,11 +244,17 @@ fun addPoiDestinations(
     // Does the unnamed way start or end near inside a POI? If we don't do this check, we can end
     // up with confusing confections inside parks where a path is described "to Park" when the
     // whole path is within the park, but one end is nearer the edge of it.
+    // A platform comes first: a path that ends on one leads to the platform, though the station
+    // around it may be mapped as an area too. Beside Milngavie station the short paths onto the
+    // platforms were "Path to dead end" and "Path to Milngavie Station Entrance".
     val poiTree = gridState.getFeatureTree(TreeId.POIS)
-    val polygonStartPoi = poiTree.getContainingPolygons(startLocation).features
-        .firstOrNull { !isUnnamedBridge(it) }
-    val polygonEndPoi = poiTree.getContainingPolygons(endLocation).features
-        .firstOrNull { !isUnnamedBridge(it) }
+    val platformTree = gridState.getFeatureTree(TreeId.PLATFORMS)
+    val polygonStartPoi = platformTree.getContainingPolygons(startLocation).features.firstOrNull()
+        ?: poiTree.getContainingPolygons(startLocation).features
+            .firstOrNull { !isUnnamedBridge(it) }
+    val polygonEndPoi = platformTree.getContainingPolygons(endLocation).features.firstOrNull()
+        ?: poiTree.getContainingPolygons(endLocation).features
+            .firstOrNull { !isUnnamedBridge(it) }
     if ((polygonEndPoi != null) || (polygonStartPoi != null)) {
         if (polygonEndPoi != polygonStartPoi) {
             // The way crosses across a polygon boundary

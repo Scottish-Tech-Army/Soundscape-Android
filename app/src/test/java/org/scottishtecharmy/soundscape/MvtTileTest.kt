@@ -992,12 +992,15 @@ class MvtTileTest {
 
     /**
      * The path and steps down from Milngavie Road to Hillfoot station stop about 25m short of the
-     * station node, with nothing mapped onwards to the platforms - so the path was "Path to dead
-     * end via steps". A path that just stops beside a station is the way to the station.
+     * station node, with no path mapped onwards - so the path was "Path to dead end via steps",
+     * and then, as a path that just stops beside a station, "Path to Hillfoot Train Station via
+     * steps". The bottom of the steps is on the platform, which is mapped as an area, so it's the
+     * way to the platform. The tests have no translations, which is why the platform is "OSM
+     * Feature path platform" here, where the app says "Platform".
      * https://www.openstreetmap.org/way/135920625
      */
     @Test
-    fun testDeadEndPathBesideAStationIsNamedForIt() {
+    fun testPathDownToHillfootStationLeadsToThePlatform() {
         val junction = LngLatAlt(-4.3202210, 55.9205377)
         val gridState = getGridStateForLocation(junction, MAX_ZOOM_LEVEL, 2)
         traverseIntersectionsConfectingNames(gridState.gridIntersections)
@@ -1022,7 +1025,7 @@ class MvtTileTest {
                 else -> null
             }
         }
-        assertEquals(listOf("Path to Hillfoot Train Station via steps"), names)
+        assertEquals(listOf("Path to OSM Feature path platform via steps"), names)
     }
 
     /**
