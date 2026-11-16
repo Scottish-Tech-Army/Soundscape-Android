@@ -195,7 +195,7 @@ fun addPoiDestinations(
     val waysFromStart = mutableListOf<Pair<Boolean, Way>>()
     val waysFromEnd = mutableListOf<Pair<Boolean, Way>>()
     if (startIntersection != null) {
-        way.followWays(startIntersection, waysFromStart)
+        way.followWays(startIntersection, waysFromStart, throughPavements = true)
         // When followWays from the start intersection will head towards the end of the line
         endLocation = if (waysFromStart.last().first)
             (waysFromStart.last().second.geometry as LineString).coordinates.last()
@@ -203,7 +203,7 @@ fun addPoiDestinations(
             (waysFromStart.last().second.geometry as LineString).coordinates.first()
     }
     if (endIntersection != null) {
-        way.followWays(endIntersection, waysFromEnd)
+        way.followWays(endIntersection, waysFromEnd, throughPavements = true)
         // When followWays from the end intersection will head towards the start of the line
         startLocation = if (waysFromEnd.last().first)
             (waysFromEnd.last().second.geometry as LineString).coordinates.last()
@@ -649,9 +649,12 @@ fun traverseIntersectionsConfectingNames(
         // TODO: Perhaps we could use an intersection name here if there is more than one
         //  named way? e.g. Path to junction of Moor Road and Buchanan Street
 
-        // Does the intersection have any named members?
+        // Does the intersection have any named members? Not a pavement: a driveway crossing Bears
+        // Way, the cycle path beside Milngavie Road at Hillfoot, was "Service to Bears Way" - the
+        // cycle path is the road's pavement, not where the driveway goes.
         var namedRoadToUse: String? = null
         for (road in intersection.value.members) {
+            if (road.isSidewalkOrCrossing()) continue
             if (namedRoadToUse == null) {
                 // Only ever said ("Path to X"), so in the app's language where there is one
                 namedRoadToUse = road.displayName
@@ -669,7 +672,9 @@ fun traverseIntersectionsConfectingNames(
 
                 val ways = mutableListOf<Pair<Boolean, Way>>()
                 // Break out when the next way has a name
-                road.followWays(intersection.value, ways) { way, _ -> (way.name != null) }
+                road.followWays(intersection.value, ways, throughPavements = true) { way, _ ->
+                    (way.name != null)
+                }
 
                 // followWays returns the chain ordered outwards from the named road, so the
                 // bridge/steps/tunnel a way passes through on its way to that road are those at or
@@ -699,7 +704,7 @@ fun traverseIntersectionsConfectingNames(
         // Check for dead ends
         for (road in intersection.value.members) {
             val ways = mutableListOf<Pair<Boolean, Way>>()
-            road.followWays(intersection.value, ways)
+            road.followWays(intersection.value, ways, throughPavements = true)
             val way = ways.last()
             if ((way.first and (way.second.intersections[WayEnd.END.id] == null)) or
                 (!way.first and (way.second.intersections[WayEnd.START.id] == null))
