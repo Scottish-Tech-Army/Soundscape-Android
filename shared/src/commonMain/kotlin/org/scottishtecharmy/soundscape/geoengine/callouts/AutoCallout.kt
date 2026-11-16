@@ -90,6 +90,11 @@ class AutoCallout(
      * announced 30m ahead at walking pace has often expired from it by the time it's reached.
      */
     private var lastAnnouncedJunction: List<LngLatAlt> = emptyList()
+    /**
+     * What each junction was last described as, while the user is still within
+     * intersectionAnnounceBandMetres of it - see buildCalloutForIntersections.
+     */
+    private val describedJunctions = mutableListOf<Pair<LngLatAlt, String>>()
     private val poiCalloutHistory = CalloutHistory(
         CalloutVerbosity.DETAILED.poiHistoryExpiryMs,
         CalloutVerbosity.DETAILED.poiHistoryTrimRadiusMetres
@@ -1319,6 +1324,9 @@ class AutoCallout(
 
         // Trim callout history based on our location and current time
         intersectionCalloutHistory.trim(userGeometry)
+        describedJunctions.removeAll { (location, _) ->
+            userGeometry.ruler.distance(userGeometry.location, location) > intersectionAnnounceBandMetres
+        }
 
         val roadsDescription = getRoadsDescriptionFromFov(
             gridState,
@@ -1363,6 +1371,27 @@ class AutoCallout(
         )
         val junction = roadsDescription.intersection
         if ((callout != null) && (junction != null)) {
+            // Not the same description of the same footpath junction again while the user hasn't
+            // left it. Waiting on the platform at Westerton, 10-25m from the footbridge junction,
+            // it was announced again every time its history expired. Only the same words, though:
+            // coming back to a junction from another direction describes it differently, and is
+            // new. And only among footpaths (see onlyFootpaths): where roads meet, a repeat is
+            // still correct. Recorded as though spoken, so that the junction search still looks
+            // past it.
+            val description = callout.positionedStrings.drop(1).joinToString("\n") { it.text }
+            val previous = describedJunctions.indexOfFirst { (location, _) ->
+                userGeometry.ruler.distance(location, junction.location) < 1.0
+            }
+            val footpathsOnly = junction.onlyFootpaths() &&
+                roadsDescription.alsoAt.all { it.first.onlyFootpaths() }
+            if (footpathsOnly && (previous >= 0) &&
+                (describedJunctions[previous].second == description)
+            ) {
+                intersectionCalloutHistory.add(callout)
+                return null
+            }
+            if (previous >= 0) describedJunctions.removeAt(previous)
+            describedJunctions.add(junction.location to description)
             lastAnnouncedJunction =
                 listOf(junction.location) + roadsDescription.alsoAt.map { it.first.location }
         }

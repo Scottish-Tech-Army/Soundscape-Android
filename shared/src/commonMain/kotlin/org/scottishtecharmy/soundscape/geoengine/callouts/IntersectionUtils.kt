@@ -327,6 +327,18 @@ private fun hasUnnamedArm(
 private const val STRAIGHT_ON_DEGREES = 45.0
 
 /**
+ * Whether only footpaths meet at this junction - footways, paths, cycleways, steps, pedestrian
+ * streets and pavements. Footpath networks are drawn in far more detail than roads, as clusters of
+ * short paths a few metres apart such as those beside Milngavie station, and only there is a
+ * junction callout ever skipped for saying nothing new. Where roads meet, a repeat is still
+ * correct.
+ */
+internal fun Intersection.onlyFootpaths(): Boolean = members.all { way ->
+    (way.wayType == WayType.JOINER) || way.isPath() || way.isSidewalkOrCrossing() ||
+        ((way.featureType == "highway") && (way.featureValue in setOf("steps", "pedestrian")))
+}
+
+/**
  * How far beyond an announced junction another can be and still only repeat it - see
  * [repeatsAnnouncedJunction].
  */
@@ -342,7 +354,8 @@ private fun armName(arm: Way, node: Intersection, gridState: GridState, strings:
  * which turns off here leads somewhere that junction's callout named, and anything else carries
  * straight on as the way the user is on.
  *
- * Beside Milngavie station two paths 12m apart both drop to the station's main entrance. Each
+ * Only among footpaths - see [onlyFootpaths]. Beside Milngavie station two paths 12m apart both
+ * drop to the station's main entrance. Each
  * junction was announced as "Path to Milngavie Station Main entrance goes left, Path continues
  * ahead", word for word, the second only a few seconds after the first.
  *
@@ -362,6 +375,7 @@ private fun repeatsAnnouncedJunction(
     val before = arriving.getOtherIntersection(intersection) ?: return false
     if (before === intersection) return false
     if (!calloutHistory.covers(JUNCTION_DEDUP_TEXT, before.location)) return false
+    if (!intersection.onlyFootpaths() || !before.onlyFootpaths()) return false
 
     // Each specific name announced there, with the sides it went off on. The user walks from
     // there towards [intersection], which is the way [arriving] leaves it.
