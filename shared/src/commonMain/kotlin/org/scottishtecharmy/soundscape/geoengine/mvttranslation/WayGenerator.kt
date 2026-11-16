@@ -378,13 +378,25 @@ class Way : MvtFeature() {
 
     fun isSidewalkOrCrossing(): Boolean {
         val footway = properties?.get("footway")
-        val bicycle = properties?.get("bicycle")
         return ((footway == "sidewalk") ||
                 // An untagged path found running alongside a road - see markUntaggedPavements
                 (properties?.get(INFERRED_PAVEMENT) != null) ||
                 (footway == "crossing") ||
-                (bicycle == "designated") ||
-                ((featureType == "highway") && (featureValue == "cycleway")))
+                isCycleOnlyPath())
+    }
+
+    /**
+     * A path built for bicycles which pedestrians aren't meant to use. Bears Way is one, running
+     * beside Milngavie Road, and described as a path of its own it made for very confusing
+     * directions, so these are treated as the road's pavement. A shared-use path - foot=designated
+     * as well - is somewhere to walk, such as the Forth and Clyde Canal towpath or the tracks
+     * through Finnieston, and is a path like any other: one beside a road is still found to be its
+     * pavement by markUntaggedPavements.
+     */
+    fun isCycleOnlyPath(): Boolean {
+        if (properties?.get("foot") == "designated") return false
+        return (properties?.get("bicycle") == "designated") ||
+            ((featureType == "highway") && (featureValue == "cycleway"))
     }
 
     /**

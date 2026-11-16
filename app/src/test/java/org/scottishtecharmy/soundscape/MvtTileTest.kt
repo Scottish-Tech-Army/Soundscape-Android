@@ -5171,6 +5171,17 @@ class MvtTileTest {
         JunctionClip("hillfoot-pixel", "pixel", 3200, 3460),
         // Off the train at Milngavie and up Station Road / Buchanan Street.
         JunctionClip("trainoff-pixel", "pixel", 3990, 4500),
+        // 2026-11-15: from Station Road past the station entrances, through the cluster of
+        // paths beside the Kwik Fit and down to Fulton Road.
+        JunctionClip("stationpaths-pixel", "pixel-merged", 1100, 1260),
+        JunctionClip("stationpaths-ios", "ios-merged", 420, 520),
+        // 2026-11-15: a walk round the paths at Westerton station, down to the canal towpath and
+        // back.
+        JunctionClip("westerton-pixel", "pixel-merged", 7700, 8480),
+        JunctionClip("westerton-ios", "ios-merged", 5720, 6290),
+        // Milngavie Road at Hillfoot, past two entrances to the service road beside Bears Way, the
+        // second of them also where the bridge to West End Outdoors leaves.
+        JunctionClip("bearsway-pixel", "pixel", 2960, 3060),
     )
 
     /**
