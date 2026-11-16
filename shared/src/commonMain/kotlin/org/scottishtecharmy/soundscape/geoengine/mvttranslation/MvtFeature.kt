@@ -77,6 +77,14 @@ private fun formatNaptanBusStopName(feature: MvtFeature, name: String, localized
 }
 
 open class MvtFeature : Feature() {
+    /**
+     * A railway or bus platform mapped as an area - OpenMapTiles puts these in the transportation
+     * layer as class path, subclass platform. It's somewhere a path leads to - see
+     * addPoiDestinations - so it's kept in TreeId.PLATFORMS, though not called out as a POI.
+     */
+    fun isPlatform(): Boolean =
+        (featureType == "highway") && (featureValue == "platform") && (geometry.type == "Polygon")
+
     var osmId: Long = 0L
     var name: String? = null
 

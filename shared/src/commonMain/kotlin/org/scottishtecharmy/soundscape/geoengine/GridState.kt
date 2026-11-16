@@ -83,8 +83,10 @@ enum class TreeId(
     NAMED_WATER_POLYGONS(22, "Named Water Polygons"),
     NAMED_WATERWAYS(23, "Named Waterways"),
     RAILWAY_STOPS(24, "Railway Stops"),
-    MAX_COLLECTION_ID(25, ""),
-    WAYS_SELECTION(id = 25, "Either Roads OR Roads and Paths")
+    // Platforms mapped as areas - only somewhere paths lead, not POIs to call out
+    PLATFORMS(25, "Platforms"),
+    MAX_COLLECTION_ID(26, ""),
+    WAYS_SELECTION(id = 26, "Either Roads OR Roads and Paths")
 }
 
 fun treeIdToIndex(id: TreeId): TreeId {
@@ -1842,6 +1844,10 @@ fun processTileFeatureCollection(
     initialFeatureCollections[TreeId.RAILWAY_STOPS.id] += getRailwayStopsFromTileFeatureCollection(
         tileFeatureCollection
     )
+    for (feature in tileFeatureCollection) {
+        if ((feature as MvtFeature).isPlatform())
+            initialFeatureCollections[TreeId.PLATFORMS.id].addFeature(feature)
+    }
 
     // POIS includes bus stops and crossings
     initialFeatureCollections[TreeId.POIS.id].plusAssignDeduplicate(initialFeatureCollections[TreeId.TRANSIT_STOPS.id])
