@@ -17,11 +17,22 @@ import platform.CoreLocation.kCLLocationAccuracyBest
 import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
 import platform.Foundation.NSDate
 import platform.Foundation.NSError
+import platform.Foundation.NSUserDefaults
 import platform.Foundation.timeIntervalSince1970
 import platform.darwin.NSObject
 
 /** How old CLLocationManager's cached fix may be before it is ignored on start. */
 private const val MAX_CACHED_FIX_AGE_SECONDS = 60.0
+
+/**
+ * Tracks, in NSUserDefaults so it survives a relaunch, whether we've already made the
+ * explicit second [CLLocationManager.requestAlwaysAuthorization] call that asks iOS to
+ * upgrade a When-In-Use grant to Always. iOS shows that upgrade alert at most once in
+ * response to an app-initiated ask; a further call when the user declined is a silent
+ * no-op. Recording that we've already spent it is what lets [IosLocationProvider] tell a
+ * genuinely-unanswered state apart from a dead end that only Settings can fix.
+ */
+private const val HAS_REQUESTED_ALWAYS_UPGRADE_KEY = "HasRequestedAlwaysLocationUpgrade"
 
 private val logger = AppLog.tag("LocationDelegate")
 
@@ -99,20 +110,53 @@ class IosLocationProvider : LocationProvider() {
         start()
     }
 
+    /**
+     * Triggers iOS's system prompt. The first call (status notDetermined) asks for
+     * When-In-Use; many configurations grant Always directly from that single ask
+     * (confirmed on a real device: tapping "Allow While Using" produced
+     * kCLAuthorizationStatusAuthorizedAlways immediately, not When-In-Use), but Apple's
+     * documented fallback for when it doesn't is a second, explicit call once status is
+     * already When-In-Use - that's what shows the "Keep Only While Using / Change to
+     * Always Allow" upgrade alert. iOS shows that upgrade alert at most once, so the
+     * second call is recorded - see [isPermissionDenied].
+     */
     fun requestPermission() {
+        if (locationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse) {
+            NSUserDefaults.standardUserDefaults.setBool(true, forKey = HAS_REQUESTED_ALWAYS_UPGRADE_KEY)
+        }
         locationManager.requestAlwaysAuthorization()
     }
 
-    fun isPermissionGranted(): Boolean {
-        val status = locationManager.authorizationStatus
-        return status == kCLAuthorizationStatusAuthorizedAlways ||
-            status == kCLAuthorizationStatusAuthorizedWhenInUse
-    }
+    /**
+     * Only Always actually satisfies what Soundscape needs: [allowsBackgroundLocationUpdates]
+     * does nothing under When-In-Use, which is why a user stuck there saw callouts stop the
+     * moment the phone locked. When-In-Use is deliberately not treated as granted here, even
+     * though it's a real, legitimate CoreLocation status, because this app's one and only use
+     * of location is walking navigation with the phone screen off.
+     *
+     * Confirmed on a real device: granting "While Using" from a [requestAlwaysAuthorization]
+     * ask can read back as this straight away - CoreLocation's "provisional Always", which
+     * behaves exactly like a real grant (background updates, a beacon surviving the phone
+     * locking) for as long as it holds. iOS later shows its own native "Change to Always
+     * Allow?" reaffirmation - observed firing when the app is moved to the background, not
+     * on an unlock - and only *that* answer is durable. Deliberately left to iOS alone: an
+     * in-app nudge second-guessing "Keep Only While Using" would be relitigating a choice
+     * the user already made in response to a system prompt.
+     */
+    fun isPermissionGranted(): Boolean =
+        locationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways
 
-    /** True once the user has said no - requestPermission() won't show the system prompt again. */
+    /**
+     * True once the user has said no, or has exhausted the one upgrade alert iOS will show -
+     * requestPermission() won't show a system prompt again; only Settings can fix it from here.
+     */
     fun isPermissionDenied(): Boolean {
         val status = locationManager.authorizationStatus
-        return status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted
+        if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
+            return true
+        }
+        return status == kCLAuthorizationStatusAuthorizedWhenInUse &&
+            NSUserDefaults.standardUserDefaults.boolForKey(HAS_REQUESTED_ALWAYS_UPGRADE_KEY)
     }
 
     override fun start(accuracy: Accuracy) {

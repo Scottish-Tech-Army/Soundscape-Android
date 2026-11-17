@@ -109,7 +109,9 @@ fun MainViewController() = ComposeUIViewController {
         onDispose { prefs.removeListener(listener) }
     }
 
-    // Stub flows for features iOS doesn't yet have its own state for.
+    // Stub flows for features iOS doesn't yet have its own state for. A live signal here
+    // would duplicate iOS's own native "Change to Always Allow?" reaffirmation - deliberately
+    // left to iOS rather than adding an in-app nudge on top of a choice the user already made.
     val permissionsRequired = remember { MutableStateFlow(false) }
 
     // TTS voice picker contents for the Audio section of the iOS settings
