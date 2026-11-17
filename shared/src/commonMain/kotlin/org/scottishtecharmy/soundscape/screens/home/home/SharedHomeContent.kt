@@ -330,6 +330,13 @@ fun SharedHomeContent(
                         loadingTestTag = "homeCurrentLocationLoading",
                     )
                 }
+                // Shown regardless of location/map/route state - previously this was nested
+                // inside `if (location != null) { ... } else { ... }` keyed off `showMap`, a
+                // display preference with nothing to do with permissions, so with the map on
+                // (the default) or before any fix had arrived at all, it could never render.
+                if (permissionsRequired) {
+                    PermissionsRequiredBanner(goToAppSettings = goToAppSettings)
+                }
                 if (location != null) {
                     val currentRoute = routePlayerState.routeData
                     if (currentRoute != null || showMap) {
@@ -586,33 +593,34 @@ fun SharedHomeContent(
                             }
                         }
                     }
-                } else {
-                    if (permissionsRequired) {
-                        Column {
-                            Text(
-                                stringResource(Res.string.permissions_required),
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.onSurface,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .mediumPadding(),
-                            )
-                            NavigationButton(
-                                onClick = { goToAppSettings() },
-                                text = stringResource(Res.string.permissions_button),
-                                horizontalPadding = spacing.small,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .mediumPadding()
-                                    .testTag("homeAppSettings"),
-                            )
-                        }
-                    }
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun PermissionsRequiredBanner(goToAppSettings: () -> Unit) {
+    Column {
+        Text(
+            stringResource(Res.string.permissions_required),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .fillMaxWidth()
+                .mediumPadding(),
+        )
+        NavigationButton(
+            onClick = { goToAppSettings() },
+            text = stringResource(Res.string.permissions_button),
+            horizontalPadding = spacing.small,
+            modifier = Modifier
+                .fillMaxWidth()
+                .mediumPadding()
+                .testTag("homeAppSettings"),
+        )
     }
 }
 
