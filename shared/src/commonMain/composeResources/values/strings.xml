@@ -80,6 +80,8 @@
     <string name="voice_engine">Text-to-Speech Engine</string>
     <!-- Title for option to select the text-to-speech voice to use. -->
     <string name="voice_voices">Voices</string>
+    <!-- iOS only. Heading of a collapsible group in the list of voices, holding the voices that came from a text-to-speech app the user installed themselves, where the app can't tell which one it was. Siblings of this group are headed with the name of the provider they came from - "Eloquence", "eSpeak" - which are product names and stay in English. -->
+    <string name="voice_other_voices">Other Voices</string>
     <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
     <string name="beacon_settings_style">Audio beacon styles</string>
     <!-- Description of the choice of beacon settings. -->

@@ -346,7 +346,11 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                         PreferenceDefaults.SELECTED_TTS_VOICE_ID,
                     )
                 )
-                playTtsSample()
+                // No sample here, unlike the speech rate below: the only thing that writes this
+                // is the voice picker, and it got here by previewing the voice the user has just
+                // confirmed - see previewTtsVoice. Speaking it again would repeat what they heard
+                // a moment ago, over the top of whatever a screen reader says as the picker
+                // closes.
             }
 
             PreferenceKeys.SPEECH_RATE -> {
@@ -782,6 +786,28 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             getString(Res.string.first_launch_callouts_example_3)
         }
         audioEngine.createTextToSpeech(sample, AudioType.STANDARD)
+    }
+
+    /**
+     * Speaks a sample in [voiceId] without choosing it, for the voice picker's preview - a user
+     * comparing sixty voices has to be able to hear one without committing to it.
+     *
+     * This leaves the renderer on a voice that isn't the stored one, so every preview ends either
+     * in the picker writing the choice to preferences or in [restoreSelectedTtsVoice].
+     */
+    fun previewTtsVoice(voiceId: String) {
+        audioEngine.setSpeechVoice(voiceId)
+        playTtsSample()
+    }
+
+    /** Puts the renderer back on the stored voice, after previews the user didn't confirm. */
+    fun restoreSelectedTtsVoice() {
+        audioEngine.setSpeechVoice(
+            preferencesProvider.getString(
+                PreferenceKeys.SELECTED_TTS_VOICE_ID,
+                PreferenceDefaults.SELECTED_TTS_VOICE_ID,
+            )
+        )
     }
 
     // --- Mix Audio Setting ---
