@@ -43,7 +43,7 @@ runs:
 
     - name: Install xcodegen
       shell: bash
-      run: brew install xcodegen
+      run: command -v xcodegen >/dev/null || brew install xcodegen
 
     - name: Setup JDK + Gradle
       uses: ./.github/actions/setup-jdk-gradle
