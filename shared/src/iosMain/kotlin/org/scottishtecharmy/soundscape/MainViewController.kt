@@ -15,7 +15,7 @@ import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.audio.TourButton
-import org.scottishtecharmy.soundscape.audio.availableTtsVoicesForCurrentLanguage
+import org.scottishtecharmy.soundscape.audio.availableTtsVoices
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.migration.hasPendingLegacyMigration
 import org.scottishtecharmy.soundscape.migration.runPendingLegacyMigration
@@ -117,7 +117,7 @@ fun MainViewController() = ComposeUIViewController {
     // TTS voice picker contents for the Audio section of the iOS settings
     // screen. Voices are enumerated once per launch — adding/removing voices
     // requires re-launching the app, which matches the legacy iOS behaviour.
-    val ttsVoices = remember { availableTtsVoicesForCurrentLanguage() }
+    val ttsVoices = remember { availableTtsVoices() }
     val systemDefaultLabel = stringResource(Res.string.settings_theme_auto)
     val ttsVoiceValues = remember(ttsVoices) {
         listOf("") + ttsVoices.map { it.identifier }
