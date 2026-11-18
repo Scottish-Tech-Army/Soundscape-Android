@@ -9,6 +9,7 @@
     <string name="settings_about_app">Over Soundscape</string>
     <string name="voice_settings_speaking_rate">Spreeksnelheid</string>
     <string name="voice_voices">Stemmen</string>
+    <string name="voice_other_voices">Andere stemmen</string>
     <string name="beacon_settings_style">Audiobakenstijlen</string>
     <string name="beacon_styles_current">Huidig</string>
     <string name="beacon_styles_original">Oorspronkelijk</string>

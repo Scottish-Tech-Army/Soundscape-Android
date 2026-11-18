@@ -232,6 +232,7 @@
     <string name="voice_settings_speaking_rate">อัตราความเร็วในการพูด</string>
     <string name="voice_engine">เอนจินแปลงข้อความเป็นเสียง</string>
     <string name="voice_voices">เสียงพูด</string>
+    <string name="voice_other_voices">เสียงพูดอื่น ๆ</string>
     <string name="beacon_settings_style">รูปแบบบีคอนเสียง</string>
     <string name="beacon_settings_style_description">เลือกรูปแบบบีคอนเสียงที่คุณต้องการใช้</string>
     <string name="beacon_styles_current">ปัจจุบัน</string>

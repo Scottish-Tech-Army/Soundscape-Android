@@ -25,6 +25,7 @@
     <string name="voice_settings_speaking_rate">Viteza vorbirii</string>
     <string name="voice_engine">Motor de sinteză vocală</string>
     <string name="voice_voices">Voci</string>
+    <string name="voice_other_voices">Alte voci</string>
     <string name="beacon_settings_style">Stiluri de baliză audio</string>
     <string name="beacon_settings_style_description">Alege stilul de baliză audio pe care vrei să îl folosești</string>
     <string name="beacon_styles_current">Actual</string>

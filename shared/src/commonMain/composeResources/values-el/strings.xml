@@ -9,6 +9,7 @@
     <string name="settings_about_app">Σχετικά με το Soundscape</string>
     <string name="voice_settings_speaking_rate">Ταχύτητα εκφώνησης</string>
     <string name="voice_voices">Φωνές</string>
+    <string name="voice_other_voices">Άλλες φωνές</string>
     <string name="beacon_settings_style">Στυλ ηχητικού σήματος</string>
     <string name="beacon_styles_current">Τρέχον</string>
     <string name="beacon_styles_original">Αρχικό</string>

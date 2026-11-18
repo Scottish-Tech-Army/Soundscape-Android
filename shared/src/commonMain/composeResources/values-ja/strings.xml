@@ -9,6 +9,7 @@
     <string name="settings_about_app">Soundscape について</string>
     <string name="voice_settings_speaking_rate">読み上げ速度</string>
     <string name="voice_voices">声</string>
+    <string name="voice_other_voices">その他の声</string>
     <string name="beacon_settings_style">音声ビーコンのスタイル</string>
     <string name="beacon_styles_current">最新</string>
     <string name="beacon_styles_original">オリジナル</string>

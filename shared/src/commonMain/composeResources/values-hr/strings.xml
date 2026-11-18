@@ -769,6 +769,7 @@
     <string name="voice_settings_speaking_rate">Brzina govora</string>
     <string name="voice_engine">Sustav pretvorbe teksta u govor</string>
     <string name="voice_voices">Glasovi</string>
+    <string name="voice_other_voices">Ostali glasovi</string>
     <string name="beacon_settings_style">Stilovi zvučnog svjetionika</string>
     <string name="beacon_settings_style_description">Odaberite stil zvučnog svjetionika koji želite koristiti</string>
     <string name="beacon_styles_current">Trenutačni</string>

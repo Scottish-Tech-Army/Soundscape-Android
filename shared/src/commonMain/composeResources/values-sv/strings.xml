@@ -9,6 +9,7 @@
     <string name="settings_about_app">Om Soundscape</string>
     <string name="voice_settings_speaking_rate">Talhastighet</string>
     <string name="voice_voices">Röster</string>
+    <string name="voice_other_voices">Andra röster</string>
     <string name="beacon_settings_style">Ljudfyrstilar</string>
     <string name="beacon_styles_current">Aktuell</string>
     <string name="beacon_styles_original">Original</string>

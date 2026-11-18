@@ -38,6 +38,7 @@
     <string name="voice_settings_speaking_rate">Скорост на говора</string>
     <string name="voice_engine">Синтезатор на реч</string>
     <string name="voice_voices">Гласове</string>
+    <string name="voice_other_voices">Други гласове</string>
     <string name="beacon_settings_style">Стилове на аудио маяка</string>
     <string name="beacon_settings_style_description">Изберете стила на аудио маяка, който искате да използвате</string>
     <string name="beacon_styles_current">Текущ</string>

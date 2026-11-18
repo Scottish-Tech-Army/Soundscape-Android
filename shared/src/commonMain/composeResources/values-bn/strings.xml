@@ -1057,6 +1057,7 @@
     <string name="voice_settings_speaking_rate">কথা বলার গতি</string>
     <string name="voice_engine">টেক্সট-টু-স্পিচ ইঞ্জিন</string>
     <string name="voice_voices">কণ্ঠস্বর</string>
+    <string name="voice_other_voices">অন্যান্য কণ্ঠস্বর</string>
     <string name="beacon_settings_style">অডিও বীকন শৈলী</string>
     <string name="beacon_settings_style_description">আপনি যে শৈলীর অডিও বীকন ব্যবহার করতে চান তা বেছে নিন</string>
     <string name="beacon_styles_current">বর্তমান</string>

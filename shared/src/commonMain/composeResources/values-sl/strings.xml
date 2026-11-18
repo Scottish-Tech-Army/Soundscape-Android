@@ -38,6 +38,7 @@
     <string name="voice_settings_speaking_rate">Hitrost govora</string>
     <string name="voice_engine">Pogon za pretvorbo besedila v govor</string>
     <string name="voice_voices">Glasovi</string>
+    <string name="voice_other_voices">Drugi glasovi</string>
     <string name="beacon_settings_style">Slogi zvočnega svetilnika</string>
     <string name="beacon_settings_style_description">Izberite slog zvočnega svetilnika, ki ga želite uporabljati</string>
     <string name="beacon_styles_current">Trenutni</string>

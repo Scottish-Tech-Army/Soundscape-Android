@@ -768,6 +768,7 @@
     <string name="voice_settings_speaking_rate">Beszédsebesség</string>
     <string name="voice_engine">Szövegfelolvasó motor</string>
     <string name="voice_voices">Hangok</string>
+    <string name="voice_other_voices">Egyéb hangok</string>
     <string name="beacon_settings_style">Irányjelző hang stílusa</string>
     <string name="beacon_settings_style_description">Válassza ki a használni kívánt irányjelző hang stílusát</string>
     <string name="beacon_styles_current">Jelenlegi</string>

@@ -13,6 +13,7 @@
     <string name="voice_settings_speaking_rate">Скорость речи</string>
     <string name="voice_engine">Движок синтеза речи</string>
     <string name="voice_voices">Голоса</string>
+    <string name="voice_other_voices">Другие голоса</string>
     <string name="beacon_settings_style">Стили звукового маяка</string>
     <string name="beacon_styles_current">Текущий</string>
     <string name="beacon_styles_original">Исходный</string>

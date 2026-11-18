@@ -25,6 +25,7 @@
     <string name="voice_settings_speaking_rate">语速</string>
     <string name="voice_engine">文字转语音引擎</string>
     <string name="voice_voices">语音</string>
+    <string name="voice_other_voices">其他语音</string>
     <string name="beacon_settings_style">音频信标样式</string>
     <string name="beacon_settings_style_description">选择您想使用的音频信标样式</string>
     <string name="beacon_styles_current">当前</string>

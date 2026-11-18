@@ -38,6 +38,7 @@
     <string name="voice_settings_speaking_rate">பேசும் வேகம்</string>
     <string name="voice_engine">உரை-பேச்சு இயந்திரம்</string>
     <string name="voice_voices">குரல்கள்</string>
+    <string name="voice_other_voices">பிற குரல்கள்</string>
     <string name="beacon_settings_style">ஒலி பீக்கன் பாணிகள்</string>
     <string name="beacon_settings_style_description">நீங்கள் பயன்படுத்த விரும்பும் ஒலி பீக்கன் பாணியைத் தேர்ந்தெடுக்கவும்</string>
     <string name="beacon_styles_current">தற்போதைய</string>

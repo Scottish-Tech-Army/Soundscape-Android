@@ -647,6 +647,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="voice_settings_speaking_rate">Tốc độ đọc</string>
     <string name="voice_engine">Công cụ chuyển văn bản thành giọng nói</string>
     <string name="voice_voices">Giọng đọc</string>
+    <string name="voice_other_voices">Giọng đọc khác</string>
     <string name="beacon_settings_style">Kiểu đèn hiệu âm thanh</string>
     <string name="beacon_settings_style_description">Chọn kiểu đèn hiệu âm thanh bạn muốn sử dụng</string>
     <string name="beacon_styles_current">Hiện tại</string>

@@ -825,6 +825,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="voice_settings_speaking_rate">Kecepatan Bicara</string>
     <string name="voice_engine">Mesin Text-to-Speech</string>
     <string name="voice_voices">Suara</string>
+    <string name="voice_other_voices">Suara Lainnya</string>
     <string name="beacon_settings_style">Gaya suar audio</string>
     <string name="beacon_settings_style_description">Pilih gaya suar audio yang ingin Anda gunakan</string>
     <string name="beacon_styles_current">Saat Ini</string>

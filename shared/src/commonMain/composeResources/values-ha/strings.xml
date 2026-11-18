@@ -216,6 +216,7 @@
     <string name="voice_settings_speaking_rate">Saurin Magana</string>
     <string name="voice_engine">Injin Rubutu-zuwa-Magana</string>
     <string name="voice_voices">Muryoyi</string>
+    <string name="voice_other_voices">Sauran Muryoyi</string>
     <string name="beacon_settings_style">Salon siginar sauti</string>
     <string name="beacon_settings_style_description">Zaɓi salon siginar sauti da kake son amfani da shi</string>
     <string name="beacon_styles_current">Na Yanzu</string>

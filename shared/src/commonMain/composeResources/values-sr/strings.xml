@@ -394,6 +394,7 @@
     <string name="voice_settings_speaking_rate">Брзина говора</string>
     <string name="voice_engine">Систем за претварање текста у говор</string>
     <string name="voice_voices">Гласови</string>
+    <string name="voice_other_voices">Остали гласови</string>
     <string name="beacon_settings_style">Стилови звучног бакена</string>
     <string name="beacon_settings_style_description">Изаберите стил звучног бакена који желите да користите</string>
     <string name="beacon_styles_current">Тренутни</string>

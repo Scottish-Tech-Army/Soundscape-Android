@@ -38,6 +38,7 @@
     <string name="voice_settings_speaking_rate">మాట్లాడే వేగం</string>
     <string name="voice_engine">టెక్స్ట్-టు-స్పీచ్ ఇంజిన్</string>
     <string name="voice_voices">వాయిస్‌లు</string>
+    <string name="voice_other_voices">ఇతర వాయిస్‌లు</string>
     <string name="beacon_settings_style">ఆడియో బీకాన్ శైలులు</string>
     <string name="beacon_settings_style_description">మీరు ఉపయోగించాలనుకుంటున్న ఆడియో బీకాన్ శైలిని ఎంచుకోండి</string>
     <string name="beacon_styles_current">ప్రస్తుతది</string>

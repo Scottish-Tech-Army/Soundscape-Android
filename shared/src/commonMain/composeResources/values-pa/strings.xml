@@ -39,6 +39,7 @@
     <string name="voice_settings_speaking_rate">ਬੋਲਣ ਦੀ ਰਫ਼ਤਾਰ</string>
     <string name="voice_engine">ਟੈਕਸਟ-ਟੂ-ਸਪੀਚ ਇੰਜਣ</string>
     <string name="voice_voices">ਆਵਾਜ਼ਾਂ</string>
+    <string name="voice_other_voices">ਹੋਰ ਆਵਾਜ਼ਾਂ</string>
     <string name="beacon_settings_style">ਆਡੀਓ ਬੀਕਨ ਦੀਆਂ ਸ਼ੈਲੀਆਂ</string>
     <string name="beacon_settings_style_description">ਉਹ ਆਡੀਓ ਬੀਕਨ ਸ਼ੈਲੀ ਚੁਣੋ ਜੋ ਤੁਸੀਂ ਵਰਤਣਾ ਚਾਹੁੰਦੇ ਹੋ</string>
     <string name="beacon_styles_current">ਮੌਜੂਦਾ</string>
