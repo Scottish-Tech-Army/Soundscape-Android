@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape
 
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -10,9 +9,7 @@ import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import kotlinx.coroutines.flow.MutableStateFlow
-import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.switchPreference
-import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.audio.availableTtsVoices
@@ -30,13 +27,10 @@ import org.scottishtecharmy.soundscape.resources.settings_head_tracking
 import org.scottishtecharmy.soundscape.resources.settings_head_tracking_description
 import org.scottishtecharmy.soundscape.resources.settings_mix_audio
 import org.scottishtecharmy.soundscape.resources.settings_mix_audio_description
-import org.scottishtecharmy.soundscape.resources.settings_theme_auto
-import org.scottishtecharmy.soundscape.resources.voice_voices
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsViewModel
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyViewModel
-import org.scottishtecharmy.soundscape.screens.home.settings.ClickableOption
-import org.scottishtecharmy.soundscape.screens.home.settings.ListPreferenceItem
+import org.scottishtecharmy.soundscape.screens.home.settings.IosVoicesPreference
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingDetails
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersViewModel
@@ -118,40 +112,16 @@ fun MainViewController() = ComposeUIViewController {
     // screen. Voices are enumerated once per launch — adding/removing voices
     // requires re-launching the app, which matches the legacy iOS behaviour.
     val ttsVoices = remember { availableTtsVoices() }
-    val systemDefaultLabel = stringResource(Res.string.settings_theme_auto)
-    val ttsVoiceValues = remember(ttsVoices) {
-        listOf("") + ttsVoices.map { it.identifier }
-    }
-    val ttsVoiceDescriptions = remember(ttsVoices, systemDefaultLabel) {
-        listOf(systemDefaultLabel) + ttsVoices.map { it.displayName }
-    }
-    val voiceSettingTitle = stringResource(Res.string.voice_voices)
     val settingsPlatformAudioContent: androidx.compose.foundation.lazy.LazyListScope.() -> Unit = {
-        listPreference(
-            key = PreferenceKeys.SELECTED_TTS_VOICE_ID,
-            defaultValue = PreferenceDefaults.SELECTED_TTS_VOICE_ID,
-            values = ttsVoiceValues,
-            modifier = expandedSectionModifier,
-            title = { Text(text = voiceSettingTitle, color = textColor) },
-            item = { value, currentValue, onClick ->
-                val idx = ttsVoiceValues.indexOf(value).coerceAtLeast(0)
-                ListPreferenceItem(
-                    description = ttsVoiceDescriptions[idx],
-                    value = value,
-                    currentValue = currentValue,
-                    onClick = onClick,
-                    index = idx,
-                    listSize = ttsVoiceValues.size,
-                )
-            },
-            summary = {
-                val idx = ttsVoiceValues.indexOf(it).coerceAtLeast(0)
-                ClickableOption(
-                    text = ttsVoiceDescriptions[idx],
-                    textColor = textColor,
-                )
-            },
-        )
+        item(key = PreferenceKeys.SELECTED_TTS_VOICE_ID) {
+            IosVoicesPreference(
+                voices = ttsVoices,
+                onPreviewVoice = { voiceId -> service.previewTtsVoice(voiceId) },
+                onCancelPreviews = { service.restoreSelectedTtsVoice() },
+                textColor = textColor,
+                modifier = expandedSectionModifier,
+            )
+        }
         switchPreference(
             key = PreferenceKeys.MIX_AUDIO,
             defaultValue = PreferenceDefaults.MIX_AUDIO,
