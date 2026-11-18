@@ -124,4 +124,14 @@ class MvtFeatureTypeTextTest {
         assertNull(ResourceMapper.qualifiedKey("pitch", null))
         assertFalse(ResourceMapper.getUnfoundKeys().contains("pitch_wrestling"))
     }
+
+    /**
+     * A platform mapped as an area is class path, subclass platform. A path that ends on one is
+     * named as going to it, so it has to be a "Platform" - by its class it was a "Path", and the
+     * steps down to Hillfoot were "Path to Path via steps".
+     */
+    @Test
+    fun platformIsCalledAPlatformNotAPath() {
+        assertEquals("Osm_platform", text("path", "platform"))
+    }
 }

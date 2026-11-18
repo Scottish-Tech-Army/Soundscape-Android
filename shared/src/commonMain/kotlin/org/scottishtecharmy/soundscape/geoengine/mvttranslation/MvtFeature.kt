@@ -353,6 +353,9 @@ open class MvtFeature : Feature() {
         // planetiler puts the information tag in the subclass. Values without a name of their own
         // stay "Information": a raw "office" or "terminal" would be mistaken for something else.
         "information" -> ResourceMapper.qualifiedKey("information", featureSubClass)
+        // A platform mapped as an area is class path, subclass platform - see isPlatform. By its
+        // class it would be a "Path", and a path leading onto it "Path to Path".
+        "path" -> if (featureSubClass == "platform") "platform" else null
         else -> null
     }
 }
