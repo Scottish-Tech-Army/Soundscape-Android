@@ -38,6 +38,7 @@
     <string name="voice_settings_speaking_rate">Velocitat de veu</string>
     <string name="voice_engine">Motor de conversió de text a veu</string>
     <string name="voice_voices">Veus</string>
+    <string name="voice_other_voices">Altres veus</string>
     <string name="beacon_settings_style">Estils de balisa sonora</string>
     <string name="beacon_settings_style_description">Tria l'estil de balisa sonora que vulguis utilitzar</string>
     <string name="beacon_styles_current">Actual</string>

@@ -12,6 +12,7 @@
     <string name="settings_units_metric">Метричні (кілометри, метри)</string>
     <string name="voice_settings_speaking_rate">Темп мовлення</string>
     <string name="voice_voices">Голоси</string>
+    <string name="voice_other_voices">Інші голоси</string>
     <string name="beacon_settings_style">Стилі звукового маячка</string>
     <string name="beacon_styles_current">Поточний</string>
     <string name="beacon_styles_original">Оригінальний</string>

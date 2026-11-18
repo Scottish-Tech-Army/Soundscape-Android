@@ -13,6 +13,7 @@
     <string name="voice_settings_speaking_rate">Rääkimise kiirus</string>
     <string name="voice_engine">Kõnesünteesimootor</string>
     <string name="voice_voices">Hääled</string>
+    <string name="voice_other_voices">Muud hääled</string>
     <string name="beacon_settings_style">Helimajaka stiilid</string>
     <string name="beacon_styles_current">Praegune</string>
     <string name="beacon_styles_original">Algne</string>

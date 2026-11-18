@@ -13,6 +13,7 @@
     <string name="voice_settings_speaking_rate">Szybkość mowy</string>
     <string name="voice_engine">Syntezator mowy (TTS)</string>
     <string name="voice_voices">Wybór głosu TTS</string>
+    <string name="voice_other_voices">Inne głosy</string>
     <string name="beacon_settings_style">Style dźwięku naprowadzającego</string>
     <string name="beacon_styles_current">Najnowszy</string>
     <string name="beacon_styles_original">Oryginalny</string>

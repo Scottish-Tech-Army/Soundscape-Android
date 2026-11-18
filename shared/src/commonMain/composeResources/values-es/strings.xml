@@ -9,6 +9,7 @@
     <string name="settings_about_app">Acerca de Soundscape</string>
     <string name="voice_settings_speaking_rate">Velocidad de habla</string>
     <string name="voice_voices">Voces</string>
+    <string name="voice_other_voices">Otras voces</string>
     <string name="beacon_settings_style">Estilos de señal de audio</string>
     <string name="beacon_styles_current">Actual</string>
     <string name="beacon_styles_original">Original</string>

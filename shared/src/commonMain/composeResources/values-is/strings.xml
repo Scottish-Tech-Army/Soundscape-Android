@@ -13,6 +13,7 @@
     <string name="voice_settings_speaking_rate">Talhraði</string>
     <string name="voice_engine">Talgervilsvél</string>
     <string name="voice_voices">Raddir</string>
+    <string name="voice_other_voices">Aðrar raddir</string>
     <string name="beacon_settings_style">Stílar hljóðvita</string>
     <string name="beacon_styles_current">Núverandi</string>
     <string name="beacon_styles_original">Upprunalegur viti</string>

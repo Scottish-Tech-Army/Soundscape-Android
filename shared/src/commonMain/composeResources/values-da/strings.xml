@@ -9,6 +9,7 @@
     <string name="settings_about_app">Om Soundscape</string>
     <string name="voice_settings_speaking_rate">Talehastighed</string>
     <string name="voice_voices">Stemmer</string>
+    <string name="voice_other_voices">Andre stemmer</string>
     <string name="beacon_settings_style">Stilarter for lydfyr</string>
     <string name="beacon_styles_current">Igangværende</string>
     <string name="beacon_styles_original">Oprindelig</string>

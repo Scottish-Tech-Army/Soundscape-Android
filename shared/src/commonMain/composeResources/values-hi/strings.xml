@@ -25,6 +25,7 @@
     <string name="voice_settings_speaking_rate">बोलने की गति</string>
     <string name="voice_engine">टेक्स्ट-टू-स्पीच इंजन</string>
     <string name="voice_voices">आवाज़ें</string>
+    <string name="voice_other_voices">अन्य आवाज़ें</string>
     <string name="beacon_settings_style">ऑडियो बीकन शैलियाँ</string>
     <string name="beacon_settings_style_description">अपनी पसंद की ऑडियो बीकन शैली चुनें</string>
     <string name="beacon_styles_current">वर्तमान</string>

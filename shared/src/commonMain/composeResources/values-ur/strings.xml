@@ -631,6 +631,7 @@
     <string name="voice_settings_speaking_rate">بولنے کی رفتار</string>
     <string name="voice_engine">ٹیکسٹ ٹو اسپیچ انجن</string>
     <string name="voice_voices">آوازیں</string>
+    <string name="voice_other_voices">دیگر آوازیں</string>
     <string name="beacon_settings_style">آڈیو بیکن کے انداز</string>
     <string name="beacon_settings_style_description">وہ آڈیو بیکن انداز منتخب کریں جو آپ استعمال کرنا چاہتے ہیں</string>
     <string name="beacon_styles_current">موجودہ</string>

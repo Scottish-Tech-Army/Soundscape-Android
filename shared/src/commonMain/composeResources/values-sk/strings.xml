@@ -770,6 +770,7 @@
     <string name="voice_settings_speaking_rate">Rýchlosť reči</string>
     <string name="voice_engine">Nástroj na prevod textu na reč</string>
     <string name="voice_voices">Hlasy</string>
+    <string name="voice_other_voices">Ostatné hlasy</string>
     <string name="beacon_settings_style">Štýly zvukového majáka</string>
     <string name="beacon_settings_style_description">Vyberte štýl zvukového majáka, ktorý chcete používať</string>
     <string name="beacon_styles_current">Aktuálny</string>

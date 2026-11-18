@@ -534,6 +534,7 @@
     <string name="voice_settings_speaking_rate">سرعة الكلام</string>
     <string name="voice_engine">محرك تحويل النص إلى كلام</string>
     <string name="voice_voices">الأصوات</string>
+    <string name="voice_other_voices">أصوات أخرى</string>
     <string name="beacon_settings_style">أنماط المنارة الصوتية</string>
     <string name="beacon_settings_style_description">اختر نمط المنارة الصوتية الذي تريد استخدامه</string>
     <string name="beacon_styles_current">الحالي</string>

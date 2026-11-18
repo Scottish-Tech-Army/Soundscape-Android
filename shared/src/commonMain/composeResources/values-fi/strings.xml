@@ -9,6 +9,7 @@
     <string name="settings_about_app">Tietoja Soundscapesta</string>
     <string name="voice_settings_speaking_rate">Puhenopeus</string>
     <string name="voice_voices">Puheen äänet</string>
+    <string name="voice_other_voices">Muut äänet</string>
     <string name="beacon_settings_style">Äänimajakan tyylit</string>
     <string name="beacon_styles_current">Nykyinen</string>
     <string name="beacon_styles_original">Alkuperäinen</string>

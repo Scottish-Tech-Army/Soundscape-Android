@@ -46,6 +46,7 @@
     <string name="voice_settings_speaking_rate">Konuşma Hızı</string>
     <string name="voice_engine">Metinden Sese Motoru</string>
     <string name="voice_voices">Ses Seçenekleri</string>
+    <string name="voice_other_voices">Diğer Sesler</string>
     <string name="beacon_settings_style">Sesli işaret stilleri</string>
     <string name="beacon_settings_style_description">Kullanmak istediğiniz sesli işaret stilini seçin</string>
     <string name="beacon_styles_current">Güncel</string>

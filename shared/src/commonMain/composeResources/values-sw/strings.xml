@@ -820,6 +820,7 @@
     <string name="voice_settings_speaking_rate">Kasi ya Kuzungumza</string>
     <string name="voice_engine">Injini ya Kubadilisha Maandishi kuwa Sauti</string>
     <string name="voice_voices">Aina za Sauti</string>
+    <string name="voice_other_voices">Sauti Zingine</string>
     <string name="beacon_settings_style">Mitindo ya beacon ya sauti</string>
     <string name="beacon_settings_style_description">Chagua mtindo wa beacon ya sauti unayotaka kutumia</string>
     <string name="beacon_styles_current">Ya Sasa</string>

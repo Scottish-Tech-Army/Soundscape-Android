@@ -1076,6 +1076,7 @@
     <string name="voice_settings_speaking_rate">बोलण्याचा वेग</string>
     <string name="voice_engine">टेक्स्ट-टू-स्पीच इंजिन</string>
     <string name="voice_voices">आवाज</string>
+    <string name="voice_other_voices">इतर आवाज</string>
     <string name="beacon_settings_style">ऑडिओ बीकन शैली</string>
     <string name="beacon_settings_style_description">तुम्हाला वापरायची ऑडिओ बीकन शैली निवडा</string>
     <string name="beacon_styles_current">सध्याचे</string>
