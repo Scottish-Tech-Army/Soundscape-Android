@@ -3,6 +3,8 @@ package org.scottishtecharmy.soundscape.screens.home.settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,11 +15,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckBox
 import androidx.compose.material.icons.filled.CheckBoxOutlineBlank
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.window.Dialog
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -47,7 +48,11 @@ import org.scottishtecharmy.soundscape.resources.settings_use_value
 import org.scottishtecharmy.soundscape.resources.voice_voices
 import org.scottishtecharmy.soundscape.screens.onboarding.accessibility.isScreenReaderEnabled
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.platform.FullScreenDialogWindow
+import org.scottishtecharmy.soundscape.platform.fullScreenDialogProperties
+import org.scottishtecharmy.soundscape.platform.fullScreenDialogSystemBarsPadding
 import org.scottishtecharmy.soundscape.platform.testTagsAsResourceId
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -190,17 +195,39 @@ fun VoicesPreference(
     )
 
     if (showDialog) {
-        AlertDialog(
+        // Full screen, with Cancel and Done where every other edit screen in the app has them -
+        // top left and top right - rather than at the foot of a list that can run to hundreds of
+        // voices, where a screen reader user would have to swipe past all of them to reach them.
+        Dialog(
             onDismissRequest = { dismissWithoutChoosing() },
-            title = {
-                Text(
-                    text = stringResource(Res.string.voice_voices),
-                    color = MaterialTheme.colorScheme.onSurface,
+            properties = fullScreenDialogProperties(),
+        ) {
+            FullScreenDialogWindow()
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    // A dialog is outside the theme's testTagsAsResourceId.
+                    .testTagsAsResourceId()
+                    .background(MaterialTheme.colorScheme.surface)
+                    .fullScreenDialogSystemBarsPadding(),
+            ) {
+                TextOnlyAppBar(
+                    title = stringResource(Res.string.voice_voices),
+                    onNavigateUp = { dismissWithoutChoosing() },
+                    navigationButtonTitle = stringResource(Res.string.general_alert_cancel),
+                    onRightButton = {
+                        // Writing this is what the platform's audio service listens for, so the
+                        // voice the previews left in the speech engine is now also the stored one.
+                        // A sample still waiting has nothing left to say: writing the preference
+                        // below is what puts the chosen voice into the renderer.
+                        pendingPreview.job?.cancel()
+                        selectedId = previewedId
+                        showDialog = false
+                    },
+                    rightButtonTitle = stringResource(Res.string.general_alert_done),
                 )
-            },
-            text = {
                 val headingColor = MaterialTheme.colorScheme.onSurface
-                LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                LazyColumn(modifier = Modifier.fillMaxWidth().weight(1f)) {
                     item(key = "voice-system-default") {
                         VoiceRow(
                             label = systemDefaultLabel,
@@ -276,26 +303,8 @@ fun VoicesPreference(
                         }
                     }
                 }
-            },
-            confirmButton = {
-                TextButton(onClick = {
-                    // Writing this is what the platform's audio service listens for, so the voice
-                    // the previews left in the speech engine is now also the stored one.
-                    // A sample still waiting has nothing left to say: writing the preference
-                    // below is what puts the chosen voice into the renderer.
-                    pendingPreview.job?.cancel()
-                    selectedId = previewedId
-                    showDialog = false
-                }) {
-                    Text(stringResource(Res.string.general_alert_done))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { dismissWithoutChoosing() }) {
-                    Text(stringResource(Res.string.general_alert_cancel))
-                }
-            },
-        )
+            }
+        }
     }
 }
 
@@ -318,8 +327,6 @@ private fun VoiceRow(
 ) {
     Row(
         modifier = Modifier
-            // The choices are shown in a dialog, outside the theme's testTagsAsResourceId.
-            .testTagsAsResourceId()
             .testTag("settingsVoiceOption-$testTagSuffix")
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .extraSmallPadding()
