@@ -55,7 +55,11 @@ class BleImuClient(
         val advertisement = scanForSensor()
         val peripheral = Peripheral(advertisement)
         peripheral.connect()
-        onConnectedAddress(advertisement.identifier.toString())
+        // Kable's Identifier is a String on Android but a Uuid on iOS, so the conversion is
+        // only redundant on Android
+        @Suppress("REDUNDANT_CALL_OF_CONVERSION_METHOD")
+        val address = advertisement.identifier.toString()
+        onConnectedAddress(address)
         try {
             configureForHeadTracking(peripheral)
             onConnected()
