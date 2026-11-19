@@ -136,26 +136,7 @@ class TtsEngine(
             MainActivity.VOICE_TYPE_KEY,
             MainActivity.VOICE_TYPE_DEFAULT
         ) ?: MainActivity.VOICE_TYPE_DEFAULT
-        // textToSpeech.voices is a platform getter (getVoices()) that is re-invoked on every
-        // access and can return null, so capture it once rather than checking and iterating
-        // separately (which crashed when the second read returned null).
-        val voices = textToSpeech.voices
-        if (voices != null) {
-            for (voice in voices) {
-                if (voice == null) continue
-                if (voice.name == voiceType) {
-                    if (textToSpeechVoiceType != voice.name) {
-                        logger.d {
-                            "Voice changed from $textToSpeechVoiceType to ${voice.name} on $this"
-                        }
-                        textToSpeech.voice = voice
-                        textToSpeechVoiceType = voice.name
-                        change = true
-                    }
-                    break
-                }
-            }
-        }
+        if (applyVoice(voiceType)) change = true
         // Check for change in rate preference
         val rate = sharedPreferences.getFloat(
             MainActivity.SPEECH_RATE_KEY,
@@ -168,6 +149,33 @@ class TtsEngine(
             change = change.or(true)
         }
         return change
+    }
+
+    /**
+     * Puts the engine on the voice called [voiceName], or for [MainActivity.VOICE_TYPE_DEFAULT]
+     * (Auto in the voice picker) on the engine's default voice for the app's language. Returns
+     * whether the voice changed. A voice that's no longer installed leaves the current one alone.
+     *
+     * Used both for the stored preference and for previews in the picker, which leave the engine
+     * on a voice that isn't the stored one until updateSpeech puts it back.
+     */
+    fun applyVoice(voiceName: String): Boolean {
+        if (voiceName == textToSpeechVoiceType) return false
+        if (voiceName == MainActivity.VOICE_TYPE_DEFAULT) {
+            // setLanguage() also moves the engine onto its default voice for the language, which
+            // is what Auto means - and why it follows the app into a new language, as onInit sets
+            // the language afresh each time the engine starts.
+            setSpeechLanguage(getCurrentLocale().toLanguageTag())
+        } else {
+            // textToSpeech.voices is a platform getter (getVoices()) that is re-invoked on every
+            // access and can return null, so capture it once rather than checking and iterating
+            // separately (which crashed when the second read returned null).
+            val voice = textToSpeech.voices?.firstOrNull { it?.name == voiceName } ?: return false
+            textToSpeech.voice = voice
+        }
+        logger.d { "Voice changed from $textToSpeechVoiceType to $voiceName on $this" }
+        textToSpeechVoiceType = voiceName
+        return true
     }
 
     fun setSpeechLanguage(language: String): Boolean {

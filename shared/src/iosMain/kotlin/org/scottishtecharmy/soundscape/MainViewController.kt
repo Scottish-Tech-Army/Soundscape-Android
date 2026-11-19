@@ -16,6 +16,7 @@ import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.audio.availableTtsVoices
+import org.scottishtecharmy.soundscape.audio.toVoiceOption
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.migration.hasPendingLegacyMigration
 import org.scottishtecharmy.soundscape.migration.runPendingLegacyMigration
@@ -30,10 +31,12 @@ import org.scottishtecharmy.soundscape.resources.settings_head_tracking
 import org.scottishtecharmy.soundscape.resources.settings_head_tracking_description
 import org.scottishtecharmy.soundscape.resources.settings_mix_audio
 import org.scottishtecharmy.soundscape.resources.settings_mix_audio_description
+import org.scottishtecharmy.soundscape.resources.voice_other_voices
+import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsViewModel
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyViewModel
-import org.scottishtecharmy.soundscape.screens.home.settings.IosVoicesPreference
+import org.scottishtecharmy.soundscape.screens.home.settings.VoicesPreference
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingDetails
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersViewModel
@@ -117,8 +120,14 @@ fun MainViewController() = ComposeUIViewController {
     val ttsVoices = remember { availableTtsVoices() }
     val settingsPlatformAudioContent: androidx.compose.foundation.lazy.LazyListScope.() -> Unit = {
         item(key = PreferenceKeys.SELECTED_TTS_VOICE_ID) {
-            IosVoicesPreference(
-                voices = ttsVoices,
+            val otherProviderLabel = stringResource(Res.string.voice_other_voices)
+            val voiceOptions = remember(ttsVoices, otherProviderLabel) {
+                ttsVoices.map { it.toVoiceOption(otherProviderLabel) }
+            }
+            VoicesPreference(
+                voices = voiceOptions,
+                preferenceKey = PreferenceKeys.SELECTED_TTS_VOICE_ID,
+                autoValue = PreferenceDefaults.SELECTED_TTS_VOICE_ID,
                 onPreviewVoice = { voiceId -> service.previewTtsVoice(voiceId) },
                 onCancelPreviews = { service.restoreSelectedTtsVoice() },
                 textColor = textColor,

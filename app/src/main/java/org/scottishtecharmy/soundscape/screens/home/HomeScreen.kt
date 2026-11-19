@@ -381,6 +381,8 @@ fun HomeScreen(
                 headTrackerState = headTrackerState,
                 onResetSettings = callbacks.onResetSettings,
                 onSetApplicationLocale = callbacks.onSetApplicationLocale,
+                onVoicePreview = { name -> settingsViewModel.previewVoice(name) },
+                onVoicePreviewCancel = { settingsViewModel.restoreVoice() },
                 onBeaconPreviewStart = { type -> settingsViewModel.startBeaconPreview(type) },
                 onBeaconPreviewUpdate = { type -> settingsViewModel.updateBeaconPreviewType(type) },
                 onBeaconPreviewStop = { commit, chosen ->
