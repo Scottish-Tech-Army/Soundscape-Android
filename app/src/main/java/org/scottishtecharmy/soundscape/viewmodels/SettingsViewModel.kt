@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
 import android.content.Context
+import android.speech.tts.Voice
 import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,10 +23,12 @@ import org.scottishtecharmy.soundscape.locationprovider.HeadTrackerState
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.logging.AppLog
+import org.scottishtecharmy.soundscape.screens.home.settings.TtsVoiceOption
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
+import java.util.Locale
 
 class SettingsViewModel(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
@@ -36,7 +39,7 @@ class SettingsViewModel(
         var beaconDescriptions: List<org.jetbrains.compose.resources.StringResource> = emptyList(),
         var beaconValues: List<String> = emptyList(),
         var engineTypes: List<String> = emptyList(),
-        var voiceTypes: List<String> = emptyList(),
+        var voiceOptions: List<TtsVoiceOption> = emptyList(),
         var storages: List<StorageUtils.StorageSpace> = emptyList(),
         var currentStoragePath: String = "",
         var selectedStorageIndex: Int = -1,
@@ -106,31 +109,7 @@ class SettingsViewModel(
                                         audioEngine.getAvailableSpeechVoices()
                                     )
                                 }
-                                val voiceTypes = mutableListOf<String>()
-
-                                // The list of voices will start of with those in the current locale
-                                val locale = getCurrentLocale()
-                                for (type in audioEngineVoiceTypes) {
-                                    if (!type.isNetworkConnectionRequired &&
-                                        !type.features.contains("notInstalled") &&
-                                        type.locale.language == locale.language
-                                    ) {
-                                        // The Voice don't contain any description, just a text string
-                                        voiceTypes.add(type.name)
-                                    }
-                                }
-                                // And then we add all the others. Because we don't support all
-                                // languages it's useful to be able to select a voice from a different
-                                // locale than the one that the app is currently using.
-                                for (type in audioEngineVoiceTypes) {
-                                    if (!type.isNetworkConnectionRequired &&
-                                        !type.features.contains("notInstalled") &&
-                                        type.locale.language != locale.language
-                                    ) {
-                                        // The Voice don't contain any description, just a text string
-                                        voiceTypes.add(type.name)
-                                    }
-                                }
+                                val voiceOptions = voiceOptions(audioEngineVoiceTypes, getCurrentLocale())
 
                                 val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
                                 val beaconTypes =
@@ -143,7 +122,7 @@ class SettingsViewModel(
                                 _state.value = _state.value.copy(
                                     beaconDescriptions = beaconTypes,
                                     beaconValues = beaconValues,
-                                    voiceTypes = voiceTypes,
+                                    voiceOptions = voiceOptions,
                                     engineTypes = audioEngineTypes.map { engine -> "${engine.label}:::${engine.name}" },
                                 )
                             } else {
@@ -175,6 +154,14 @@ class SettingsViewModel(
         )
     }
 
+    fun previewVoice(voiceName: String) {
+        soundscapeServiceConnection.soundscapeService?.audioEngine?.previewSpeechVoice(voiceName)
+    }
+
+    fun restoreVoice() {
+        soundscapeServiceConnection.soundscapeService?.audioEngine?.restoreSpeechVoice()
+    }
+
     fun startBeaconPreview(beaconType: String) {
         soundscapeServiceConnection.startBeaconPreview(beaconType)
     }
@@ -192,3 +179,51 @@ class SettingsViewModel(
         private val logger = AppLog.tag(TAG)
     }
 }
+
+/**
+ * The engine's voices as the voice picker lists them, grouped under their language: the app's own
+ * locale first, then the rest of its language, then every other language by name. Voices in other
+ * languages are offered because the app's language and the language of the street names around
+ * the user are two different things, and because the app isn't translated into every language.
+ *
+ * Voices that need the network, or whose data isn't downloaded, are left out. There are no
+ * provider sub-lists as on iOS: the engine is a setting of its own, and only its voices are here.
+ */
+internal fun voiceOptions(voices: Collection<Voice>, appLocale: Locale): List<TtsVoiceOption> {
+    val appLanguage = appLocale.iso3LanguageOrNull()
+    return voices
+        .filter { !it.isNetworkConnectionRequired && !it.features.contains("notInstalled") }
+        .map { voice ->
+            // Some engines spell their locales with three-letter codes ("eng_GBR"), so compare
+            // languages by their ISO 639-2 code rather than as written.
+            val voiceLanguage = voice.locale.iso3LanguageOrNull()
+            val inAppLanguage = appLanguage != null && voiceLanguage == appLanguage
+            val inAppLocale = inAppLanguage &&
+                voice.locale.iso3CountryOrNull() == appLocale.iso3CountryOrNull()
+            Triple(voice, inAppLocale, inAppLanguage)
+        }
+        .map { (voice, inAppLocale, inAppLanguage) ->
+            // getDisplayName follows the language's own capitalisation rules, which leave French
+            // and Spanish names in lower case - fine mid-sentence, odd as a heading.
+            val languageName = voice.locale.getDisplayName(appLocale)
+                .replaceFirstChar { it.titlecase(appLocale) }
+            inAppLocale to TtsVoiceOption(
+                identifier = voice.name,
+                // Android voices have no name beyond the engine's identifier for them.
+                name = voice.name,
+                languageDisplayName = languageName,
+                inAppLanguage = inAppLanguage,
+            )
+        }
+        .sortedWith(
+            compareByDescending<Pair<Boolean, TtsVoiceOption>> { it.first }
+                .thenByDescending { it.second.inAppLanguage }
+                .thenBy { it.second.languageDisplayName }
+                .thenBy { it.second.name },
+        )
+        .map { it.second }
+}
+
+private fun Locale.iso3LanguageOrNull(): String? = runCatching { isO3Language }.getOrNull()
+
+private fun Locale.iso3CountryOrNull(): String? = runCatching { isO3Country }.getOrNull()

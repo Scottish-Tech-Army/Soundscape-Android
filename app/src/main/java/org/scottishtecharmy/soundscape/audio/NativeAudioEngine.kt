@@ -247,6 +247,30 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
         }
     }
 
+    /**
+     * Speaks a sample in [voiceName] for the voice picker, leaving the engine on it. Either the
+     * picker then stores that voice, which the preference listener finds already in place, or it
+     * cancels and [restoreSpeechVoice] puts the stored one back.
+     */
+    fun previewSpeechVoice(voiceName: String) {
+        if (!ttsEngine.checkTextToSpeechInitialization(false)) return
+        ttsEngine.applyVoice(voiceName)
+        if (service?.requestAudioFocus() == true) {
+            clearTextToSpeechQueue()
+            val testString =
+                kotlinx.coroutines.runBlocking { getString(Res.string.first_launch_callouts_example_3) }
+            createTextToSpeech(testString, AudioType.STANDARD)
+        }
+    }
+
+    /** Puts the engine back on the stored voice, after previews the user didn't confirm. */
+    fun restoreSpeechVoice() {
+        val preferences = sharedPreferences ?: return
+        if (!ttsEngine.checkTextToSpeechInitialization(false)) return
+        clearTextToSpeechQueue()
+        ttsEngine.updateSpeech(preferences)
+    }
+
     fun textToSpeechAudioConfigCallback(
         id: String,
         sampleRateInHz: Int,

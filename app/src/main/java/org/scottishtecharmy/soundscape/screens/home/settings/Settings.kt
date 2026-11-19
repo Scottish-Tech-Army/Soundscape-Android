@@ -40,6 +40,8 @@ fun Settings(
     selectedStorageIndex: Int,
     headTrackerState: HeadTrackerState? = null,
     onResetSettings: (() -> Unit)?,
+    onVoicePreview: ((String) -> Unit)? = null,
+    onVoicePreviewCancel: (() -> Unit)? = null,
     onSetApplicationLocale: ((String?) -> Unit)? = null,
     onBeaconPreviewStart: ((String) -> Unit)? = null,
     onBeaconPreviewUpdate: ((String) -> Unit)? = null,
@@ -193,24 +195,17 @@ fun Settings(
                 },
                 summary = { ClickableOption(it.substringBefore(":::"), textColor) },
             )
-            listPreference(
-                key = MainActivity.VOICE_TYPE_KEY,
-                defaultValue = MainActivity.VOICE_TYPE_DEFAULT,
-                values = uiState.voiceTypes,
-                modifier = expandedSectionModifier,
-                title = { Text(text = stringResource(Res.string.voice_voices), color = textColor) },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(
-                        value,
-                        value,
-                        currentValue,
-                        onClick,
-                        uiState.voiceTypes.indexOf(value),
-                        uiState.voiceTypes.size
-                    )
-                },
-                summary = { ClickableOption(it, textColor) },
-            )
+            item(key = MainActivity.VOICE_TYPE_KEY) {
+                VoicesPreference(
+                    voices = uiState.voiceOptions,
+                    preferenceKey = MainActivity.VOICE_TYPE_KEY,
+                    autoValue = MainActivity.VOICE_TYPE_DEFAULT,
+                    onPreviewVoice = { onVoicePreview?.invoke(it) },
+                    onCancelPreviews = { onVoicePreviewCancel?.invoke() },
+                    textColor = textColor,
+                    modifier = expandedSectionModifier,
+                )
+            }
             // Alpha: not yet finished on Android, so only shown with the alpha test features on
             if (alphaFeatures) {
                 switchPreference(

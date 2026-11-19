@@ -8,6 +8,7 @@ import platform.Foundation.currentLocale
 import platform.Foundation.languageCode
 import platform.Foundation.localeIdentifier
 import platform.Foundation.localizedStringForLocaleIdentifier
+import org.scottishtecharmy.soundscape.screens.home.settings.TtsVoiceOption
 
 data class IosTtsVoiceInfo(
     val identifier: String,
@@ -207,3 +208,34 @@ internal fun shapeVoiceList(
             )
         }
 }
+
+/**
+ * This voice as the shared picker shows it, folded into a sub-list for its provider unless it's
+ * one of Apple's own. [otherProviderLabel] is the translated heading for providers we can't name.
+ */
+internal fun IosTtsVoiceInfo.toVoiceOption(otherProviderLabel: String) = TtsVoiceOption(
+    identifier = identifier,
+    name = name,
+    languageDisplayName = languageDisplayName,
+    inAppLanguage = inAppLanguage,
+    providerLabel = providerLabel(family, otherProviderLabel),
+)
+
+/**
+ * What a provider's sub-list is headed with, or null for Apple's own voices, which have no
+ * sub-list of their own.
+ *
+ * "Eloquence" and "eSpeak" are left untranslated on purpose: they are the names of the engines,
+ * and they read the same in every language - as they do in iOS's own Voices screen and in the
+ * Soundscape community app. Only the catch-all is a translated string, because that one is a
+ * description rather than a name.
+ */
+private fun providerLabel(family: IosVoiceFamily, otherProviderLabel: String): String? =
+    when (family) {
+        IosVoiceFamily.STANDARD -> null
+        IosVoiceFamily.ELOQUENCE -> "Eloquence"
+        IosVoiceFamily.ESPEAK -> "eSpeak"
+        IosVoiceFamily.OTHER -> otherProviderLabel
+        // Never reaches the picker - see shapeVoiceList.
+        IosVoiceFamily.NOVELTY -> null
+    }
