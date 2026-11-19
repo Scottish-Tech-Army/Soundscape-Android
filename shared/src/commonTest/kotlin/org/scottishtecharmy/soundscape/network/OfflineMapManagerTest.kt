@@ -7,8 +7,10 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import okio.Buffer
 import okio.GzipSink
@@ -524,6 +526,48 @@ class OfflineMapManagerTest {
 
         assertFalse(fileExists("region.pmtiles.downloading"))
         assertFalse(fileExists("region.pmtiles"))
+    }
+
+    @Test
+    fun startDownload_afterCancel_waitsForCancelledDownloadToUnwind() = runBlocking {
+        // #1288: the cancelled download takes a while to unwind (here a NonCancellable
+        // delay; in reality a backoff sleep or a slow connection). A retry of the same
+        // extract started straight after must not have its temp file deleted or its Success
+        // overwritten by the cancelled download's belated cleanup.
+        var attempt = 0
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            attempt++
+            if (attempt == 1) {
+                try {
+                    delay(30_000)
+                } finally {
+                    withContext(NonCancellable) { delay(500) }
+                }
+                DownloadResultCommon.Success
+            } else {
+                systemFileSystem.write(destPath.toPath()) { writeUtf8("bytes") }
+                DownloadResultCommon.Success
+            }
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.startDownload("region.pmtiles")
+        waitUntil { downloader.calls.size == 1 }
+        manager.cancelDownload()
+        manager.startDownload("region.pmtiles")
+
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+        // Give the cancelled download's cleanup time to run, were it not joined first.
+        delay(700)
+
+        assertEquals(DownloadStateCommon.Success, manager.downloadState.value)
+        assertTrue(fileExists("region.pmtiles"))
+        assertEquals(2, downloader.calls.size)
     }
 
     @Test

@@ -325,7 +325,8 @@ class OfflineMapManager(
      * when the extract isn't in the manifest at all (not fetched yet, or withdrawn).
      */
     fun startDownload(filename: String, extractSize: Double? = null, feature: Feature? = null) {
-        if (downloadJob?.isActive == true) return
+        val previousJob = downloadJob
+        if (previousJob?.isActive == true) return
 
         val current = _manifest.value.entryForLogicalName(logicalExtractName(filename))
         val currentFilename = (current?.properties?.get("filename") as? String) ?: filename
@@ -337,6 +338,12 @@ class OfflineMapManager(
         val outputPath = "${extractBasePath}/$baseName"
 
         downloadJob = scope.launch {
+            // A cancelled job stops being "active" the instant cancelDownload() is called, well
+            // before its coroutine has unwound and run its cleanup (deleting the temp file,
+            // writing Canceled). Join it first, or that belated cleanup can delete this
+            // download's temp file and overwrite its state (#1288, fixed in OfflineDownloader
+            // by 68c96b3ce).
+            previousJob?.join()
             val tempPath = "$outputPath.downloading"
 
             try {
@@ -400,23 +407,25 @@ class OfflineMapManager(
                 // hitting a non-retryable error - must not fall through silently, or
                 // downloadState is left stuck on Caching forever with no indication anything
                 // failed.
+                // In each terminal branch, delete the temp file before publishing the state:
+                // observers treat a terminal state as "clean-up done".
+                try {
+                    systemFileSystem.delete(tempPath.toPath())
+                } catch (_: Exception) {
+                }
                 _downloadState.value = DownloadStateCommon.Error("Download timed out after retries")
-                try {
-                    systemFileSystem.delete(tempPath.toPath())
-                } catch (_: Exception) {
-                }
             } catch (e: CancellationException) {
+                try {
+                    systemFileSystem.delete(tempPath.toPath())
+                } catch (_: Exception) {
+                }
                 _downloadState.value = DownloadStateCommon.Canceled
-                try {
-                    systemFileSystem.delete(tempPath.toPath())
-                } catch (_: Exception) {
-                }
             } catch (e: Exception) {
-                _downloadState.value = DownloadStateCommon.Error(e.message ?: "Download failed")
                 try {
                     systemFileSystem.delete(tempPath.toPath())
                 } catch (_: Exception) {
                 }
+                _downloadState.value = DownloadStateCommon.Error(e.message ?: "Download failed")
             }
         }
     }
