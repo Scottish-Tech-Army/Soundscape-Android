@@ -364,7 +364,7 @@ class AutoCallout(
             lastVehicleTimestampMs = userGeometry.timestampMilliseconds
             if (onTrain) {
                 lastTrainTimestampMs = userGeometry.timestampMilliseconds
-                lastTrainWasTram = userGeometry.mapMatchedRailway?.featureValue == "tram"
+                lastTrainWasTram = userGeometry.mapMatchedRailway.featureValue == "tram"
             }
         }
         // Measured here, on every update and before the pedestrian builders read it - see

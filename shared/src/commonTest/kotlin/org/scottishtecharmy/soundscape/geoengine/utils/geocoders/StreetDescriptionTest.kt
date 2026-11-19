@@ -1300,7 +1300,7 @@ class StreetDescriptionTest {
             )
         }
         fixture.gridState.featureTrees[TreeId.ROADS.id] = FeatureTree(
-            fixture.gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]!!.getAllCollection().apply { addFeature(oldTestStreet) }
+            fixture.gridState.featureTrees[TreeId.ROADS_AND_PATHS.id].getAllCollection().apply { addFeature(oldTestStreet) }
         )
         fixture.gridState.gridStreetNumberTreeMap[streetKey("Old Test Street")] = FeatureTree(
             FeatureCollection().apply {

@@ -16,6 +16,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -1078,8 +1079,19 @@ private fun CalloutVerbositySlider(
             // each level does is in the setting's own description above, read with the title.
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
+                    // Follows the setting rather than holding a position of its own, so it
+                    // moves when the level is changed elsewhere (Siri, the headphone button)
+                    val sliderState = remember {
+                        SliderState(
+                            value = index.toFloat(),
+                            // One stop per level, so there is nothing in between to land on
+                            steps = CalloutVerbosity.entries.size - 2,
+                            trackRange = 0f..(CalloutVerbosity.entries.size - 1).toFloat(),
+                        )
+                    }
+                    sliderState.value = index.toFloat()
                     Slider(
-                        value = index.toFloat(),
+                        state = sliderState,
                         onValueChange = { position ->
                             val level = CalloutVerbosity.entries[position.levelIndex()]
                             if (level.preferenceValue != stored) stored = level.preferenceValue
@@ -1088,9 +1100,6 @@ private fun CalloutVerbositySlider(
                             contentDescription = title
                             stateDescription = names[index]
                         },
-                        valueRange = 0f..(CalloutVerbosity.entries.size - 1).toFloat(),
-                        // One stop per level, so there is nothing in between to land on
-                        steps = CalloutVerbosity.entries.size - 2,
                     )
                     Box(modifier = Modifier.padding(start = theme.horizontalSpacing)) {
                         Text(text = names[index], color = textColor)
