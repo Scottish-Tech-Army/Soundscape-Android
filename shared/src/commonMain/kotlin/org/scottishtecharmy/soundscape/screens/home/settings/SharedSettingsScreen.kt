@@ -46,7 +46,8 @@ import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
-import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownMenu
+import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownList
 import org.scottishtecharmy.soundscape.screens.onboarding.language.getAppLocale
 import org.scottishtecharmy.soundscape.screens.onboarding.language.getSystemLocale
 import org.scottishtecharmy.soundscape.screens.onboarding.language.indexOfBestLanguageMatch
@@ -122,6 +123,8 @@ import org.scottishtecharmy.soundscape.resources.settings_section_media_controls
 import org.scottishtecharmy.soundscape.resources.settings_section_media_controls_description
 import org.scottishtecharmy.soundscape.resources.settings_section_search_network
 import org.scottishtecharmy.soundscape.resources.settings_section_search_network_description
+import org.scottishtecharmy.soundscape.resources.first_launch_change_language
+import org.scottishtecharmy.soundscape.resources.no_language_selected
 import org.scottishtecharmy.soundscape.resources.settings_section_units
 import org.scottishtecharmy.soundscape.resources.settings_section_units_description
 import org.scottishtecharmy.soundscape.resources.settings_show_map
@@ -657,15 +660,14 @@ fun SharedSettingsScreen(
                         val selectedIndex = remember(expandedSection.value, Locale.current) {
                             indexOfBestLanguageMatch(getAppLocale() ?: getSystemLocale())
                         }
-                        Column(modifier = expandedSectionModifier.fillMaxWidth().mediumPadding()) {
-                            LanguageDropDownMenu(
-                                allLanguages = appSupportedLanguages,
-                                onLanguageSelected = { language ->
-                                    onSetApplicationLocale("${language.code}-${language.region}")
-                                },
-                                selectedLanguageIndex = selectedIndex,
-                            )
-                        }
+                        LanguagePreference(
+                            selectedLanguageIndex = selectedIndex,
+                            modifier = expandedSectionModifier,
+                            textColor = textColor,
+                            onLanguageSelected = { language ->
+                                onSetApplicationLocale("${language.code}-${language.region}")
+                            },
+                        )
                     }
                 }
 
@@ -880,6 +882,48 @@ fun SharedSettingsScreen(
 private fun beaconStyleLabel(beaconType: String): String {
     val resource = runCatching { getBeaconResourceId(beaconType) }.getOrNull()
     return if (resource != null) stringResource(resource) else beaconType
+}
+
+/**
+ * The app language row: title and current language in one clickable element,
+ * like the library listPreference rows above it (Units), so TalkBack reads
+ * them together. Tapping opens the language list as a dropdown.
+ */
+@Composable
+private fun LanguagePreference(
+    selectedLanguageIndex: Int,
+    modifier: Modifier,
+    textColor: androidx.compose.ui.graphics.Color,
+    onLanguageSelected: (Language) -> Unit,
+) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    val theme = LocalPreferenceTheme.current
+    Box(modifier = modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable(role = Role.Button) { expanded = true }
+                .padding(theme.padding)
+                .testTag("languageDropDownMenuToggleButton"),
+        ) {
+            SettingTitle(Res.string.first_launch_change_language, textColor)
+            ClickableOption(
+                appSupportedLanguages.getOrNull(selectedLanguageIndex)?.name
+                    ?: stringResource(Res.string.no_language_selected),
+                textColor,
+            )
+        }
+        LanguageDropDownList(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            allLanguages = appSupportedLanguages,
+            selectedLanguageIndex = selectedLanguageIndex,
+            onLanguageSelected = {
+                expanded = false
+                onLanguageSelected(it)
+            },
+        )
+    }
 }
 
 @Composable
