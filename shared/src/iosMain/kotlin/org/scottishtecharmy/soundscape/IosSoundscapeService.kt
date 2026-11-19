@@ -81,10 +81,12 @@ import org.scottishtecharmy.soundscape.utils.routeToShareJson
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSLock
 import platform.Foundation.NSHomeDirectory
+import platform.Foundation.NSLocale
 import platform.Foundation.NSString
 import platform.Foundation.NSURL
 import platform.Foundation.NSUTF8StringEncoding
 import platform.Foundation.create
+import platform.Foundation.preferredLanguages
 import platform.Foundation.writeToFile
 
 private val logger = AppLog.tag("IosSoundscapeService")
@@ -585,9 +587,10 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     /**
      * The user has switched the app's language without relaunching it (see IosAppLanguage.kt).
      * Callout text needs nothing: ComposeLocalizedStrings looks each string up in the current
-     * language as it's spoken. The one thing fixed at start is which name translation the tiles
-     * are read with (GeoEngine.getNameTranslationKeys), so restart the geo engine to reload them,
-     * the same way leaving street preview does.
+     * language as it's spoken. What is fixed at start is the Auto voice, which the TTS renderer
+     * works out from the language, and which name translation the tiles are read with
+     * (GeoEngine.getNameTranslationKeys), so restart the geo engine to reload them, the same way
+     * leaving street preview does.
      *
      * Not while the start is still held back for onboarding or the splash clip - it reads the
      * new language when it does start - and not in street preview, which restarts the engine,
@@ -595,6 +598,10 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
      */
     fun onAppLanguageChanged() {
         audioEngine.clearTextToSpeechQueue()
+        // An Auto voice is the default voice for the app's language, so it has to follow it.
+        (NSLocale.preferredLanguages.firstOrNull() as? String)?.let {
+            audioEngine.setSpeechLanguage(it)
+        }
         if (!geoEngineStarted) return
         if (_streetPreviewFlow.value.enabled != StreetPreviewEnabled.OFF) return
         setStreetPreviewMode(false, null)
