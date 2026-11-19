@@ -3,7 +3,10 @@ package org.scottishtecharmy.soundscape
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.cinterop.ExperimentalForeignApi
@@ -160,176 +163,189 @@ fun MainViewController() = ComposeUIViewController {
         )
     }
 
-    App(
-        flows = AppFlows(
-            locationFlow = service.locationFlow,
-            directionFlow = service.orientationFlow,
-            homeState = homeViewModel.state,
-            offlineMapsNearbyExtractsState = mgr.nearbyExtractsState,
-            offlineMapsDownloaded = mgr.downloadedExtracts,
-            offlineMapsDownloadedFc = mgr.downloadedExtractsFc,
-            offlineMapsDownloadState = mgr.downloadState,
-            beaconTypes = service.audioEngine.getListOfBeaconTypes().toList(),
-            audioTourRunning = audioTourRunning,
-            audioTourInstruction = audioTour.currentInstruction,
-            recordingEnabled = recordingEnabled,
-            permissionsRequired = permissionsRequired,
-            pendingIntent = service.pendingIntent,
-            onPendingIntentHandled = { service.pendingIntentHandled() },
-        ),
-        callbacks = AppCallbacks(
-            onStartBeacon = { lat, lng, name ->
-                service.startBeacon(LngLatAlt(lng, lat), name)
-                audioTour.onBeaconStarted()
-            },
-            onStopBeacon = {
-                service.destroyBeacon()
-                audioTour.onBeaconStopped()
-            },
-            onSpeak = { text -> service.speakCallout(text) },
-            onStartRoute = { routeId -> service.routeStartById(routeId) },
-            onStartRouteInReverse = { routeId -> service.routeStartReverse(routeId) },
-            onStartRouteByName = { name ->
-                service.performAction(SoundscapeAction.StartRouteNamed(name))
-            },
-            onPerformAction = { action -> service.performDeepLinkAction(action) },
-            onRouteStop = {
-                service.routeStop()
-                audioTour.onBeaconStopped()
-            },
-            onRouteSkipNext = { service.routeSkipNext() },
-            onRouteSkipPrevious = { service.routeSkipPrevious() },
-            onRouteMute = { service.routeMute() },
-            onCalloutBeacon = { service.calloutBeacon() },
-            onBeaconMoreInfo = { service.beaconMoreInfo() },
-            onSearch = { query -> homeViewModel.onTriggerSearch(query) },
-            onSaveMarker = { desc ->
-                service.saveMarker(desc)
-                audioTour.onMarkerCreateDone()
-            },
-            onDeleteMarker = { markerId -> service.deleteMarker(markerId) },
-            onSaveRoute = { name, desc, waypoints -> service.saveRoute(name, desc, waypoints) },
-            onDeleteRoute = { routeId -> service.deleteRoute(routeId) },
-            onLoadRoute = { routeId -> service.loadRouteWaypoints(routeId) },
-            createAddAndEditRouteViewModel = {
-                AddAndEditRouteViewModel(service.routeDao, service)
-            },
-            createMarkersViewModel = {
-                MarkersViewModel(service.routeDao, service.preferencesProvider, service)
-            },
-            createRoutesViewModel = {
-                RoutesViewModel(service.routeDao, service.preferencesProvider, service)
-            },
-            createPlacesNearbyViewModel = {
-                PlacesNearbyViewModel(service, audioTour)
-            },
-            createAdvancedMarkersAndRoutesSettingsViewModel = {
-                AdvancedMarkersAndRoutesSettingsViewModel(
-                    service.routeDao, service.markersAndRoutesIo,
-                )
-            },
-            onMyLocation = {
-                homeViewModel.myLocation()
-                audioTour.onButtonPressed(TourButton.MY_LOCATION)
-            },
-            onWhatsAroundMe = {
-                homeViewModel.whatsAroundMe()
-                audioTour.onButtonPressed(TourButton.AROUND_ME)
-            },
-            onAheadOfMe = {
-                homeViewModel.aheadOfMe()
-                audioTour.onButtonPressed(TourButton.AHEAD_OF_ME)
-            },
-            onNearbyMarkers = {
-                homeViewModel.nearbyMarkers()
-                audioTour.onButtonPressed(TourButton.NEARBY_MARKERS)
-            },
-            // No-op: PlacesNearbyViewModel is now nav-scoped and handles these
-            // events itself via createPlacesNearbyViewModel.
-            onPlacesNearbyClickFolder = { _, _ -> },
-            onPlacesNearbyClickBack = {},
-            onOfflineMapsRefresh = { mgr.refresh() },
-            onOfflineMapsGetExtracts = { location -> mgr.getExtractsContaining(location) },
-            onOfflineMapsDownload = { _, feature ->
-                val props = feature.properties ?: return@AppCallbacks
-                val filename = props["filename"] as? String ?: return@AppCallbacks
-                val extractSize = (props["extract-size"] as? Number)?.toDouble()
-                    ?: (props["extract-size"] as? String)?.toDoubleOrNull()
-                mgr.startDownload(filename, extractSize, feature)
-            },
-            onOfflineMapsDelete = { feature -> mgr.deleteExtractByFeature(feature) },
-            onOfflineMapsCancelDownload = { mgr.cancelDownload() },
-            // iOS hooks for the previously Android-only home features. Stubs for now —
-            // a future change can wire these to native iOS subsystems.
-            onSleep = { service.setSleeping(true) },
-            onWakeUp = { service.setSleeping(false) },
-            onStreetPreviewGo = { homeViewModel.streetPreviewGo() },
-            onStreetPreviewExit = { homeViewModel.streetPreviewExit() },
-            onEnableStreetPreview = { loc -> homeViewModel.enableStreetPreview(loc) },
-            onShareRecording = {
-                val fileUrl = service.writeRecordingFile()
-                if (fileUrl != null) presentShareSheet(fileUrl)
-            },
-            onShareRoute = { routeId ->
-                val fileUrl = service.writeRouteFile(routeId)
-                if (fileUrl != null) presentShareSheet(fileUrl)
-            },
-            onShareLocation = { desc, message ->
-                presentShareText(
-                    org.scottishtecharmy.soundscape.utils.buildShareLocationText(
-                        desc = desc,
-                        messageTemplate = message,
-                        mapsName = "Apple Maps",
-                        mapsUrlBuilder = { lat, lon, encodedName ->
-                            "https://maps.apple.com/?q=$encodedName&ll=$lat,$lon"
-                        },
-                    ),
-                )
-            },
-            onGetMapApps = { getIosMapApps() },
-            onOpenInMapApp = { app, desc -> openInIosMapApp(app, desc) },
-            onRateApp = {
-                val url =
-                    NSURL.URLWithString("https://apps.apple.com/app/id6459021379?action=write-review")
-                if (url != null) openExternalUrl(url)
-            },
-            onContactSupport = { presentContactSupport(service) },
-            onToggleAudioTour = { audioTour.toggleState() },
-            onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
-            onGoToAppSettings = {
-                val url = NSURL.URLWithString("app-settings:")
-                if (url != null) openExternalUrl(url)
-            },
-            onGetCurrentLocationDescription = {
-                val location = homeViewModel.state.value.location
-                if (location != null) {
-                    service.getLocationDescription(location)
-                } else {
-                    LocationDescription("", LngLatAlt())
-                }
-            },
-            onGetOfflineAddress = { location -> service.getOfflineAddress(location) },
-            onGetLanguageMismatch = {
-                org.scottishtecharmy.soundscape.screens.onboarding.language.getLanguageMismatch()
-            },
-            provideLocationProvider = { service.iosLocationProvider },
-            getOpenSourceLicensesJson = { readResourceText("open_source_licenses.json") },
-            // No onResetSettings hook — SharedNavGraph clears the
-            // PreferencesProvider and navigates to the onboarding flow when
-            // the platform leaves this null.
-            onBeaconPreviewStart = { type -> service.startBeaconPreview(type) },
-            onBeaconPreviewUpdate = { type -> service.updateBeaconPreviewType(type) },
-            onBeaconPreviewStop = { commit, chosen ->
-                service.stopBeaconPreview(commit, chosen)
-            },
-            onRunLegacyMigration = { onProgress -> runPendingLegacyMigration(onProgress) },
-        ),
-        startDestination = startDestination,
-        audioEngine = service.audioEngine,
-        audioTour = audioTour,
-        preferencesProvider = prefs,
-        settingsPlatformAudioContent = settingsPlatformAudioContent,
-    )
+    // Bumped when the user picks a new language, which redraws every screen in it.
+    var languageGeneration by remember { mutableIntStateOf(0) }
+
+    ProvideAppLanguage(languageGeneration) {
+        App(
+            flows = AppFlows(
+                locationFlow = service.locationFlow,
+                directionFlow = service.orientationFlow,
+                homeState = homeViewModel.state,
+                offlineMapsNearbyExtractsState = mgr.nearbyExtractsState,
+                offlineMapsDownloaded = mgr.downloadedExtracts,
+                offlineMapsDownloadedFc = mgr.downloadedExtractsFc,
+                offlineMapsDownloadState = mgr.downloadState,
+                beaconTypes = service.audioEngine.getListOfBeaconTypes().toList(),
+                audioTourRunning = audioTourRunning,
+                audioTourInstruction = audioTour.currentInstruction,
+                recordingEnabled = recordingEnabled,
+                permissionsRequired = permissionsRequired,
+                pendingIntent = service.pendingIntent,
+                onPendingIntentHandled = { service.pendingIntentHandled() },
+            ),
+            callbacks = AppCallbacks(
+                onStartBeacon = { lat, lng, name ->
+                    service.startBeacon(LngLatAlt(lng, lat), name)
+                    audioTour.onBeaconStarted()
+                },
+                onStopBeacon = {
+                    service.destroyBeacon()
+                    audioTour.onBeaconStopped()
+                },
+                onSpeak = { text -> service.speakCallout(text) },
+                onStartRoute = { routeId -> service.routeStartById(routeId) },
+                onStartRouteInReverse = { routeId -> service.routeStartReverse(routeId) },
+                onStartRouteByName = { name ->
+                    service.performAction(SoundscapeAction.StartRouteNamed(name))
+                },
+                onPerformAction = { action -> service.performDeepLinkAction(action) },
+                onRouteStop = {
+                    service.routeStop()
+                    audioTour.onBeaconStopped()
+                },
+                onRouteSkipNext = { service.routeSkipNext() },
+                onRouteSkipPrevious = { service.routeSkipPrevious() },
+                onRouteMute = { service.routeMute() },
+                onCalloutBeacon = { service.calloutBeacon() },
+                onBeaconMoreInfo = { service.beaconMoreInfo() },
+                onSearch = { query -> homeViewModel.onTriggerSearch(query) },
+                onSaveMarker = { desc ->
+                    service.saveMarker(desc)
+                    audioTour.onMarkerCreateDone()
+                },
+                onDeleteMarker = { markerId -> service.deleteMarker(markerId) },
+                onSaveRoute = { name, desc, waypoints -> service.saveRoute(name, desc, waypoints) },
+                onDeleteRoute = { routeId -> service.deleteRoute(routeId) },
+                onLoadRoute = { routeId -> service.loadRouteWaypoints(routeId) },
+                createAddAndEditRouteViewModel = {
+                    AddAndEditRouteViewModel(service.routeDao, service)
+                },
+                createMarkersViewModel = {
+                    MarkersViewModel(service.routeDao, service.preferencesProvider, service)
+                },
+                createRoutesViewModel = {
+                    RoutesViewModel(service.routeDao, service.preferencesProvider, service)
+                },
+                createPlacesNearbyViewModel = {
+                    PlacesNearbyViewModel(service, audioTour)
+                },
+                createAdvancedMarkersAndRoutesSettingsViewModel = {
+                    AdvancedMarkersAndRoutesSettingsViewModel(
+                        service.routeDao, service.markersAndRoutesIo,
+                    )
+                },
+                onMyLocation = {
+                    homeViewModel.myLocation()
+                    audioTour.onButtonPressed(TourButton.MY_LOCATION)
+                },
+                onWhatsAroundMe = {
+                    homeViewModel.whatsAroundMe()
+                    audioTour.onButtonPressed(TourButton.AROUND_ME)
+                },
+                onAheadOfMe = {
+                    homeViewModel.aheadOfMe()
+                    audioTour.onButtonPressed(TourButton.AHEAD_OF_ME)
+                },
+                onNearbyMarkers = {
+                    homeViewModel.nearbyMarkers()
+                    audioTour.onButtonPressed(TourButton.NEARBY_MARKERS)
+                },
+                // No-op: PlacesNearbyViewModel is now nav-scoped and handles these
+                // events itself via createPlacesNearbyViewModel.
+                onPlacesNearbyClickFolder = { _, _ -> },
+                onPlacesNearbyClickBack = {},
+                onOfflineMapsRefresh = { mgr.refresh() },
+                onOfflineMapsGetExtracts = { location -> mgr.getExtractsContaining(location) },
+                onOfflineMapsDownload = { _, feature ->
+                    val props = feature.properties ?: return@AppCallbacks
+                    val filename = props["filename"] as? String ?: return@AppCallbacks
+                    val extractSize = (props["extract-size"] as? Number)?.toDouble()
+                        ?: (props["extract-size"] as? String)?.toDoubleOrNull()
+                    mgr.startDownload(filename, extractSize, feature)
+                },
+                onOfflineMapsDelete = { feature -> mgr.deleteExtractByFeature(feature) },
+                onOfflineMapsCancelDownload = { mgr.cancelDownload() },
+                // iOS hooks for the previously Android-only home features. Stubs for now —
+                // a future change can wire these to native iOS subsystems.
+                onSleep = { service.setSleeping(true) },
+                onWakeUp = { service.setSleeping(false) },
+                onStreetPreviewGo = { homeViewModel.streetPreviewGo() },
+                onStreetPreviewExit = { homeViewModel.streetPreviewExit() },
+                onEnableStreetPreview = { loc -> homeViewModel.enableStreetPreview(loc) },
+                onShareRecording = {
+                    val fileUrl = service.writeRecordingFile()
+                    if (fileUrl != null) presentShareSheet(fileUrl)
+                },
+                onShareRoute = { routeId ->
+                    val fileUrl = service.writeRouteFile(routeId)
+                    if (fileUrl != null) presentShareSheet(fileUrl)
+                },
+                onShareLocation = { desc, message ->
+                    presentShareText(
+                        org.scottishtecharmy.soundscape.utils.buildShareLocationText(
+                            desc = desc,
+                            messageTemplate = message,
+                            mapsName = "Apple Maps",
+                            mapsUrlBuilder = { lat, lon, encodedName ->
+                                "https://maps.apple.com/?q=$encodedName&ll=$lat,$lon"
+                            },
+                        ),
+                    )
+                },
+                onGetMapApps = { getIosMapApps() },
+                onOpenInMapApp = { app, desc -> openInIosMapApp(app, desc) },
+                onRateApp = {
+                    val url =
+                        NSURL.URLWithString("https://apps.apple.com/app/id6459021379?action=write-review")
+                    if (url != null) openExternalUrl(url)
+                },
+                onContactSupport = { presentContactSupport(service) },
+                onToggleAudioTour = { audioTour.toggleState() },
+                onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
+                onGoToAppSettings = {
+                    val url = NSURL.URLWithString("app-settings:")
+                    if (url != null) openExternalUrl(url)
+                },
+                onGetCurrentLocationDescription = {
+                    val location = homeViewModel.state.value.location
+                    if (location != null) {
+                        service.getLocationDescription(location)
+                    } else {
+                        LocationDescription("", LngLatAlt())
+                    }
+                },
+                onGetOfflineAddress = { location -> service.getOfflineAddress(location) },
+                onSetApplicationLocale = { tag ->
+                    // Switched live, without a relaunch - see IosAppLanguage.kt. The UI redraws
+                    // through the generation bump, and the service restarts what it set up in the
+                    // old language.
+                    writeAppLanguageOverride(tag)
+                    languageGeneration++
+                    service.onAppLanguageChanged()
+                },
+                onGetLanguageMismatch = {
+                    org.scottishtecharmy.soundscape.screens.onboarding.language.getLanguageMismatch()
+                },
+                provideLocationProvider = { service.iosLocationProvider },
+                getOpenSourceLicensesJson = { readResourceText("open_source_licenses.json") },
+                // No onResetSettings hook — SharedNavGraph clears the
+                // PreferencesProvider and navigates to the onboarding flow when
+                // the platform leaves this null.
+                onBeaconPreviewStart = { type -> service.startBeaconPreview(type) },
+                onBeaconPreviewUpdate = { type -> service.updateBeaconPreviewType(type) },
+                onBeaconPreviewStop = { commit, chosen ->
+                    service.stopBeaconPreview(commit, chosen)
+                },
+                onRunLegacyMigration = { onProgress -> runPendingLegacyMigration(onProgress) },
+            ),
+            startDestination = startDestination,
+            audioEngine = service.audioEngine,
+            audioTour = audioTour,
+            preferencesProvider = prefs,
+            settingsPlatformAudioContent = settingsPlatformAudioContent,
+        )
+    }
 }
 
 private fun presentShareSheet(fileUrl: NSURL) {

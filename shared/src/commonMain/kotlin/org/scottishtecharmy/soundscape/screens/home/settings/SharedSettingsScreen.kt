@@ -36,6 +36,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.intl.Locale
 import me.zhanghai.compose.preference.Preference
 import me.zhanghai.compose.preference.LocalPreferenceTheme
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
@@ -45,6 +46,11 @@ import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownMenu
+import org.scottishtecharmy.soundscape.screens.onboarding.language.getAppLocale
+import org.scottishtecharmy.soundscape.screens.onboarding.language.getSystemLocale
+import org.scottishtecharmy.soundscape.screens.onboarding.language.indexOfBestLanguageMatch
+import org.scottishtecharmy.soundscape.screens.onboarding.language.supportedLanguages as appSupportedLanguages
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.platform.isDebugBuild
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
@@ -153,6 +159,11 @@ fun SharedSettingsScreen(
      * the app (Android relaunches the activity, iOS exits via `exit(0)`).
      */
     onResetSettings: (() -> Unit)? = null,
+    /**
+     * Persists the user's per-app language choice. When non-null, the Locale
+     * section renders a [LanguageDropDownMenu] reflecting the current locale.
+     */
+    onSetApplicationLocale: ((String?) -> Unit)? = null,
     /**
      * Beacon style audio preview. When all three are non-null the beacon style
      * row opens a dialog that asks the platform to play a temporary beacon at
@@ -637,6 +648,26 @@ fun SharedSettingsScreen(
                         )
                     },
                 )
+
+                if (onSetApplicationLocale != null) {
+                    item(key = "language_picker") {
+                        // Re-derive on each show, and when the language changes
+                        // under it (iOS switches in place rather than restarting),
+                        // so the picker reflects the current choice.
+                        val selectedIndex = remember(expandedSection.value, Locale.current) {
+                            indexOfBestLanguageMatch(getAppLocale() ?: getSystemLocale())
+                        }
+                        Column(modifier = expandedSectionModifier.fillMaxWidth().mediumPadding()) {
+                            LanguageDropDownMenu(
+                                allLanguages = appSupportedLanguages,
+                                onLanguageSelected = { language ->
+                                    onSetApplicationLocale("${language.code}-${language.region}")
+                                },
+                                selectedLanguageIndex = selectedIndex,
+                            )
+                        }
+                    }
+                }
 
                 platformLanguageContent?.invoke(this)
             }
