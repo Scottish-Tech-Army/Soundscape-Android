@@ -266,13 +266,7 @@ fun MainViewController() = ComposeUIViewController {
                 onPlacesNearbyClickBack = {},
                 onOfflineMapsRefresh = { mgr.refresh() },
                 onOfflineMapsGetExtracts = { location -> mgr.getExtractsContaining(location) },
-                onOfflineMapsDownload = { _, feature ->
-                    val props = feature.properties ?: return@AppCallbacks
-                    val filename = props["filename"] as? String ?: return@AppCallbacks
-                    val extractSize = (props["extract-size"] as? Number)?.toDouble()
-                        ?: (props["extract-size"] as? String)?.toDoubleOrNull()
-                    mgr.startDownload(filename, extractSize, feature)
-                },
+                onOfflineMapsDownload = { _, feature -> mgr.startDownload(feature) },
                 onOfflineMapsDelete = { feature -> mgr.deleteExtractByFeature(feature) },
                 onOfflineMapsCancelDownload = { mgr.cancelDownload() },
                 // iOS hooks for the previously Android-only home features. Stubs for now —

@@ -61,7 +61,7 @@ actual fun PlatformMapContainer(
     // already downloaded).
     //
     // Extracts are downloaded to <user-selected storage>/Downloads (see
-    // AndroidOfflineMapsManager.extractsDir() and SoundscapeService.startGeoEngine()
+    // createAndroidOfflineMapManager's extractsDir() and SoundscapeService.startGeoEngine()
     // in the app module), not the app's external-files root — this must match or
     // downloaded extracts are silently never found and the map falls back to
     // network tiles. MainActivity.SELECTED_STORAGE_KEY/_DEFAULT aren't reachable
