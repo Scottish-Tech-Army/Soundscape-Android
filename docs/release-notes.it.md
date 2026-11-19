@@ -34,6 +34,9 @@ Soundscape ora può usare il contapassi del telefono per capire quando stai camm
 accorge prima che sei sceso da un veicolo o ti sei fermato, e la prima volta che apri questa
 versione ti verrà chiesta una nuova autorizzazione, *Attività fisica* (*Movimento e fitness* su
 iPhone).
+La scelta della voce di sintesi vocale ha un aspetto leggermente diverso. Ora le voci sono
+raggruppate per lingua, toccandone una se ne ascolta un esempio e scegliendo *Automatico* si usa la
+voce predefinita della tua lingua.
 
 ## Novità della versione 2.0
 
@@ -73,9 +76,8 @@ iPhone).
 * **Molto lavoro sull'accessibilità** con TalkBack, in particolare nelle schermate introduttive.
 * **Moltissime correzioni di arresti anomali e stabilità.**
 
-Nella versione 2.0 sono state **rimosse** due cose: il controllo vocale e il menu della lingua
-all'interno dell'app. Vedi [Elementi rimossi](#things-that-have-been-removed) più avanti per sapere
-cosa fare invece.
+Nella versione 2.0 è stato **rimosso** il controllo vocale. Vedi [Elementi
+rimossi](#things-that-have-been-removed) più avanti per sapere cosa fare invece.
 
 ---
 
@@ -309,9 +311,6 @@ robusto sui telefoni che chiudono in modo aggressivo le app in background.
   [Guida all'uso dei comandi multimediali]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape è anche pronto per i comandi vocali con Gemini su Android 16 e versioni successive, ma
   non funzioneranno finché Google non ne rilascerà il supporto in Gemini.
-* **Il menu della lingua nell'app** è scomparso. Soundscape segue ora la lingua impostata sul
-  telefono, come la maggior parte delle persone si aspettava. Per cambiarla, modifica la lingua del
-  telefono oppure imposta una lingua per singola app nelle impostazioni, se il telefono lo consente.
 
 ## Segnalarci un problema
 

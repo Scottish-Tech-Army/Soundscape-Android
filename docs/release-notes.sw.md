@@ -33,6 +33,9 @@ tatizo la kupakua ramani za nje ya mtandao.
 Sasa Soundscape inaweza kutumia kihesabu hatua cha simu yako kujua unapotembea, hivyo inatambua
 mapema kwamba umeshuka kwenye gari au umesimama, na utaombwa ruhusa mpya ya *Shughuli za kimwili*
 (*Mwendo na Afya ya Mwili* kwenye iPhone) unapofungua toleo hili kwa mara ya kwanza.
+Kuchagua sauti ya kubadilisha maandishi kuwa sauti kuna mwonekano tofauti kidogo. Sauti sasa
+zimepangwa kwa lugha, kugusa moja hucheza sampuli yake, na kuchagua *Kiotomatiki* kutatumia sauti
+chaguomsingi ya lugha yako.
 
 ## Mapya katika 2.0
 
@@ -68,8 +71,8 @@ mapema kwamba umeshuka kwenye gari au umesimama, na utaombwa ruhusa mpya ya *Shu
 * **Kazi nyingi ya ufikivu** pamoja na TalkBack, hasa katika skrini za mwanzo.
 * **Marekebisho mengi sana ya kuvurugika na uthabiti.**
 
-Vitu viwili **vimeondolewa** katika 2.0: udhibiti wa sauti na menyu ya lugha ndani ya programu. Angalia
-[Vipengele vilivyoondolewa](#things-that-have-been-removed) hapa chini kujua la kufanya badala yake.
+Udhibiti wa sauti **umeondolewa** katika 2.0. Angalia [Vipengele
+vilivyoondolewa](#things-that-have-been-removed) hapa chini kujua la kufanya badala yake.
 
 ---
 
@@ -291,9 +294,6 @@ mandharinyuma kwa nguvu.
   [Msaada wa kutumia vitufe vya midia]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape pia iko tayari kwa amri za sauti kupitia Gemini kwenye Android 16 na matoleo mapya zaidi,
   lakini hazitafanya kazi hadi Google itakapotoa usaidizi wake katika Gemini.
-* **Menyu ya lugha ndani ya programu** imeondoka. Sasa Soundscape hufuata lugha uliyoweka kwenye simu
-  yako, jambo ambalo watu wengi walitegemea hata hivyo. Ili kuibadilisha, badilisha lugha ya simu, au
-  weka lugha ya kila programu katika mipangilio ya simu kama inaruhusu.
 
 ## Jinsi ya kutuarifu kuhusu matatizo
 

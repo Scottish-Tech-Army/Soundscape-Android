@@ -27,7 +27,9 @@ Soundscape now tells you when a road ends at a gate you can't get through. We've
 Location* going silent on a poor network connection, and a problem with downloading offline maps.
 Soundscape can now use your phone's step counter to tell when you're walking, so it notices sooner
 that you've got out of a vehicle or stopped, and you'll be asked for a new *Physical activity*
-permission (*Motion & Fitness* on iPhone) when you first open this version.
+permission (*Motion & Fitness* on iPhone) when you first open this version. Choosing a text 
+to speech voice has a slightly different UI. Voices are now grouped by language, tapping one 
+plays a sample, and choosing *Auto* will use the default voice for your language.
 
 ## What's new in 2.0
 
@@ -61,9 +63,8 @@ permission (*Motion & Fitness* on iPhone) when you first open this version.
 * **A lot of accessibility work** on TalkBack, particularly around the onboarding screens.
 * **A great many crash and stability fixes.**
 
-Two things have been **removed** in 2.0: the voice control feature, and the language menu inside the
-app. See [Things that have been removed](#things-that-have-been-removed) below for what to do
-instead.
+The voice control feature has been **removed** in 2.0. See
+[Things that have been removed](#things-that-have-been-removed) below for what to do instead.
 
 ---
 
@@ -288,9 +289,6 @@ more robust on phones that aggressively shut background apps down.
   [Help using Media Controls]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape is also ready for voice commands through Gemini on Android 16 and later, but they
   won't work until Google releases support for them in Gemini.
-* **The language menu inside the app** has gone. Soundscape now follows the language you've set for
-  your phone, which is what most people expected it to do. To change it, change your phone's
-  language, or set a per-app language in your phone's settings if it offers that.
 
 ## Telling us about problems
 

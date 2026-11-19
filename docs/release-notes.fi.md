@@ -32,6 +32,8 @@ hiljaiseksi heikolla verkkoyhteydellä, sekä ongelman offline-karttojen lataami
 Soundscape voi nyt käyttää puhelimesi askelmittaria tunnistaakseen, milloin kävelet, joten se huomaa
 aiemmin, että olet noussut ajoneuvosta tai pysähtynyt, ja kun avaat tämän version ensimmäisen
 kerran, sinulta pyydetään uutta *Fyysinen aktiivisuus* -lupaa (iPhonessa *Liike ja kuntoilu*).
+Puhesynteesin äänen valinta näyttää hieman erilaiselta. Äänet on nyt ryhmitelty kielen mukaan, ääntä
+napauttamalla kuulet näytteen, ja *Automaattinen* käyttää kielesi oletusääntä.
 
 ## Uutta versiossa 2.0
 
@@ -69,8 +71,8 @@ kerran, sinulta pyydetään uutta *Fyysinen aktiivisuus* -lupaa (iPhonessa *Liik
 * **Paljon saavutettavuustyötä** TalkBackin parissa, erityisesti aloitusnäytöissä.
 * **Erittäin paljon kaatumis- ja vakauskorjauksia.**
 
-Versiossa 2.0 on **poistettu** kaksi asiaa: ääniohjaus ja sovelluksen sisäinen kielivalikko. Katso
-alta [Poistetut ominaisuudet](#things-that-have-been-removed), mitä voit tehdä niiden sijaan.
+Versiosta 2.0 on **poistettu** ääniohjaus. Katso alta [Poistetut
+ominaisuudet](#things-that-have-been-removed), mitä voit tehdä sen sijaan.
 
 ---
 
@@ -292,9 +294,6 @@ käyttäytymistä on tehty kestävämmäksi puhelimissa, jotka sulkevat taustaso
   [Ohjeet medianäppäinten käyttöön]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape on valmis myös Geminin kautta annettaville äänikomennoille Android 16:ssa ja sitä
   uudemmissa, mutta ne toimivat vasta, kun Google julkaisee niiden tuen Geminiin.
-* **Sovelluksen sisäinen kielivalikko** on poistunut. Soundscape noudattaa nyt puhelimeesi asetettua
-  kieltä, mitä useimmat odottivatkin. Vaihtaaksesi sitä muuta puhelimen kieltä tai aseta
-  sovelluskohtainen kieli puhelimen asetuksissa, jos se on mahdollista.
 
 ## Ongelmista kertominen
 

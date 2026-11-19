@@ -34,6 +34,9 @@ wajen sauke taswirori don amfani ba tare da intanet ba.
 Yanzu Soundscape na iya amfani da ma’aunin matakai na wayarka don sanin lokacin da kake tafiya da
 ƙafa, don haka zai lura da wuri cewa ka sauka daga abin hawa ko ka tsaya, kuma za a nemi sabon izini
 na *Motsa jiki* (*Motsi da Lafiyar Jiki* a iPhone) lokacin da ka fara buɗe wannan sigar.
+Zaɓen muryar mayar da rubutu zuwa magana yana da ɗan bambanci a yanzu. Yanzu an haɗa muryoyi bisa
+harshe, taɓa ɗaya yana kunna samfurinta, kuma zaɓen *Atomatik* zai yi amfani da muryar asali ta
+harshenka.
 
 ## Sabbin abubuwa a 2.0
 
@@ -69,9 +72,8 @@ na *Motsa jiki* (*Motsi da Lafiyar Jiki* a iPhone) lokacin da ka fara buɗe wann
   farko.
 * **Gyare-gyare masu yawan gaske na durkushewa da kwanciyar hankali.**
 
-An **cire** abubuwa biyu a 2.0: sarrafawa da murya, da menu na harshe cikin manhajar. Duba
-[Abubuwan da aka cire](#things-that-have-been-removed) a kasa domin sanin abin da za ka yi maimakon
-haka.
+An **cire** sarrafawa da murya a 2.0. Duba [Abubuwan da aka cire](#things-that-have-been-removed) a
+kasa domin sanin abin da za ka yi maimakon haka.
 
 ---
 
@@ -292,9 +294,6 @@ wayoyin da ke rufe manhajojin baya cikin tsauri.
   [Taimako kan amfani da makullan sarrafa waka]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape kuma yana shirye don umarnin murya ta Gemini a Android 16 da sama, amma ba za su yi aiki ba
   har sai Google ya fitar da goyon bayansu a Gemini.
-* **Menu na harshe cikin manhajar** ya tafi. Yanzu Soundscape yana bin harshen da ka saita a wayarka,
-  wanda shi ne abin da mafi yawan mutane suka sa ran zai kasance. Domin canza shi, canza harshen
-  wayarka, ko ka saita harshe na kowace manhaja a saitunan wayar idan tana bayarwa.
 
 ## Yadda za ka sanar da mu matsaloli
 

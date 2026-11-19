@@ -32,6 +32,9 @@ dårlig nettverkstilkobling, og et problem med nedlasting av frakoblede kart.
 Soundscape kan nå bruke skritttelleren på telefonen for å vite når du går, slik at den raskere
 merker at du har gått ut av et kjøretøy eller har stoppet, og du blir bedt om en ny tillatelse,
 *Fysisk aktivitet* (*Bevegelse og aktivitet* på iPhone), første gang du åpner denne versjonen.
+Valget av tekst-til-tale-stemme ser litt annerledes ut. Stemmene er nå gruppert etter språk, et
+trykk på en stemme spiller av en prøve, og velger du *Automatisk*, brukes standardstemmen for
+språket ditt.
 
 ## Nytt i 2.0
 
@@ -69,8 +72,8 @@ merker at du har gått ut av et kjøretøy eller har stoppet, og du blir bedt om
 * **Mye tilgjengelighetsarbeid** med TalkBack, særlig rundt introduksjonsskjermene.
 * **Svært mange rettinger av krasj og stabilitet.**
 
-To ting er **fjernet** i 2.0: talestyringen og språkmenyen inne i appen. Se
-[Fjernede funksjoner](#things-that-have-been-removed) nedenfor for hva du kan gjøre i stedet.
+Talestyringen er **fjernet** i 2.0. Se [Fjernede funksjoner](#things-that-have-been-removed)
+nedenfor for hva du kan gjøre i stedet.
 
 ---
 
@@ -287,9 +290,6 @@ robust på telefoner som aggressivt lukker apper i bakgrunnen.
   [Hjelp til bruk av medieknapper]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape er også klar for talekommandoer via Gemini på Android 16 og nyere, men de virker ikke før
   Google lanserer støtten for dem i Gemini.
-* **Språkmenyen inne i appen** er borte. Soundscape følger nå språket du har valgt på telefonen, som
-  er det de fleste ventet. Vil du endre det, bytter du telefonens språk eller angir et språk per app i
-  telefonens innstillinger, dersom den tilbyr det.
 
 ## Å melde fra om problemer
 

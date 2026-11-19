@@ -32,6 +32,8 @@ kalmasını ve çevrimdışı harita indirmeyle ilgili bir sorunu düzelttik.
 Soundscape artık yürüdüğünüzü anlamak için telefonunuzun adım sayarını kullanabiliyor; böylece bir
 araçtan indiğinizi ya da durduğunuzu daha erken fark ediyor. Bu sürümü ilk açtığınızda sizden yeni
 bir izin istenecek: *Fiziksel aktivite* (iPhone’da *Hareket ve Kondisyon*).
+Metin okuma sesi seçme ekranı biraz değişti. Sesler artık dile göre gruplandırılıyor, bir sese
+dokunmak örneğini çalıyor ve *Otomatik* seçeneği dilinizin varsayılan sesini kullanıyor.
 
 ## 2.0'daki yenilikler
 
@@ -69,9 +71,8 @@ bir izin istenecek: *Fiziksel aktivite* (iPhone’da *Hareket ve Kondisyon*).
 * **Çok sayıda erişilebilirlik çalışması** TalkBack ile, özellikle tanıtım ekranları çevresinde.
 * **Pek çok çökme ve kararlılık düzeltmesi.**
 
-2.0'da iki şey **kaldırıldı**: sesli denetim ve uygulama içindeki dil menüsü. Bunların yerine ne
-yapabileceğiniz için aşağıdaki
-[Kaldırılan özellikler](#things-that-have-been-removed) bölümüne bakın.
+2.0'da sesli denetim **kaldırıldı**. Bunun yerine ne yapabileceğiniz için aşağıdaki [Kaldırılan
+özellikler](#things-that-have-been-removed) bölümüne bakın.
 
 ---
 
@@ -290,9 +291,6 @@ daha sağlam hale getirildi.
   [Medya denetimlerini kullanma yardımı]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape, Android 16 ve sonrasında Gemini üzerinden sesli komutlara da hazır; ancak bu komutlar,
   Google Gemini'de bunlar için desteği yayımlayana kadar çalışmayacak.
-* **Uygulama içindeki dil menüsü** kaldırıldı. Soundscape artık telefonunuzda ayarlı dili izliyor; çoğu
-  kişinin zaten beklediği buydu. Değiştirmek için telefonun dilini değiştirin ya da sunuyorsa telefon
-  ayarlarından uygulama başına bir dil belirleyin.
 
 ## Sorunları bize nasıl bildirirsiniz
 

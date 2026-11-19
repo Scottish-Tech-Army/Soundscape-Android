@@ -33,6 +33,9 @@ térképek letöltésében.
 A Soundscape mostantól a telefonja lépésszámlálóját is használhatja annak felismerésére, hogy mikor
 sétál, így hamarabb észreveszi, ha kiszállt egy járműből vagy megállt, és amikor először megnyitja
 ezt a verziót, egy új, *Fizikai aktivitás* engedélyt kér Öntől (iPhone-on *Mozgás és fittség*).
+A szövegfelolvasó hang kiválasztása kissé másképp néz ki. A hangok mostantól nyelv szerint vannak
+csoportosítva, egy hangra koppintva meghallgathat egy mintát, az *Automatikus* választásával pedig
+az Ön nyelvének alapértelmezett hangja szól.
 
 ## Újdonságok a 2.0-ban
 
@@ -71,8 +74,7 @@ ezt a verziót, egy új, *Fizikai aktivitás* engedélyt kér Öntől (iPhone-on
 * **Sok akadálymentesítési munka** a TalkBackkel, különösen a bevezető képernyők körül.
 * **Nagyon sok összeomlás- és stabilitási javítás.**
 
-A 2.0-ban két dolgot **eltávolítottunk**: a hangvezérlést és az alkalmazáson belüli nyelvi menüt.
-Hogy mit tehet helyettük, arról lentebb, az
+A 2.0-ban **eltávolítottuk** a hangvezérlést. Hogy mit tehet helyette, arról lentebb, az
 [Eltávolított funkciók](#things-that-have-been-removed) részben olvashat.
 
 ---
@@ -298,9 +300,6 @@ telefonokon, amelyek agresszíven zárják be a háttéralkalmazásokat.
   [Médiavezérlők használatához nyújtott súgót]({{ "/users/help-using-media-controls.html" | relative_url }}).
   A Soundscape a Geminin keresztül adott hangutasításokra is fel van készülve Android 16-on és
   újabbon, ezek azonban csak akkor fognak működni, ha a Google kiadja a támogatásukat a Geminiben.
-* **Az alkalmazáson belüli nyelvi menü** megszűnt. A Soundscape mostantól a telefonján beállított
-  nyelvet követi, amit a legtöbben amúgy is vártak. A módosításhoz változtassa meg a telefon nyelvét,
-  vagy állítson be alkalmazásonkénti nyelvet a telefon beállításaiban, ha kínál ilyet.
 
 ## Hogyan jelezze a problémákat
 

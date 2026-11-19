@@ -35,6 +35,9 @@ Soundscape peut désormais utiliser le podomètre de votre téléphone pour savo
 il remarque ainsi plus tôt que vous êtes descendu d’un véhicule ou que vous vous êtes arrêté, et une
 nouvelle autorisation, *Activité physique* (*Mouvement et forme physique* sur iPhone), vous sera
 demandée à la première ouverture de cette version.
+Le choix de la voix de synthèse vocale se présente un peu différemment. Les voix sont maintenant
+regroupées par langue, toucher une voix en fait entendre un extrait, et choisir *Automatique*
+utilise la voix par défaut de votre langue.
 
 ## Nouveautés de la version 2.0
 
@@ -78,9 +81,8 @@ demandée à la première ouverture de cette version.
   démarrage.
 * **Un très grand nombre de corrections de plantages et de stabilité.**
 
-Deux éléments ont été **supprimés** dans la version 2.0 : la commande vocale et le menu de langue
-dans l'appli. Voyez [Éléments supprimés](#things-that-have-been-removed) ci-dessous pour
-savoir quoi faire à la place.
+La commande vocale a été **supprimée** dans la version 2.0. Voyez [Éléments
+supprimés](#things-that-have-been-removed) ci-dessous pour savoir quoi faire à la place.
 
 ---
 
@@ -322,10 +324,6 @@ automatiquement via le Play Store. Le comportement au démarrage et vis-à-vis d
   Soundscape est aussi prêt pour les commandes vocales avec Gemini sur Android 16 et versions
   ultérieures, mais elles ne fonctionneront pas tant que Google n’aura pas publié leur prise en charge
   dans Gemini.
-* **Le menu de langue dans l'appli** a disparu. Soundscape suit désormais la langue définie
-  sur votre téléphone, ce que la plupart des gens attendaient. Pour la changer, modifiez la langue
-  de votre téléphone ou définissez une langue par appli dans ses réglages, si cette option est
-  proposée.
 
 ## Nous signaler un problème
 

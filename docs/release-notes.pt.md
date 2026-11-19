@@ -32,6 +32,9 @@ Localização* com uma ligação de rede fraca, e um problema ao transferir mapa
 O Soundscape pode agora usar o contador de passos do telemóvel para saber quando está a andar, pelo
 que se apercebe mais cedo de que saiu de um veículo ou parou, e ao abrir esta versão pela primeira
 vez ser-lhe-á pedida uma nova permissão, *Atividade física* (*Movimento e fitness* no iPhone).
+A escolha da voz de texto para voz tem uma interface ligeiramente diferente. As vozes estão agora
+agrupadas por idioma, tocar numa reproduz uma amostra e escolher *Automático* utiliza a voz
+predefinida do seu idioma.
 
 ## Novidades da versão 2.0
 
@@ -69,9 +72,8 @@ vez ser-lhe-á pedida uma nova permissão, *Atividade física* (*Movimento e fit
 * **Muito trabalho de acessibilidade** com o TalkBack, sobretudo nos ecrãs iniciais.
 * **Muitíssimas correções de falhas e de estabilidade.**
 
-Foram **removidas** duas coisas na versão 2.0: o controlo por voz e o menu de idioma dentro da
-aplicação. Consulte [Elementos removidos](#things-that-have-been-removed) mais abaixo para saber o
-que fazer em alternativa.
+Foi **removido** o controlo por voz na versão 2.0. Consulte [Elementos
+removidos](#things-that-have-been-removed) mais abaixo para saber o que fazer em alternativa.
 
 ---
 
@@ -297,9 +299,6 @@ aplicações em segundo plano.
   [Ajuda sobre a utilização dos controlos multimédia]({{ "/users/help-using-media-controls.html" | relative_url }}).
   O Soundscape também está preparado para comandos de voz com o Gemini no Android 16 e posterior,
   mas só vão funcionar quando a Google disponibilizar esse suporte no Gemini.
-* **O menu de idioma dentro da aplicação** desapareceu. O Soundscape segue agora o idioma definido
-  no telemóvel, que é o que a maioria das pessoas esperava. Para o alterar, mude o idioma do
-  telemóvel ou defina um idioma por aplicação nas respetivas definições, se estiverem disponíveis.
 
 ## Comunicar-nos problemas
 

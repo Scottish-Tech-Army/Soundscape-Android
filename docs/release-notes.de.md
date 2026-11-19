@@ -34,6 +34,9 @@ Soundscape kann jetzt den Schrittzähler Ihres Telefons nutzen, um zu erkennen, 
 bemerkt dadurch früher, dass Sie aus einem Fahrzeug ausgestiegen oder stehen geblieben sind. Beim
 ersten Öffnen dieser Version werden Sie um eine neue Berechtigung gebeten: *Körperliche Aktivität*
 (auf dem iPhone *Bewegung und Fitness*).
+Die Auswahl der Sprachausgabe-Stimme sieht etwas anders aus. Die Stimmen sind jetzt nach Sprache
+gruppiert, ein Tippen auf eine Stimme spielt eine Hörprobe ab, und mit *Automatisch* wird die
+Standardstimme für Ihre Sprache verwendet.
 
 ## Was ist neu in 2.0
 
@@ -75,9 +78,8 @@ ersten Öffnen dieser Version werden Sie um eine neue Berechtigung gebeten: *Kö
 * **Viel Arbeit an der Barrierefreiheit** mit TalkBack, insbesondere rund um die Einführungsbildschirme.
 * **Sehr viele Absturz- und Stabilitätskorrekturen.**
 
-Zwei Dinge wurden in 2.0 **entfernt**: die Sprachsteuerung und das Sprachmenü innerhalb der App.
-Unter [Entfernte Funktionen](#things-that-have-been-removed) weiter unten steht, was Sie
-stattdessen tun können.
+Die Sprachsteuerung wurde in 2.0 **entfernt**. Unter [Entfernte
+Funktionen](#things-that-have-been-removed) weiter unten steht, was Sie stattdessen tun können.
 
 ---
 
@@ -314,10 +316,6 @@ Hintergrund-Apps aggressiv beenden.
   [Hilfe zur Verwendung der Medientasten]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape ist außerdem für Sprachbefehle über Gemini auf Android 16 und neuer vorbereitet, doch
   diese funktionieren erst, wenn Google die Unterstützung dafür in Gemini freigibt.
-* **Das Sprachmenü innerhalb der App** ist verschwunden. Soundscape folgt nun der Sprache, die Sie
-  für Ihr Telefon eingestellt haben – was die meisten Menschen ohnehin erwartet hatten. Zum Ändern
-  stellen Sie die Sprache Ihres Telefons um oder legen in dessen Einstellungen eine App-spezifische
-  Sprache fest, sofern das angeboten wird.
 
 ## Probleme melden
 

@@ -33,6 +33,9 @@ problema en baixar mapes fora de línia.
 Ara Soundscape pot fer servir el comptador de passos del telèfon per saber quan camineu, de manera
 que s’adona abans que heu baixat d’un vehicle o us heu aturat, i quan obriu aquesta versió per
 primer cop se us demanarà un permís nou, *Activitat física* (*Moviment i fitness* a l’iPhone).
+L'elecció de la veu de text a parla té una interfície una mica diferent. Ara les veus s'agrupen per
+idioma, si en toqueu una se'n reprodueix una mostra, i si trieu *Automàtic* s'utilitzarà la veu
+predeterminada del vostre idioma.
 
 ## Novetats de la 2.0
 
@@ -69,8 +72,8 @@ primer cop se us demanarà un permís nou, *Activitat física* (*Moviment i fitn
 * **Molta feina d'accessibilitat** amb TalkBack, sobretot al voltant de les pantalles inicials.
 * **Moltíssimes correccions de tancaments inesperats i d'estabilitat.**
 
-A la 2.0 s'han **eliminat** dues coses: el control per veu i el menú d'idioma dins l'aplicació. Vegeu
-[Funcions eliminades](#things-that-have-been-removed) més avall per saber què podeu fer al seu lloc.
+A la 2.0 s'ha **eliminat** el control per veu. Vegeu [Funcions
+eliminades](#things-that-have-been-removed) més avall per saber què podeu fer al seu lloc.
 
 ---
 
@@ -294,9 +297,6 @@ aplicacions en segon pla.
   [Ajuda sobre l'ús dels controls multimèdia]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape també està preparat per a les ordres de veu amb Gemini a Android 16 i posteriors, però no
   funcionaran fins que Google no publiqui la compatibilitat a Gemini.
-* **El menú d'idioma dins l'aplicació** ha desaparegut. Soundscape ara segueix l'idioma que teniu
-  configurat al telèfon, que és el que la majoria esperava. Per canviar-lo, canvieu l'idioma del
-  telèfon o definiu un idioma per aplicació a la seva configuració, si l'ofereix.
 
 ## Com informar-nos de problemes
 
