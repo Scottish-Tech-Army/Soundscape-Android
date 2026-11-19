@@ -8,10 +8,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import org.junit.Assert.assertEquals
@@ -343,10 +340,6 @@ class OfflineDownloaderTest {
             )
 
             val downloader = OfflineDownloader(createFileDownloader(httpClient))
-            val observedStates = mutableListOf<DownloadState>()
-            val collectJob = CoroutineScope(Dispatchers.Default).launch {
-                downloader.downloadState.collect { observedStates.add(it) }
-            }
 
             // extractSize of 10_000_000 makes waitBeforeRetry()'s first-attempt backoff exactly
             // one second (its estimate is extractSize / 10_000_000 seconds).
@@ -368,18 +361,18 @@ class OfflineDownloaderTest {
                 }
             }
             // Let the UK download's one-second backoff sleep finish, notice the cancellation,
-            // and write its belated Canceled state too.
+            // and (were it not joined first) write its belated Canceled state over Glasgow's
+            // Success.
             Thread.sleep(1_200)
-            collectJob.cancel()
 
-            val canceledIndex = observedStates.indexOfFirst { it is DownloadState.Canceled }
-            val successIndex = observedStates.indexOfFirst { it is DownloadState.Success }
-            assertTrue("expected a Canceled state, got $observedStates", canceledIndex >= 0)
-            assertTrue("expected a Success state, got $observedStates", successIndex >= 0)
-            assertTrue(
+            // Check the final value rather than collecting every state: downloadState is a
+            // StateFlow, which conflates, so the UK download's Canceled - immediately followed
+            // by Glasgow's Caching once the join returns - is often never seen by a collector.
+            assertEquals(
                 "the Glasgow download's Success must not be overwritten by the UK " +
-                    "download's belated Canceled state: $observedStates",
-                successIndex > canceledIndex,
+                    "download's belated Canceled state",
+                DownloadState.Success,
+                downloader.downloadState.value,
             )
         } finally {
             tempDir.deleteRecursively()
