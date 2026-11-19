@@ -36,14 +36,14 @@ class VoiceOptionsTest {
     fun appLocaleThenAppLanguageThenOtherLanguagesByName() {
         // Finnish before German: other languages go by their name in the app's language.
         val voices = listOf(
-            voice("fi-fi-x-a", Locale("fi", "FI")),
-            voice("en-us-x-b", Locale("en", "US")),
-            voice("de-de-x-c", Locale("de", "DE")),
-            voice("en-gb-x-b", Locale("en", "GB")),
-            voice("en-gb-x-a", Locale("en", "GB")),
+            voice("fi-fi-x-a", Locale.of("fi", "FI")),
+            voice("en-us-x-b", Locale.of("en", "US")),
+            voice("de-de-x-c", Locale.of("de", "DE")),
+            voice("en-gb-x-b", Locale.of("en", "GB")),
+            voice("en-gb-x-a", Locale.of("en", "GB")),
         )
 
-        val options = voiceOptions(voices, Locale("en", "GB"))
+        val options = voiceOptions(voices, Locale.of("en", "GB"))
 
         assertEquals(
             listOf("en-gb-x-a", "en-gb-x-b", "en-us-x-b", "fi-fi-x-a", "de-de-x-c"),
@@ -61,10 +61,10 @@ class VoiceOptionsTest {
         // Some engines report "eng_GBR" rather than "en_GB".
         val options = voiceOptions(
             listOf(
-                voice("other", Locale("fr", "FR")),
-                voice("three-letter", Locale("eng", "GBR")),
+                voice("other", Locale.of("fr", "FR")),
+                voice("three-letter", Locale.of("eng", "GBR")),
             ),
-            Locale("en", "GB"),
+            Locale.of("en", "GB"),
         )
 
         assertEquals("three-letter", options.first().identifier)
@@ -74,7 +74,7 @@ class VoiceOptionsTest {
     @Test
     fun languageNamesAreCapitalisedInTheAppLanguage() {
         // French writes language names in lower case ("anglais"), which reads oddly as a heading.
-        val options = voiceOptions(listOf(voice("v", Locale("en", "GB"))), Locale("fr", "FR"))
+        val options = voiceOptions(listOf(voice("v", Locale.of("en", "GB"))), Locale.of("fr", "FR"))
 
         assertEquals("Anglais (Royaume-Uni)", options.single().languageDisplayName)
     }
@@ -83,15 +83,15 @@ class VoiceOptionsTest {
     fun networkAndUndownloadedVoicesAreLeftOut() {
         val options = voiceOptions(
             listOf(
-                voice("local", Locale("en", "GB")),
-                voice("network", Locale("en", "GB"), networkRequired = true),
+                voice("local", Locale.of("en", "GB")),
+                voice("network", Locale.of("en", "GB"), networkRequired = true),
                 voice(
                     "missing",
-                    Locale("en", "GB"),
+                    Locale.of("en", "GB"),
                     features = setOf(TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED),
                 ),
             ),
-            Locale("en", "GB"),
+            Locale.of("en", "GB"),
         )
 
         assertEquals(listOf("local"), options.map { it.identifier })

@@ -1,3 +1,5 @@
+@file:OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+
 package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.geoengine.GridState
