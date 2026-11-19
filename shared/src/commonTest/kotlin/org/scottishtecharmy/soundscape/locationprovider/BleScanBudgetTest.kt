@@ -1,3 +1,5 @@
+@file:OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+
 package org.scottishtecharmy.soundscape.locationprovider
 
 import kotlinx.coroutines.launch

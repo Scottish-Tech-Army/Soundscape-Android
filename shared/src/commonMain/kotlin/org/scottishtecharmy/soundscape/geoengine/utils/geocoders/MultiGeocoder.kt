@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -193,6 +194,8 @@ class MultiGeocoder(
      * [accept] is applied to each answer before it's chosen, so that a caller which can't use an
      * answer - one which is somewhere else, say - gets the other one instead.
      */
+    // treeContext is a CloseableCoroutineDispatcher, which is still marked experimental
+    @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun getAddressFromLngLat(
         userGeometry: UserGeometry,
         localizedStrings: LocalizedStrings?,
