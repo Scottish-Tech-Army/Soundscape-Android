@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Weblate component | `androidkmp` |
-| Corpus at last sweep | 1522 units (2026-09-24) |
+| Corpus at last sweep | 1691 units (2026-11-19) |
 | Last native-speaker input | **none yet** |
 | Register | Formal «நீங்கள்» («நீங்கள் தயார்!»), `unconfirmed` |
 
@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-22. Callout is consistently the native «அறிவிப்பு» (65). The
 VoiceOver hints are «-க்க» infinitives that compose correctly with «%1$s
 இரட்டை தட்டவும்». One `agreed` grammar defect: TA-G1. Questions:
-`docs/translation-questions/questions-ta.md` (Q1…Q8).
+`docs/translation-questions/questions-ta.md` (Q1…Q12).
 
 ## Glossary
 
@@ -30,6 +30,7 @@ VoiceOver hints are «-க்க» infinitives that compose correctly with «%1$
 | Sleep / Snooze | உறக்கம் / ஸ்னூஸ் | `unconfirmed` | |
 | Detailed / Simplified / Essential / Silent | விரிவு / எளிமை / அத்தியாவசியம் / மௌனம் | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was விரிவு / சமநிலை / அமைதி / மௌனம் |
 | dead end | முட்டுச்சந்து | `unconfirmed` | |
+| app | செயலி | `unconfirmed` | Swept 2026-11-19: «பயன்பாடு» and «ஆப்ஸ்» retired except in fixed names such as «பயன்பாட்டு விதிமுறைகள்» (Terms of Use). See Q9 |
 
 ## Rules
 
@@ -53,6 +54,14 @@ See PL-C1.
 
 Marker is «குறிப்பான்» everywhere (nouns); «மார்க்கர்» and the noun «குறியிடம்» are retired. The verb «குறியிடு» ("to mark") stays. Check any new hint.
 
+### TA-G2 — The user is the subject of heading callouts (`agreed` defect, `unconfirmed` wording, fixed 2026-11-19)
+
+`directions_heading_*` and `directions_along_heading_*` said «…நோக்கிச் செல்கிறது» ("it is going"). They are about the user, so they now end in formal «செல்கிறீர்கள்». `directions_name_goes_*` («%1$s, இடதுபுறம் செல்கிறது») is about the road and keeps the neuter. `directions_along_facing_*` said «%1$s வழியாக» ("via"), wrong for someone standing still; now «%1$s இல்», as in `stationary_on_way`. See Q8.
+
+### TA-T3 — Labels vs "Double tap to" hints (`agreed`)
+
+Check the English comment, not the key name. The `location_detail_*full_screen*_hint` keys are button labels (read as the name), so they take the command form («…முழுத்திரையாக்கு»). `settings_keep_value` and `settings_use_value` follow "Double tap to", so they take the «-க்க» infinitive («வைத்திருக்க», «பயன்படுத்த»).
+
 ## Rejected
 
 Nothing yet.
@@ -66,7 +75,11 @@ Nothing yet.
 5. «%2$s நோக்கிச் செல்லும் %1$s» for "path to Moor Road"? (TA-G1)
 6. Is «நீங்கள்» right?
 7. **"Ahead" + road name** (`directions_ahead_road`, C24): «%1$s முன்னால்» since 2026-09-30, name first like «%1$s அருகில்» (AI choice; was «முன்னால் %1$s»). Natural by ear, or heard as "in front of the road"?
-8. Anything else.
+8. **Heading and facing callouts** (TA-G2): «%1$s வழியாக வடக்கு நோக்கிச் செல்கிறீர்கள்» and «%1$s இல் வடக்கு நோக்கி முகம்», both AI changes 2026-11-19. Natural by ear? Is «… நோக்கி முகம்» itself natural?
+9. **App** «செயலி» (swept 2026-11-19 over «பயன்பாடு» / «ஆப்ஸ்»): the word people use?
+10. **Transport place names**, AI changes 2026-11-19: Subway Station «சுரங்க ரயில் நிலையம்» (was the Tunnel word), Platform «நடைமேடை», Shelter «நிழற்குடை» (does it cover hiking shelters?), Pier «படகுத்துறை».
+11. **No fix found:** Parking and Parking Space are both «வாகன நிறுத்துமிடம்»; Racquet «ராக்கெட்» sounds like "rocket"; beacon style Drop «சொட்டு» is a drop of liquid, the sound is an object dropped on a hard floor.
+12. Anything else.
 
 ## Provenance
 
@@ -87,3 +100,11 @@ Most serious fixed:
 Held for a person: `confect_name_to` (reviewer: candidate); `terms_of_use_medical_safety_disclaimer` (legal text).
 
 **2026-09-30 — `osm_path` no longer shares the Routes word.** It said «பாதை», the same word as `routes_title`, so a footpath sounded like a route. Now «ஒற்றையடிப் பாதை», a footpath word (AI choice, `unconfirmed`). The English comment now says Path means a footpath and must not share a word with Routes.
+
+**2026-11-19 — full review of all 1691 units, no speaker involved.** 76 flagged, 70 applied in `518ce72af`. Findings: `translations/review/2026-11-19-ta/ta-findings.json`.
+- Heading callouts now take the user as subject, facing callouts lost «வழியாக» (TA-G2, 24 strings).
+- Unnamed train and tram lines name the track: «ரயில் பாதை», «டிராம் பாதை».
+- Labels and hints sorted by how they are read (TA-T3).
+- "App" swept to «செயலி»; typographic quotes restored in two strings; three search-synonym lists no longer list another category's word.
+- About 30 place types fixed, including handball (was the volleyball word), dive centre (was "submarine"), subway (was the Tunnel word), `osm_track` (was bare «பாதை», the Routes word), and three pairs that sounded the same (wine/alcohol, beauty/cosmetics, garages/car repair).
+Held for a person: `confect_name_to` (Q5), `terms_of_use_medical_safety_disclaimer` (legal text: «எனவே» misplaced in the last sentence), `first_launch_permissions_notification` (Q1), `beacon_styles_drop`, `osm_racquet`, `osm_parking_space` (Q11). Questionnaire Q8…Q11 added.

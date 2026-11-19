@@ -1,0 +1,534 @@
+[
+ {
+  "context": "location_detail_full_screen_hint",
+  "source": "Make the map full screen",
+  "current": "வரைபடத்தை முழுத்திரையாக்க",
+  "suggested": "வரைபடத்தை முழுத்திரையாக்கு",
+  "reason": "Tone/register: read as the button's name, not after 'Double tap to'; the «-க்க» infinitive is a dangling 'in order to' fragment, so use a command like the other buttons"
+ },
+ {
+  "context": "location_detail_exit_full_screen_hint",
+  "source": "Exit the full-screen map",
+  "current": "முழுத்திரை வரைபடத்திலிருந்து வெளியேற",
+  "suggested": "முழுத்திரை வரைபடத்திலிருந்து வெளியேறு",
+  "reason": "Tone/register: same label-vs-hint problem: infinitive «வெளியேற» should be the command «வெளியேறு»"
+ },
+ {
+  "context": "location_detail_full_screen_for_edit_hint",
+  "source": "Make the map full screen and edit the marker location",
+  "current": "வரைபடத்தை முழுத்திரையாக்கி குறிப்பானின் இருப்பிடத்தைத் திருத்த",
+  "suggested": "வரைபடத்தை முழுத்திரையாக்கி குறிப்பானின் இருப்பிடத்தைத் திருத்து",
+  "reason": "Tone/register: same label-vs-hint problem: infinitive «திருத்த» should be the command «திருத்து»"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: “%1$s”.\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "நான் ஒரு Soundscape குறிப்பானை உங்களுடன் பகிர்ந்துள்ளேன்: %1$s.\\n\\nSoundscape இல் திறக்க %2$s ஐப் பயன்படுத்தவும்.\\n\\n Google Maps இல் திறக்க %3$s ஐப் பயன்படுத்தவும்.",
+  "suggested": "நான் ஒரு Soundscape குறிப்பானை உங்களுடன் பகிர்ந்துள்ளேன்: “%1$s”.\\n\\nSoundscape இல் திறக்க %2$s ஐப் பயன்படுத்தவும்.\\n\\n Google Maps இல் திறக்க %3$s ஐப் பயன்படுத்தவும்.",
+  "reason": "Formatting: the typographic quotes around the marker name “%1$s” were dropped"
+ },
+ {
+  "context": "directions_generic_train",
+  "source": "train",
+  "current": "ரயில்",
+  "suggested": "ரயில் பாதை",
+  "reason": "Meaning: the note says to name the line/track, not the vehicle; «ரயில்» is the train itself, so «%1$s இல்» says 'in train'"
+ },
+ {
+  "context": "directions_generic_tram",
+  "source": "tram",
+  "current": "டிராம்",
+  "suggested": "டிராம் பாதை",
+  "reason": "Meaning: same as directions_generic_train: the note asks for the line/track, not the vehicle"
+ },
+ {
+  "context": "beacon_styles_mallet",
+  "source": "Mallet",
+  "current": "மட்டகம்",
+  "suggested": "மரச்சுத்தி",
+  "reason": "Meaning: «மட்டகம்» isn't a recognisable word for a xylophone mallet («மட்டம்» means level); «மரச்சுத்தி» (wooden hammer). If changed, update the (Slow)/(Very Slow) variants to match"
+ },
+ {
+  "context": "beacon_styles_drop",
+  "source": "Drop",
+  "current": "சொட்டு",
+  "suggested": "சொட்டு",
+  "reason": "Meaning (human look): «சொட்டு» is a drop of liquid, but the note says it is the sound of an object dropped on a hard floor; the name may still work, so a speaker should check"
+ },
+ {
+  "context": "directions_heading_n",
+  "source": "Heading north",
+  "current": "வடக்கு நோக்கிச் செல்கிறது",
+  "suggested": "வடக்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: «செல்கிறது» is 3rd-person neuter ('it is going'); the subject is the user, formal «செல்கிறீர்கள்»"
+ },
+ {
+  "context": "directions_heading_ne",
+  "source": "Heading northeast",
+  "current": "வடகிழக்கு நோக்கிச் செல்கிறது",
+  "suggested": "வடகிழக்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: «செல்கிறது» is 3rd-person neuter ('it is going'); the subject is the user, formal «செல்கிறீர்கள்»"
+ },
+ {
+  "context": "directions_heading_e",
+  "source": "Heading east",
+  "current": "கிழக்கு நோக்கிச் செல்கிறது",
+  "suggested": "கிழக்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: «செல்கிறது» is 3rd-person neuter ('it is going'); the subject is the user, formal «செல்கிறீர்கள்»"
+ },
+ {
+  "context": "directions_heading_se",
+  "source": "Heading southeast",
+  "current": "தென்கிழக்கு நோக்கிச் செல்கிறது",
+  "suggested": "தென்கிழக்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: «செல்கிறது» is 3rd-person neuter ('it is going'); the subject is the user, formal «செல்கிறீர்கள்»"
+ },
+ {
+  "context": "directions_heading_s",
+  "source": "Heading south",
+  "current": "தெற்கு நோக்கிச் செல்கிறது",
+  "suggested": "தெற்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: «செல்கிறது» is 3rd-person neuter ('it is going'); the subject is the user, formal «செல்கிறீர்கள்»"
+ },
+ {
+  "context": "directions_heading_sw",
+  "source": "Heading southwest",
+  "current": "தென்மேற்கு நோக்கிச் செல்கிறது",
+  "suggested": "தென்மேற்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: «செல்கிறது» is 3rd-person neuter ('it is going'); the subject is the user, formal «செல்கிறீர்கள்»"
+ },
+ {
+  "context": "directions_heading_w",
+  "source": "Heading west",
+  "current": "மேற்கு நோக்கிச் செல்கிறது",
+  "suggested": "மேற்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: «செல்கிறது» is 3rd-person neuter ('it is going'); the subject is the user, formal «செல்கிறீர்கள்»"
+ },
+ {
+  "context": "directions_heading_nw",
+  "source": "Heading northwest",
+  "current": "வடமேற்கு நோக்கிச் செல்கிறது",
+  "suggested": "வடமேற்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: «செல்கிறது» is 3rd-person neuter ('it is going'); the subject is the user, formal «செல்கிறீர்கள்»"
+ },
+ {
+  "context": "directions_along_heading_n",
+  "source": "Heading north along %1$s",
+  "current": "%1$s வழியாக வடக்கு நோக்கிச் செல்கிறது",
+  "suggested": "%1$s வழியாக வடக்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: neuter «செல்கிறது» for the user; formal «செல்கிறீர்கள்» (same fix as directions_heading_*)"
+ },
+ {
+  "context": "directions_along_heading_ne",
+  "source": "Heading northeast along %1$s",
+  "current": "%1$s வழியாக வடகிழக்கு நோக்கிச் செல்கிறது",
+  "suggested": "%1$s வழியாக வடகிழக்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: neuter «செல்கிறது» for the user; formal «செல்கிறீர்கள்» (same fix as directions_heading_*)"
+ },
+ {
+  "context": "directions_along_heading_e",
+  "source": "Heading east along %1$s",
+  "current": "%1$s வழியாக கிழக்கு நோக்கிச் செல்கிறது",
+  "suggested": "%1$s வழியாக கிழக்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: neuter «செல்கிறது» for the user; formal «செல்கிறீர்கள்» (same fix as directions_heading_*)"
+ },
+ {
+  "context": "directions_along_heading_se",
+  "source": "Heading southeast along %1$s",
+  "current": "%1$s வழியாக தென்கிழக்கு நோக்கிச் செல்கிறது",
+  "suggested": "%1$s வழியாக தென்கிழக்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: neuter «செல்கிறது» for the user; formal «செல்கிறீர்கள்» (same fix as directions_heading_*)"
+ },
+ {
+  "context": "directions_along_heading_s",
+  "source": "Heading south along %1$s",
+  "current": "%1$s வழியாக தெற்கு நோக்கிச் செல்கிறது",
+  "suggested": "%1$s வழியாக தெற்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: neuter «செல்கிறது» for the user; formal «செல்கிறீர்கள்» (same fix as directions_heading_*)"
+ },
+ {
+  "context": "directions_along_heading_sw",
+  "source": "Heading southwest along %1$s",
+  "current": "%1$s வழியாக தென்மேற்கு நோக்கிச் செல்கிறது",
+  "suggested": "%1$s வழியாக தென்மேற்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: neuter «செல்கிறது» for the user; formal «செல்கிறீர்கள்» (same fix as directions_heading_*)"
+ },
+ {
+  "context": "directions_along_heading_w",
+  "source": "Heading west along %1$s",
+  "current": "%1$s வழியாக மேற்கு நோக்கிச் செல்கிறது",
+  "suggested": "%1$s வழியாக மேற்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: neuter «செல்கிறது» for the user; formal «செல்கிறீர்கள்» (same fix as directions_heading_*)"
+ },
+ {
+  "context": "directions_along_heading_nw",
+  "source": "Heading northwest along %1$s",
+  "current": "%1$s வழியாக வடமேற்கு நோக்கிச் செல்கிறது",
+  "suggested": "%1$s வழியாக வடமேற்கு நோக்கிச் செல்கிறீர்கள்",
+  "reason": "Tone/register: neuter «செல்கிறது» for the user; formal «செல்கிறீர்கள்» (same fix as directions_heading_*)"
+ },
+ {
+  "context": "directions_along_facing_n",
+  "source": "Facing north along %1$s",
+  "current": "%1$s வழியாக வடக்கு நோக்கி முகம்",
+  "suggested": "%1$s இல் வடக்கு நோக்கி முகம்",
+  "reason": "Meaning: «வழியாக» is 'via/by way of', wrong for a stationary user facing along a road; «%1$s இல்» as in stationary_on_way"
+ },
+ {
+  "context": "directions_along_facing_ne",
+  "source": "Facing northeast along %1$s",
+  "current": "%1$s வழியாக வடகிழக்கு நோக்கி முகம்",
+  "suggested": "%1$s இல் வடகிழக்கு நோக்கி முகம்",
+  "reason": "Meaning: «வழியாக» is 'via/by way of', wrong for a stationary user facing along a road; «%1$s இல்» as in stationary_on_way"
+ },
+ {
+  "context": "directions_along_facing_e",
+  "source": "Facing east along %1$s",
+  "current": "%1$s வழியாக கிழக்கு நோக்கி முகம்",
+  "suggested": "%1$s இல் கிழக்கு நோக்கி முகம்",
+  "reason": "Meaning: «வழியாக» is 'via/by way of', wrong for a stationary user facing along a road; «%1$s இல்» as in stationary_on_way"
+ },
+ {
+  "context": "directions_along_facing_se",
+  "source": "Facing southeast along %1$s",
+  "current": "%1$s வழியாக தென்கிழக்கு நோக்கி முகம்",
+  "suggested": "%1$s இல் தென்கிழக்கு நோக்கி முகம்",
+  "reason": "Meaning: «வழியாக» is 'via/by way of', wrong for a stationary user facing along a road; «%1$s இல்» as in stationary_on_way"
+ },
+ {
+  "context": "directions_along_facing_s",
+  "source": "Facing south along %1$s",
+  "current": "%1$s வழியாக தெற்கு நோக்கி முகம்",
+  "suggested": "%1$s இல் தெற்கு நோக்கி முகம்",
+  "reason": "Meaning: «வழியாக» is 'via/by way of', wrong for a stationary user facing along a road; «%1$s இல்» as in stationary_on_way"
+ },
+ {
+  "context": "directions_along_facing_sw",
+  "source": "Facing southwest along %1$s",
+  "current": "%1$s வழியாக தென்மேற்கு நோக்கி முகம்",
+  "suggested": "%1$s இல் தென்மேற்கு நோக்கி முகம்",
+  "reason": "Meaning: «வழியாக» is 'via/by way of', wrong for a stationary user facing along a road; «%1$s இல்» as in stationary_on_way"
+ },
+ {
+  "context": "directions_along_facing_w",
+  "source": "Facing west along %1$s",
+  "current": "%1$s வழியாக மேற்கு நோக்கி முகம்",
+  "suggested": "%1$s இல் மேற்கு நோக்கி முகம்",
+  "reason": "Meaning: «வழியாக» is 'via/by way of', wrong for a stationary user facing along a road; «%1$s இல்» as in stationary_on_way"
+ },
+ {
+  "context": "directions_along_facing_nw",
+  "source": "Facing northwest along %1$s",
+  "current": "%1$s வழியாக வடமேற்கு நோக்கி முகம்",
+  "suggested": "%1$s இல் வடமேற்கு நோக்கி முகம்",
+  "reason": "Meaning: «வழியாக» is 'via/by way of', wrong for a stationary user facing along a road; «%1$s இல்» as in stationary_on_way"
+ },
+ {
+  "context": "first_launch_prompt_button",
+  "source": "Finish",
+  "current": "முடி",
+  "suggested": "முடிக்கவும்",
+  "reason": "Tone/register: bare «முடி» is informal and by ear is also the noun 'hair'; polite «முடிக்கவும்» like «தொடரவும்»"
+ },
+ {
+  "context": "faq_difference_from_map_apps_question",
+  "source": "How is Soundscape different from other map apps?",
+  "current": "Soundscape மற்ற வரைபடப் பயன்பாடுகளிலிருந்து எவ்வாறு வேறுபடுகிறது?",
+  "suggested": "Soundscape மற்ற வரைபடச் செயலிகளிலிருந்து எவ்வாறு வேறுபடுகிறது?",
+  "reason": "Terminology: 'app' is «பயன்பாடு» here but «செயலி» in the answer and corpus"
+ },
+ {
+  "context": "help_text_assistant_notes_ios",
+  "source": "The commands also appear in the Shortcuts app, and in the iOS Settings app under *Siri*. There you can see the whole list and add your own wording for any command.",
+  "current": "இந்தக் கட்டளைகள் Shortcuts ஆப்ஸிலும், iOS இன் Settings ஆப்ஸில் *Siri* பகுதியிலும் தோன்றும். அங்கே முழுப் பட்டியலையும் பார்க்கலாம், எந்தக் கட்டளைக்கும் உங்கள் சொந்தச் சொற்களைச் சேர்க்கலாம்.",
+  "suggested": "இந்தக் கட்டளைகள் Shortcuts செயலியிலும், iOS இன் Settings செயலியில் *Siri* பகுதியிலும் தோன்றும். அங்கே முழுப் பட்டியலையும் பார்க்கலாம், எந்தக் கட்டளைக்கும் உங்கள் சொந்தச் சொற்களைச் சேர்க்கலாம்.",
+  "reason": "Terminology: colloquial «ஆப்ஸ்» for 'app'; corpus uses «செயலி»"
+ },
+ {
+  "context": "first_launch_permissions_required_for_voice_control",
+  "source": "This permission is optional, but is required if you want to use voice commands to control the app",
+  "current": "இந்த அனுமதி விருப்பமானது, ஆனால் பயன்பாட்டைக் கட்டுப்படுத்த குரல் கட்டளைகளைப் பயன்படுத்த விரும்பினால் இது அவசியம்",
+  "suggested": "இந்த அனுமதி விருப்பமானது, ஆனால் செயலியைக் கட்டுப்படுத்த குரல் கட்டளைகளைப் பயன்படுத்த விரும்பினால் இது அவசியம்",
+  "reason": "Terminology: 'app' as «பயன்பாடு»; corpus uses «செயலி»"
+ },
+ {
+  "context": "terms_of_use_message",
+  "source": "Your use of Soundscape is subject to the terms of the %1$s and the terms set out below (together, the *“Terms of Use”*).",
+  "current": "Soundscape-ஐ நீங்கள் பயன்படுத்துவது %1$s-இன் விதிமுறைகளுக்கும் கீழே கூறப்பட்டுள்ள விதிமுறைகளுக்கும் (இணைந்து, *பயன்பாட்டு விதிமுறைகள்*) உட்பட்டது.",
+  "suggested": "Soundscape-ஐ நீங்கள் பயன்படுத்துவது %1$s-இன் விதிமுறைகளுக்கும் கீழே கூறப்பட்டுள்ள விதிமுறைகளுக்கும் (இணைந்து, *“பயன்பாட்டு விதிமுறைகள்”*) உட்பட்டது.",
+  "reason": "Formatting: typographic quotes inside *…* dropped"
+ },
+ {
+  "context": "first_launch_permissions_notification",
+  "source": "Notifications",
+  "current": "அறிவிப்புகள்",
+  "suggested": "அறிவிப்புகள்",
+  "reason": "Terminology (human look): Android's word for Notifications is the same «அறிவிப்புகள்» used for Callouts across the app (ta.md Q1); collision on the permissions screen"
+ },
+ {
+  "context": "terms_of_use_medical_safety_disclaimer",
+  "source": "You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\\n\\nSafety Notice\\n\\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.",
+  "current": "Soundscape (1) ஒரு மருத்துவ சாதனமாக வடிவமைக்கப்படவில்லை, நோக்கம் கொள்ளப்படவில்லை அல்லது கிடைக்கச் செய்யப்படவில்லை என்றும், (2) தொழில்முறை மருத்துவ ஆலோசனை, நோயறிதல், சிகிச்சை அல்லது தீர்ப்புக்கு மாற்றாக வடிவமைக்கப்படவில்லை அல்லது நோக்கம் கொள்ளப்படவில்லை என்றும், தொழில்முறை மருத்துவ ஆலோசனை, நோயறிதல், சிகிச்சை அல்லது தீர்ப்புக்குப் பதிலாகவோ மாற்றாகவோ பயன்படுத்தப்படக் கூடாது என்றும் நீங்கள் ஒப்புக்கொள்கிறீர்கள்.\\n\\nபாதுகாப்பு அறிவிப்பு\\n\\nSoundscape ஒரு வழிசெலுத்தல் உதவியாகும், மேலும் இயக்கத் திறன்கள், உங்கள் சுற்றுப்புறத்தை உணர்ந்திருத்தல் மற்றும் நல்ல முடிவெடுத்தலுக்குப் பதிலாகப் பயன்படுத்தப்படக் கூடாது. Soundscape திட்டத்தில் இணைக்கப்பட்டுள்ள வரைபடத் தரவு மூன்றாம் தரப்பு திட்டத்திலிருந்து பெறப்பட்டதால், உங்கள் சுற்றுப்புறத்தில் வழிசெலுத்தும்போது எச்சரிக்கையாக இருங்கள், எனவே வழங்கப்படும் தகவலின் துல்லியத்தில் வரம்புகள் இருக்கக்கூடும்.",
+  "suggested": "Soundscape (1) ஒரு மருத்துவ சாதனமாக வடிவமைக்கப்படவில்லை, நோக்கம் கொள்ளப்படவில்லை அல்லது கிடைக்கச் செய்யப்படவில்லை என்றும், (2) தொழில்முறை மருத்துவ ஆலோசனை, நோயறிதல், சிகிச்சை அல்லது தீர்ப்புக்கு மாற்றாக வடிவமைக்கப்படவில்லை அல்லது நோக்கம் கொள்ளப்படவில்லை என்றும், தொழில்முறை மருத்துவ ஆலோசனை, நோயறிதல், சிகிச்சை அல்லது தீர்ப்புக்குப் பதிலாகவோ மாற்றாகவோ பயன்படுத்தப்படக் கூடாது என்றும் நீங்கள் ஒப்புக்கொள்கிறீர்கள்.\\n\\nபாதுகாப்பு அறிவிப்பு\\n\\nSoundscape ஒரு வழிசெலுத்தல் உதவியாகும், மேலும் இயக்கத் திறன்கள், உங்கள் சுற்றுப்புறத்தை உணர்ந்திருத்தல் மற்றும் நல்ல முடிவெடுத்தலுக்குப் பதிலாகப் பயன்படுத்தப்படக் கூடாது. Soundscape திட்டத்தில் இணைக்கப்பட்டுள்ள வரைபடத் தரவு மூன்றாம் தரப்பு திட்டத்திலிருந்து பெறப்பட்டதால், உங்கள் சுற்றுப்புறத்தில் வழிசெலுத்தும்போது எச்சரிக்கையாக இருங்கள், எனவே வழங்கப்படும் தகவலின் துல்லியத்தில் வரம்புகள் இருக்கக்கூடும்.",
+  "reason": "Meaning (human look, legal text held): last sentence puts «எனவே» after the caution clause, so 'therefore there may be limitations' follows 'be careful' instead of the third-party data"
+ },
+ {
+  "context": "settings_keep_value",
+  "source": "keep",
+  "current": "வைத்திரு",
+  "suggested": "வைத்திருக்க",
+  "reason": "Tone/hint form: imperative, but ta hints are «-க்க» infinitives composing with «%1$s இரட்டை தட்டவும்»"
+ },
+ {
+  "context": "settings_use_value",
+  "source": "use",
+  "current": "பயன்படுத்து",
+  "suggested": "பயன்படுத்த",
+  "reason": "Tone/hint form: imperative, but ta hints are «-க்க» infinitives composing with «%1$s இரட்டை தட்டவும்»"
+ },
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%1$s முதல் %2$s வரை",
+  "suggested": "%1$s முதல் %2$s வரை",
+  "reason": "Meaning (TA-G1/C10): says \"from X up to Y\"; _via already uses the «நோக்கிச் செல்லும்» candidate (held for a person) [held for a person per ta.md; candidate: %2$s நோக்கிச் செல்லும் %1$s]"
+ },
+ {
+  "context": "settings_mix_audio",
+  "source": "Mix audio with other apps",
+  "current": "மற்ற பயன்பாடுகளுடன் ஆடியோவைக் கலக்கு",
+  "suggested": "மற்ற செயலிகளுடன் ஆடியோவைக் கலக்கு",
+  "reason": "Terminology: \"app\" is «செயலி» elsewhere (31x) vs «பயன்பாடு» here"
+ },
+ {
+  "context": "settings_mix_audio_description",
+  "source": "When disabled, other audio apps will pause and lock screen media controls will be available",
+  "current": "முடக்கப்பட்டால், மற்ற ஆடியோ பயன்பாடுகள் இடைநிறுத்தப்படும், மேலும் பூட்டுத் திரை மீடியா கட்டுப்பாடுகள் கிடைக்கும்",
+  "suggested": "முடக்கப்பட்டால், மற்ற ஆடியோ செயலிகள் இடைநிறுத்தப்படும், மேலும் பூட்டுத் திரை மீடியா கட்டுப்பாடுகள் கிடைக்கும்",
+  "reason": "Terminology: \"app\" is «செயலி» elsewhere vs «பயன்பாடு» here"
+ },
+ {
+  "context": "settings_reset_button_hint",
+  "source": "reset the settings to their defaults and then restart the app.",
+  "current": "அமைப்புகளை இயல்புநிலைக்கு மீட்டமைத்து பயன்பாட்டை மறுதொடக்கம் செய்ய.",
+  "suggested": "அமைப்புகளை இயல்புநிலைக்கு மீட்டமைத்து செயலியை மறுதொடக்கம் செய்ய.",
+  "reason": "Terminology: \"app\" is «செயலி» elsewhere vs «பயன்பாட்டை» here"
+ },
+ {
+  "context": "osm_garages",
+  "source": "Garages",
+  "current": "வாகனப் பணிமனைகள்",
+  "suggested": "வாகன நிறுத்தக் கொட்டகைகள்",
+  "reason": "Meaning: says 'vehicle workshops'; note says lock-up parking garages, not repair (that is car_repair)."
+ },
+ {
+  "context": "osm_trade",
+  "source": "Trade Shop",
+  "current": "வணிகக் கடை",
+  "suggested": "கட்டுமானப் பொருட்கள் கடை",
+  "reason": "Meaning: 'commercial shop' is generic; note says builders' merchant / trade supplier, not a general shop."
+ },
+ {
+  "context": "osm_wine",
+  "source": "Wine Shop",
+  "current": "மது கடை",
+  "suggested": "ஒயின் கடை",
+  "reason": "Meaning/terminology: identical to osm_alcohol «மது கடை»; Wine Shop should say wine, as osm_winery «ஒயின்» does."
+ },
+ {
+  "context": "osm_beauty",
+  "source": "Beauty Shop",
+  "current": "அழகுசாதனப் பொருட்கள் கடை",
+  "suggested": "அழகு நிலையம்",
+  "reason": "Meaning: identical to osm_cosmetics; shop=beauty is a beauty salon, so the two are indistinguishable by ear."
+ },
+ {
+  "context": "osm_herbalist",
+  "source": "Herbalist Shop",
+  "current": "மூலிகை மருத்துவர் கடை",
+  "suggested": "மூலிகைக் கடை",
+  "reason": "Meaning: 'herbal doctor's shop'; source is a shop selling herbs."
+ },
+ {
+  "context": "osm_handball",
+  "source": "Handball",
+  "current": "கைப்பந்து",
+  "suggested": "எறிபந்து",
+  "reason": "Meaning/terminology: «கைப்பந்து» is volleyball in Tamil (and osm_pitch_volleyball uses it); osm_pitch_handball already uses «எறிபந்து»"
+ },
+ {
+  "context": "osm_dive_centre",
+  "source": "Dive Centre",
+  "current": "நீர்மூழ்கி மையம்",
+  "suggested": "நீர்மூழ்கல் மையம்",
+  "reason": "Meaning: «நீர்மூழ்கி» is a submarine; osm_diving uses «நீர்மூழ்கல்» (diving)"
+ },
+ {
+  "context": "osm_distillery",
+  "source": "Distillery",
+  "current": "மது வடிகட்டும் ஆலை",
+  "suggested": "மது வடிப்பாலை",
+  "reason": "Meaning: «வடிகட்டு» means filter, not distil; the usual term is «வடிப்பாலை»"
+ },
+ {
+  "context": "osm_planetarium",
+  "source": "Planetarium",
+  "current": "நட்சத்திர அரங்கம்",
+  "suggested": "கோளரங்கம்",
+  "reason": "Meaning/terminology: «கோளரங்கம்» is the established Tamil word for planetarium; current is a calque ('star theatre')"
+ },
+ {
+  "context": "osm_track",
+  "source": "Track",
+  "current": "பாதை",
+  "suggested": "ஓட்டப் பாதை",
+  "reason": "Terminology: bare «பாதை» is the Routes word (routes_title «பாதைகள்»), the clash osm_path was renamed to avoid; this is leisure=track (racing/athletics), matching osm_running «ஓட்டப் பாதை»"
+ },
+ {
+  "context": "osm_scaffolder",
+  "source": "Scaffolder",
+  "current": "மேடை அமைப்பாளர்",
+  "suggested": "சாரம் கட்டுபவர்",
+  "reason": "Meaning: «மேடை அமைப்பாளர்» reads as 'stage setter'; scaffolding is «சாரம்»"
+ },
+ {
+  "context": "osm_sailmaker",
+  "source": "Sailmaker",
+  "current": "பாய் தயாரிப்பாளர்",
+  "suggested": "கப்பல் பாய் தயாரிப்பாளர்",
+  "reason": "Meaning: bare «பாய்» is heard first as a (sleeping) mat; qualify it as a ship's sail"
+ },
+ {
+  "context": "osm_pier",
+  "source": "Pier",
+  "current": "கப்பல் தளம்",
+  "suggested": "படகுத்துறை",
+  "reason": "Meaning: «கப்பல் தளம்» suggests a ship's deck; a pier/jetty is «படகுத்துறை» (human check: «கடல் பாலம்» is also used)"
+ },
+ {
+  "context": "osm_general",
+  "source": "General Store",
+  "current": "பொது கடை",
+  "suggested": "பலசரக்குக் கடை",
+  "reason": "Meaning: «பொது» here reads as 'public' (as in பொது பூங்கா, பொது வசதி); a general store is «பலசரக்குக் கடை»"
+ },
+ {
+  "context": "osm_electrician",
+  "source": "Electrician",
+  "current": "மின்சாரக்காரர்",
+  "suggested": "மின் பணியாளர்",
+  "reason": "Meaning/register: «மின்சாரக்காரர்» is an unnatural coinage; «மின் பணியாளர்» (or loan எலக்ட்ரீஷியன்) is what people say"
+ },
+ {
+  "context": "osm_generator",
+  "source": "Generator",
+  "current": "மின் இயந்திரம்",
+  "suggested": "மின்னாக்கி",
+  "reason": "Meaning: «மின் இயந்திரம்» is any electric machine/motor; generator is «மின்னாக்கி»"
+ },
+ {
+  "context": "osm_9pin",
+  "source": "9-Pin",
+  "current": "9-பின் பந்து வீழ்த்தி",
+  "suggested": "9-பின் பௌலிங்",
+  "reason": "Meaning: «பந்து வீழ்த்தி» reads as 'ball knocker-down', not the bowling game"
+ },
+ {
+  "context": "osm_surfing",
+  "source": "Surfing Area",
+  "current": "சர்பிங் பகுதி",
+  "suggested": "சர்ஃபிங் பகுதி",
+  "reason": "Terminology: spelling inconsistent with osm_kitesurfing «சர்ஃபிங்»"
+ },
+ {
+  "context": "osm_racquet",
+  "source": "Racquet Sports Facility",
+  "current": "ராக்கெட் விளையாட்டு மையம்",
+  "suggested": "ராக்கெட் விளையாட்டு மையம்",
+  "reason": "Meaning (human look): «ராக்கெட்» by ear is also 'rocket'; a native wording for racquet sports may be clearer"
+ },
+ {
+  "context": "osm_subway",
+  "source": "Subway Station",
+  "current": "சுரங்கப்பாதை நிலையம்",
+  "suggested": "சுரங்க ரயில் நிலையம்",
+  "reason": "Meaning: சுரங்கப்பாதை is the app's word for Tunnel (osm_tunnel) and also means a pedestrian underpass, so this reads as 'tunnel/underpass station'; name the underground railway"
+ },
+ {
+  "context": "osm_subway_named",
+  "source": "%1$s Subway Station",
+  "current": "%1$s சுரங்கப்பாதை நிலையம்",
+  "suggested": "%1$s சுரங்க ரயில் நிலையம்",
+  "reason": "Meaning: same as osm_subway, keep the pair consistent"
+ },
+ {
+  "context": "osm_subway_entrance",
+  "source": "Subway Entrance",
+  "current": "சுரங்கப்பாதை நுழைவாயில்",
+  "suggested": "சுரங்க ரயில் நிலைய நுழைவாயில்",
+  "reason": "Meaning: heard as 'tunnel/underpass entrance', not a metro station entrance"
+ },
+ {
+  "context": "osm_platform",
+  "source": "Platform",
+  "current": "தளம்",
+  "suggested": "நடைமேடை",
+  "reason": "Meaning: தளம் means floor/site/base; the boarding platform beside tracks is நடைமேடை"
+ },
+ {
+  "context": "osm_barracks",
+  "source": "Barracks",
+  "current": "படைவீடு",
+  "suggested": "இராணுவ முகாம்",
+  "reason": "Meaning: படைவீடு is mainly heard as a temple-abode word (அறுபடைவீடு); military barracks is usually இராணுவ முகாம்"
+ },
+ {
+  "context": "osm_shelter",
+  "source": "Shelter",
+  "current": "தங்குமிடம்",
+  "suggested": "நிழற்குடை",
+  "reason": "Meaning: தங்குமிடம் means lodging/accommodation; a weather/bus shelter is நிழற்குடை (needs a human check for hiking shelters)"
+ },
+ {
+  "context": "osm_parking_space",
+  "source": "Parking Space",
+  "current": "வாகன நிறுத்துமிடம்",
+  "suggested": "வாகன நிறுத்துமிடம்",
+  "reason": "Terminology: identical to osm_parking (car park), so a single bay and a car park sound the same; needs a distinct word (human look)"
+ },
+ {
+  "context": "tour_markers_and_routes",
+  "source": "You have now successfully created a marker. Let's play an audio beacon to guide us to that location. Tap Markers, just below Places Nearby.",
+  "current": "நீங்கள் இப்போது வெற்றிகரமாக ஒரு குறிப்பானை உருவாக்கியுள்ளீர்கள். அந்த இடத்திற்கு நம்மை வழிநடத்த ஒரு ஒலி பீக்கனை இயக்குவோம். 'அருகிலுள்ள இடங்கள்' கீழே உள்ள 'குறிப்பான்கள்' என்பதைத் தட்டவும்.",
+  "suggested": "நீங்கள் இப்போது வெற்றிகரமாக ஒரு குறிப்பானை உருவாக்கியுள்ளீர்கள். அந்த இடத்திற்கு நம்மை வழிநடத்த ஒரு ஒலி பீக்கனை இயக்குவோம். 'அருகிலுள்ள இடங்கள்' என்பதற்குக் கீழே உள்ள 'குறிப்பான்கள்' என்பதைத் தட்டவும்.",
+  "reason": "Meaning/grammar: «'…' கீழே» lacks the dative, so 'just below Places Nearby' doesn't parse"
+ },
+ {
+  "context": "voice_cmd_listening",
+  "source": "Listening…",
+  "current": "கேட்கிறது…",
+  "suggested": "கேட்டுக்கொண்டிருக்கிறது…",
+  "reason": "Meaning: கேட்கிறது is ambiguous ('asks' or 'hears'); the progressive makes 'listening now' clear by ear"
+ },
+ {
+  "context": "search_synonyms_doctors",
+  "source": "doctor, doctors, GP, surgery, medical centre, clinic",
+  "current": "மருத்துவர், டாக்டர், கிளினிக், மருத்துவமனை, சுகாதார நிலையம்",
+  "suggested": "மருத்துவர், டாக்டர், கிளினிக், சுகாதார நிலையம்",
+  "reason": "Meaning: மருத்துவமனை (hospital) is also in search_synonyms_hospital; searching 'hospital' could match doctors' clinics"
+ },
+ {
+  "context": "search_synonyms_bus_stop",
+  "source": "bus stop",
+  "current": "பேருந்து நிறுத்தம், பஸ் ஸ்டாப், பேருந்து நிலையம்",
+  "suggested": "பேருந்து நிறுத்தம், பஸ் ஸ்டாப்",
+  "reason": "Meaning: பேருந்து நிலையம் is the app's Bus Station (osm_bus_station), a different category"
+ },
+ {
+  "context": "search_synonyms_playground",
+  "source": "playground",
+  "current": "விளையாட்டு மைதானம், சிறுவர் பூங்கா",
+  "suggested": "சிறுவர் பூங்கா, குழந்தைகள் விளையாட்டு இடம்",
+  "reason": "Meaning: விளையாட்டு மைதானம் is a sports ground (it is osm_recreation_ground); osm_playground is குழந்தைகள் விளையாட்டு இடம்"
+ }
+]
