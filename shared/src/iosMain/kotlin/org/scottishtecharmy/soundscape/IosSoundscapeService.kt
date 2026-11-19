@@ -582,6 +582,24 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         startGeoEngine(streetPreviewEnabled = on)
     }
 
+    /**
+     * The user has switched the app's language without relaunching it (see IosAppLanguage.kt).
+     * Callout text needs nothing: ComposeLocalizedStrings looks each string up in the current
+     * language as it's spoken. The one thing fixed at start is which name translation the tiles
+     * are read with (GeoEngine.getNameTranslationKeys), so restart the geo engine to reload them,
+     * the same way leaving street preview does.
+     *
+     * Not while the start is still held back for onboarding or the splash clip - it reads the
+     * new language when it does start - and not in street preview, which restarts the engine,
+     * and so picks up the language, when the user leaves it.
+     */
+    fun onAppLanguageChanged() {
+        audioEngine.clearTextToSpeechQueue()
+        if (!geoEngineStarted) return
+        if (_streetPreviewFlow.value.enabled != StreetPreviewEnabled.OFF) return
+        setStreetPreviewMode(false, null)
+    }
+
     override fun streetPreviewGo() {
         val choices = geoEngine.streetPreviewGo()
         _streetPreviewFlow.value =

@@ -119,6 +119,12 @@ data class AppCallbacks(
      * has none of its own. Null when the platform hasn't wired it up.
      */
     val onGetOfflineAddress: (suspend (LngLatAlt) -> LocationDescription?)? = null,
+    /**
+     * Applies the user's per-app language choice (a BCP 47 tag such as "fr-FR", or null to
+     * follow the phone), from the Settings language picker and the onboarding language screen.
+     * Android recreates the activity; iOS switches in place, see IosAppLanguage.kt.
+     */
+    val onSetApplicationLocale: (String?) -> Unit = {},
     val onGetLanguageMismatch: () -> Language? = { null },
     val provideLocationProvider: (() -> LocationProvider)? = null,
     val getOpenSourceLicensesJson: (() -> String)? = null,

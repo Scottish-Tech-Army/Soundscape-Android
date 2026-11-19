@@ -148,6 +148,7 @@ fun SharedNavHost(
                             popUpTo(SharedRoutes.ONBOARDING) { inclusive = true }
                         }
                     },
+                    onSetApplicationLocale = callbacks.onSetApplicationLocale,
                 )
             }
         }
@@ -699,6 +700,7 @@ fun SharedNavHost(
                             }
                         }
                     } else null,
+                    onSetApplicationLocale = callbacks.onSetApplicationLocale,
                     onBeaconPreviewStart = callbacks.onBeaconPreviewStart,
                     onBeaconPreviewUpdate = callbacks.onBeaconPreviewUpdate,
                     onBeaconPreviewStop = callbacks.onBeaconPreviewStop,

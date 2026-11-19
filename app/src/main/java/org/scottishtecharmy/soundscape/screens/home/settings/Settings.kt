@@ -40,6 +40,7 @@ fun Settings(
     selectedStorageIndex: Int,
     headTrackerState: HeadTrackerState? = null,
     onResetSettings: (() -> Unit)?,
+    onSetApplicationLocale: ((String?) -> Unit)? = null,
     onBeaconPreviewStart: ((String) -> Unit)? = null,
     onBeaconPreviewUpdate: ((String) -> Unit)? = null,
     onBeaconPreviewStop: ((Boolean, String?) -> Unit)? = null,
@@ -87,6 +88,7 @@ fun Settings(
             navController.navigate(SharedRoutes.ADVANCED_MARKERS_AND_ROUTES_SETTINGS)
         },
         onResetSettings = onResetSettings,
+        onSetApplicationLocale = onSetApplicationLocale,
         onBeaconPreviewStart = onBeaconPreviewStart,
         onBeaconPreviewUpdate = onBeaconPreviewUpdate,
         onBeaconPreviewStop = onBeaconPreviewStop,
