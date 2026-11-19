@@ -157,19 +157,6 @@ fun getMetadata(pmtilesPath: String): Feature? {
 }
 
 /**
- * Delete the .geojson metadata sidecars in [dir] which have no extract next to them. Downloads
- * used to write the sidecar before they started, and left it behind when they failed or were
- * cancelled; those orphans are never listed, but they stay on the phone forever.
- */
-fun deleteOrphanedSidecars(dir: File) {
-    dir.listFiles { file -> file.name.endsWith(".pmtiles.geojson") }?.forEach { sidecar ->
-        if (!File(dir, sidecar.name.removeSuffix(".geojson")).exists()) {
-            sidecar.delete()
-        }
-    }
-}
-
-/**
  * The extracts downloaded to [path], each annotated with whether it is usable and, given a way to
  * find its current manifest entry with [manifestEntryFor], whether it is outdated (see
  * isExtractOutdated). With no [manifestEntryFor], nothing is flagged as outdated.

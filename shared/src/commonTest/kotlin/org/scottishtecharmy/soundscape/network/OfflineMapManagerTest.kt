@@ -21,6 +21,7 @@ import okio.buffer
 import org.scottishtecharmy.soundscape.geoengine.WANTED_EXTRACT_SCHEMA
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.mapstyle.PmTilesFixture
 import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
 import kotlin.random.Random
@@ -29,6 +30,7 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -78,6 +80,23 @@ class OfflineMapManagerTest {
     private fun fileExists(name: String): Boolean = systemFileSystem.exists(tempDir / name)
 
     private fun filePath(name: String): String = (tempDir / name).toString()
+
+    /** A minimal but valid extract, as a download has to pass validation to be published. */
+    private val validExtract = PmTilesFixture.build(hasTileEntry = true)
+
+    /**
+     * The path of the one downloaded copy of [logicalName], which is saved as
+     * "<logicalName>.v<timestamp>.pmtiles", or null if there isn't one.
+     */
+    private fun downloadedFile(logicalName: String): String? {
+        val pattern = Regex("""${Regex.escape(logicalName)}\.v\d+\.pmtiles""")
+        val matches = systemFileSystem.list(tempDir).filter { pattern.matches(it.name) }
+        assertTrue(matches.size <= 1, "more than one copy of $logicalName: $matches")
+        return matches.singleOrNull()?.toString()
+    }
+
+    private fun downloadingFiles(): List<String> =
+        systemFileSystem.list(tempDir).map { it.name }.filter { it.endsWith(".downloading") }
 
     // ---------- test doubles / fixtures ----------
 
@@ -181,7 +200,7 @@ class OfflineMapManagerTest {
     // ----- refresh() -----
 
     @Test
-    fun refresh_success_populatesManifestAndLoadedState() = runBlocking {
+    fun refresh_success_populatesManifestAndLoadedState() = runBlocking<Unit> {
         val json = manifestJson(
             squareFeatureJson("Glasgow", "glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
             squareFeatureJson("London", "london-gb.pmtiles", -0.2, 51.4, -0.0, 51.6),
@@ -204,7 +223,7 @@ class OfflineMapManagerTest {
     }
 
     @Test
-    fun refresh_httpError_setsErrorStateAndLeavesManifestNull() = runBlocking {
+    fun refresh_httpError_setsErrorStateAndLeavesManifestNull() = runBlocking<Unit> {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.NotFound, ByteArray(0)),
             noopDownloader(),
@@ -220,7 +239,7 @@ class OfflineMapManagerTest {
     }
 
     @Test
-    fun refresh_bodyNotValidGzip_setsErrorState() = runBlocking {
+    fun refresh_bodyNotValidGzip_setsErrorState() = runBlocking<Unit> {
         // Not actually gzip-compressed - GzipSource decompression itself throws.
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, "not gzip data".encodeToByteArray()),
@@ -237,7 +256,7 @@ class OfflineMapManagerTest {
     }
 
     @Test
-    fun refresh_gzipDecompressesToInvalidJson_setsErrorState() = runBlocking {
+    fun refresh_gzipDecompressesToInvalidJson_setsErrorState() = runBlocking<Unit> {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("not { valid json")),
             noopDownloader(),
@@ -253,7 +272,7 @@ class OfflineMapManagerTest {
     }
 
     @Test
-    fun refresh_validButEmptyManifest_isLoadedWithZeroFeatures() = runBlocking {
+    fun refresh_validButEmptyManifest_isLoadedWithZeroFeatures() = runBlocking<Unit> {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("""{"type":"FeatureCollection","features":[]}""")),
             noopDownloader(),
@@ -272,7 +291,7 @@ class OfflineMapManagerTest {
     }
 
     @Test
-    fun refresh_alsoScansForDownloadedExtracts() = runBlocking {
+    fun refresh_alsoScansForDownloadedExtracts() = runBlocking<Unit> {
         writeFile("already-downloaded.pmtiles", "data")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("""{"type":"FeatureCollection","features":[]}""")),
@@ -302,7 +321,7 @@ class OfflineMapManagerTest {
     }
 
     @Test
-    fun getExtractsContaining_returnsOnlyThePolygonThatContainsTheLocation() = runBlocking {
+    fun getExtractsContaining_returnsOnlyThePolygonThatContainsTheLocation() = runBlocking<Unit> {
         val json = manifestJson(
             squareFeatureJson("Glasgow", "glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
             squareFeatureJson("London", "london-gb.pmtiles", -0.2, 51.4, -0.0, 51.6),
@@ -324,7 +343,7 @@ class OfflineMapManagerTest {
     }
 
     @Test
-    fun getExtractsContaining_multiPolygon_matchesPointInEitherRing() = runBlocking {
+    fun getExtractsContaining_multiPolygon_matchesPointInEitherRing() = runBlocking<Unit> {
         val json = manifestJson(
             multiPolygonFeatureJson(
                 "Archipelago",
@@ -388,10 +407,10 @@ class OfflineMapManagerTest {
     // ----- startDownload() / cancelDownload() -----
 
     @Test
-    fun startDownload_success_movesTempFileToFinalPathAndUpdatesDownloadedExtracts() = runBlocking {
+    fun startDownload_success_movesTempFileToFinalPathAndUpdatesDownloadedExtracts() = runBlocking<Unit> {
         val downloader = RecordingFileDownloader { _, destPath, onProgress ->
             onProgress(500)
-            systemFileSystem.write(destPath.toPath()) { writeUtf8("pmtiles-bytes") }
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
@@ -404,19 +423,19 @@ class OfflineMapManagerTest {
         manager.startDownload("region.pmtiles")
         waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
 
-        assertTrue(fileExists("region.pmtiles"))
-        assertFalse(fileExists("region.pmtiles.downloading"))
-        assertEquals(listOf(filePath("region.pmtiles")), manager.downloadedExtracts.value)
+        val path = assertNotNull(downloadedFile("region"))
+        assertTrue(downloadingFiles().isEmpty())
+        assertEquals(listOf(path), manager.downloadedExtracts.value)
         assertEquals(
-            listOf("https://example.test/extracts/region.pmtiles" to filePath("region.pmtiles.downloading")),
+            listOf("https://example.test/extracts/region.pmtiles" to "$path.downloading"),
             downloader.calls,
         )
     }
 
     @Test
-    fun startDownload_trimsTrailingSlashFromBaseUrl_andStripsPathPrefixFromDestFilename() = runBlocking {
+    fun startDownload_trimsTrailingSlashFromBaseUrl_andStripsPathPrefixFromDestFilename() = runBlocking<Unit> {
         val downloader = RecordingFileDownloader { _, destPath, _ ->
-            systemFileSystem.write(destPath.toPath()) { writeUtf8("bytes") }
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
@@ -430,14 +449,14 @@ class OfflineMapManagerTest {
         waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
 
         assertEquals("https://example.test/extracts/sub/region.pmtiles", downloader.calls.single().first)
-        assertTrue(fileExists("region.pmtiles")) // "sub/" prefix stripped for the local filename
+        assertNotNull(downloadedFile("region")) // "sub/" prefix stripped for the local filename
     }
 
     @Test
-    fun startDownload_whileAlreadyActive_isIgnored() = runBlocking {
+    fun startDownload_whileAlreadyActive_isIgnored() = runBlocking<Unit> {
         val downloader = RecordingFileDownloader { _, destPath, _ ->
             delay(300)
-            systemFileSystem.write(destPath.toPath()) { writeUtf8("bytes") }
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
@@ -454,11 +473,11 @@ class OfflineMapManagerTest {
 
         assertEquals(1, downloader.calls.size)
         assertTrue(downloader.calls.single().first.endsWith("first.pmtiles"))
-        assertEquals(listOf(filePath("first.pmtiles")), manager.downloadedExtracts.value)
+        assertEquals(listOf(downloadedFile("first")), manager.downloadedExtracts.value)
     }
 
     @Test
-    fun startDownload_nonRetryableHttpError_setsErrorStateWithoutRetrying() = runBlocking {
+    fun startDownload_nonRetryableHttpError_setsErrorStateWithoutRetrying() = runBlocking<Unit> {
         val downloader = RecordingFileDownloader { _, _, _ -> DownloadResultCommon.HttpError(500, "boom") }
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
@@ -473,18 +492,18 @@ class OfflineMapManagerTest {
         val error = manager.downloadState.value as DownloadStateCommon.Error
         assertTrue(error.message.contains("500"))
         assertEquals(1, downloader.calls.size)
-        assertFalse(fileExists("region.pmtiles.downloading"))
+        assertTrue(downloadingFiles().isEmpty())
     }
 
     @Test
-    fun startDownload_503ThenSuccess_retriesAndSucceeds() = runBlocking {
+    fun startDownload_503ThenSuccess_retriesAndSucceeds() = runBlocking<Unit> {
         var attempt = 0
         val downloader = RecordingFileDownloader { _, destPath, _ ->
             attempt++
             if (attempt == 1) {
                 DownloadResultCommon.HttpError(503, "still caching")
             } else {
-                systemFileSystem.write(destPath.toPath()) { writeUtf8("bytes") }
+                systemFileSystem.write(destPath.toPath()) { write(validExtract) }
                 DownloadResultCommon.Success
             }
         }
@@ -496,16 +515,16 @@ class OfflineMapManagerTest {
         )
 
         // A small extractSize makes the post-503 backoff on the *first* retry 0 seconds
-        // (cachingDuration = (extractSize / 10_000_000).toInt()), so this resolves fast.
-        manager.startDownload("region.pmtiles", extractSize = 5_000_000.0)
+        // (extractSize / 10_000_000 seconds), so this resolves fast.
+        manager.startDownload("region.pmtiles", extractSize = validExtract.size.toDouble())
         waitUntil(timeoutMs = 10_000) { manager.downloadState.value is DownloadStateCommon.Success }
 
         assertEquals(2, downloader.calls.size)
-        assertTrue(fileExists("region.pmtiles"))
+        assertNotNull(downloadedFile("region"))
     }
 
     @Test
-    fun cancelDownload_cancelsInProgressDownload_andDeletesTempFile() = runBlocking {
+    fun cancelDownload_cancelsInProgressDownload_andDeletesTempFile() = runBlocking<Unit> {
         val downloader = RecordingFileDownloader { _, destPath, _ ->
             systemFileSystem.write(destPath.toPath()) { writeUtf8("partial") } // simulates bytes already streamed to disk
             delay(30_000) // never resolves on its own; must be cancelled
@@ -519,17 +538,17 @@ class OfflineMapManagerTest {
         )
 
         manager.startDownload("region.pmtiles")
-        waitUntil { fileExists("region.pmtiles.downloading") }
+        waitUntil { downloadingFiles().isNotEmpty() }
 
         manager.cancelDownload()
         waitUntil { manager.downloadState.value is DownloadStateCommon.Canceled }
 
-        assertFalse(fileExists("region.pmtiles.downloading"))
-        assertFalse(fileExists("region.pmtiles"))
+        assertTrue(downloadingFiles().isEmpty())
+        assertNull(downloadedFile("region"))
     }
 
     @Test
-    fun startDownload_afterCancel_waitsForCancelledDownloadToUnwind() = runBlocking {
+    fun startDownload_afterCancel_waitsForCancelledDownloadToUnwind() = runBlocking<Unit> {
         // #1288: the cancelled download takes a while to unwind (here a NonCancellable
         // delay; in reality a backoff sleep or a slow connection). A retry of the same
         // extract started straight after must not have its temp file deleted or its Success
@@ -545,7 +564,7 @@ class OfflineMapManagerTest {
                 }
                 DownloadResultCommon.Success
             } else {
-                systemFileSystem.write(destPath.toPath()) { writeUtf8("bytes") }
+                systemFileSystem.write(destPath.toPath()) { write(validExtract) }
                 DownloadResultCommon.Success
             }
         }
@@ -566,7 +585,7 @@ class OfflineMapManagerTest {
         delay(700)
 
         assertEquals(DownloadStateCommon.Success, manager.downloadState.value)
-        assertTrue(fileExists("region.pmtiles"))
+        assertNotNull(downloadedFile("region"))
         assertEquals(2, downloader.calls.size)
     }
 
@@ -649,7 +668,7 @@ class OfflineMapManagerTest {
     /**
      * Manifest "filename" values carry a two-segment server-side prefix (e.g. a date and a hash)
      * ahead of the logical name, matching the on-disk-vs-manifest naming split already used by
-     * AndroidOfflineMapsManager.logicalBaseNameFor() (`filename.substringAfter("-").substringAfter("-")`).
+     * [org.scottishtecharmy.soundscape.utils.logicalExtractName].
      * A downloaded file named just "glasgow-gb.pmtiles" must still be found via that fallback when
      * the manifest's filename is "20240101-abc123-glasgow-gb.pmtiles".
      */
@@ -681,7 +700,7 @@ class OfflineMapManagerTest {
      * showed "20240101-abc123-glasgow-gb" instead of "Glasgow".
      */
     @Test
-    fun downloadedExtractsFc_namesExtractFromManifestRegeneratedUnderANewPrefix() = runBlocking {
+    fun downloadedExtractsFc_namesExtractFromManifestRegeneratedUnderANewPrefix() = runBlocking<Unit> {
         writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
         val json = manifestJson(
             squareFeatureJson("Glasgow", "20240202-def456-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
@@ -702,7 +721,7 @@ class OfflineMapManagerTest {
 
     /** With a sidecar, the name survives the manifest being unavailable entirely. */
     @Test
-    fun downloadedExtractsFc_namesExtractFromSidecarWithNoManifest() = runBlocking {
+    fun downloadedExtractsFc_namesExtractFromSidecarWithNoManifest() = runBlocking<Unit> {
         writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
         writeFile(
             "20240101-abc123-glasgow-gb.pmtiles.geojson",
@@ -724,7 +743,7 @@ class OfflineMapManagerTest {
 
     /** No sidecar and no manifest match: fall back to the filename rather than showing nothing. */
     @Test
-    fun downloadedExtractsFc_fallsBackToFilenameWhenThereIsNoMetadata() = runBlocking {
+    fun downloadedExtractsFc_fallsBackToFilenameWhenThereIsNoMetadata() = runBlocking<Unit> {
         writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip(manifestJson())),
@@ -742,7 +761,7 @@ class OfflineMapManagerTest {
 
     /** Annotating a downloaded extract must not write local state into the manifest's own copy. */
     @Test
-    fun downloadedExtractsFc_doesNotAnnotateTheManifestFeature() = runBlocking {
+    fun downloadedExtractsFc_doesNotAnnotateTheManifestFeature() = runBlocking<Unit> {
         writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
         val json = manifestJson(
             squareFeatureJson("Glasgow", "20240101-abc123-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
@@ -766,7 +785,7 @@ class OfflineMapManagerTest {
      * it counts as schema 0 - older than a manifest entry built with the schema the app wants.
      */
     @Test
-    fun downloadedExtractsFc_flagsExtractOlderThanTheManifestSchema() = runBlocking {
+    fun downloadedExtractsFc_flagsExtractOlderThanTheManifestSchema() = runBlocking<Unit> {
         writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
         val json = manifestJson(
             squareFeatureJson("Glasgow", "20240202-def456-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9)
@@ -787,7 +806,7 @@ class OfflineMapManagerTest {
 
     /** A manifest from before the schema existed - i.e. just fresher OSM data - flags nothing. */
     @Test
-    fun downloadedExtractsFc_doesNotFlagExtractWhenTheManifestHasNoSchema() = runBlocking {
+    fun downloadedExtractsFc_doesNotFlagExtractWhenTheManifestHasNoSchema() = runBlocking<Unit> {
         writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
         val json = manifestJson(
             squareFeatureJson("Glasgow", "20240202-def456-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
@@ -806,9 +825,9 @@ class OfflineMapManagerTest {
     }
 
     @Test
-    fun startDownload_writesMetadataSidecarNextToTheExtract() = runBlocking {
+    fun startDownload_writesMetadataSidecarNextToTheExtract() = runBlocking<Unit> {
         val downloader = RecordingFileDownloader { _, destPath, _ ->
-            systemFileSystem.write(destPath.toPath()) { writeUtf8("data") }
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
@@ -824,9 +843,9 @@ class OfflineMapManagerTest {
         manager.startDownload("20240101-abc123-glasgow-gb.pmtiles", feature = feature)
         waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
 
-        assertTrue(fileExists("20240101-abc123-glasgow-gb.pmtiles.geojson"))
+        val path = assertNotNull(downloadedFile("glasgow-gb"))
         val stored = GeoJsonParser.parseFeature(
-            systemFileSystem.read(tempDir / "20240101-abc123-glasgow-gb.pmtiles.geojson") { readUtf8() },
+            systemFileSystem.read("$path.geojson".toPath()) { readUtf8() },
         )
         assertEquals("Glasgow", stored?.properties?.get("name"))
         assertEquals("20240101-abc123-glasgow-gb.pmtiles", stored?.properties?.get("filename"))
@@ -838,13 +857,13 @@ class OfflineMapManagerTest {
      * server by then, so the update has to be made against the current manifest entry.
      */
     @Test
-    fun startDownload_updatingAnOlderBuild_downloadsWhatTheManifestCallsItNow() = runBlocking {
+    fun startDownload_updatingAnOlderBuild_downloadsWhatTheManifestCallsItNow() = runBlocking<Unit> {
         writeFile("20240101-abc123-glasgow-gb.pmtiles", "old")
         val json = manifestJson(
             squareFeatureJson("Glasgow", "20240202-def456-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
         )
         val downloader = RecordingFileDownloader { _, destPath, _ ->
-            systemFileSystem.write(destPath.toPath()) { writeUtf8("new") }
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
@@ -866,19 +885,19 @@ class OfflineMapManagerTest {
             "https://example.test/extracts/20240202-def456-glasgow-gb.pmtiles",
             downloader.calls.single().first,
         )
-        assertTrue(fileExists("20240202-def456-glasgow-gb.pmtiles"))
+        val path = assertNotNull(downloadedFile("glasgow-gb"))
         assertFalse(fileExists("20240101-abc123-glasgow-gb.pmtiles"))
         val stored = GeoJsonParser.parseFeature(
-            systemFileSystem.read(tempDir / "20240202-def456-glasgow-gb.pmtiles.geojson") { readUtf8() },
+            systemFileSystem.read("$path.geojson".toPath()) { readUtf8() },
         )
         assertEquals("20240202-def456-glasgow-gb.pmtiles", stored?.properties?.get("filename"))
     }
 
     /** No manifest entry to resolve against - fall back to the filename the caller asked for. */
     @Test
-    fun startDownload_extractNotInTheManifest_downloadsTheFilenameGiven() = runBlocking {
+    fun startDownload_extractNotInTheManifest_downloadsTheFilenameGiven() = runBlocking<Unit> {
         val downloader = RecordingFileDownloader { _, destPath, _ ->
-            systemFileSystem.write(destPath.toPath()) { writeUtf8("data") }
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
@@ -897,7 +916,7 @@ class OfflineMapManagerTest {
             "https://example.test/extracts/20240101-abc123-glasgow-gb.pmtiles",
             downloader.calls.single().first,
         )
-        assertTrue(fileExists("20240101-abc123-glasgow-gb.pmtiles"))
+        assertNotNull(downloadedFile("glasgow-gb"))
     }
 
     /**
@@ -906,12 +925,12 @@ class OfflineMapManagerTest {
      * explicitly rather than being overwritten in place.
      */
     @Test
-    fun startDownload_deletesThePreviousBuildOfTheSameExtract() = runBlocking {
+    fun startDownload_deletesThePreviousBuildOfTheSameExtract() = runBlocking<Unit> {
         writeFile("20240101-abc123-glasgow-gb.pmtiles", "old")
         writeFile("20240101-abc123-glasgow-gb.pmtiles.geojson", "{}")
         writeFile("london-gb.pmtiles", "unrelated")
         val downloader = RecordingFileDownloader { _, destPath, _ ->
-            systemFileSystem.write(destPath.toPath()) { writeUtf8("new") }
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
@@ -926,12 +945,213 @@ class OfflineMapManagerTest {
 
         assertFalse(fileExists("20240101-abc123-glasgow-gb.pmtiles"))
         assertFalse(fileExists("20240101-abc123-glasgow-gb.pmtiles.geojson"))
-        assertTrue(fileExists("20240202-def456-glasgow-gb.pmtiles"))
+        val path = assertNotNull(downloadedFile("glasgow-gb"))
         assertTrue(fileExists("london-gb.pmtiles"))
         assertEquals(
-            listOf(filePath("20240202-def456-glasgow-gb.pmtiles"), filePath("london-gb.pmtiles")),
+            listOf(path, filePath("london-gb.pmtiles")).sorted(),
             manager.downloadedExtracts.value.sorted(),
         )
+    }
+
+    // ----- behaviour that came from Android's OfflineDownloader -----
+
+    /**
+     * The server caches extracts lazily, and can answer 200 with only the part of the file it has
+     * copied so far. Anything shorter than the manifest's size is retried, not published.
+     */
+    @Test
+    fun startDownload_partialContent_isRetriedUntilTheWholeExtractArrives() = runBlocking<Unit> {
+        var attempt = 0
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            attempt++
+            val bytes = if (attempt == 1) validExtract.copyOf(validExtract.size / 2) else validExtract
+            systemFileSystem.write(destPath.toPath()) { write(bytes) }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.startDownload("region.pmtiles", extractSize = validExtract.size.toDouble())
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+
+        assertEquals(2, downloader.calls.size)
+        val path = assertNotNull(downloadedFile("region"))
+        assertEquals(validExtract.size.toLong(), systemFileSystem.metadata(path.toPath()).size)
+    }
+
+    /** A corrupt extract would crash MapLibre natively, so it is never published. */
+    @Test
+    fun startDownload_corruptExtract_isRejectedAndLeavesNothingBehind() = runBlocking<Unit> {
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("not a pmtiles file") }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+        val feature = GeoJsonParser.parseFeature(
+            squareFeatureJson("Region", "region.pmtiles", -4.3, 55.8, -4.2, 55.9),
+        )!!
+
+        manager.startDownload("region.pmtiles", feature = feature)
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Error }
+
+        assertTrue(systemFileSystem.list(tempDir).isEmpty(), "left behind: ${systemFileSystem.list(tempDir)}")
+    }
+
+    /**
+     * MapLibre caches offline tiles under URLs naming the extract's path, so downloading the same
+     * extract again must never reuse a path, or new tiles would be drawn mixed with stale ones.
+     */
+    @Test
+    fun startDownload_sameExtractTwice_usesANewPathAndRemovesTheOldOne() = runBlocking<Unit> {
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.startDownload("glasgow-gb.pmtiles")
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+        val first = assertNotNull(downloadedFile("glasgow-gb"))
+        delay(5) // the version is a millisecond timestamp
+
+        manager.startDownload("glasgow-gb.pmtiles")
+        waitUntil { downloader.calls.size == 2 && manager.downloadState.value is DownloadStateCommon.Success }
+        val second = assertNotNull(downloadedFile("glasgow-gb"))
+
+        assertTrue(first != second, "re-download reused $first")
+        assertFalse(systemFileSystem.exists(first.toPath()))
+    }
+
+    @Test
+    fun refreshDownloaded_deletesSidecarsWithNoExtract() {
+        writeFile("glasgow-gb.v1000.pmtiles", "x")
+        writeFile("glasgow-gb.v1000.pmtiles.geojson", "{}")
+        writeFile("helsinki-fi.v2000.pmtiles.geojson", "{}")
+        writeFile("budapest-hu.v3000.pmtiles.downloading", "x")
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.refreshDownloaded()
+
+        assertTrue(fileExists("glasgow-gb.v1000.pmtiles.geojson"), "an extract's own sidecar must survive")
+        assertFalse(fileExists("helsinki-fi.v2000.pmtiles.geojson"), "a sidecar with no extract is deleted")
+        assertTrue(fileExists("budapest-hu.v3000.pmtiles.downloading"), "a download in progress isn't touched")
+    }
+
+    @Test
+    fun deleteExtractByFeature_deletesEveryVersionOfTheExtract() {
+        writeFile("glasgow-gb.pmtiles", "legacy")
+        writeFile("glasgow-gb.v1000.pmtiles", "x")
+        writeFile("glasgow-gb.v1000.pmtiles.geojson", "{}")
+        writeFile("glasgow-gbx.pmtiles", "unrelated")
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+        val feature = Feature().apply {
+            properties = hashMapOf("filename" to "20240101-abc123-glasgow-gb.pmtiles")
+        }
+
+        manager.deleteExtractByFeature(feature)
+
+        assertEquals(listOf("glasgow-gbx.pmtiles"), systemFileSystem.list(tempDir).map { it.name })
+        assertEquals(listOf(filePath("glasgow-gbx.pmtiles")), manager.downloadedExtracts.value)
+    }
+
+    @Test
+    fun onExtractsChanged_isCalledAfterADownloadAndADelete() = runBlocking<Unit> {
+        var changes = 0
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+            onExtractsChanged = { changes++ },
+        )
+
+        manager.startDownload("region.pmtiles")
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+        assertEquals(1, changes, "not notified when the download was published")
+
+        manager.deleteExtractByFeature(Feature().apply { properties = hashMapOf("filename" to "region.pmtiles") })
+        assertEquals(2, changes, "not notified when the extract was deleted")
+    }
+
+    @Test
+    fun extractBasePathProvider_isReadOnEveryUse() = runBlocking<Unit> {
+        val first = tempDir / "first"
+        val second = tempDir / "second"
+        var current = first
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            systemFileSystem.write(destPath.toPath()) { write(validExtract) }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            downloader,
+            extractBasePathProvider = { current.toString() },
+            extractBaseUrl = "https://example.test/extracts",
+        )
+
+        // The user moves the extracts to other storage; the next download goes there, and the
+        // directory is created if it doesn't exist yet.
+        current = second
+        manager.startDownload("region.pmtiles")
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+
+        assertFalse(systemFileSystem.exists(first))
+        assertEquals(1, systemFileSystem.list(second).count { it.name.endsWith(".pmtiles") })
+    }
+
+    @Test
+    fun refresh_retriesAFailedManifestFetch() = runBlocking<Unit> {
+        var requests = 0
+        val httpClient = HttpClient(
+            MockEngine { _ ->
+                requests++
+                if (requests == 1) {
+                    respond(content = ByteReadChannel(ByteArray(0)), status = HttpStatusCode.InternalServerError, headers = headersOf())
+                } else {
+                    respond(content = ByteReadChannel(gzip(manifestJson())), status = HttpStatusCode.OK, headers = headersOf())
+                }
+            },
+        )
+        val manager = OfflineMapManager(
+            ManifestClient(httpClient, baseUrl = "https://example.test"),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.refresh()
+        waitUntil { manager.nearbyExtractsState.value !is NearbyExtractsState.Loading }
+
+        assertTrue(manager.nearbyExtractsState.value is NearbyExtractsState.Loaded)
+        assertEquals(2, requests)
     }
 
     @Test

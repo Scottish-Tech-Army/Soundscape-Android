@@ -5,7 +5,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,6 +21,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.logging.AppLog
+import org.scottishtecharmy.soundscape.platform.currentTimeMillis
 import org.scottishtecharmy.soundscape.platform.excludeFromCloudBackup
 import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
@@ -32,21 +32,41 @@ import org.scottishtecharmy.soundscape.utils.isPmtilesUsable
 import org.scottishtecharmy.soundscape.utils.logicalExtractName
 import org.scottishtecharmy.soundscape.utils.readExtractSchema
 
+private val logger = AppLog.tag("OfflineMapManager")
+
 /**
- * Cross-platform offline map manager. Handles:
+ * Offline map manager for both platforms. Handles:
  * - Fetching and parsing the extract manifest
  * - Downloading PMTiles extracts
  * - Discovering downloaded extracts on disk
  * - Managing download state for the UI
+ *
+ * Only the HTTP download ([fileDownloader]) and where the extracts live
+ * ([extractBasePathProvider]) differ between platforms.
+ *
+ * @param extractBasePathProvider the directory holding the extracts. A provider rather than a
+ * path because Android lets the user move them to other storage while the app is running.
+ * @param onExtractsChanged called once an extract has been published or deleted, so the geo
+ * engine can pick up the change straight away instead of the next time the user walks out of the
+ * current tile grid.
  */
-private val logger = AppLog.tag("OfflineMapManager")
-
 class OfflineMapManager(
     private val manifestClient: ManifestClient,
     private val fileDownloader: FileDownloaderInterface,
-    private val extractBasePath: String,
+    private val extractBasePathProvider: () -> String,
     private val extractBaseUrl: String,
+    private val onExtractsChanged: () -> Unit = {},
 ) {
+    constructor(
+        manifestClient: ManifestClient,
+        fileDownloader: FileDownloaderInterface,
+        extractBasePath: String,
+        extractBaseUrl: String,
+        onExtractsChanged: () -> Unit = {},
+    ) : this(manifestClient, fileDownloader, { extractBasePath }, extractBaseUrl, onExtractsChanged)
+
+    private val extractBasePath: String get() = extractBasePathProvider()
+
     private val scope = CoroutineScope(Dispatchers.Default + Job())
 
     // Manifest data
@@ -68,8 +88,7 @@ class OfflineMapManager(
      * in order:
      *
      *  1. the `.geojson` sidecar written next to the extract when it was downloaded - this is
-     *     the only source that works with no network and no manifest, and is what Android has
-     *     always used (see AndroidOfflineMapsManager/findExtracts),
+     *     the only source that works with no network and no manifest,
      *  2. the matching manifest entry, for extracts downloaded before the sidecar existed,
      *  3. a stub carrying the filename, if all else fails.
      *
@@ -143,18 +162,25 @@ class OfflineMapManager(
     fun refresh() {
         _nearbyExtractsState.value = NearbyExtractsState.Loading
         scope.launch {
-            // Fetch manifest
-            try {
-                val json = manifestClient.getManifestJson()
-                val fc = json?.let { GeoJsonParser.parseFeatureCollection(it) }
-                if (fc != null) {
-                    _manifest.value = fc
-                    _nearbyExtractsState.value = NearbyExtractsState.Loaded(fc)
-                } else {
-                    _nearbyExtractsState.value = NearbyExtractsState.Error
+            // Fetch manifest, retrying a few times as a flaky connection often recovers within
+            // a second or two.
+            var fc: FeatureCollection? = null
+            for (attempt in 1..MANIFEST_ATTEMPTS) {
+                try {
+                    fc = manifestClient.getManifestJson()?.let { GeoJsonParser.parseFeatureCollection(it) }
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    logger.e(e) { "Error fetching manifest, attempt $attempt" }
                 }
-            } catch (e: Exception) {
-                logger.e(e) { "Error fetching manifest" }
+                if (fc != null) break
+                if (attempt < MANIFEST_ATTEMPTS) delay(MANIFEST_RETRY_DELAY_MS)
+            }
+            if (fc != null) {
+                _manifest.value = fc
+                _nearbyExtractsState.value = NearbyExtractsState.Loaded(fc)
+            } else {
+                logger.w { "Manifest fetch failed" }
                 _nearbyExtractsState.value = NearbyExtractsState.Error
             }
 
@@ -164,7 +190,9 @@ class OfflineMapManager(
     }
 
     fun refreshDownloaded() {
-        val paths = findExtractPaths(extractBasePath)
+        val basePath = extractBasePath
+        deleteOrphanedSidecars(basePath)
+        val paths = findExtractPaths(basePath)
         // Keep the extracts out of the device's cloud backup. Doing it on every scan rather
         // than only after a download means extracts left by an earlier version of the app are
         // covered too, and the flag is idempotent so re-marking a file we marked last time
@@ -174,6 +202,22 @@ class OfflineMapManager(
             excludeFromCloudBackup("$path.geojson")
         }
         _downloadedExtracts.value = paths
+    }
+
+    /**
+     * Delete the .geojson metadata sidecars which have no extract next to them. Android once
+     * wrote the sidecar before a download started and left it behind when the download failed or
+     * was cancelled; those orphans are never listed, but would stay on the phone forever.
+     */
+    private fun deleteOrphanedSidecars(basePath: String) {
+        try {
+            for (sidecar in systemFileSystem.list(basePath.toPath())) {
+                if (!sidecar.name.endsWith(".pmtiles.geojson")) continue
+                val extract = basePath.toPath() / sidecar.name.removeSuffix(".geojson")
+                if (!systemFileSystem.exists(extract)) systemFileSystem.delete(sidecar)
+            }
+        } catch (_: Exception) {
+        }
     }
 
     /**
@@ -310,6 +354,16 @@ class OfflineMapManager(
     }
 
     /**
+     * Start downloading the extract described by [feature], a manifest entry or the sidecar of a
+     * downloaded extract (for "Update").
+     */
+    fun startDownload(feature: Feature) {
+        val props = feature.properties ?: return
+        val filename = props["filename"] as? String ?: return
+        startDownload(filename, feature.extractSize(), feature)
+    }
+
+    /**
      * Start downloading an extract.
      *
      * [feature] is the manifest entry being downloaded. It is stored as a sidecar next to the
@@ -323,6 +377,12 @@ class OfflineMapManager(
      * came from - a build the server has usually replaced by the time anyone presses Update, so
      * downloading it verbatim fetches a URL that is no longer there. [filename] is only used as-is
      * when the extract isn't in the manifest at all (not fetched yet, or withdrawn).
+     *
+     * The extract is saved under a filename no previous download has used,
+     * "<logical name>.v<timestamp>.pmtiles", and any other version of it is deleted once it is
+     * published. Offline map tiles go into MapLibre's ambient cache under URLs that name the
+     * extract's path (see OfflineExtractTiles), which we can't invalidate, so new bytes at an old
+     * path would be drawn mixed with stale cached tiles.
      */
     fun startDownload(filename: String, extractSize: Double? = null, feature: Feature? = null) {
         val previousJob = downloadJob
@@ -334,20 +394,21 @@ class OfflineMapManager(
         val metadata = current ?: feature
 
         val url = "${extractBaseUrl.trimEnd('/')}/$currentFilename"
-        val baseName = currentFilename.substringAfterLast("/")
-        val outputPath = "${extractBasePath}/$baseName"
+        val basePath = extractBasePath
+        val outputPath =
+            "$basePath/${logicalExtractName(currentFilename)}.v${currentTimeMillis()}.pmtiles"
 
         downloadJob = scope.launch {
             // A cancelled job stops being "active" the instant cancelDownload() is called, well
             // before its coroutine has unwound and run its cleanup (deleting the temp file,
             // writing Canceled). Join it first, or that belated cleanup can delete this
-            // download's temp file and overwrite its state (#1288, fixed in OfflineDownloader
-            // by 68c96b3ce).
+            // download's temp file and overwrite its state (#1288).
             previousJob?.join()
             val tempPath = "$outputPath.downloading"
 
             try {
-                var retries = 10
+                systemFileSystem.createDirectories(basePath.toPath())
+                var retries = MAX_DOWNLOAD_ATTEMPTS
                 while (retries > 0) {
                     _downloadState.value = DownloadStateCommon.Caching
 
@@ -362,15 +423,26 @@ class OfflineMapManager(
 
                     when (result) {
                         is DownloadResultCommon.Success -> {
-                            // Rename temp file to final
-                            val tempFile = tempPath.toPath()
-                            val finalFile = outputPath.toPath()
-                            try {
-                                systemFileSystem.delete(finalFile)
-                            } catch (_: Exception) {
+                            // The server caches extracts lazily and can answer with only the
+                            // part of the file it has copied so far. If we received less than
+                            // the manifest says the extract is, it isn't ready yet: back off and
+                            // retry as for a 503, rather than publishing a truncated extract.
+                            val received = systemFileSystem.metadata(tempPath.toPath()).size ?: 0L
+                            if (size != null && received < size.toLong()) {
+                                logger.d { "Extract not fully cached yet ($received of ${size.toLong()} bytes), retrying" }
+                                waitBeforeRetry(firstAttempt = retries == MAX_DOWNLOAD_ATTEMPTS, size = size)
+                                retries--
+                                continue
                             }
-                            systemFileSystem.atomicMove(tempFile, finalFile)
+                            // A truncated or corrupt extract crashes MapLibre natively when it
+                            // is drawn, so check it before publishing it rather than after.
+                            if (!isPmtilesUsable(tempPath)) {
+                                throw Exception("Downloaded extract failed validation (corrupt or truncated)")
+                            }
+                            systemFileSystem.atomicMove(tempPath.toPath(), outputPath.toPath())
                             metadata?.let { writeExtractMetadata(outputPath, it) }
+                            // Before publishing Success, so nothing reacting to it can see a
+                            // superseded version still on disk.
                             deleteOtherVersionsOf(outputPath)
                             // Refresh before publishing Success, not after. Success is what
                             // releases anything waiting on downloadState, and the natural next
@@ -380,22 +452,16 @@ class OfflineMapManager(
                             // OfflineMapManagerTest.startDownload_success_movesTempFileToFinal-
                             // PathAndUpdatesDownloadedExtracts intermittently caught on CI.
                             refreshDownloaded()
+                            notifyExtractsChanged()
                             _downloadState.value = DownloadStateCommon.Success
                             return@launch
                         }
 
                         is DownloadResultCommon.HttpError -> {
                             if (result.code == 503) {
-                                // Server caching — back off and retry
-                                var cachingDuration = 15
-                                if (retries == 10 && size != null) {
-                                    cachingDuration = (size / 10_000_000.0).toInt()
-                                }
-                                _downloadState.value = DownloadStateCommon.Caching
-                                for (i in 0 until cachingDuration) {
-                                    ensureActive()
-                                    delay(1000)
-                                }
+                                // The server is copying the extract into its cache - back off
+                                // and retry.
+                                waitBeforeRetry(firstAttempt = retries == MAX_DOWNLOAD_ATTEMPTS, size = size)
                                 retries--
                             } else {
                                 throw Exception("HTTP ${result.code}: ${result.message}")
@@ -430,6 +496,26 @@ class OfflineMapManager(
         }
     }
 
+    /**
+     * Back off before retrying a download the server isn't ready to give us yet. It caches at
+     * around 10MB/sec, so the first wait is estimated from the extract's size; after that we
+     * poll every 15 seconds.
+     */
+    private suspend fun waitBeforeRetry(firstAttempt: Boolean, size: Double?) {
+        var seconds = 15
+        if (firstAttempt && size != null) seconds = (size / 10_000_000.0).toInt()
+        _downloadState.value = DownloadStateCommon.Caching
+        delay(seconds * 1000L)
+    }
+
+    private fun notifyExtractsChanged() {
+        try {
+            onExtractsChanged()
+        } catch (e: Exception) {
+            logger.e(e) { "onExtractsChanged failed" }
+        }
+    }
+
     fun cancelDownload() {
         downloadJob?.cancel()
     }
@@ -438,6 +524,12 @@ class OfflineMapManager(
      * Delete a downloaded extract.
      */
     fun deleteExtract(path: String) {
+        deleteExtractFiles(path)
+        refreshDownloaded()
+        notifyExtractsChanged()
+    }
+
+    private fun deleteExtractFiles(path: String) {
         try {
             systemFileSystem.delete(path.toPath())
             // Also delete the metadata file if it exists
@@ -445,23 +537,30 @@ class OfflineMapManager(
                 systemFileSystem.delete("$path.geojson".toPath())
             } catch (_: Exception) {
             }
-            refreshDownloaded()
         } catch (e: Exception) {
             logger.e(e) { "Error deleting extract" }
         }
     }
 
     /**
-     * Delete the downloaded extract corresponding to the given manifest feature, by
-     * matching its filename against the known downloaded paths.
+     * Delete every downloaded version of the extract described by the given manifest feature,
+     * matched on [logicalExtractName]. The directory is scanned afresh rather than trusting
+     * [downloadedExtracts], which may not have been refreshed since the last download.
      */
     fun deleteExtractByFeature(feature: Feature) {
         val filename = feature.properties?.get("filename") as? String ?: return
         val logicalName = logicalExtractName(filename)
-        val match = _downloadedExtracts.value.firstOrNull {
-            logicalExtractName(it) == logicalName
-        }
-        if (match != null) deleteExtract(match)
+        val matches = findExtractPaths(extractBasePath).filter { logicalExtractName(it) == logicalName }
+        if (matches.isEmpty()) return
+        matches.forEach { deleteExtractFiles(it) }
+        refreshDownloaded()
+        notifyExtractsChanged()
+    }
+
+    private companion object {
+        const val MAX_DOWNLOAD_ATTEMPTS = 10
+        const val MANIFEST_ATTEMPTS = 4
+        const val MANIFEST_RETRY_DELAY_MS = 500L
     }
 }
 

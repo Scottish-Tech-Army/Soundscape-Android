@@ -69,7 +69,7 @@ fun HomeScreen(
     val routeDao: org.scottishtecharmy.soundscape.database.local.dao.RouteDao = koinInject()
     val markersAndRoutesIo: org.scottishtecharmy.soundscape.utils.MarkersAndRoutesIo = koinInject()
     val prefsProvider: PreferencesProvider = koinInject()
-    val offlineMaps: org.scottishtecharmy.soundscape.utils.AndroidOfflineMapsManager = koinInject()
+    val offlineMaps: org.scottishtecharmy.soundscape.network.OfflineMapManager = koinInject()
 
     val audioTourRunningFlow = remember(audioTour) { MutableStateFlow(audioTour.isRunning()) }
     LaunchedEffect(audioTour) {
@@ -327,11 +327,10 @@ fun HomeScreen(
                     org.scottishtecharmy.soundscape.utils.shareRoute(context, route)
                 }
             },
-            // Offline-maps surface: routes through AndroidOfflineMapsManager so the
-            // shared OFFLINE_MAPS composable behaves identically to iOS.
+            // Offline maps: the same shared OfflineMapManager as iOS.
             onOfflineMapsRefresh = { offlineMaps.refresh() },
             onOfflineMapsGetExtracts = { location -> offlineMaps.getExtractsContaining(location) },
-            onOfflineMapsDownload = { name, feature -> offlineMaps.startDownload(name, feature) },
+            onOfflineMapsDownload = { _, feature -> offlineMaps.startDownload(feature) },
             onOfflineMapsDelete = { feature -> offlineMaps.deleteExtractByFeature(feature) },
             onOfflineMapsCancelDownload = { offlineMaps.cancelDownload() },
             onResetSettings = {

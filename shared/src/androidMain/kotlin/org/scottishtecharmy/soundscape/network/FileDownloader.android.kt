@@ -16,21 +16,18 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-sealed class DownloadResult {
-    object Success : DownloadResult()
-    data class HttpError(val code: Int, val message: String) : DownloadResult()
-}
-
-class FileDownloader internal constructor(private val httpClient: HttpClient) {
-    suspend fun download(
+/** Android's [FileDownloaderInterface], built on Ktor over OkHttp. */
+class FileDownloader internal constructor(private val httpClient: HttpClient) : FileDownloaderInterface {
+    override suspend fun download(
         url: String,
-        destFile: File,
+        destPath: String,
         scope: CoroutineScope,
         onProgress: (Int) -> Unit,
-    ): DownloadResult {
+    ): DownloadResultCommon {
+        val destFile = File(destPath)
         return httpClient.prepareGet(url).execute { response ->
             if (!response.status.isSuccess()) {
-                return@execute DownloadResult.HttpError(
+                return@execute DownloadResultCommon.HttpError(
                     response.status.value,
                     response.status.description,
                 )
@@ -59,7 +56,7 @@ class FileDownloader internal constructor(private val httpClient: HttpClient) {
             if (total >= 0 && downloaded != total) {
                 throw IOException("Truncated download: $downloaded of $total bytes")
             }
-            DownloadResult.Success
+            DownloadResultCommon.Success
         }
     }
 }
