@@ -94,39 +94,58 @@ fun LanguageDropDownMenu(
                 )
             }
         }
-        DropdownMenu(
+        LanguageDropDownList(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.surface)
-                .testTag(LANGUAGE_DROPDOWN_MENU)
-                .selectableGroup()
-                // Cap the popup height so the full list scrolls instead of
-                // overflowing the screen. The DropdownMenu uses Window-anchored
-                // positioning so this max plays nicely with anchor placement.
-                .heightIn(max = 480.dp),
-        ) {
-            allLanguages.forEachIndexed { index, language ->
-                val isSelected = remember(selectedLanguageIndex, index) {
-                    index == selectedLanguageIndex
-                }
-                DropdownMenuItem(
-                    text = { DropdownItemContent(language, isSelected) },
-                    modifier = Modifier
-                        .selectable(
-                            selected = isSelected,
-                            onClick = {
-                                expanded = false
-                                onLanguageSelected(language)
-                            },
-                        )
-                        .testTag("$LANGUAGE_DROPDOWN_ITEM${language.code}-${language.region}"),
-                    onClick = {
-                        expanded = false
-                        onLanguageSelected(language)
-                    },
-                )
+            allLanguages = allLanguages,
+            selectedLanguageIndex = selectedLanguageIndex,
+            onLanguageSelected = {
+                expanded = false
+                onLanguageSelected(it)
+            },
+        )
+    }
+}
+
+/**
+ * The popup list of languages behind [LanguageDropDownMenu], for screens that
+ * supply their own anchor (e.g. a Settings row). Place it in the same Box as
+ * the anchor so the popup opens beside it.
+ */
+@Composable
+fun LanguageDropDownList(
+    expanded: Boolean,
+    onDismissRequest: () -> Unit,
+    allLanguages: List<Language>,
+    selectedLanguageIndex: Int,
+    onLanguageSelected: (Language) -> Unit,
+) {
+    DropdownMenu(
+        expanded = expanded,
+        onDismissRequest = onDismissRequest,
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.surface)
+            .testTag(LANGUAGE_DROPDOWN_MENU)
+            .selectableGroup()
+            // Cap the popup height so the full list scrolls instead of
+            // overflowing the screen. The DropdownMenu uses Window-anchored
+            // positioning so this max plays nicely with anchor placement.
+            .heightIn(max = 480.dp),
+    ) {
+        allLanguages.forEachIndexed { index, language ->
+            val isSelected = remember(selectedLanguageIndex, index) {
+                index == selectedLanguageIndex
             }
+            DropdownMenuItem(
+                text = { DropdownItemContent(language, isSelected) },
+                modifier = Modifier
+                    .selectable(
+                        selected = isSelected,
+                        onClick = { onLanguageSelected(language) },
+                    )
+                    .testTag("$LANGUAGE_DROPDOWN_ITEM${language.code}-${language.region}"),
+                onClick = { onLanguageSelected(language) },
+            )
         }
     }
 }
