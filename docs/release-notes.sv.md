@@ -33,6 +33,8 @@ ladda ned offlinekartor.
 Soundscape kan nu använda telefonens stegräknare för att veta när du går, så att den tidigare märker
 att du har klivit ur ett fordon eller stannat, och du blir ombedd att ge en ny behörighet, *Fysisk
 aktivitet* (*Rörelse och fitness* på iPhone), första gången du öppnar den här versionen.
+Valet av röst för text till tal ser lite annorlunda ut. Rösterna är nu grupperade efter språk, ett
+tryck på en röst spelar upp ett prov, och väljer du *Auto* används standardrösten för ditt språk.
 
 ## Nyheter i 2.0
 
@@ -70,8 +72,8 @@ aktivitet* (*Rörelse och fitness* på iPhone), första gången du öppnar den h
 * **Mycket tillgänglighetsarbete** med TalkBack, särskilt kring introduktionsskärmarna.
 * **Väldigt många rättningar av krascher och stabilitet.**
 
-Två saker har **tagits bort** i 2.0: röststyrningen och språkmenyn inne i appen. Se
-[Borttagna funktioner](#things-that-have-been-removed) nedan för vad du kan göra i stället.
+Röststyrningen har **tagits bort** i 2.0. Se [Borttagna funktioner](#things-that-have-been-removed)
+nedan för vad du kan göra i stället.
 
 ---
 
@@ -291,9 +293,6 @@ robust på telefoner som aggressivt stänger bakgrundsappar.
   [Hjälp om användning av mediaknappar]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape är också redo för röstkommandon via Gemini på Android 16 och senare, men de fungerar
   inte förrän Google släpper stödet för dem i Gemini.
-* **Språkmenyn inne i appen** är borta. Soundscape följer nu det språk du ställt in på telefonen,
-  vilket är vad de flesta förväntade sig. Vill du ändra det byter du telefonens språk eller anger ett
-  språk per app i telefonens inställningar, om den erbjuder det.
 
 ## Att berätta för oss om problem
 

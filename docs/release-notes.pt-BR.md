@@ -34,6 +34,9 @@ O Soundscape agora pode usar o contador de passos do seu celular para saber quan
 andando, então percebe mais cedo que você desceu de um veículo ou parou, e ao abrir esta versão pela
 primeira vez você verá o pedido de uma nova permissão, *Atividade física* (*Movimento e Preparo
 Físico* no iPhone).
+A escolha da voz de texto para fala tem uma interface um pouco diferente. Agora as vozes são
+agrupadas por idioma, tocar em uma reproduz uma amostra e escolher *Auto* usa a voz padrão do seu
+idioma.
 
 ## Novidades da versão 2.0
 
@@ -71,9 +74,8 @@ Físico* no iPhone).
 * **Muito trabalho de acessibilidade** com o TalkBack, especialmente nas telas iniciais.
 * **Muitíssimas correções de travamentos e de estabilidade.**
 
-Duas coisas foram **removidas** na versão 2.0: o controle por voz e o menu de idioma dentro do
-aplicativo. Veja [Itens removidos](#things-that-have-been-removed) abaixo para saber o que fazer no
-lugar.
+O controle por voz foi **removido** na versão 2.0. Veja [Itens
+removidos](#things-that-have-been-removed) abaixo para saber o que fazer no lugar.
 
 ---
 
@@ -298,9 +300,6 @@ aplicativos em segundo plano.
   [Ajuda sobre o uso dos controles de mídia]({{ "/users/help-using-media-controls.html" | relative_url }}).
   O Soundscape também está pronto para comandos de voz com o Gemini no Android 16 ou mais recente,
   mas eles só vão funcionar quando o Google liberar esse suporte no Gemini.
-* **O menu de idioma dentro do aplicativo** foi retirado. O Soundscape agora segue o idioma
-  configurado no celular, que é o que a maioria das pessoas esperava. Para mudá-lo, troque o idioma
-  do celular ou defina um idioma por aplicativo nas configurações, se houver essa opção.
 
 ## Como nos informar de problemas
 

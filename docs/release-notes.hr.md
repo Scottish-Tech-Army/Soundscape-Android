@@ -32,6 +32,9 @@ te problem s preuzimanjem izvanmrežnih karata.
 Soundscape sada može koristiti brojač koraka na vašem telefonu kako bi prepoznao kada hodate, pa
 ranije primjećuje da ste izašli iz vozila ili stali, a kada prvi put otvorite ovu verziju, zatražit
 će se od vas nova dozvola *Tjelesna aktivnost* (na iPhoneu *Kretanje i fitness*).
+Odabir glasa za pretvaranje teksta u govor izgleda malo drukčije. Glasovi su sada grupirani po
+jeziku, dodirom glasa reproducira se primjer, a odabirom opcije *Automatski* koristi se zadani glas
+za vaš jezik.
 
 ## Novosti u verziji 2.0
 
@@ -67,9 +70,8 @@ ranije primjećuje da ste izašli iz vozila ili stali, a kada prvi put otvorite 
 * **Mnogo rada na pristupačnosti** s TalkBackom, osobito oko uvodnih zaslona.
 * **Vrlo mnogo ispravaka rušenja i stabilnosti.**
 
-U verziji 2.0 **uklonjene** su dvije stvari: glasovno upravljanje i izbornik jezika unutar aplikacije.
-Pogledajte niže [Uklonjene značajke](#things-that-have-been-removed) za to što možete učiniti umjesto
-toga.
+U verziji 2.0 **uklonjeno** je glasovno upravljanje. Pogledajte niže [Uklonjene
+značajke](#things-that-have-been-removed) za to što možete učiniti umjesto toga.
 
 ---
 
@@ -283,9 +285,6 @@ učvršćeno na telefonima koji agresivno zatvaraju pozadinske aplikacije.
   [Pomoć za upotrebu medijskih tipki]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape je spreman i za glasovne naredbe putem Geminija na Androidu 16 i novijem, ali one neće
   raditi dok Google ne objavi njihovu podršku u Geminiju.
-* **Izbornik jezika unutar aplikacije** nestao je. Soundscape sada slijedi jezik postavljen na vašem
-  telefonu, što je većina ljudi ionako očekivala. Za promjenu promijenite jezik telefona ili u
-  njegovim postavkama odredite jezik po aplikaciji, ako to nudi.
 
 ## Kako nam prijaviti probleme
 

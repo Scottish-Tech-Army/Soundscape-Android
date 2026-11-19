@@ -34,6 +34,9 @@ Soundscape może teraz korzystać z krokomierza w telefonie, aby rozpoznać, kie
 czemu szybciej zauważa, że wysiadłeś z pojazdu lub się zatrzymałeś, a przy pierwszym otwarciu tej
 wersji pojawi się prośba o nowe uprawnienie *Aktywność fizyczna* (na iPhonie *Ruch i aktywność
 fizyczna*).
+Wybór głosu syntezy mowy wygląda nieco inaczej. Głosy są teraz pogrupowane według języka, dotknięcie
+głosu odtwarza próbkę, a wybranie opcji *Automatyczny* sprawi, że używany będzie domyślny głos dla
+Twojego języka.
 
 ## Nowości w wersji 2.0
 
@@ -70,8 +73,8 @@ fizyczna*).
 * **Dużo pracy nad dostępnością** z TalkBack, zwłaszcza wokół ekranów wprowadzających.
 * **Bardzo wiele poprawek awarii i stabilności.**
 
-W wersji 2.0 **usunięto** dwie rzeczy: sterowanie głosowe i menu języka wewnątrz aplikacji. Zobacz
-[Usunięte funkcje](#things-that-have-been-removed) poniżej, aby dowiedzieć się, co robić zamiast tego.
+W wersji 2.0 **usunięto** sterowanie głosowe. Zobacz [Usunięte
+funkcje](#things-that-have-been-removed) poniżej, aby dowiedzieć się, co robić zamiast tego.
 
 ---
 
@@ -292,9 +295,6 @@ również zostało wzmocnione na telefonach agresywnie zamykających aplikacje w
   [Pomoc dotyczącą korzystania z przycisków multimedialnych]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape jest też gotowy na polecenia głosowe przez Gemini na Androidzie 16 i nowszym, ale nie
   będą działać, dopóki Google nie udostępni ich obsługi w Gemini.
-* **Menu języka wewnątrz aplikacji** zniknęło. Soundscape podąża teraz za językiem ustawionym w
-  telefonie, czego większość osób i tak oczekiwała. Aby go zmienić, zmień język telefonu albo ustaw
-  język dla poszczególnych aplikacji w jego ustawieniach, jeśli taka opcja jest dostępna.
 
 ## Zgłaszanie nam problemów
 

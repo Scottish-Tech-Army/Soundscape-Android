@@ -32,6 +32,9 @@ kết nối mạng yếu, và một lỗi khi tải bản đồ ngoại tuyến.
 Giờ đây Soundscape có thể dùng bộ đếm bước của điện thoại để biết khi nào bạn đang đi bộ, nhờ đó
 nhận ra sớm hơn rằng bạn đã xuống xe hoặc dừng lại, và khi mở phiên bản này lần đầu, bạn sẽ được yêu
 cầu cấp quyền mới *Hoạt động thể chất* (*Chuyển động và Thể dục* trên iPhone).
+Việc chọn giọng đọc chuyển văn bản thành giọng nói có giao diện hơi khác. Các giọng đọc giờ được
+nhóm theo ngôn ngữ, chạm vào một giọng sẽ phát mẫu, và chọn *Tự động* sẽ dùng giọng mặc định cho
+ngôn ngữ của bạn.
 
 ## Có gì mới trong 2.0
 
@@ -67,9 +70,8 @@ cầu cấp quyền mới *Hoạt động thể chất* (*Chuyển động và T
 * **Rất nhiều việc về khả năng tiếp cận** với TalkBack, đặc biệt quanh các màn hình khởi đầu.
 * **Rất nhiều bản sửa lỗi treo và ổn định.**
 
-Hai thứ đã bị **loại bỏ** trong 2.0: điều khiển bằng giọng nói và menu ngôn ngữ bên trong ứng dụng.
-Xem [Các tính năng đã bị loại bỏ](#things-that-have-been-removed) bên dưới để biết nên làm gì thay
-thế.
+Điều khiển bằng giọng nói đã bị **loại bỏ** trong 2.0. Xem [Các tính năng đã bị loại
+bỏ](#things-that-have-been-removed) bên dưới để biết nên làm gì thay thế.
 
 ---
 
@@ -288,9 +290,6 @@ nền một cách quyết liệt.
   [Trợ giúp về việc dùng nút điều khiển media]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape cũng đã sẵn sàng cho lệnh thoại qua Gemini trên Android 16 trở lên, nhưng các lệnh này sẽ
   chưa hoạt động cho đến khi Google phát hành hỗ trợ cho chúng trong Gemini.
-* **Menu ngôn ngữ bên trong ứng dụng** đã biến mất. Soundscape giờ theo ngôn ngữ bạn đặt cho điện
-  thoại, điều mà phần lớn mọi người vẫn mong đợi. Để thay đổi, hãy đổi ngôn ngữ của điện thoại, hoặc
-  đặt ngôn ngữ riêng cho từng ứng dụng trong cài đặt điện thoại nếu máy hỗ trợ.
 
 ## Cách báo cho chúng tôi về sự cố
 

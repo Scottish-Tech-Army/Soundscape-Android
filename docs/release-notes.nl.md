@@ -35,6 +35,9 @@ Soundscape kan nu de stappenteller van uw telefoon gebruiken om te weten wanneer
 eerder merkt dat u uit een voertuig bent gestapt of bent blijven staan, en de eerste keer dat u deze
 versie opent, wordt u om een nieuwe toestemming gevraagd: *Fysieke activiteit* (*Beweging en
 conditie* op iPhone).
+Het kiezen van een tekst-naar-spraakstem ziet er iets anders uit. Stemmen zijn nu gegroepeerd per
+taal, tikken op een stem speelt een voorbeeld af, en met *Automatisch* wordt de standaardstem voor
+uw taal gebruikt.
 
 ## Nieuw in 2.0
 
@@ -71,9 +74,8 @@ conditie* op iPhone).
 * **Veel toegankelijkheidswerk** aan TalkBack, vooral rond de introductieschermen.
 * **Zeer veel oplossingen voor crashes en stabiliteit.**
 
-Twee dingen zijn in 2.0 **verwijderd**: de spraakbediening en het taalmenu in de app. Zie
-[Verwijderde onderdelen](#things-that-have-been-removed) hieronder voor wat u in plaats daarvan kunt
-doen.
+De spraakbediening is in 2.0 **verwijderd**. Zie [Verwijderde
+onderdelen](#things-that-have-been-removed) hieronder voor wat u in plaats daarvan kunt doen.
 
 ---
 
@@ -300,9 +302,6 @@ en opstarten is robuuster gemaakt op telefoons die achtergrond-apps agressief af
   [Hulp bij het gebruik van mediatoetsen]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape is ook klaar voor spraakopdrachten via Gemini op Android 16 en hoger, maar die werken
   pas als Google de ondersteuning ervoor in Gemini uitbrengt.
-* **Het taalmenu in de app** is verdwenen. Soundscape volgt nu de taal die u op uw telefoon hebt
-  ingesteld, wat de meeste mensen ook verwachtten. Wilt u die wijzigen, verander dan de taal van uw
-  telefoon of stel in de telefooninstellingen een taal per app in, als die optie er is.
 
 ## Problemen aan ons melden
 

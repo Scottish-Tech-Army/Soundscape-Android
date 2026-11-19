@@ -34,6 +34,9 @@ Soundscape kan nu bruge din telefons skridttæller til at registrere, hvornår d
 hurtigere opdager, at du er steget ud af et køretøj eller er stoppet, og du bliver bedt om en ny
 tilladelse, *Fysisk aktivitet* (*Motion & fitness* på iPhone), når du åbner denne version første
 gang.
+Valget af tekst til tale-stemme ser lidt anderledes ud. Stemmerne er nu grupperet efter sprog, et
+tryk på en stemme afspiller en prøve, og vælger du *Automatisk*, bruges standardstemmen for dit
+sprog.
 
 ## Nyt i 2.0
 
@@ -69,8 +72,8 @@ gang.
 * **Meget tilgængelighedsarbejde** med TalkBack, især omkring introduktionsskærmene.
 * **Særdeles mange rettelser af nedbrud og stabilitet.**
 
-To ting er **fjernet** i 2.0: stemmestyringen og sprogmenuen inde i appen. Se
-[Fjernede funktioner](#things-that-have-been-removed) nedenfor for, hvad du kan gøre i stedet.
+Stemmestyringen er **fjernet** i 2.0. Se [Fjernede funktioner](#things-that-have-been-removed)
+nedenfor for, hvad du kan gøre i stedet.
 
 ---
 
@@ -287,9 +290,6 @@ robust på telefoner, der aggressivt lukker baggrundsapps.
   [Hjælp til brug af medieknapper]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape er også klar til stemmekommandoer via Gemini på Android 16 og nyere, men de virker først,
   når Google frigiver understøttelsen i Gemini.
-* **Sprogmenuen inde i appen** er væk. Soundscape følger nu det sprog, du har valgt på din telefon,
-  hvilket er, hvad de fleste forventede. Vil du ændre det, så skift telefonens sprog, eller vælg et
-  sprog pr. app i telefonens indstillinger, hvis den tilbyder det.
 
 ## Sådan fortæller du os om problemer
 

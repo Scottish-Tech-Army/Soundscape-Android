@@ -32,6 +32,9 @@ lokacija* ob šibki omrežni povezavi molčala, in težavo pri prenosu zemljevid
 Soundscape lahko zdaj s števcem korakov v telefonu prepozna, kdaj hodite, zato prej opazi, da ste
 izstopili iz vozila ali se ustavili, ob prvem odprtju te različice pa boste naprošeni za novo
 dovoljenje *Telesna dejavnost* (v iPhonu *Gibanje in telesna pripravljenost*).
+Izbira glasu za pretvorbo besedila v govor je videti nekoliko drugače. Glasovi so zdaj razvrščeni po
+jezikih, dotik glasu predvaja vzorec, z možnostjo *Samodejno* pa se uporabi privzeti glas za vaš
+jezik.
 
 ## Novosti v različici 2.0
 
@@ -66,9 +69,8 @@ dovoljenje *Telesna dejavnost* (v iPhonu *Gibanje in telesna pripravljenost*).
 * **Veliko dela na dostopnosti** s TalkBackom, zlasti pri uvodnih zaslonih.
 * **Zelo veliko popravkov sesutij in stabilnosti.**
 
-V različici 2.0 sta bili **odstranjeni** dve stvari: glasovno upravljanje in meni jezika v aplikaciji.
-Spodaj v razdelku [Odstranjene funkcije](#things-that-have-been-removed) piše, kaj lahko storite
-namesto tega.
+V različici 2.0 je bilo **odstranjeno** glasovno upravljanje. Spodaj v razdelku [Odstranjene
+funkcije](#things-that-have-been-removed) piše, kaj lahko storite namesto tega.
 
 ---
 
@@ -284,9 +286,6 @@ utrjeno na telefonih, ki agresivno zapirajo aplikacije v ozadju.
   [Pomoč pri uporabi predstavnostnih tipk]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape je pripravljen tudi na glasovne ukaze prek Gemini v Androidu 16 in novejših, vendar ne
   bodo delovali, dokler Google njihove podpore v Gemini ne izda.
-* **Meni jezika v aplikaciji** je izginil. Soundscape zdaj sledi jeziku, nastavljenemu na vašem
-  telefonu, kar je večina ljudi tako ali tako pričakovala. Če ga želite spremeniti, spremenite jezik
-  telefona ali v njegovih nastavitvah določite jezik za posamezno aplikacijo, če to omogoča.
 
 ## Kako nam sporočite težave
 

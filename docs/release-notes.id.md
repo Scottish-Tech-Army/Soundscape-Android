@@ -35,6 +35,9 @@ Soundscape kini dapat menggunakan penghitung langkah di ponsel Anda untuk menget
 berjalan, sehingga lebih cepat menyadari bahwa Anda turun dari kendaraan atau berhenti, dan saat
 pertama kali membuka versi ini, Anda akan diminta izin baru *Aktivitas fisik* (*Gerakan dan
 Kebugaran* di iPhone).
+Pemilihan suara teks ke ucapan kini tampil sedikit berbeda. Suara sekarang dikelompokkan menurut
+bahasa, mengetuk salah satunya memutar contoh, dan memilih *Otomatis* akan memakai suara bawaan
+untuk bahasa Anda.
 
 ## Yang baru di 2.0
 
@@ -71,9 +74,8 @@ Kebugaran* di iPhone).
 * **Banyak pekerjaan aksesibilitas** dengan TalkBack, terutama di sekitar layar awal.
 * **Sangat banyak perbaikan mogok dan kestabilan.**
 
-Dua hal **dihapus** di 2.0: kendali suara dan menu bahasa di dalam aplikasi. Lihat
-[Fitur yang dihapus](#things-that-have-been-removed) di bawah untuk mengetahui apa yang bisa Anda
-lakukan sebagai gantinya.
+Kendali suara **dihapus** di 2.0. Lihat [Fitur yang dihapus](#things-that-have-been-removed) di
+bawah untuk mengetahui apa yang bisa Anda lakukan sebagai gantinya.
 
 ---
 
@@ -298,9 +300,6 @@ yang menutup aplikasi latar secara agresif.
   [Bantuan penggunaan tombol media]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape juga sudah siap untuk perintah suara melalui Gemini di Android 16 atau lebih baru, tetapi
   perintah itu baru akan berfungsi setelah Google merilis dukungannya di Gemini.
-* **Menu bahasa di dalam aplikasi** telah hilang. Soundscape kini mengikuti bahasa yang Anda atur di
-  ponsel, yang memang diharapkan kebanyakan orang. Untuk mengubahnya, ganti bahasa ponsel, atau atur
-  bahasa per aplikasi di pengaturan ponsel jika tersedia.
 
 ## Cara memberi tahu kami tentang masalah
 

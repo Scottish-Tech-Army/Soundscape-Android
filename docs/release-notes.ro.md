@@ -34,6 +34,9 @@ Soundscape poate folosi acum contorul de pași al telefonului pentru a ști cân
 că observă mai repede că ați coborât dintr-un vehicul sau v-ați oprit, iar când deschideți această
 versiune prima dată, vi se va cere o nouă permisiune, *Activitate fizică* (*Mișcare și fitness* pe
 iPhone).
+Alegerea vocii pentru transformarea textului în vorbire arată puțin diferit. Vocile sunt acum
+grupate după limbă, atingerea uneia redă o mostră, iar alegerea *Automat* folosește vocea implicită
+pentru limba dvs.
 
 ## Noutăți în 2.0
 
@@ -70,8 +73,8 @@ iPhone).
 * **Multă muncă de accesibilitate** cu TalkBack, mai ales în jurul ecranelor introductive.
 * **Foarte multe remedieri de blocări și de stabilitate.**
 
-Două lucruri au fost **eliminate** în 2.0: controlul vocal și meniul de limbă din aplicație. Vedeți
-mai jos [Funcții eliminate](#things-that-have-been-removed) pentru ce puteți face în schimb.
+Controlul vocal a fost **eliminat** în 2.0. Vedeți mai jos [Funcții
+eliminate](#things-that-have-been-removed) pentru ce puteți face în schimb.
 
 ---
 
@@ -296,9 +299,6 @@ aplicațiile din fundal.
   [Ajutor privind utilizarea comenzilor media]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape este pregătit și pentru comenzi vocale prin Gemini pe Android 16 și versiunile mai noi,
   dar acestea nu vor funcționa până când Google nu lansează suportul pentru ele în Gemini.
-* **Meniul de limbă din aplicație** a dispărut. Soundscape urmează acum limba setată pe telefon, ceea
-  ce majoritatea oamenilor se așteptau oricum. Pentru a o schimba, modificați limba telefonului sau
-  setați o limbă per aplicație în setările acestuia, dacă oferă această opțiune.
 
 ## Cum ne semnalați problemele
 

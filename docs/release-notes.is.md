@@ -33,6 +33,9 @@ Soundscape getur nú notað skrefateljara símans til að greina hvenær þú er
 fyrr eftir því að þú ert kominn út úr ökutæki eða hefur stoppað, og þegar þú opnar þessa útgáfu í
 fyrsta sinn verður þú beðinn um nýtt leyfi, *Líkamleg hreyfing* (*Hreyfing og líkamlegt ástand* á
 iPhone).
+Val á talgervilsrödd lítur aðeins öðruvísi út. Raddirnar eru nú flokkaðar eftir tungumáli, ef þú
+ýtir á rödd heyrirðu sýnishorn og ef þú velur *Sjálfvirkt* er sjálfgefin rödd tungumálsins þíns
+notuð.
 
 ## Nýtt í 2.0
 
@@ -67,8 +70,8 @@ iPhone).
 * **Mikil vinna við aðgengi** með TalkBack, einkum í kringum kynningarskjáina.
 * **Afar margar lagfæringar á hruni og stöðugleika.**
 
-Tvennt hefur verið **fjarlægt** í 2.0: raddstýringin og tungumálavalmyndin inni í forritinu. Sjá
-[Fjarlægðir eiginleikar](#things-that-have-been-removed) hér að neðan um hvað má gera í staðinn.
+Raddstýringin hefur verið **fjarlægð** í 2.0. Sjá [Fjarlægðir
+eiginleikar](#things-that-have-been-removed) hér að neðan um hvað má gera í staðinn.
 
 ---
 
@@ -282,9 +285,6 @@ símum sem loka bakgrunnsforritum af hörku.
   [Hjálp við notkun margmiðlunartakka]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape er líka tilbúið fyrir raddskipanir í gegnum Gemini á Android 16 og nýrri, en þær virka
   ekki fyrr en Google gefur út stuðning við þær í Gemini.
-* **Tungumálavalmyndin inni í forritinu** er farin. Soundscape fylgir nú tungumálinu sem þú hefur stillt
-  í símanum, sem er það sem flestir bjuggust við. Til að breyta því skaltu breyta tungumáli símans eða
-  velja tungumál fyrir hvert forrit í stillingum símans ef hann býður upp á það.
 
 ## Hvernig þú lætur okkur vita af vandamálum
 

@@ -32,6 +32,8 @@ võrguühenduse korral vait, ning probleemi võrguühenduseta kaartide allalaadi
 Soundscape saab nüüd kasutada su telefoni sammuloendurit, et teada, millal sa kõnnid, nii et ta
 märkab varem, et oled sõidukist väljunud või peatunud, ja selle versiooni esmakordsel avamisel
 küsitakse sinult uut luba *Kehaline aktiivsus* (iPhone’is *Liikumine ja vormisolek*).
+Kõnesünteesi hääle valimine näeb nüüd veidi teistsugune välja. Hääled on rühmitatud keele järgi,
+häälel toksamine esitab näidise ja valik *Automaatne* kasutab sinu keele vaikehäält.
 
 ## Mis on uut versioonis 2.0
 
@@ -66,8 +68,8 @@ küsitakse sinult uut luba *Kehaline aktiivsus* (iPhone’is *Liikumine ja vormi
 * **Palju ligipääsetavuse tööd** TalkBackiga, eriti tutvustusekraanide juures.
 * **Väga palju kokkujooksmiste ja stabiilsuse parandusi.**
 
-Versioonis 2.0 on **eemaldatud** kaks asja: hääljuhtimine ja rakendusesisene keelemenüü. Vaata allpool
-[Eemaldatud funktsioonid](#things-that-have-been-removed), mida selle asemel teha.
+Versioonis 2.0 on hääljuhtimine **eemaldatud**. Vaata allpool [Eemaldatud
+funktsioonid](#things-that-have-been-removed), mida selle asemel teha.
 
 ---
 
@@ -285,9 +287,6 @@ muudetud töökindlamaks telefonides, mis sulgevad taustarakendusi agressiivselt
   [Abi meedianuppude kasutamise kohta]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape on valmis ka Gemini kaudu antavateks häälkäsklusteks Android 16-s ja uuemates, kuid need
   hakkavad tööle alles siis, kui Google avaldab nende toe Geminis.
-* **Rakendusesisene keelemenüü** on kadunud. Soundscape järgib nüüd telefonis määratud keelt, mida
-  enamik inimesi niikuinii ootas. Selle muutmiseks vaheta telefoni keelt või määra telefoni sätetes
-  rakendusepõhine keel, kui see on võimalik.
 
 ## Kuidas meile probleemidest teatada
 

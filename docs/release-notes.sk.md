@@ -32,6 +32,8 @@ pripojení k sieti mlčala, a problém so sťahovaním offline máp.
 Soundscape teraz môže pomocou krokomeru v telefóne rozpoznať, kedy kráčate, takže skôr zistí, že ste
 vystúpili z vozidla alebo sa zastavili, a pri prvom otvorení tejto verzie budete požiadaní o nové
 povolenie *Fyzická aktivita* (na iPhone *Pohyb a fitness*).
+Výber hlasu na prevod textu na reč vyzerá trochu inak. Hlasy sú teraz zoskupené podľa jazyka,
+ťuknutím na hlas prehráte ukážku a voľba *Automaticky* použije predvolený hlas pre váš jazyk.
 
 ## Novinky vo verzii 2.0
 
@@ -68,8 +70,7 @@ povolenie *Fyzická aktivita* (na iPhone *Pohyb a fitness*).
 * **Veľa práce na prístupnosti** s TalkBackom, najmä pri úvodných obrazovkách.
 * **Veľmi veľa opráv pádov a stability.**
 
-Vo verzii 2.0 boli **odstránené** dve veci: hlasové ovládanie a ponuka jazyka vnútri aplikácie. Čo
-robiť namiesto toho, nájdete nižšie v časti
+Vo verzii 2.0 bolo **odstránené** hlasové ovládanie. Čo robiť namiesto toho, nájdete nižšie v časti
 [Odstránené funkcie](#things-that-have-been-removed).
 
 ---
@@ -286,9 +287,6 @@ ktoré agresívne ukončujú aplikácie na pozadí.
   [Pomocníka k používaniu multimediálnych tlačidiel]({{ "/users/help-using-media-controls.html" | relative_url }}).
   Soundscape je tiež pripravený na hlasové príkazy cez Gemini v Androide 16 a novšom, tie však
   nebudú fungovať, kým Google ich podporu v Gemini nezverejní.
-* **Ponuka jazyka vnútri aplikácie** zmizla. Soundscape sa teraz riadi jazykom nastaveným v telefóne,
-  čo väčšina ľudí očakávala. Ak ho chcete zmeniť, zmeňte jazyk telefónu alebo v jeho nastaveniach
-  určte jazyk pre jednotlivú aplikáciu, ak to ponúka.
 
 ## Ako nám nahlásiť problém
 
