@@ -1381,6 +1381,8 @@
     <string name="first_launch_permissions_granted">ได้รับสิทธิ์แล้ว</string>
     <string name="first_launch_permissions_not_granted">ยังไม่ได้รับสิทธิ์</string>
     <string name="first_launch_permissions_denied">ถูกปฏิเสธ แตะเพื่ออนุญาตในการตั้งค่า</string>
+    <string name="first_launch_permissions_location_always">เมื่อ iOS ถามเกี่ยวกับตำแหน่งของคุณ ให้เลือก “อนุญาตในระหว่างใช้งานแอป” หลังจากนั้น iOS จะถามว่าจะให้ Soundscape ใช้ตำแหน่งของคุณได้ด้วยหรือไม่ในขณะที่คุณไม่ได้ใช้งานแอป ให้เลือก “เปลี่ยนเป็นอนุญาตเสมอ” มิฉะนั้น Soundscape จะหยุดทำงานเมื่อโทรศัพท์ล็อกอยู่</string>
+    <string name="first_launch_permissions_location_denied">ไม่ได้ตั้งค่าเป็น “ตลอดเวลา” แตะเพื่อเปิดการตั้งค่า จากนั้นเลือก “ตำแหน่งที่ตั้ง” เลือก “ตลอดเวลา” และเปิด “ตำแหน่งที่ตั้งจริง”</string>
     <string name="permissions_required">แอปต้องการสิทธิ์เข้าถึงตำแหน่งที่ตั้งจึงจะทำงานได้</string>
     <string name="permissions_button">เปลี่ยนสิทธิ์ในการตั้งค่าแอป</string>
     <string name="first_launch_beacon_title">เลือกบีคอนเสียง</string>

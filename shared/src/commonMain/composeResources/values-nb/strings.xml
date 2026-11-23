@@ -1566,6 +1566,8 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="first_launch_permissions_granted">Tillatelse gitt</string>
     <string name="first_launch_permissions_not_granted">Ikke gitt ennå</string>
     <string name="first_launch_permissions_denied">Avslått. Trykk for å tillate det i Innstillinger.</string>
+    <string name="first_launch_permissions_location_always">Når iOS spør om posisjonen din, velger du «Tillat mens appen er i bruk». Senere spør iOS om Soundscape også kan bruke posisjonen din når du ikke bruker appen. Velg «Bytt til tillat alltid», ellers slutter Soundscape å virke når telefonen er låst.</string>
+    <string name="first_launch_permissions_location_denied">Ikke satt til «Alltid». Trykk for å åpne Innstillinger, velg deretter «Sted», velg «Alltid» og slå på «Nøyaktig posisjon».</string>
     <string name="talkback_double_tap_template">Dobbelttrykk for å %1$s</string>
     <string name="menu_manage_locale">Region</string>
     <string name="callouts_audio_beacon_distance">Lydsignalet er for øyeblikket %1$s unna</string>

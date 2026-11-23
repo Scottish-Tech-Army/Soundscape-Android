@@ -1176,6 +1176,8 @@
     <string name="first_launch_permissions_granted">Дозвола одобрена</string>
     <string name="first_launch_permissions_not_granted">Још није одобрена</string>
     <string name="first_launch_permissions_denied">Одбијена. Додирните да бисте је дозволили у Подешавањима.</string>
+    <string name="first_launch_permissions_location_always">Када iOS пита за вашу локацију, изаберите „Allow While Using App”. Касније ће iOS питати да ли Soundscape може да користи вашу локацију и када не користите апликацију. Изаберите „Change to Always Allow”, иначе Soundscape престаје да ради када је телефон закључан.</string>
+    <string name="first_launch_permissions_location_denied">Није подешено на „Always”. Додирните да бисте отворили Подешавања, затим изаберите „Location”, изаберите „Always” и укључите „Precise Location”.</string>
     <string name="permissions_required">Апликацији су потребне дозволе за локацију да би могла да ради.</string>
     <string name="permissions_button">Промените дозволе у подешавањима апликације</string>
     <string name="first_launch_beacon_title">Изаберите звучни бакен</string>

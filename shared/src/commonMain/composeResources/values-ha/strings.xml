@@ -1397,6 +1397,8 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="first_launch_permissions_granted">An ba da izini</string>
     <string name="first_launch_permissions_not_granted">Ba a ba da izini ba tukuna</string>
     <string name="first_launch_permissions_denied">An ƙi. Taɓa don ba da izini a Saituna.</string>
+    <string name="first_launch_permissions_location_always">Idan iOS ta tambaye ka game da wurinka, zaɓi “Allow While Using App”. Daga baya, iOS za ta tambaya ko Soundscape za ta iya amfani da wurinka ko da ba ka amfani da manhajar. Zaɓi “Change to Always Allow”, idan ba haka ba Soundscape za ta daina aiki idan wayarka tana kulle.</string>
+    <string name="first_launch_permissions_location_denied">Ba a saita zuwa “Always” ba. Taɓa don buɗe Saituna, sannan ka zaɓi “Location”, ka zaɓi “Always” kuma ka kunna “Precise Location”.</string>
     <string name="permissions_required">Manhajar tana bukatar izinin wuri domin ta iya yin aiki.</string>
     <string name="permissions_button">Canza izinai a cikin saitunan manhaja</string>
     <string name="first_launch_beacon_title">Zaɓi Siginar Sauti</string>

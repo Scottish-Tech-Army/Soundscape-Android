@@ -1550,6 +1550,8 @@
     <string name="first_launch_permissions_granted">許可済み</string>
     <string name="first_launch_permissions_not_granted">未許可</string>
     <string name="first_launch_permissions_denied">拒否されています。タップして「設定」で許可してください。</string>
+    <string name="first_launch_permissions_location_always">iOS から位置情報について尋ねられたら、「アプリの使用中は許可」を選択してください。その後、アプリを使用していないときにも Soundscape が位置情報を使用できるようにするかどうか、iOS から尋ねられます。「“常に許可”に変更」を選択してください。選択しないと、スマートフォンがロックされているときに Soundscape が動作しなくなります。</string>
+    <string name="first_launch_permissions_location_denied">「常に」に設定されていません。タップして「設定」を開き、「位置情報」を選択して「常に」を選び、「正確な位置情報」をオンにしてください。</string>
     <string name="talkback_double_tap_template">ダブルタップして%1$s</string>
     <string name="menu_manage_locale">ロケール</string>
     <string name="callouts_audio_beacon_distance">ビーコンまで現在 %1$s です</string>

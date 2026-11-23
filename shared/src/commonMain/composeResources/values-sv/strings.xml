@@ -1566,6 +1566,8 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="first_launch_permissions_granted">Behörighet beviljad</string>
     <string name="first_launch_permissions_not_granted">Ännu inte beviljad</string>
     <string name="first_launch_permissions_denied">Nekad. Tryck för att tillåta den i Inställningar.</string>
+    <string name="first_launch_permissions_location_always">När iOS frågar om din plats väljer du ”Tillåt medan appen används”. Senare frågar iOS om Soundscape även får använda din plats när du inte använder appen. Välj ”Ändra till Tillåt alltid”, annars slutar Soundscape att fungera när telefonen är låst.</string>
+    <string name="first_launch_permissions_location_denied">Inte inställt på ”Alltid”. Tryck för att öppna Inställningar, välj sedan ”Plats”, välj ”Alltid” och aktivera ”Exakt platsinformation”.</string>
     <string name="talkback_double_tap_template">Dubbeltryck för att %1$s</string>
     <string name="menu_manage_locale">Regioninställningar</string>
     <string name="callouts_audio_beacon_distance">Ljudfyren är just nu %1$s bort</string>

@@ -445,6 +445,8 @@
     <string name="first_launch_permissions_granted">Permís concedit</string>
     <string name="first_launch_permissions_not_granted">Encara no concedit</string>
     <string name="first_launch_permissions_denied">Denegat. Toca per permetre-ho a Configuració.</string>
+    <string name="first_launch_permissions_location_always">Quan l’iOS et pregunti per la teva ubicació, tria «Permet amb l’app en ús». Més endavant, l’iOS et preguntarà si Soundscape també pot fer servir la teva ubicació quan no utilitzes l'aplicació. Tria «Canvia a “Permet sempre”»; si no, Soundscape deixarà de funcionar quan el telèfon estigui bloquejat.</string>
+    <string name="first_launch_permissions_location_denied">No està configurat a «Sempre». Toca per obrir Configuració i, després, tria «Ubicació», selecciona «Sempre» i activa «Ubicació exacta».</string>
     <string name="permissions_required">L'aplicació necessita permisos d'ubicació per poder funcionar.</string>
     <string name="permissions_button">Canvia els permisos a la configuració de l'aplicació</string>
     <string name="first_launch_beacon_title">Tria una balisa sonora</string>

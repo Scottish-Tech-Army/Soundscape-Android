@@ -1397,6 +1397,8 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="first_launch_permissions_granted">Ruhusa imetolewa</string>
     <string name="first_launch_permissions_not_granted">Bado haijatolewa</string>
     <string name="first_launch_permissions_denied">Imekataliwa. Gusa ili kuiruhusu kwenye Mipangilio.</string>
+    <string name="first_launch_permissions_location_always">iOS itakapouliza kuhusu mahali ulipo, chagua “Allow While Using App”. Baadaye, iOS itauliza kama Soundscape inaweza pia kutumia mahali ulipo wakati hutumii programu. Chagua “Change to Always Allow”, la sivyo Soundscape itaacha kufanya kazi simu yako ikiwa imefungwa.</string>
+    <string name="first_launch_permissions_location_denied">Haijawekwa kuwa “Always”. Gusa ili kufungua Mipangilio, kisha chagua “Location”, chagua “Always” na uwashe “Precise Location”.</string>
     <string name="permissions_required">Programu hii inahitaji ruhusa za mahali ili iweze kufanya kazi.</string>
     <string name="permissions_button">Badilisha ruhusa katika mipangilio ya programu</string>
     <string name="first_launch_beacon_title">Chagua Beacon ya Sauti</string>

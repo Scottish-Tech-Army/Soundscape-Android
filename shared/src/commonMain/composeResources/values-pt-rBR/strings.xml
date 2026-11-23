@@ -1582,6 +1582,8 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="first_launch_permissions_granted">Permissão concedida</string>
     <string name="first_launch_permissions_not_granted">Ainda não concedida</string>
     <string name="first_launch_permissions_denied">Negada. Toque para permiti-la em Ajustes.</string>
+    <string name="first_launch_permissions_location_always">Quando o iOS perguntar sobre sua localização, escolha “Permitir Durante o Uso do App”. Depois, o iOS vai perguntar se o Soundscape também pode usar sua localização quando você não estiver usando o aplicativo. Escolha “Alterar para Sempre Permitir”, senão o Soundscape para de funcionar quando o telefone estiver bloqueado.</string>
+    <string name="first_launch_permissions_location_denied">Não está definida como “Sempre”. Toque para abrir os Ajustes, depois escolha “Localização”, selecione “Sempre” e ative “Localização Precisa”.</string>
     <string name="talkback_double_tap_template">Toque duas vezes para %1$s</string>
     <string name="menu_manage_locale">Configurações regionais</string>
     <string name="callouts_audio_beacon_distance">O sinalizador está atualmente a %1$s de distância</string>

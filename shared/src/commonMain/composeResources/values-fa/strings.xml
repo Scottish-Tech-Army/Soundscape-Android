@@ -1567,6 +1567,8 @@
     <string name="first_launch_permissions_granted">مجوز داده شد</string>
     <string name="first_launch_permissions_not_granted">هنوز داده نشده</string>
     <string name="first_launch_permissions_denied">رد شد. برای اجازه دادن در تنظیمات، ضربه بزنید.</string>
+    <string name="first_launch_permissions_location_always">وقتی iOS درباره موقعیت مکانی شما سؤال می‌کند، «Allow While Using App» را انتخاب کنید. بعداً iOS می‌پرسد که آیا ساند‌اسکیپ می‌تواند وقتی از اپلیکیشن استفاده نمی‌کنید هم از موقعیت مکانی شما استفاده کند. «Change to Always Allow» را انتخاب کنید، وگرنه ساند‌اسکیپ وقتی گوشی قفل است از کار می‌افتد.</string>
+    <string name="first_launch_permissions_location_denied">روی «Always» تنظیم نشده است. برای باز کردن تنظیمات ضربه بزنید، سپس «Location» را انتخاب کنید، «Always» را برگزینید و «Precise Location» را روشن کنید.</string>
     <string name="talkback_double_tap_template">دو بار ضربه بزنید تا %1$s</string>
     <string name="menu_manage_locale">تنظیمات محلی</string>
     <string name="callouts_audio_beacon_distance">جهت‌نما در حال حاضر %1$s فاصله دارد</string>

@@ -1582,6 +1582,8 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="first_launch_permissions_granted">Permisiune acordată</string>
     <string name="first_launch_permissions_not_granted">Încă neacordată</string>
     <string name="first_launch_permissions_denied">Refuzată. Atinge pentru a o permite în Configurări.</string>
+    <string name="first_launch_permissions_location_always">Când iOS te întreabă despre locația ta, alege „Permiteți în timpul utilizării aplicației”. Mai târziu, iOS te va întreba dacă Soundscape poate folosi locația ta și atunci când nu folosești aplicația. Alege „Schimbați la permisiune permanentă”, altfel Soundscape nu mai funcționează când telefonul este blocat.</string>
+    <string name="first_launch_permissions_location_denied">Nu este setată la „Întotdeauna”. Atinge pentru a deschide Configurări, apoi alege „Localizare”, selectează „Întotdeauna” și activează „Localizare precisă”.</string>
     <string name="talkback_double_tap_template">Atinge de două ori pentru %1$s</string>
     <string name="menu_manage_locale">Limbă și regiune</string>
     <string name="callouts_audio_beacon_distance">Baliza se află momentan la %1$s</string>

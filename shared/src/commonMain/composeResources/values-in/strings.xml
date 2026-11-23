@@ -1381,6 +1381,8 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="first_launch_permissions_granted">Izin diberikan</string>
     <string name="first_launch_permissions_not_granted">Belum diberikan</string>
     <string name="first_launch_permissions_denied">Ditolak. Ketuk untuk mengizinkannya di Pengaturan.</string>
+    <string name="first_launch_permissions_location_always">Saat iOS menanyakan lokasi Anda, pilih “Izinkan Saat Menggunakan App”. Nanti, iOS akan menanyakan apakah Soundscape juga boleh menggunakan lokasi Anda saat Anda tidak menggunakan aplikasi. Pilih “Ubah ke Selalu Izinkan”; jika tidak, Soundscape akan berhenti bekerja saat ponsel Anda terkunci.</string>
+    <string name="first_launch_permissions_location_denied">Belum disetel ke “Selalu”. Ketuk untuk membuka Pengaturan, lalu pilih “Lokasi”, pilih “Selalu”, dan nyalakan “Lokasi Tepat”.</string>
     <string name="permissions_required">Aplikasi ini memerlukan izin lokasi agar dapat berjalan.</string>
     <string name="permissions_button">Ubah izin di pengaturan aplikasi</string>
     <string name="first_launch_beacon_title">Pilih Suar Audio</string>

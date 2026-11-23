@@ -1397,6 +1397,8 @@
     <string name="first_launch_permissions_granted">অনুমতি দেওয়া হয়েছে</string>
     <string name="first_launch_permissions_not_granted">এখনও দেওয়া হয়নি</string>
     <string name="first_launch_permissions_denied">প্রত্যাখ্যাত। সেটিংসে গিয়ে অনুমতি দিতে ট্যাপ করুন।</string>
+    <string name="first_launch_permissions_location_always">iOS যখন আপনার অবস্থান সম্পর্কে জানতে চাইবে, তখন “অ্যাপ ব্যবহার করার সময় অনুমতি দিন” বেছে নিন। পরে iOS জানতে চাইবে, আপনি অ্যাপটি ব্যবহার না করার সময়ও Soundscape আপনার অবস্থান ব্যবহার করতে পারবে কি না। তখন ‘“সবসময় অনুমতি দিন”-এ পরিবর্তন করুন’ বেছে নিন, নইলে ফোন লক থাকলে Soundscape কাজ করা বন্ধ করে দেবে।</string>
+    <string name="first_launch_permissions_location_denied">“সবসময়” সেট করা নেই। সেটিংস খুলতে ট্যাপ করুন, তারপর “লোকেশন” বেছে নিন, “সবসময়” নির্বাচন করুন এবং “সুনির্দিষ্ট লোকেশন” চালু করুন।</string>
     <string name="permissions_required">অ্যাপটি চালানোর জন্য লোকেশন সংক্রান্ত অনুমতি প্রয়োজন।</string>
     <string name="permissions_button">অ্যাপ সেটিংসে অনুমতি পরিবর্তন করুন</string>
     <string name="first_launch_beacon_title">একটি অডিও বীকন বেছে নিন</string>

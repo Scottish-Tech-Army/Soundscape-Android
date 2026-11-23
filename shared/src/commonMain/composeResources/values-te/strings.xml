@@ -1397,6 +1397,8 @@
     <string name="first_launch_permissions_granted">అనుమతి మంజూరు చేయబడింది</string>
     <string name="first_launch_permissions_not_granted">ఇంకా మంజూరు కాలేదు</string>
     <string name="first_launch_permissions_denied">తిరస్కరించబడింది. సెట్టింగ్‌లలో అనుమతించడానికి నొక్కండి.</string>
+    <string name="first_launch_permissions_location_always">iOS మీ స్థానం గురించి అడిగినప్పుడు, “యాప్‌ను ఉపయోగిస్తున్నప్పుడు” ఎంచుకోండి. తర్వాత, మీరు యాప్‌ను ఉపయోగించనప్పుడు కూడా Soundscape మీ స్థానాన్ని ఉపయోగించవచ్చా అని iOS అడుగుతుంది. “‘ఎల్లప్పుడూ అనుమతించండి’కి మార్చండి” ఎంచుకోండి, లేకపోతే ఫోన్ లాక్‌లో ఉన్నప్పుడు Soundscape పని చేయడం ఆగిపోతుంది.</string>
+    <string name="first_launch_permissions_location_denied">“ఎల్లప్పుడూ”కి సెట్ చేయలేదు. సెట్టింగ్‌లను తెరవడానికి నొక్కండి, ఆపై “లొకేషన్” ఎంచుకుని, “ఎల్లప్పుడూ” ఎంచుకుని, “ఖచ్చితమైన లొకేషన్” ఆన్ చేయండి.</string>
     <string name="permissions_required">యాప్ నడవడానికి లొకేషన్ అనుమతులు అవసరం.</string>
     <string name="permissions_button">యాప్ సెట్టింగ్‌లలో అనుమతులను మార్చండి</string>
     <string name="first_launch_beacon_title">ఆడియో బీకాన్‌ను ఎంచుకోండి</string>
