@@ -937,6 +937,10 @@
     <string name="first_launch_permissions_not_granted">Not yet granted</string>
     <!-- iOS only: shown instead of first_launch_permissions_required once the user has said no to the system prompt, since iOS won't show that prompt again - tapping this row instead opens the Settings app so they can allow it there -->
     <string name="first_launch_permissions_denied">Denied. Tap to allow it in Settings.</string>
+    <!-- iOS only: shown on the permissions screen below the list of permissions. The quoted button names must match the buttons in iOS's own location prompts in this language -->
+    <string name="first_launch_permissions_location_always">When iOS asks about your location, choose “Allow While Using App”. Later, iOS will ask whether Soundscape can also use your location when you are not using the app. Choose “Change to Always Allow”, otherwise Soundscape stops working when your phone is locked.</string>
+    <!-- iOS only: shown in place of first_launch_permissions_denied for the location row - tapping it opens Soundscape's page in the Settings app. "Location", "Always" and "Precise Location" must match the names iOS's Settings app uses in this language -->
+    <string name="first_launch_permissions_location_denied">Not set to Always. Tap to open Settings, then choose Location, select Always and turn on Precise Location.</string>
     <!-- Text to indicate that a permission is required -->
     <string name="permissions_required">The app requires location permissions to be able to run.</string>
     <string name="permissions_button">Change the permissions in app settings</string>
