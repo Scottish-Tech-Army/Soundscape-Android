@@ -54,6 +54,8 @@ import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_denied
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_granted
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_location
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_location_always
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_location_denied
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_message
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_motion
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_not_granted
@@ -78,6 +80,7 @@ private const val PERMISSION_POLL_INTERVAL_MS = 300L
 private enum class OnboardingPermission(
     val icon: ImageVector,
     val titleRes: StringResource,
+    val deniedRes: StringResource,
     val request: () -> Unit,
     val isGranted: () -> Boolean,
     val isDenied: () -> Boolean,
@@ -85,6 +88,9 @@ private enum class OnboardingPermission(
     LOCATION(
         Icons.Rounded.LocationOn,
         Res.string.first_launch_permissions_location,
+        // Also covers When-In-Use once the one Always upgrade alert has been used up -
+        // see IosLocationProvider.isPermissionDenied - so it names the setting to change.
+        Res.string.first_launch_permissions_location_denied,
         ::requestLocationPermission,
         ::isLocationPermissionGranted,
         ::isLocationPermissionDenied,
@@ -92,6 +98,7 @@ private enum class OnboardingPermission(
     MOTION(
         Icons.AutoMirrored.Rounded.DirectionsWalk,
         Res.string.first_launch_permissions_motion,
+        Res.string.first_launch_permissions_denied,
         ::requestMotionPermission,
         ::isMotionPermissionGranted,
         ::isMotionPermissionDenied,
@@ -171,6 +178,7 @@ fun PermissionsScreen(
                         PermissionRow(
                             icon = permission.icon,
                             mainText = permission.titleRes,
+                            deniedText = permission.deniedRes,
                             granted = status.granted,
                             denied = status.denied,
                             // Once denied, iOS won't show the system prompt again - send
@@ -181,6 +189,18 @@ fun PermissionsScreen(
                     }
                 }
             }
+
+            Spacer(modifier = Modifier.height(spacing.large))
+            // Shown even once Location is ticked: a "While Using" answer to the first
+            // prompt can be reported as Always (provisional) until iOS's later upgrade
+            // alert, and that alert is the answer that decides whether locked-phone
+            // callouts work.
+            Text(
+                text = stringResource(Res.string.first_launch_permissions_location_always),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                textAlign = TextAlign.Center,
+            )
 
             Spacer(modifier = Modifier.height(spacing.extraLarge))
 
@@ -202,6 +222,7 @@ fun PermissionsScreen(
 private fun PermissionRow(
     icon: ImageVector,
     mainText: StringResource,
+    deniedText: StringResource,
     granted: Boolean,
     denied: Boolean,
     onClick: () -> Unit,
@@ -236,7 +257,7 @@ private fun PermissionRow(
             Text(
                 text = stringResource(
                     when {
-                        denied -> Res.string.first_launch_permissions_denied
+                        denied -> deniedText
                         else -> Res.string.first_launch_permissions_required
                     },
                 ),
