@@ -35,6 +35,7 @@ Questions: `docs/translation-questions/questions-de.md` (Q1…Q6).
 | Detailed / Simplified / Essential / Silent | Ausführlich / Vereinfacht / Wesentlich / Stumm | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Ausführlich / Ausgewogen / Leise / Stumm |
 | Landmarks | Orientierungspunkte | `unconfirmed` | AI |
 | dead end | Sackgasse | `unconfirmed` | AI. See DE-G1 |
+| Location (row on an app’s own iOS Settings page) | Ort | `confirmed` | Apple’s label, not «Standort», which is the Privacy-section name. Dave checked on a German iPhone, 2026-11-23. Used in `first_launch_permissions_location_denied` |
 
 ## Rules
 
@@ -115,3 +116,5 @@ Also changed the same day:
 - `ecf310fc7`: `relative_clock_direction` changed so it no longer sounds like a time of day (C20).
 
 **2026-10-01 — home-button names.** Nearby Markers button «Mark.\nin Nähe» → «Markierungen\nin der Nähe», the name everywhere else (C27).
+
+**2026-11-23 — iOS Always-location instructions (`e465ada77`).** `first_launch_permissions_location_always` and `_denied` quote Apple’s own iOS labels, taken from Apple’s shipped iOS files via applelocalization.com: «Beim Verwenden der App erlauben», «In „Immer erlauben“ ändern», «Ort», «Immer», «Genauer Standort». «Ort» was confirmed on a device the same day. The other labels are Apple’s text and have not been checked on a device.
