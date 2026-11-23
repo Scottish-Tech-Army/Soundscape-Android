@@ -2,12 +2,15 @@ package org.scottishtecharmy.soundscape
 
 import android.Manifest
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.app.ActivityManager
 import android.app.ForegroundServiceStartNotAllowedException
 import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.net.Uri
@@ -16,6 +19,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
+import android.os.PowerManager
 import android.os.StrictMode
 import android.provider.Settings
 import android.text.Html
@@ -30,6 +34,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
 import androidx.core.content.FileProvider
@@ -241,7 +246,7 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.BLUETOOTH_CONNECT,
         ).filter {
             ContextCompat.checkSelfPermission(this, it) !=
-                android.content.pm.PackageManager.PERMISSION_GRANTED
+                PackageManager.PERMISSION_GRANTED
         }
         if (needed.isNotEmpty()) bluetoothPermissionLauncher.launch(needed.toTypedArray())
     }
@@ -296,7 +301,7 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.ACCESS_FINE_LOCATION
         )
         ) {
-            android.content.pm.PackageManager.PERMISSION_GRANTED -> 1
+            PackageManager.PERMISSION_GRANTED -> 1
             else -> 0
         }
 
@@ -306,7 +311,7 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.POST_NOTIFICATIONS
             )
             ) {
-                android.content.pm.PackageManager.PERMISSION_GRANTED -> 1
+                PackageManager.PERMISSION_GRANTED -> 1
                 else -> 0
             }
         } else
@@ -789,6 +794,57 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * What the user has actually granted, for the Contact Support email and log. Soundscape runs
+     * from a location foreground service and never asks for ACCESS_BACKGROUND_LOCATION, so on
+     * Android there is no "Allow all the time" to look for: what matters is whether location is
+     * granted at all and whether it's precise, plus the things that stop the foreground service
+     * running with the screen off (notifications, battery optimisation, background restriction).
+     * "Only this time" reads back as granted and can't be told apart from "While using the app".
+     */
+    fun permissionsDescription(context: Context): List<Pair<String, String>> {
+        fun granted(permission: String) =
+            ContextCompat.checkSelfPermission(context, permission) ==
+                PackageManager.PERMISSION_GRANTED
+        fun grantedText(permission: String) = if (granted(permission)) "Granted" else "Not granted"
+
+        val result = mutableListOf<Pair<String, String>>()
+        val location = when {
+            granted(Manifest.permission.ACCESS_FINE_LOCATION) -> "Precise (while using the app)"
+            granted(Manifest.permission.ACCESS_COARSE_LOCATION) -> "Approximate only (while using the app)"
+            else -> "Not granted"
+        }
+        result += "Permission: Location" to location
+        val locationManager =
+            context.getSystemService(LOCATION_SERVICE) as LocationManager
+        result += "Location services" to if (locationManager.isLocationEnabled) "On" else "Off"
+        val notifications =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                grantedText(Manifest.permission.POST_NOTIFICATIONS)
+            else
+                "Not needed (Android < 13)"
+        val notificationsEnabled =
+            NotificationManagerCompat.from(context).areNotificationsEnabled()
+        result += "Permission: Notifications" to
+            "$notifications, ${if (notificationsEnabled) "enabled" else "disabled"} in settings"
+        result += "Permission: Physical activity" to
+            grantedText(Manifest.permission.ACTIVITY_RECOGNITION)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            result += "Permission: Nearby devices" to
+                "scan ${grantedText(Manifest.permission.BLUETOOTH_SCAN)}, " +
+                "connect ${grantedText(Manifest.permission.BLUETOOTH_CONNECT)}"
+        }
+        val powerManager = context.getSystemService(POWER_SERVICE) as PowerManager
+        result += "Battery optimisation" to
+            if (powerManager.isIgnoringBatteryOptimizations(context.packageName)) "Exempt"
+            else "Optimised"
+        val activityManager =
+            context.getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        result += "Background restricted" to activityManager.isBackgroundRestricted.toString()
+        result += "Battery saver" to powerManager.isPowerSaveMode.toString()
+        return result
+    }
+
     @Suppress("NewApi") // Inlined int constants, safe on all API levels
     fun audioDeviceDescription(builder: StringBuilder, context: Context) {
         val audioManager = context.getSystemService(AUDIO_SERVICE) as AudioManager
@@ -849,6 +905,9 @@ class MainActivity : AppCompatActivity() {
         bodyText.append(tableRow("Manufacturer", manufacturer))
         talkBackDescription(bodyText, applicationContext)
         audioDeviceDescription(bodyText, applicationContext)
+        val permissions = permissionsDescription(applicationContext)
+        logger.i { "Permissions: ${permissions.joinToString { "${it.first}=${it.second}" }}" }
+        permissions.forEach { (key, value) -> bodyText.append(tableRow(key, value)) }
 
         bodyText.append(tableRow("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
 
@@ -1033,7 +1092,7 @@ class MainActivity : AppCompatActivity() {
                 this,
                 Manifest.permission.POST_NOTIFICATIONS
             )) {
-                android.content.pm.PackageManager.PERMISSION_GRANTED -> {
+                PackageManager.PERMISSION_GRANTED -> {
                     checkAndRequestLocationPermissions()
                 }
 
@@ -1060,7 +1119,7 @@ class MainActivity : AppCompatActivity() {
         if (sharedPreferences.getBoolean(ACTIVITY_RECOGNITION_ASKED_KEY, false)) return
         if (!AndroidStepProvider.hasStepSensor(this)) return
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) ==
-            android.content.pm.PackageManager.PERMISSION_GRANTED
+            PackageManager.PERMISSION_GRANTED
         ) return
         sharedPreferences.edit { putBoolean(ACTIVITY_RECOGNITION_ASKED_KEY, true) }
         val (title, message, accept, decline) = kotlinx.coroutines.runBlocking {
@@ -1086,7 +1145,7 @@ class MainActivity : AppCompatActivity() {
             this,
             Manifest.permission.ACCESS_FINE_LOCATION
         )) {
-            android.content.pm.PackageManager.PERMISSION_GRANTED -> {
+            PackageManager.PERMISSION_GRANTED -> {
                 // permission already granted
                 startSoundscapeService()
                 requestActivityRecognitionOnce()
