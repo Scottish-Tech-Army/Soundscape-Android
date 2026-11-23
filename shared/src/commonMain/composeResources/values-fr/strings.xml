@@ -1582,6 +1582,8 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="first_launch_permissions_granted">Autorisation accordée</string>
     <string name="first_launch_permissions_not_granted">Pas encore accordée</string>
     <string name="first_launch_permissions_denied">Refusée. Touchez pour l’autoriser dans Réglages.</string>
+    <string name="first_launch_permissions_location_always">Lorsque iOS vous demande l’accès à votre position, choisissez « Autoriser lorsque l’app est active ». Plus tard, iOS vous demandera si Soundscape peut aussi utiliser votre position lorsque vous n’utilisez pas l’application. Choisissez « Passer à “Toujours autoriser” », sinon Soundscape cessera de fonctionner lorsque votre téléphone sera verrouillé.</string>
+    <string name="first_launch_permissions_location_denied">Pas réglée sur « Toujours ». Touchez pour ouvrir Réglages, puis choisissez « Position », sélectionnez « Toujours » et activez « Position exacte ».</string>
     <string name="talkback_double_tap_template">Appuyez deux fois pour %1$s</string>
     <string name="menu_manage_locale">Paramètres régionaux</string>
     <string name="callouts_audio_beacon_distance">La balise sonore se trouve actuellement à %1$s</string>

@@ -1582,6 +1582,8 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="first_launch_permissions_granted">Autorizzazione concessa</string>
     <string name="first_launch_permissions_not_granted">Non ancora concessa</string>
     <string name="first_launch_permissions_denied">Negata. Tocca per consentirla in Impostazioni.</string>
+    <string name="first_launch_permissions_location_always">Quando iOS ti chiede la tua posizione, scegli “Consenti quando utilizzi l’app”. In seguito, iOS ti chiederà se Soundscape può usare la tua posizione anche quando non stai usando l’app. Scegli “Passa a ‘Consenti sempre’”, altrimenti Soundscape smette di funzionare quando il telefono è bloccato.</string>
+    <string name="first_launch_permissions_location_denied">Non impostata su “Sempre”. Tocca per aprire Impostazioni, poi scegli “Posizione”, seleziona “Sempre” e attiva “Posizione esatta”.</string>
     <string name="talkback_double_tap_template">Tocca due volte per %1$s</string>
     <string name="menu_manage_locale">Impostazioni locali</string>
     <string name="callouts_audio_beacon_distance">L'audiofaro si trova attualmente a %1$s</string>

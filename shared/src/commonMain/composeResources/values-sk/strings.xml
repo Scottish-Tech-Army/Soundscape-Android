@@ -1192,6 +1192,8 @@
     <string name="first_launch_permissions_granted">Povolenie udelené</string>
     <string name="first_launch_permissions_not_granted">Zatiaľ neudelené</string>
     <string name="first_launch_permissions_denied">Zamietnuté. Ťuknutím ho povolíte v Nastaveniach.</string>
+    <string name="first_launch_permissions_location_always">Keď sa iOS opýta na vašu polohu, vyberte „Povoliť len pri používaní apky“. Neskôr sa iOS opýta, či môže Soundscape používať vašu polohu aj vtedy, keď aplikáciu nepoužívate. Vyberte „Zmeniť na Vždy povoliť“, inak Soundscape prestane fungovať, keď je telefón uzamknutý.</string>
+    <string name="first_launch_permissions_location_denied">Nie je nastavené na „Vždy“. Ťuknutím otvoríte Nastavenia, potom vyberte „Poloha“, zvoľte „Vždy“ a zapnite „Presná poloha“.</string>
     <string name="permissions_required">Aplikácia na fungovanie vyžaduje povolenia na určenie polohy.</string>
     <string name="permissions_button">Zmeniť povolenia v nastaveniach aplikácie</string>
     <string name="first_launch_beacon_title">Vyberte zvukový maják</string>

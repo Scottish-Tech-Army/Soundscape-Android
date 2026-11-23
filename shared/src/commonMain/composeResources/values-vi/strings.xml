@@ -1381,6 +1381,8 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="first_launch_permissions_granted">Đã cấp quyền</string>
     <string name="first_launch_permissions_not_granted">Chưa được cấp</string>
     <string name="first_launch_permissions_denied">Đã bị từ chối. Chạm để cho phép trong Cài đặt.</string>
+    <string name="first_launch_permissions_location_always">Khi iOS hỏi về vị trí của bạn, hãy chọn “Cho phép khi sử dụng ứng dụng”. Sau đó, iOS sẽ hỏi liệu Soundscape có được dùng vị trí của bạn cả khi bạn không dùng ứng dụng hay không. Hãy chọn “Thay đổi thành Luôn cho phép”, nếu không Soundscape sẽ ngừng hoạt động khi điện thoại bị khóa.</string>
+    <string name="first_launch_permissions_location_denied">Chưa được đặt thành “Luôn luôn”. Chạm để mở Cài đặt, sau đó chọn “Vị trí”, chọn “Luôn luôn” và bật “Vị trí chính xác”.</string>
     <string name="permissions_required">Ứng dụng cần quyền truy cập vị trí để có thể hoạt động.</string>
     <string name="permissions_button">Thay đổi quyền trong cài đặt ứng dụng</string>
     <string name="first_launch_beacon_title">Chọn đèn hiệu âm thanh</string>

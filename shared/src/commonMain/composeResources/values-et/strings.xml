@@ -1142,6 +1142,8 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="first_launch_permissions_granted">Luba antud</string>
     <string name="first_launch_permissions_not_granted">Veel andmata</string>
     <string name="first_launch_permissions_denied">Keelatud. Puudutage, et lubada see seadetes.</string>
+    <string name="first_launch_permissions_location_always">Kui iOS küsib teie asukoha kohta, valige „Allow While Using App“. Hiljem küsib iOS, kas Soundscape võib teie asukohta kasutada ka siis, kui te rakendust ei kasuta. Valige „Change to Always Allow“, vastasel juhul lõpetab Soundscape töötamise, kui telefon on lukustatud.</string>
+    <string name="first_launch_permissions_location_denied">Pole seatud valikule „Always“. Puudutage, et avada seaded, seejärel valige „Location“, valige „Always“ ja lülitage sisse „Precise Location“.</string>
     <string name="menu_manage_locale">Piirkond</string>
     <string name="osm_motorway">Kiirtee</string>
     <string name="osm_trunk">Peamaantee</string>

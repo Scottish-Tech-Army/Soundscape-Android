@@ -1176,6 +1176,8 @@
     <string name="first_launch_permissions_granted">Dozvola odobrena</string>
     <string name="first_launch_permissions_not_granted">Još nije odobrena</string>
     <string name="first_launch_permissions_denied">Odbijena. Dodirnite da je dopustite u Postavkama.</string>
+    <string name="first_launch_permissions_location_always">Kada vas iOS pita za lokaciju, odaberite „Dozvoli tijekom uporabe aplikacije”. Kasnije će vas iOS pitati smije li Soundscape upotrebljavati vašu lokaciju i kada ne upotrebljavate aplikaciju. Odaberite „Promijeni u ‘Uvijek dozvoli’”, inače Soundscape prestaje raditi kada je telefon zaključan.</string>
+    <string name="first_launch_permissions_location_denied">Nije postavljeno na „Uvijek”. Dodirnite da biste otvorili Postavke, zatim odaberite „Lokacija”, odaberite „Uvijek” i uključite „Precizna lokacija”.</string>
     <string name="permissions_required">Aplikaciji su za rad potrebne dozvole za lokaciju.</string>
     <string name="permissions_button">Promijeni dozvole u postavkama aplikacije</string>
     <string name="first_launch_beacon_title">Odaberite zvučni svjetionik</string>

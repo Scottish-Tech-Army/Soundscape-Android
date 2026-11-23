@@ -492,6 +492,8 @@
     <string name="first_launch_permissions_granted">ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਗਈ</string>
     <string name="first_launch_permissions_not_granted">ਹਾਲੇ ਨਹੀਂ ਦਿੱਤੀ ਗਈ</string>
     <string name="first_launch_permissions_denied">ਇਨਕਾਰ ਕੀਤੀ ਗਈ। ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਜਾਜ਼ਤ ਦੇਣ ਲਈ ਟੈਪ ਕਰੋ।</string>
+    <string name="first_launch_permissions_location_always">ਜਦੋਂ iOS ਤੁਹਾਡੇ ਟਿਕਾਣੇ ਬਾਰੇ ਪੁੱਛੇ, ਤਾਂ “ਐਪ ਦੀ ਵਰਤੋਂ ਕਰਨ ਵੇਲੇ ਆਗਿਆ ਦਿਓ” ਚੁਣੋ। ਬਾਅਦ ਵਿੱਚ iOS ਪੁੱਛੇਗਾ ਕਿ ਕੀ Soundscape ਉਦੋਂ ਵੀ ਤੁਹਾਡੇ ਟਿਕਾਣੇ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦਾ ਹੈ ਜਦੋਂ ਤੁਸੀਂ ਐਪ ਨਹੀਂ ਵਰਤ ਰਹੇ ਹੁੰਦੇ। ਤਦ ‘“ਹਮੇਸ਼ਾਂ ਆਗਿਆ ਦਿਓ” ’ਤੇ ਬਦਲੋ’ ਚੁਣੋ, ਨਹੀਂ ਤਾਂ ਫ਼ੋਨ ਲਾਕ ਹੋਣ 'ਤੇ Soundscape ਕੰਮ ਕਰਨਾ ਬੰਦ ਕਰ ਦੇਵੇਗਾ।</string>
+    <string name="first_launch_permissions_location_denied">“ਹਮੇਸ਼ਾਂ” 'ਤੇ ਸੈੱਟ ਨਹੀਂ ਹੈ। ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹਣ ਲਈ ਟੈਪ ਕਰੋ, ਫਿਰ “ਟਿਕਾਣਾ” ਚੁਣੋ, “ਹਮੇਸ਼ਾਂ” ਚੁਣੋ ਅਤੇ “ਸਟੀਕ ਟਿਕਾਣਾ” ਚਾਲੂ ਕਰੋ।</string>
     <string name="permissions_required">ਐਪ ਨੂੰ ਚੱਲਣ ਲਈ ਟਿਕਾਣੇ ਦੀਆਂ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ।</string>
     <string name="permissions_button">ਐਪ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਜਾਜ਼ਤਾਂ ਬਦਲੋ</string>
     <string name="first_launch_beacon_title">ਇੱਕ ਆਡੀਓ ਬੀਕਨ ਚੁਣੋ</string>

@@ -1566,6 +1566,8 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="first_launch_permissions_granted">Leyfi veitt</string>
     <string name="first_launch_permissions_not_granted">Ekki enn veitt</string>
     <string name="first_launch_permissions_denied">Hafnað. Ýttu til að leyfa það í Stillingum.</string>
+    <string name="first_launch_permissions_location_always">Þegar iOS spyr um staðsetninguna þína skaltu velja „Allow While Using App“. Síðar spyr iOS hvort Soundscape megi einnig nota staðsetninguna þína þegar þú ert ekki að nota forritið. Veldu „Change to Always Allow“, annars hættir Soundscape að virka þegar síminn er læstur.</string>
+    <string name="first_launch_permissions_location_denied">Ekki stillt á „Always“. Ýttu til að opna Stillingar, veldu síðan „Location“, veldu „Always“ og kveiktu á „Precise Location“.</string>
     <string name="talkback_double_tap_template">Tvíbankaðu til að %1$s</string>
     <string name="menu_manage_locale">Staðfærsla</string>
     <string name="callouts_audio_beacon_distance">Hljóðvitinn er nú í %1$s fjarlægð</string>

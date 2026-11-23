@@ -1468,6 +1468,8 @@
     <string name="first_launch_permissions_granted">परवानगी दिली आहे</string>
     <string name="first_launch_permissions_not_granted">अद्याप दिलेली नाही</string>
     <string name="first_launch_permissions_denied">नाकारली. सेटिंग्जमध्ये परवानगी देण्यासाठी टॅप करा.</string>
+    <string name="first_launch_permissions_location_always">iOS तुमच्या स्थानाबद्दल विचारेल तेव्हा “ॲप वापरताना अनुमती द्या” निवडा. नंतर iOS विचारेल की तुम्ही अ‍ॅप वापरत नसतानाही Soundscape तुमचे स्थान वापरू शकते का. तेव्हा “‘कायम अनुमती द्या’ ला बदला” निवडा, नाहीतर फोन लॉक असताना Soundscape काम करणे थांबवेल.</string>
+    <string name="first_launch_permissions_location_denied">“नेहमी” वर सेट केलेले नाही. सेटिंग्ज उघडण्यासाठी टॅप करा, नंतर “स्थान” निवडा, “नेहमी” निवडा आणि “अचूक स्थान” चालू करा.</string>
     <string name="permissions_required">अॅप चालण्यासाठी स्थान परवानग्या आवश्यक आहेत.</string>
     <string name="permissions_button">अॅप सेटिंग्जमध्ये परवानग्या बदला</string>
     <string name="first_launch_beacon_title">ऑडिओ बीकन निवडा</string>

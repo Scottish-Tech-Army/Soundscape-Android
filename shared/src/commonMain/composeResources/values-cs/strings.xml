@@ -1192,6 +1192,8 @@
     <string name="first_launch_permissions_granted">Oprávnění uděleno</string>
     <string name="first_launch_permissions_not_granted">Zatím neuděleno</string>
     <string name="first_launch_permissions_denied">Zamítnuto. Klepnutím ho povolíte v Nastavení.</string>
+    <string name="first_launch_permissions_location_always">Když se iOS zeptá na vaši polohu, zvolte „Povolit jen při používání aplikace“. Později se iOS zeptá, jestli může Soundscape používat vaši polohu i tehdy, když aplikaci nepoužíváte. Zvolte „Změnit na trvalé povolení“, jinak Soundscape přestane fungovat, když je telefon zamčený.</string>
+    <string name="first_launch_permissions_location_denied">Není nastaveno na „Trvale“. Klepnutím otevřete Nastavení, pak zvolte „Poloha“, vyberte „Trvale“ a zapněte „Přesná poloha“.</string>
     <string name="permissions_required">Aplikace ke svému fungování vyžaduje oprávnění k poloze.</string>
     <string name="permissions_button">Změnit oprávnění v nastavení aplikace</string>
     <string name="first_launch_beacon_title">Vyberte zvukový maják</string>

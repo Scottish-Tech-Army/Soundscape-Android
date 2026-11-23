@@ -1566,6 +1566,8 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="first_launch_permissions_granted">İzin verildi</string>
     <string name="first_launch_permissions_not_granted">Henüz verilmedi</string>
     <string name="first_launch_permissions_denied">Reddedildi. Ayarlar’da izin vermek için dokunun.</string>
+    <string name="first_launch_permissions_location_always">iOS konumunuzu sorduğunda “Uygulamayı Kullanırken İzin Ver” seçeneğini seçin. Daha sonra iOS, uygulamayı kullanmadığınız zamanlarda da Soundscape'in konumunuzu kullanıp kullanamayacağını soracak. “Her Zaman İzin Ver Olarak Değiştir” seçeneğini seçin, aksi takdirde telefonunuz kilitliyken Soundscape çalışmayı durdurur.</string>
+    <string name="first_launch_permissions_location_denied">“Her Zaman” olarak ayarlanmamış. Ayarlar’ı açmak için dokunun, ardından “Konum” öğesini seçin, “Her Zaman” seçeneğini işaretleyin ve “Tam Konum” ayarını açın.</string>
     <string name="menu_manage_locale">Yerel ayar</string>
     <string name="talkback_double_tap_template">%1$s için çift dokunun</string>
     <string name="callouts_audio_beacon_distance">İşaret şu anda %1$s uzaklıkta</string>

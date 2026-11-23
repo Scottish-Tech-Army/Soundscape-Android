@@ -1566,6 +1566,8 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="first_launch_permissions_granted">Berechtigung erteilt</string>
     <string name="first_launch_permissions_not_granted">Noch nicht erteilt</string>
     <string name="first_launch_permissions_denied">Abgelehnt. Tippen Sie, um es in den Einstellungen zu erlauben.</string>
+    <string name="first_launch_permissions_location_always">Wenn iOS nach Ihrem Standort fragt, wählen Sie „Beim Verwenden der App erlauben“. Später fragt iOS, ob Soundscape Ihren Standort auch verwenden darf, wenn Sie die App nicht verwenden. Wählen Sie „In ‚Immer erlauben‘ ändern“, sonst funktioniert Soundscape nicht mehr, wenn Ihr Telefon gesperrt ist.</string>
+    <string name="first_launch_permissions_location_denied">Nicht auf „Immer“ eingestellt. Tippen Sie, um die Einstellungen zu öffnen, wählen Sie dann „Ort“, wählen Sie „Immer“ und aktivieren Sie „Genauer Standort“.</string>
     <string name="talkback_double_tap_template">Doppeltippen, um %1$s</string>
     <string name="menu_manage_locale">Gebietsschema</string>
     <string name="callouts_audio_beacon_distance">Das Beacon ist derzeit %1$s entfernt</string>

@@ -1550,6 +1550,8 @@
     <string name="first_launch_permissions_granted">权限已授予</string>
     <string name="first_launch_permissions_not_granted">尚未授予</string>
     <string name="first_launch_permissions_denied">已拒绝。轻点以在“设置”中允许。</string>
+    <string name="first_launch_permissions_location_always">当 iOS 询问您的位置时，请选择“使用App时允许”。之后，iOS 会询问在您未使用该应用时，Soundscape 是否也可以使用您的位置。请选择“更改为始终允许”，否则手机锁屏时 Soundscape 将停止工作。</string>
+    <string name="first_launch_permissions_location_denied">未设为“始终”。轻点以打开“设置”，然后选择“位置”，选择“始终”，并打开“精确位置”。</string>
     <string name="talkback_double_tap_template">双击以%1$s</string>
     <string name="menu_manage_locale">区域设置</string>
     <string name="callouts_audio_beacon_distance">信标当前距离%1$s</string>

@@ -1566,6 +1566,8 @@
     <string name="first_launch_permissions_granted">अनुमति दी गई</string>
     <string name="first_launch_permissions_not_granted">अभी तक नहीं दी गई</string>
     <string name="first_launch_permissions_denied">अस्वीकृत। सेटिंग्स में अनुमति देने के लिए टैप करें।</string>
+    <string name="first_launch_permissions_location_always">जब iOS आपके स्थान के बारे में पूछे, तो “ऐप उपयोग के दौरान अनुमति दें” चुनें। बाद में iOS पूछेगा कि क्या Soundscape ऐप का उपयोग न करते समय भी आपके स्थान का उपयोग कर सकता है। तब ‘“हमेशा अनुमति दें” पर बदलें’ चुनें, वरना फ़ोन लॉक होने पर Soundscape काम करना बंद कर देगा।</string>
+    <string name="first_launch_permissions_location_denied">“हमेशा” पर सेट नहीं है। सेटिंग्स खोलने के लिए टैप करें, फिर “स्थान” चुनें, “हमेशा” चुनें और “सटीक स्थान” चालू करें।</string>
     <string name="talkback_double_tap_template">दो बार टैप करें %1$s</string>
     <string name="menu_manage_locale">क्षेत्रीय सेटिंग्स</string>
     <string name="callouts_audio_beacon_distance">बीकन इस समय %1$s दूर है</string>

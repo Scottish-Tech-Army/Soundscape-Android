@@ -1357,6 +1357,8 @@
     <string name="first_launch_permissions_granted">Разрешението е предоставено</string>
     <string name="first_launch_permissions_not_granted">Все още не е предоставено</string>
     <string name="first_launch_permissions_denied">Отказано. Докоснете, за да го разрешите от Настройки.</string>
+    <string name="first_launch_permissions_location_always">Когато iOS попита за местоположението Ви, изберете „Позволи при използване“. По-късно iOS ще попита дали Soundscape може да използва местоположението Ви и когато не използвате приложението. Изберете „Промени на: Позволявай винаги“, иначе Soundscape спира да работи, когато телефонът Ви е заключен.</string>
+    <string name="first_launch_permissions_location_denied">Не е зададено „Винаги“. Докоснете, за да отворите Настройки, след това изберете „Местоположение“, изберете „Винаги“ и включете „Точно местоположение“.</string>
     <string name="permissions_required">Приложението изисква разрешения за местоположение, за да може да работи.</string>
     <string name="permissions_button">Промяна на разрешенията в настройките на приложението</string>
     <string name="first_launch_beacon_title">Изберете аудио маяк</string>

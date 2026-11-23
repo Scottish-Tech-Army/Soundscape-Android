@@ -1397,6 +1397,8 @@
     <string name="first_launch_permissions_granted">அனுமதி வழங்கப்பட்டது</string>
     <string name="first_launch_permissions_not_granted">இன்னும் வழங்கப்படவில்லை</string>
     <string name="first_launch_permissions_denied">மறுக்கப்பட்டது. அமைப்புகளில் அனுமதிக்கத் தட்டவும்.</string>
+    <string name="first_launch_permissions_location_always">iOS உங்கள் இருப்பிடம் பற்றிக் கேட்கும்போது, “செயலியைப் பயன்படுத்தும்போது அனுமதி” என்பதைத் தேர்ந்தெடுக்கவும். பின்னர், நீங்கள் செயலியைப் பயன்படுத்தாதபோதும் Soundscape உங்கள் இருப்பிடத்தைப் பயன்படுத்தலாமா என்று iOS கேட்கும். “எப்போதும் அனுமதி என மாற்று” என்பதைத் தேர்ந்தெடுக்கவும், இல்லையெனில் தொலைபேசி பூட்டப்பட்டிருக்கும்போது Soundscape வேலை செய்வதை நிறுத்திவிடும்.</string>
+    <string name="first_launch_permissions_location_denied">“எப்போதும்” என அமைக்கப்படவில்லை. அமைப்புகளைத் திறக்கத் தட்டவும், பிறகு “இருப்பிடம்” என்பதைத் தேர்ந்தெடுத்து, “எப்போதும்” என்பதைத் தேர்வுசெய்து, “துல்லியமான இருப்பிடம்” என்பதை இயக்கவும்.</string>
     <string name="permissions_required">இந்தச் செயலி இயங்குவதற்கு இருப்பிட அனுமதிகள் தேவை.</string>
     <string name="permissions_button">செயலி அமைப்புகளில் அனுமதிகளை மாற்றவும்</string>
     <string name="first_launch_beacon_title">ஒலி பீக்கனைத் தேர்ந்தெடுக்கவும்</string>

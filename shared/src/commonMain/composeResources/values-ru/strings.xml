@@ -1598,6 +1598,8 @@
     <string name="first_launch_permissions_granted">Разрешение предоставлено</string>
     <string name="first_launch_permissions_not_granted">Пока не предоставлено</string>
     <string name="first_launch_permissions_denied">Отклонено. Нажмите, чтобы разрешить в Настройках.</string>
+    <string name="first_launch_permissions_location_always">Когда iOS спросит о вашем местоположении, выберите «При использовании приложения». Позже iOS спросит, может ли Soundscape использовать ваше местоположение, даже когда вы не пользуетесь приложением. Выберите «Изменить на „Разрешать всегда“», иначе Soundscape перестанет работать, когда телефон заблокирован.</string>
+    <string name="first_launch_permissions_location_denied">Не выбрано «Всегда». Нажмите, чтобы открыть Настройки, затем выберите «Геопозиция», выберите «Всегда» и включите «Точная геопозиция».</string>
     <string name="talkback_double_tap_template">Дважды нажмите, чтобы %1$s</string>
     <string name="menu_manage_locale">Региональные параметры</string>
     <string name="callouts_audio_beacon_distance">До маяка сейчас %1$s</string>

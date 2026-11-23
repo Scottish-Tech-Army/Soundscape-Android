@@ -1566,6 +1566,8 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="first_launch_permissions_granted">Permission granted</string>
     <string name="first_launch_permissions_not_granted">Not yet granted</string>
     <string name="first_launch_permissions_denied">Denied. Tap to allow it in Settings.</string>
+    <string name="first_launch_permissions_location_always">When iOS asks about your location, choose “Allow While Using App”. Later, iOS will ask whether Soundscape can also use your location when you are not using the app. Choose “Change to Always Allow”, otherwise Soundscape stops working when your phone is locked.</string>
+    <string name="first_launch_permissions_location_denied">Not set to Always. Tap to open Settings, then choose Location, select Always and turn on Precise Location.</string>
     <string name="talkback_double_tap_template">Double tap to %1$s</string>
     <string name="menu_manage_locale">Locale</string>
     <string name="callouts_audio_beacon_distance">Beacon is currently %1$s away</string>

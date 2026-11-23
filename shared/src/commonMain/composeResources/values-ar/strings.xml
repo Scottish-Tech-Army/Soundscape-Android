@@ -1530,6 +1530,8 @@
     <string name="first_launch_permissions_granted">تم منح الإذن</string>
     <string name="first_launch_permissions_not_granted">لم يُمنح بعد</string>
     <string name="first_launch_permissions_denied">مرفوض. انقر للسماح به من الإعدادات.</string>
+    <string name="first_launch_permissions_location_always">عندما يسألك iOS عن موقعك، اختر «السماح أثناء استخدام التطبيق». لاحقًا، سيسألك iOS عمّا إذا كان بإمكان Soundscape استخدام موقعك أيضًا عندما لا تستخدم التطبيق. اختر «التغيير إلى “السماح دائمًا”»، وإلا سيتوقف Soundscape عن العمل عندما يكون هاتفك مقفلاً.</string>
+    <string name="first_launch_permissions_location_denied">لم يُضبط على «دائمًا». انقر لفتح الإعدادات، ثم اختر «الموقع»، وحدد «دائمًا»، وشغّل «الموقع الدقيق».</string>
     <string name="permissions_required">يتطلب التطبيق أذونات الموقع لكي يعمل.</string>
     <string name="permissions_button">تغيير الأذونات في إعدادات التطبيق</string>
     <string name="first_launch_beacon_title">اختر منارة صوتية</string>

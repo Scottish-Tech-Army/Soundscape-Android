@@ -1566,6 +1566,8 @@
     <string name="first_launch_permissions_granted">Η άδεια χορηγήθηκε</string>
     <string name="first_launch_permissions_not_granted">Δεν έχει χορηγηθεί ακόμα</string>
     <string name="first_launch_permissions_denied">Απορρίφθηκε. Πατήστε για να την επιτρέψετε από τις Ρυθμίσεις.</string>
+    <string name="first_launch_permissions_location_always">Όταν το iOS σάς ρωτήσει για την τοποθεσία σας, επιλέξτε «Κατά τη χρήση της εφαρμογής». Αργότερα, το iOS θα σάς ρωτήσει αν το Soundscape μπορεί να χρησιμοποιεί την τοποθεσία σας και όταν δεν χρησιμοποιείτε την εφαρμογή. Επιλέξτε «Αλλαγή σε “Επιτρέπεται πάντα”», διαφορετικά το Soundscape σταματά να λειτουργεί όταν το τηλέφωνό σας είναι κλειδωμένο.</string>
+    <string name="first_launch_permissions_location_denied">Δεν έχει οριστεί σε «Πάντα». Πατήστε για να ανοίξετε τις Ρυθμίσεις, μετά επιλέξτε «Τοποθεσία», επιλέξτε «Πάντα» και ενεργοποιήστε την «Ακριβής τοποθεσία».</string>
     <string name="talkback_double_tap_template">Πατήστε δύο φορές για να %1$s</string>
     <string name="menu_manage_locale">Τοπικές ρυθμίσεις</string>
     <string name="callouts_audio_beacon_distance">Το ηχητικό σήμα βρίσκεται αυτήν τη στιγμή σε απόσταση %1$s</string>

@@ -1566,6 +1566,8 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="first_launch_permissions_granted">Toestemming verleend</string>
     <string name="first_launch_permissions_not_granted">Nog niet verleend</string>
     <string name="first_launch_permissions_denied">Geweigerd. Tik om het toe te staan in Instellingen.</string>
+    <string name="first_launch_permissions_location_always">Wanneer iOS naar uw locatie vraagt, kiest u ‘Bij gebruik van app’. Later vraagt iOS of Soundscape uw locatie ook mag gebruiken wanneer u de app niet gebruikt. Kies ‘Wijzig in “Altijd”’, anders werkt Soundscape niet meer wanneer uw telefoon vergrendeld is.</string>
+    <string name="first_launch_permissions_location_denied">Niet ingesteld op ‘Altijd’. Tik om Instellingen te openen, kies dan ‘Locatie’, selecteer ‘Altijd’ en schakel ‘Exacte locatie’ in.</string>
     <string name="talkback_double_tap_template">Dubbeltik: %1$s</string>
     <string name="menu_manage_locale">Landinstellingen</string>
     <string name="callouts_audio_beacon_distance">Het baken is momenteel %1$s verwijderd</string>

@@ -1160,6 +1160,8 @@
     <string name="first_launch_permissions_granted">Az engedély megadva</string>
     <string name="first_launch_permissions_not_granted">Még nincs megadva</string>
     <string name="first_launch_permissions_denied">Elutasítva. Koppintson, hogy engedélyezze a Beállításokban.</string>
+    <string name="first_launch_permissions_location_always">Amikor az iOS a helyzetére kérdez rá, válassza az „Az app használata közben” lehetőséget. Később az iOS megkérdezi, hogy a Soundscape akkor is használhatja-e a helyzetét, amikor nem használja az appot. Válassza a „Módosítás Engedélyezés mindig értékre” lehetőséget, különben a Soundscape leáll, amikor a telefon zárolva van.</string>
+    <string name="first_launch_permissions_location_denied">Nincs „Mindig” értékre állítva. Koppintson a Beállítások megnyitásához, majd válassza a „Helyzet” lehetőséget, jelölje be a „Mindig” értéket, és kapcsolja be a „Pontos helyzet” beállítást.</string>
     <string name="permissions_required">Az alkalmazás működéséhez helyadat-engedélyekre van szükség.</string>
     <string name="permissions_button">Engedélyek módosítása az alkalmazás beállításaiban</string>
     <string name="first_launch_beacon_title">Válasszon irányjelző hangot</string>
