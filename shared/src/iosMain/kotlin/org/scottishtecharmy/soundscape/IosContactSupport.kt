@@ -3,13 +3,31 @@ package org.scottishtecharmy.soundscape
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
+import org.scottishtecharmy.soundscape.locationprovider.IosHeadTrackingProvider
+import org.scottishtecharmy.soundscape.logging.AppLog
 import org.scottishtecharmy.soundscape.logging.SupportLogBuffer
 import org.scottishtecharmy.soundscape.platform.appVersionName
 import platform.AVFAudio.AVAudioSession
 import platform.AVFAudio.AVAudioSessionPortDescription
 import platform.AVFAudio.currentRoute
+import platform.CoreLocation.CLAccuracyAuthorization
+import platform.CoreLocation.CLAuthorizationStatus
+import platform.CoreLocation.CLLocationManager
+import platform.CoreLocation.kCLAuthorizationStatusAuthorizedAlways
+import platform.CoreLocation.kCLAuthorizationStatusAuthorizedWhenInUse
+import platform.CoreLocation.kCLAuthorizationStatusDenied
+import platform.CoreLocation.kCLAuthorizationStatusNotDetermined
+import platform.CoreLocation.kCLAuthorizationStatusRestricted
+import platform.CoreMotion.CMAuthorizationStatus
+import platform.CoreMotion.CMAuthorizationStatusAuthorized
+import platform.CoreMotion.CMAuthorizationStatusDenied
+import platform.CoreMotion.CMAuthorizationStatusNotDetermined
+import platform.CoreMotion.CMAuthorizationStatusRestricted
+import platform.CoreMotion.CMHeadphoneMotionManager
+import platform.CoreMotion.CMPedometer
 import platform.Foundation.NSError
 import platform.Foundation.NSLocale
+import platform.Foundation.NSProcessInfo
 import platform.Foundation.NSString
 import platform.Foundation.NSURL
 import platform.Foundation.NSUTF8StringEncoding
@@ -23,15 +41,22 @@ import platform.MessageUI.MFMailComposeResult
 import platform.MessageUI.MFMailComposeViewController
 import platform.MessageUI.MFMailComposeViewControllerDelegateProtocol
 import platform.UIKit.UIAccessibilityIsVoiceOverRunning
+import platform.UIKit.UIApplication
+import platform.UIKit.UIBackgroundRefreshStatus
 import platform.UIKit.UIDevice
 import platform.darwin.NSObject
 
 private const val SUPPORT_RECIPIENT = "soundscape@scottishtecharmy.support"
 
+private val logger = AppLog.tag("IosContactSupport")
+
 @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
 internal fun presentContactSupport(service: IosSoundscapeService) {
     val subject = buildSupportSubject()
-    val htmlBody = buildSupportHtmlBody(service)
+    // Logged as well as put in the body so that it also lands in the attached log.
+    val permissions = permissionsDescription()
+    logger.i { "Permissions: ${permissions.joinToString { "${it.first}=${it.second}" }}" }
+    val htmlBody = buildSupportHtmlBody(service, permissions)
 
     if (MFMailComposeViewController.canSendMail()) {
         val composer = MFMailComposeViewController()
@@ -91,7 +116,10 @@ private fun buildSupportSubject(): String {
 }
 
 @OptIn(ExperimentalForeignApi::class)
-private fun buildSupportHtmlBody(service: IosSoundscapeService): String = buildString {
+private fun buildSupportHtmlBody(
+    service: IosSoundscapeService,
+    permissions: List<Pair<String, String>>,
+): String = buildString {
     append("-----------------------------<br/>")
     append(tableRow("Summary", buildSupportSubject()))
     append(tableRow("Product", UIDevice.currentDevice.model))
@@ -115,6 +143,8 @@ private fun buildSupportHtmlBody(service: IosSoundscapeService): String = buildS
         append(tableRow("Audio Input", "${port.portName} (${port.portType})"))
     }
 
+    for ((key, value) in permissions) append(tableRow(key, value))
+
     val downloaded = service.offlineMapManager.downloadedExtractsFc.value
     for (feature in downloaded.features) {
         val name = feature.properties?.get("name")
@@ -134,6 +164,59 @@ private fun buildSupportHtmlBody(service: IosSoundscapeService): String = buildS
         append("\t$key<br/>")
     }
     append("-----------------------------<br/><br/>")
+}
+
+/**
+ * What the user has actually granted, for the support email and log. The important one is
+ * location: Soundscape needs Always, and "While Using" stops callouts once the phone locks.
+ *
+ * CoreLocation can't tell a real Always grant from provisional Always (answering "Allow While
+ * Using" to requestAlwaysAuthorization): both read back as Always, but provisional withholds
+ * background fixes until the user accepts iOS's later "Change to Always Allow?" prompt. So
+ * Always is reported as "Always (or provisional Always)"; Settings shows "While Using" for the
+ * provisional case.
+ */
+@OptIn(ExperimentalForeignApi::class)
+private fun permissionsDescription(): List<Pair<String, String>> {
+    val result = mutableListOf<Pair<String, String>>()
+    val locationManager = CLLocationManager()
+    result += "Permission: Location" to locationStatusName(locationManager.authorizationStatus)
+    result += "Location accuracy" to when (locationManager.accuracyAuthorization) {
+        CLAccuracyAuthorization.CLAccuracyAuthorizationFullAccuracy -> "Precise"
+        CLAccuracyAuthorization.CLAccuracyAuthorizationReducedAccuracy -> "Approximate (Precise Location off)"
+    }
+    result += "Permission: Motion & Fitness" to
+        motionStatusName(CMPedometer.authorizationStatus())
+    if (IosHeadTrackingProvider.isHeadphoneMotionSupported()) {
+        result += "Permission: Headphone motion" to
+            motionStatusName(CMHeadphoneMotionManager.authorizationStatus())
+    }
+    result += "Background App Refresh" to
+        when (UIApplication.sharedApplication.backgroundRefreshStatus) {
+            UIBackgroundRefreshStatus.UIBackgroundRefreshStatusAvailable -> "On"
+            UIBackgroundRefreshStatus.UIBackgroundRefreshStatusDenied -> "Off"
+            UIBackgroundRefreshStatus.UIBackgroundRefreshStatusRestricted -> "Restricted"
+        }
+    result += "Low Power Mode" to
+        if (NSProcessInfo.processInfo.isLowPowerModeEnabled()) "On" else "Off"
+    return result
+}
+
+private fun locationStatusName(status: CLAuthorizationStatus): String = when (status) {
+    kCLAuthorizationStatusAuthorizedAlways -> "Always (or provisional Always)"
+    kCLAuthorizationStatusAuthorizedWhenInUse -> "While Using the App"
+    kCLAuthorizationStatusDenied -> "Denied (or Location Services off)"
+    kCLAuthorizationStatusRestricted -> "Restricted"
+    kCLAuthorizationStatusNotDetermined -> "Not asked yet"
+    else -> "Unknown ($status)"
+}
+
+private fun motionStatusName(status: CMAuthorizationStatus): String = when (status) {
+    CMAuthorizationStatusAuthorized -> "Granted"
+    CMAuthorizationStatusDenied -> "Denied"
+    CMAuthorizationStatusRestricted -> "Restricted"
+    CMAuthorizationStatusNotDetermined -> "Not asked yet"
+    else -> "Unknown ($status)"
 }
 
 private fun tableRow(key: String, value: String): String = "$key:\t\t$value<br/>"
