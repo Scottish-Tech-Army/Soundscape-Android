@@ -37,6 +37,7 @@ import platform.Foundation.create
 import platform.Foundation.currentLocale
 import platform.Foundation.dataUsingEncoding
 import platform.Foundation.languageCode
+import platform.Foundation.lowPowerModeEnabled
 import platform.MessageUI.MFMailComposeResult
 import platform.MessageUI.MFMailComposeViewController
 import platform.MessageUI.MFMailComposeViewControllerDelegateProtocol
@@ -198,7 +199,7 @@ private fun permissionsDescription(): List<Pair<String, String>> {
             UIBackgroundRefreshStatus.UIBackgroundRefreshStatusRestricted -> "Restricted"
         }
     result += "Low Power Mode" to
-        if (NSProcessInfo.processInfo.isLowPowerModeEnabled()) "On" else "Off"
+        if (NSProcessInfo.processInfo.lowPowerModeEnabled) "On" else "Off"
     return result
 }
 
