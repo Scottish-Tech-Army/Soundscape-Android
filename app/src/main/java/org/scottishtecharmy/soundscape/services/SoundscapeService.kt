@@ -1262,8 +1262,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                     logger.d { "Audio focus request granted." }
                     true
                 } else {
-                    // Assume loss if not granted
-                    logger.e { "Audio focus request failed." }
+                    // Assume loss if not granted (AUDIOFOCUS_REQUEST_DELAYED is 2, e.g. during a call)
+                    logger.e { "Audio focus request failed, result $result." }
                     audioFocusGained = false
                     false
                 }

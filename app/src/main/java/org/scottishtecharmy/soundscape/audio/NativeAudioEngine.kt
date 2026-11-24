@@ -136,6 +136,8 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
             if (engineHandle == 0L) {
                 return
             }
+            audioOutputLogger?.stop()
+            audioOutputLogger = null
             clearBeaconEventsListener(engineHandle)
             destroy(engineHandle)
             engineHandle = 0
@@ -146,6 +148,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
     }
 
     private var sharedPreferences: SharedPreferences? = null
+    private var audioOutputLogger: AudioOutputLogger? = null
     private lateinit var sharedPreferencesListener: SharedPreferences.OnSharedPreferenceChangeListener
 
     fun initialize(context: Context) {
@@ -225,6 +228,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                 return
             }
             engineHandle = this.create(context.assets)
+            audioOutputLogger = AudioOutputLogger(context.applicationContext).also { it.start() }
             logger.d { "Create TTS engine from NativeAudioEngine initialize" }
             ttsEngine = TtsEngine(
                 this,
@@ -511,6 +515,16 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
 
         init {
             System.loadLibrary("soundscape-audio")
+        }
+
+        /**
+         * Called from native code (SUPPORT_LOG in the audio engine) so that audio output events
+         * such as the Oboe stream opening, disconnecting or failing to restart reach the support
+         * log, which only captures Kotlin logging.
+         */
+        @JvmStatic
+        fun nativeLog(message: String) {
+            logger.i { "Native: $message" }
         }
 
         // Earcon asset filenames

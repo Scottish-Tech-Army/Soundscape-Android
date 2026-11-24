@@ -22,7 +22,7 @@ BeaconBuffer::BeaconBuffer(AAssetManager *mgr, const std::string &filename,
           m_Name(filename) {
     m_Decoder = std::make_unique<WavDecoder>(mgr, filename, targetSampleRate);
     if (!m_Decoder->isValid()) {
-        TRACE("BeaconBuffer: failed to load %s", filename.c_str());
+        SUPPORT_LOG("BeaconBuffer: failed to load %s", filename.c_str());
     }
 }
 
@@ -370,7 +370,7 @@ EarconSource::EarconSource(PositionedAudio *parent, std::string &asset,
         : BeaconAudioSource(parent, 0.0) {
     m_Decoder = std::make_unique<WavDecoder>(mgr, asset, targetSampleRate);
     if (!m_Decoder->isValid()) {
-        TRACE("EarconSource: failed to load %s", asset.c_str());
+        SUPPORT_LOG("EarconSource: failed to load %s", asset.c_str());
     }
 }
 

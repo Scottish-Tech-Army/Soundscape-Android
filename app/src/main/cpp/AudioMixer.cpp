@@ -32,18 +32,21 @@ namespace soundscape {
 
         auto result = builder.openStream(m_Stream);
         if (result != oboe::Result::OK) {
-            TRACE("AudioMixer: failed to open stream: %s", oboe::convertToText(result));
+            SUPPORT_LOG("AudioMixer: failed to open stream: %s", oboe::convertToText(result));
             return false;
         }
 
         m_SampleRate = m_Stream->getSampleRate();
-        TRACE("AudioMixer: stream opened (rate=%d, framesPerCallback=%d, bufferCapacity=%d)",
-              m_SampleRate, m_Stream->getFramesPerCallback(),
-              m_Stream->getBufferCapacityInFrames());
+        SUPPORT_LOG("AudioMixer: stream opened (deviceId=%d, api=%s, rate=%d, channels=%d, "
+                    "sharing=%s, framesPerCallback=%d, bufferCapacity=%d)",
+                    m_Stream->getDeviceId(), oboe::convertToText(m_Stream->getAudioApi()),
+                    m_SampleRate, m_Stream->getChannelCount(),
+                    oboe::convertToText(m_Stream->getSharingMode()),
+                    m_Stream->getFramesPerCallback(), m_Stream->getBufferCapacityInFrames());
 
         m_Spatializer = std::make_unique<SteamAudioSpatializer>(m_SampleRate, FRAME_SIZE);
         if (!m_Spatializer->isInitialized()) {
-            TRACE("AudioMixer: spatializer init failed");
+            SUPPORT_LOG("AudioMixer: spatializer init failed");
             m_Stream->close();
             m_Stream.reset();
             return false;
@@ -59,11 +62,12 @@ namespace soundscape {
         // Start the stream
         auto result = m_Stream->requestStart();
         if (result != oboe::Result::OK) {
-            TRACE("AudioMixer: failed to start stream: %s", oboe::convertToText(result));
+            SUPPORT_LOG("AudioMixer: failed to start stream: %s", oboe::convertToText(result));
             m_Stream->close();
             m_Stream.reset();
             return false;
         }
+        SUPPORT_LOG("AudioMixer: stream started");
         return true;
     }
 
@@ -93,7 +97,7 @@ namespace soundscape {
         }
 
         m_Spatializer.reset();
-        TRACE("AudioMixer: stopped");
+        SUPPORT_LOG("AudioMixer: stopped");
     }
 
     void AudioMixer::addSource(AudioSourceBase *source) {
@@ -130,7 +134,7 @@ namespace soundscape {
     }
 
     bool AudioMixer::restart() {
-        TRACE("AudioMixer: restarting after disconnect");
+        SUPPORT_LOG("AudioMixer: restarting after disconnect");
         // Stream is already closed by Oboe before onErrorAfterClose fires; just drop the handle.
         m_Stream.reset();
 
@@ -141,7 +145,7 @@ namespace soundscape {
         // Re-register all existing sources with the new spatializer.
         bool rateChanged = (m_SampleRate != prevRate);
         if (rateChanged)
-            TRACE("AudioMixer: sample rate changed %d -> %d on restart", prevRate, m_SampleRate);
+            SUPPORT_LOG("AudioMixer: sample rate changed %d -> %d on restart", prevRate, m_SampleRate);
         {
             std::lock_guard<std::mutex> guard(m_SourcesMutex);
             for (auto &ms: m_Sources) {
@@ -162,23 +166,26 @@ namespace soundscape {
     }
 
     void AudioMixer::onErrorAfterClose(oboe::AudioStream * /*stream*/, oboe::Result result) {
-        TRACE("AudioMixer: onErrorAfterClose: %s", oboe::convertToText(result));
+        SUPPORT_LOG("AudioMixer: onErrorAfterClose: %s", oboe::convertToText(result));
         if (result == oboe::Result::ErrorDisconnected) {
             if (m_SuppressRestart.load()) {
-                TRACE("AudioMixer: restart suppressed (SCO active), deferring");
+                SUPPORT_LOG("AudioMixer: restart suppressed (SCO active), deferring");
                 m_RestartPending.store(true);
-            } else {
-                restart();
+            } else if (!restart()) {
+                SUPPORT_LOG("AudioMixer: restart failed, no audio output until the engine is recreated");
             }
+        } else {
+            SUPPORT_LOG("AudioMixer: stream closed by error, not restarting, no audio output");
         }
     }
 
     void AudioMixer::setSuppressRestart(bool suppress) {
-        TRACE("AudioMixer: setSuppressRestart(%s)", suppress ? "true" : "false");
+        SUPPORT_LOG("AudioMixer: setSuppressRestart(%s)", suppress ? "true" : "false");
         m_SuppressRestart.store(suppress);
         if (!suppress && m_RestartPending.exchange(false)) {
-            TRACE("AudioMixer: executing deferred restart");
-            restart();
+            SUPPORT_LOG("AudioMixer: executing deferred restart");
+            if (!restart())
+                SUPPORT_LOG("AudioMixer: deferred restart failed, no audio output until the engine is recreated");
         }
     }
 
