@@ -31,7 +31,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
@@ -140,6 +142,7 @@ class MainActivity : AppCompatActivity() {
         when {
             permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
                 // Precise location access granted, service can run
+                permissionsRequired = false
                 startSoundscapeService()
                 requestActivityRecognitionOnce()
             }
@@ -254,6 +257,10 @@ class MainActivity : AppCompatActivity() {
     private var locationPermissionGranted = -1
     private var notificationPermissionGranted = -1
 
+    // Drives the home screen's "requires location permissions" message. Compose state so that the
+    // message goes away when the user grants location in Settings and comes back to the app.
+    private var permissionsRequired by mutableStateOf(false)
+
     /**
      * Moves anyone still set to Egyptian Arabic onto Arabic, on the first launch after upgrading.
      *
@@ -316,6 +323,8 @@ class MainActivity : AppCompatActivity() {
             }
         } else
             1
+
+        permissionsRequired = locationPermission != 1
 
         var change = false
         if (locationPermissionGranted == -1)
@@ -667,7 +676,7 @@ class MainActivity : AppCompatActivity() {
                             thisActivity.contactSupport()
                         }
                     },
-                    permissionsRequired = remember { locationPermissionGranted != 1 }
+                    permissionsRequired = permissionsRequired
                 )
             }
         }

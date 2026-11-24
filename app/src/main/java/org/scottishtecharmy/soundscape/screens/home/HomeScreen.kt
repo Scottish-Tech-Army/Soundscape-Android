@@ -103,8 +103,10 @@ fun HomeScreen(
         }
     }
 
-    val permissionsRequiredFlow =
-        remember(permissionsRequired) { MutableStateFlow(permissionsRequired) }
+    // One flow for the screen's lifetime, updated in place: keying it on the value would rebuild
+    // AppFlows whenever the permission changed.
+    val permissionsRequiredFlow = remember { MutableStateFlow(permissionsRequired) }
+    LaunchedEffect(permissionsRequired) { permissionsRequiredFlow.value = permissionsRequired }
     val locationFlow: StateFlow<org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation?> =
         remember(viewModel) {
             viewModel.state
