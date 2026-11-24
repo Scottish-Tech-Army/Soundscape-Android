@@ -141,12 +141,12 @@ namespace soundscape {
             : m_pAssetManager(assetManager),
               m_BeaconTypeIndex(1) {
 
-        TRACE("%s %p", __FUNCTION__, this);
+        SUPPORT_LOG("AudioEngine: created %p", this);
 
         // Create and start the audio mixer (Oboe + Steam Audio)
         m_pMixer = std::make_unique<AudioMixer>();
         if (!m_pMixer->start()) {
-            TRACE("AudioEngine: mixer failed to start");
+            SUPPORT_LOG("AudioEngine: mixer failed to start, there will be no audio output");
         }
     }
 
@@ -171,7 +171,7 @@ namespace soundscape {
             m_pMixer->stop();
         }
 
-        TRACE("AudioEngine destroyed");
+        SUPPORT_LOG("AudioEngine: destroyed %p", this);
 
         // We rely on clearBeaconEventsListener having been called prior to this call
         assert(m_pJvm == nullptr);
@@ -450,14 +450,14 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_create(JNIEnv *env 
                                                                     jobject asset_manager) {
     AAssetManager *mgr = AAssetManager_fromJava(env, asset_manager);
     if (!mgr) {
-        TRACE("Failed to get AAssetManager from Java");
+        SUPPORT_LOG("Failed to get AAssetManager from Java");
         return 0;
     }
 
     auto ae = std::make_unique<soundscape::AudioEngine>(mgr);
 
     if (not ae) {
-        TRACE("Failed to create audio engine");
+        SUPPORT_LOG("Failed to create audio engine");
         ae.reset(nullptr);
     }
 
@@ -572,7 +572,7 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(
                 heading_only
         );
         if (not beacon) {
-            TRACE("Failed to create audio beacon");
+            SUPPORT_LOG("Failed to create audio beacon");
             beacon.reset(nullptr);
         }
         return reinterpret_cast<jlong>(beacon.release());
@@ -665,7 +665,7 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToS
                 id_string
         );
         if (not tts) {
-            TRACE("Failed to create text to speech");
+            SUPPORT_LOG("Failed to create text to speech");
             tts.reset(nullptr);
             return 0L;
         }
@@ -718,7 +718,7 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(
                 )
         );
         if (not earcon) {
-            TRACE("Failed to create Earcon");
+            SUPPORT_LOG("Failed to create Earcon");
             earcon.reset(nullptr);
             return 0L;
         }

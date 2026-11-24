@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import kotlin.math.roundToInt
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
@@ -10,6 +11,7 @@ import org.scottishtecharmy.soundscape.platform.appVersionName
 import platform.AVFAudio.AVAudioSession
 import platform.AVFAudio.AVAudioSessionPortDescription
 import platform.AVFAudio.currentRoute
+import platform.AVFAudio.outputVolume
 import platform.CoreLocation.CLAccuracyAuthorization
 import platform.CoreLocation.CLAuthorizationStatus
 import platform.CoreLocation.CLLocationManager
@@ -54,16 +56,17 @@ private val logger = AppLog.tag("IosContactSupport")
 @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
 internal fun presentContactSupport(service: IosSoundscapeService) {
     val subject = buildSupportSubject()
-    // Logged as well as put in the body so that it also lands in the attached log.
-    val permissions = permissionsDescription()
-    logger.i { "Permissions: ${permissions.joinToString { "${it.first}=${it.second}" }}" }
-    val htmlBody = buildSupportHtmlBody(service, permissions)
+    val report = buildSupportReport(service, permissionsDescription())
+    // The device details go only in the attached log, not the email body, where they confused
+    // users. Logged a row at a time before the log buffer is dumped so that they're in it.
+    report.lines().filter { it.isNotBlank() }.forEach { line ->
+        logger.i { line }
+    }
 
     if (MFMailComposeViewController.canSendMail()) {
         val composer = MFMailComposeViewController()
         composer.setSubject(subject)
         composer.setToRecipients(listOf(SUPPORT_RECIPIENT))
-        composer.setMessageBody(htmlBody, isHTML = true)
         // Attaching the support log buffer is only possible via this in-app composer -
         // the mailto: fallback below has no attachment mechanism.
         val logData = NSString.create(string = SupportLogBuffer.dumpAsText())
@@ -76,13 +79,15 @@ internal fun presentContactSupport(service: IosSoundscapeService) {
         retainedMailDelegates.add(delegate)
         presentTopViewController(composer)
     } else {
+        // mailto: can't carry an attachment, so this is the one case where the details
+        // still have to go in the body.
         val urlString = buildString {
             append("mailto:")
             append(SUPPORT_RECIPIENT)
             append("?subject=")
             append(supportUrlEncode(subject))
             append("&body=")
-            append(supportUrlEncode(htmlToPlainText(htmlBody)))
+            append(supportUrlEncode(report))
         }
         val url = NSURL.URLWithString(urlString)
         if (url != null) openExternalUrl(url)
@@ -116,55 +121,60 @@ private fun buildSupportSubject(): String {
     return "Soundscape Feedback (iOS $osVersion, Apple $deviceModel, $language, ${appVersionName()})"
 }
 
+/**
+ * The system output volume for the current route (the hardware volume buttons), 0-1. iOS has no
+ * separate media/ringer split for app audio, so this is the volume Soundscape plays at.
+ */
+private fun mediaVolumeDescription(): String =
+    "${(AVAudioSession.sharedInstance().outputVolume * 100).roundToInt()}%"
+
 @OptIn(ExperimentalForeignApi::class)
-private fun buildSupportHtmlBody(
+private fun buildSupportReport(
     service: IosSoundscapeService,
     permissions: List<Pair<String, String>>,
 ): String = buildString {
-    append("-----------------------------<br/>")
-    append(tableRow("Summary", buildSupportSubject()))
-    append(tableRow("Product", UIDevice.currentDevice.model))
-    append(tableRow("Manufacturer", "Apple"))
+    append("Contact Support report\n")
+    append(reportLine("Summary", buildSupportSubject()))
+    append(reportLine("Product", UIDevice.currentDevice.model))
+    append(reportLine("Manufacturer", "Apple"))
     append(
-        tableRow(
+        reportLine(
             "System",
             "${UIDevice.currentDevice.systemName} ${UIDevice.currentDevice.systemVersion}",
         ),
     )
 
-    append(tableRow("VoiceOver", if (UIAccessibilityIsVoiceOverRunning()) "On" else "Off"))
+    append(reportLine("VoiceOver", if (UIAccessibilityIsVoiceOverRunning()) "On" else "Off"))
 
     val session = AVAudioSession.sharedInstance()
     for (output in session.currentRoute.outputs) {
         val port = output as? AVAudioSessionPortDescription ?: continue
-        append(tableRow("Audio Output", "${port.portName} (${port.portType})"))
+        append(reportLine("Audio Output", "${port.portName} (${port.portType})"))
     }
     for (input in session.currentRoute.inputs) {
         val port = input as? AVAudioSessionPortDescription ?: continue
-        append(tableRow("Audio Input", "${port.portName} (${port.portType})"))
+        append(reportLine("Audio Input", "${port.portName} (${port.portType})"))
     }
 
-    for ((key, value) in permissions) append(tableRow(key, value))
+    append(reportLine("Media volume", mediaVolumeDescription()))
+
+    for ((key, value) in permissions) append(reportLine(key, value))
 
     val downloaded = service.offlineMapManager.downloadedExtractsFc.value
     for (feature in downloaded.features) {
         val name = feature.properties?.get("name")
         val filename = feature.properties?.get("filename")
-        append(tableRow("Offline extract", "$name, $filename"))
+        append(reportLine("Offline extract", "$name, $filename"))
     }
 
     @Suppress("UNCHECKED_CAST")
     val all = NSUserDefaults.standardUserDefaults.dictionaryRepresentation()
     for ((key, value) in all) {
-        append(tableRow(key.toString(), value.toString()))
+        append(reportLine(key.toString(), value.toString()))
     }
-    append("-----------------------------<br/><br/>")
-
-    append("Untranslated OSM keys:<br/>")
     for (key in ResourceMapper.getUnfoundKeys()) {
-        append("\t$key<br/>")
+        append(reportLine("Untranslated OSM key", key.toString()))
     }
-    append("-----------------------------<br/><br/>")
 }
 
 /**
@@ -220,10 +230,7 @@ private fun motionStatusName(status: CMAuthorizationStatus): String = when (stat
     else -> "Unknown ($status)"
 }
 
-private fun tableRow(key: String, value: String): String = "$key:\t\t$value<br/>"
-
-private fun htmlToPlainText(html: String): String =
-    html.replace("<br/>", "\n").replace("<br>", "\n")
+private fun reportLine(key: String, value: String): String = "$key: $value\n"
 
 private fun supportUrlEncode(value: String): String {
     val bytes = value.encodeToByteArray()

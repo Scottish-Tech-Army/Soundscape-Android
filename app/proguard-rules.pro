@@ -26,6 +26,7 @@
 # Ensure that we can callback from the AudioEngine
 -keep class org.scottishtecharmy.soundscape.audio.NativeAudioEngine {
     public void onAllBeaconsCleared();
+    public static void nativeLog(java.lang.String);
 }
 
 # The :shared module reads VERSION_NAME, DEBUG, DUMMY_ANALYTICS and TILE_PROVIDER_URL

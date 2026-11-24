@@ -15,7 +15,7 @@ namespace soundscape {
         contextSettings.version = STEAMAUDIO_VERSION;
         auto err = iplContextCreate(&contextSettings, &m_Context);
         if (err != IPL_STATUS_SUCCESS) {
-            TRACE("SteamAudio: iplContextCreate failed: %d", err);
+            SUPPORT_LOG("SteamAudio: iplContextCreate failed: %d", err);
             m_Context = nullptr;
             return;
         }
@@ -27,7 +27,7 @@ namespace soundscape {
         hrtfSettings.normType = IPL_HRTFNORMTYPE_NONE;
         err = iplHRTFCreate(m_Context, &m_AudioSettings, &hrtfSettings, &m_Hrtf);
         if (err != IPL_STATUS_SUCCESS) {
-            TRACE("SteamAudio: iplHRTFCreate failed: %d, sample rate %d, frameSize %d", err, sampleRate, frameSize);
+            SUPPORT_LOG("SteamAudio: iplHRTFCreate failed: %d, sample rate %d, frameSize %d", err, sampleRate, frameSize);
             iplContextRelease(&m_Context);
             m_Context = nullptr;
             return;
@@ -63,7 +63,7 @@ namespace soundscape {
         IPLBinauralEffect effect = nullptr;
         auto err = iplBinauralEffectCreate(m_Context, &m_AudioSettings, &effectSettings, &effect);
         if (err != IPL_STATUS_SUCCESS) {
-            TRACE("SteamAudio: iplBinauralEffectCreate failed: %d", err);
+            SUPPORT_LOG("SteamAudio: iplBinauralEffectCreate failed: %d", err);
             return -1;
         }
 

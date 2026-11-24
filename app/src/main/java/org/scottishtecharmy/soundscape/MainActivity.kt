@@ -11,7 +11,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.LocationManager
-import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
@@ -22,7 +21,6 @@ import android.os.Looper
 import android.os.PowerManager
 import android.os.StrictMode
 import android.provider.Settings
-import android.text.Html
 import android.view.View
 import android.view.accessibility.AccessibilityManager
 import android.widget.Toast
@@ -59,6 +57,8 @@ import org.scottishtecharmy.soundscape.actions.ActionResult
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.actions.executeForDeepLink
 import org.scottishtecharmy.soundscape.audio.AudioTour
+import org.scottishtecharmy.soundscape.audio.deviceTypeName
+import org.scottishtecharmy.soundscape.audio.mediaVolumeDescription
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
@@ -769,19 +769,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun tableRow(key: String, value: String): String {
-        return "$key:\t\t$value<br/>"
+    fun reportLine(key: String, value: String): String {
+        return "$key: $value\n"
     }
 
     fun talkBackDescription(builder: StringBuilder, context: Context) {
         val am = context.getSystemService(ACCESSIBILITY_SERVICE) as AccessibilityManager
         if (!am.isEnabled) {
-            builder.append(tableRow("Talkback", "Off"))
+            builder.append(reportLine("Talkback", "Off"))
             return
         }
 
         builder.append(
-            tableRow(
+            reportLine(
                 "TouchExploration Enabled",
                 am.isTouchExplorationEnabled.toString()
             )
@@ -790,7 +790,7 @@ class MainActivity : AppCompatActivity() {
         val enabledServices =
             am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_SPOKEN)
         for (serviceInfo in enabledServices) {
-            builder.append(tableRow("AccessibilityService:", serviceInfo.id))
+            builder.append(reportLine("AccessibilityService", serviceInfo.id))
         }
     }
 
@@ -845,42 +845,20 @@ class MainActivity : AppCompatActivity() {
         return result
     }
 
-    @Suppress("NewApi") // Inlined int constants, safe on all API levels
     fun audioDeviceDescription(builder: StringBuilder, context: Context) {
         val audioManager = context.getSystemService(AUDIO_SERVICE) as AudioManager
-        val typeNames = mapOf(
-            AudioDeviceInfo.TYPE_BUILTIN_EARPIECE to "Built-in Earpiece",
-            AudioDeviceInfo.TYPE_BUILTIN_SPEAKER to "Built-in Speaker",
-            AudioDeviceInfo.TYPE_WIRED_HEADSET to "Wired Headset",
-            AudioDeviceInfo.TYPE_WIRED_HEADPHONES to "Wired Headphones",
-            AudioDeviceInfo.TYPE_BLUETOOTH_SCO to "Bluetooth SCO",
-            AudioDeviceInfo.TYPE_BLUETOOTH_A2DP to "Bluetooth A2DP",
-            AudioDeviceInfo.TYPE_USB_DEVICE to "USB Device",
-            AudioDeviceInfo.TYPE_USB_ACCESSORY to "USB Accessory",
-            AudioDeviceInfo.TYPE_USB_HEADSET to "USB Headset",
-            AudioDeviceInfo.TYPE_HEARING_AID to "Hearing Aid",
-            AudioDeviceInfo.TYPE_BLE_HEADSET to "BLE Headset",
-            AudioDeviceInfo.TYPE_BLE_SPEAKER to "BLE Speaker",
-            AudioDeviceInfo.TYPE_BLE_BROADCAST to "BLE Broadcast",
-            AudioDeviceInfo.TYPE_TELEPHONY to "Telephony",
-            AudioDeviceInfo.TYPE_BUILTIN_MIC to "Built-in Mic",
-            AudioDeviceInfo.TYPE_BUILTIN_EARPIECE to "Built-in Earpiece",
-        )
-
-        fun deviceTypeName(type: Int) = typeNames[type] ?: "Unknown($type)"
-
         val outputs = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
         for (device in outputs) {
             val name = device.productName
             val type = deviceTypeName(device.type)
-            builder.append(tableRow("Audio Output", "$name ($type)"))
+            builder.append(reportLine("Audio Output", "$name ($type)"))
         }
 
         val inputs = audioManager.getDevices(AudioManager.GET_DEVICES_INPUTS)
         for (device in inputs) {
             val name = device.productName
             val type = deviceTypeName(device.type)
-            builder.append(tableRow("Audio Input", "$name ($type)"))
+            builder.append(reportLine("Audio Input", "$name ($type)"))
         }
     }
 
@@ -897,19 +875,19 @@ class MainActivity : AppCompatActivity() {
             "Soundscape Feedback (Android $androidVersion, $brand $model, $language, $appVersion)"
         val preferences = sharedPreferences.all
 
-        val bodyText = StringBuilder()
+        val report = StringBuilder()
 
-        bodyText.append("-----------------------------<br/>")
-        bodyText.append(tableRow("Summary", subjectText))
-        bodyText.append(tableRow("Product", product))
-        bodyText.append(tableRow("Manufacturer", manufacturer))
-        talkBackDescription(bodyText, applicationContext)
-        audioDeviceDescription(bodyText, applicationContext)
+        report.append("Contact Support report\n")
+        report.append(reportLine("Summary", subjectText))
+        report.append(reportLine("Product", product))
+        report.append(reportLine("Manufacturer", manufacturer))
+        talkBackDescription(report, applicationContext)
+        audioDeviceDescription(report, applicationContext)
+        report.append(reportLine("Media volume", mediaVolumeDescription(applicationContext)))
         val permissions = permissionsDescription(applicationContext)
-        logger.i { "Permissions: ${permissions.joinToString { "${it.first}=${it.second}" }}" }
-        permissions.forEach { (key, value) -> bodyText.append(tableRow(key, value)) }
+        permissions.forEach { (key, value) -> report.append(reportLine(key, value)) }
 
-        bodyText.append(tableRow("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
+        report.append(reportLine("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
 
         val extractPath =
             sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)
@@ -918,8 +896,8 @@ class MainActivity : AppCompatActivity() {
             findExtracts(File(extractPath, Environment.DIRECTORY_DOWNLOADS).path)
         if (extractCollection != null) {
             for (extract in extractCollection.features) {
-                bodyText.append(
-                    tableRow
+                report.append(
+                    reportLine
                         (
                         "Offline extract",
                         "${extract.properties?.get("name")}, ${extract.properties?.get("filename")}"
@@ -927,20 +905,22 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
-        preferences.forEach { pref -> bodyText.append(tableRow(pref.key, pref.value.toString())) }
-        bodyText.append("-----------------------------<br/><br/>")
-
-        bodyText.append("Untranslated OSM keys:<br/>")
+        preferences.forEach { pref -> report.append(reportLine(pref.key, pref.value.toString())) }
         val unknownOsmKeys = ResourceMapper.getUnfoundKeys()
-        unknownOsmKeys.forEach { bodyText.append("\t$it<br/>") }
-        bodyText.append("-----------------------------<br/><br/>")
+        unknownOsmKeys.forEach { report.append(reportLine("Untranslated OSM key", it.toString())) }
 
         val supportEmail = "soundscapeAndroid@scottishtecharmy.support"
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "message/rfc822"
             putExtra(Intent.EXTRA_EMAIL, arrayOf(supportEmail))
             putExtra(Intent.EXTRA_SUBJECT, subjectText)
-            putExtra(Intent.EXTRA_TEXT, Html.fromHtml(bodyText.toString(), 0))
+        }
+
+        // The device details go only in the attached log, not the email body, where they
+        // confused users. Logged a row at a time (logcat truncates long entries) and before
+        // the log is saved so that they're in it.
+        report.lines().filter { it.isNotBlank() }.forEach { line ->
+            logger.i { line }
         }
 
         // Attach the log file if it was created successfully
@@ -961,8 +941,6 @@ class MainActivity : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
         }
-
-        logger.e { Html.fromHtml(bodyText.toString(), 0).toString() }
 
         // Send straight to the user's email app (no chooser) with the recipient,
         // subject, body and log attachment all pre-filled. A selector or a plain

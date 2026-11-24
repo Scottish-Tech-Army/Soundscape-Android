@@ -36,7 +36,8 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         WavDecoder.cpp
         SimpleResampler.cpp
         SteamAudioSpatializer.cpp
-        AudioMixer.cpp)
+        AudioMixer.cpp
+        SupportLog.cpp)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}

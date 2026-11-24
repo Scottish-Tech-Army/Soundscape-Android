@@ -55,7 +55,7 @@ namespace soundscape {
 
         AAsset *asset = AAssetManager_open(mgr, assetPath.c_str(), AASSET_MODE_BUFFER);
         if (!asset) {
-            TRACE("WavDecoder: failed to open asset: %s", assetPath.c_str());
+            SUPPORT_LOG("WavDecoder: failed to open asset: %s", assetPath.c_str());
             return result;
         }
 
@@ -65,7 +65,7 @@ namespace soundscape {
         if (rawData && rawSize > 44) {
             parseWav(*result, rawData, rawSize);
         } else {
-            TRACE("WavDecoder: asset too small or null: %s (%zu bytes)", assetPath.c_str(),
+            SUPPORT_LOG("WavDecoder: asset too small or null: %s (%zu bytes)", assetPath.c_str(),
                   rawSize);
         }
 
@@ -81,7 +81,7 @@ namespace soundscape {
     void WavDecoder::parseWav(DecodedWav &out, const unsigned char *rawData, size_t rawSize) {
         // Validate RIFF header
         if (memcmp(rawData, "RIFF", 4) != 0 || memcmp(rawData + 8, "WAVE", 4) != 0) {
-            TRACE("WavDecoder: not a valid WAV file");
+            SUPPORT_LOG("WavDecoder: not a valid WAV file");
             return;
         }
 
@@ -121,7 +121,7 @@ namespace soundscape {
         }
 
         if (!dataChunk || sampleRate == 0 || numChannels == 0 || bitsPerSample == 0) {
-            TRACE("WavDecoder: incomplete WAV (sr=%d ch=%d bits=%d data=%p)",
+            SUPPORT_LOG("WavDecoder: incomplete WAV (sr=%d ch=%d bits=%d data=%p)",
                   sampleRate, numChannels, bitsPerSample, dataChunk);
             return;
         }
