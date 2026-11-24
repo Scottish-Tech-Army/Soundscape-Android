@@ -14,8 +14,18 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  # Runs only the unit-test job, on main, so that it saves a Gradle cache of its own. setup-gradle
+  # only writes caches from the default branch and this workflow otherwise runs only on PRs, so
+  # PR unit-test runs used to fall back to another job's cache (often the nightly instrumentation
+  # job's, which has no Robolectric) and download the rest from Maven Central, where they got
+  # rate-limited (HTTP 429).
+  schedule:
+    - cron: '0 5 * * *'
+
 jobs:
   lint:
+    # The scheduled run only exists to refresh the unit-test job's Gradle cache.
+    if: github.event_name != 'schedule'
 
     runs-on: ubuntu-latest
     environment: development
@@ -58,6 +68,8 @@ jobs:
   # Python (3.11+ for tomllib), JDK and Android SDK these need.
   test-farm:
     name: Check test farm
+    # The scheduled run only exists to refresh the unit-test job's Gradle cache.
+    if: github.event_name != 'schedule'
 
     runs-on: ubuntu-latest
 
@@ -124,6 +136,8 @@ jobs:
 
   instrumentation-test:
     name: Run instrumentation tests
+    # The scheduled run only exists to refresh the unit-test job's Gradle cache.
+    if: github.event_name != 'schedule'
 
     runs-on: ubuntu-latest
     environment: development
@@ -198,6 +212,8 @@ jobs:
 
   ios-test:
     name: Build and test iOS app
+    # The scheduled run only exists to refresh the unit-test job's Gradle cache.
+    if: github.event_name != 'schedule'
     runs-on: [self-hosted, macOS, ARM64]
     environment: development
 
