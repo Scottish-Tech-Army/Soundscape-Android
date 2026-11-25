@@ -146,9 +146,8 @@ class GpxRecorderTest {
     }
 
     /**
-     * [GpxRecorder.storeLocation] evicts the oldest entry via `buffer.removeAt(0)` once
-     * [GpxRecorder.maxBufferSize] is exceeded, capping the buffer at maxBufferSize (1 hour of
-     * 1Hz fixes) rather than growing without bound.
+     * Fixes with no time can't be placed in [GpxRecorder.window], so [GpxRecorder.maxBufferSize]
+     * is what stops the buffer growing without bound: past it, the oldest entries go.
      */
     @Test
     fun exceedingMaxBufferSizeEvictsOldestLocations() = runTest {
@@ -170,6 +169,44 @@ class GpxRecorderTest {
         // ...while the most recently stored location is still present.
         val lastIndex = total - 1
         assertTrue(gpx.contains("<trkpt lat=\"${lastIndex.toDouble()}\" lon=\"0.0\">"))
+    }
+
+    private fun fixAt(millis: Long, index: Int) =
+        SoundscapeLocation(latitude = index.toDouble(), timestampMilliseconds = millis)
+
+    private fun latitudes(gpx: String) =
+        Regex("<trkpt lat=\"([^\"]+)\"").findAll(gpx).map { it.groupValues[1].toDouble() }.toList()
+
+    /**
+     * The point of keeping the buffer by time: Android's fused provider sends a fix about every
+     * step while walking, and 70 minutes of that at two a second must still leave the last hour,
+     * not the last half hour that a 3600-fix buffer held.
+     */
+    @Test
+    fun keepsTheLastHourWhateverTheFixRate() = runTest {
+        val recorder = GpxRecorder()
+        val start = 1_700_000_000_000L
+        val count = 70 * 60 * 2
+        for (i in 0 until count) recorder.storeLocation(fixAt(start + i * 500L, i))
+
+        val kept = latitudes(recorder.generateGpx())
+        val newest = start + (count - 1) * 500L
+        // Everything from exactly an hour before the newest fix onwards, and nothing older
+        val firstKept = ((newest - recorder.window.inWholeMilliseconds - start) / 500L).toInt()
+        assertEquals(count - firstKept, kept.size)
+        assertEquals(firstKept.toDouble(), kept.first())
+        assertEquals((count - 1).toDouble(), kept.last())
+        assertTrue(kept.size > 3600, "two fixes a second for an hour is more than 3600 fixes")
+    }
+
+    /** A slow provider is no longer cut short either: an hour of fixes 2 s apart all stay. */
+    @Test
+    fun aSlowProviderKeepsItsWholeHour() = runTest {
+        val recorder = GpxRecorder()
+        val start = 1_700_000_000_000L
+        for (i in 0..1800) recorder.storeLocation(fixAt(start + i * 2000L, i))
+
+        assertEquals(1801, latitudes(recorder.generateGpx()).size)
     }
 
     /**

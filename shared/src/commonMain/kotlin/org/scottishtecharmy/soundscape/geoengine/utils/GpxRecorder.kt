@@ -7,17 +7,32 @@ import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingDebug
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.StepSnapshot
 import org.scottishtecharmy.soundscape.platform.formatGpxTimestamp
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
 
 class GpxRecorder : LocationRecorder {
 
     val bufferMutex = Mutex()
-    val maxBufferSize = 3600        // 1 location per second for an hour
+
+    /**
+     * How far back a recording reaches: fixes older than this, measured from the newest one,
+     * are dropped. Kept by time rather than by count because providers differ - while the user
+     * walks, Android's fused provider sends a fix about every step (roughly two a second) where
+     * iOS sends about one a second, so a fixed 3600 fixes covered as little as half an hour.
+     */
+    val window: Duration = 1.hours
+
+    /**
+     * A backstop on memory for fixes that carry no time (timestampMilliseconds == 0, which the
+     * window can't place) or a provider that floods: four fixes a second for an hour.
+     */
+    val maxBufferSize = 4 * 3600
     private class Entry(
         val location: SoundscapeLocation,
         val head: HeadTrackingDebug?,
         val steps: StepSnapshot?,
     )
-    private val buffer: MutableList<Entry> = mutableListOf()
+    private val buffer = ArrayDeque<Entry>()
 
     /**
      * Gives the head tracker's state to record with each fix, or null when there's no tracker
@@ -143,9 +158,18 @@ class GpxRecorder : LocationRecorder {
 
     override suspend fun storeLocation(location: SoundscapeLocation) {
         bufferMutex.withLock {
-            buffer.add(Entry(location, headTracking?.invoke(), steps?.invoke()))
-            if (buffer.size > maxBufferSize)
-                buffer.removeAt(0)
+            buffer.addLast(Entry(location, headTracking?.invoke(), steps?.invoke()))
+            val newest = location.timestampMilliseconds
+            if (newest != 0L) {
+                val cutoff = newest - window.inWholeMilliseconds
+                while (buffer.size > 1) {
+                    val oldest = buffer.first().location.timestampMilliseconds
+                    if (oldest == 0L || oldest >= cutoff) break
+                    buffer.removeFirst()
+                }
+            }
+            while (buffer.size > maxBufferSize)
+                buffer.removeFirst()
         }
     }
 
