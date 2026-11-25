@@ -517,6 +517,7 @@
     <string name="settings_use_value">usar</string>
     <string name="street_preview_exit">Sair da simulação de localização</string>
     <string name="settings_travel_recording">Habilitar a gravação de viagens</string>
+    <string name="settings_travel_recording_description">Guarda um registro dos lugares por onde você passou na última hora, para nos ajudar a investigar problemas. Ele fica no seu celular, a menos que você opte por incluí-lo ao contatar o suporte.</string>
     <string name="settings_alpha_features">Habilitar recursos de teste alfa</string>
     <string name="settings_alpha_features_description">Mostra as configurações de recursos que ainda estão em teste. Eles podem estar incompletos ou não ser confiáveis.</string>
     <string name="settings_record_head_tracker_input">Gravar os dados do sensor de rastreamento de cabeça</string>

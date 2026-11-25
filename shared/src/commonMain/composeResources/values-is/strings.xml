@@ -529,6 +529,7 @@
     <string name="settings_use_value">nota</string>
     <string name="street_preview_exit">Ljúka staðsetningarhermun</string>
     <string name="settings_travel_recording">Virkja skráningu ferða</string>
+    <string name="settings_travel_recording_description">Heldur skrá yfir hvar þú hefur verið síðustu klukkustundina, til að hjálpa okkur að kanna vandamál. Hún verður áfram í símanum þínum nema þú veljir að láta hana fylgja með þegar þú hefur samband við þjónustuver.</string>
     <string name="settings_alpha_features">Virkja eiginleika í alfaprófun</string>
     <string name="settings_alpha_features_description">Sýnir stillingar fyrir eiginleika sem enn er verið að prófa. Þeir geta verið ókláraðir eða óáreiðanlegir.</string>
     <string name="settings_record_head_tracker_input">Skrá gögn frá höfuðrakningarbúnaði</string>

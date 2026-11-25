@@ -510,6 +510,7 @@
     <string name="settings_use_value">utiliser</string>
     <string name="street_preview_exit">Quitter la simulation d’emplacement</string>
     <string name="settings_travel_recording">Activer l’enregistrement des voyages</string>
+    <string name="settings_travel_recording_description">Conserve un historique de vos déplacements de la dernière heure, pour nous aider à analyser les problèmes. Il reste sur votre téléphone, sauf si vous choisissez de le joindre quand vous contactez le support.</string>
     <string name="settings_alpha_features">Activer les fonctionnalités de test alpha</string>
     <string name="settings_alpha_features_description">Affiche les paramètres des fonctionnalités encore en cours de test. Elles peuvent être incomplètes ou peu fiables.</string>
     <string name="settings_record_head_tracker_input">Enregistrer les données du capteur de suivi de la tête</string>

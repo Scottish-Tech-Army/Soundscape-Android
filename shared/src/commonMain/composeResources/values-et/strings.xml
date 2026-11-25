@@ -490,6 +490,7 @@
     <string name="settings_use_value">kasutada</string>
     <string name="street_preview_exit">Välju asukoha simulatsioonist</string>
     <string name="settings_travel_recording">Luba reisi salvestamine</string>
+    <string name="settings_travel_recording_description">Salvestab, kus sa oled viimase tunni jooksul olnud, et aidata meil probleeme uurida. Salvestis jääb sinu telefoni, kui sa ei otsusta seda toega ühendust võttes lisada.</string>
     <string name="settings_alpha_features">Luba alfatestimise funktsioonid</string>
     <string name="settings_alpha_features_description">Näitab seadeid funktsioonidele, mida alles testitakse. Need võivad olla poolikud või ebausaldusväärsed.</string>
     <string name="settings_record_head_tracker_input">Salvesta pea jälgimise anduri andmed</string>

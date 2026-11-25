@@ -1539,6 +1539,7 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="settings_use_value">uporabi</string>
     <string name="street_preview_exit">Izhod iz simulacije lokacije</string>
     <string name="settings_travel_recording">Omogoči snemanje poti</string>
+    <string name="settings_travel_recording_description">Hrani zapis o tem, kje ste bili v zadnji uri, da nam pomaga pri raziskovanju težav. Ostane v vašem telefonu, razen če se odločite, da ga priložite, ko se obrnete na podporo.</string>
     <string name="settings_alpha_features">Omogoči funkcije za alfa testiranje</string>
     <string name="settings_alpha_features_description">Prikaže nastavitve funkcij, ki so še v preizkušanju. Morda so nedokončane ali nezanesljive.</string>
     <string name="settings_record_head_tracker_input">Snemaj podatke senzorja za sledenje glavi</string>

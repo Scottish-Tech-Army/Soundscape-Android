@@ -1547,6 +1547,7 @@
     <string name="settings_use_value">பயன்படுத்த</string>
     <string name="street_preview_exit">இருப்பிட உருவகப்படுத்துதலிலிருந்து வெளியேறு</string>
     <string name="settings_travel_recording">பயணப் பதிவை இயக்கு</string>
+    <string name="settings_travel_recording_description">கடந்த ஒரு மணி நேரத்தில் நீங்கள் எங்கெல்லாம் இருந்தீர்கள் என்பதைப் பதிவுசெய்து, சிக்கல்களை ஆராய எங்களுக்கு உதவுகிறது. ஆதரவைத் தொடர்பு கொள்ளும்போது அதைச் சேர்க்க நீங்கள் தேர்வுசெய்யாவிட்டால், அது உங்கள் ஃபோனிலேயே இருக்கும்.</string>
     <string name="settings_alpha_features">ஆல்ஃபா சோதனை அம்சங்களை இயக்கு</string>
     <string name="settings_alpha_features_description">இன்னும் சோதிக்கப்பட்டு வரும் அம்சங்களுக்கான அமைப்புகளைக் காட்டும். அவை முழுமையற்றதாகவோ நம்பகமற்றதாகவோ இருக்கலாம்.</string>
     <string name="settings_record_head_tracker_input">தலை கண்காணிப்புக் கருவியின் தரவைப் பதிவுசெய்</string>

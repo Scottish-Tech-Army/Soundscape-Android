@@ -487,6 +487,7 @@
     <string name="settings_theme_contrast_regular">Regular</string>
     <string name="settings_list_item_description">%1$s is choice %2$s out of %3$s</string>
     <string name="settings_travel_recording">Enable recording of travel</string>
+    <string name="settings_travel_recording_description">Keeps a record of where you have been over the last hour, to help us look into problems. It stays on your phone unless you choose to include it when you contact support.</string>
     <string name="settings_alpha_features">Enable alpha test features</string>
     <string name="settings_alpha_features_description">Show settings for features that are still being tested. They may be incomplete or unreliable.</string>
     <string name="settings_record_head_tracker_input">Record head tracker data</string>

@@ -453,6 +453,7 @@
     <string name="no_language_selected">Dil seçilmedi</string>
     <string name="street_preview_exit">Konum simülasyonundan çık</string>
     <string name="settings_travel_recording">Seyahat kaydını etkinleştir</string>
+    <string name="settings_travel_recording_description">Sorunları incelememize yardımcı olmak için son bir saatte nerelerde bulunduğunuzun kaydını tutar. Destek ile iletişime geçerken eklemeyi seçmediğiniz sürece kayıt telefonunuzda kalır.</string>
     <string name="settings_alpha_features">Alfa test özelliklerini etkinleştir</string>
     <string name="settings_alpha_features_description">Hâlâ test edilen özelliklerin ayarlarını gösterir. Bu özellikler eksik veya güvenilmez olabilir.</string>
     <string name="settings_record_head_tracker_input">Baş takip cihazı verilerini kaydet</string>

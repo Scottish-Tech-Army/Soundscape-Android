@@ -1342,6 +1342,7 @@
     <string name="settings_use_value">použít</string>
     <string name="street_preview_exit">Ukončit simulaci polohy</string>
     <string name="settings_travel_recording">Povolit záznam cesty</string>
+    <string name="settings_travel_recording_description">Uchovává záznam o tom, kde jste byli za poslední hodinu, aby nám pomohl při řešení problémů. Zůstává ve vašem telefonu, dokud se ho nerozhodnete přiložit, když kontaktujete podporu.</string>
     <string name="settings_alpha_features">Povolit funkce pro alfa testování</string>
     <string name="settings_alpha_features_description">Zobrazí nastavení funkcí, které se stále testují. Mohou být nedokončené nebo nespolehlivé.</string>
     <string name="settings_record_head_tracker_input">Zaznamenávat data ze snímače polohy hlavy</string>

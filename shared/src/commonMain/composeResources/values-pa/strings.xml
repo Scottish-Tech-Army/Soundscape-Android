@@ -647,6 +647,7 @@
     <string name="settings_use_value">ਵਰਤਣ ਲਈ</string>
     <string name="street_preview_exit">ਟਿਕਾਣੇ ਦੀ ਨਕਲ ਤੋਂ ਬਾਹਰ ਆਓ</string>
     <string name="settings_travel_recording">ਸਫ਼ਰ ਦੀ ਰਿਕਾਰਡਿੰਗ ਚਾਲੂ ਕਰੋ</string>
+    <string name="settings_travel_recording_description">ਪਿਛਲੇ ਇੱਕ ਘੰਟੇ ਵਿੱਚ ਤੁਸੀਂ ਕਿੱਥੇ-ਕਿੱਥੇ ਰਹੇ, ਇਸ ਦਾ ਰਿਕਾਰਡ ਰੱਖਦਾ ਹੈ, ਤਾਂ ਜੋ ਸਾਨੂੰ ਸਮੱਸਿਆਵਾਂ ਦੀ ਜਾਂਚ ਵਿੱਚ ਮਦਦ ਮਿਲੇ। ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਸਹਾਇਤਾ ਨਾਲ ਸੰਪਰਕ ਕਰਦੇ ਸਮੇਂ ਇਸ ਨੂੰ ਸ਼ਾਮਲ ਕਰਨਾ ਨਹੀਂ ਚੁਣਦੇ, ਇਹ ਤੁਹਾਡੇ ਫ਼ੋਨ 'ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ।</string>
     <string name="settings_alpha_features">ਅਲਫ਼ਾ ਟੈਸਟ ਵਾਲੀਆਂ ਸਹੂਲਤਾਂ ਚਾਲੂ ਕਰੋ</string>
     <string name="settings_alpha_features_description">ਉਹਨਾਂ ਸਹੂਲਤਾਂ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਦਿਖਾਓ ਜਿਨ੍ਹਾਂ ਦੀ ਅਜੇ ਜਾਂਚ ਹੋ ਰਹੀ ਹੈ। ਇਹ ਅਧੂਰੀਆਂ ਜਾਂ ਭਰੋਸੇਯੋਗ ਨਾ ਹੋਣ ਵਾਲੀਆਂ ਹੋ ਸਕਦੀਆਂ ਹਨ।</string>
     <string name="settings_record_head_tracker_input">ਸਿਰ ਟਰੈਕਰ ਦਾ ਡਾਟਾ ਰਿਕਾਰਡ ਕਰੋ</string>

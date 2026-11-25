@@ -451,6 +451,7 @@
     <string name="settings_use_value">folosește</string>
     <string name="street_preview_exit">Ieși din simularea locației</string>
     <string name="settings_travel_recording">Activează înregistrarea deplasării</string>
+    <string name="settings_travel_recording_description">Păstrează o evidență a locurilor pe unde ai fost în ultima oră, ca să ne ajute să investigăm problemele. Rămâne pe telefonul tău, cu excepția cazului în care alegi să o incluzi când contactezi asistența.</string>
     <string name="settings_alpha_features">Activează funcțiile de testare alfa</string>
     <string name="settings_alpha_features_description">Afișează setările pentru funcțiile care sunt încă în testare. Acestea pot fi incomplete sau nesigure.</string>
     <string name="settings_record_head_tracker_input">Înregistrează datele senzorului de urmărire a capului</string>

@@ -523,6 +523,7 @@
     <string name="settings_use_value">använda</string>
     <string name="street_preview_exit">Avsluta platssimulering</string>
     <string name="settings_travel_recording">Aktivera inspelning av resor</string>
+    <string name="settings_travel_recording_description">Sparar var du har varit den senaste timmen, för att hjälpa oss att undersöka problem. Inspelningen stannar på din telefon om du inte väljer att bifoga den när du kontaktar supporten.</string>
     <string name="settings_alpha_features">Aktivera funktioner för alfatest</string>
     <string name="settings_alpha_features_description">Visa inställningar för funktioner som fortfarande testas. De kan vara ofärdiga eller opålitliga.</string>
     <string name="settings_record_head_tracker_input">Spela in data från huvudspåraren</string>

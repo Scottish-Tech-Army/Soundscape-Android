@@ -517,6 +517,7 @@
     <string name="settings_use_value">از این گزینه استفاده کنید</string>
     <string name="street_preview_exit">خروج از شبیه‌سازی موقعیت مکانی</string>
     <string name="settings_travel_recording">فعال‌سازی ضبط سفر</string>
+    <string name="settings_travel_recording_description">سابقه‌ای از جاهایی که در یک ساعت گذشته بوده‌اید نگه می‌دارد تا به ما در بررسی مشکلات کمک کند. این سابقه روی تلفن شما می‌ماند، مگر اینکه هنگام تماس با پشتیبانی پیوست کردن آن را انتخاب کنید.</string>
     <string name="settings_alpha_features">فعال‌سازی ویژگی‌های آزمایش آلفا</string>
     <string name="settings_alpha_features_description">تنظیمات ویژگی‌هایی را که هنوز در حال آزمایش هستند نشان می‌دهد. ممکن است ناقص یا غیرقابل‌اعتماد باشند.</string>
     <string name="settings_record_head_tracker_input">ضبط داده‌های ردیاب سر</string>

@@ -1310,6 +1310,7 @@
     <string name="settings_use_value">használat</string>
     <string name="street_preview_exit">Kilépés a helyszimulációból</string>
     <string name="settings_travel_recording">Utazás rögzítésének engedélyezése</string>
+    <string name="settings_travel_recording_description">Rögzíti, merre járt az elmúlt órában, hogy segítsen nekünk kivizsgálni a problémákat. A rögzítés a telefonján marad, hacsak nem dönt úgy, hogy csatolja, amikor felveszi a kapcsolatot az ügyfélszolgálattal.</string>
     <string name="settings_alpha_features">Alfateszt-funkciók engedélyezése</string>
     <string name="settings_alpha_features_description">Megjeleníti a még tesztelés alatt álló funkciók beállításait. Ezek hiányosak vagy megbízhatatlanok lehetnek.</string>
     <string name="settings_record_head_tracker_input">Fejkövető adatainak rögzítése</string>

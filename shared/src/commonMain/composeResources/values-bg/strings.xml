@@ -1507,6 +1507,7 @@
     <string name="settings_use_value">използвай</string>
     <string name="street_preview_exit">Изход от симулацията на местоположение</string>
     <string name="settings_travel_recording">Разреши записване на пътуването</string>
+    <string name="settings_travel_recording_description">Пази запис на местата, където сте били през последния час, за да ни помогне да проучваме проблеми. Остава на телефона Ви, освен ако не решите да го включите, когато се свързвате с поддръжката.</string>
     <string name="settings_alpha_features">Разреши функции за алфа тестване</string>
     <string name="settings_alpha_features_description">Показва настройки за функции, които все още се тестват. Те може да са незавършени или ненадеждни.</string>
     <string name="settings_record_head_tracker_input">Записване на данните от сензора за проследяване на главата</string>

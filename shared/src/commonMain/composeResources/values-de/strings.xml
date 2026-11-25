@@ -529,6 +529,7 @@
     <string name="settings_use_value">verwenden</string>
     <string name="street_preview_exit">Standortsimulation beenden</string>
     <string name="settings_travel_recording">Aufzeichnung von Reisen aktivieren</string>
+    <string name="settings_travel_recording_description">Speichert, wo Sie in der letzten Stunde waren, damit wir Problemen nachgehen können. Die Aufzeichnung bleibt auf Ihrem Telefon, außer Sie hängen sie an, wenn Sie den Support kontaktieren.</string>
     <string name="settings_alpha_features">Funktionen für Alphatests aktivieren</string>
     <string name="settings_alpha_features_description">Zeigt Einstellungen für Funktionen, die noch getestet werden. Sie können unvollständig oder unzuverlässig sein.</string>
     <string name="settings_record_head_tracker_input">Head‑Tracker‑Daten aufzeichnen</string>

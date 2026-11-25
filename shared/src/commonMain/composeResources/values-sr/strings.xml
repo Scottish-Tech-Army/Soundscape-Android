@@ -1326,6 +1326,7 @@
     <string name="settings_use_value">користи</string>
     <string name="street_preview_exit">Изађи из симулације локације</string>
     <string name="settings_travel_recording">Омогући снимање путовања</string>
+    <string name="settings_travel_recording_description">Чува запис о томе где сте били током последњег сата како би нам помогао да истражимо проблеме. Остаје на вашем телефону, осим ако одлучите да га приложите када контактирате подршку.</string>
     <string name="settings_alpha_features">Омогући функције за алфа тестирање</string>
     <string name="settings_alpha_features_description">Приказује подешавања функција које се још тестирају. Могу бити недовршене или непоуздане.</string>
     <string name="settings_record_head_tracker_input">Снимај податке сензора за праћење покрета главе</string>
