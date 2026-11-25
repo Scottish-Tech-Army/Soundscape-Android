@@ -199,8 +199,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     }
 
     // Route player and audio menu
-    val routePlayer: RoutePlayer = RoutePlayer(this, routeDao)
-    val audioMenu: AudioMenu = AudioMenu(this, routeDao)
+    val routePlayer: RoutePlayer = RoutePlayer(this, routeDao, analytics)
+    val audioMenu: AudioMenu = AudioMenu(this, routeDao, analytics)
 
     /**
      * Entry point for assistant commands (Siri App Intents). Reached from Swift via

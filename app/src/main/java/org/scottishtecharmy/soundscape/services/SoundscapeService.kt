@@ -657,11 +657,13 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
             audioMenu = AudioMenu(
                 this,
-                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
+                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao(),
+                AnalyticsProvider.getInstance()
             )
             routePlayer = RoutePlayer(
                 this,
-                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
+                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao(),
+                AnalyticsProvider.getInstance()
             )
             actions = SoundscapeActionExecutor(
                 this,

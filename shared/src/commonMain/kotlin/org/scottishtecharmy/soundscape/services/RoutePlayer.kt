@@ -23,10 +23,12 @@ import org.scottishtecharmy.soundscape.resources.behavior_scavenger_hunt_callout
 import org.scottishtecharmy.soundscape.resources.route_end_completed_accessibility
 import org.scottishtecharmy.soundscape.resources.route_reverse_name
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
+import org.scottishtecharmy.soundscape.utils.Analytics
 
 class RoutePlayer(
     val service: MediaControllableService,
     private val routeDao: RouteDao,
+    private val analytics: Analytics? = null,
 ) {
     private var currentRouteData: RouteWithMarkers? = null
     private var currentMarker = -1
@@ -45,6 +47,7 @@ class RoutePlayer(
      */
     fun startBeacon(beaconLocation: LngLatAlt, beaconName: String) {
         currentMarker = 0
+        analytics?.logEvent("startBeacon", null)
 
         // If the beacon start point is more than 30m away, then we can have it as a destination
         // and track our distance to it. Note that this is separate from RoutePlayerState.beaconOnly
@@ -95,6 +98,7 @@ class RoutePlayer(
      * that was in progress before sleep mode was entered
      */
     fun startRoute(routeId: Long, reverse: Boolean = false, startWaypoint: Int = 0) {
+        analytics?.logEvent(if (reverse) "startRouteReverse" else "startRoute", null)
         coroutineScope.launch {
             val route = routeDao.getRouteWithMarkers(routeId) ?: return@launch
             // A route with no waypoints has nothing to play
