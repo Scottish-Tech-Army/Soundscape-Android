@@ -257,8 +257,11 @@ class CompositeHeadTrackingProviderTest {
         assertEquals(HeadTrackingStatus.Connected, provider.stateFlow.value.status)
         assertNull(provider.stateFlow.value.batteryPercent)
 
-        // b drops out and a connects in its place
+        // b drops out and a connects in its place. The composite stopped a when b connected, so
+        // wait for it to restart a before a connects: otherwise that restart, on another thread,
+        // can land after a's Calibrated and set it back to Disconnected.
         b.setStatus(HeadTrackingStatus.Disconnected)
+        awaitUntil { a.statusFlow.value == HeadTrackingStatus.Disconnected }
         a.setBattery(70)
         a.setStatus(HeadTrackingStatus.Calibrated)
         awaitUntil { provider.stateFlow.value.deviceName == "WitMotion" }
