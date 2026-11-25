@@ -131,6 +131,7 @@ import org.scottishtecharmy.soundscape.resources.settings_section_units_descript
 import org.scottishtecharmy.soundscape.resources.settings_show_map
 import org.scottishtecharmy.soundscape.resources.settings_theme_auto
 import org.scottishtecharmy.soundscape.resources.settings_travel_recording
+import org.scottishtecharmy.soundscape.resources.settings_travel_recording_description
 import org.scottishtecharmy.soundscape.resources.settings_units_imperial
 import org.scottishtecharmy.soundscape.resources.settings_units_metric
 import org.scottishtecharmy.soundscape.resources.ui_back_button_title
@@ -771,9 +772,10 @@ fun SharedSettingsScreen(
                         )
                     },
                     title = {
-                        Text(
-                            text = stringResource(Res.string.settings_travel_recording),
-                            color = textColor
+                        SettingDetails(
+                            Res.string.settings_travel_recording,
+                            Res.string.settings_travel_recording_description,
+                            textColor,
                         )
                     },
                 )
