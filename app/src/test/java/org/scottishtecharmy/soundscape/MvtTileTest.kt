@@ -10,6 +10,7 @@ import junit.framework.TestCase.assertNull
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import org.junit.Assume
 import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
@@ -4582,12 +4583,14 @@ class MvtTileTest {
         junctionTracer: JunctionTracer? = null,
         // False replays as if the phone had no pedometer, for comparing against the steps
         useSteps: Boolean = true,
+        // Directory of .pmtiles extracts to replay against - see replayExternalGpx
+        extractPath: String = offlineExtractPath,
     ): Int {
 
         val gridState = FileGridState()
-        gridState.start(offlineExtractPath)
+        gridState.start(extractPath)
         val settlementGrid = FileGridState(12, 3)
-        settlementGrid.start(offlineExtractPath)
+        settlementGrid.start(extractPath)
         val mapMatchFilter = MapMatchFilter()
         val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
         // Mirror GeoEngine exactly - the whole point of this harness is that it behaves like
@@ -5216,6 +5219,29 @@ class MvtTileTest {
      * had none, writing gpxFiles/<name>-steps.txt and <name>-nosteps.txt to compare - see
      * StepTracker. shops-steps is a drive to Tesco and Waitrose in Milngavie, walking round both.
      */
+    /**
+     * Replays a GPX from anywhere, e.g. a recording a user has emailed in, against whichever
+     * extracts are in REPLAY_EXTRACTS. Skipped unless REPLAY_GPX is set; scripts/replay-gpx.py
+     * picks and downloads the extracts, runs this, and opens the output on a map.
+     * REPLAY_START / REPLAY_END optionally limit it to a range of GPX points.
+     */
+    @Test
+    fun replayExternalGpx() {
+        val gpx = System.getenv("REPLAY_GPX")
+        Assume.assumeTrue("REPLAY_GPX not set", !gpx.isNullOrEmpty())
+        val extracts = System.getenv("REPLAY_EXTRACTS") ?: offlineExtractPath
+        val name = File(gpx!!).nameWithoutExtension
+        val count = testMovingGrid(
+            gpx,
+            "replay/$name.txt",
+            "replay/$name.geojson",
+            startIndex = System.getenv("REPLAY_START")?.toIntOrNull() ?: 0,
+            endIndex = System.getenv("REPLAY_END")?.toIntOrNull() ?: Int.MAX_VALUE,
+            extractPath = extracts,
+        )
+        println("replayExternalGpx: $count callouts from $gpx")
+    }
+
     @Test
     fun testStepsReplay() {
         for (name in listOf("shops-steps")) {

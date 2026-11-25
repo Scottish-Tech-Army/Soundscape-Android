@@ -7,15 +7,31 @@ has_toc: false
 
 Here are some ideas on how best to debug GeoJSON. This was inspired by Adam's use of GeoJSON.io, and my laziness with copy and paste!
 
+## Replay a recorded GPX and see the callouts on a map
+When a user sends in a recording (the `travel.gpx` that the app shares), one command replays it and shows the result:
+```
+python3 -I scripts/replay-gpx.py ~/Downloads/travel.gpx
+```
+The script:
+1. Reads the track and picks the offline extract(s) that cover it from the extract provider's manifest (`extractProviderUrl` in `local.properties`, or the `EXTRACT_PROVIDER_URL` environment variable). It downloads them once into `~/.cache/soundscape-replay/extracts`. Delete old builds from there by hand when space matters.
+2. Runs the `MvtTileTest.replayExternalGpx` unit test. This is the same production-equivalent replay (`testMovingGrid`) that the GPX unit tests use, run here against those extracts.
+3. Writes `app/build/test-output/replay/<name>.geojson`, `<name>.txt` (the callouts) and `<name>.html`, then opens the HTML. The page is self-contained: the GeoJSON is embedded, so it works from disk with no size limit. It shows the track, the raw and map-matched fixes, and every callout's field of view. Click a callout in the list to zoom to it. Tick **Inspect** and click the map to list the pmtiles features at that point, with their tags and ids. This includes features the style doesn't draw; hover over an entry to highlight its geometry.
+
+The base map is drawn from the same pmtiles extract as the replay, in the OpenMapTiles project's own "OSM OpenMapTiles" style (`scripts/replay_basemap.py`). The page embeds the tiles around the track, the style and its icons, the glyphs its labels need, and MapLibre itself. It fetches nothing when opened, and a typical walk makes a page of around 10 MB. The style (OpenMapTiles v3.16), the Noto Sans glyphs and MapLibre are pinned and downloaded once into `~/.cache/soundscape-replay/basemap`.
+
+Nothing is uploaded: the recording and the output stay on your machine.
+
+Useful options are `--start N --end M` to replay only part of the track, and `--extract file.pmtiles ...` to use local extracts instead of the manifest. For several overlapping recordings from one walk, merge them first with the `merge-gpx` skill.
+
 ## Generate GeoJSON and view online
 The workflow is as follows:
 
-1. Generate a geojson output file from a unit test (for example see `testVectorToGeoJsonMilngavie` which generates `milngavie.geojson`). The filename must have the suffix `.geojson`.
+1. Generate a geojson output file from a unit test (for example see `testVectorToGeoJsonMilngavie` which generates `milngavie.geojson` in `app/build/test-output`). The filename must have the suffix `.geojson`.
 2. Upload the file as a github gist. This is how I do it, first of the following 3 steps are done once, and then the 4th one can be repeated each time the GeoJSON is updated.
    1. Install the github client program `gh`
-   2. Upload the gist e.g. `gh gist create app/milngavie.geojson`
+   2. Upload the gist e.g. `gh gist create app/build/test-output/milngavie.geojson`
    3. Get the ID for the new gist with `gh gist list` (referred to as `XXX_GIST_ID_XXX` in the following examples)
-   4. When the file changes, upload a new version of it e.g. `gh gist edit XXX_GIST_ID_XXX app/milngavie.geojson`
+   4. When the file changes, upload a new version of it e.g. `gh gist edit XXX_GIST_ID_XXX app/build/test-output/milngavie.geojson`
 3. Open the gist either
    1. In github (click on the user avatar and select _Your Gists_) which overlays the GeoJSON on Bing Maps, or
    2. In geojson.io by opening the URL `https://geojson.io/#id=gist:USERNAME/XXX_GIST_ID_XXX
