@@ -1245,6 +1245,8 @@
     <string name="street_preview_exit">Exit location simulation</string>
     <!-- Settings option for enabling recording of travel locations -->
     <string name="settings_travel_recording">Enable recording of travel</string>
+    <!-- Description under the travel recording setting (settings_travel_recording). The recording is a debugging aid: about the last hour of the user's locations, which they can choose to attach when using Contact support (menu_contact_support). -->
+    <string name="settings_travel_recording_description">Keeps a record of where you have been over the last hour, to help us look into problems. It stays on your phone unless you choose to include it when you contact support.</string>
     <!-- Debug settings option that reveals features which are still being tested and are not yet finished -->
     <string name="settings_alpha_features">Enable alpha test features</string>
     <!-- Description for the alpha test features debug option -->

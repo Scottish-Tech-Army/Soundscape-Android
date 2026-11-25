@@ -63,8 +63,9 @@ half-finished set of markers.
 
 - A fully accessible, Compose-based UI shared with Android — the iOS and
   Android apps now look and behave the same.
-- **GPX recording**, plus GPX and Soundscape route file import/export through
-  the standard iOS share sheet.
+- **Travel recording** (GPX), which you can choose to include when you contact
+  support, plus GPX and Soundscape route file import/export through the
+  standard iOS share sheet.
 - **Offline map downloads** — pre-download an area for use when you're off the
   network.
 - **Apple Maps / share-sheet integration** via a Share Extension — share a
