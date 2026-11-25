@@ -121,6 +121,7 @@ import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaContro
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeDummyMediaPlayer
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSessionCallback
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.io.File
@@ -1105,6 +1106,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
                 // Toggle the beacon mute
                 val muteState = audioEngine.toggleBeaconMute()
+                SharedAnalytics.logEvent(
+                    "routePlayback",
+                    mapOf("action" to if (muteState) "mute" else "unmute")
+                )
                 // Update the beacon flow with the new mute state
                 _beaconFlow.value = _beaconFlow.value.copy(muteState = muteState)
             }

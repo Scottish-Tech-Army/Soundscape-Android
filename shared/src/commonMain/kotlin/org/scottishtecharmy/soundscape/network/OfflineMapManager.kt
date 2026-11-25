@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.network
 
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -394,6 +395,8 @@ class OfflineMapManager(
         val metadata = current ?: feature
 
         val url = "${extractBaseUrl.trimEnd('/')}/$currentFilename"
+        val extractName = logicalExtractName(currentFilename)
+        logOfflineMap("download", extractName)
         val basePath = extractBasePath
         val outputPath =
             "$basePath/${logicalExtractName(currentFilename)}.v${currentTimeMillis()}.pmtiles"
@@ -454,6 +457,7 @@ class OfflineMapManager(
                             refreshDownloaded()
                             notifyExtractsChanged()
                             _downloadState.value = DownloadStateCommon.Success
+                            logOfflineMap("downloaded", extractName)
                             return@launch
                         }
 
@@ -480,6 +484,7 @@ class OfflineMapManager(
                 } catch (_: Exception) {
                 }
                 _downloadState.value = DownloadStateCommon.Error("Download timed out after retries")
+                logOfflineMap("failed", extractName)
             } catch (e: CancellationException) {
                 try {
                     systemFileSystem.delete(tempPath.toPath())
@@ -492,6 +497,7 @@ class OfflineMapManager(
                 } catch (_: Exception) {
                 }
                 _downloadState.value = DownloadStateCommon.Error(e.message ?: "Download failed")
+                logOfflineMap("failed", extractName)
             }
         }
     }
@@ -517,7 +523,15 @@ class OfflineMapManager(
     }
 
     fun cancelDownload() {
+        if (downloadJob?.isActive == true) logOfflineMap("cancel", null)
         downloadJob?.cancel()
+    }
+
+    private fun logOfflineMap(op: String, extract: String?) {
+        SharedAnalytics.logEvent(
+            "offlineMap",
+            if (extract != null) mapOf("op" to op, "extract" to extract) else mapOf("op" to op)
+        )
     }
 
     /**
@@ -552,6 +566,7 @@ class OfflineMapManager(
         val logicalName = logicalExtractName(filename)
         val matches = findExtractPaths(extractBasePath).filter { logicalExtractName(it) == logicalName }
         if (matches.isEmpty()) return
+        logOfflineMap("delete", logicalName)
         matches.forEach { deleteExtractFiles(it) }
         refreshDownloaded()
         notifyExtractsChanged()

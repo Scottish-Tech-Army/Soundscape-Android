@@ -376,6 +376,7 @@ class GeoEngine {
         updateMeasurementUnits(preferencesProvider)
 
         preferencesListener = PreferencesListener { key ->
+            logSettingChanged(key, preferencesProvider)
             if (key == PreferenceKeys.RECORD_TRAVEL) {
                 logger.d { "RECORD_TRAVEL changed" }
                 recordTravel = preferencesProvider.getBoolean(
@@ -789,19 +790,48 @@ class GeoEngine {
         started && multiGeocoder.searchesOffline() &&
             !tileSearch.hasOfflineMapAt(getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location)
 
+    /**
+     * Logs a change to one of the user-facing settings, from wherever it was made - the Settings
+     * screen, the headphone buttons, the audio menu or an assistant. Internal state that also
+     * lives in preferences (first launch, sort orders, sleep, ...) isn't on the list.
+     */
+    private fun logSettingChanged(key: String, preferencesProvider: PreferencesProvider) {
+        val value = when (key) {
+            in BOOLEAN_SETTINGS -> preferencesProvider.getBoolean(key, false).toString()
+            in STRING_SETTINGS -> preferencesProvider.getString(key, "")
+            else -> return
+        }
+        analytics.logEvent("settingChanged", mapOf("setting" to key, "value" to value))
+    }
+
     suspend fun searchResult(searchString: String): List<LocationDescription>? {
         if (!started) return null
         return withContext(org.scottishtecharmy.soundscape.platform.ioDispatcher) {
             val userLocation = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location
             val coordinates = parseCoordinateSearch(searchString, userLocation)
-            if (coordinates.isNotEmpty())
-                return@withContext coordinates.map { coordinateSearchResult(it) }
+            if (coordinates.isNotEmpty()) {
+                val results = coordinates.map { coordinateSearchResult(it) }
+                analytics.logEvent(
+                    "search",
+                    mapOf("type" to "coordinate", "results" to results.size)
+                )
+                return@withContext results
+            }
 
-            return@withContext geocoder.getAddressFromLocationName(
+            val results = geocoder.getAddressFromLocationName(
                 searchString,
                 userLocation,
                 localizedStrings
             )
+            analytics.logEvent(
+                "search",
+                mapOf(
+                    "type" to "text",
+                    "offline" to multiGeocoder.searchesOffline().toString(),
+                    "results" to (results?.size ?: 0),
+                )
+            )
+            return@withContext results
         }
     }
 
@@ -1058,3 +1088,24 @@ fun updateMeasurementUnits(preferencesProvider: PreferencesProvider) {
     } else
         metric = (unitsString == "Metric")
 }
+
+private val BOOLEAN_SETTINGS = setOf(
+    PreferenceKeys.STREETS_AND_JUNCTIONS,
+    PreferenceKeys.DISTANCE_TO_BEACON,
+    PreferenceKeys.DISTANCE_TO_INTERSECTION,
+    PreferenceKeys.POSITION_INCLUDES_HEADING_AND_DISTANCE,
+    PreferenceKeys.MIX_AUDIO,
+    PreferenceKeys.HEAD_TRACKING_ENABLED,
+    PreferenceKeys.RECORD_TRAVEL,
+)
+
+private val STRING_SETTINGS = setOf(
+    PreferenceKeys.CALLOUT_VERBOSITY,
+    PreferenceKeys.PLACES_TO_CALL_OUT,
+    PreferenceKeys.RELATIVE_DIRECTION,
+    PreferenceKeys.BEACON_TYPE,
+    PreferenceKeys.MEASUREMENT_UNITS,
+    PreferenceKeys.SEARCH_LANGUAGE,
+    PreferenceKeys.GEOCODER_MODE,
+    PreferenceKeys.MEDIA_CONTROLS_MODE,
+)

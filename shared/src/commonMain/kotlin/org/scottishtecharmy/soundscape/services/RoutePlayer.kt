@@ -162,7 +162,8 @@ class RoutePlayer(
                                     )
 
                                     // Stop the beacon
-                                    stopRoute()
+                                    logPlayback("complete")
+                                    endPlayback()
                                 }
                             }
                         }
@@ -224,7 +225,17 @@ class RoutePlayer(
         }
     }
 
+    private fun logPlayback(action: String) {
+        analytics?.logEvent("routePlayback", mapOf("action" to action))
+    }
+
+    /** Stops the route or beacon at the user's request. */
     fun stopRoute() {
+        logPlayback("stop")
+        endPlayback()
+    }
+
+    private fun endPlayback() {
         service.destroyBeacon()
         _currentRouteFlow.update {
             it.copy(
@@ -246,6 +257,7 @@ class RoutePlayer(
                 if ((currentMarker + 1) < route.markers.size) {
                     currentMarker++
                     _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
+                    if (userInitiated) logPlayback("skipNext")
 
                     // Creating the beacon audio can block on the audio engine (WAV decode,
                     // native lock), so it's dispatched off the caller's thread - callers of
@@ -265,6 +277,7 @@ class RoutePlayer(
                 if (currentMarker > 0) {
                     currentMarker--
                     _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
+                    if (userInitiated) logPlayback("skipPrevious")
                     val waypoint = currentMarker
                     coroutineScope.launch { createBeaconAtWaypoint(waypoint, userInitiated) }
                     return true

@@ -43,6 +43,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicense
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenEffect
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenViewModel
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.MapApp
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
@@ -58,6 +59,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscr
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.SharedRouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
 import org.scottishtecharmy.soundscape.screens.migration.LegacyMigrationScreen
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import org.scottishtecharmy.soundscape.screens.onboarding.SharedOnboardingNavHost
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 
@@ -216,7 +218,10 @@ fun SharedNavHost(
                     ),
                     streetPreviewFunctions = org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions(
                         go = callbacks.onStreetPreviewGo,
-                        exit = callbacks.onStreetPreviewExit,
+                        exit = {
+                            SharedAnalytics.logEvent("streetPreview", mapOf("op" to "exit"))
+                            callbacks.onStreetPreviewExit()
+                        },
                     ),
                     searchFunctions = org.scottishtecharmy.soundscape.screens.home.home.SearchFunctions(
                         onTriggerSearch = callbacks.onSearch,
@@ -354,15 +359,17 @@ fun SharedNavHost(
                         )
                     },
                     onEnableStreetPreview = { loc ->
+                        SharedAnalytics.logEvent("streetPreview", mapOf("op" to "enter"))
                         callbacks.onEnableStreetPreview(loc)
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
                     },
                     onShareLocation = { sharedDesc ->
+                        SharedAnalytics.logEvent("shareLocation")
                         callbacks.onShareLocation(sharedDesc, shareMessage)
                     },
                     // Queried each time the screen is entered so newly installed apps show up.
                     mapApps = remember { callbacks.onGetMapApps?.invoke() ?: emptyList() },
-                    onOpenInMapApp = callbacks.onOpenInMapApp.takeIf { callbacks.onGetMapApps != null },
+                    onOpenInMapApp = loggedOpenInMapApp(callbacks),
                     onOfflineMaps = { locationDesc ->
                         navStateHolder.navigateWithOfflineMapsTarget(
                             navController, SharedRoutes.OFFLINE_MAPS, locationDesc.location,
@@ -545,6 +552,7 @@ fun SharedNavHost(
                         )
                     },
                     onShareRoute = {
+                        SharedAnalytics.logEvent("route", mapOf("op" to "share"))
                         callbacks.onShareRoute(routeDesc.databaseId)
                     },
                     onSelectWaypoint = { waypoint ->
@@ -598,6 +606,7 @@ fun SharedNavHost(
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
                     },
                     onDelete = { markerId ->
+                        SharedAnalytics.logEvent("marker", mapOf("op" to "delete"))
                         callbacks.onDeleteMarker(markerId)
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
                     },
@@ -607,6 +616,7 @@ fun SharedNavHost(
 
         composable(SharedRoutes.HELP + "/{topic}") { backStackEntry ->
             val topic = backStackEntry.arguments?.read { getString("topic") } ?: ""
+            LaunchedEffect(topic) { SharedAnalytics.logEvent("helpPage", mapOf("topic" to topic)) }
             val helpHomeState by flows.homeState?.collectAsState()
                 ?: remember { mutableStateOf(HomeState()) }
             SharedHelpScreen(
@@ -749,10 +759,21 @@ private fun rememberLocationListActions(
     return LocationListActions(
         mapApps = mapApps,
         preferencesProvider = preferencesProvider,
-        onOpenInMapApp = callbacks.onOpenInMapApp.takeIf { callbacks.onGetMapApps != null },
-        onShare = { desc -> callbacks.onShareLocation(desc, shareMessage) },
+        onOpenInMapApp = loggedOpenInMapApp(callbacks),
+        onShare = { desc ->
+            SharedAnalytics.logEvent("shareLocation")
+            callbacks.onShareLocation(desc, shareMessage)
+        },
     )
 }
+
+/** The platform's open-in-map-app callback, logging which app; null when there are no map apps. */
+private fun loggedOpenInMapApp(callbacks: AppCallbacks): ((MapApp, LocationDescription) -> Unit)? =
+    if (callbacks.onGetMapApps == null) null
+    else { app, desc ->
+        SharedAnalytics.logEvent("openInMapApp", mapOf("app" to app.id))
+        callbacks.onOpenInMapApp(app, desc)
+    }
 
 @Composable
 private fun MarkersContainer(

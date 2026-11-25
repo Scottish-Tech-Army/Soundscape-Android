@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.finish
 
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -108,7 +109,10 @@ fun FinishScreen(
 
                         OnboardButton(
                             text = stringResource(Res.string.first_launch_prompt_button),
-                            onClick = { onFinish() },
+                            onClick = {
+                                SharedAnalytics.logEvent("onboardingComplete")
+                                onFinish()
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .focusable()

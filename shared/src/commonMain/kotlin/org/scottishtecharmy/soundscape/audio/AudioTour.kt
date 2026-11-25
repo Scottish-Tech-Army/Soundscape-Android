@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.audio
 
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -95,6 +96,7 @@ class AudioTour(
 
     fun start() {
         logger.d { "Starting audio tour" }
+        SharedAnalytics.logEvent("audioTour", mapOf("op" to "start"))
         _currentStep.value = AudioTourStep.WELCOME
         showTourInstruction(runBlocking { getString(Res.string.tour_welcome) })
     }
@@ -142,6 +144,12 @@ class AudioTour(
 
     fun stop() {
         logger.d { "Stopping audio tour" }
+        if (_currentStep.value != AudioTourStep.NOT_STARTED) {
+            SharedAnalytics.logEvent(
+                "audioTour",
+                mapOf("op" to "stop", "step" to _currentStep.value.name)
+            )
+        }
         advanceToStep(AudioTourStep.CANCEL)
     }
 
@@ -299,6 +307,7 @@ class AudioTour(
             }
 
             AudioTourStep.FINISH -> {
+                SharedAnalytics.logEvent("audioTour", mapOf("op" to "complete"))
                 // Show dialog, reset to NOT_STARTED in onInstructionAcknowledged()
                 showTourInstruction(runBlocking { getString(Res.string.tour_finish) })
             }

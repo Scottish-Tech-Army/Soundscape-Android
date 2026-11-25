@@ -3,11 +3,13 @@ package org.scottishtecharmy.soundscape.services.mediacontrol
 class AudioMenuMediaControls(val audioMenu: AudioMenu?) : MediaControlTarget {
 
     override fun onPlayPause(): Boolean {
+        logMediaButton("playPause", "audioMenu")
         audioMenu?.select()
         return true
     }
 
     override fun onNext(): Boolean {
+        logMediaButton("next", "audioMenu")
         audioMenu?.next()
         return true
     }
@@ -18,6 +20,7 @@ class AudioMenuMediaControls(val audioMenu: AudioMenu?) : MediaControlTarget {
      * wherever the menu happens to be - and the same press as in Original mode.
      */
     override fun onPrevious(): Boolean {
+        logMediaButton("previous", "audioMenu")
         audioMenu?.cycleCalloutDetail()
         return true
     }

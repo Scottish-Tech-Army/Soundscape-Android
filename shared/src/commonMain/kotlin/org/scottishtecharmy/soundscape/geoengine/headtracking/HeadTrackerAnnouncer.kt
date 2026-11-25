@@ -18,6 +18,9 @@ import org.scottishtecharmy.soundscape.resources.head_tracker_calibrated
 import org.scottishtecharmy.soundscape.resources.head_tracker_connected
 import org.scottishtecharmy.soundscape.resources.head_tracker_connected_battery
 import org.scottishtecharmy.soundscape.resources.head_tracker_disconnected
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
+import kotlin.time.TimeMark
+import kotlin.time.TimeSource
 
 /** Something to tell the user about their head tracker. */
 sealed interface HeadTrackerAnnouncement {
@@ -68,6 +71,8 @@ class HeadTrackerAnnouncer(
     private val lowBatteryAnnounced = mutableSetOf<Int>()
     private var connectJob: Job? = null
     private var disconnectJob: Job? = null
+    // When the current head tracking session's connection was announced, for its analytics
+    private var sessionStart: TimeMark? = null
 
     fun launchIn(scope: CoroutineScope): Job = scope.launch(dispatcher) {
         var previous = HeadTrackingStatus.Inactive
@@ -118,6 +123,7 @@ class HeadTrackerAnnouncer(
             // The connection announcement gives the level, so don't follow it with a warning
             battery?.let { level -> lowBatteryAnnounced.addAll(LOW_BATTERY_THRESHOLDS.filter { level <= it }) }
             announce(HeadTrackerAnnouncement.Connected(deviceName, battery))
+            startSession()
             if (calibratedPending) {
                 calibratedPending = false
                 announce(HeadTrackerAnnouncement.Calibrated)
@@ -137,6 +143,7 @@ class HeadTrackerAnnouncer(
             announcedDevice = null
             connectionAnnounced = false
             lowBatteryAnnounced.clear()
+            endSession()
             announce(HeadTrackerAnnouncement.Disconnected(deviceName))
         }
     }
@@ -148,7 +155,28 @@ class HeadTrackerAnnouncer(
         announce(HeadTrackerAnnouncement.BatteryLow(level))
     }
 
+    /**
+     * A session runs from the connection being announced until the disconnection is, or head
+     * tracking is switched off - so a brief drop-out doesn't split it in two. The device name
+     * isn't logged, as it is often the user's own name for their headphones.
+     */
+    private fun startSession() {
+        endSession()
+        sessionStart = TimeSource.Monotonic.markNow()
+        SharedAnalytics.logEvent("headTrackingSession")
+    }
+
+    private fun endSession() {
+        val start = sessionStart ?: return
+        sessionStart = null
+        SharedAnalytics.logEvent(
+            "headTrackingSessionEnd",
+            mapOf("minutes" to start.elapsedNow().inWholeMinutes)
+        )
+    }
+
     private fun reset() {
+        endSession()
         connectJob?.cancel()
         connectJob = null
         disconnectJob?.cancel()
