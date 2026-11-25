@@ -7,7 +7,7 @@ has_toc: false
 
 # Soundscape Privacy Policy
 
-Last Updated: 14th November 2026
+Last Updated: 25th November 2026
 
 ## Introduction
 Welcome to Soundscape. This Privacy Policy is meant to help you understand what data we collect, why we collect it, and what we do with it. This is important; we hope you will take the time to read it carefully.
@@ -24,7 +24,7 @@ On phones that have a step counter, Soundscape asks for permission to use it: th
 
 Your step data is used on your phone as you go and is not kept. It is never sent to us, and it is not part of the usage information or crash reports described below.
 
-The one exception is a travel recording, a debugging feature you switch on in Settings. While it is on, the recording includes your step counts alongside your locations, and it stays on your phone until you choose to share it - for example, by emailing it to us to help with a problem. You can turn off travel recording at any time, and you can withdraw the permission in your phone's settings.
+The one exception is a travel recording, a debugging feature you switch on in Settings. While it is on, the recording includes your step counts alongside your locations, and it stays on your phone unless you choose to include it when you contact support (see "Information You Send Us" below). You can turn off travel recording at any time, and you can withdraw the permission in your phone's settings.
 
 ## Information We Collect
 We may collect the following types of information:
@@ -59,7 +59,14 @@ Some of this data is collected via third-party services that have their own Priv
 The map and search servers that Soundscape uses are run by the Scottish Tech Army.
 
 ## Information You Send Us
-If you contact support from within the app, Soundscape prepares an email for you containing details that help us diagnose problems: your device and app version, your audio setup, the offline maps you have downloaded, and your Soundscape settings. Nothing is sent until you send the email yourself, and you can read and edit it first, or delete any part of it you would rather not share.
+If you contact support from within the app, Soundscape prepares an email to us for you to send. Its subject line gives your app version, phone model, operating system version and language, and it has the following attached:
+
+1. **An app debug log** - always attached. It starts with details that help us diagnose problems: your device, your audio setup and screen reader, which permissions Soundscape has, the offline maps you have downloaded, and your Soundscape settings. After that come the most recent messages Soundscape itself has logged while running (up to the last 2,000 lines). These describe what the app was doing, and can include places and locations it was working with, such as a place you searched for. The log contains only Soundscape's own messages, not those of other apps on your phone.
+1. **Your travel recording** - only if you have switched on travel recording in Settings, and only if you agree when Soundscape asks whether to include it. The recording is a GPX file of your locations over up to the last hour, along with the step counts described above. If you choose not to include it, it isn't attached.
+
+On an iPhone with no account set up in the Mail app, Soundscape opens your email app with the device details written into the message itself instead, and nothing can be attached.
+
+Nothing is sent until you send the email yourself. You can read the email first, and remove either attachment or anything else you would rather not share.
 
 ## Information Sharing and Disclosure
 **With your consent**: We may share personal information with third parties outside of Soundscape when we have your consent to do so.

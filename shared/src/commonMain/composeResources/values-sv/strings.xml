@@ -526,7 +526,6 @@
     <string name="settings_show_map">Visa kartor på skärmen</string>
     <string name="settings_debug_heading">Felsökningsalternativ</string>
     <string name="settings_search_results_language">Sökspråk</string>
-    <string name="menu_share_recorded_route">Dela inspelning av resor</string>
     <string name="confect_name_to_via">%1$s till %2$s via %3$s</string>
     <string name="confect_name_to">%1$s till %2$s</string>
     <string name="confect_name_joins">%1$s som går mellan %2$s och %3$s</string>

@@ -992,7 +992,6 @@
     <string name="settings_debug_heading">调试选项</string>
     <string name="settings_search_results_language">搜索语言</string>
     <string name="settings_search_results_language_description">在线搜索可以使用结果的本地语言，或强制返回英语、法语或德语的结果。</string>
-    <string name="menu_share_recorded_route">分享行程录制</string>
     <string name="confect_name_to_via">经由%3$s通往%2$s的%1$s</string>
     <string name="confect_name_to">%1$s到%2$s</string>
     <string name="confect_name_joins">连接%2$s和%3$s的%1$s</string>

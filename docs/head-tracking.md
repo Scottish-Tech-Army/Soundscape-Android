@@ -76,6 +76,6 @@ Nothing is said when you turn head tracking off yourself.
 We'd like to hear how head tracking works for you. If something goes wrong, a recording of the walk helps us see exactly what happened:
 1. In **Debug options**, turn on **Enable recording of travel** and, with the alpha test features on, **Record head tracker data**.
 1. Then switch your head tracker on, so that the recording starts before it connects.
-1. After the walk, choose **Share recording of travel** from the menu on the home screen and send it to us.
+1. After the walk, choose **Contact support** from the menu on the home screen. When asked whether to include your recorded journey, choose **Include recording**, then send the email.
 
 Recordings with head tracker data are larger than usual: with a WitMotion sensor, about 20 MB for each hour of walking.

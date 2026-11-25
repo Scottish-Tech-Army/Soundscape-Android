@@ -528,7 +528,6 @@
     <string name="settings_show_map">画面に地図を表示する</string>
     <string name="settings_debug_heading">デバッグオプション</string>
     <string name="settings_search_results_language">検索言語</string>
-    <string name="menu_share_recorded_route">移動記録を共有</string>
     <string name="confect_name_to_via">%2$s へ続く%1$s（%3$s 経由）</string>
     <string name="confect_name_to">%1$s から %2$s へ</string>
     <string name="confect_name_joins">%2$s と %3$s を結ぶ %1$s</string>

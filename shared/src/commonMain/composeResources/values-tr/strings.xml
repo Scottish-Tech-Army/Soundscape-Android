@@ -457,7 +457,6 @@
     <string name="settings_debug_heading">Hata ayıklama seçenekleri</string>
     <string name="settings_search_results_language">Arama dili</string>
     <string name="settings_search_results_language_description">Çevrimiçi arama, sonucun yerel dilini kullanabilir ya da sonuçları İngilizce, Fransızca veya Almanca döndürmeye zorlanabilir.</string>
-    <string name="menu_share_recorded_route">Seyahat kaydını paylaş</string>
     <string name="confect_name_to_via">%3$s üzerinden %2$s'{A} giden %1$s</string>
     <string name="confect_name_to">%1$s'{DAn} %2$s'{A}</string>
     <string name="confect_name_joins">%2$s ile %3$s'{I} birleştiren %1$s</string>

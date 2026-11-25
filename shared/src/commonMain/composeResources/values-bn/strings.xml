@@ -1564,7 +1564,6 @@
     <string name="settings_debug_heading">ডিবাগ অপশন</string>
     <string name="settings_search_results_language">সার্চ ভাষা</string>
     <string name="settings_search_results_language_description">আপনি অনলাইন সার্চকে ফলাফলের স্থানীয় ভাষা ব্যবহার করতে দিতে পারেন, অথবা ইংরেজি, ফরাসি বা জার্মান ফেরত দিতে বাধ্য করতে পারেন।</string>
-    <string name="menu_share_recorded_route">ভ্রমণের রেকর্ডিং শেয়ার করুন</string>
     <string name="confect_name_to_via">%3$s হয়ে %2$s পর্যন্ত %1$s</string>
     <string name="confect_name_to">%2$s পর্যন্ত %1$s</string>
     <string name="confect_name_joins">%2$s এবং %3$s সংযুক্তকারী %1$s</string>

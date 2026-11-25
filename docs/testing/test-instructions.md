@@ -211,13 +211,14 @@ downloads take, and whether the list of available extracts makes sense for your 
 ## Providing a debug location trace
 
 The app can keep up to an hour of recorded location data while it's running. The feature is off by
-default, and even when it's on the data stays on your phone unless you choose to share it.
+default, and even when it's on the data stays on your phone unless you choose to include it in an
+email to us.
 
 1. Open the menu (the hamburger in the top left), tap _Settings_, scroll to the bottom and turn on
    **Enable recording of travel**.
-1. With that enabled, a new **Share recording of travel** option appears in the menu drawer below
-   _About Soundscape_. Tap it to send us the GPX track by email or anything else in the standard
-   Android share menu or iOS share sheet.
+1. With that enabled, choosing **Contact support** from the menu asks whether to include your
+   recorded journey. Choose **Include recording** and the GPX track is attached to the support
+   email alongside the app's log; choose **Don't include** to send the email without it.
 
 The file holds the location data recorded by your phone for up to the last hour the app has been
 running. Don't share it if you'd rather we didn't know where you've been. There's no identifying

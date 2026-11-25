@@ -36,14 +36,6 @@
     "eventType": "ELEMENT_IGNORED",
     "elementDescriptors": [
       {
-        "resourceId": "menuShareRecording"
-      }
-    ]
-  },
-  {
-    "eventType": "ELEMENT_IGNORED",
-    "elementDescriptors": [
-      {
         "resourceId": "locationDetailsShare"
       }
     ]

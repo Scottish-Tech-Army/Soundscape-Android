@@ -5,6 +5,7 @@ import android.accessibilityservice.AccessibilityServiceInfo
 import android.app.ActivityManager
 import android.app.ForegroundServiceStartNotAllowedException
 import android.content.ActivityNotFoundException
+import android.content.ClipData
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -670,10 +671,10 @@ class MainActivity : AppCompatActivity() {
                     rateSoundscape = {
                         this.rateSoundscape()
                     },
-                    contactSupport = {
+                    contactSupport = { includeRecording ->
                         val thisActivity = this
                         lifecycleScope.launch {
-                            thisActivity.contactSupport()
+                            thisActivity.contactSupport(includeRecording)
                         }
                     },
                     permissionsRequired = permissionsRequired
@@ -871,7 +872,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun contactSupport() {
+    /**
+     * Opens the user's email app with a support email. The log is always attached; the travel
+     * recording too when [includeRecording], which the user is asked about first (see
+     * ContactSupportRecordingDialog) because it holds their recent locations.
+     */
+    suspend fun contactSupport(includeRecording: Boolean = false) {
         // Get information from the phone that we'd like to pass on to support
         val appVersion = BuildConfig.VERSION_NAME
         val androidVersion = Build.VERSION.RELEASE
@@ -932,6 +938,7 @@ class MainActivity : AppCompatActivity() {
             logger.i { line }
         }
 
+        val attachments = ArrayList<Uri>()
         // Attach the log file if it was created successfully
         val logPath = LogcatHelper.saveLogcatToFile(this)
 
@@ -940,15 +947,39 @@ class MainActivity : AppCompatActivity() {
             if (logFile.exists()) {
                 logger.d { "Attach log file from $logPath with authority ${packageName}.provider" }
                 // Get a content URI for the file using FileProvider
-                val logUri = FileProvider.getUriForFile(
-                    this@MainActivity,
-                    "${packageName}.provider",
-                    logFile
+                attachments.add(
+                    FileProvider.getUriForFile(
+                        this@MainActivity,
+                        "${packageName}.provider",
+                        logFile
+                    )
                 )
-                intent.putExtra(Intent.EXTRA_STREAM, logUri)
-                // Grant read permission to the receiving app
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
+        }
+        if (includeRecording) {
+            val recordingUri =
+                soundscapeServiceConnection.soundscapeService?.getRecordingShareUri(applicationContext)
+            if (recordingUri != null) {
+                logger.d { "Attach travel recording" }
+                attachments.add(recordingUri)
+            } else {
+                logger.w { "Travel recording asked for, but there is no recorder" }
+            }
+        }
+        if (attachments.size > 1) {
+            // Several files need SEND_MULTIPLE. The ClipData is what the read grant below covers
+            // for every one of them - EXTRA_STREAM alone only reliably carries the first.
+            intent.action = Intent.ACTION_SEND_MULTIPLE
+            intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, attachments)
+            intent.clipData = ClipData.newRawUri(null, attachments[0]).apply {
+                attachments.drop(1).forEach { addItem(ClipData.Item(it)) }
+            }
+        } else if (attachments.isNotEmpty()) {
+            intent.putExtra(Intent.EXTRA_STREAM, attachments[0])
+        }
+        if (attachments.isNotEmpty()) {
+            // Grant read permission to the receiving app
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
 
         // Send straight to the user's email app (no chooser) with the recipient,
@@ -989,24 +1020,6 @@ class MainActivity : AppCompatActivity() {
     fun exitApp() {
         soundscapeServiceConnection.stopService()
         finishAndRemoveTask()
-    }
-
-    fun shareRecording() {
-        val shareUri =
-            soundscapeServiceConnection.soundscapeService?.getRecordingShareUri(applicationContext)
-        if (shareUri != null) {
-            val sendIntent: Intent =
-                Intent().apply {
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TITLE, "Recorded GPX")
-                    putExtra(Intent.EXTRA_STREAM, shareUri)
-                    type = "text/plain"
-                    flags += Intent.FLAG_GRANT_READ_URI_PERMISSION
-                }
-
-            val shareIntent = Intent.createChooser(sendIntent, null)
-            startActivity(shareIntent)
-        }
     }
 
     /**

@@ -1327,7 +1327,6 @@
     <string name="settings_debug_heading">Hibakeresési beállítások</string>
     <string name="settings_search_results_language">Keresési nyelv</string>
     <string name="settings_search_results_language_description">Engedélyezheti, hogy az online keresés a találat helyi nyelvét használja, vagy kényszerítheti, hogy angol, francia vagy német nyelven adjon vissza eredményeket.</string>
-    <string name="menu_share_recorded_route">Utazás felvételének megosztása</string>
     <string name="confect_name_to_via">%1$s a(z) %2$s felé, %3$s érintésével</string>
     <string name="confect_name_to">%1$s a(z) %2$s felé</string>
     <string name="confect_name_joins">%1$s, amely összeköti a(z) %2$s és a(z) %3$s utakat</string>

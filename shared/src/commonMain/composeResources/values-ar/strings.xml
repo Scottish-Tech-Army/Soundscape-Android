@@ -714,7 +714,6 @@
     <string name="settings_debug_heading">خيارات تصحيح الأخطاء</string>
     <string name="settings_search_results_language">لغة البحث</string>
     <string name="settings_search_results_language_description">يمكنك السماح للبحث عبر الإنترنت باستخدام اللغة المحلية للنتيجة، أو إجباره على إرجاع النتائج بالإنجليزية أو الفرنسية أو الألمانية.</string>
-    <string name="menu_share_recorded_route">مشاركة تسجيل الرحلة</string>
     <string name="confect_name_to_via">%1$s إلى %2$s عبر %3$s</string>
     <string name="confect_name_to">%1$s إلى %2$s</string>
     <string name="confect_name_joins">%1$s يصل بين %2$s و%3$s</string>

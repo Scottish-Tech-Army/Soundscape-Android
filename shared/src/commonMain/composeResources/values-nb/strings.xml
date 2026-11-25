@@ -532,7 +532,6 @@
     <string name="settings_show_map">Vis kart på skjermen</string>
     <string name="settings_debug_heading">Feilsøkingsalternativer</string>
     <string name="settings_search_results_language">Søkespråk</string>
-    <string name="menu_share_recorded_route">Del reiseregistrering</string>
     <string name="confect_name_to_via">%1$s til %2$s via %3$s</string>
     <string name="confect_name_to">%1$s til %2$s</string>
     <string name="confect_name_joins">%1$s som forbinder %2$s og %3$s</string>

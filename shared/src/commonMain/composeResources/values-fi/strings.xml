@@ -532,7 +532,6 @@
     <string name="settings_show_map">Näytä kartta näytöllä</string>
     <string name="settings_debug_heading">Virheenkorjausasetukset</string>
     <string name="settings_search_results_language">Hakutulosten kieli</string>
-    <string name="menu_share_recorded_route">Jaa matkan tallenne</string>
     <string name="confect_name_to_via">%1$s kohteeseen %2$s kulkien %3$s kautta</string>
     <string name="confect_name_to">%1$s kohteeseen %2$s</string>
     <string name="confect_name_joins">%1$s, joka yhdistää tiet %2$s ja %3$s</string>

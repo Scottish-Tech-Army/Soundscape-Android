@@ -1564,7 +1564,6 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="settings_debug_heading">Chaguo za Utatuzi</string>
     <string name="settings_search_results_language">Lugha ya utafutaji</string>
     <string name="settings_search_results_language_description">Unaweza kuruhusu utafutaji mtandaoni utumie lugha ya kienyeji ya matokeo, au kuulazimisha kurudisha matokeo kwa Kiingereza, Kifaransa au Kijerumani.</string>
-    <string name="menu_share_recorded_route">Shiriki rekodi ya safari</string>
     <string name="confect_name_to_via">%1$s hadi %2$s kupitia %3$s</string>
     <string name="confect_name_to">%1$s hadi %2$s</string>
     <string name="confect_name_joins">%1$s inayounganisha %2$s na %3$s</string>

@@ -93,7 +93,6 @@ data class AppCallbacks(
     val onStreetPreviewGo: () -> Unit = {},
     val onStreetPreviewExit: () -> Unit = {},
     val onEnableStreetPreview: (LngLatAlt) -> Unit = {},
-    val onShareRecording: () -> Unit = {},
     val onShareRoute: (routeId: Long) -> Unit = {},
     val onShareLocation: (LocationDescription, message: String) -> Unit = { _, _ -> },
     /**
@@ -103,7 +102,7 @@ data class AppCallbacks(
     val onGetMapApps: (() -> List<MapApp>)? = null,
     val onOpenInMapApp: (MapApp, LocationDescription) -> Unit = { _, _ -> },
     val onRateApp: () -> Unit = {},
-    val onContactSupport: () -> Unit = {},
+    val onContactSupport: (includeRecording: Boolean) -> Unit = {},
     val onToggleAudioTour: () -> Unit = {},
     val onAudioTourInstructionAcknowledged: () -> Unit = {},
     val onGoToAppSettings: () -> Unit = {},

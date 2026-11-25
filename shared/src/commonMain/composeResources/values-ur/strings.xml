@@ -1564,7 +1564,6 @@
     <string name="settings_debug_heading">ڈیبگ کے اختیارات</string>
     <string name="settings_search_results_language">تلاش کی زبان</string>
     <string name="settings_search_results_language_description">آن لائن تلاش نتیجے کی مقامی زبان استعمال کر سکتی ہے، یا اسے انگریزی، فرانسیسی یا جرمن میں نتائج دینے پر مجبور کیا جا سکتا ہے۔</string>
-    <string name="menu_share_recorded_route">سفر کی ریکارڈنگ شیئر کریں</string>
     <string name="confect_name_to_via">%1$s بذریعہ %3$s %2$s تک</string>
     <string name="confect_name_to">%1$s %2$s تک</string>
     <string name="confect_name_joins">%1$s جو %2$s اور %3$s کو ملاتا ہے</string>

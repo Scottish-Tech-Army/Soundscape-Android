@@ -1548,7 +1548,6 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="settings_debug_heading">Opsi debug</string>
     <string name="settings_search_results_language">Bahasa pencarian</string>
     <string name="settings_search_results_language_description">Anda dapat membiarkan pencarian online menggunakan bahasa lokal dari hasil pencarian, atau memaksanya mengembalikan hasil dalam bahasa Inggris, Prancis, atau Jerman.</string>
-    <string name="menu_share_recorded_route">Bagikan rekaman perjalanan</string>
     <string name="confect_name_to_via">%1$s ke %2$s melalui %3$s</string>
     <string name="confect_name_to">%1$s ke %2$s</string>
     <string name="confect_name_joins">%1$s yang menghubungkan %2$s dan %3$s</string>

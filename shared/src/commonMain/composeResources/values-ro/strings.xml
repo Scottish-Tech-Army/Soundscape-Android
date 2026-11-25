@@ -455,7 +455,6 @@
     <string name="settings_debug_heading">Opțiuni de depanare</string>
     <string name="settings_search_results_language">Limba de căutare</string>
     <string name="settings_search_results_language_description">Poți lăsa căutarea online să folosească limba locală a rezultatului sau o poți forța să returneze rezultate în engleză, franceză sau germană.</string>
-    <string name="menu_share_recorded_route">Partajează înregistrarea deplasării</string>
     <string name="confect_name_to_via">%1$s spre %2$s prin %3$s</string>
     <string name="confect_name_to">%1$s spre %2$s</string>
     <string name="confect_name_joins">%1$s care leagă %2$s și %3$s</string>

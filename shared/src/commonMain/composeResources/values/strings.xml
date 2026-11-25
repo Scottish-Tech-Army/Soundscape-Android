@@ -804,6 +804,14 @@
     <string name="menu_rate">Rate</string>
     <!-- Title for menu option to contact support by email -->
     <string name="menu_contact_support">Contact support</string>
+    <!-- Title of the question asked after choosing Contact support (menu_contact_support) when travel recording (settings_travel_recording) is on: whether to attach the recording to the support email. -->
+    <string name="contact_support_recording_title">Include your recorded journey?</string>
+    <!-- Text of the question asked after choosing Contact support when travel recording is on. The recording is a file of the user's locations over roughly the last hour; it is only attached if they choose contact_support_recording_include. -->
+    <string name="contact_support_recording_message">Your travel recording shows where you have been over the last hour. Including it in your email helps us understand the problem.</string>
+    <!-- Button: attach the travel recording to the support email, then open the email. Answers contact_support_recording_title. -->
+    <string name="contact_support_recording_include">Include recording</string>
+    <!-- Button: open the support email without the travel recording. Answers contact_support_recording_title. -->
+    <string name="contact_support_recording_exclude">Don’t include</string>
     <!-- Title for menu option to go to markers and routes advanced settings screen -->
     <string name="menu_advanced_markers_and_routes">Advanced Markers and Routes</string>
     <!-- Text for main markers and routes advanced settings screen to explain what it's for -->
@@ -1280,8 +1288,6 @@
     <string name="settings_search_results_language">Search language</string>
     <!-- Description of what the search language option does -->
     <string name="settings_search_results_language_description">You can let online search use the local language of the result, or force it to return English, French, or German.</string>
-    <!-- Menu option for sharing the recorded travel route via another app -->
-    <string name="menu_share_recorded_route">Share recording of travel</string>
     <!-- Describes an unnamed way by where it leads and what it passes on the way, e.g. "Path to Moor Road via steps". %1$s is the kind of way (Path, Track, Service road...), %2$s is the road it leads to or the dead end string (confect_name_dead_end), %3$s is what it passes (steps, tunnel, bridge). Translate as "a %1$s that leads to %2$s, passing %3$s" - the way is the thing being described, not the starting point of a journey, so do not use a "from %1$s to %2$s" construction. -->
     <string name="confect_name_to_via">%1$s to %2$s via %3$s</string>
     <!-- Describes an unnamed way by where it leads, e.g. "Path to Moor Road". %1$s is the kind of way (Path, Track, Service road...), %2$s is the road it leads to or the dead end string (confect_name_dead_end). Translate as "a %1$s that leads to %2$s" - the way is the thing being described, not the starting point of a journey, so do not use a "from %1$s to %2$s" construction. -->

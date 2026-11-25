@@ -1556,7 +1556,6 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="settings_debug_heading">Možnosti za razhroščevanje</string>
     <string name="settings_search_results_language">Jezik iskanja</string>
     <string name="settings_search_results_language_description">Spletnemu iskanju lahko dovolite, da uporablja lokalni jezik rezultata, ali ga prisilite, da vrača rezultate v angleščini, francoščini ali nemščini.</string>
-    <string name="menu_share_recorded_route">Deli posnetek poti</string>
     <string name="confect_name_to_via">%1$s do %2$s prek %3$s</string>
     <string name="confect_name_to">%1$s do %2$s</string>
     <string name="confect_name_joins">%1$s, ki povezuje %2$s in %3$s</string>

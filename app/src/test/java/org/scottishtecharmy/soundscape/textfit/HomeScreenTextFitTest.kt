@@ -85,7 +85,6 @@ class HomeScreenTextFitTest(private val qualifier: String, private val fontScale
                     },
                     rateSoundscape = {},
                     contactSupport = {},
-                    shareRecording = {},
                     toggleTutorial = {},
                     tutorialRunning = false,
                     recordingEnabled = false,

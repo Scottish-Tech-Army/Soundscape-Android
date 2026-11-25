@@ -18,7 +18,6 @@ import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Headphones
 import androidx.compose.material.icons.rounded.Markunread
 import androidx.compose.material.icons.rounded.Settings
-import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,8 +26,10 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import org.jetbrains.compose.resources.stringResource
@@ -42,7 +43,6 @@ import org.scottishtecharmy.soundscape.resources.menu_contact_support
 import org.scottishtecharmy.soundscape.resources.menu_exit_app
 import org.scottishtecharmy.soundscape.resources.menu_help
 import org.scottishtecharmy.soundscape.resources.menu_rate
-import org.scottishtecharmy.soundscape.resources.menu_share_recorded_route
 import org.scottishtecharmy.soundscape.resources.offline_maps_title
 import org.scottishtecharmy.soundscape.resources.settings_about_app
 import org.scottishtecharmy.soundscape.resources.settings_screen_title
@@ -54,8 +54,9 @@ fun SharedDrawerContent(
     onClose: () -> Unit,
     onNavigate: (String) -> Unit,
     rateSoundscape: () -> Unit,
-    contactSupport: () -> Unit,
-    shareRecording: () -> Unit,
+    // Whether to attach the travel recording; only ever true when recordingEnabled and the user
+    // agreed in ContactSupportRecordingDialog
+    contactSupport: (includeRecording: Boolean) -> Unit,
     offlineMaps: () -> Unit,
     toggleTutorial: () -> Unit,
     tutorialRunning: Boolean,
@@ -63,6 +64,16 @@ fun SharedDrawerContent(
     exitApp: (() -> Unit)? = null,
 ) {
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
+    var askAboutRecording by remember { mutableStateOf(false) }
+    if (askAboutRecording) {
+        ContactSupportRecordingDialog(
+            onAnswer = { include ->
+                askAboutRecording = false
+                contactSupport(include)
+            },
+            onDismiss = { askAboutRecording = false },
+        )
+    }
 
     BoxWithConstraints {
         val screenWidth = maxWidth
@@ -149,7 +160,10 @@ fun SharedDrawerContent(
                         modifier = Modifier.testTag("menuRate"),
                     )
                     DrawerMenuItem(
-                        onClick = { contactSupport() },
+                        onClick = {
+                            if (recordingEnabled) askAboutRecording = true
+                            else contactSupport(false)
+                        },
                         label = stringResource(Res.string.menu_contact_support),
                         icon = Icons.Rounded.Markunread,
                         modifier = Modifier.testTag("menuContactSupport"),
@@ -166,15 +180,6 @@ fun SharedDrawerContent(
                         icon = Icons.AutoMirrored.Rounded.HelpOutline,
                         modifier = Modifier.testTag("menuAboutSoundscape"),
                     )
-
-                    if (recordingEnabled) {
-                        DrawerMenuItem(
-                            onClick = { shareRecording() },
-                            label = stringResource(Res.string.menu_share_recorded_route),
-                            icon = Icons.Rounded.Share,
-                            modifier = Modifier.testTag("menuShareRecording"),
-                        )
-                    }
                 }
             }
         }

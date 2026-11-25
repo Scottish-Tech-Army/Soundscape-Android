@@ -1564,7 +1564,6 @@
     <string name="settings_debug_heading">డీబగ్ ఆప్షన్‌లు</string>
     <string name="settings_search_results_language">శోధన భాష</string>
     <string name="settings_search_results_language_description">ఆన్‌లైన్ శోధన ఫలితం యొక్క స్థానిక భాషను ఉపయోగించవచ్చు, లేదా ఇంగ్లీష్, ఫ్రెంచ్ లేదా జర్మన్‌లో ఫలితాలను తిరిగి ఇవ్వమని బలవంతం చేయవచ్చు.</string>
-    <string name="menu_share_recorded_route">ప్రయాణ రికార్డింగ్‌ను షేర్ చేయండి</string>
     <string name="confect_name_to_via">%3$s మీదుగా %2$sకు వెళ్ళే %1$s</string>
     <string name="confect_name_to">%2$sకు వెళ్ళే %1$s</string>
     <string name="confect_name_joins">%2$s మరియు %3$sలను కలిపే %1$s</string>

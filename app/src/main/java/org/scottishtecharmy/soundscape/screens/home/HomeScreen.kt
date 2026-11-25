@@ -59,7 +59,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel(),
     audioTour: AudioTour,
     rateSoundscape: () -> Unit,
-    contactSupport: () -> Unit,
+    contactSupport: (includeRecording: Boolean) -> Unit,
     permissionsRequired: Boolean,
 ) {
     val context = LocalContext.current
@@ -198,7 +198,6 @@ fun HomeScreen(
                 org.scottishtecharmy.soundscape.services.SoundscapeService.runningInstance
                     ?.snoozing == true
             },
-            onShareRecording = { activity.shareRecording() },
             onRateApp = rateSoundscape,
             onContactSupport = contactSupport,
             onToggleAudioTour = { audioTour.toggleState() },
