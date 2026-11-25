@@ -1155,6 +1155,10 @@
     <string name="menu_help">సహాయం</string>
     <string name="menu_rate">రేట్ చేయండి</string>
     <string name="menu_contact_support">సపోర్ట్‌ను సంప్రదించండి</string>
+    <string name="contact_support_recording_title">మీ ప్రయాణ రికార్డింగ్‌ను జోడించాలా?</string>
+    <string name="contact_support_recording_message">గత గంటలో మీరు ఎక్కడెక్కడ ఉన్నారో ప్రయాణ రికార్డింగ్ చూపిస్తుంది. దాన్ని మీ ఇమెయిల్‌లో జోడిస్తే సమస్యను అర్థం చేసుకోవడానికి మాకు సహాయపడుతుంది.</string>
+    <string name="contact_support_recording_include">రికార్డింగ్‌ను జోడించు</string>
+    <string name="contact_support_recording_exclude">జోడించవద్దు</string>
     <string name="menu_advanced_markers_and_routes">అధునాతన మార్కర్లు మరియు రూట్‌లు</string>
     <string name="advanced_markers_and_routes_description">ఈ స్క్రీన్ మార్కర్‌లు మరియు రూట్‌లను ఎగుమతి లేదా దిగుమతి చేయడానికి, అలాగే ఉన్న అన్ని మార్కర్‌లు మరియు రూట్‌లను తొలగించడానికి అనుమతిస్తుంది.</string>
     <string name="ui_back_button_title">వెనుకకు</string>

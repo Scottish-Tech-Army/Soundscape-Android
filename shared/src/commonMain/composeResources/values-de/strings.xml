@@ -491,6 +491,10 @@
     <string name="directions_cardinal_west_abb">W</string>
     <string name="directions_cardinal_north_west_abb">NW</string>
     <string name="menu_contact_support">Support kontaktieren</string>
+    <string name="contact_support_recording_title">Reiseaufzeichnung anhängen?</string>
+    <string name="contact_support_recording_message">Ihre Reiseaufzeichnung zeigt, wo Sie in der letzten Stunde waren. Wenn Sie sie an Ihre E-Mail anhängen, hilft uns das, das Problem zu verstehen.</string>
+    <string name="contact_support_recording_include">Aufzeichnung anhängen</string>
+    <string name="contact_support_recording_exclude">Nicht anhängen</string>
     <string name="permissions_required">Die App benötigt Standortberechtigungen, damit sie ausgeführt werden kann.</string>
     <string name="permissions_button">Ändern Sie die Berechtigungen in den App-Einstellungen</string>
     <string name="first_launch_change_language">Sprache ändern</string>

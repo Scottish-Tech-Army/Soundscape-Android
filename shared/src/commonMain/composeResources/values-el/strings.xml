@@ -491,6 +491,10 @@
     <string name="directions_cardinal_west_abb">Δ</string>
     <string name="directions_cardinal_north_west_abb">ΒΔ</string>
     <string name="menu_contact_support">Επικοινωνία με την υποστήριξη</string>
+    <string name="contact_support_recording_title">Να συμπεριληφθεί η καταγραφή της πορείας σας;</string>
+    <string name="contact_support_recording_message">Η καταγραφή της πορείας μετακίνησης δείχνει πού βρεθήκατε την τελευταία ώρα. Αν τη συμπεριλάβετε στο email σας, θα μας βοηθήσει να κατανοήσουμε το πρόβλημα.</string>
+    <string name="contact_support_recording_include">Συμπερίληψη καταγραφής</string>
+    <string name="contact_support_recording_exclude">Χωρίς καταγραφή</string>
     <string name="permissions_required">Η εφαρμογή απαιτεί άδειες τοποθεσίας για να μπορέσει να λειτουργήσει.</string>
     <string name="permissions_button">Αλλάξτε τις άδειες στις ρυθμίσεις της εφαρμογής</string>
     <string name="first_launch_change_language">Αλλαγή γλώσσας</string>

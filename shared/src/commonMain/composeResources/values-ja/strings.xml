@@ -487,6 +487,10 @@
     <string name="directions_cardinal_west_abb">西</string>
     <string name="directions_cardinal_north_west_abb">北西</string>
     <string name="menu_contact_support">サポートに連絡</string>
+    <string name="contact_support_recording_title">移動の記録を添付しますか？</string>
+    <string name="contact_support_recording_message">移動の記録には、過去 1 時間にどこにいたかが含まれています。メールに添付していただくと、問題の把握に役立ちます。</string>
+    <string name="contact_support_recording_include">記録を添付</string>
+    <string name="contact_support_recording_exclude">添付しない</string>
     <string name="permissions_required">アプリを実行するには位置情報の許可が必要です。</string>
     <string name="permissions_button">アプリの設定で権限を変更する</string>
     <string name="first_launch_change_language">言語を変更</string>

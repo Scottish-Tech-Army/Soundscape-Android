@@ -1327,6 +1327,10 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="menu_help">Pomoč</string>
     <string name="menu_rate">Oceni</string>
     <string name="menu_contact_support">Stik s podporo</string>
+    <string name="contact_support_recording_title">Želite priložiti posnetek poti?</string>
+    <string name="contact_support_recording_message">Posnetek poti pokaže, kje ste bili v zadnji uri. Če ga priložite e-poštnemu sporočilu, nam pomagate razumeti težavo.</string>
+    <string name="contact_support_recording_include">Priloži posnetek</string>
+    <string name="contact_support_recording_exclude">Ne priloži</string>
     <string name="menu_advanced_markers_and_routes">Napredne nastavitve oznak in poti</string>
     <string name="advanced_markers_and_routes_description">Na tem zaslonu lahko izvozite ali uvozite oznake in poti ter izbrišete vse obstoječe oznake in poti.</string>
     <string name="ui_back_button_title">Nazaj</string>

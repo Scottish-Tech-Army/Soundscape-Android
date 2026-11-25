@@ -259,6 +259,10 @@
     <string name="menu_help">सहायता</string>
     <string name="menu_rate">रेट करें</string>
     <string name="menu_contact_support">सहायता से संपर्क करें</string>
+    <string name="contact_support_recording_title">अपनी यात्रा की रिकॉर्डिंग शामिल करें?</string>
+    <string name="contact_support_recording_message">आपकी यात्रा की रिकॉर्डिंग दिखाती है कि पिछले एक घंटे में आप कहाँ-कहाँ गए। इसे अपने ईमेल में शामिल करने से हमें समस्या समझने में मदद मिलती है।</string>
+    <string name="contact_support_recording_include">रिकॉर्डिंग शामिल करें</string>
+    <string name="contact_support_recording_exclude">शामिल न करें</string>
     <string name="menu_advanced_markers_and_routes">उन्नत मार्कर और मार्ग</string>
     <string name="advanced_markers_and_routes_description">यह स्क्रीन आपको मार्कर और मार्गों को निर्यात या आयात करने, और सभी मौजूदा मार्कर और मार्गों को हटाने की सुविधा देती है।</string>
     <string name="ui_back_button_title">वापस</string>

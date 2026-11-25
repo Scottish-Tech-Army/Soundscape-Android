@@ -353,6 +353,10 @@
     <string name="menu_help">도움말</string>
     <string name="menu_rate">평가하기</string>
     <string name="menu_contact_support">지원팀에 문의</string>
+    <string name="contact_support_recording_title">이동 기록을 첨부할까요?</string>
+    <string name="contact_support_recording_message">이동 기록에는 지난 1시간 동안 어디에 있었는지가 담겨 있습니다. 이메일에 첨부해 주시면 문제를 파악하는 데 도움이 됩니다.</string>
+    <string name="contact_support_recording_include">기록 첨부</string>
+    <string name="contact_support_recording_exclude">첨부 안 함</string>
     <string name="menu_advanced_markers_and_routes">마커 및 경로 고급 설정</string>
     <string name="advanced_markers_and_routes_description">이 화면에서는 마커와 경로를 내보내거나 가져올 수 있으며, 기존의 모든 마커와 경로를 삭제할 수 있습니다.</string>
     <string name="ui_back_button_title">뒤로</string>

@@ -1140,6 +1140,10 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="menu_help">Bantuan</string>
     <string name="menu_rate">Beri Rating</string>
     <string name="menu_contact_support">Hubungi Dukungan</string>
+    <string name="contact_support_recording_title">Sertakan rekaman perjalanan Anda?</string>
+    <string name="contact_support_recording_message">Rekaman perjalanan menunjukkan tempat-tempat yang Anda kunjungi selama satu jam terakhir. Menyertakannya di email membantu kami memahami masalahnya.</string>
+    <string name="contact_support_recording_include">Sertakan rekaman</string>
+    <string name="contact_support_recording_exclude">Jangan sertakan</string>
     <string name="menu_advanced_markers_and_routes">Penanda dan Rute Lanjutan</string>
     <string name="advanced_markers_and_routes_description">Layar ini memungkinkan Anda mengekspor atau mengimpor penanda dan rute, serta menghapus semua penanda dan rute yang ada.</string>
     <string name="ui_back_button_title">Kembali</string>

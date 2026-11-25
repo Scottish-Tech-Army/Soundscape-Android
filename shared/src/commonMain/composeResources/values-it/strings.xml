@@ -528,6 +528,10 @@
     <string name="settings_units_metric">Metrico (Metri)</string>
     <string name="voice_engine">Motore di sintesi vocale</string>
     <string name="menu_contact_support">Contatta l'assistenza</string>
+    <string name="contact_support_recording_title">Includere la registrazione del viaggio?</string>
+    <string name="contact_support_recording_message">La registrazione del viaggio mostra i tuoi spostamenti nell'ultima ora. Includerla nella tua email ci aiuta a capire il problema.</string>
+    <string name="contact_support_recording_include">Includi la registrazione</string>
+    <string name="contact_support_recording_exclude">Non includere</string>
     <string name="permissions_required">Per funzionare, l'app richiede l'autorizzazione all'accesso alla posizione.</string>
     <string name="permissions_button">Modifica le autorizzazioni nelle impostazioni dell'app</string>
     <string name="first_launch_change_language">Cambia lingua</string>

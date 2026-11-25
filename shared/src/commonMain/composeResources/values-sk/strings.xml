@@ -1130,6 +1130,10 @@
     <string name="menu_help">Pomocník</string>
     <string name="menu_rate">Hodnotiť</string>
     <string name="menu_contact_support">Kontaktovať podporu</string>
+    <string name="contact_support_recording_title">Priložiť nahrávku cesty?</string>
+    <string name="contact_support_recording_message">Nahrávka cesty ukazuje, kde ste boli za poslednú hodinu. Ak ju priložíte k e‑mailu, pomôžete nám pochopiť problém.</string>
+    <string name="contact_support_recording_include">Priložiť nahrávku</string>
+    <string name="contact_support_recording_exclude">Nepriložiť</string>
     <string name="menu_advanced_markers_and_routes">Rozšírené nastavenia značiek a trás</string>
     <string name="advanced_markers_and_routes_description">Táto obrazovka umožňuje exportovať alebo importovať značky a trasy a odstrániť všetky existujúce značky a trasy.</string>
     <string name="ui_back_button_title">Späť</string>

@@ -1114,6 +1114,10 @@
     <string name="menu_help">Pomoć</string>
     <string name="menu_rate">Ocijeni</string>
     <string name="menu_contact_support">Kontaktiraj podršku</string>
+    <string name="contact_support_recording_title">Priložiti snimku putovanja?</string>
+    <string name="contact_support_recording_message">Snimka putovanja pokazuje gdje ste bili tijekom posljednjeg sata. Ako je priložite e-poruci, pomoći ćete nam da razumijemo problem.</string>
+    <string name="contact_support_recording_include">Priloži snimku</string>
+    <string name="contact_support_recording_exclude">Nemoj priložiti</string>
     <string name="menu_advanced_markers_and_routes">Napredne postavke oznaka i ruta</string>
     <string name="advanced_markers_and_routes_description">Ovaj zaslon omogućuje vam izvoz ili uvoz oznaka i ruta te brisanje svih postojećih oznaka i ruta.</string>
     <string name="ui_back_button_title">Natrag</string>

@@ -528,6 +528,10 @@
     <string name="settings_units_metric">Métrique (Mètres)</string>
     <string name="voice_engine">Moteur de synthèse vocale</string>
     <string name="menu_contact_support">Contacter le support</string>
+    <string name="contact_support_recording_title">Joindre l’enregistrement de votre voyage ?</string>
+    <string name="contact_support_recording_message">L’enregistrement de votre voyage retrace vos déplacements de la dernière heure. Le joindre à votre e-mail nous aide à comprendre le problème.</string>
+    <string name="contact_support_recording_include">Joindre l’enregistrement</string>
+    <string name="contact_support_recording_exclude">Ne pas joindre</string>
     <string name="permissions_required">L’application nécessite les autorisations de localisation pour fonctionner.</string>
     <string name="permissions_button">Modifiez les autorisations dans les paramètres de l’application</string>
     <string name="first_launch_change_language">Changer de langue</string>

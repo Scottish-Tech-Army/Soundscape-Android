@@ -491,6 +491,10 @@
     <string name="directions_cardinal_west_abb">L</string>
     <string name="directions_cardinal_north_west_abb">Lu</string>
     <string name="menu_contact_support">Ota yhteyttä tukeen</string>
+    <string name="contact_support_recording_title">Liitetäänkö matkan tallennus?</string>
+    <string name="contact_support_recording_message">Matkan tallennus näyttää, missä olet ollut viimeisen tunnin aikana. Kun liität sen sähköpostiisi, ymmärrämme ongelman paremmin.</string>
+    <string name="contact_support_recording_include">Liitä tallennus</string>
+    <string name="contact_support_recording_exclude">Älä liitä</string>
     <string name="permissions_required">Sovellus tarvitsee sijaintiluvat toimiakseen.</string>
     <string name="permissions_button">Muuta sovelluksen käyttöoikeuksia asetuksissa</string>
     <string name="first_launch_change_language">Vaihda kieltä</string>

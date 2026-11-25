@@ -263,6 +263,10 @@
     <string name="menu_help">Ajutor</string>
     <string name="menu_rate">Evaluează</string>
     <string name="menu_contact_support">Contactează asistența</string>
+    <string name="contact_support_recording_title">Incluzi înregistrarea deplasării?</string>
+    <string name="contact_support_recording_message">Înregistrarea deplasării arată pe unde ai fost în ultima oră. Dacă o incluzi în e-mail, ne ajuți să înțelegem problema.</string>
+    <string name="contact_support_recording_include">Include înregistrarea</string>
+    <string name="contact_support_recording_exclude">Nu include</string>
     <string name="menu_advanced_markers_and_routes">Marcaje și rute avansate</string>
     <string name="advanced_markers_and_routes_description">Acest ecran îți permite să exporți sau să imporți marcaje și rute și să ștergi toate marcajele și rutele existente.</string>
     <string name="ui_back_button_title">Înapoi</string>

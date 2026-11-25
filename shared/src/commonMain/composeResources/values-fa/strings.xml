@@ -533,6 +533,10 @@
     <string name="permissions_required">مجوز‌های مکان‌یابی برای اجرای اپلیکیشن الزامی می‌باشد.</string>
     <string name="permissions_button">مجوز‌ها را در قسمت تنظیمات اپلیکیشن تغییر دهید</string>
     <string name="menu_contact_support">تماس با پشتیبانی</string>
+    <string name="contact_support_recording_title">ضبط سفر پیوست شود؟</string>
+    <string name="contact_support_recording_message">ضبط سفر نشان می‌دهد در یک ساعت گذشته کجا بوده‌اید. پیوست کردن آن به ایمیل به ما کمک می‌کند مشکل را بفهمیم.</string>
+    <string name="contact_support_recording_include">پیوست ضبط</string>
+    <string name="contact_support_recording_exclude">پیوست نشود</string>
     <string name="settings_show_map">نمایش نقشه روی صفحه</string>
     <string name="settings_search_results_language">زبان جستجو</string>
     <string name="route_detail_action_previous_disabled_hint">غیرفعال است زیرا مسیر هم‌اکنون در ابتدا قرار دارد</string>

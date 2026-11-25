@@ -534,6 +534,10 @@
     <string name="settings_show_map">Show maps on screen</string>
     <string name="settings_search_results_language">Search language</string>
     <string name="menu_contact_support">Contact support</string>
+    <string name="contact_support_recording_title">Include your recorded journey?</string>
+    <string name="contact_support_recording_message">Your travel recording shows where you have been over the last hour. Including it in your email helps us understand the problem.</string>
+    <string name="contact_support_recording_include">Include recording</string>
+    <string name="contact_support_recording_exclude">Don’t include</string>
     <string name="route_detail_action_previous_disabled_hint">Inactive because the route is already at the start</string>
     <string name="route_detail_action_next_disabled_hint">Inactive because the route is already at the end</string>
     <string name="osm_entrance">Entrance</string>

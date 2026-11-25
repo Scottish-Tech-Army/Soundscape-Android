@@ -530,6 +530,10 @@
     <string name="route_detail_action_previous_disabled_hint">Inactif parce que l’itinéraire est déjà au début</string>
     <string name="route_detail_action_next_disabled_hint">Inactif parce que l’itinéraire est déjà à la fin</string>
     <string name="menu_contact_support">Contacter le support</string>
+    <string name="contact_support_recording_title">Joindre l’enregistrement de votre voyage ?</string>
+    <string name="contact_support_recording_message">L’enregistrement de votre voyage retrace vos déplacements de la dernière heure. Le joindre à votre courriel nous aide à comprendre le problème.</string>
+    <string name="contact_support_recording_include">Joindre l’enregistrement</string>
+    <string name="contact_support_recording_exclude">Ne pas joindre</string>
     <string name="permissions_required">L’appli nécessite les autorisations de localisation pour fonctionner.</string>
     <string name="permissions_button">Modifiez les autorisations dans les paramètres de l’appli</string>
     <string name="first_launch_change_language">Changer de langue</string>

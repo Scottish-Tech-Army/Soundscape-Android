@@ -426,6 +426,10 @@
     <string name="menu_help">ਮਦਦ</string>
     <string name="menu_rate">ਰੇਟ ਕਰੋ</string>
     <string name="menu_contact_support">ਸਹਾਇਤਾ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
+    <string name="contact_support_recording_title">ਕੀ ਆਪਣੀ ਸਫ਼ਰ ਦੀ ਰਿਕਾਰਡਿੰਗ ਸ਼ਾਮਲ ਕਰਨੀ ਹੈ?</string>
+    <string name="contact_support_recording_message">ਸਫ਼ਰ ਦੀ ਰਿਕਾਰਡਿੰਗ ਦਿਖਾਉਂਦੀ ਹੈ ਕਿ ਪਿਛਲੇ ਇੱਕ ਘੰਟੇ ਵਿੱਚ ਤੁਸੀਂ ਕਿੱਥੇ-ਕਿੱਥੇ ਰਹੇ। ਇਸ ਨੂੰ ਆਪਣੀ ਈਮੇਲ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨ ਨਾਲ ਸਾਨੂੰ ਸਮੱਸਿਆ ਸਮਝਣ ਵਿੱਚ ਮਦਦ ਮਿਲਦੀ ਹੈ।</string>
+    <string name="contact_support_recording_include">ਰਿਕਾਰਡਿੰਗ ਸ਼ਾਮਲ ਕਰੋ</string>
+    <string name="contact_support_recording_exclude">ਸ਼ਾਮਲ ਨਾ ਕਰੋ</string>
     <string name="menu_advanced_markers_and_routes">ਉੱਨਤ ਮਾਰਕਰ ਅਤੇ ਰੂਟ</string>
     <string name="advanced_markers_and_routes_description">ਇਸ ਸਕ੍ਰੀਨ 'ਤੇ ਤੁਸੀਂ ਮਾਰਕਰ ਅਤੇ ਰੂਟ ਐਕਸਪੋਰਟ ਜਾਂ ਇੰਪੋਰਟ ਕਰ ਸਕਦੇ ਹੋ, ਅਤੇ ਸਾਰੇ ਮੌਜੂਦਾ ਮਾਰਕਰ ਅਤੇ ਰੂਟ ਮਿਟਾ ਸਕਦੇ ਹੋ।</string>
     <string name="ui_back_button_title">ਪਿੱਛੇ</string>

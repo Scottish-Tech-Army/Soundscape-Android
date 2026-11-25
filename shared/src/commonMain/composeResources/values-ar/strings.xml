@@ -1467,6 +1467,10 @@
     <string name="menu_help">المساعدة</string>
     <string name="menu_rate">تقييم</string>
     <string name="menu_contact_support">التواصل مع الدعم</string>
+    <string name="contact_support_recording_title">هل تريد تضمين تسجيل التنقل؟</string>
+    <string name="contact_support_recording_message">يُظهر تسجيل التنقل الأماكن التي كنت فيها خلال الساعة الأخيرة. يساعدنا تضمينه في رسالتك على فهم المشكلة.</string>
+    <string name="contact_support_recording_include">تضمين التسجيل</string>
+    <string name="contact_support_recording_exclude">عدم التضمين</string>
     <string name="menu_advanced_markers_and_routes">إعدادات متقدمة للعلامات والمسارات</string>
     <string name="advanced_markers_and_routes_description">تتيح لك هذه الشاشة تصدير العلامات والمسارات أو استيرادها، وحذف جميع العلامات والمسارات الحالية.</string>
     <string name="ui_back_button_title">رجوع</string>

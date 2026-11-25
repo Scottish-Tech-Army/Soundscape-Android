@@ -1295,6 +1295,10 @@
     <string name="menu_help">帮助</string>
     <string name="menu_rate">评分</string>
     <string name="menu_contact_support">联系客服</string>
+    <string name="contact_support_recording_title">要附上您的行程录制吗？</string>
+    <string name="contact_support_recording_message">行程录制会显示您过去一小时内去过的地方。将其附在邮件中有助于我们了解问题。</string>
+    <string name="contact_support_recording_include">附上录制</string>
+    <string name="contact_support_recording_exclude">不附上</string>
     <string name="menu_advanced_markers_and_routes">高级标记点与路线</string>
     <string name="advanced_markers_and_routes_description">此页面允许您导出或导入标记点与路线，以及删除所有现有的标记点和路线。</string>
     <string name="ui_back_button_title">返回</string>

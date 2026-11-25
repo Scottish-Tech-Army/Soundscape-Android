@@ -725,6 +725,10 @@
     <string name="menu_help">ความช่วยเหลือ</string>
     <string name="menu_rate">ให้คะแนน</string>
     <string name="menu_contact_support">ติดต่อฝ่ายสนับสนุน</string>
+    <string name="contact_support_recording_title">แนบการบันทึกการเดินทางของคุณไหม</string>
+    <string name="contact_support_recording_message">การบันทึกการเดินทางแสดงว่าคุณอยู่ที่ใดบ้างในช่วงหนึ่งชั่วโมงที่ผ่านมา การแนบไว้ในอีเมลจะช่วยให้เราเข้าใจปัญหาได้</string>
+    <string name="contact_support_recording_include">แนบการบันทึก</string>
+    <string name="contact_support_recording_exclude">ไม่แนบ</string>
     <string name="menu_advanced_markers_and_routes">หมุดและเส้นทางขั้นสูง</string>
     <string name="advanced_markers_and_routes_description">หน้าจอนี้ให้คุณส่งออกหรือนำเข้าหมุดและเส้นทาง รวมถึงลบหมุดและเส้นทางทั้งหมดที่มีอยู่ได้</string>
     <string name="ui_back_button_title">ย้อนกลับ</string>

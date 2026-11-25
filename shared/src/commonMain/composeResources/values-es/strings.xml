@@ -537,6 +537,10 @@
     <string name="permissions_button">Cambiar los permisos en la configuración de la aplicación</string>
     <string name="settings_show_map">Mostrar mapas en pantalla</string>
     <string name="menu_contact_support">Contacto con soporte</string>
+    <string name="contact_support_recording_title">¿Incluir tu grabación de viaje?</string>
+    <string name="contact_support_recording_message">Tu grabación de viaje muestra dónde has estado durante la última hora. Incluirla en tu correo nos ayuda a entender el problema.</string>
+    <string name="contact_support_recording_include">Incluir grabación</string>
+    <string name="contact_support_recording_exclude">No incluir</string>
     <string name="settings_search_results_language">Idioma de búsqueda</string>
     <string name="route_detail_action_previous_disabled_hint">Inactivo porque la ruta ya está al inicio</string>
     <string name="route_detail_action_next_disabled_hint">Inactivo porque la ruta ya está al final</string>

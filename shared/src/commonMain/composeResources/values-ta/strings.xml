@@ -368,6 +368,10 @@
     <string name="menu_help">உதவி</string>
     <string name="menu_rate">மதிப்பிடு</string>
     <string name="menu_contact_support">ஆதரவைத் தொடர்பு கொள்ளவும்</string>
+    <string name="contact_support_recording_title">உங்கள் பயணப் பதிவைச் சேர்க்கவா?</string>
+    <string name="contact_support_recording_message">கடந்த ஒரு மணி நேரத்தில் நீங்கள் எங்கெல்லாம் இருந்தீர்கள் என்பதைப் பயணப் பதிவு காட்டுகிறது. அதை உங்கள் மின்னஞ்சலில் சேர்ப்பது சிக்கலைப் புரிந்துகொள்ள எங்களுக்கு உதவும்.</string>
+    <string name="contact_support_recording_include">பதிவைச் சேர்</string>
+    <string name="contact_support_recording_exclude">சேர்க்க வேண்டாம்</string>
     <string name="menu_advanced_markers_and_routes">மேம்பட்ட குறிப்பான்கள் மற்றும் பாதைகள்</string>
     <string name="advanced_markers_and_routes_description">இந்தத் திரை குறிப்பான்கள் மற்றும் பாதைகளை ஏற்றுமதி அல்லது இறக்குமதி செய்யவும், ஏற்கனவே உள்ள அனைத்து குறிப்பான்கள் மற்றும் பாதைகளையும் நீக்கவும் அனுமதிக்கிறது.</string>
     <string name="ui_back_button_title">பின்செல்</string>

@@ -1402,6 +1402,10 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="menu_help">Abi</string>
     <string name="menu_rate">Hinda</string>
     <string name="menu_contact_support">Võta ühendust toega</string>
+    <string name="contact_support_recording_title">Kas lisada reisisalvestis?</string>
+    <string name="contact_support_recording_message">Reisisalvestis näitab, kus sa oled viimase tunni jooksul olnud. Kui lisad selle oma e-kirjale, aitab see meil probleemist aru saada.</string>
+    <string name="contact_support_recording_include">Lisa salvestis</string>
+    <string name="contact_support_recording_exclude">Ära lisa</string>
     <string name="menu_advanced_markers_and_routes">Täpsemad markerid ja marsruudid</string>
     <string name="advanced_markers_and_routes_description">See ekraan võimaldab eksportida või importida markereid ja marsruute ning kustutada kõik olemasolevad markerid ja marsruudid.</string>
     <string name="ui_back_button_title">Tagasi</string>
