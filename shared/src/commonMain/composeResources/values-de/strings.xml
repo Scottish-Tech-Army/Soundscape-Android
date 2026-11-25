@@ -532,7 +532,6 @@
     <string name="settings_show_map">Karten auf dem Bildschirm anzeigen</string>
     <string name="settings_debug_heading">Debug‑Optionen</string>
     <string name="settings_search_results_language">Suchsprache</string>
-    <string name="menu_share_recorded_route">Reiseaufzeichnung teilen</string>
     <string name="confect_name_to_via">%1$s nach %2$s über %3$s</string>
     <string name="confect_name_to">%1$s nach %2$s</string>
     <string name="confect_name_joins">%1$s zwischen %2$s und %3$s</string>

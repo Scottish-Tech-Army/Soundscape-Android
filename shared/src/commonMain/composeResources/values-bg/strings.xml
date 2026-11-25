@@ -1524,7 +1524,6 @@
     <string name="settings_debug_heading">Опции за отстраняване на грешки</string>
     <string name="settings_search_results_language">Език на търсенето</string>
     <string name="settings_search_results_language_description">Можете да оставите онлайн търсенето да използва местния език на резултата или да го принудите да връща резултати на английски, френски или немски.</string>
-    <string name="menu_share_recorded_route">Сподели записа на пътуването</string>
     <string name="confect_name_to_via">%1$s към %2$s през %3$s</string>
     <string name="confect_name_to">%1$s към %2$s</string>
     <string name="confect_name_joins">%1$s между %2$s и %3$s</string>

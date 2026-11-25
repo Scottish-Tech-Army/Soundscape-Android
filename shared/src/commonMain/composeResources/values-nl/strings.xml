@@ -532,7 +532,6 @@
     <string name="settings_show_map">Kaarten op het scherm weergeven</string>
     <string name="settings_debug_heading">Debugopties</string>
     <string name="settings_search_results_language">Taal van zoekresultaten</string>
-    <string name="menu_share_recorded_route">Reisopname delen</string>
     <string name="confect_name_to_via">%1$s naar %2$s via %3$s</string>
     <string name="confect_name_to">%1$s naar %2$s</string>
     <string name="confect_name_joins">%1$s tussen %2$s en %3$s</string>

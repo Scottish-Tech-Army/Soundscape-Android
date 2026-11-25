@@ -1548,7 +1548,6 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="settings_debug_heading">Tùy chọn gỡ lỗi</string>
     <string name="settings_search_results_language">Ngôn ngữ tìm kiếm</string>
     <string name="settings_search_results_language_description">Tìm kiếm trực tuyến có thể sử dụng ngôn ngữ địa phương của kết quả, hoặc bị buộc trả về kết quả bằng tiếng Anh, tiếng Pháp hoặc tiếng Đức.</string>
-    <string name="menu_share_recorded_route">Chia sẻ bản ghi hành trình</string>
     <string name="confect_name_to_via">%1$s đến %2$s qua %3$s</string>
     <string name="confect_name_to">%1$s đến %2$s</string>
     <string name="confect_name_joins">%1$s nối %2$s và %3$s</string>

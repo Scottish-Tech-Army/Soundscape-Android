@@ -612,7 +612,6 @@
     <string name="settings_debug_heading">Opcions de depuració</string>
     <string name="settings_search_results_language">Idioma de cerca</string>
     <string name="settings_search_results_language_description">Podeu deixar que la cerca en línia utilitzi l'idioma local del resultat, o forçar-la a retornar resultats en anglès, francès o alemany.</string>
-    <string name="menu_share_recorded_route">Comparteix l'enregistrament del trajecte</string>
     <string name="confect_name_to_via">%1$s a %2$s per %3$s</string>
     <string name="confect_name_to">%1$s a %2$s</string>
     <string name="confect_name_joins">%1$s que uneix %2$s i %3$s</string>

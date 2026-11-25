@@ -1548,7 +1548,6 @@
     <string name="settings_debug_heading">ตัวเลือกดีบัก</string>
     <string name="settings_search_results_language">ภาษาในการค้นหา</string>
     <string name="settings_search_results_language_description">การค้นหาออนไลน์สามารถใช้ภาษาท้องถิ่นของผลลัพธ์ หรือบังคับให้แสดงผลเป็นภาษาอังกฤษ ฝรั่งเศส หรือเยอรมันได้</string>
-    <string name="menu_share_recorded_route">แชร์บันทึกการเดินทาง</string>
     <string name="confect_name_to_via">%1$s ไปยัง %2$s ผ่าน %3$s</string>
     <string name="confect_name_to">%1$s ไปยัง %2$s</string>
     <string name="confect_name_joins">%1$s ที่เชื่อมระหว่าง %2$s และ %3$s</string>

@@ -1564,7 +1564,6 @@
     <string name="settings_debug_heading">பிழைதிருத்த விருப்பங்கள்</string>
     <string name="settings_search_results_language">தேடல் மொழி</string>
     <string name="settings_search_results_language_description">ஆன்லைன் தேடல் முடிவின் உள்ளூர் மொழியைப் பயன்படுத்த அனுமதிக்கலாம், அல்லது ஆங்கிலம், பிரெஞ்சு அல்லது ஜெர்மன் மொழியில் முடிவுகளைத் திருப்பித் தரக் கட்டாயப்படுத்தலாம்.</string>
-    <string name="menu_share_recorded_route">பயணப் பதிவைப் பகிர்</string>
     <string name="confect_name_to_via">%3$s வழியாக %2$s நோக்கிச் செல்லும் %1$s</string>
     <string name="confect_name_to">%1$s முதல் %2$s வரை</string>
     <string name="confect_name_joins">%2$s மற்றும் %3$s ஐ இணைக்கும் %1$s</string>

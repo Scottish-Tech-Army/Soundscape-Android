@@ -1343,7 +1343,6 @@
     <string name="settings_debug_heading">Опције за отклањање грешака</string>
     <string name="settings_search_results_language">Језик претраге</string>
     <string name="settings_search_results_language_description">Можете дозволити претрази на мрежи да користи локални језик резултата, или је приморати да враћа резултате на енглеском, француском или немачком.</string>
-    <string name="menu_share_recorded_route">Подели снимљено путовање</string>
     <string name="confect_name_to_via">%1$s до %2$s преко %3$s</string>
     <string name="confect_name_to">%1$s до %2$s</string>
     <string name="confect_name_joins">%1$s што спаја %2$s и %3$s</string>

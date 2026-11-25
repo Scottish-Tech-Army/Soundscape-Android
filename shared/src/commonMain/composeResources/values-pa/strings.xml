@@ -664,7 +664,6 @@
     <string name="settings_debug_heading">ਡੀਬੱਗ ਵਿਕਲਪ</string>
     <string name="settings_search_results_language">ਖੋਜ ਦੀ ਭਾਸ਼ਾ</string>
     <string name="settings_search_results_language_description">ਤੁਸੀਂ ਆਨਲਾਈਨ ਖੋਜ ਨੂੰ ਨਤੀਜੇ ਦੀ ਸਥਾਨਕ ਭਾਸ਼ਾ ਵਰਤਣ ਦੇ ਸਕਦੇ ਹੋ, ਜਾਂ ਉਸਨੂੰ ਅੰਗਰੇਜ਼ੀ, ਫ਼ਰਾਂਸੀਸੀ ਜਾਂ ਜਰਮਨ ਵਿੱਚ ਨਤੀਜੇ ਦੇਣ ਲਈ ਮਜਬੂਰ ਕਰ ਸਕਦੇ ਹੋ।</string>
-    <string name="menu_share_recorded_route">ਸਫ਼ਰ ਦੀ ਰਿਕਾਰਡਿੰਗ ਸਾਂਝੀ ਕਰੋ</string>
     <string name="confect_name_to_via">%1$s, %2$s ਵੱਲ, %3$s ਰਾਹੀਂ</string>
     <string name="confect_name_to">%1$s, %2$s ਵੱਲ</string>
     <string name="confect_name_joins">%1$s, %2$s ਅਤੇ %3$s ਵਿਚਕਾਰ</string>

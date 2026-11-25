@@ -835,7 +835,6 @@
     <string name="settings_debug_heading">डीबग पर्याय</string>
     <string name="settings_search_results_language">शोध भाषा</string>
     <string name="settings_search_results_language_description">तुम्ही ऑनलाइन शोधाला निकालाची स्थानिक भाषा वापरू देऊ शकता, किंवा इंग्रजी, फ्रेंच किंवा जर्मनमध्ये निकाल देण्यासाठी सक्ती करू शकता.</string>
-    <string name="menu_share_recorded_route">प्रवासाचे रेकॉर्डिंग शेअर करा</string>
     <string name="confect_name_to_via">%3$s मार्गे %2$s कडे जाणारा %1$s</string>
     <string name="confect_name_to">%2$s कडे जाणारा %1$s</string>
     <string name="confect_name_joins">%2$s आणि %3$s यांना जोडणारा %1$s</string>

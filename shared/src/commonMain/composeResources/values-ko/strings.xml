@@ -582,7 +582,6 @@
     <string name="settings_debug_heading">디버그 옵션</string>
     <string name="settings_search_results_language">검색 언어</string>
     <string name="settings_search_results_language_description">온라인 검색이 결과의 현지 언어를 사용하도록 하거나, 영어, 프랑스어, 독일어로 반환하도록 강제할 수 있습니다.</string>
-    <string name="menu_share_recorded_route">이동 기록 공유</string>
     <string name="confect_name_to_via">%3$s을(를) 지나 %2$s(으)로 이어지는 %1$s</string>
     <string name="confect_name_to">%2$s(으)로 이어지는 %1$s</string>
     <string name="confect_name_joins">%2$s과(와) %3$s을(를) 연결하는 %1$s</string>

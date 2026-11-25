@@ -54,7 +54,7 @@ private const val SUPPORT_RECIPIENT = "soundscape@scottishtecharmy.support"
 private val logger = AppLog.tag("IosContactSupport")
 
 @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
-internal fun presentContactSupport(service: IosSoundscapeService) {
+internal fun presentContactSupport(service: IosSoundscapeService, includeRecording: Boolean = false) {
     val subject = buildSupportSubject()
     val report = buildSupportReport(service, permissionsDescription())
     // The device details go only in the attached log, not the email body, where they confused
@@ -74,13 +74,23 @@ internal fun presentContactSupport(service: IosSoundscapeService) {
         if (logData != null) {
             composer.addAttachmentData(logData, "text/plain", "soundscape_log.txt")
         }
+        // Only when the user agreed to it in ContactSupportRecordingDialog: it holds their
+        // recent locations
+        if (includeRecording) {
+            val gpxData = NSString.create(string = service.recordingGpx())
+                .dataUsingEncoding(NSUTF8StringEncoding)
+            if (gpxData != null) {
+                composer.addAttachmentData(gpxData, "application/gpx+xml", "travel.gpx")
+            }
+        }
         val delegate = MailComposeDelegate()
         composer.mailComposeDelegate = delegate
         retainedMailDelegates.add(delegate)
         presentTopViewController(composer)
     } else {
         // mailto: can't carry an attachment, so this is the one case where the details
-        // still have to go in the body.
+        // still have to go in the body - and where a recording the user agreed to send is lost.
+        if (includeRecording) logger.w { "No mail account set up: travel recording not sent" }
         val urlString = buildString {
             append("mailto:")
             append(SUPPORT_RECIPIENT)

@@ -1564,7 +1564,6 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="settings_debug_heading">Zaɓuɓɓukan Gyaran Kwaro</string>
     <string name="settings_search_results_language">Harshen Bincike</string>
     <string name="settings_search_results_language_description">Za ka iya barin bincike ta yanar gizo ya yi amfani da harshen gida na sakamakon, ko ka tilasta shi ya dawo da Turanci, Faransanci ko Jamusanci.</string>
-    <string name="menu_share_recorded_route">Raba rikodin tafiya</string>
     <string name="confect_name_to_via">%1$s zuwa %2$s ta %3$s</string>
     <string name="confect_name_to">%1$s zuwa %2$s</string>
     <string name="confect_name_joins">%1$s wanda ya haɗu da %2$s da %3$s</string>

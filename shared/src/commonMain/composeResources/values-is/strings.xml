@@ -532,7 +532,6 @@
     <string name="settings_show_map">Sýna kort á skjánum</string>
     <string name="settings_debug_heading">Villuleitarmöguleikar</string>
     <string name="settings_search_results_language">Leitartungumál</string>
-    <string name="menu_share_recorded_route">Deila ferðaupptöku</string>
     <string name="confect_name_to_via">%1$s til %2$s um %3$s</string>
     <string name="confect_name_to">%1$s til %2$s</string>
     <string name="confect_name_joins">%1$s sem tengir %2$s og %3$s</string>

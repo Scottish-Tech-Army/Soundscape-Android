@@ -511,7 +511,6 @@
     <string name="settings_debug_heading">Silumisvalikud</string>
     <string name="settings_search_results_language">Otsingukeel</string>
     <string name="settings_search_results_language_description">Võid lasta võrguotsingul kasutada tulemuse kohalikku keelt või sundida seda tagastama tulemusi inglise, prantsuse või saksa keeles.</string>
-    <string name="menu_share_recorded_route">Jaga reisi salvestust</string>
     <string name="confect_name_to_via">%1$s kuni %2$s (%3$s kaudu)</string>
     <string name="confect_name_to">%1$s kuni %2$s</string>
     <string name="confect_name_joins">%1$s, mis ühendab %2$s ja %3$s</string>

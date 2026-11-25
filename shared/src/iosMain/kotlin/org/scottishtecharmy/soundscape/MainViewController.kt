@@ -276,10 +276,6 @@ fun MainViewController() = ComposeUIViewController {
                 onStreetPreviewGo = { homeViewModel.streetPreviewGo() },
                 onStreetPreviewExit = { homeViewModel.streetPreviewExit() },
                 onEnableStreetPreview = { loc -> homeViewModel.enableStreetPreview(loc) },
-                onShareRecording = {
-                    val fileUrl = service.writeRecordingFile()
-                    if (fileUrl != null) presentShareSheet(fileUrl)
-                },
                 onShareRoute = { routeId ->
                     val fileUrl = service.writeRouteFile(routeId)
                     if (fileUrl != null) presentShareSheet(fileUrl)
@@ -303,7 +299,9 @@ fun MainViewController() = ComposeUIViewController {
                         NSURL.URLWithString("https://apps.apple.com/app/id6459021379?action=write-review")
                     if (url != null) openExternalUrl(url)
                 },
-                onContactSupport = { presentContactSupport(service) },
+                onContactSupport = { includeRecording ->
+                    presentContactSupport(service, includeRecording)
+                },
                 onToggleAudioTour = { audioTour.toggleState() },
                 onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
                 onGoToAppSettings = {

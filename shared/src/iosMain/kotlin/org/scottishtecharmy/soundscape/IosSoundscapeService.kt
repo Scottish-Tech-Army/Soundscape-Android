@@ -935,28 +935,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     // --- Recording ---
 
-    @OptIn(
-        kotlinx.cinterop.ExperimentalForeignApi::class,
-        kotlinx.cinterop.BetaInteropApi::class,
-    )
-    fun writeRecordingFile(): NSURL? {
-        val recordingsDir = NSHomeDirectory() + "/Documents/recordings"
-        NSFileManager.defaultManager.createDirectoryAtPath(
-            path = recordingsDir,
-            withIntermediateDirectories = true,
-            attributes = null,
-            error = null,
-        )
-        val outputPath = "$recordingsDir/travel.gpx"
-        val gpx = kotlinx.coroutines.runBlocking { gpxRecorder.generateGpx() }
-        val ok = (NSString.create(string = gpx)).writeToFile(
-            path = outputPath,
-            atomically = true,
-            encoding = NSUTF8StringEncoding,
-            error = null,
-        )
-        return if (ok) NSURL.fileURLWithPath(outputPath) else null
-    }
+    /** The travel recording as GPX text, for attaching to a support email. */
+    fun recordingGpx(): String = kotlinx.coroutines.runBlocking { gpxRecorder.generateGpx() }
 
     @OptIn(
         kotlinx.cinterop.ExperimentalForeignApi::class,

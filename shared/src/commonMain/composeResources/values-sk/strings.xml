@@ -1359,7 +1359,6 @@
     <string name="settings_debug_heading">Možnosti ladenia</string>
     <string name="settings_search_results_language">Jazyk vyhľadávania</string>
     <string name="settings_search_results_language_description">Online vyhľadávaniu môžete povoliť používať miestny jazyk výsledku, alebo ho prinútiť vracať výsledky v angličtine, francúzštine alebo nemčine.</string>
-    <string name="menu_share_recorded_route">Zdieľať záznam cesty</string>
     <string name="confect_name_to_via">%1$s do %2$s cez %3$s</string>
     <string name="confect_name_to">%1$s do %2$s</string>
     <string name="confect_name_joins">%1$s, ktorá spája %2$s a %3$s</string>

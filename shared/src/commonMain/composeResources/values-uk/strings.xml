@@ -526,7 +526,6 @@
     <string name="settings_record_head_tracker_input">Записувати дані датчика відстеження голови</string>
     <string name="settings_record_head_tracker_input_description">Додає до записів подорожей усе, що надсилає датчик відстеження голови, щоб під час налагодження прогулянку можна було точно відтворити. З датчиком WitMotion записи збільшуються приблизно на 20 МБ за кожну годину ходьби.</string>
     <string name="settings_debug_heading">Параметри налагодження</string>
-    <string name="menu_share_recorded_route">Поділитися записом подорожі</string>
     <string name="confect_name_to_via">%1$s, напрямок: %2$s, через %3$s</string>
     <string name="confect_name_to">%1$s, напрямок: %2$s</string>
     <string name="confect_name_joins">%1$s, що приєднується до %2$s і %3$s</string>

@@ -1343,7 +1343,6 @@
     <string name="settings_debug_heading">Opcije za otklanjanje pogrešaka</string>
     <string name="settings_search_results_language">Jezik pretraživanja</string>
     <string name="settings_search_results_language_description">Možete dopustiti internetskom pretraživanju da koristi lokalni jezik rezultata ili ga prisiliti da vraća rezultate na engleskom, francuskom ili njemačkom jeziku.</string>
-    <string name="menu_share_recorded_route">Podijeli snimku putovanja</string>
     <string name="confect_name_to_via">%1$s do %2$s preko %3$s</string>
     <string name="confect_name_to">%1$s do %2$s</string>
     <string name="confect_name_joins">%1$s koji spaja %2$s i %3$s</string>
