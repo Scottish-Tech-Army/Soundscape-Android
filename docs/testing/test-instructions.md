@@ -11,7 +11,7 @@ The Android and iOS apps are now built from a single shared codebase, so the UI 
 described here apply to both unless a section specifically calls out a difference between them.
 
 **Reporting problems:** if you're an STA member you can ping us on Slack. Otherwise please send all
-feedback to the Help Desk at <soundscapeAndroid@scottishtecharmy.support>.
+feedback to the Help Desk at <soundscape@scottishtecharmy.support>.
 
 ## Requirements
 
@@ -23,39 +23,12 @@ understand.
 
 ## Installing the app
 
-### Android
+Testing is done on the **beta** releases, which come out much more often than the full releases.
+Both betas are open, so anyone can join - the steps for Android and iOS are on the home page under
+[Public betas]({{ "/" | relative_url }}#public-betas).
 
-The released version of the app is freely available on the
-[Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape), and
-installs like any other app.
-
-Most of what we need tested, though, is in the **beta** releases, which come out much more often
-than the full releases. The beta is a closed one, so you can't simply opt in from the Play Store -
-we have to register your email address before Google will offer you the beta builds at all:
-
-1. Send us the **Google account email address** you use on the phone you'll be testing with. STA
-   members can do this on Slack; otherwise email the Help Desk at
-   <soundscapeAndroid@scottishtecharmy.support>. It has to be the account that's signed in to the
-   Play Store on that phone - if you send us a different address, the beta won't appear.
-1. We'll add you to the tester list and send you an opt-in link back.
-1. Follow that link, signed in as the same account, and accept the invitation to become a tester.
-1. Install or update Soundscape from the Play Store as normal. There can be a delay of a few
-   minutes to a few hours between accepting the invitation and the beta actually being offered to
-   you, so if you still see the released version, leave it a while and check again.
-
-After that, beta updates arrive through the Play Store like any other app update. If you want to
-stop testing later, just let us know and we'll take you off the list.
-
-### iOS
-
-The rewritten app is currently only available via TestFlight, by invitation. If you're an STA
-member, ask on Slack for an invite; otherwise request one via the Help Desk at
-<soundscapeAndroid@scottishtecharmy.support>. Once you have an invitation, install TestFlight from
-the App Store first, then follow the invitation link to install the beta build.
-
-If you're updating from the older, Microsoft-authored iOS app rather than installing fresh, see
-[Upgrading from the legacy Soundscape iOS app]({{ "/ios-upgrade-from-legacy.html" | relative_url }})
-for what's carried over automatically and what has changed.
+On iOS this matters more than on Android: the App Store release is still the older,
+Microsoft-based app, so the TestFlight beta is the only way to get the new one.
 
 ## Running the app the first time
 
