@@ -1531,6 +1531,7 @@
     <string name="settings_use_value">ใช้</string>
     <string name="street_preview_exit">ออกจากการจำลองตำแหน่ง</string>
     <string name="settings_travel_recording">เปิดใช้งานการบันทึกการเดินทาง</string>
+    <string name="settings_travel_recording_description">เก็บบันทึกว่าคุณอยู่ที่ใดบ้างในช่วงหนึ่งชั่วโมงที่ผ่านมา เพื่อช่วยเราตรวจสอบปัญหา บันทึกจะอยู่ในโทรศัพท์ของคุณเท่านั้น เว้นแต่คุณจะเลือกแนบไปด้วยเมื่อติดต่อฝ่ายสนับสนุน</string>
     <string name="settings_alpha_features">เปิดใช้งานฟีเจอร์สำหรับการทดสอบอัลฟ่า</string>
     <string name="settings_alpha_features_description">แสดงการตั้งค่าของฟีเจอร์ที่ยังอยู่ระหว่างการทดสอบ ฟีเจอร์เหล่านี้อาจยังไม่สมบูรณ์หรือไม่เสถียร</string>
     <string name="settings_record_head_tracker_input">บันทึกข้อมูลจากอุปกรณ์ติดตามการเคลื่อนไหวศีรษะ</string>

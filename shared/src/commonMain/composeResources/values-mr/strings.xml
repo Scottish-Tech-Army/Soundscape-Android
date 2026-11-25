@@ -814,6 +814,7 @@
     <string name="settings_use_value">वापरा</string>
     <string name="street_preview_exit">स्थान सिम्युलेशनमधून बाहेर पडा</string>
     <string name="settings_travel_recording">प्रवासाचे रेकॉर्डिंग सक्षम करा</string>
+    <string name="settings_travel_recording_description">गेल्या एका तासात तुम्ही कुठे कुठे होता याची नोंद ठेवते, जेणेकरून आम्हाला समस्यांचा तपास करण्यास मदत होईल. सपोर्टशी संपर्क साधताना तुम्ही ती जोडण्याचे निवडल्याशिवाय ती तुमच्या फोनवरच राहते.</string>
     <string name="settings_alpha_features">अल्फा चाचणी वैशिष्ट्ये सक्षम करा</string>
     <string name="settings_alpha_features_description">अजूनही चाचणी सुरू असलेल्या वैशिष्ट्यांची सेटिंग्ज दाखवा. ती अपूर्ण किंवा अविश्वसनीय असू शकतात.</string>
     <string name="settings_record_head_tracker_input">हेड ट्रॅकरचा डेटा रेकॉर्ड करा</string>

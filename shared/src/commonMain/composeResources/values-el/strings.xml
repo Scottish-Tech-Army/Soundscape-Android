@@ -529,6 +529,7 @@
     <string name="settings_use_value">Χρήση</string>
     <string name="street_preview_exit">Έξοδος από την προσομοίωση τοποθεσίας</string>
     <string name="settings_travel_recording">Ενεργοποίηση καταγραφής της πορείας μετακίνησης</string>
+    <string name="settings_travel_recording_description">Κρατά καταγραφή των σημείων όπου βρεθήκατε την τελευταία ώρα, για να μας βοηθά να διερευνούμε προβλήματα. Παραμένει στο τηλέφωνό σας, εκτός αν επιλέξετε να τη συμπεριλάβετε όταν επικοινωνείτε με την υποστήριξη.</string>
     <string name="settings_alpha_features">Ενεργοποίηση λειτουργιών δοκιμής άλφα</string>
     <string name="settings_alpha_features_description">Εμφανίζει ρυθμίσεις για λειτουργίες που βρίσκονται ακόμη σε δοκιμή. Μπορεί να είναι ημιτελείς ή αναξιόπιστες.</string>
     <string name="settings_record_head_tracker_input">Καταγραφή δεδομένων αισθητήρα παρακολούθησης κεφαλής</string>

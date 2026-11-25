@@ -1547,6 +1547,7 @@
     <string name="settings_use_value">استعمال کریں</string>
     <string name="street_preview_exit">مقام کی نقالی سے باہر نکلیں</string>
     <string name="settings_travel_recording">سفر کی ریکارڈنگ فعال کریں</string>
+    <string name="settings_travel_recording_description">پچھلے ایک گھنٹے میں آپ کہاں کہاں رہے، اس کا ریکارڈ رکھتا ہے، تاکہ مسائل کی جانچ میں ہماری مدد ہو۔ یہ آپ کے فون پر ہی رہتا ہے، جب تک آپ معاونت سے رابطہ کرتے وقت اسے شامل کرنے کا انتخاب نہ کریں۔</string>
     <string name="settings_alpha_features">الفا ٹیسٹ کی خصوصیات فعال کریں</string>
     <string name="settings_alpha_features_description">ان خصوصیات کی ترتیبات دکھائیں جن کی ابھی جانچ ہو رہی ہے۔ یہ نامکمل یا ناقابلِ اعتماد ہو سکتی ہیں۔</string>
     <string name="settings_record_head_tracker_input">ہیڈ ٹریکر کا ڈیٹا ریکارڈ کریں</string>

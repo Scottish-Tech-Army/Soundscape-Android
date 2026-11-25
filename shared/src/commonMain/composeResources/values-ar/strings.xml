@@ -693,6 +693,7 @@
     <string name="settings_use_value">الاستخدام</string>
     <string name="street_preview_exit">الخروج من محاكاة الموقع</string>
     <string name="settings_travel_recording">تفعيل تسجيل التنقل</string>
+    <string name="settings_travel_recording_description">يحتفظ بسجل للأماكن التي كنت فيها خلال الساعة الأخيرة، لمساعدتنا في التحقيق في المشكلات. يبقى على هاتفك ما لم تختر تضمينه عند التواصل مع الدعم.</string>
     <string name="settings_alpha_features">تفعيل ميزات اختبار ألفا</string>
     <string name="settings_alpha_features_description">عرض إعدادات الميزات التي لا تزال قيد الاختبار. قد تكون غير مكتملة أو غير موثوقة.</string>
     <string name="settings_record_head_tracker_input">تسجيل بيانات جهاز تتبع حركة الرأس</string>

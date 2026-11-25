@@ -447,6 +447,7 @@
     <string name="settings_use_value">उपयोग करें</string>
     <string name="street_preview_exit">स्थान सिमुलेशन से बाहर निकलें</string>
     <string name="settings_travel_recording">यात्रा की रिकॉर्डिंग सक्षम करें</string>
+    <string name="settings_travel_recording_description">पिछले एक घंटे में आप कहाँ-कहाँ गए, इसका रिकॉर्ड रखता है, ताकि हमें समस्याओं की जाँच में मदद मिले। यह आपके फ़ोन पर ही रहता है, जब तक आप सहायता से संपर्क करते समय इसे शामिल करना न चुनें।</string>
     <string name="settings_alpha_features">अल्फ़ा टेस्ट फ़ीचर सक्षम करें</string>
     <string name="settings_alpha_features_description">उन फ़ीचर की सेटिंग दिखाएँ जिनका अभी परीक्षण हो रहा है। ये अधूरे या अविश्वसनीय हो सकते हैं।</string>
     <string name="settings_record_head_tracker_input">हेड ट्रैकर का डेटा रिकॉर्ड करें</string>

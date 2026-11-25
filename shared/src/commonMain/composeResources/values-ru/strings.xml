@@ -389,6 +389,7 @@
     <string name="settings_list_item_description">%1$s — выбор %2$s из %3$s</string>
     <string name="street_preview_exit">Выйти из режима симуляции местоположения</string>
     <string name="settings_travel_recording">Включить запись поездки</string>
+    <string name="settings_travel_recording_description">Сохраняет сведения о том, где вы были за последний час, чтобы помочь нам разбираться в проблемах. Запись остаётся на вашем телефоне, если только вы не решите приложить её, когда обратитесь в службу поддержки.</string>
     <string name="settings_alpha_features">Включить функции альфа-тестирования</string>
     <string name="settings_alpha_features_description">Показывает настройки функций, которые ещё тестируются. Они могут быть незавершёнными или ненадёжными.</string>
     <string name="settings_record_head_tracker_input">Записывать данные датчика отслеживания головы</string>

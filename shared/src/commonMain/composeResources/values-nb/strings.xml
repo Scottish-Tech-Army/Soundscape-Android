@@ -529,6 +529,7 @@
     <string name="settings_use_value">bruk</string>
     <string name="street_preview_exit">Avslutt posisjonssimulering</string>
     <string name="settings_travel_recording">Aktiver registrering av reiser</string>
+    <string name="settings_travel_recording_description">Lagrer hvor du har vært den siste timen, for å hjelpe oss å undersøke problemer. Registreringen blir på telefonen din med mindre du velger å legge den ved når du kontakter brukerstøtte.</string>
     <string name="settings_alpha_features">Aktiver funksjoner for alfatesting</string>
     <string name="settings_alpha_features_description">Vis innstillinger for funksjoner som fortsatt testes. De kan være uferdige eller upålitelige.</string>
     <string name="settings_record_head_tracker_input">Registrer data fra hodesporingsenheten</string>

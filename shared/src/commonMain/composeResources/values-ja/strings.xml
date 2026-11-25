@@ -525,6 +525,7 @@
     <string name="settings_use_value">使用</string>
     <string name="street_preview_exit">位置シミュレーションを終了する</string>
     <string name="settings_travel_recording">移動の記録を有効にする</string>
+    <string name="settings_travel_recording_description">過去 1 時間にどこにいたかを記録し、問題の調査に役立てます。サポートに連絡するときに添付を選ばない限り、記録はお使いのスマートフォンから外に出ません。</string>
     <string name="settings_alpha_features">アルファテスト機能を有効にする</string>
     <string name="settings_alpha_features_description">まだテスト中の機能の設定を表示します。未完成だったり、動作が不安定だったりする場合があります。</string>
     <string name="settings_record_head_tracker_input">ヘッドトラッカーのデータを記録する</string>

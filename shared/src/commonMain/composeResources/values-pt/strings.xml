@@ -517,6 +517,7 @@
     <string name="settings_use_value">usar</string>
     <string name="street_preview_exit">Sair da simulação de localização</string>
     <string name="settings_travel_recording">Ativar a gravação de viagens</string>
+    <string name="settings_travel_recording_description">Guarda um registo dos sítios por onde passou na última hora, para nos ajudar a investigar problemas. Fica no seu telemóvel, a menos que opte por incluí-lo quando contactar o apoio ao cliente.</string>
     <string name="settings_alpha_features">Ativar funcionalidades de teste alfa</string>
     <string name="settings_alpha_features_description">Mostra as definições de funcionalidades que ainda estão a ser testadas. Podem estar incompletas ou ser pouco fiáveis.</string>
     <string name="settings_record_head_tracker_input">Gravar os dados do sensor de rastreio da cabeça</string>

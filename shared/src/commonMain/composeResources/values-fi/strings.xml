@@ -529,6 +529,7 @@
     <string name="settings_use_value">käytä</string>
     <string name="street_preview_exit">Poistu sijainnin esikatselusta</string>
     <string name="settings_travel_recording">Ota matkojen tallennus käyttöön</string>
+    <string name="settings_travel_recording_description">Tallentaa, missä olet ollut viimeisen tunnin aikana, jotta voimme selvittää ongelmia. Tallennus pysyy puhelimessasi, ellet päätä liittää sitä, kun otat yhteyttä tukeen.</string>
     <string name="settings_alpha_features">Ota alfatestauksen ominaisuudet käyttöön</string>
     <string name="settings_alpha_features_description">Näytä asetukset ominaisuuksille, joita vielä testataan. Ne voivat olla keskeneräisiä tai epäluotettavia.</string>
     <string name="settings_record_head_tracker_input">Tallenna pään seurantalaitteen tiedot</string>

@@ -1547,6 +1547,7 @@
     <string name="settings_use_value">ব্যবহার করতে</string>
     <string name="street_preview_exit">অবস্থান সিমুলেশন থেকে বের হন</string>
     <string name="settings_travel_recording">ভ্রমণ রেকর্ডিং সক্রিয় করুন</string>
+    <string name="settings_travel_recording_description">গত এক ঘণ্টায় আপনি কোথায় কোথায় ছিলেন তার একটি রেকর্ড রাখে, যাতে সমস্যা খতিয়ে দেখতে আমাদের সুবিধা হয়। সহায়তার সাথে যোগাযোগ করার সময় আপনি যোগ করতে না চাইলে এটি আপনার ফোনেই থাকে।</string>
     <string name="settings_alpha_features">আলফা টেস্টের ফিচার সক্রিয় করুন</string>
     <string name="settings_alpha_features_description">যে ফিচারগুলো এখনও পরীক্ষা করা হচ্ছে সেগুলোর সেটিংস দেখায়। এগুলো অসম্পূর্ণ বা অনির্ভরযোগ্য হতে পারে।</string>
     <string name="settings_record_head_tracker_input">হেড ট্র্যাকারের ডেটা রেকর্ড করুন</string>

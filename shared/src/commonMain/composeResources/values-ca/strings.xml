@@ -595,6 +595,7 @@
     <string name="settings_use_value">utilitza</string>
     <string name="street_preview_exit">Surt de la simulació d'ubicació</string>
     <string name="settings_travel_recording">Activa l'enregistrament de trajectes</string>
+    <string name="settings_travel_recording_description">Desa un registre d'on has estat durant l'última hora, per ajudar-nos a investigar problemes. Es queda al teu telèfon tret que decideixis incloure'l quan contactis amb el suport.</string>
     <string name="settings_alpha_features">Activa les funcions de prova alfa</string>
     <string name="settings_alpha_features_description">Mostra la configuració de funcions que encara s'estan provant. Poden estar incompletes o no ser fiables.</string>
     <string name="settings_record_head_tracker_input">Enregistra les dades del sensor de seguiment del cap</string>

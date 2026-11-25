@@ -984,6 +984,7 @@
     <string name="settings_use_value">使用</string>
     <string name="street_preview_exit">退出位置模拟</string>
     <string name="settings_travel_recording">启用行程录制</string>
+    <string name="settings_travel_recording_description">记录您过去一小时内去过的地方，以帮助我们调查问题。除非您在联系客服时选择附上，否则录制内容只保存在您的手机上。</string>
     <string name="settings_alpha_features">启用 Alpha 测试功能</string>
     <string name="settings_alpha_features_description">显示仍在测试中的功能的设置。这些功能可能不完整或不稳定。</string>
     <string name="settings_record_head_tracker_input">录制头部追踪器数据</string>

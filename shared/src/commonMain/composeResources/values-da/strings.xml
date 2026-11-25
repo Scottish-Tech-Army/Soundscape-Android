@@ -529,6 +529,7 @@
     <string name="settings_use_value">bruge</string>
     <string name="street_preview_exit">Afslut lokalitetssimulering</string>
     <string name="settings_travel_recording">Aktivér optagelse af rejser</string>
+    <string name="settings_travel_recording_description">Gemmer en optagelse af, hvor du har været den seneste time, så vi kan undersøge problemer. Den bliver på din telefon, medmindre du vælger at vedhæfte den, når du kontakter support.</string>
     <string name="settings_alpha_features">Aktivér funktioner til alfatest</string>
     <string name="settings_alpha_features_description">Vis indstillinger for funktioner, der stadig testes. De kan være ufærdige eller upålidelige.</string>
     <string name="settings_record_head_tracker_input">Optag data fra hovedsporingsenheden</string>

@@ -1547,6 +1547,7 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="settings_use_value">yi amfani</string>
     <string name="street_preview_exit">Fita daga kwaikwayon wuri</string>
     <string name="settings_travel_recording">Kunna rikodin tafiya</string>
+    <string name="settings_travel_recording_description">Yana adana rikodin inda ka kasance cikin awa ɗaya da ta gabata, don taimaka mana mu binciki matsaloli. Yana zama a wayarka sai dai idan ka zaɓi ka haɗa shi lokacin da ka tuntuɓi Tallafi.</string>
     <string name="settings_alpha_features">Kunna fasalolin gwajin alpha</string>
     <string name="settings_alpha_features_description">Nuna saitunan fasalolin da ake ci gaba da gwadawa. Za su iya zama ba su kammala ba ko kuma ba a iya dogara da su ba.</string>
     <string name="settings_record_head_tracker_input">Yi rikodin bayanan na'urar bin diddigin kai</string>

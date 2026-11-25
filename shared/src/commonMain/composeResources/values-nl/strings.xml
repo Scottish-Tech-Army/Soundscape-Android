@@ -529,6 +529,7 @@
     <string name="settings_use_value">gebruiken</string>
     <string name="street_preview_exit">Locatiesimulatie afsluiten</string>
     <string name="settings_travel_recording">Reisregistratie inschakelen</string>
+    <string name="settings_travel_recording_description">Houdt bij waar u het afgelopen uur bent geweest, zodat wij problemen kunnen onderzoeken. De registratie blijft op uw telefoon, tenzij u ervoor kiest die bij te voegen wanneer u contact opneemt met ondersteuning.</string>
     <string name="settings_alpha_features">Functies voor alfatest inschakelen</string>
     <string name="settings_alpha_features_description">Toon instellingen voor functies die nog worden getest. Ze kunnen onvolledig of onbetrouwbaar zijn.</string>
     <string name="settings_record_head_tracker_input">Gegevens van de hoofdtracker vastleggen</string>

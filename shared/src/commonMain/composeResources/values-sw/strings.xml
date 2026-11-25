@@ -1547,6 +1547,7 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="settings_use_value">tumia</string>
     <string name="street_preview_exit">Toka kwenye uigaji wa mahali</string>
     <string name="settings_travel_recording">Wezesha kurekodi safari</string>
+    <string name="settings_travel_recording_description">Huhifadhi rekodi ya mahali ulipokuwa katika saa moja iliyopita, ili kutusaidia kuchunguza matatizo. Hubaki kwenye simu yako isipokuwa ukichagua kuiambatisha unapowasiliana na usaidizi.</string>
     <string name="settings_alpha_features">Wezesha vipengele vya majaribio ya alpha</string>
     <string name="settings_alpha_features_description">Onyesha mipangilio ya vipengele ambavyo bado vinajaribiwa. Huenda havijakamilika au havitegemeki.</string>
     <string name="settings_record_head_tracker_input">Rekodi data ya kifuatiliaji cha kichwa</string>
