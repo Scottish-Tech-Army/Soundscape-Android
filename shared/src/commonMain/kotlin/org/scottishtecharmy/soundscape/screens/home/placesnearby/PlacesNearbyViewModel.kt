@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -57,6 +58,7 @@ open class PlacesNearbyViewModel(
     }
 
     fun onClickFolder(filter: String, title: String) {
+        SharedAnalytics.logEvent("placesNearbyFolder", mapOf("filter" to filter))
         internalUiState.value =
             internalUiState.value.copy(level = 1, filter = filter, title = title)
     }

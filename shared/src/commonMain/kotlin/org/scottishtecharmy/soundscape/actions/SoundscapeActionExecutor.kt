@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.actions
 
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
@@ -50,16 +51,29 @@ class SoundscapeActionExecutor(
     suspend fun execute(
         action: SoundscapeAction,
         readyTimeoutMs: Long = 0L,
-    ): ActionResult = when (action) {
-        // Answered from the database, so they work with no service at all.
-        SoundscapeAction.ListRoutes -> listRoutes()
-        SoundscapeAction.ListMarkers -> listMarkers()
+    ): ActionResult {
+        val result = when (action) {
+            // Answered from the database, so they work with no service at all.
+            SoundscapeAction.ListRoutes -> listRoutes()
+            SoundscapeAction.ListMarkers -> listMarkers()
 
-        else -> service?.let { withService(action, it, readyTimeoutMs) }
-            ?: notReady(
-                ActionResult.Reason.SERVICE_NOT_RUNNING,
-                StringKey.ActionServiceNotRunning,
+            else -> service?.let { withService(action, it, readyTimeoutMs) }
+                ?: notReady(
+                    ActionResult.Reason.SERVICE_NOT_RUNNING,
+                    StringKey.ActionServiceNotRunning,
+                )
+        }
+        // Only assistants (Siri, AppFunctions) wait for readiness; soundscape:// links and
+        // other in-app callers run with no timeout.
+        SharedAnalytics.logEvent(
+            "soundscapeAction",
+            mapOf(
+                "action" to (action::class.simpleName ?: "unknown"),
+                "source" to if (readyTimeoutMs > 0L) "assistant" else "link",
+                "result" to (result::class.simpleName ?: "unknown"),
             )
+        )
+        return result
     }
 
     /**

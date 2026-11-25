@@ -77,6 +77,7 @@ import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.IosMarkersAndRoutesIo
 import org.scottishtecharmy.soundscape.utils.IosNetworkUtils
 import org.scottishtecharmy.soundscape.utils.MarkersAndRoutesIo
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import org.scottishtecharmy.soundscape.utils.routeToShareJson
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSLock
@@ -118,7 +119,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     // Swift injects a Firebase-backed impl on Release via
     // FirebaseBootstrap.configureIfEnabled(). Default stays NoOp so Debug
     // builds and unit tests do not touch Firebase.
-    private val analytics: Analytics = analyticsFactory()
+    private val analytics: Analytics = analyticsFactory().also { SharedAnalytics.instance = it }
 
     // GeoEngine
     val geoEngine = GeoEngine()
@@ -191,6 +192,18 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
      * like Android's does, so name resolution lives in one place rather than three.
      */
     fun publishPendingIntent(intent: IncomingIntent) {
+        // The same event names as Android's SoundscapeIntents, so the two can be compared
+        val event = when (intent) {
+            is IncomingIntent.OpenLatLon -> "intentGeoSchemaUrl"
+            is IncomingIntent.OpenLocation -> "intentShareMarker"
+            is IncomingIntent.OpenFeature -> "intentOpenFeature"
+            IncomingIntent.StopRoute -> "intentStopRoute"
+            is IncomingIntent.StartRoute,
+            is IncomingIntent.StartRouteByName -> "intentStartRoute"
+            is IncomingIntent.PerformAction -> "intentAction"
+            is IncomingIntent.ImportRoute -> "intentJsonImport"
+        }
+        analytics.logEvent(event, null)
         _pendingIntent.value = intent
     }
 
@@ -873,6 +886,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         if (beaconHandle != null) {
             audioEngine.clearTextToSpeechQueue()
             val muted = audioEngine.toggleBeaconMute()
+            analytics.logEvent("routePlayback", mapOf("action" to if (muted) "mute" else "unmute"))
             _beaconFlow.value = _beaconFlow.value.copy(muteState = muted)
             return true
         }

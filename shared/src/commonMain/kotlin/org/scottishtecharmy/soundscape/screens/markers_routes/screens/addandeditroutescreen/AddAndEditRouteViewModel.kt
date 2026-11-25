@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen
 
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -167,6 +168,7 @@ open class AddAndEditRouteViewModel(
         viewModelScope.launch {
             try {
                 routeDao.removeRoute(objectId)
+                SharedAnalytics.logEvent("route", mapOf("op" to "delete"))
                 _uiState.value = _uiState.value.copy(
                     doneActionCompleted = true,
                     actionType = ActionType.DELETE,
@@ -217,6 +219,13 @@ open class AddAndEditRouteViewModel(
             try {
                 if (newMarkers) routeDao.insertRouteWithNewMarkers(routeData, markers)
                 else routeDao.insertRouteWithExistingMarkers(routeData, markers)
+                SharedAnalytics.logEvent(
+                    "route",
+                    mapOf(
+                        "op" to if (routeData.routeId == 0L) "create" else "edit",
+                        "waypoints" to markers.size,
+                    )
+                )
                 _uiState.value = _uiState.value.copy(
                     doneActionCompleted = true,
                     actionType = ActionType.UPDATE,

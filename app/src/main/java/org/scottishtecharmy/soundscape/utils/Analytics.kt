@@ -16,6 +16,7 @@ object AnalyticsProvider {
                 else
                     NoOpAnalytics()
                 INSTANCE = instance
+                SharedAnalytics.instance = instance
             }
             return instance
         }

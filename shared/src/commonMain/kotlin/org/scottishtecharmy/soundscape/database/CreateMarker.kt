@@ -5,6 +5,7 @@ import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.utils.SharedAnalytics
 
 /**
  * Save a marker and return its id. A location with a non-zero `databaseId` updates that marker.
@@ -20,6 +21,7 @@ suspend fun saveMarker(locationDescription: LocationDescription, routeDao: Route
     val fullAddress = locationDescription.description ?: ""
 
     if (locationDescription.databaseId != 0L) {
+        SharedAnalytics.logEvent("marker", mapOf("op" to "edit"))
         routeDao.updateMarker(
             MarkerEntity(
                 markerId = locationDescription.databaseId,
@@ -37,6 +39,7 @@ suspend fun saveMarker(locationDescription: LocationDescription, routeDao: Route
         locationDescription.location.latitude,
     )
     if (existing != null) {
+        SharedAnalytics.logEvent("marker", mapOf("op" to "merge"))
         routeDao.updateMarker(
             MarkerEntity(
                 markerId = existing.markerId,
@@ -49,6 +52,7 @@ suspend fun saveMarker(locationDescription: LocationDescription, routeDao: Route
         return existing.markerId
     }
 
+    SharedAnalytics.logEvent("marker", mapOf("op" to "create"))
     return routeDao.insertMarker(
         MarkerEntity(
             name = name,
