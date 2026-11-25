@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!-- Template for scripts/replay-gpx.py, which fills in the __PLACEHOLDERS__. Everything is
+     embedded - MapLibre, the base map's style, icons, glyphs and tiles (see replay_basemap.py)
+     and the replay itself - so the page opens from disk and fetches nothing. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Replay: __TITLE__</title>
+<style>__MAPLIBRE_CSS__</style>
+<script>__MAPLIBRE_JS__</script>
+<style>
+  :root { --side: 380px; --accent: #d9480f; --muted: #666; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.4 system-ui, sans-serif; display: flex; height: 100vh; }
+  #side { width: var(--side); display: flex; flex-direction: column; border-right: 1px solid #ccc; }
+  #side header { padding: 10px 12px; border-bottom: 1px solid #ddd; }
+  #side h1 { font-size: 16px; margin: 0 0 4px; word-break: break-all; }
+  #stats { color: var(--muted); font-size: 12px; }
+  #toggles { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 6px; font-size: 12px; }
+  #list { flex: 1; overflow-y: auto; margin: 0; padding: 0; list-style: none; }
+  #list li { padding: 6px 12px; border-bottom: 1px solid #eee; cursor: pointer; }
+  #list li:hover { background: #f6f6f6; }
+  #list li.sel { background: #fff0e6; border-left: 4px solid var(--accent); padding-left: 8px; }
+  #list .n { font-weight: 600; color: var(--accent); margin-right: 6px; }
+  #list .line { display: block; }
+  details { border-top: 1px solid #ddd; padding: 6px 12px; max-height: 40vh; overflow: auto; }
+  details pre { font-size: 11px; white-space: pre-wrap; }
+  #map { flex: 1; }
+  .num { background: var(--accent); color: #fff; border-radius: 9px; padding: 0 5px;
+         font: 600 11px system-ui; cursor: pointer; border: 1px solid #fff; }
+  .num.sel { background: #000; }
+  /* Zoomed out, the badges would bury the track: only the selected one shows */
+  body.far .num:not(.sel) { display: none; }
+  .maplibregl-popup-content { font-size: 12px; max-width: 320px; }
+  .maplibregl-popup-content table { border-collapse: collapse; }
+  .maplibregl-popup-content td { padding: 1px 4px; vertical-align: top; }
+  #toggles .inspect { font-weight: 600; }
+  body.inspecting #map canvas { cursor: crosshair !important; }
+  .inspect-popup .maplibregl-popup-content { max-width: 420px; max-height: 60vh; overflow-y: auto; }
+  .inspect-popup section { border-top: 1px solid #ddd; padding: 3px 0; }
+  .inspect-popup section:first-child { border-top: none; }
+  .inspect-popup section:hover, .inspect-popup section.hl { background: #fbeaff; }
+  .inspect-popup h3 { font-size: 12px; margin: 0 0 2px; }
+  .inspect-popup h3 small { font-weight: normal; color: #666; }
+  .inspect-popup td:first-child { color: #555; white-space: nowrap; }
+  .inspect-popup td { word-break: break-word; }
+</style>
+</head>
+<body>
+<div id="side">
+  <header>
+    <h1 id="title"></h1>
+    <div id="stats"></div>
+    <div id="toggles">
+      <label><input type="checkbox" data-layers="track" checked> Track</label>
+      <label><input type="checkbox" data-layers="gps" checked> GPS fixes</label>
+      <label><input type="checkbox" data-layers="matched" checked> Map matched</label>
+      <label><input type="checkbox" data-layers="fov,fov-line,fov-point" checked> Callouts</label>
+      <label class="inspect" title="Click the map to list the pmtiles features there, with their tags">
+        <input type="checkbox" id="inspect"> Inspect</label>
+    </div>
+  </header>
+  <ol id="list"></ol>
+  <details><summary>Full callout log</summary><pre id="log"></pre></details>
+</div>
+<div id="map"></div>
+<script id="basemap" type="application/json">__BASEMAP__</script>
+<script id="replay" type="application/json">__REPLAY_DATA__</script>
+<!-- A module, for the top-level await that loads the icons before the map wants them -->
+<script type="module">
+const DATA = JSON.parse(document.getElementById('replay').textContent);
+const BASE = JSON.parse(document.getElementById('basemap').textContent);
+
+const features = DATA.geojson.features || [];
+const callouts = [], gps = [], matched = [];
+for (const f of features) {
+  const p = f.properties || {};
+  if ('Callout 0' in p) callouts.push(f);
+  else if (f.geometry && f.geometry.type === 'Point' && 'index' in p && ('marker-size' in p)) gps.push(f);
+  else if (f.geometry && f.geometry.type === 'Point') matched.push(f);
+}
+callouts.forEach((f, i) => { f.properties.n = i + 1; f.id = i + 1; });
+
+const lines = p => Object.keys(p).filter(k => k.startsWith('Callout '))
+  .sort((a, b) => +a.slice(8) - +b.slice(8)).map(k => p[k]);
+
+document.getElementById('title').textContent = DATA.name;
+document.getElementById('stats').textContent =
+  `${DATA.track.length} track points · ${callouts.length} callouts`;
+document.getElementById('log').textContent = DATA.log;
+
+const list = document.getElementById('list');
+callouts.forEach(f => {
+  const li = document.createElement('li');
+  li.dataset.n = f.properties.n;
+  li.innerHTML = `<span class="n">${f.properties.n}</span>`;
+  for (const t of lines(f.properties)) {
+    const s = document.createElement('span');
+    s.className = 'line';
+    s.textContent = t;
+    li.appendChild(s);
+  }
+  li.onclick = () => select(f.properties.n, true);
+  list.appendChild(li);
+});
+
+function extent(coords) {
+  const b = [[Infinity, Infinity], [-Infinity, -Infinity]];
+  const walk = c => typeof c[0] === 'number'
+    ? (b[0][0] = Math.min(b[0][0], c[0]), b[0][1] = Math.min(b[0][1], c[1]),
+       b[1][0] = Math.max(b[1][0], c[0]), b[1][1] = Math.max(b[1][1], c[1]))
+    : c.forEach(walk);
+  walk(coords);
+  return b;
+}
+
+// The base map: tiles and glyphs come from the page through a replay:// protocol
+const bytes = b64 => Uint8Array.from(atob(b64), c => c.charCodeAt(0)).buffer;
+const EMPTY = new ArrayBuffer(0);  // no tile / no glyphs: nothing drawn, no error
+maplibregl.addProtocol('replay', async params => {
+  const path = params.url.slice('replay://'.length);
+  if (path.startsWith('tiles/')) {
+    const tile = BASE.tiles[path.slice(6)];
+    return { data: tile ? bytes(tile) : EMPTY };
+  }
+  const glyph = path.match(/^glyphs\/(.+)\/(\d+-\d+)$/);
+  if (glyph) {
+    // The style's font stacks put Open Sans first and Noto Sans second; use the first we have
+    const stack = decodeURIComponent(glyph[1]).split(',').map(f => f.trim()).concat(BASE.fonts[0]);
+    const font = stack.find(f => BASE.glyphs[`${f}/${glyph[2]}`]);
+    return { data: font ? bytes(BASE.glyphs[`${font}/${glyph[2]}`]) : EMPTY };
+  }
+  throw new Error(`Not in this page: ${params.url}`);
+});
+
+// The style's icons are SVG (there is no sprite); rasterise them all at 2x up front, so they
+// can be handed over synchronously when the map asks for one
+const icons = {};
+await Promise.all(Object.entries(BASE.icons).map(([name, svg]) => new Promise(done => {
+  const img = new Image();
+  img.onload = () => {
+    const w = Math.max(1, Math.round((img.naturalWidth || 16) * 2));
+    const h = Math.max(1, Math.round((img.naturalHeight || 16) * 2));
+    const ctx = Object.assign(document.createElement('canvas'), { width: w, height: h })
+      .getContext('2d');
+    ctx.drawImage(img, 0, 0, w, h);
+    icons[name] = ctx.getImageData(0, 0, w, h);
+    done();
+  };
+  img.onerror = done;
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+})));
+
+const style = structuredClone(BASE.style);
+const attribution = style.sources.attribution?.attribution;
+delete style.sources.attribution;
+delete style.sprite;
+style.glyphs = 'replay://glyphs/{fontstack}/{range}';
+style.sources.openmaptiles = { type: 'vector', tiles: ['replay://tiles/{z}/{x}/{y}'],
+  minzoom: 0, maxzoom: BASE.maxzoom, attribution };
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style,
+  maxZoom: 21,
+  bounds: extent(DATA.track),
+  fitBoundsOptions: { padding: 40 }
+});
+map.addControl(new maplibregl.NavigationControl());
+map.addControl(new maplibregl.ScaleControl());
+map.on('styleimagemissing', e => {
+  if (icons[e.id] && !map.hasImage(e.id)) map.addImage(e.id, icons[e.id], { pixelRatio: 2 });
+});
+
+const fc = fs => ({ type: 'FeatureCollection', features: fs });
+const markers = {};
+let selected = null;
+
+map.on('load', () => {
+  map.addSource('track', { type: 'geojson',
+    data: { type: 'Feature', geometry: { type: 'LineString', coordinates: DATA.track } } });
+  map.addSource('gps', { type: 'geojson', data: fc(gps) });
+  map.addSource('matched', { type: 'geojson', data: fc(matched) });
+  map.addSource('callouts', { type: 'geojson', data: fc(callouts) });
+
+  map.addLayer({ id: 'track', type: 'line', source: 'track',
+    paint: { 'line-color': '#1c7ed6', 'line-width': 2, 'line-opacity': 0.7 } });
+  map.addLayer({ id: 'fov', type: 'fill', source: 'callouts',
+    filter: ['==', ['geometry-type'], 'Polygon'],
+    paint: { 'fill-color': ['case', ['boolean', ['feature-state', 'sel'], false], '#000', '#fd7e14'],
+             'fill-opacity': ['case', ['boolean', ['feature-state', 'sel'], false], 0.35, 0.15] } });
+  map.addLayer({ id: 'fov-line', type: 'line', source: 'callouts',
+    filter: ['==', ['geometry-type'], 'Polygon'],
+    paint: { 'line-color': '#d9480f', 'line-width': 1 } });
+  map.addLayer({ id: 'gps', type: 'circle', source: 'gps',
+    paint: { 'circle-radius': 2.5, 'circle-color': '#004000' } });
+  map.addLayer({ id: 'matched', type: 'circle', source: 'matched',
+    paint: { 'circle-radius': 3, 'circle-color': ['coalesce', ['get', 'marker-color'], '#888'],
+             'circle-stroke-width': 0.5, 'circle-stroke-color': '#fff' } });
+  map.addLayer({ id: 'fov-point', type: 'circle', source: 'callouts',
+    filter: ['==', ['geometry-type'], 'Point'],
+    paint: { 'circle-radius': 6, 'circle-color': '#fd7e14' } });
+
+  // Start and end of the track
+  const pin = (lngLat, color, label) => new maplibregl.Marker({ color })
+    .setLngLat(lngLat).setPopup(new maplibregl.Popup().setText(label)).addTo(map);
+  pin(DATA.track[0], '#2b8a3e', 'Start');
+  pin(DATA.track[DATA.track.length - 1], '#c92a2a', 'End');
+
+  // Numbered badge at the user's end of each callout: the FOV apex, which
+  // createPolygonFromTriangle writes second (left, origin, right), or the point itself
+  for (const f of callouts) {
+    const g = f.geometry;
+    const at = g.type === 'Point' ? g.coordinates : g.coordinates[0][1];
+    const el = document.createElement('div');
+    el.className = 'num';
+    el.textContent = f.properties.n;
+    el.onclick = e => { e.stopPropagation(); select(f.properties.n, false); };
+    markers[f.properties.n] = new maplibregl.Marker({ element: el }).setLngLat(at).addTo(map);
+  }
+
+  const updateFar = () => document.body.classList.toggle('far', map.getZoom() < 16);
+  map.on('zoom', updateFar);
+  updateFar();
+
+  map.on('click', ['fov', 'fov-point'], e => { if (!inspecting) select(e.features[0].properties.n, false); });
+  map.on('click', ['gps', 'matched'], e => {
+    if (inspecting) return;
+    const p = e.features[0].properties;
+    const rows = Object.entries(p).filter(([k]) => !k.startsWith('marker-') && k !== 'color')
+      .map(([k, v]) => {
+        if (k === 'time') v = new Date(+v).toISOString().slice(11, 19);
+        else if (typeof v === 'number' && !Number.isInteger(v)) v = v.toFixed(k.includes('L') ? 7 : 2);
+        return `<tr><td>${k}</td><td>${String(v).replace(/</g, '&lt;')}</td></tr>`;
+      }).join('');
+    new maplibregl.Popup().setLngLat(e.lngLat).setHTML(`<table>${rows}</table>`).addTo(map);
+  });
+  for (const l of ['fov', 'fov-point', 'gps', 'matched']) {
+    map.on('mouseenter', l, () => map.getCanvas().style.cursor = 'pointer');
+    map.on('mouseleave', l, () => map.getCanvas().style.cursor = '');
+  }
+
+  document.querySelectorAll('#toggles input[data-layers]').forEach(cb => cb.onchange = () => {
+    for (const l of cb.dataset.layers.split(','))
+      map.setLayoutProperty(l, 'visibility', cb.checked ? 'visible' : 'none');
+    if (cb.dataset.layers.startsWith('fov'))
+      Object.values(markers).forEach(m => m.getElement().style.display = cb.checked ? '' : 'none');
+  });
+
+  document.getElementById('inspect').onchange = e => setInspecting(e.target.checked);
+});
+
+// Inspect mode: click the map to list every pmtiles feature there with its tags. The style
+// leaves many features undrawn, and queryRenderedFeatures only finds drawn ones, so inspect
+// adds an invisible hit layer per tile layer that catches everything.
+let inspecting = false, inspectPopup = null;
+const hitLayers = [];
+function addHitLayers() {
+  if (hitLayers.length) return;
+  for (const name of BASE.layers) {
+    const base = { source: 'openmaptiles', 'source-layer': name };
+    const add = (suffix, type, geom, paint) => {
+      const id = `hit-${name}-${suffix}`;
+      map.addLayer({ id, type, ...base, filter: ['==', ['geometry-type'], geom], paint }, 'track');
+      hitLayers.push(id);
+    };
+    add('fill', 'fill', 'Polygon', { 'fill-color': '#000', 'fill-opacity': 0 });
+    add('line', 'line', 'LineString', { 'line-color': '#000', 'line-opacity': 0, 'line-width': 8 });
+    add('point', 'circle', 'Point', { 'circle-radius': 8, 'circle-opacity': 0 });
+  }
+  map.addSource('inspect-hl', { type: 'geojson', data: fc([]) });
+  map.addLayer({ id: 'inspect-hl-fill', type: 'fill', source: 'inspect-hl',
+    filter: ['==', ['geometry-type'], 'Polygon'],
+    paint: { 'fill-color': '#e64980', 'fill-opacity': 0.25 } });
+  map.addLayer({ id: 'inspect-hl-line', type: 'line', source: 'inspect-hl',
+    paint: { 'line-color': '#c2255c', 'line-width': 3 } });
+  map.addLayer({ id: 'inspect-hl-point', type: 'circle', source: 'inspect-hl',
+    filter: ['==', ['geometry-type'], 'Point'],
+    paint: { 'circle-radius': 7, 'circle-color': '#e64980', 'circle-stroke-width': 2,
+             'circle-stroke-color': '#fff' } });
+}
+function highlight(feature) {
+  map.getSource('inspect-hl')?.setData(fc(feature ? [{ type: 'Feature', properties: {},
+    geometry: feature.geometry }] : []));
+}
+function setInspecting(on) {
+  inspecting = on;
+  document.body.classList.toggle('inspecting', on);
+  if (on) addHitLayers();
+  for (const id of hitLayers) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
+  if (!on) { inspectPopup?.remove(); highlight(null); }
+}
+
+const esc = v => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const GEOM_ORDER = { Point: 0, MultiPoint: 0, LineString: 1, MultiLineString: 1, Polygon: 2, MultiPolygon: 2 };
+map.on('click', e => {
+  if (!inspecting) return;
+  const { x, y } = e.point;
+  const found = map.queryRenderedFeatures([[x - 4, y - 4], [x + 4, y + 4]], { layers: hitLayers });
+  // A feature can come back once per tile it crosses, and once per hit layer
+  const seen = new Set();
+  const features = found.filter(f => {
+    const key = f.sourceLayer + '|' + f.id + '|' + JSON.stringify(f.properties);
+    return !seen.has(key) && seen.add(key);
+  }).sort((a, b) => GEOM_ORDER[a.geometry.type] - GEOM_ORDER[b.geometry.type]);
+  inspectPopup?.remove();
+  highlight(features[0]);
+  const z = Math.min(Math.floor(map.getZoom()), BASE.maxzoom);
+  const html = features.length ? features.map((f, i) => {
+    const rows = Object.entries(f.properties).sort(([a], [b]) => a.localeCompare(b))
+      .map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('');
+    return `<section data-i="${i}" class="${i ? '' : 'hl'}"><h3>${esc(f.sourceLayer)} ` +
+      `<small>${f.geometry.type}${f.id !== undefined ? ' · id ' + f.id : ''}</small></h3>` +
+      `<table>${rows}</table></section>`;
+  }).join('') : '<i>No features here</i>';
+  inspectPopup = new maplibregl.Popup({ className: 'inspect-popup', maxWidth: '440px' })
+    .setLngLat(e.lngLat)
+    .setHTML(`<div style="color:#666;margin-bottom:4px">${features.length} feature(s), z${z} tiles</div>${html}`)
+    .addTo(map);
+  inspectPopup.on('close', () => highlight(null));
+  inspectPopup.getElement().querySelectorAll('section').forEach(sec => sec.onmouseenter = () => {
+    inspectPopup.getElement().querySelectorAll('section.hl').forEach(s => s.classList.remove('hl'));
+    sec.classList.add('hl');
+    highlight(features[+sec.dataset.i]);
+  });
+});
+
+function select(n, zoom) {
+  if (selected !== null) {
+    map.setFeatureState({ source: 'callouts', id: selected }, { sel: false });
+    markers[selected]?.getElement().classList.remove('sel');
+    list.querySelector(`li[data-n="${selected}"]`)?.classList.remove('sel');
+  }
+  selected = n;
+  map.setFeatureState({ source: 'callouts', id: n }, { sel: true });
+  markers[n]?.getElement().classList.add('sel');
+  const li = list.querySelector(`li[data-n="${n}"]`);
+  li?.classList.add('sel');
+  li?.scrollIntoView({ block: 'nearest' });
+  if (zoom) {
+    const g = callouts[n - 1].geometry;
+    if (g.type === 'Point') map.easeTo({ center: g.coordinates, zoom: Math.max(map.getZoom(), 17) });
+    else map.fitBounds(extent(g.coordinates), { padding: 80, maxZoom: 18 });
+  }
+}
+</script>
+</body>
+</html>
