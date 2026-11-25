@@ -960,6 +960,7 @@ class GeoEngine {
                 }
             }
             userGeometry.phoneHeading = heading
+            analytics.logEvent("streetPreviewGo", null)
             streetPreview.go(userGeometry, gridState, locationProvider, localizedStrings)
         }
     }
@@ -969,6 +970,7 @@ class GeoEngine {
         val results = runBlocking {
             withContext(gridState.treeContext) {
                 val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
+                analytics.logEvent("streetPreviewGo", null)
                 val newLocation = streetPreview.go(userGeometry, gridState, locationProvider, localizedStrings)
                 if (newLocation != null) {
                     streetPreview.getDirectionChoices(gridState, newLocation, localizedStrings)

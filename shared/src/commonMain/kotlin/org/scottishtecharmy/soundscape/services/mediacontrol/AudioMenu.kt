@@ -29,6 +29,7 @@ import org.scottishtecharmy.soundscape.resources.menu_route_next_waypoint
 import org.scottishtecharmy.soundscape.resources.menu_route_previous_waypoint
 import org.scottishtecharmy.soundscape.resources.route_detail_action_start_route
 import org.scottishtecharmy.soundscape.resources.route_detail_action_stop_route
+import org.scottishtecharmy.soundscape.utils.Analytics
 
 /**
  * AudioMenu provides a hierarchical, navigable audio menu controlled by media buttons.
@@ -44,6 +45,7 @@ import org.scottishtecharmy.soundscape.resources.route_detail_action_stop_route
 class AudioMenu(
     private val service: MediaControllableService,
     private val routeDao: RouteDao,
+    private val analytics: Analytics? = null,
 ) {
 
     // ── Menu item types ───────────────────────────────────────────────────────
@@ -97,6 +99,7 @@ class AudioMenu(
     fun select() {
         service.callbackHoldOff()
         val item = menuStack.last().let { it.items[it.currentIndex] }
+        analytics?.logEvent("audio_menu_action", null)
         when (item) {
             is MenuItem.Action -> {
                 item.action()
