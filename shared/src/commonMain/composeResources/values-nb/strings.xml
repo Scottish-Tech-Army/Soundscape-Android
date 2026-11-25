@@ -491,6 +491,10 @@
     <string name="directions_cardinal_west_abb">V</string>
     <string name="directions_cardinal_north_west_abb">NV</string>
     <string name="menu_contact_support">Kontakt brukerstøtte</string>
+    <string name="contact_support_recording_title">Vil du legge ved registreringen av reisen?</string>
+    <string name="contact_support_recording_message">Registreringen av reisen viser hvor du har vært den siste timen. Hvis du legger den ved e-posten, hjelper det oss å forstå problemet.</string>
+    <string name="contact_support_recording_include">Legg ved registrering</string>
+    <string name="contact_support_recording_exclude">Ikke legg ved</string>
     <string name="permissions_required">Appen krever tilgang til stedstjenester for å kunne kjøre.</string>
     <string name="permissions_button">Endre tillatelsene i appinnstillingene</string>
     <string name="first_launch_change_language">Endre språk</string>

@@ -281,6 +281,10 @@
     <string name="menu_help">Yardım</string>
     <string name="menu_rate">Değerlendir</string>
     <string name="menu_contact_support">Destek ile iletişime geç</string>
+    <string name="contact_support_recording_title">Seyahat kaydınız eklensin mi?</string>
+    <string name="contact_support_recording_message">Seyahat kaydı, son bir saat içinde nerelerde bulunduğunuzu gösterir. E-postanıza eklemeniz sorunu anlamamıza yardımcı olur.</string>
+    <string name="contact_support_recording_include">Kaydı ekle</string>
+    <string name="contact_support_recording_exclude">Ekleme</string>
     <string name="menu_advanced_markers_and_routes">Gelişmiş Kayıtlı Noktalar ve Rotalar</string>
     <string name="advanced_markers_and_routes_description">Bu ekran, kayıtlı noktaları ve rotaları dışa veya içe aktarmanıza, ayrıca mevcut tüm kayıtlı noktaları ve rotaları silmenize olanak tanır.</string>
     <string name="ui_back_button_title">Geri</string>

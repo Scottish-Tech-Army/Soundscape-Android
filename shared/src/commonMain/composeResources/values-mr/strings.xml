@@ -1405,6 +1405,10 @@
     <string name="menu_help">मदत</string>
     <string name="menu_rate">रेट करा</string>
     <string name="menu_contact_support">सपोर्टशी संपर्क साधा</string>
+    <string name="contact_support_recording_title">तुमचे प्रवासाचे रेकॉर्डिंग जोडायचे?</string>
+    <string name="contact_support_recording_message">प्रवासाच्या रेकॉर्डिंगमध्ये गेल्या एका तासात तुम्ही कुठे कुठे होता ते दिसते. ते तुमच्या ईमेलमध्ये जोडल्यास आम्हाला समस्या समजण्यास मदत होते.</string>
+    <string name="contact_support_recording_include">रेकॉर्डिंग जोडा</string>
+    <string name="contact_support_recording_exclude">जोडू नका</string>
     <string name="menu_advanced_markers_and_routes">प्रगत मार्कर आणि मार्ग</string>
     <string name="advanced_markers_and_routes_description">या स्क्रीनवरून तुम्ही मार्कर आणि मार्ग एक्सपोर्ट किंवा इम्पोर्ट करू शकता, आणि सर्व विद्यमान मार्कर आणि मार्ग हटवू शकता.</string>
     <string name="ui_back_button_title">मागे</string>

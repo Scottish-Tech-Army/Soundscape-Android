@@ -1155,6 +1155,10 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="menu_help">Taimako</string>
     <string name="menu_rate">Kimanta</string>
     <string name="menu_contact_support">Tuntuɓi Tallafi</string>
+    <string name="contact_support_recording_title">Ka haɗa rikodin tafiyarka?</string>
+    <string name="contact_support_recording_message">Rikodin tafiyarka yana nuna inda ka kasance cikin awa ɗaya da ta gabata. Haɗa shi da imel ɗinka zai taimaka mana mu fahimci matsalar.</string>
+    <string name="contact_support_recording_include">Haɗa rikodin</string>
+    <string name="contact_support_recording_exclude">Kada a haɗa</string>
     <string name="menu_advanced_markers_and_routes">Cikakkun Saitunan Alamomi da Tafarkuna</string>
     <string name="advanced_markers_and_routes_description">Wannan shafin yana baka damar fitarwa ko shigar da alamomi da tafarkuna, da kuma share duk alamomi da tafarkunan da ake da su.</string>
     <string name="ui_back_button_title">Baya</string>

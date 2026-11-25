@@ -532,6 +532,10 @@
     <string name="about_soundscape">O Soundscape usa tecnologia inovadora baseada em áudio para ajudar as pessoas a construir uma consciência mais rica de seus arredores. Isso torna as pessoas mais confiantes e capazes de se locomover com independência.</string>
     <string name="voice_engine">Mecanismo de Texto para Fala</string>
     <string name="menu_contact_support">Contatar o suporte</string>
+    <string name="contact_support_recording_title">Incluir a gravação da sua viagem?</string>
+    <string name="contact_support_recording_message">A gravação da viagem mostra por onde você passou na última hora. Incluí-la no seu e-mail nos ajuda a entender o problema.</string>
+    <string name="contact_support_recording_include">Incluir gravação</string>
+    <string name="contact_support_recording_exclude">Não incluir</string>
     <string name="permissions_required">O aplicativo requer permissões de localização para poder ser executado.</string>
     <string name="permissions_button">Alterar as permissões nas configurações do aplicativo</string>
     <string name="first_launch_change_language">Alterar idioma</string>

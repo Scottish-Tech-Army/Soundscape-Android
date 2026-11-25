@@ -1295,6 +1295,10 @@
     <string name="menu_help">Помощ</string>
     <string name="menu_rate">Оценете</string>
     <string name="menu_contact_support">Свързване с поддръжката</string>
+    <string name="contact_support_recording_title">Да се включи ли записът на пътуването?</string>
+    <string name="contact_support_recording_message">Записът на пътуването показва къде сте били през последния час. Ако го включите в имейла си, ще ни помогнете да разберем проблема.</string>
+    <string name="contact_support_recording_include">Включване на записа</string>
+    <string name="contact_support_recording_exclude">Без записа</string>
     <string name="menu_advanced_markers_and_routes">Разширени маркери и маршрути</string>
     <string name="advanced_markers_and_routes_description">Този екран Ви позволява да експортирате или импортирате маркери и маршрути и да изтриете всички съществуващи маркери и маршрути.</string>
     <string name="ui_back_button_title">Назад</string>

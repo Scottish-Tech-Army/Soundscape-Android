@@ -235,6 +235,10 @@
     <string name="menu_rate">Oceń aplikację</string>
     <string name="menu_help_and_tutorials">Pomoc i samouczki</string>
     <string name="menu_contact_support">Kontakt z pomocą techniczną</string>
+    <string name="contact_support_recording_title">Dołączyć zapis podróży?</string>
+    <string name="contact_support_recording_message">Zapis podróży pokazuje Twoje przemieszczanie się w ciągu ostatniej godziny. Dołączenie go do e-maila pomoże nam zrozumieć problem.</string>
+    <string name="contact_support_recording_include">Dołącz zapis</string>
+    <string name="contact_support_recording_exclude">Nie dołączaj</string>
     <string name="ui_back_button_title">Wstecz</string>
     <string name="behavior_experiences_route_nav_title">Szczegóły trasy</string>
     <string name="behavior_scavenger_hunt_callout_next_flag">Ustawiono naprowadzanie na %1$s, do celu: %2$s, %3$s z %4$s</string>

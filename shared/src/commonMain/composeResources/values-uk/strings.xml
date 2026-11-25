@@ -542,6 +542,10 @@
     <string name="settings_show_map">Показувати карту на екрані</string>
     <string name="settings_search_results_language">Мова пошуку</string>
     <string name="menu_contact_support">Звернутися до служби підтримки</string>
+    <string name="contact_support_recording_title">Додати запис подорожі?</string>
+    <string name="contact_support_recording_message">Запис подорожі показує, де ви були протягом останньої години. Якщо ви додасте його до листа, це допоможе нам зрозуміти проблему.</string>
+    <string name="contact_support_recording_include">Додати запис</string>
+    <string name="contact_support_recording_exclude">Не додавати</string>
     <string name="route_detail_action_previous_disabled_hint">Неактивно, оскільки маршрут уже на початку</string>
     <string name="route_detail_action_next_disabled_hint">Неактивно, оскільки маршрут уже в кінці</string>
     <string name="osm_entrance">Вхід</string>

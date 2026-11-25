@@ -491,6 +491,10 @@
     <string name="directions_cardinal_west_abb">W</string>
     <string name="directions_cardinal_north_west_abb">NW</string>
     <string name="menu_contact_support">Contact opnemen met ondersteuning</string>
+    <string name="contact_support_recording_title">Reisregistratie bijvoegen?</string>
+    <string name="contact_support_recording_message">Uw reisregistratie laat zien waar u het afgelopen uur bent geweest. Als u die bij uw e-mail voegt, helpt dat ons het probleem te begrijpen.</string>
+    <string name="contact_support_recording_include">Registratie bijvoegen</string>
+    <string name="contact_support_recording_exclude">Niet bijvoegen</string>
     <string name="permissions_required">De app heeft locatie-machtigingen nodig om te kunnen werken.</string>
     <string name="permissions_button">Wijzig de machtigingen in de app-instellingen</string>
     <string name="first_launch_change_language">Taal wijzigen</string>

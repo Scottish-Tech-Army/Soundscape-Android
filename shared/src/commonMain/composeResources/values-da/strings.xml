@@ -504,6 +504,10 @@
     <string name="route_detail_action_next_disabled_hint">Deaktiveret, fordi ruten allerede er ved slutningen</string>
     <string name="directions_near_road_and_settlement">Nær %1$s og tæt på %2$s</string>
     <string name="menu_contact_support">Kontakt support</string>
+    <string name="contact_support_recording_title">Vil du vedhæfte optagelsen af din rejse?</string>
+    <string name="contact_support_recording_message">Optagelsen af din rejse viser, hvor du har været den seneste time. Hvis du vedhæfter den i din e-mail, hjælper det os med at forstå problemet.</string>
+    <string name="contact_support_recording_include">Vedhæft optagelse</string>
+    <string name="contact_support_recording_exclude">Vedhæft ikke</string>
     <string name="permissions_required">Appen kræver tilladelse til at bruge lokalitetstjenester for at kunne køre.</string>
     <string name="permissions_button">Ændr tilladelser i appens indstillinger</string>
     <string name="osm_entrance">Indgang</string>

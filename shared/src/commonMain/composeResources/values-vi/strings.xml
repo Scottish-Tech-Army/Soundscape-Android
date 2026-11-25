@@ -962,6 +962,10 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="menu_help">Trợ giúp</string>
     <string name="menu_rate">Đánh giá</string>
     <string name="menu_contact_support">Liên hệ hỗ trợ</string>
+    <string name="contact_support_recording_title">Đính kèm bản ghi hành trình của bạn?</string>
+    <string name="contact_support_recording_message">Bản ghi hành trình cho biết bạn đã ở đâu trong một giờ qua. Đính kèm bản ghi vào email giúp chúng tôi hiểu được sự cố.</string>
+    <string name="contact_support_recording_include">Đính kèm bản ghi</string>
+    <string name="contact_support_recording_exclude">Không đính kèm</string>
     <string name="menu_advanced_markers_and_routes">Điểm đánh dấu và Lộ trình nâng cao</string>
     <string name="advanced_markers_and_routes_description">Màn hình này cho phép bạn xuất hoặc nhập điểm đánh dấu và lộ trình, cũng như xóa tất cả điểm đánh dấu và lộ trình hiện có.</string>
     <string name="ui_back_button_title">Quay lại</string>

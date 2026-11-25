@@ -739,6 +739,10 @@
     <string name="menu_help">Помоћ</string>
     <string name="menu_rate">Оцени</string>
     <string name="menu_contact_support">Контактирај подршку</string>
+    <string name="contact_support_recording_title">Приложити снимак путовања?</string>
+    <string name="contact_support_recording_message">Снимак путовања показује где сте били током последњег сата. Ако га приложите имејлу, помоћи ћете нам да разумемо проблем.</string>
+    <string name="contact_support_recording_include">Приложи снимак</string>
+    <string name="contact_support_recording_exclude">Немој приложити</string>
     <string name="menu_advanced_markers_and_routes">Напредна подешавања маркера и рута</string>
     <string name="advanced_markers_and_routes_description">Овај екран вам омогућава да извезете или увезете маркере и руте и да обришете све постојеће маркере и руте.</string>
     <string name="ui_back_button_title">Назад</string>

@@ -227,6 +227,10 @@
     <string name="menu_rate">Gefa einkunn</string>
     <string name="menu_help_and_tutorials">Hjálp og kennsluefni</string>
     <string name="menu_contact_support">Hafa samband við þjónustuver</string>
+    <string name="contact_support_recording_title">Viltu láta ferðaskráninguna fylgja með?</string>
+    <string name="contact_support_recording_message">Ferðaskráningin sýnir hvar þú hefur verið síðustu klukkustundina. Ef hún fylgir tölvupóstinum hjálpar það okkur að skilja vandamálið.</string>
+    <string name="contact_support_recording_include">Láta skráningu fylgja</string>
+    <string name="contact_support_recording_exclude">Ekki láta fylgja</string>
     <string name="ui_back_button_title">Til baka</string>
     <string name="behavior_experiences_route_nav_title">Upplýsingar um leið</string>
     <string name="behavior_scavenger_hunt_callout_next_flag">Hljóðviti settur á %1$s, %2$s í burtu, %3$s af %4$s</string>

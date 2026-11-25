@@ -383,6 +383,10 @@
     <string name="menu_help">Ajuda</string>
     <string name="menu_rate">Valora</string>
     <string name="menu_contact_support">Contacta amb el suport</string>
+    <string name="contact_support_recording_title">Vols incloure l'enregistrament del trajecte?</string>
+    <string name="contact_support_recording_message">L'enregistrament de trajectes mostra on has estat durant l'última hora. Incloure'l al correu ens ajuda a entendre el problema.</string>
+    <string name="contact_support_recording_include">Inclou l'enregistrament</string>
+    <string name="contact_support_recording_exclude">No l'incloguis</string>
     <string name="menu_advanced_markers_and_routes">Marcadors i rutes avançats</string>
     <string name="advanced_markers_and_routes_description">Aquesta pantalla et permet exportar o importar marcadors i rutes, i suprimir tots els marcadors i rutes existents.</string>
     <string name="ui_back_button_title">Enrere</string>

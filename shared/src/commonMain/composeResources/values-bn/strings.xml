@@ -794,6 +794,10 @@
     <string name="menu_help">সহায়তা</string>
     <string name="menu_rate">রেটিং দিন</string>
     <string name="menu_contact_support">সহায়তার সাথে যোগাযোগ করুন</string>
+    <string name="contact_support_recording_title">আপনার ভ্রমণ রেকর্ডিং যোগ করবেন?</string>
+    <string name="contact_support_recording_message">আপনার ভ্রমণ রেকর্ডিং দেখায় গত এক ঘণ্টায় আপনি কোথায় কোথায় ছিলেন। ইমেলে এটি যোগ করলে আমরা সমস্যাটি বুঝতে পারব।</string>
+    <string name="contact_support_recording_include">রেকর্ডিং যোগ করুন</string>
+    <string name="contact_support_recording_exclude">যোগ করবেন না</string>
     <string name="menu_advanced_markers_and_routes">উন্নত মার্কার ও রুট</string>
     <string name="advanced_markers_and_routes_description">এই স্ক্রিন থেকে আপনি মার্কার ও রুট এক্সপোর্ট বা ইমপোর্ট করতে পারবেন, এবং সমস্ত বিদ্যমান মার্কার ও রুট মুছে ফেলতে পারবেন।</string>
     <string name="ui_back_button_title">পেছনে</string>

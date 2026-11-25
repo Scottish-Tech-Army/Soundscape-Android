@@ -1335,6 +1335,10 @@
     <string name="menu_help">مدد</string>
     <string name="menu_rate">درجہ بندی کریں</string>
     <string name="menu_contact_support">معاونت سے رابطہ کریں</string>
+    <string name="contact_support_recording_title">اپنی سفر کی ریکارڈنگ شامل کریں؟</string>
+    <string name="contact_support_recording_message">سفر کی ریکارڈنگ دکھاتی ہے کہ پچھلے ایک گھنٹے میں آپ کہاں کہاں رہے۔ اسے اپنی ای میل میں شامل کرنے سے ہمیں مسئلہ سمجھنے میں مدد ملتی ہے۔</string>
+    <string name="contact_support_recording_include">ریکارڈنگ شامل کریں</string>
+    <string name="contact_support_recording_exclude">شامل نہ کریں</string>
     <string name="menu_advanced_markers_and_routes">ایڈوانسڈ مارکرز اور روٹس</string>
     <string name="advanced_markers_and_routes_description">یہ اسکرین آپ کو مارکرز اور روٹس ایکسپورٹ یا امپورٹ کرنے، اور تمام موجودہ مارکرز اور روٹس حذف کرنے کی سہولت دیتی ہے۔</string>
     <string name="ui_back_button_title">واپس</string>

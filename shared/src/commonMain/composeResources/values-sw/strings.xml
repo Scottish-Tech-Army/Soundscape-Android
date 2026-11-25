@@ -735,6 +735,10 @@
     <string name="menu_help">Usaidizi</string>
     <string name="menu_rate">Kadiria</string>
     <string name="menu_contact_support">Wasiliana na Usaidizi</string>
+    <string name="contact_support_recording_title">Ungependa kuambatisha rekodi ya safari yako?</string>
+    <string name="contact_support_recording_message">Rekodi ya safari inaonyesha mahali ulipokuwa katika saa moja iliyopita. Kuiambatisha kwenye barua pepe yako kunatusaidia kuelewa tatizo.</string>
+    <string name="contact_support_recording_include">Ambatisha rekodi</string>
+    <string name="contact_support_recording_exclude">Usiambatishe</string>
     <string name="menu_advanced_markers_and_routes">Alama na Njia za Juu</string>
     <string name="advanced_markers_and_routes_description">Skrini hii inakuwezesha kuhamisha au kuingiza alama na njia, na kufuta alama na njia zote zilizopo.</string>
     <string name="ui_back_button_title">Rudi</string>

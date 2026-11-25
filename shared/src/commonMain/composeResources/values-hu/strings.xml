@@ -1098,6 +1098,10 @@
     <string name="menu_help">Súgó</string>
     <string name="menu_rate">Értékelés</string>
     <string name="menu_contact_support">Kapcsolatfelvétel az ügyfélszolgálattal</string>
+    <string name="contact_support_recording_title">Csatolja az utazás rögzítését?</string>
+    <string name="contact_support_recording_message">Az utazás rögzítése megmutatja, merre járt az elmúlt órában. Ha csatolja az e-mailhez, azzal segít nekünk megérteni a problémát.</string>
+    <string name="contact_support_recording_include">Rögzítés csatolása</string>
+    <string name="contact_support_recording_exclude">Nem csatolom</string>
     <string name="menu_advanced_markers_and_routes">Speciális jelölő- és útvonalbeállítások</string>
     <string name="advanced_markers_and_routes_description">Ezen a képernyőn exportálhatja vagy importálhatja a jelölőket és útvonalakat, és törölheti az összes meglévő jelölőt és útvonalat.</string>
     <string name="ui_back_button_title">Vissza</string>

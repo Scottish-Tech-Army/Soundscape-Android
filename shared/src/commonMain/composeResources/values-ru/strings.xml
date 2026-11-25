@@ -458,6 +458,10 @@
     <string name="route_detail_action_previous_disabled_hint">Неактивно, потому что маршрут уже находится в начале</string>
     <string name="route_detail_action_next_disabled_hint">Неактивно, потому что маршрут уже находится в конце</string>
     <string name="menu_contact_support">Связаться со службой поддержки</string>
+    <string name="contact_support_recording_title">Приложить запись поездки?</string>
+    <string name="contact_support_recording_message">Запись поездки показывает, где вы были за последний час. Если вы приложите её к письму, это поможет нам разобраться в проблеме.</string>
+    <string name="contact_support_recording_include">Приложить запись</string>
+    <string name="contact_support_recording_exclude">Не прикладывать</string>
     <string name="first_launch_permissions_motion">Движение и фитнес</string>
     <string name="permissions_required">Для работы приложению требуются разрешения на доступ к местоположению.</string>
     <string name="permissions_button">Изменить разрешения в настройках приложения</string>

@@ -489,6 +489,10 @@
     <string name="directions_cardinal_west_abb">V</string>
     <string name="directions_cardinal_north_west_abb">NV</string>
     <string name="menu_contact_support">Kontakta supporten</string>
+    <string name="contact_support_recording_title">Vill du bifoga inspelningen av resan?</string>
+    <string name="contact_support_recording_message">Inspelningen av resan visar var du har varit den senaste timmen. Om du bifogar den till e-postmeddelandet hjälper det oss att förstå problemet.</string>
+    <string name="contact_support_recording_include">Bifoga inspelning</string>
+    <string name="contact_support_recording_exclude">Bifoga inte</string>
     <string name="permissions_required">Appen kräver platsbehörighet för att kunna köras.</string>
     <string name="permissions_button">Ändra behörigheterna i appinställningarna</string>
     <string name="first_launch_change_language">Ändra språk</string>
