@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
+#include <cstdarg>
+#include <cstdio>
 
 namespace soundscape {
 
@@ -33,6 +35,7 @@ namespace soundscape {
         auto result = builder.openStream(m_Stream);
         if (result != oboe::Result::OK) {
             SUPPORT_LOG("AudioMixer: failed to open stream: %s", oboe::convertToText(result));
+            setDescription("failed to open: %s, no audio output", oboe::convertToText(result));
             return false;
         }
 
@@ -43,10 +46,17 @@ namespace soundscape {
                     m_SampleRate, m_Stream->getChannelCount(),
                     oboe::convertToText(m_Stream->getSharingMode()),
                     m_Stream->getFramesPerCallback(), m_Stream->getBufferCapacityInFrames());
+        setDescription("deviceId=%d, api=%s, rate=%d, channels=%d, sharing=%s, "
+                       "framesPerCallback=%d, bufferCapacity=%d",
+                       m_Stream->getDeviceId(), oboe::convertToText(m_Stream->getAudioApi()),
+                       m_SampleRate, m_Stream->getChannelCount(),
+                       oboe::convertToText(m_Stream->getSharingMode()),
+                       m_Stream->getFramesPerCallback(), m_Stream->getBufferCapacityInFrames());
 
         m_Spatializer = std::make_unique<SteamAudioSpatializer>(m_SampleRate, FRAME_SIZE);
         if (!m_Spatializer->isInitialized()) {
             SUPPORT_LOG("AudioMixer: spatializer init failed");
+            setDescription("spatializer init failed, no audio output");
             m_Stream->close();
             m_Stream.reset();
             return false;
@@ -63,6 +73,7 @@ namespace soundscape {
         auto result = m_Stream->requestStart();
         if (result != oboe::Result::OK) {
             SUPPORT_LOG("AudioMixer: failed to start stream: %s", oboe::convertToText(result));
+            setDescription("failed to start: %s, no audio output", oboe::convertToText(result));
             m_Stream->close();
             m_Stream.reset();
             return false;
@@ -135,6 +146,7 @@ namespace soundscape {
 
     bool AudioMixer::restart() {
         SUPPORT_LOG("AudioMixer: restarting after disconnect");
+        m_Restarts.fetch_add(1);
         // Stream is already closed by Oboe before onErrorAfterClose fires; just drop the handle.
         m_Stream.reset();
 
@@ -165,6 +177,30 @@ namespace soundscape {
         return startStream();
     }
 
+    void AudioMixer::setDescription(const char *format, ...) {
+        char buffer[256];
+        va_list args;
+        va_start(args, format);
+        vsnprintf(buffer, sizeof(buffer), format, args);
+        va_end(args);
+        std::lock_guard<std::mutex> guard(m_DescriptionMutex);
+        m_Description = buffer;
+    }
+
+    std::string AudioMixer::describe() {
+        std::string result;
+        {
+            std::lock_guard<std::mutex> guard(m_DescriptionMutex);
+            result = m_Description;
+        }
+        int restarts = m_Restarts.load();
+        if (restarts > 0)
+            result += ", restarted " + std::to_string(restarts) + "x";
+        if (m_RestartPending.load())
+            result += ", restart pending (deferred while SCO is active)";
+        return result;
+    }
+
     void AudioMixer::onErrorAfterClose(oboe::AudioStream * /*stream*/, oboe::Result result) {
         SUPPORT_LOG("AudioMixer: onErrorAfterClose: %s", oboe::convertToText(result));
         if (result == oboe::Result::ErrorDisconnected) {
@@ -176,6 +212,8 @@ namespace soundscape {
             }
         } else {
             SUPPORT_LOG("AudioMixer: stream closed by error, not restarting, no audio output");
+            setDescription("closed by error %s, not restarted, no audio output",
+                           oboe::convertToText(result));
         }
     }
 

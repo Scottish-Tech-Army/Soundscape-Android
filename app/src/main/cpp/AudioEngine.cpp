@@ -594,6 +594,19 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_getQueueDepth(JNIEn
 }
 
 extern "C"
+JNIEXPORT jstring JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_describeAudioStream(
+        JNIEnv *env,
+        jobject thiz MAYBE_UNUSED,
+        jlong engine_handle) {
+    auto *ae = reinterpret_cast<soundscape::AudioEngine *>(engine_handle);
+    std::string description = "no audio engine";
+    if (ae && ae->GetMixer())
+        description = ae->GetMixer()->describe();
+    return env->NewStringUTF(description.c_str());
+}
+
+extern "C"
 JNIEXPORT jboolean JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_isHandleActive(
         JNIEnv *env MAYBE_UNUSED,

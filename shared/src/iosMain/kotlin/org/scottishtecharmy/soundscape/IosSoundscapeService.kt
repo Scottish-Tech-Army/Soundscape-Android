@@ -875,6 +875,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         longitude: Double,
         heading: Double,
     ) {
+        logger.d { "speakText $text" }
         audioEngine.createTextToSpeech(text, type, latitude, longitude, heading)
     }
 
@@ -902,6 +903,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     }
 
     override fun speak2dText(text: String, clearQueue: Boolean, earcon: String?) {
+        logger.d { "speak2dText $text" }
         if (clearQueue) audioEngine.clearTextToSpeechQueue()
         if (earcon != null) audioEngine.createEarcon(earcon, AudioType.STANDARD)
         if (text.isNotEmpty()) audioEngine.createTextToSpeech(text, AudioType.STANDARD)

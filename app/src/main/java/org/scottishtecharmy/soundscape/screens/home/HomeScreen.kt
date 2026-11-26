@@ -237,7 +237,7 @@ fun HomeScreen(
                 // the stopped service and restart it from a freshly-registered
                 // ActivityResultLauncher. Holding a MainActivity reference across recreate
                 // would crash when launch() is invoked on the destroyed activity's launcher.
-                activity.setServiceState(false)
+                activity.setServiceState(false, stopReason = "app language changed")
             },
             onGetLanguageMismatch = { getLanguageMismatch() },
             // Not started: the sleep screen starts it only for wake on leave, so that plain sleep
@@ -346,7 +346,7 @@ fun HomeScreen(
                 // so it auto-restarts the old service instance - with its already-running
                 // GeoEngine/AutoCallout speaking a stale location callout - independent of
                 // the freshly relaunched activity. Same fix as onSetApplicationLocale above.
-                activity.setServiceState(false)
+                activity.setServiceState(false, stopReason = "settings reset")
                 val launch = activity.packageManager.getLaunchIntentForPackage(activity.packageName)
                 if (launch != null) {
                     launch.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

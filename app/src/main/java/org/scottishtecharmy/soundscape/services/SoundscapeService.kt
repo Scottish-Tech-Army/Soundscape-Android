@@ -21,6 +21,7 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
+import android.os.SystemClock
 import android.widget.Toast
 import androidx.annotation.OptIn
 import androidx.core.app.NotificationCompat
@@ -187,6 +188,11 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     // Wake lock — keeps CPU running while screen is off so audio callbacks continue
     private var wakeLock: PowerManager.WakeLock? = null
+
+    // For the support log: when this instance was created, and why it was asked to stop - see
+    // stopForegroundService and onDestroy. A destroy with no reason is one we didn't ask for.
+    private val createdAtMillis = SystemClock.elapsedRealtime()
+    private var stopReason: String? = null
 
     // Audio engine
     var audioEngine = NativeAudioEngine(this)
@@ -604,6 +610,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     fun stopSnooze() {
         logger.d { "stopSnooze" }
         if (!snoozing) return
+        if (stopReason == null) stopReason = "wake on leave turned off while snoozing"
         abandonAudioFocus()
         stopSelf()
     }
@@ -722,11 +729,23 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         }
     }
 
+    /**
+     * The user swiped Soundscape away from recents, or something removed the task for them (a
+     * task cleaner, an OEM battery manager). The service stops with the app, as it always has,
+     * but here rather than through android:stopWithTask, which stops it without calling this -
+     * leaving a support log that can't tell a removed task from the system killing the service.
+     */
     override fun onTaskRemoved(rootIntent: Intent?) {
-        logger.d { "onTaskRemoved for service - ignoring, as we want to keep running" }
+        logger.i { "onTaskRemoved: the app's task was removed (swiped from recents or a task cleaner)" }
+        stopForegroundService(reason = "task removed")
     }
 
     override fun onDestroy() {
+        val ranForSeconds = (SystemClock.elapsedRealtime() - createdAtMillis) / 1000
+        logger.i {
+            "onDestroy after ${ranForSeconds / 60}m ${ranForSeconds % 60}s: " +
+                (stopReason ?: "no stop was requested, so the system stopped the service")
+        }
         // Guarded in case a replacement instance has already registered itself.
         if (runningInstance === this) runningInstance = null
         suppressionJob?.cancel()
@@ -742,7 +761,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         }
         super.onDestroy()
 
-        logger.d { "onDestroy" }
         audioMenu?.destroy()
         audioEngine.destroyBeacon(audioBeacon)
         audioBeacon = 0
@@ -838,7 +856,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
      * @param forSleep If true, the current route/beacon playback state is persisted so it can be
      * automatically resumed when the service is next started (used by sleep mode).
      */
-    fun stopForegroundService(forSleep: Boolean = false) {
+    fun stopForegroundService(forSleep: Boolean = false, reason: String = "stop requested") {
+        logger.i { "stopForegroundService: $reason" }
+        // The first reason given is the real one: exiting the app removes its task as well
+        if (stopReason == null) stopReason = reason
         if (forSleep) {
             saveSleepPlaybackState()
         }
@@ -1152,6 +1173,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             logger.w { "speak2dText: Could not get audio focus." }
             return
         }
+        logger.d { "speak2dText $text" }
         if (clearQueue)
             audioEngine.clearTextToSpeechQueue()
         if (earcon != null) {

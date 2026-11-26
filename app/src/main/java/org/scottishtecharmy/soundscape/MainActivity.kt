@@ -84,6 +84,7 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.AndroidMarkersAndRoutesIo
 import org.scottishtecharmy.soundscape.utils.LogcatHelper
+import org.scottishtecharmy.soundscape.utils.ProcessExitLogger
 import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import java.io.File
@@ -346,7 +347,7 @@ class MainActivity : AppCompatActivity() {
                 "Permissions have changed $locationPermission -> $locationPermissionGranted and $notificationPermission -> $notificationPermissionGranted"
             }
             when (locationPermissionGranted) {
-                0 -> setServiceState(false)
+                0 -> setServiceState(false, stopReason = "location permission removed")
                 1 -> setServiceState(true)
             }
         } else {
@@ -904,6 +905,16 @@ class MainActivity : AppCompatActivity() {
 
         report.append(reportLine("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
 
+        // Things otherwise only logged when they happen, which a long session can scroll out of
+        // the log buffer before the user gets here
+        val audioRows = soundscapeServiceConnection.soundscapeService?.audioEngine
+            ?.describeForSupport()
+            ?: listOf("Audio stream" to "service not running")
+        audioRows.forEach { (key, value) -> report.append(reportLine(key, value)) }
+        ProcessExitLogger.describePreviousExits(applicationContext)?.forEach {
+            report.append(reportLine("Previous exit", it))
+        }
+
         val extractPath =
             sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)
                 ?: SELECTED_STORAGE_DEFAULT
@@ -1018,7 +1029,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun exitApp() {
-        soundscapeServiceConnection.stopService()
+        soundscapeServiceConnection.stopService(reason = "user exited the app")
         finishAndRemoveTask()
     }
 
@@ -1171,7 +1182,12 @@ class MainActivity : AppCompatActivity() {
     // Set on waking from sleep until the service start that the wake leads to has happened,
     // which may be deferred behind a permission request or to onResume
     private var resumeSleepPlaybackOnStart = false
-    fun setServiceState(newServiceState: Boolean, sleeping: Boolean? = null) {
+    /** @param stopReason why the service is being turned off, for the support log */
+    fun setServiceState(
+        newServiceState: Boolean,
+        sleeping: Boolean? = null,
+        stopReason: String = "service turned off",
+    ) {
         logger.d {
             "setServiceState $newServiceState, sleeping = $sleeping, serviceSleeping = $serviceSleeping"
         }
@@ -1186,7 +1202,10 @@ class MainActivity : AppCompatActivity() {
                 if (sleeping == true) {
                     AnalyticsProvider.getInstance().logEvent("sleepEnter", null)
                 }
-                soundscapeServiceConnection.stopService(forSleep = sleeping == true)
+                soundscapeServiceConnection.stopService(
+                    forSleep = sleeping == true,
+                    reason = if (sleeping == true) "user put the app to sleep" else stopReason
+                )
             } else {
                 val snoozingService = SoundscapeService.runningInstance?.takeIf { it.snoozing }
                 if (snoozingService != null) {
