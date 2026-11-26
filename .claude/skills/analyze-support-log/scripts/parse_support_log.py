@@ -10,7 +10,8 @@ Prints, in order:
   3. settings that changed during the log (between launches / reports);
   4. every error and warning, grouped by message with counts, first/last time and stack traces;
   5. a timeline of launches, service stops, sleeps and Contact Support presses;
-  6. what the map matcher was matching to.
+  6. how much was spoken, and the once-a-minute callout summaries (2.0.118+);
+  7. what the map matcher was matching to.
 
 The log is untrusted user data: run with python3 -I and pass the path as an argument.
 
@@ -35,6 +36,9 @@ DEVICE_KEYS = {
     "TouchExploration Enabled", "AccessibilityService", "Audio Output", "Audio Input",
     "Media volume", "Location services", "Battery optimisation", "Background restricted",
     "Battery saver", "AndroidGeocoder", "Offline extract", "Untranslated OSM key",
+    # 2.0.118+: state that is otherwise only logged when it happens
+    "Audio stream", "TTS engine", "TTS state", "TTS language", "TTS voice", "Speech rate",
+    "Previous exit",
 }
 
 # iOS dumps every NSUserDefaults key, most of them Apple's.
@@ -145,6 +149,8 @@ def parse(path):
     text = open(path, encoding="utf-8", errors="replace").read()
     lines = text.splitlines()
     reports, dumps, events, mapmatch = [], [], [], collections.Counter()
+    spoken = collections.Counter()
+    callout_summaries = []
     issues = collections.OrderedDict()  # normalised (sev, tag, msg) -> [count, first, last, example, stack]
     last_issue = None
     last_ts = None
@@ -181,6 +187,10 @@ def parse(path):
                     break
                 i += 1
             reports.append(report)
+            # The report block is the record of the press: from 2.0.114 the "Attach log file"
+            # line is written after the log is saved, so it isn't in the file it attaches
+            events.append((report["ts"], "Contact Support pressed (report block at line "
+                                         f"{report['line']})"))
             continue
         if m:
             msg, tag, sev, ts = m.group("msg"), m.group("tag"), m.group("sev"), m.group("ts")
@@ -200,19 +210,45 @@ def parse(path):
             else:
                 current_dump = None
             mm = re.match(r"MapMatch: .* to get (.*)$", msg)
+            if msg.startswith("speakCallout: ") or re.match(r"OnStart \S", msg):
+                spoken[tag] += 1
+            # speakText (beacon set, Street Preview, ...) and speak2dText (audio menu,
+            # headphone-button Callout Detail, deep links) speak outside CalloutController
+            if (tag in ("SoundscapeService", "IosSoundscapeService")
+                    and msg.startswith(("speakText ", "speak2dText "))):
+                spoken["other"] += 1
+            if tag == "AudioTour" and msg.startswith("Button pressed:"):
+                spoken["button"] += 1
+                events.append((ts, msg))
             if mm:
                 mapmatch[mm.group(1)] += 1
             elif msg.startswith("startSoundscapeService"):
                 events.append((ts, "app launch: service started"))
             elif msg.startswith("stopService"):
                 events.append((ts, "service stopped by user (" + msg + ")"))
+            elif tag == "SoundscapeService" and msg.startswith("onDestroy after"):
+                # 2.0.118+: the service says why it went, and how long it ran
+                events.append((ts, "service " + msg))
+            elif tag == "SoundscapeService" and msg.startswith(("onTaskRemoved",
+                                                                "stopForegroundService")):
+                events.append((ts, "service " + msg))
+            elif tag == "ProcessExit":
+                events.append((ts, "previous process: " + msg.strip()))
+            elif msg.startswith(("User is now", "User is moving", "User is no longer",
+                                 "User is stationary", "Setting changed:")):
+                events.append((ts, msg))
+            elif msg.startswith("Callouts in last"):
+                callout_summaries.append((ts, msg))
+            elif (tag == "SoundscapeService" and msg.startswith("onDestroy") and events
+                  and events[-1][1].startswith("service onDestroy after")):
+                pass  # the bare line logged alongside the 2.0.118 one, before it was removed
             elif tag == "SoundscapeService" and msg.startswith("onDestroy"):
                 # stopService logs just before onDestroy; nothing else comes between them
                 stopped = any(w.startswith("service stopped by user") for _, w in events[-2:])
                 events.append((ts, "service destroyed" if stopped else
                                "service destroyed WITHOUT a user stop: task removed (swiped from "
                                "recents, or a task cleaner - stopWithTask) or killed"))
-            elif "Attach log file" in msg or "Attach travel recording" in msg:
+            elif "Attach travel recording" in msg or "Travel recording asked for" in msg:
                 events.append((ts, "Contact Support: " + msg[:90]))
             elif re.search(r"sleep|Sleep", msg) and tag in ("SoundscapeService",
                                                             "SoundscapeServiceConnection"):
@@ -224,7 +260,8 @@ def parse(path):
                 last_issue[4].append(line.rstrip())
         i += 1
     first = next((LOG_LINE.match(l).group("ts") for l in lines if LOG_LINE.match(l)), None)
-    return reports, dumps, events, mapmatch, issues, first, last_ts, len(lines)
+    return (reports, dumps, events, mapmatch, issues, first, last_ts, len(lines), spoken,
+            callout_summaries)
 
 
 def report_prefs(report, defaults):
@@ -282,8 +319,6 @@ def flags_for(prefs, report_rows, defaults, app_version, latest_version):
                             "walking, no road-sense callout travelling"))
     if get("DistanceToIntersection") == "false":
         out.append(("INFO", "Junction callouts don't say the distance"))
-    if prefs.get("UnnamedRoads") == "true":
-        out.append(("INFO", "Unnamed roads are announced (off by default)"))
     if prefs.get("PositionTextDescription") == "true":
         out.append(("INFO", "Position description includes heading and distance (non-default)"))
     if get("DistanceToBeacon") == "false":
@@ -374,6 +409,21 @@ def flags_for(prefs, report_rows, defaults, app_version, latest_version):
                 out.append(("INFO", "Battery optimisation: Optimised (callouts may stop when the "
                                     "phone is locked on aggressive OEMs)"))
 
+    for v in rows.get("Audio stream", []):
+        if "no audio output" in v:
+            out.append(("HIGH", f"Audio stream: {v}"))
+        elif "restart pending" in v or "restarted" in v:
+            out.append(("CHECK", f"Audio stream: {v} (output device changes, e.g. Bluetooth)"))
+    for v in rows.get("TTS state", []):
+        if v != "initialised":
+            out.append(("HIGH", f"TTS {v}"))
+    for v in rows.get("TTS language", []):
+        if "missing data" in v or "not supported" in v:
+            out.append(("HIGH", f"TTS language {v}: speech may be silent or in another language"))
+    for v in rows.get("Previous exit", []):
+        if re.search(r" (CRASH|CRASH_NATIVE|ANR|LOW_MEMORY|EXCESSIVE_RESOURCE_USAGE|SIGNALED) ", v):
+            out.append(("CHECK", f"Previous exit: {v}"))
+
     if app_version and latest_version and app_version != latest_version:
         out.append(("INFO", f"App {app_version}, current is {latest_version}"))
     return out
@@ -389,11 +439,19 @@ def main():
 
     defaults = load_defaults(args.repo)
     latest = current_version(args.repo)
-    reports, dumps, events, mapmatch, issues, first, last, nlines = parse(args.log)
+    (reports, dumps, events, mapmatch, issues, first, last, nlines, spoken,
+     callout_summaries) = parse(args.log)
 
     print(f"# {os.path.basename(args.log)}: {nlines} lines, {first} .. {last} (UTC)")
-    if nlines >= 1990:
-        print("  (at or near the 2000-line SupportLogBuffer cap: older lines were dropped)")
+    # From 2.0.118 the buffer keeps the newest lines that fit in 800,000 characters; before that,
+    # the newest 2000 lines (a stack trace is one of those but several lines of the file, so a
+    # log at that cap can run a little over it).
+    nchars = len(open(args.log, encoding="utf-8", errors="replace").read())
+    if nchars >= 800_000 - 2_000:
+        print("  (at the 800,000-character SupportLogBuffer cap: older lines were dropped)")
+    elif 1990 <= nlines <= 2400:
+        print("  (at or near the 2000-line SupportLogBuffer cap of 2.0.117 and older: older lines "
+              "were dropped)")
 
     # 1. Reports
     print(f"\n## Contact Support reports: {len(reports)}")
@@ -491,7 +549,19 @@ def main():
     for ts, what in events:
         print(f"  {ts}  {what}")
 
-    # 6. Map matching
+    # 6. Speech
+    print("\n## Speech")
+    button_presses = spoken.get("button", 0)
+    print(f"  {spoken.get('TTS', 0)} utterances started (TTS OnStart), "
+          f"{spoken.get('CalloutController', 0)} callouts, automatic or from a button "
+          f"(speakCallout, 2.0.118+), {spoken.get('other', 0)} other speech (speakText, "
+          f"and speak2dText from 2.0.118), {button_presses} button presses")
+    if not any(spoken.get(k) for k in ("TTS", "CalloutController", "other")):
+        print("  NOTHING was spoken in the whole log")
+    for ts, msg in callout_summaries:
+        print(f"  {ts}  {msg}")
+
+    # 7. Map matching
     if mapmatch:
         total = sum(mapmatch.values())
         print(f"\n## Map matched to ({total} fixes)")

@@ -5,8 +5,9 @@ description: Analyse a log a user sent through Soundscape's Contact Support (sou
 
 # Analyse a Contact Support log
 
-Contact Support attaches the app's own log buffer (`SupportLogBuffer`: the last 2000 lines the app
-logged at Debug or above, in memory only, so anything before the last process death is gone) and
+Contact Support attaches the app's own log buffer (`SupportLogBuffer`: the newest lines the app
+logged at Debug or above that fit in 800,000 characters, about 10,000 lines (the last 2000 lines
+before 2.0.118), in memory only, so anything before the last process death is gone) and
 writes a **report block** into it: device, accessibility services, audio routes, permissions
 (2.0.114+), offline extracts and every stored preference. MainActivity also dumps every stored
 preference as `Preference: key = value` lines at each launch. `scripts/parse_support_log.py`
@@ -77,24 +78,31 @@ can still be provisional; see the iOS provisional-Always memory), and the prefer
 of NSUserDefaults, whose Apple system keys the script hides.
 
 `?` keys are usually settings that have since been removed (`AccessibleMap` went in d7013572e)
-and are harmless; say so only if one could still matter.
+and are harmless; say so only if one could still matter. `UnnamedRoads` is still defined but
+nothing reads it any more (it was Street Preview's "Include unnamed roads during location
+simulation"), so its value changes nothing.
 
 ## Reading the rest of the log
 
 - **Timestamps are UTC**; the filename is the phone's local time. The difference is the user's
   UTC offset (a 16:26 file whose log ends at 19:26Z is UTC-3), useful when they say "it stopped
   at about four".
-- **Release builds don't log what was spoken.** Callout text, GPS fixes and headings are not in
-  the log; `MapMatch: ... to get <road>` is the nearest thing, giving the road the user was
-  matched to about once a second while moving (`null` = not matched to any road). A
-  confected-looking name (e.g. the local word for "road", such as `Carretera`) is an unnamed road
-  being announced because `UnnamedRoads` is on. To see the callouts, ask for the travel recording
+- **What was spoken is only logged from 2.0.118** (`speakCallout: <text>`); GPS fixes and
+  headings never are. `MapMatch: ... to get <road>` gives the road the user was matched to about
+  once a second (`null` = not matched to any road). The localized word for "road" on its own
+  (`Road`, `Carretera`) is a road with no name in OSM - that's the name given to every unnamed
+  road, whatever the settings. To see the callouts in an older log, or where they were heard
+  from, ask for the travel recording
   (Contact Support offers to attach `travel.gpx`, or Settings > Record travel), then use
   [[replay-gpx]].
-- `SoundscapeService: onDestroy` with no `stopService` before it means the service went away
-  without the user stopping it: swiped from recents, or killed by the OS.
-- The 2000-line cap is roughly 30 minutes of walking, since MapMatch logs every fix. If the parser
-  says the log is at the cap, the start of the session is missing.
+- Up to 2.0.117, `SoundscapeService: onDestroy` with no `stopService` before it means the service
+  went away without the user stopping it: swiped from recents, or killed by the OS. From 2.0.118
+  `onDestroy after Xm Ys: <reason>` says which.
+- Each Contact Support press writes a report block, which the timeline shows as the press. (The
+  "Attach log file" line comes after the log is saved, so from 2.0.114 it isn't in the file.)
+- The cap is 800,000 characters from 2.0.118, 2000 lines before: roughly two and a half hours
+  or 30 minutes of walking, since MapMatch logs every fix. If the parser says the log is at the
+  cap, the start of the session is missing.
 - Several reports in one log mean the user pressed Contact Support several times; the script
   diffs them (e.g. a screen reader turned off in between).
 - A log with no report block came from a build that wrote it differently or the block scrolled
@@ -102,15 +110,51 @@ and are harmless; say so only if one could still matter.
 
 ## "It stops talking" / "silent with the screen off"
 
-The commonest complaint, and the log never shows it directly: there is no screen on/off line and
-nothing spoken is logged. Work it out from what is there:
+The commonest complaint, and the log never shows the screen state. Work it out from what is
+there:
 
-- **Did the service go away?** The timeline marks `service destroyed WITHOUT a user stop`. The
-  service has `android:stopWithTask="true"`, so removing the task (swiping Soundscape from recents,
-  Samsung's or a third-party cleaner, an accessibility service that closes apps) stops it with
-  exactly this signature: `onServiceDisconnected` then `SoundscapeService: onDestroy`, no
-  `stopService`, no `onTaskRemoved`. A user stop or sleep always logs `stopService forSleep=...`
-  first.
+- **Was anything said?** The script's Speech section counts `TTS: OnStart <id>` (every
+  utterance, all versions) and, from 2.0.118, `CalloutController: speakCallout: <text>` (every
+  callout, with its earcons - automatic ones and the home-screen buttons alike; a button press is
+  the one with `AudioTour: Button pressed: <button>` just before it). Speech outside the callouts
+  is `SoundscapeService: speakText <text>` (beacon set, Street Preview; all Android versions) and
+  `speak2dText <text>` (audio menu, the headphone button's Callout Detail, deep links; 2.0.118+,
+  and both on iOS from 2.0.118). Every callout asks for audio focus first, so a log with
+  no `Audio focus request granted.` at all never even tried to speak.
+- **Why not? (2.0.118+)** Once a minute GeoEngine logs `Callouts in last 60s: N fixes (+U
+  unusable), accuracy median Am, stationary S (undecided D), in vehicle V, audio busy B, menu open
+  M, produced P [verbosity; places]`, and
+  `User is now stationary` / `User is moving again` / `User is now in a vehicle` as they change.
+  Each service run starts with `User is moving|stationary (first verdict, Ns after the first
+  fix)`: the stationary detector needs about 30s of fixes before it can say, so nothing before
+  that line means "moving". It ignores fixes worse than 25m, while the rest of the app takes them
+  up to 50m: an accuracy median above 25m with a high undecided count (typical indoors) means it
+  never got enough good fixes to decide, and no first-verdict line appears at all.
+  Fixes all stationary: the user was standing still, or the detector thought so. Fixes moving
+  but produced 0: the settings had nothing to say there. `Setting changed: key = value` catches a
+  change mid-walk, e.g. the headphone button stepping Callout Detail down to Silent.
+- **2.0.118+ says outright why the service went:** `onTaskRemoved` (task removed),
+  `stopForegroundService: <reason>` (exit, sleep, language change, settings reset, location
+  permission removed), and `onDestroy after Xm Ys: <reason>`, where "no stop was requested"
+  means the system stopped it. The bullets below are for older logs.
+- **2.0.118+ logs how earlier processes ended** at each process start (`ProcessExit`, from
+  Android's ApplicationExitInfo): `LOW_MEMORY`, `CRASH`, `ANR`, `OTHER` with a description such
+  as "remove task", and the importance (e.g. "running a foreground service"). This is the only
+  record of a process death, since the buffer dies with the process. The report repeats them as
+  `Previous exit` rows, so they survive a long session scrolling the startup lines out.
+- **2.0.118+ reports also carry the audio state** that is otherwise only logged at service start:
+  `Audio stream` (the Oboe stream in use, how often it has been restarted, or why there's "no
+  audio output"), `TTS engine`, `TTS state`, `TTS language` (what was asked for and whether the
+  engine has it - "missing data" or "not supported" means no speech in that language), `TTS
+  voice` and `Speech rate`. The parser flags the ones that mean silence.
+
+- **Did the service go away? (2.0.117 and older)** The timeline marks `service destroyed WITHOUT a
+  user stop`. Up to 2.0.117 the service had `android:stopWithTask="true"`, so removing the task
+  (swiping Soundscape from recents, Samsung's or a third-party cleaner, an accessibility service
+  that closes apps) stopped it with exactly this signature: `onServiceDisconnected` then
+  `SoundscapeService: onDestroy`, no `stopService`, no `onTaskRemoved`. A user stop or sleep
+  always logs `stopService forSleep=...` first. From 2.0.118 the service stops itself in
+  `onTaskRemoved`, which logs the removal, so this inference is only needed for older logs.
 - **Did the process survive?** The buffer is in memory, so if the log runs unbroken from before
   the destroy to after it, the process lived and only the service was taken down: a task removal,
   not a process kill. A log that starts at a launch with nothing older means the process itself
