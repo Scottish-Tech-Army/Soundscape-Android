@@ -36,7 +36,8 @@ pulls all of this out.
    - **Errors and warnings**: every group the script lists, with count and time, each one
      traced to the code that logs it (`grep -rn` the message) and said whether it matters. If
      there are none, say so in one line. Don't call MainActivity's E-level status lines
-     (`themeIsLight`, `themeContrast`, `startSoundscapeService`, the `-----` separator) errors:
+     (`themeIsLight`, `themeContrast`, `startSoundscapeService`, `mediaControlsMode ...`,
+     `SoundscapeMediaSession: onConnect`, the `-----` separator) errors:
      the script already leaves them out.
    - **What happened**: the timeline in words (launches, service killed without a stop = swiped
      away or killed by the system, user stopped it, Contact Support pressed N times, settings
@@ -131,8 +132,10 @@ there:
   M, produced P [verbosity; places]`, and
   `User is now stationary` / `User is moving again` / `User is now in a vehicle` as they change.
   Each service run starts with `User is moving|stationary (first verdict, Ns after the first
-  fix)`: the stationary detector needs about 30s of fixes before it can say, so nothing before
-  that line means "moving". It ignores fixes worse than 25m, while the rest of the app takes them
+  fix)`: the stationary detector needs evidence before it can say - steps from the pedometer, a
+  run of trustworthy GPS courses, or about 30s of fixes - so nothing before that line means
+  "moving". "undecided" counts fixes before any such evidence. In 2.0.118 it also counted every walking
+  fix while the pedometer was reporting steps, so ignore it in 2.0.118 logs; fixed after it. It ignores fixes worse than 25m, while the rest of the app takes them
   up to 50m: an accuracy median above 25m with a high undecided count (typical indoors) means it
   never got enough good fixes to decide, and no first-verdict line appears at all.
   `No location fix for 30s` (a warning, once per gap) and `Location fixes resumed after Ns

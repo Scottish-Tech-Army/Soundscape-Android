@@ -240,4 +240,49 @@ class StationaryDetectorTest {
         }
         assertFalse(stationary)
     }
+
+    /** hasVerdict is what the support log's "undecided" count reads. */
+    @Test
+    fun testAFullWindowIsAVerdict() {
+        val detector = StationaryDetector()
+        detector.run(15, 0L) { jitter(it, 8.0) }
+        assertFalse(detector.hasVerdict, "no verdict before the window fills")
+        detector.run(16, 15_000L) { jitter(it, 8.0) }
+        assertTrue(detector.hasVerdict)
+    }
+
+    /**
+     * Walking with the pedometer counting: every answer is "moving" on the strength of the steps,
+     * though the window never fills - the support log counted all of these as undecided.
+     */
+    @Test
+    fun testStepsAreAVerdict() {
+        val detector = StationaryDetector()
+        detector.update(at(0.0, 0.0), 10.0, false, 0L, stepping = true)
+        assertTrue(detector.hasVerdict, "a step is evidence of moving")
+        assertNull(detector.displacementMetres, "even though the window hasn't filled")
+    }
+
+    /** A course escape is a verdict, and stays one while the window refills behind it. */
+    @Test
+    fun testACourseEscapeIsAVerdictThatStands() {
+        val detector = StationaryDetector()
+        assertTrue(detector.run(121, 0L) { jitter(it, 8.0) })
+        detector.update(jitter(0, 8.0), 10.0, true, 122_000L)
+        assertFalse(detector.update(jitter(1, 8.0), 10.0, true, 123_000L))
+        assertNull(detector.displacementMetres, "the window has started again")
+        assertTrue(detector.hasVerdict)
+        detector.run(5, 124_000L) { at(it * 1.4, 0.0) }
+        assertTrue(detector.hasVerdict, "still a verdict while the window refills")
+    }
+
+    /** A gap long enough to start again takes the verdict away with it. */
+    @Test
+    fun testAGapTakesTheVerdictAway() {
+        val detector = StationaryDetector()
+        detector.run(31, 0L) { jitter(it, 8.0) }
+        assertTrue(detector.hasVerdict)
+        detector.update(at(3.0, 0.0), 10.0, false, 400_000L)
+        assertFalse(detector.hasVerdict)
+    }
 }

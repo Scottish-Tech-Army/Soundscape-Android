@@ -749,8 +749,8 @@ class GeoEngine {
                         currentTimeMillis(),
                         userStationary,
                         calloutGeometry.inVehicle(),
-                        // Null until the detector's window has filled - see StationaryDetector
-                        stationaryDecided = stationaryDetector.displacementMetres != null,
+                        // False until the detector has any evidence - see StationaryDetector
+                        stationaryDecided = stationaryDetector.hasVerdict,
                         // The raw fix's, as the detector judges that one
                         accuracyMetres = rawAccuracyMetres(
                             locationProvider.locationFlow.value ?: location
