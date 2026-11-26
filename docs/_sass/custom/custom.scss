@@ -32,8 +32,10 @@ input:focus-visible {
 }
 
 // The theme's sidebar credit is light grey on grey (2.8:1); darken it to pass
-// the 4.5:1 contrast minimum.
-.site-footer {
+// the 4.5:1 contrast minimum. It appears in the sidebar on wide screens and at
+// the foot of the page on narrow ones.
+.site-footer,
+.footer-credit {
   color: $grey-dk-200;
 }
 

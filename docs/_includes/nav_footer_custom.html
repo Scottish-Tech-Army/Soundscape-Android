@@ -3,7 +3,13 @@
   translated page read it with an English voice rather than mispronouncing it
   in the page's language, and laid out left to right on Arabic, Farsi and Urdu
   pages.
+
+  The theme already wraps this in its own container (div.site-footer in the
+  desktop sidebar, a plain div in the page footer on narrow screens), so this
+  must not carry the site-footer class itself: below the md breakpoint the
+  theme makes .site-footer position: absolute; bottom: 0, which laid the
+  credit over the page text on phones.
 {%- endcomment -%}
-<footer class="site-footer" lang="en" dir="ltr">
+<div class="footer-credit" lang="en" dir="ltr">
   This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
-</footer>
+</div>
