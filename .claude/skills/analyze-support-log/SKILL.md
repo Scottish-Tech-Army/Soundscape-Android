@@ -73,9 +73,14 @@ extract vanishes if the card is unmounted), no offline extract, more than one sc
 enabled (e.g. TalkBack plus a vendor or third-party reader both speaking), `sleep_resume_active`
 / `service_sleeping` left true, and for 2.0.114+ reports: location not precise or Location
 services Off, notifications blocked, Background restricted, Battery saver, a low Media volume.
-On iOS the report has `VoiceOver` and the location permission (`Always (or provisional Always)`
-can still be provisional; see the iOS provisional-Always memory), and the preference rows are all
-of NSUserDefaults, whose Apple system keys the script hides.
+On iOS the report has `VoiceOver`, the location permission (`Always (or provisional Always)`
+can still be provisional; see the iOS provisional-Always memory), `Location accuracy` (anything
+but Precise is HIGH), `Low Power Mode` and `Background App Refresh`. Its preference rows are all
+of NSUserDefaults: the script hides Apple's and Firebase's keys, reads iOS's `1`/`0` booleans as
+true/false, and labels `LegacyMigrationDone` as the iOS app's own. iOS logs have no app or
+service lifecycle lines (the timeline starts at `location tracking started`), no per-utterance
+speech lines, and no `ProcessExit`, `Audio stream` or `TTS` rows; and iOS numbers its releases
+separately, so the script doesn't compare its version with Android's.
 
 `?` keys are usually settings that have since been removed (`AccessibleMap` went in d7013572e)
 and are harmless; say so only if one could still matter. `UnnamedRoads` is still defined but

@@ -39,10 +39,33 @@ DEVICE_KEYS = {
     # 2.0.118+: state that is otherwise only logged when it happens
     "Audio stream", "TTS engine", "TTS state", "TTS language", "TTS voice", "Speech rate",
     "Previous exit",
+    # iOS report rows
+    "Background App Refresh", "Location accuracy", "Low Power Mode",
 }
 
 # iOS dumps every NSUserDefaults key, most of them Apple's.
-IOS_SYSTEM_KEY = re.compile(r"^(Apple|NS|AK|com\.apple|PK|INNext|WebKit|MSV|CK|_|METAL|Carrier)")
+IOS_SYSTEM_KEY = re.compile(
+    r"^(Apple|NS|AK|com\.apple|PK|INNext|WebKit|MSV|CK|_|METAL|Carrier|TestRecipe|SKPurchase"
+    r"|firebase-|MultiWindowMode$|shouldShowRSVPDataDetectors$|AddingEmojiKeybordHandled$"
+    r"|ClearSettingsArchivesForMigration$|(Volume(Up|Down)|Ringer(Button|Switch))ShowsUI$)"
+    r"|Prototyp")
+
+# Soundscape's own keys that only the iOS app writes, so they aren't in the Kotlin source
+IOS_APP_KEYS = {
+    "LegacyMigrationDone": "internal: iOS LegacyMigrator has run (LegacyMigrator.swift)",
+}
+
+
+def normalize_booleans(prefs, defaults):
+    """iOS stores booleans as 1/0. Where the source default is a boolean, read them as
+    true/false, so that the comparison with the default and the flags see the same values as
+    on Android."""
+    result = dict(prefs)
+    for k, v in prefs.items():
+        d = defaults.get(k, (None,))[0]
+        if d in ("true", "false") and v in ("1", "0"):
+            result[k] = "true" if v == "1" else "false"
+    return result
 
 # Lines the app logs at E that are not errors (MainActivity uses E as "always show").
 KNOWN_E_NOISE = re.compile(r"^(themeIsLight|themeContrast|startSoundscapeService|-{5})")
@@ -224,6 +247,11 @@ def parse(path):
                 mapmatch[mm.group(1)] += 1
             elif msg.startswith("startSoundscapeService"):
                 events.append((ts, "app launch: service started"))
+            elif tag == "GeoEngine" and msg.startswith("startTileGridService"):
+                # Android logs it too, just after startSoundscapeService; iOS logs only this
+                if not (events and events[-1][1].startswith("app launch")
+                        and events[-1][0][:16] == ts[:16]):
+                    events.append((ts, "location tracking started"))
             elif msg.startswith("stopService"):
                 events.append((ts, "service stopped by user (" + msg + ")"))
             elif tag == "SoundscapeService" and msg.startswith("onDestroy after"):
@@ -424,7 +452,19 @@ def flags_for(prefs, report_rows, defaults, app_version, latest_version):
         if re.search(r" (CRASH|CRASH_NATIVE|ANR|LOW_MEMORY|EXCESSIVE_RESOURCE_USAGE|SIGNALED) ", v):
             out.append(("CHECK", f"Previous exit: {v}"))
 
-    if app_version and latest_version and app_version != latest_version:
+    for v in rows.get("Location accuracy", []):
+        if v != "Precise":
+            out.append(("HIGH", f"Location accuracy: {v} - callouts need precise location"))
+    for v in rows.get("Low Power Mode", []):
+        if v == "On":
+            out.append(("CHECK", "Low Power Mode is on"))
+    for v in rows.get("Background App Refresh", []):
+        if v != "On":
+            out.append(("CHECK", f"Background App Refresh: {v}"))
+
+    # iOS numbers its releases separately from Android's versionName, so only compare Android
+    is_ios = "(iOS " in summary
+    if app_version and latest_version and app_version != latest_version and not is_ios:
         out.append(("INFO", f"App {app_version}, current is {latest_version}"))
     return out
 
@@ -489,6 +529,7 @@ def main():
         prefs, source = dumps[-1]["prefs"], f"Preference dump at {dumps[-1]['ts']}"
     else:
         prefs, source = {}, "nothing"
+    prefs = normalize_booleans(prefs, defaults)
     print(f"\n## Settings (from {source})")
     print("Only keys the user's store holds are logged; anything absent is at its default.")
     ios_system = 0
@@ -499,7 +540,9 @@ def main():
             state = ("default" if d is not None and str(d) == v else
                      "no default in source: internal state" if d is None else f"default {d!r}")
             print(f"  {'  ' if d is not None and str(d) == v else '* '}{k} = {v}   [{state}]")
-        elif IOS_SYSTEM_KEY.match(k):
+        elif k in IOS_APP_KEYS:
+            print(f"    {k} = {v}   [{IOS_APP_KEYS[k]}]")
+        elif IOS_SYSTEM_KEY.search(k):
             ios_system += 1
         else:
             print(f"  ? {k} = {v}   [not a key in current source: removed setting or "
@@ -552,6 +595,9 @@ def main():
     # 6. Speech
     print("\n## Speech")
     button_presses = spoken.get("button", 0)
+    ios_log = any("(iOS " in v for r in reports for k, v in r["rows"] if k == "Summary")
+    if ios_log:
+        print("  iOS logs no line per utterance: only what was asked to be spoken below counts")
     print(f"  {spoken.get('TTS', 0)} utterances started (TTS OnStart), "
           f"{spoken.get('CalloutController', 0)} callouts, automatic or from a button "
           f"(speakCallout, 2.0.118+), {spoken.get('other', 0)} other speech (speakText, "
