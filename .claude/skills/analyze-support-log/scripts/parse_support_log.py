@@ -207,7 +207,11 @@ def parse(path):
             elif msg.startswith("stopService"):
                 events.append((ts, "service stopped by user (" + msg + ")"))
             elif tag == "SoundscapeService" and msg.startswith("onDestroy"):
-                events.append((ts, "service destroyed"))
+                # stopService logs just before onDestroy; nothing else comes between them
+                stopped = any(w.startswith("service stopped by user") for _, w in events[-2:])
+                events.append((ts, "service destroyed" if stopped else
+                               "service destroyed WITHOUT a user stop: task removed (swiped from "
+                               "recents, or a task cleaner - stopWithTask) or killed"))
             elif "Attach log file" in msg or "Attach travel recording" in msg:
                 events.append((ts, "Contact Support: " + msg[:90]))
             elif re.search(r"sleep|Sleep", msg) and tag in ("SoundscapeService",

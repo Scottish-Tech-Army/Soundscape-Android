@@ -100,6 +100,36 @@ and are harmless; say so only if one could still matter.
 - A log with no report block came from a build that wrote it differently or the block scrolled
   out; the launch-time `Preference:` dump still gives the settings.
 
+## "It stops talking" / "silent with the screen off"
+
+The commonest complaint, and the log never shows it directly: there is no screen on/off line and
+nothing spoken is logged. Work it out from what is there:
+
+- **Did the service go away?** The timeline marks `service destroyed WITHOUT a user stop`. The
+  service has `android:stopWithTask="true"`, so removing the task (swiping Soundscape from recents,
+  Samsung's or a third-party cleaner, an accessibility service that closes apps) stops it with
+  exactly this signature: `onServiceDisconnected` then `SoundscapeService: onDestroy`, no
+  `stopService`, no `onTaskRemoved`. A user stop or sleep always logs `stopService forSleep=...`
+  first.
+- **Did the process survive?** The buffer is in memory, so if the log runs unbroken from before
+  the destroy to after it, the process lived and only the service was taken down: a task removal,
+  not a process kill. A log that starts at a launch with nothing older means the process itself
+  died (OOM, OEM battery killer, crash) and everything before it is lost.
+- **Was it running but with nothing to say?** Steady `MapMatch` lines (about one a second while
+  moving) mean location kept flowing. Then look at the settings: Quiet or Silent callout detail,
+  narrowed Places to Call Out, Streets and Junctions off, or a walk along unnamed roads (the
+  localized "Road", e.g. `Carretera`) can all give long stretches with nothing to call out, which
+  users report as "not talking".
+- **Did the release they blame change anything?** `git log soundscape-2.0.<prev>..soundscape-2.0.<N>`
+  over `app/src/main/java/.../services`, `SoundscapeServiceConnection.kt`, `locationprovider/`,
+  `shared/src/androidMain` and `AndroidManifest.xml`. If nothing there changed, say the update
+  is unlikely to be the cause rather than looking for a regression.
+- **Ask for what's missing.** Reports from 2.0.113 and older have no battery optimisation,
+  background restriction, battery saver, permission or media volume rows, so ask the user to
+  update first. Then: Samsung Settings > Apps > Soundscape > Battery > Unrestricted and "Never
+  sleeping apps"; and next time it goes quiet, press Contact Support straight away, before
+  reopening anything, and include the travel recording.
+
 ## Don't
 
 - Don't quote the user's location, extract name or anything identifying into commit messages,
