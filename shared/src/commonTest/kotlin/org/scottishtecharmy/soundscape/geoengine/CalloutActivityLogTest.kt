@@ -123,7 +123,7 @@ class CalloutActivityLogTest {
     @Test
     fun aResetStartsTheFirstVerdictAgain() {
         log.fix(0, stationary = false, inVehicle = false)
-        log.reset()
+        log.reset(500_000)
         log.fix(500_000, stationary = true, inVehicle = true)
         assertEquals(
             listOf(
@@ -133,5 +133,39 @@ class CalloutActivityLogTest {
             ),
             lines
         )
+    }
+
+    @Test
+    fun warnsOnceWhenFixesStopAndSaysWhenTheyResume() {
+        log.reset(0)
+        log.fix(1_000, stationary = false, inVehicle = false)
+        lines.clear()
+        log.checkForGap(20_000)
+        assertTrue(lines.isEmpty(), lines.toString())
+        log.checkForGap(31_000)
+        log.checkForGap(36_000)
+        assertEquals(listOf("No location fix for 30s"), lines)
+        log.unusableFix(280_000)
+        assertEquals("Location fixes resumed after 279s without one", lines.last())
+        // A new gap is reported again
+        log.checkForGap(315_000)
+        assertEquals("No location fix for 35s", lines.last())
+    }
+
+    @Test
+    fun warnsWhenNoFixHasArrivedSinceTrackingStarted() {
+        log.reset(10_000)
+        log.checkForGap(45_000)
+        assertEquals(listOf("No location fix in the 35s since location tracking started"), lines)
+    }
+
+    @Test
+    fun aHeldGapCheckStartsCountingAgain() {
+        log.reset(0)
+        log.holdGapCheck(25_000)
+        log.checkForGap(40_000)
+        assertTrue(lines.isEmpty(), lines.toString())
+        log.checkForGap(55_000)
+        assertEquals(listOf("No location fix in the 30s since location tracking started"), lines)
     }
 }
