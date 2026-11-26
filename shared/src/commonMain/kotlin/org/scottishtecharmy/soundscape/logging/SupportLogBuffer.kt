@@ -2,9 +2,6 @@ package org.scottishtecharmy.soundscape.logging
 
 import co.touchlab.kermit.LogWriter
 import co.touchlab.kermit.Severity
-import kotlin.concurrent.atomics.AtomicReference
-import kotlin.concurrent.atomics.ExperimentalAtomicApi
-import kotlin.concurrent.atomics.update
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
@@ -17,14 +14,16 @@ import kotlin.time.ExperimentalTime
  * Deliberately in-memory only - lost on process death - rather than file-backed, trading
  * crash-time coverage for simplicity.
  */
-@OptIn(ExperimentalAtomicApi::class)
 object SupportLogBuffer : LogWriter() {
 
-    // Oldest-recent window of formatted lines, comparable in spirit to the ~30 minute
-    // window the previous logcat-based capture used, without needing wall-clock logic.
-    private const val MAX_LINES = 2000
+    // The most recent lines that fit in this many characters - the size of the saved log, as it
+    // is almost all ASCII. GeoEngine logs a MapMatch line of about 60 characters for every fix,
+    // about one a second, so this is roughly two and a half hours of walking - enough to reach
+    // back past the start of most walks when the user sends the log afterwards. Capped by
+    // characters rather than lines so that short lines don't cut it short.
+    private const val MAX_CHARS = 800_000
 
-    private val lines = AtomicReference<List<String>>(emptyList())
+    private val lines = CappedLineBuffer(MAX_CHARS)
 
     override fun isLoggable(tag: String, severity: Severity): Boolean = severity >= Severity.Debug
 
@@ -47,17 +46,13 @@ object SupportLogBuffer : LogWriter() {
     }
 
     private fun appendLine(line: String) {
-        lines.update { current ->
-            (current + line).let {
-                if (it.size > MAX_LINES) it.subList(it.size - MAX_LINES, it.size) else it
-            }
-        }
+        lines.add(line)
     }
 
     /** The buffer's current contents, oldest first, joined into one String for attachment. */
-    fun dumpAsText(): String = lines.load().joinToString("\n")
+    fun dumpAsText(): String = lines.snapshot().joinToString("\n")
 
     fun clear() {
-        lines.store(emptyList())
+        lines.clear()
     }
 }
