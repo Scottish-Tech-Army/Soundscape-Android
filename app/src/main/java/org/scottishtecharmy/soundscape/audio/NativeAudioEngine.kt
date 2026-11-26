@@ -82,6 +82,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
 
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun getQueueDepth(engineHandle: Long): Long
+    private external fun describeAudioStream(engineHandle: Long): String
     private external fun isHandleActive(engineHandle: Long, handle: Long): Boolean
     private external fun updateGeometry(
         engineHandle: Long,
@@ -393,6 +394,16 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
             if (engineHandle != 0L)
                 clearNativeTextToSpeechQueue(engineHandle)
         }
+    }
+
+    /** Rows for the Contact Support report: the output stream and the TTS engine in use. */
+    fun describeForSupport(): List<Pair<String, String>> {
+        val stream = synchronized(engineMutex) {
+            if (engineHandle != 0L) describeAudioStream(engineHandle) else "no audio engine"
+        }
+        val tts = if (::ttsEngine.isInitialized) ttsEngine.describe()
+                  else listOf("TTS engine" to "not created")
+        return listOf("Audio stream" to stream) + tts
     }
 
     override fun getQueueDepth(): Long {

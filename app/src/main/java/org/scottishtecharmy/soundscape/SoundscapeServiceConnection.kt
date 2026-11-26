@@ -123,9 +123,9 @@ class SoundscapeServiceConnection : ServiceConnection {
         }
     }
 
-    fun stopService(forSleep: Boolean = false) {
+    fun stopService(forSleep: Boolean = false, reason: String) {
         logger.d { "stopService forSleep=$forSleep" }
-        soundscapeService?.stopForegroundService(forSleep)
+        soundscapeService?.stopForegroundService(forSleep, reason)
     }
 
     fun streetPreviewGo() {

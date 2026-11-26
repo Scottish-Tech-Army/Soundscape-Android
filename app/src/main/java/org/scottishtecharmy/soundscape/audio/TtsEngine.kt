@@ -59,6 +59,26 @@ class TtsEngine(
         return textToSpeechVoiceType
     }
 
+    // For the Contact Support report: the last language asked for and what the engine said
+    @Volatile private var speechLanguage = "not set"
+    @Volatile private var initFailedStatus: Int? = null
+
+    /**
+     * What this engine is actually using, as rows for the Contact Support report. Read from the
+     * state kept as it is set rather than by asking the TTS service, which can block.
+     */
+    fun describe(): List<Pair<String, String>> = listOf(
+        "TTS engine" to (engineLabelAndName?.takeIf { it.isNotEmpty() } ?: "system default"),
+        "TTS state" to when {
+            textToSpeechInitialized -> "initialised"
+            initFailedStatus != null -> "failed to initialise (status $initFailedStatus)"
+            else -> "not initialised yet"
+        },
+        "TTS language" to speechLanguage,
+        "TTS voice" to textToSpeechVoiceType,
+        "Speech rate" to textToSpeechRate.toString(),
+    )
+
     fun getCurrentRate(): Float {
         return textToSpeechRate
     }
@@ -181,6 +201,14 @@ class TtsEngine(
     fun setSpeechLanguage(language: String): Boolean {
         logger.d { "setSpeechLanguage to \"$language\"" }
         val result = textToSpeech.setLanguage(Locale.forLanguageTag(language))
+        speechLanguage = "$language: " + when (result) {
+            TextToSpeech.LANG_AVAILABLE -> "available"
+            TextToSpeech.LANG_COUNTRY_AVAILABLE -> "available (country)"
+            TextToSpeech.LANG_COUNTRY_VAR_AVAILABLE -> "available (country and variant)"
+            TextToSpeech.LANG_MISSING_DATA -> "missing data"
+            TextToSpeech.LANG_NOT_SUPPORTED -> "not supported"
+            else -> "result $result"
+        }
         if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
             logger.e { "The Language not supported!" }
             return false
@@ -336,6 +364,7 @@ class TtsEngine(
             textToSpeechInitialized = true
             audioEngine.ttsRunningStateChanged(true)
         } else {
+            initFailedStatus = status
             logger.w {
                 "onInit failed with status $status, $engineLabelAndName, $textToSpeechVoiceType"
             }

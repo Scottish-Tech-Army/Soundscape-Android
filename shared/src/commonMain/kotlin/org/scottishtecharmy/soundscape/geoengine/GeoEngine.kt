@@ -15,6 +15,8 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
+import org.scottishtecharmy.soundscape.geoengine.callouts.toPreference
+import org.scottishtecharmy.soundscape.geoengine.callouts.readCalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildBeaconCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildBeaconMoreInfoCallout
@@ -164,6 +166,21 @@ class GeoEngine {
     private var unobservedMillis = 0L
     private var lastUsableFixMillis: Long? = null
     private var blindSinceLastUsableFix = false
+
+    // Support-log lines saying why the automatic callouts did or didn't speak - see
+    // CalloutActivityLog.
+    private val calloutActivityLog = CalloutActivityLog(
+        log = { line -> logger.i { line } },
+        describeSettings = {
+            if (::preferencesProvider.isInitialized) {
+                "${readCalloutVerbosity(preferencesProvider).preferenceValue}; places " +
+                    PlacesToCallOut.read(preferencesProvider).toPreference()
+            } else ""
+        },
+    )
+
+    private fun rawAccuracyMetres(location: SoundscapeLocation): Double? =
+        if (location.hasAccuracy) location.accuracy.toDouble() else null
 
     fun setHeadTrackingProvider(provider: HeadTrackingProvider?) {
         headTrackingProvider = provider
@@ -520,6 +537,7 @@ class GeoEngine {
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringLocation() {
         logger.d { "startTileGridService" }
+        calloutActivityLog.reset()
         locationMonitoringJob?.cancel()
         locationMonitoringJob = coroutineScope.launch {
             locationProvider.filteredLocationFlow.collect { newLocation ->
@@ -565,6 +583,10 @@ class GeoEngine {
                         // Not evidence of anything, but a minute of these has to end a stationary
                         // verdict - a train losing GPS as it pulls out of a station.
                         userStationary = stationaryDetector.noteUnusableFix(currentTimeMillis())
+                        calloutActivityLog.unusableFix(
+                            currentTimeMillis(),
+                            rawAccuracyMetres(locationProvider.locationFlow.value ?: location)
+                        )
                         return@let
                     }
                     haveUsableLocation = true
@@ -708,7 +730,19 @@ class GeoEngine {
                         }?.bearing?.toDouble()
                     )
 
-                    if ((!listener.isAudioEngineBusy() || streetPreview.running) && !listener.menuActive) {
+                    calloutActivityLog.fix(
+                        currentTimeMillis(),
+                        userStationary,
+                        calloutGeometry.inVehicle(),
+                        // Null until the detector's window has filled - see StationaryDetector
+                        stationaryDecided = stationaryDetector.displacementMetres != null,
+                        // The raw fix's, as the detector judges that one
+                        accuracyMetres = rawAccuracyMetres(
+                            locationProvider.locationFlow.value ?: location
+                        ),
+                    )
+                    val audioEngineBusy = listener.isAudioEngineBusy() && !streetPreview.running
+                    if (!audioEngineBusy && !listener.menuActive) {
                         val callout =
                             autoCallout.updateLocation(
                                 calloutGeometry,
@@ -716,8 +750,11 @@ class GeoEngine {
                                 settlementGrid
                             )
                         if (callout != null) {
+                            calloutActivityLog.callout()
                             listener.speakCallout(callout, false)
                         }
+                    } else {
+                        calloutActivityLog.skipped(audioEngineBusy)
                     }
                 }
             }
@@ -801,6 +838,7 @@ class GeoEngine {
             in STRING_SETTINGS -> preferencesProvider.getString(key, "")
             else -> return
         }
+        logger.i { "Setting changed: $key = $value" }
         analytics.logEvent("settingChanged", mapOf("setting" to key, "value" to value))
     }
 

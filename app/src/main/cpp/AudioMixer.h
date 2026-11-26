@@ -4,6 +4,7 @@
 #include <vector>
 #include <mutex>
 #include <atomic>
+#include <string>
 #include <unordered_map>
 
 #include "AudioSourceBase.h"
@@ -39,6 +40,10 @@ namespace soundscape {
 
         // Suppress restart during SCO transitions
         void setSuppressRestart(bool suppress);
+
+        // The output stream's current state, for the Contact Support report: how it was opened,
+        // or why there's no output, and how often it has been restarted.
+        std::string describe();
 
         SteamAudioSpatializer *getSpatializer() { return m_Spatializer.get(); }
 
@@ -76,6 +81,12 @@ namespace soundscape {
         std::atomic<int> m_WarmupFrames{0};
 
         // Scratch buffers (allocated once, reused per callback)
+        void setDescription(const char *format, ...);
+
+        std::mutex m_DescriptionMutex;
+        std::string m_Description{"not opened"};
+        std::atomic<int> m_Restarts{0};
+
         std::vector<float> m_MonoBuf;
         std::vector<float> m_StereoBuf;
     };

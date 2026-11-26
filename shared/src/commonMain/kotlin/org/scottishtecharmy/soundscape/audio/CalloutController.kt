@@ -62,8 +62,14 @@ class CalloutController(
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long {
         if (callout == null) return 0L
         if (!service.requestAudioFocus()) {
-            logger.d { "speakCallout: Could not get audio focus." }
+            logger.w { "speakCallout: Could not get audio focus." }
             return 0L
+        }
+        // What was said, for the support log: the only record of it in a release build.
+        logger.i {
+            "speakCallout: " + callout.positionedStrings.joinToString(" | ") { string ->
+                (string.earcon?.let { "[${it.substringAfterLast('/')}] " } ?: "") + string.text
+            }
         }
         return speakCalloutCommon(
             callout, addModeEarcon, audioEngine, lastGeometry, ruler,
