@@ -263,7 +263,8 @@ def parse(path):
             elif tag == "ProcessExit":
                 events.append((ts, "previous process: " + msg.strip()))
             elif msg.startswith(("User is now", "User is moving", "User is no longer",
-                                 "User is stationary", "Setting changed:")):
+                                 "User is stationary", "Setting changed:",
+                                 "Location fixes resumed")):
                 events.append((ts, msg))
             elif msg.startswith("Callouts in last"):
                 callout_summaries.append((ts, msg))
@@ -506,8 +507,11 @@ def main():
         vm = re.search(r", ([\d.]+)\)", s)
         app_version = vm.group(1) if vm else None
         for r in reports[:-1]:
-            a = set(r["rows"]) - set(latest_report["rows"])
-            b = set(latest_report["rows"]) - set(r["rows"])
+            # iOS system NSUserDefaults keys come and go between reports; they mean nothing here
+            a = {kv for kv in set(r["rows"]) - set(latest_report["rows"])
+                 if not IOS_SYSTEM_KEY.search(kv[0])}
+            b = {kv for kv in set(latest_report["rows"]) - set(r["rows"])
+                 if not IOS_SYSTEM_KEY.search(kv[0])}
             if a or b:
                 print(f"Report at {r['ts']} differs from the latest:")
                 for k, v in sorted(a):
@@ -568,6 +572,8 @@ def main():
     changed = False
     for (t0, _, p0), (t1, kind, p1) in zip(snapshots, snapshots[1:]):
         for k in sorted(set(p0) | set(p1)):
+            if IOS_SYSTEM_KEY.search(k):
+                continue
             if p0.get(k) != p1.get(k):
                 changed = True
                 print(f"  by {t1} ({kind}): {k}: {p0.get(k)} -> {p1.get(k)}")

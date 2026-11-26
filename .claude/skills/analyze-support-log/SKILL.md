@@ -135,6 +135,10 @@ there:
   that line means "moving". It ignores fixes worse than 25m, while the rest of the app takes them
   up to 50m: an accuracy median above 25m with a high undecided count (typical indoors) means it
   never got enough good fixes to decide, and no first-verdict line appears at all.
+  `No location fix for 30s` (a warning, once per gap) and `Location fixes resumed after Ns
+  without one` bracket a stretch with no fixes at all, which otherwise leaves nothing in the log -
+  summaries are only written as fixes arrive, so a gap also stretches the next one's period
+  (`Callouts in last 279s`). Not checked during Street Preview.
   Fixes all stationary: the user was standing still, or the detector thought so. Fixes moving
   but produced 0: the settings had nothing to say there. `Setting changed: key = value` catches a
   change mid-walk, e.g. the headphone button stepping Callout Detail down to Silent.

@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
+import kotlin.concurrent.Volatile
 import kotlin.math.roundToInt
 
 /**
@@ -9,7 +10,10 @@ import kotlin.math.roundToInt
  * still, the audio engine being busy, the audio menu being open, or the callout settings having
  * nothing to say - all of which look the same.
  *
- * Three kinds of line, all cheap enough for the support buffer:
+ * Four kinds of line, all cheap enough for the support buffer:
+ * - a warning when no fix at all has arrived for [fixGapMillis] (see [checkForGap]), and how long
+ *   the gap lasted once one does - without it a stretch with no fixes leaves nothing in the log,
+ *   not even a summary, since summaries are written as fixes arrive;
  * - the stationary detector's first verdict of each run, once it has seen enough fixes to give one
  *   (StationaryDetector answers "not stationary" until its window fills, so the first fix says
  *   nothing either way);
@@ -26,7 +30,14 @@ class CalloutActivityLog(
     private val log: (String) -> Unit,
     private val describeSettings: () -> String = { "" },
     private val periodMillis: Long = 60_000L,
+    private val warn: (String) -> Unit = log,
+    private val fixGapMillis: Long = 30_000L,
 ) {
+    // The fix-gap check runs on its own timer, so these are shared with the location loop
+    @Volatile private var gapSinceMillis: Long? = null
+    @Volatile private var anyFix = false
+    @Volatile private var gapReported = false
+
     private var periodStartMillis: Long? = null
     private var fixes = 0
     private var unusableFixes = 0
@@ -42,8 +53,14 @@ class CalloutActivityLog(
     private var lastInVehicle: Boolean? = null
     private var firstFixMillis: Long? = null
 
-    /** Starts again for a new run of location updates: the next verdict is the first again. */
-    fun reset() {
+    /**
+     * Starts again for a new run of location updates at [nowMillis]: the next verdict is the first
+     * again, and the fix-gap check counts from here.
+     */
+    fun reset(nowMillis: Long) {
+        gapSinceMillis = nowMillis
+        anyFix = false
+        gapReported = false
         periodStartMillis = null
         lastStationary = null
         lastInVehicle = null
@@ -54,6 +71,7 @@ class CalloutActivityLog(
     /** A fix too inaccurate to use, so nothing downstream ran on it. */
     fun unusableFix(nowMillis: Long, accuracyMetres: Double? = null) {
         begin(nowMillis)
+        fixArrived(nowMillis)
         unusableFixes++
         accuracyMetres?.let { accuracies.add(it) }
     }
@@ -71,6 +89,7 @@ class CalloutActivityLog(
         accuracyMetres: Double? = null,
     ) {
         begin(nowMillis)
+        fixArrived(nowMillis)
         fixes++
         if (stationary) stationaryFixes++
         if (!stationaryDecided) undecidedFixes++
@@ -94,6 +113,40 @@ class CalloutActivityLog(
             log(if (inVehicle) "User is now in a vehicle" else "User is no longer in a vehicle")
         }
         lastInVehicle = inVehicle
+    }
+
+    /**
+     * Called every few seconds while location updates should be arriving: warns, once, when none
+     * has for [fixGapMillis] - or none at all since [reset].
+     */
+    fun checkForGap(nowMillis: Long) {
+        val since = gapSinceMillis ?: return
+        if (gapReported || (nowMillis - since < fixGapMillis)) return
+        gapReported = true
+        val seconds = (nowMillis - since) / 1000
+        warn(
+            if (anyFix) "No location fix for ${seconds}s"
+            else "No location fix in the ${seconds}s since location tracking started"
+        )
+    }
+
+    /**
+     * Restarts the fix-gap check from [nowMillis] without counting it as a fix: for while fixes
+     * aren't expected, such as Street Preview, which only moves when the user does.
+     */
+    fun holdGapCheck(nowMillis: Long) {
+        gapSinceMillis = nowMillis
+        gapReported = false
+    }
+
+    private fun fixArrived(nowMillis: Long) {
+        val since = gapSinceMillis
+        if (gapReported && since != null) {
+            log("Location fixes resumed after ${(nowMillis - since) / 1000}s without one")
+        }
+        gapSinceMillis = nowMillis
+        anyFix = true
+        gapReported = false
     }
 
     /** The callouts didn't run on this fix: the audio engine was busy, or the audio menu open. */

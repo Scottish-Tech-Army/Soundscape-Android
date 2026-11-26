@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
@@ -127,6 +128,8 @@ class GeoEngine {
     private val coroutineScope = CoroutineScope(Job())
 
     private var locationMonitoringJob: Job? = null
+    // Warns in the support log when location fixes stop arriving - see CalloutActivityLog
+    private var fixGapJob: Job? = null
     private var audioEngineUpdateJob: Job? = null
     private var markerMonitoringJob: Job? = null
 
@@ -171,6 +174,7 @@ class GeoEngine {
     // CalloutActivityLog.
     private val calloutActivityLog = CalloutActivityLog(
         log = { line -> logger.i { line } },
+        warn = { line -> logger.w { line } },
         describeSettings = {
             if (::preferencesProvider.isInitialized) {
                 "${readCalloutVerbosity(preferencesProvider).preferenceValue}; places " +
@@ -509,6 +513,7 @@ class GeoEngine {
         streetPreview.stop()
 
         locationMonitoringJob?.cancel()
+        fixGapJob?.cancel()
         audioEngineUpdateJob?.cancel()
         markerMonitoringJob?.cancel()
 
@@ -537,7 +542,17 @@ class GeoEngine {
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringLocation() {
         logger.d { "startTileGridService" }
-        calloutActivityLog.reset()
+        calloutActivityLog.reset(currentTimeMillis())
+        fixGapJob?.cancel()
+        fixGapJob = coroutineScope.launch {
+            while (true) {
+                delay(5_000L)
+                if (streetPreview.running)
+                    calloutActivityLog.holdGapCheck(currentTimeMillis())
+                else
+                    calloutActivityLog.checkForGap(currentTimeMillis())
+            }
+        }
         locationMonitoringJob?.cancel()
         locationMonitoringJob = coroutineScope.launch {
             locationProvider.filteredLocationFlow.collect { newLocation ->
