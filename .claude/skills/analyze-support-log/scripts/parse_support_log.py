@@ -68,7 +68,8 @@ def normalize_booleans(prefs, defaults):
     return result
 
 # Lines the app logs at E that are not errors (MainActivity uses E as "always show").
-KNOWN_E_NOISE = re.compile(r"^(themeIsLight|themeContrast|startSoundscapeService|-{5})")
+KNOWN_E_NOISE = re.compile(
+    r"^(themeIsLight|themeContrast|startSoundscapeService|-{5}|mediaControlsMode |onConnect$)")
 # Trouble words in any severity: the app sometimes logs failures at D/I.
 ISSUE_TEXT = re.compile(r"Exception|FATAL|\bANR\b|\bfail(ed|ure)?\b|\berror\b|crash|"
                         r"timed? ?out|not granted|denied|unable to|could not|can't|cannot",
@@ -472,6 +473,17 @@ def flags_for(prefs, report_rows, defaults, app_version, latest_version):
 
 # --------------------------------------------------------------------------------------------
 
+def log_from_2_0_118_or_later(reports):
+    """True if any report says the app is 2.0.118 or later, when the buffer became capped by
+    characters rather than at 2000 lines."""
+    for r in reports:
+        for k, v in r["rows"]:
+            m = re.search(r", (\d+)\.(\d+)\.(\d+)\)$", v) if k == "Summary" else None
+            if m and tuple(int(x) for x in m.groups()) >= (2, 0, 118):
+                return True
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("log")
@@ -490,7 +502,7 @@ def main():
     nchars = len(open(args.log, encoding="utf-8", errors="replace").read())
     if nchars >= 800_000 - 2_000:
         print("  (at the 800,000-character SupportLogBuffer cap: older lines were dropped)")
-    elif 1990 <= nlines <= 2400:
+    elif 1990 <= nlines <= 2400 and not log_from_2_0_118_or_later(reports):
         print("  (at or near the 2000-line SupportLogBuffer cap of 2.0.117 and older: older lines "
               "were dropped)")
 

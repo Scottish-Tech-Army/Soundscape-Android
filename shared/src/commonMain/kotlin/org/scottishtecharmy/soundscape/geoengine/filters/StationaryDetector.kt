@@ -138,6 +138,15 @@ class StationaryDetector {
     var stationaryMillis: Long = 0L
         private set
 
+    /**
+     * Whether the current answer rests on evidence: steps, a run of trustworthy GPS courses, or a
+     * full window. Until then "not stationary" only means undecided. Once given, a verdict stands
+     * until [reset] - a "moving" from steps or a course is still the answer while the window
+     * refills behind it. For logging (see CalloutActivityLog); nothing decides on it.
+     */
+    var hasVerdict: Boolean = false
+        private set
+
     /** Net displacement across the window, or null before it has filled. For tests and logging. */
     var displacementMetres: Double? = null
         private set
@@ -146,6 +155,7 @@ class StationaryDetector {
         samples.clear()
         isStationary = false
         displacementMetres = null
+        hasVerdict = false
     }
 
     /**
@@ -230,6 +240,7 @@ class StationaryDetector {
         // can only ever end a stationary spell, never start one, since no steps proves nothing.
         // Ended the same way, by starting the window again, for the same reason.
         if (stepping) {
+            hasVerdict = true
             if (isStationary) {
                 val newest = samples.last()
                 samples.clear()
@@ -260,6 +271,7 @@ class StationaryDetector {
                 samples.clear()
                 samples.addLast(newest)
                 displacementMetres = null
+                hasVerdict = true
                 return false
             }
         }
@@ -276,6 +288,7 @@ class StationaryDetector {
 
         val displacement = ruler.distance(anchor.location, newest.location)
         displacementMetres = displacement
+        hasVerdict = true
 
         // Hysteresis: harder to be believed moving again than it was to be believed still, so a
         // window sitting on the boundary doesn't flip back and forth.

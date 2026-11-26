@@ -14,9 +14,9 @@ import kotlin.math.roundToInt
  * - a warning when no fix at all has arrived for [fixGapMillis] (see [checkForGap]), and how long
  *   the gap lasted once one does - without it a stretch with no fixes leaves nothing in the log,
  *   not even a summary, since summaries are written as fixes arrive;
- * - the stationary detector's first verdict of each run, once it has seen enough fixes to give one
- *   (StationaryDetector answers "not stationary" until its window fills, so the first fix says
- *   nothing either way);
+ * - the stationary detector's first verdict of each run, once it has evidence for one - steps, a
+ *   trustworthy GPS course, or a full window (StationaryDetector answers "not stationary" until
+ *   then, so the first fix says nothing either way);
  * - a transition whenever the user goes stationary or starts moving, or gets into or out of a
  *   vehicle;
  * - once per [periodMillis], if any fixes arrived, a summary of what happened to them: the
@@ -77,8 +77,9 @@ class CalloutActivityLog(
     }
 
     /**
-     * A usable fix, with the detectors' verdicts for it. [stationaryDecided] is false while the
-     * stationary detector is still filling its window, when [stationary] means nothing yet.
+     * A usable fix, with the detectors' verdicts for it. [stationaryDecided] is false until the
+     * stationary detector has any evidence (StationaryDetector.hasVerdict), when [stationary]
+     * means nothing yet.
      * [accuracyMetres] is the fix's reported accuracy, if it has one.
      */
     fun fix(
