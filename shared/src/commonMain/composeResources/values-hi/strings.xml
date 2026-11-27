@@ -193,14 +193,14 @@
     <string name="directions_along_traveling_sw">%1$s पर दक्षिण-पश्चिम की ओर यात्रा</string>
     <string name="directions_along_traveling_w">%1$s पर पश्चिम की ओर यात्रा</string>
     <string name="directions_along_traveling_nw">%1$s पर उत्तर-पश्चिम की ओर यात्रा</string>
-    <string name="directions_along_facing_n">%1$s पर उत्तर की ओर मुख</string>
-    <string name="directions_along_facing_ne">%1$s पर उत्तर-पूर्व की ओर मुख</string>
-    <string name="directions_along_facing_e">%1$s पर पूर्व की ओर मुख</string>
-    <string name="directions_along_facing_se">%1$s पर दक्षिण-पूर्व की ओर मुख</string>
-    <string name="directions_along_facing_s">%1$s पर दक्षिण की ओर मुख</string>
-    <string name="directions_along_facing_sw">%1$s पर दक्षिण-पश्चिम की ओर मुख</string>
-    <string name="directions_along_facing_w">%1$s पर पश्चिम की ओर मुख</string>
-    <string name="directions_along_facing_nw">%1$s पर उत्तर-पश्चिम की ओर मुख</string>
+    <string name="directions_along_facing_n">%1$s पर उत्तर की ओर मुख किए हुए</string>
+    <string name="directions_along_facing_ne">%1$s पर उत्तर-पूर्व की ओर मुख किए हुए</string>
+    <string name="directions_along_facing_e">%1$s पर पूर्व की ओर मुख किए हुए</string>
+    <string name="directions_along_facing_se">%1$s पर दक्षिण-पूर्व की ओर मुख किए हुए</string>
+    <string name="directions_along_facing_s">%1$s पर दक्षिण की ओर मुख किए हुए</string>
+    <string name="directions_along_facing_sw">%1$s पर दक्षिण-पश्चिम की ओर मुख किए हुए</string>
+    <string name="directions_along_facing_w">%1$s पर पश्चिम की ओर मुख किए हुए</string>
+    <string name="directions_along_facing_nw">%1$s पर उत्तर-पश्चिम की ओर मुख किए हुए</string>
     <string name="directions_along_heading_n">%1$s पर उत्तर दिशा में चलते हुए</string>
     <string name="directions_along_heading_ne">%1$s पर उत्तर-पूर्व दिशा में चलते हुए</string>
     <string name="directions_along_heading_e">%1$s पर पूर्व दिशा में चलते हुए</string>
@@ -309,7 +309,7 @@
     <string name="first_launch_headphones_message_1">Soundscape किसी भी हेडफ़ोन के साथ बेहतरीन काम करता है। यदि आप हेडफ़ोन का उपयोग करना चाहते हैं, तो उन्हें अभी तैयार रखें।</string>
     <string name="first_launch_headphones_message_2">आपको हेडफ़ोन की ज़रूरत नहीं है। Soundscape आपके फ़ोन के स्पीकर के साथ भी अच्छी तरह काम करता है।</string>
     <string name="first_launch_callouts_title">अपने परिवेश को सुनें</string>
-    <string name="first_launch_callouts_message">Soundscape आपको सड़कों, चौराहों और रुचि के स्थानों की घोषणा करके यह जानने में मदद करता है कि आप कहाँ हैं और कहाँ जा रहे हैं।</string>
+    <string name="first_launch_callouts_message">Soundscape सड़कों, चौराहों और रुचि के स्थानों के पास पहुँचने पर उनकी घोषणा करके आपको यह जानने में मदद करता है कि आप कहाँ हैं और कहाँ जा रहे हैं।</string>
     <string name="first_launch_callouts_listen">आपकी अगली सैर पर Soundscape क्या घोषणा कर सकता है, इसका एक उदाहरण सुनें</string>
     <string name="first_launch_callouts_listen_accessibility_label">सुनें</string>
     <string name="first_launch_callouts_example_1">कैफ़े</string>
@@ -442,7 +442,7 @@
     <string name="settings_theme_contrast_regular">सामान्य</string>
     <string name="settings_theme_contrast_medium">मध्यम</string>
     <string name="settings_theme_contrast_high">उच्च</string>
-    <string name="settings_list_item_description">%1$s, %3$s में से %2$s विकल्प है</string>
+    <string name="settings_list_item_description">%1$s, %3$s में से विकल्प %2$s</string>
     <string name="settings_keep_value">रखें</string>
     <string name="settings_use_value">उपयोग करें</string>
     <string name="street_preview_exit">स्थान सिमुलेशन से बाहर निकलें</string>
@@ -458,7 +458,7 @@
     <string name="settings_search_results_language_description">आप ऑनलाइन खोज को परिणाम की स्थानीय भाषा का उपयोग करने दे सकते हैं, या उसे अंग्रेज़ी, फ़्रेंच या जर्मन में परिणाम देने के लिए बाध्य कर सकते हैं।</string>
     <string name="confect_name_to_via">%1$s से %2$s, %3$s के रास्ते</string>
     <string name="confect_name_to">%1$s से %2$s तक</string>
-    <string name="confect_name_joins">%1$s जो %2$s और %3$s को जोड़ता है</string>
+    <string name="confect_name_joins">%2$s और %3$s के बीच %1$s</string>
     <string name="confect_name_via">%1$s %2$s से होकर</string>
     <string name="confect_name_pavement_next_to">%1$s के बगल में फुटपाथ</string>
     <string name="confect_name_pavement">फुटपाथ</string>
@@ -660,7 +660,7 @@
     <string name="osm_picnic_table">पिकनिक टेबल</string>
     <string name="osm_picnic_site">पिकनिक स्थल</string>
     <string name="osm_information">सूचना</string>
-    <string name="osm_fire_extinguisher">अग्निशामक</string>
+    <string name="osm_fire_extinguisher">अग्निशामक यंत्र</string>
     <string name="osm_defibrillator">डिफिब्रिलेटर</string>
     <string name="osm_guide">मार्गदर्शक स्तंभ</string>
     <string name="osm_water">जल निकाय</string>
@@ -676,7 +676,7 @@
     <string name="osm_survey_point">सर्वेक्षण बिंदु</string>
     <string name="osm_snow_net">स्नो नेट</string>
     <string name="osm_silo">साइलो</string>
-    <string name="osm_mast">मस्तूल</string>
+    <string name="osm_mast">एंटीना मस्तूल</string>
     <string name="osm_bird_hide">पक्षी अवलोकन शाला</string>
     <string name="osm_transformer_tower">ट्रांसफार्मर टावर</string>
     <string name="osm_generic_object">सामान्य वस्तु</string>
@@ -684,7 +684,7 @@
     <string name="osm_rock">चट्टान</string>
     <string name="osm_kiln">भट्ठा</string>
     <string name="osm_crane">क्रेन</string>
-    <string name="osm_rune_stone">रूण शिला</string>
+    <string name="osm_rune_stone">रून शिला</string>
     <string name="osm_milestone">मील का पत्थर</string>
     <string name="osm_lifeguard_platform">लाइफगार्ड प्लेटफार्म</string>
     <string name="osm_water_tank">पानी की टंकी</string>
@@ -715,7 +715,7 @@
     <string name="osm_tomb">मकबरा</string>
     <string name="osm_traffic_signals">ट्रैफिक सिग्नल</string>
     <string name="osm_hut">झोपड़ी</string>
-    <string name="osm_static_caravan">स्थायी कारवाँ</string>
+    <string name="osm_static_caravan">स्थायी कैरावैन</string>
     <string name="osm_bollard">बोलार्ड</string>
     <string name="osm_block">ब्लॉक</string>
     <string name="osm_waste_disposal">कचरा निपटान</string>
@@ -728,7 +728,7 @@
     <string name="osm_vacuum_cleaner">वैक्यूम क्लीनर की दुकान</string>
     <string name="osm_mobile_phone">मोबाइल फोन की दुकान</string>
     <string name="osm_carpet">कालीन की दुकान</string>
-    <string name="osm_trade">व्यापार की दुकान</string>
+    <string name="osm_trade">निर्माण सामग्री की दुकान</string>
     <string name="osm_garden_centre">गार्डन सेंटर की दुकान</string>
     <string name="osm_florist">फूलों की दुकान</string>
     <string name="osm_fireplace">अंगीठी</string>
@@ -857,7 +857,7 @@
     <string name="osm_upholsterer">असबाबसाज़</string>
     <string name="osm_shoemaker">मोची</string>
     <string name="osm_sawmill">आरा मशीन</string>
-    <string name="osm_pottery">मिट्टी के बर्तन स्टूडियो</string>
+    <string name="osm_pottery">मिट्टी के बर्तनों का स्टूडियो</string>
     <string name="osm_key_cutter">चाबी बनाने वाला</string>
     <string name="osm_hvac">हीटिंग और कूलिंग ठेकेदार</string>
     <string name="osm_clockmaker">घड़ीसाज़</string>
@@ -988,7 +988,7 @@
     <string name="osm_lottery">लॉटरी की दुकान</string>
     <string name="osm_trophy">ट्रॉफ़ी की दुकान</string>
     <string name="osm_music">संगीत की दुकान</string>
-    <string name="osm_games">खेल की दुकान</string>
+    <string name="osm_games">गेम्स की दुकान</string>
     <string name="osm_tyres">टायर की दुकान</string>
     <string name="osm_sports">खेल-कूद की दुकान</string>
     <string name="osm_outdoor">आउटडोर सामान की दुकान</string>
@@ -1007,7 +1007,7 @@
     <string name="osm_second_hand">पुरानी वस्तुओं की दुकान</string>
     <string name="osm_charity">दान की दुकान</string>
     <string name="osm_fashion">फ़ैशन की दुकान</string>
-    <string name="osm_fabric">कपड़े की दुकान</string>
+    <string name="osm_fabric">फ़ैब्रिक की दुकान</string>
     <string name="osm_clothes">कपड़ों की दुकान</string>
     <string name="osm_butcher">कसाई की दुकान</string>
     <string name="osm_water_utility">जल आपूर्ति सेवा</string>
@@ -1076,7 +1076,7 @@
     <string name="osm_garden_furniture">बगीचे के फ़र्नीचर की दुकान</string>
     <string name="osm_electrical">बिजली सामान की दुकान</string>
     <string name="osm_perfumery">इत्र की दुकान</string>
-    <string name="osm_hairdresser">नाई</string>
+    <string name="osm_hairdresser">हेयर सैलून</string>
     <string name="osm_drugstore">दवा की दुकान</string>
     <string name="osm_shoes">जूतों की दुकान</string>
     <string name="osm_leather">चमड़े के सामान की दुकान</string>
@@ -1091,7 +1091,7 @@
     <string name="osm_government">सरकारी कार्यालय</string>
     <string name="osm_forestry">वानिकी</string>
     <string name="osm_estate_agent">संपत्ति एजेंट</string>
-    <string name="osm_spring">जल स्रोत</string>
+    <string name="osm_spring">पानी का चश्मा</string>
     <string name="osm_golf_course">गोल्फ कोर्स</string>
     <string name="osm_ses_station">आपातकालीन सेवा केंद्र</string>
     <string name="osm_lifeguard_place">लाइफगार्ड चौकी</string>
@@ -1102,7 +1102,7 @@
     <string name="osm_photographer">फोटोग्राफर</string>
     <string name="osm_insulation">इन्सुलेशन</string>
     <string name="osm_electrician">इलेक्ट्रीशियन</string>
-    <string name="osm_dressmaker">दर्जी</string>
+    <string name="osm_dressmaker">दर्ज़ी</string>
     <string name="osm_caterer">केटरर</string>
     <string name="osm_terrace">टैरेस</string>
     <string name="osm_toy_shop">खिलौने की दुकान</string>
@@ -1164,7 +1164,7 @@
     <string name="osm_water_tower">पानी की टंकी</string>
     <string name="osm_pumping_station">पंपिंग स्टेशन</string>
     <string name="osm_hot_water_tank">गर्म पानी की टंकी</string>
-    <string name="osm_campanile">घंटाघर</string>
+    <string name="osm_campanile">घंटा मीनार</string>
     <string name="osm_sports_centre">खेल केंद्र</string>
     <string name="osm_fitness_centre">फिटनेस केंद्र</string>
     <string name="osm_beach_resort">बीच रिज़ॉर्ट</string>
@@ -1245,7 +1245,7 @@
     <string name="osm_nature_reserve">प्रकृति अभयारण्य</string>
     <string name="osm_marina">मरीना</string>
     <string name="osm_ice_rink">आइस रिंक</string>
-    <string name="osm_manor">जागीर</string>
+    <string name="osm_manor">हवेली</string>
     <string name="osm_city_gate">नगर द्वार</string>
     <string name="osm_castle">किला</string>
     <string name="osm_aircraft">विमान</string>
@@ -1322,7 +1322,7 @@
     <string name="osm_ambulance_station">एम्बुलेंस स्टेशन</string>
     <string name="osm_spikes">स्पाइक्स</string>
     <string name="osm_generic_hazard">सामान्य खतरा</string>
-    <string name="osm_contact_line">संपर्क लाइन</string>
+    <string name="osm_contact_line">ओवरहेड बिजली लाइन</string>
     <string name="osm_danger_area">खतरनाक क्षेत्र</string>
     <string name="osm_chain">चेन बैरियर</string>
     <string name="osm_parking_space">पार्किंग स्थान</string>
@@ -1399,7 +1399,7 @@
     <string name="voice_cmd_start_beacon_at_marker_with_name">%1$s पर ऑडियो बीकन शुरू करें</string>
     <string name="voice_cmd_starting_beacon_at_marker">ऑडियो बीकन %1$s पर शुरू किया जा रहा है</string>
     <string name="voice_cmd_marker_not_found">मार्कर नहीं मिला: %1$s</string>
-    <string name="voice_cmd_explain_dynamic_markers">उदाहरण के लिए, आप नाम से मार्ग और मार्कर भी शुरू कर सकते हैं।</string>
+    <string name="voice_cmd_explain_dynamic_markers">आप मार्ग और मार्कर को उनके नाम से भी शुरू कर सकते हैं, उदाहरण के लिए:</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout">वाणी पहचान नेटवर्क टाइमआउट त्रुटि।</string>
     <string name="voice_cmd_speech_recognition_error_network">वाणी पहचान नेटवर्क त्रुटि।</string>
     <string name="voice_cmd_speech_recognition_error_audio">वाणी पहचान: ऑडियो रिकॉर्ड करने में त्रुटि।</string>
@@ -1422,7 +1422,7 @@
     <string name="settings_voice_command_microphone">माइक्रोफ़ोन</string>
     <string name="settings_voice_command_microphone_description">वॉइस कमांड के लिए किस माइक्रोफ़ोन का उपयोग करना है, चुनें।</string>
     <string name="battery_optimization_title">पृष्ठभूमि बैटरी उपयोग</string>
-    <string name="battery_optimization_message">आपके फ़ोन के लॉक होने पर भी ऑडियो नेविगेशन प्रदान करते रहने के लिए Soundscape को अप्रतिबंधित बैटरी उपयोग की आवश्यकता होती है। कृपया अगली डायलॉग में अप्रतिबंधित बैटरी उपयोग की अनुमति दें। यदि आप Soundscape को बंद कर देते हैं तो सभी सेवाएँ रुक जाएँगी और ऐप बैटरी का उपयोग नहीं करेगा।</string>
+    <string name="battery_optimization_message">आपके फ़ोन के लॉक होने पर भी ऑडियो नेविगेशन प्रदान करते रहने के लिए Soundscape को अप्रतिबंधित बैटरी उपयोग की आवश्यकता होती है। कृपया अगले डायलॉग में अप्रतिबंधित बैटरी उपयोग की अनुमति दें। यदि आप Soundscape को बंद कर देते हैं तो सभी सेवाएँ रुक जाएँगी और ऐप बैटरी का उपयोग नहीं करेगा।</string>
     <string name="route_detail_action_start_route_reverse">मार्ग उल्टे क्रम में शुरू करें</string>
     <string name="route_detail_action_start_route_reverse_hint">इस मार्ग को उल्टे क्रम में चलाएँ</string>
     <string name="route_reverse_name">%1$s उल्टे क्रम में</string>
@@ -1455,7 +1455,7 @@
     <string name="settings_expanded">विस्तारित</string>
     <string name="ui_grant_permission">अनुमति दें</string>
     <string name="copyright_notices">Soundscape इन शानदार तृतीय‑पक्ष लाइब्रेरी और डेटा पर निर्भर है। उनके लाइसेंस देखने के लिए लिंक पर क्लिक करें:</string>
-    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) Soundscape में उपयोग होने वाले मैपिंग और ऑडियो के सभी भू‑आंकिक (geo) डेटा प्रदान करते हैं।</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) Soundscape में उपयोग होने वाले मैपिंग और ऑडियो के सभी भौगोलिक डेटा प्रदान करते हैं।</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) का उपयोग उन मैपिंग टाइल्स को उत्पन्न करने के लिए किया जाता है जिनका हम उपयोग करते हैं।</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) का उपयोग 3D ऑडियो उत्पन्न करने के लिए किया जाता है, और इसे उपयोग के लिए [Apache 2.0 लाइसेंस](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) के अंतर्गत उपलब्ध कराया गया है।</string>
     <string name="trademark_disclaimer">सभी तृतीय‑पक्ष उत्पाद, कंपनी नाम और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।</string>
@@ -1593,7 +1593,7 @@
     <string name="help_text_assistant_how_ios">हर आदेश का रूप एक जैसा है: *“Soundscape”*, फिर एक समूह, फिर आपकी पसंद। जैसे, *“Soundscape surroundings around me”*।\n\nआप समूह के बाद रुक भी सकते हैं, और Siri पूछता है कि आपको कौन सी पसंद चाहिए। इस तरह हर समूह एक बोले जाने वाले मेनू की तरह काम करता है। याद रखने के लिए सिर्फ़ सात समूह हैं।</string>
     <string name="help_text_assistant_commands_ios">*“Soundscape surroundings”* — फिर *मेरा स्थान*, *मेरे आसपास*, *मेरे आगे*, *पास के मार्कर*, *बीकन का कॉलआउट करें* या *बीकन की जानकारी*।\n\n*“Soundscape route”* — फिर *अगला मार्ग बिंदु*, *पिछला मार्ग बिंदु*, *बीकन म्यूट करें* या *रोकें*।\n\n*“Soundscape start route”* — फिर आपके किसी मार्ग का नाम।\n\n*“Soundscape beacon”* — फिर आपके किसी मार्कर का नाम।\n\n*“Soundscape stop beacon”*।\n\n*“Soundscape detail”* — फिर *मौन*, *आवश्यक*, *सरलीकृत* या *विस्तृत*। *मौन* स्वचालित कॉलआउट बंद कर देता है।\n\n*“Soundscape list”* — फिर *मार्ग*, *मार्कर* या *आदेश*। *आदेश* यह सूची आपको पढ़कर सुनाता है।</string>
     <string name="help_text_assistant_notes_ios">ये आदेश Shortcuts ऐप में और iOS की Settings ऐप में *Siri* के नीचे भी दिखते हैं। वहाँ आप पूरी सूची देख सकते हैं और किसी भी आदेश के लिए अपने शब्द जोड़ सकते हैं।</string>
-    <string name="action_route_started">%1$s शुरू कर रहा हूँ</string>
+    <string name="action_route_started">%1$s शुरू किया जा रहा है</string>
     <string name="action_route_stopped">मार्ग रोक दिया गया</string>
     <string name="action_beacon_started">बीकन %1$s पर सेट किया गया</string>
     <string name="action_beacon_stopped">बीकन रोक दिया गया</string>
@@ -1667,7 +1667,7 @@
     <string name="callouts_streets_and_junctions">सड़कें और चौराहे</string>
     <string name="callouts_streets_and_junctions_description">आगे के चौराहे और वह सड़क जिस पर आप हैं</string>
     <string name="callouts_places_to_call_out">कॉलआउट किए जाने वाले स्थान</string>
-    <string name="callouts_places_to_call_out_description">आप जिनके पास से गुज़रते हैं, उनमें से किस प्रकार के स्थान कॉलआउट किए जाएँ। जितने चाहें उतने चुनें, या सब कुछ या कोई स्थान नहीं चुनें। आपके मार्कर हमेशा कॉलआउट किए जाते हैं।</string>
+    <string name="callouts_places_to_call_out_description">आप जिनके पास से गुज़रते हैं, उनमें से किस प्रकार के स्थान कॉलआउट किए जाएँ। जितने चाहें उतने चुनें, या “सब कुछ” या “कोई स्थान नहीं” चुनें। आपके मार्कर हमेशा कॉलआउट किए जाते हैं।</string>
     <string name="callouts_places_everything">सब कुछ</string>
     <string name="callouts_places_landmarks">लैंडमार्क</string>
     <string name="callouts_places_nothing">कोई स्थान नहीं</string>
@@ -1743,8 +1743,8 @@
     <string name="open_in_app_dialog_title">चुनें कि किस ऐप से खोलना है</string>
     <string name="open_in_app_remember">हमेशा इस ऐप का उपयोग करें</string>
     <string name="open_in_app_change">कोई दूसरा ऐप चुनें</string>
-    <string name="confect_name_to_dead_end">%1$s से बंद गली तक</string>
-    <string name="confect_name_to_dead_end_via">%1$s से बंद गली, %2$s के रास्ते</string>
+    <string name="confect_name_to_dead_end">%1$s, बंद गली तक</string>
+    <string name="confect_name_to_dead_end_via">%1$s, %2$s के रास्ते बंद गली तक</string>
     <string name="confect_name_to_locked_gate">%1$s, ताला लगे गेट तक</string>
     <string name="confect_name_to_locked_gate_via">%1$s, %2$s के रास्ते ताला लगे गेट तक</string>
     <string name="confect_name_locked_gate">ताला लगा गेट</string>
