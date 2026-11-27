@@ -991,7 +991,7 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="directions_away_from_settlement">nesa da %1$s, %2$s a bayanka</string>
     <string name="directions_near_settlement_inline">kusa da %1$s</string>
     <string name="directions_close_to_settlement_inline">daf da %1$s</string>
-    <string name="directions_generic_train">jirgin ƙasa</string>
+    <string name="directions_generic_train">layin dogo</string>
     <string name="directions_crossing_waterway">Ana wucewa bisa %1$s</string>
     <string name="directions_crossing_railway_generic">Ana wucewa bisa hanyar jirgin ƙasa</string>
     <string name="directions_going_under_railway">Ana wucewa ƙarƙashin %1$s</string>
@@ -1640,7 +1640,7 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="callouts_bus_and_tram_stops">Tashoshin Bas da Tram</string>
     <string name="callouts_bus_and_tram_stops_description">Sanar da tashoshin bas da na tram yayin da kake wucewa</string>
     <string name="directions_approaching_name">Ana kusanto %1$s</string>
-    <string name="directions_generic_tram">tram</string>
+    <string name="directions_generic_tram">layin tram</string>
     <string name="ios_permission_location_when_in_use">Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti da kuma bayyana abin da ke kewaye da ku.</string>
     <string name="ios_permission_location_always">Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti ko da manhajar tana aiki a baya.</string>
     <string name="ios_permission_motion">Soundscape tana amfani da bayanan motsi domin gane inda kuke fuskanta, sanin lokacin da kuke tafiya da ƙafa, da kuma daidaita sanarwowin sauti da abin da ke kewaye da ku.</string>

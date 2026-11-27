@@ -1554,7 +1554,7 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="directions_away_from_settlement">bort fra %1$s, %2$s bak deg</string>
     <string name="directions_near_settlement_inline">nær %1$s</string>
     <string name="directions_close_to_settlement_inline">i nærheten av %1$s</string>
-    <string name="directions_generic_train">tog</string>
+    <string name="directions_generic_train">jernbanen</string>
     <string name="directions_crossing_waterway">Passerer over %1$s</string>
     <string name="directions_crossing_railway_generic">Passerer over jernbanen</string>
     <string name="directions_going_under_railway">Passerer under %1$s</string>
@@ -1640,7 +1640,7 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="callouts_bus_and_tram_stops">Buss- og trikkestopp</string>
     <string name="callouts_bus_and_tram_stops_description">Les opp busstopp og trikkestopp når du passerer dem</string>
     <string name="directions_approaching_name">Du nærmer deg %1$s</string>
-    <string name="directions_generic_tram">trikk</string>
+    <string name="directions_generic_tram">trikkelinjen</string>
     <string name="ios_permission_location_when_in_use">Soundscape trenger posisjonen din for å gi lydnavigasjon og beskrive omgivelsene dine.</string>
     <string name="ios_permission_location_always">Soundscape trenger posisjonen din for å gi lydnavigasjon også når appen kjører i bakgrunnen.</string>
     <string name="ios_permission_motion">Soundscape bruker bevegelsesdata for å registrere hvilken retning du står mot, når du går, og plassere lydmeldingene i forhold til omgivelsene dine.</string>

@@ -248,3 +248,5 @@ Most serious fixed:
 Held for a person: `directions_along_heading_n` (reviewer: awaiting); `directions_along_heading_ne` (reviewer: awaiting); `directions_along_heading_e` (reviewer: awaiting); `directions_along_heading_se` (reviewer: awaiting); `directions_along_heading_s` (reviewer: awaiting); `directions_along_heading_sw` (reviewer: awaiting); `directions_along_heading_w` (reviewer: awaiting); `directions_along_heading_nw` (reviewer: awaiting).
 
 **2026-10-01 — home-button names.** My Location button «Моє\nмісце» → «Моє\nмісцезнаходження» (C27); release notes too.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «залізниці» / «трамвайній лінії», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

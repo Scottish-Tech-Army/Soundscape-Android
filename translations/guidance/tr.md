@@ -137,3 +137,5 @@ Held for a person: `confect_name_to` (reviewer: open question).
 Also changed the same day:
 - `ecf310fc7`: `relative_clock_direction` changed so it no longer sounds like a time of day (C20).
 - `1094f4f7a`: "ahead" became the template `directions_ahead_road`; Turkish is «İleride %1$s» instead of «düz» (C24).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «demiryolu» / «tramvay hattı», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

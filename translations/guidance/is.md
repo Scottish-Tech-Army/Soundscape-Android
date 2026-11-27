@@ -204,3 +204,5 @@ Most serious fixed:
 - `route_detail_action_start_route`: «Upphaf leiðar» is the noun "start of the route", not the action "Start Route";
 - `route_detail_action_start_route_reverse`: Same as route_detail_action_start_route: noun «Upphaf leiðar» instead of the action
 Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text); `terms_of_use_message` (legal text).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «járnbrautinni» / «sporvagnsleiðinni», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

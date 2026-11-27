@@ -89,3 +89,5 @@ Most serious fixed:
 - `faq_tip_create_marker_at_bus_stop`: «तुमचे उतरण्याचे थांबे किती जवळ आले आहे» mixes a plural subject with a singular verb;
 Also changed the same day:
 - `c85663f73`: `help_text_remote_control_how` now names the real Around Me button, following the English fix.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «रेल्वे मार्ग» / «ट्राम मार्ग», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

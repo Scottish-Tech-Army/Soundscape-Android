@@ -116,3 +116,5 @@ Most serious fixed:
 Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text).
 
 **2026-10-01 — home-button names.** Nearby Markers button «Markörer\nnära» → «Platsmarkörer\ni närheten» (C27).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «järnvägen» / «spårvägen», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

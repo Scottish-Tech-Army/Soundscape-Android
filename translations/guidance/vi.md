@@ -78,3 +78,5 @@ Most serious fixed:
 - `search_synonyms_taxi`: «xe ôm» (motorbike taxi) does not use taxi stands, so searching it returns taxi ranks
 - `faq_when_to_use_soundscape_answer`: The user testimonials lost their quotation marks, so they read as the app speaking about itself ("Soundscape helped me…");
 - `help_text_creating_markers_content_1`: UI name does not match the button label «Lưu làm điểm đánh dấu» (Vietnamese labels are sentence case)
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «tuyến đường sắt» / «tuyến tàu điện», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

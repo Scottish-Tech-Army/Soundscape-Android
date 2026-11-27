@@ -1171,7 +1171,7 @@
     <string name="directions_away_from_settlement">%1$s سے دور جا رہے ہیں، %2$s آپ کے پیچھے</string>
     <string name="directions_near_settlement_inline">%1$s کے قریب</string>
     <string name="directions_close_to_settlement_inline">%1$s کے نزدیک</string>
-    <string name="directions_generic_train">ٹرین</string>
+    <string name="directions_generic_train">ریلوے لائن</string>
     <string name="directions_crossing_waterway">%1$s کے اوپر سے گزرتے ہوئے</string>
     <string name="directions_crossing_railway_generic">ریلوے لائن کے اوپر سے گزرتے ہوئے</string>
     <string name="directions_going_under_railway">%1$s کے نیچے سے گزرتے ہوئے</string>
@@ -1640,7 +1640,7 @@
     <string name="callouts_bus_and_tram_stops">بس اور ٹرام اسٹاپ</string>
     <string name="callouts_bus_and_tram_stops_description">گزرتے ہوئے بس اسٹاپ اور ٹرام اسٹاپ کا اعلان کریں</string>
     <string name="directions_approaching_name">%1$s قریب آ رہا ہے</string>
-    <string name="directions_generic_tram">ٹرام</string>
+    <string name="directions_generic_tram">ٹرام لائن</string>
     <string name="ios_permission_location_when_in_use">Soundscape کو آڈیو نیویگیشن فراہم کرنے اور آپ کے ارد گرد کے ماحول کی تفصیل بتانے کے لیے آپ کے مقام کی ضرورت ہے۔</string>
     <string name="ios_permission_location_always">Soundscape کو ایپ کے پس منظر میں ہونے کے باوجود آڈیو نیویگیشن فراہم کرنے کے لیے آپ کے مقام کی ضرورت ہے۔</string>
     <string name="ios_permission_motion">Soundscape حرکت کے ڈیٹا کا استعمال کرتے ہوئے آپ کے رخ کی سمت معلوم کرتا ہے، یہ جانتا ہے کہ آپ کب چل رہے ہیں، اور آڈیو کالآؤٹس کو آپ کے ارد گرد کے ماحول کے مطابق ترتیب دیتا ہے۔</string>

@@ -81,3 +81,5 @@ Also changed the same day:
 - `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).
 
 **2026-10-01 — home-button names.** Nearby Markers button «Marcaje\naproape» → «Marcaje din\napropiere» (C27).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «calea ferată» / «linia de tramvai», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

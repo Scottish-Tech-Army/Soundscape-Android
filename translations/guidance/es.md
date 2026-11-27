@@ -437,3 +437,5 @@ Also changed the same day:
 - `daa34bc2d`: `terms_of_use_medical_safety_disclaimer` said «dispositivo» (device) for "advice"; now «el asesoramiento». See the entry above.
 
 **2026-10-01 — JJ: release notes say «reposo» (ES-D1).** Not an app string: `docs/release-notes.es.md`. Recorded the rule and the replacement text; nothing edited. The same gap exists in most languages' release notes (C26).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «vía férrea» / «vía del tranvía», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

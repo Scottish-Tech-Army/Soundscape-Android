@@ -120,3 +120,5 @@ Most serious fixed:
 - `osm_post_box`: false friend. Danish «postboks» is a P.O. box; a street post box is «postkasse».
 - `osm_tax`: «Skat» is heard as the Danish tax authority (Skattestyrelsen, known as SKAT) or simply "tax".
 - `osm_car`: «Bil» just means "car", so a car dealership is announced as if a car were there.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «jernbanen» / «sporvognslinjen», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

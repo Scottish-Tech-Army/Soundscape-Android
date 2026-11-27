@@ -1554,7 +1554,7 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="directions_away_from_settlement">weg von %1$s, %2$s hinter Ihnen</string>
     <string name="directions_near_settlement_inline">nahe %1$s</string>
     <string name="directions_close_to_settlement_inline">nahe bei %1$s</string>
-    <string name="directions_generic_train">Zug</string>
+    <string name="directions_generic_train">der Bahnstrecke</string>
     <string name="directions_crossing_waterway">Überquerung von %1$s</string>
     <string name="directions_crossing_railway_generic">Überquerung der Eisenbahn</string>
     <string name="directions_going_under_railway">Unterquerung von %1$s</string>
@@ -1640,7 +1640,7 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="callouts_bus_and_tram_stops">Bus- und Straßenbahnhaltestellen</string>
     <string name="callouts_bus_and_tram_stops_description">Bus- und Straßenbahnhaltestellen ansagen, wenn Sie daran vorbeikommen</string>
     <string name="directions_approaching_name">%1$s vor Ihnen</string>
-    <string name="directions_generic_tram">Straßenbahn</string>
+    <string name="directions_generic_tram">der Straßenbahnstrecke</string>
     <string name="ios_permission_location_when_in_use">Soundscape benötigt Ihren Standort, um Audio-Navigation zu bieten und Ihre Umgebung zu beschreiben.</string>
     <string name="ios_permission_location_always">Soundscape benötigt Ihren Standort, um Audio-Navigation auch dann zu bieten, wenn die App im Hintergrund ist.</string>
     <string name="ios_permission_motion">Soundscape verwendet Bewegungsdaten, um Ihre Blickrichtung zu erkennen, festzustellen, wann Sie gehen, und Audio-Hinweise an Ihrer Umgebung auszurichten.</string>

@@ -90,3 +90,5 @@ Most serious fixed:
 - `universal_links_marker_share_message`: «Zdieľal(a)» forces a bracketed gender form (C15);
 - `faq_section_what_is_soundscape`: «ako by som ho mal používať» is masculine-only for the reader asking;
 Held for a person: `talkback_double_tap_template` (reviewer: candidate).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «železničnej trati» / «električkovej trati», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

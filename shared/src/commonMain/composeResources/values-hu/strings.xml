@@ -934,7 +934,7 @@
     <string name="directions_away_from_settlement">eltávolodva ettől: %1$s, %2$s Ön mögött</string>
     <string name="directions_near_settlement_inline">%1$s közelében</string>
     <string name="directions_close_to_settlement_inline">%1$s közelében</string>
-    <string name="directions_generic_train">vonat</string>
+    <string name="directions_generic_train">vasútvonal</string>
     <string name="directions_crossing_waterway">%1$s feletti áthaladás</string>
     <string name="directions_crossing_railway_generic">A vasút feletti áthaladás</string>
     <string name="directions_going_under_railway">%1$s alatti áthaladás</string>
@@ -1640,7 +1640,7 @@ Kérjük, továbbra is jelezze nekünk a felmerülő problémákat, bármilyen k
     <string name="callouts_bus_and_tram_stops">Busz- és villamosmegállók</string>
     <string name="callouts_bus_and_tram_stops_description">Busz- és villamosmegállók bemondása, amikor elhalad mellettük</string>
     <string name="directions_approaching_name">Közeledés ide: %1$s</string>
-    <string name="directions_generic_tram">villamos</string>
+    <string name="directions_generic_tram">villamosvonal</string>
     <string name="ios_permission_location_when_in_use">A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson és leírja a környezetét.</string>
     <string name="ios_permission_location_always">A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson akkor is, amikor az alkalmazás a háttérben fut.</string>
     <string name="ios_permission_motion">A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, mikor sétál, és a bemondásokat a környezetéhez igazítsa.</string>

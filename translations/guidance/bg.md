@@ -170,3 +170,5 @@ Most serious fixed:
 - `confect_name_joins`: %1$s is a way type of any gender (Пътека, Пешеходна алея are feminine, Стълби plural), but the relative pronoun «който» is masculine, so it gives 'Пътека, който свързва…'.
 Also changed the same day:
 - `c85663f73`: `help_text_remote_control_how` now names the real Around Me button, following the English fix.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «железопътната линия» / «трамвайната линия», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

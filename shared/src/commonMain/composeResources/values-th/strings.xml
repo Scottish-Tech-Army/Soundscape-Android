@@ -576,7 +576,7 @@
     <string name="directions_away_from_settlement">ออกห่างจาก %1$s ซึ่งอยู่ด้านหลังคุณ %2$s</string>
     <string name="directions_near_settlement_inline">ใกล้ %1$s</string>
     <string name="directions_close_to_settlement_inline">ใกล้กับ %1$s</string>
-    <string name="directions_generic_train">รถไฟ</string>
+    <string name="directions_generic_train">ทางรถไฟ</string>
     <string name="directions_crossing_waterway">ผ่านเหนือ %1$s</string>
     <string name="directions_crossing_railway_generic">ผ่านเหนือทางรถไฟ</string>
     <string name="directions_going_under_railway">ผ่านใต้ %1$s</string>
@@ -1624,7 +1624,7 @@
     <string name="callouts_bus_and_tram_stops">ป้ายรถประจำทางและป้ายรถราง</string>
     <string name="callouts_bus_and_tram_stops_description">ประกาศป้ายรถประจำทางและป้ายรถรางเมื่อคุณผ่าน</string>
     <string name="directions_approaching_name">กำลังใกล้ถึง %1$s</string>
-    <string name="directions_generic_tram">รถราง</string>
+    <string name="directions_generic_tram">ทางรถราง</string>
     <string name="ios_permission_location_when_in_use">Soundscape ต้องการตำแหน่งที่ตั้งของคุณเพื่อให้บริการนำทางด้วยเสียงและอธิบายสภาพแวดล้อมรอบตัวคุณ</string>
     <string name="ios_permission_location_always">Soundscape ต้องการตำแหน่งที่ตั้งของคุณเพื่อให้บริการนำทางด้วยเสียงแม้ในขณะที่แอปทำงานอยู่เบื้องหลัง</string>
     <string name="ios_permission_motion">Soundscape ใช้ข้อมูลการเคลื่อนไหวเพื่อตรวจจับทิศทางที่คุณหันหน้าไป รู้ว่าคุณกำลังเดินอยู่หรือไม่ และจัดวางการแจ้งเตือนด้วยเสียงให้สอดคล้องกับสภาพแวดล้อมรอบตัวคุณ</string>

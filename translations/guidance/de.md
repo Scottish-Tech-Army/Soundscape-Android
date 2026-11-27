@@ -118,3 +118,5 @@ Also changed the same day:
 **2026-10-01 — home-button names.** Nearby Markers button «Mark.\nin Nähe» → «Markierungen\nin der Nähe», the name everywhere else (C27).
 
 **2026-11-23 — iOS Always-location instructions (`e465ada77`).** `first_launch_permissions_location_always` and `_denied` quote Apple’s own iOS labels, taken from Apple’s shipped iOS files via applelocalization.com: «Beim Verwenden der App erlauben», «In „Immer erlauben“ ändern», «Ort», «Immer», «Genauer Standort». «Ort» was confirmed on a device the same day. The other labels are Apple’s text and have not been checked on a device.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «der Bahnstrecke» / «der Straßenbahnstrecke», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

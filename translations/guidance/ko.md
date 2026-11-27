@@ -89,3 +89,5 @@ Most serious fixed:
 - `action_route_started`: «%1$s 시작합니다» drops the object particle («Home to Work 시작합니다»).
 - `first_launch_callouts_title`: «주변 환경 소리 듣기» means "hear the sounds of your surroundings".
 Held for a person: `help_config_voices_content_ios` (reviewer: on a device).
+
+**2026-11-27 — unnamed train/tram line (C30), left for a speaker.** `directions_generic_train` / `directions_generic_tram` still name the vehicle: «기차에 있음» (on the train) reads naturally; naming the line would sound like being on the tracks. Left as it is.

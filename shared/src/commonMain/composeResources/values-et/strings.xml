@@ -1126,7 +1126,7 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="directions_away_from_settlement">asulast %1$s eemale, %2$s selja taga</string>
     <string name="directions_near_settlement_inline">%1$s lähedal</string>
     <string name="directions_close_to_settlement_inline">%1$s läheduses</string>
-    <string name="directions_generic_train">rongis</string>
+    <string name="directions_generic_train">raudtee</string>
     <string name="directions_crossing_waterway">Läheb %1$s pealt üle</string>
     <string name="directions_crossing_railway_generic">Läheb raudtee pealt üle</string>
     <string name="directions_going_under_railway">Läheb %1$s alt läbi</string>
@@ -1640,7 +1640,7 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="callouts_bus_and_tram_stops">Bussi- ja trammipeatused</string>
     <string name="callouts_bus_and_tram_stops_description">Teavita bussi- ja trammipeatustest, kui neist möödud</string>
     <string name="directions_approaching_name">Lähenemas: %1$s</string>
-    <string name="directions_generic_tram">trammis</string>
+    <string name="directions_generic_tram">trammitee</string>
     <string name="ios_permission_location_when_in_use">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ja kirjeldada teie ümbrust.</string>
     <string name="ios_permission_location_always">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ka siis, kui rakendus töötab taustal.</string>
     <string name="ios_permission_motion">Soundscape kasutab liikumisandmeid, et tuvastada suund, kuhu te näoga olete, teada saada, millal te kõnnite, ja suunata häälteated vastavalt teie ümbrusele.</string>

@@ -74,3 +74,5 @@ Most serious fixed:
 Held for a person: `faq_how_to_use_beacon_answer` (reviewer: NEEDS A HUMAN).
 
 **2026-10-01 — home-button names.** Home buttons and help unified on the Siri names: «Wurina», «Kewaye da Ni», «Gaba da Ni», «Alamomi na Kusa». The buttons, tour and help had used three different sets (C27).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «layin dogo» / «layin tram», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

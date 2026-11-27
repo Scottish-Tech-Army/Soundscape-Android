@@ -936,7 +936,7 @@
     <string name="directions_away_from_settlement">smerom preč od %1$s, %2$s za vami</string>
     <string name="directions_near_settlement_inline">blízko %1$s</string>
     <string name="directions_close_to_settlement_inline">neďaleko %1$s</string>
-    <string name="directions_generic_train">vlak</string>
+    <string name="directions_generic_train">železničnej trati</string>
     <string name="directions_crossing_waterway">Prechod nad %1$s</string>
     <string name="directions_crossing_railway_generic">Prechod nad železnicou</string>
     <string name="directions_going_under_railway">Prechod pod %1$s</string>
@@ -1672,7 +1672,7 @@ Ak narazíte na akýkoľvek problém, aj keď sa zdá byť malý, dajte nám o �
     <string name="callouts_bus_and_tram_stops">Zastávky autobusov a električiek</string>
     <string name="callouts_bus_and_tram_stops_description">Oznamovať zastávky autobusov a električiek, keď okolo nich prechádzate</string>
     <string name="directions_approaching_name">Blížite sa k %1$s</string>
-    <string name="directions_generic_tram">električka</string>
+    <string name="directions_generic_tram">električkovej trati</string>
     <string name="ios_permission_location_when_in_use">Soundscape potrebuje vašu polohu, aby mohol poskytovať zvukovú navigáciu a opisovať vaše okolie.</string>
     <string name="ios_permission_location_always">Soundscape potrebuje vašu polohu, aby mohol poskytovať zvukovú navigáciu, aj keď je aplikácia na pozadí.</string>
     <string name="ios_permission_motion">Soundscape používa pohybové dáta na rozpoznanie smeru, ktorým ste otočení, na zistenie, kedy kráčate, a na nasmerovanie zvukových hlásení podľa vášho okolia.</string>

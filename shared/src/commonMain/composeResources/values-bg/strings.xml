@@ -204,7 +204,7 @@
     <string name="directions_away_from_settlement">далеч от %1$s, на %2$s зад Вас</string>
     <string name="directions_near_settlement_inline">близо до %1$s</string>
     <string name="directions_close_to_settlement_inline">в близост до %1$s</string>
-    <string name="directions_generic_train">влак</string>
+    <string name="directions_generic_train">железопътната линия</string>
     <string name="directions_crossing_waterway">Преминаване над %1$s</string>
     <string name="directions_crossing_railway_generic">Преминаване над жп линията</string>
     <string name="directions_going_under_railway">Преминаване под %1$s</string>
@@ -1640,7 +1640,7 @@
     <string name="callouts_bus_and_tram_stops">Автобусни и трамвайни спирки</string>
     <string name="callouts_bus_and_tram_stops_description">Съобщаване на автобусните и трамвайните спирки, покрай които минавате</string>
     <string name="directions_approaching_name">Приближаване към %1$s</string>
-    <string name="directions_generic_tram">трамвай</string>
+    <string name="directions_generic_tram">трамвайната линия</string>
     <string name="ios_permission_location_when_in_use">Soundscape се нуждае от местоположението Ви, за да предоставя аудио навигация и да описва околността Ви.</string>
     <string name="ios_permission_location_always">Soundscape се нуждае от местоположението Ви, за да предоставя аудио навигация дори когато приложението е на заден план.</string>
     <string name="ios_permission_motion">Soundscape използва данни за движение, за да определи посоката, в която сте обърнати, да разбере кога вървите и да насочи аудио съобщенията спрямо околността Ви.</string>

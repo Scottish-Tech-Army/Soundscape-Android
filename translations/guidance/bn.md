@@ -81,3 +81,5 @@ Most serious fixed:
 - `help_text_ahead_of_me_how`: The last clause «আপনি প্রায় সবগুলোই আপনার সামনে থাকা বেশ কয়েকটি আগ্রহের স্থান» is garbled ('you almost all of them several points of interest in front of you').
 - `osm_gas_station`: «গ্যাস স্টেশন» usually means a CNG or gas-cylinder station in Bengali.
 - `settings_keep_value`: This is a TalkBack hint (SettingsComponents.kt passes it to talkbackHint), so it follows 'Double tap to'.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «রেললাইন» / «ট্রামলাইন», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

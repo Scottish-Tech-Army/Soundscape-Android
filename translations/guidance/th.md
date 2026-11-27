@@ -90,3 +90,5 @@ Also changed the same day:
 - `7ca86e582`: `new_version_info_details` got the English paragraph breaks back, which the release-notes dialog now splits Thai on.
 
 **2026-09-30 — `osm_path` no longer shares the Routes word.** It said «เส้นทางเดิน», the same word as `routes_title`, so a footpath sounded like a route. Now «ทางเดิน», a footpath word (AI choice, `unconfirmed`). The English comment now says Path means a footpath and must not share a word with Routes.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «ทางรถไฟ» / «ทางรถราง», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

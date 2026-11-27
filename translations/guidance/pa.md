@@ -95,3 +95,5 @@ Most serious fixed:
 - `settings_keep_value`: Passed to talkbackHint() (SettingsComponents.kt), so iOS reads it through talkback_double_tap_template «%1$s ਦੋ ਵਾਰ ਟੈਪ ਕਰੋ»: the bare imperative gives «ਰੱਖੋ ਦੋ ਵਾਰ ਟੈਪ ਕ
 - `settings_use_value`: Same as settings_keep_value: a talkbackHint, so iOS says «ਵਰਤੋ ਦੋ ਵਾਰ ਟੈਪ ਕਰੋ».
 - `osm_crypt`: «ਤਹਿਖਾਨਾ ਕਬਰਗਾਹ» puts two nouns side by side ('basement graveyard'), which isn't grammatical Punjabi.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «ਰੇਲ ਲਾਈਨ» / «ਟਰਾਮ ਲਾਈਨ», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

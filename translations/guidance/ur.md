@@ -79,3 +79,5 @@ Also changed the same day:
 - `cc4943378`: help, FAQ and tutorial now give the mirrored right-to-left button positions (Sleep top-left, My Location right-most), `_common.md` C23.
 
 **2026-10-01 — home-button names.** `tour_my_location` said «میری لوکیشن»; the button says «میرا مقام» (C27).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «ریلوے لائن» / «ٹرام لائن», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.
