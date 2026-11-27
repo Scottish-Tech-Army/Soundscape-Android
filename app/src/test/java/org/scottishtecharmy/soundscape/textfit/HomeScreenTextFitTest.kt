@@ -121,7 +121,7 @@ class HomeScreenTextFitTest(private val qualifier: String, private val fontScale
 
         private val locales = listOf(
             "ar", "bg", "bn", "ca", "cs", "da", "de", "el", "en", "en-rGB", "es", "et", "fa",
-            "fi", "fr", "fr-rCA", "ha", "hi", "hr", "hu", "id", "is", "it", "ja", "ko", "mr",
+            "fi", "fr", "fr-rCA", "ha", "hi", "hr", "hu", "id", "is", "it", "ja", "ko", "lt", "mr",
             "nb", "nl", "pa", "pl", "pt", "pt-rBR", "ro", "ru", "sk", "sl", "sr", "sv", "sw",
             "ta", "te", "th", "tr", "uk", "ur", "vi", "zh",
         )
