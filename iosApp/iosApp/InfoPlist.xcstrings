@@ -153,6 +153,12 @@
             "value": "Soundscape는 블루투스를 사용하여 헤드 트래킹 헤드폰 및 기타 오디오 기기를 검색하고 연결합니다."
           }
         },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape naudoja Bluetooth, kad rastų galvos sekimo ausines bei kitus garso įrenginius ir prie jų prisijungtų."
+          }
+        },
         "mr": {
           "stringUnit": {
             "state": "translated",
@@ -437,6 +443,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape는 블루투스를 사용하여 헤드 트래킹 헤드폰 및 기타 오디오 기기를 검색하고 연결합니다."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape naudoja Bluetooth, kad rastų galvos sekimo ausines bei kitus garso įrenginius ir prie jų prisijungtų."
           }
         },
         "mr": {
@@ -725,6 +737,12 @@
             "value": "Soundscape는 앱이 백그라운드에 있을 때도 오디오 내비게이션을 제공하기 위해 위치 정보가 필요합니다."
           }
         },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape reikia jūsų vietos, kad galėtų teikti garsinę navigaciją ir tada, kai programa veikia fone."
+          }
+        },
         "mr": {
           "stringUnit": {
             "state": "translated",
@@ -1011,6 +1029,12 @@
             "value": "Soundscape는 오디오 내비게이션을 제공하고 주변 환경을 설명하기 위해 위치 정보가 필요합니다."
           }
         },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape reikia jūsų vietos, kad galėtų teikti garsinę navigaciją ir apibūdinti aplinką."
+          }
+        },
         "mr": {
           "stringUnit": {
             "state": "translated",
@@ -1295,6 +1319,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape는 동작 데이터를 사용하여 사용자가 향하는 방향을 감지하고, 걷고 있는지 파악하며, 오디오 안내를 주변 환경에 맞춰 배치합니다."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape naudoja judesio duomenis, kad nustatytų, kuria kryptimi esate veidu, suprastų, kada einate, ir derintų garsinius pranešimus prie jūsų aplinkos."
           }
         },
         "mr": {
