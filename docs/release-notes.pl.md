@@ -22,21 +22,29 @@ Informacje o starszych wersjach znajdują się na stronie
 
 ## Zmiany od pierwszego wydania produkcyjnego 2.0.95
 
-Naprawiliśmy kilka problemów zgłoszonych w wersji 2.0.95, a to wydanie sprawia też, że komunikaty są
-bardziej niezawodne, a adresy dokładniejsze. Komunikaty podczas chodzenia zaczynają się teraz
-wcześniej po wyjściu z autobusu lub samochodu, a Soundscape szybciej zauważa, że twój pociąg
-odjechał ze stacji. Skrzyżowania są teraz opisywane poprawnie, gdy idziesz chodnikiem zaznaczonym na
-mapie osobno od jezdni. Od wersji 2.0.99 komunikaty o skrzyżowaniach są wyraźniejsze i
-dokładniejsze, a Soundscape informuje teraz, gdy droga kończy się bramą, przez którą nie można
-przejść. Naprawiliśmy też milczenie funkcji *Moja lokalizacja* przy słabym połączeniu z siecią oraz
-problem z pobieraniem map offline.
-Soundscape może teraz korzystać z krokomierza w telefonie, aby rozpoznać, kiedy idziesz, dzięki
-czemu szybciej zauważa, że wysiadłeś z pojazdu lub się zatrzymałeś, a przy pierwszym otwarciu tej
-wersji pojawi się prośba o nowe uprawnienie *Aktywność fizyczna* (na iPhonie *Ruch i aktywność
-fizyczna*).
-Wybór głosu syntezy mowy wygląda nieco inaczej. Głosy są teraz pogrupowane według języka, dotknięcie
-głosu odtwarza próbkę, a wybranie opcji *Automatyczny* sprawi, że używany będzie domyślny głos dla
-Twojego języka.
+Naprawiliśmy kilka problemów zgłoszonych od wersji 2.0.95, a komunikaty są bardziej niezawodne, a
+adresy dokładniejsze:
+
+* Komunikaty podczas chodzenia zaczynają się wcześniej po wyjściu z autobusu lub samochodu, a
+  Soundscape szybciej zauważa, że twój pociąg odjechał ze stacji.
+* Komunikaty o skrzyżowaniach są wyraźniejsze i dokładniejsze, także gdy idziesz chodnikiem
+  zaznaczonym na mapie osobno od jezdni. Dwa skrzyżowania oddalone o kilka metrów, które prowadzą w
+  to samo miejsce, są teraz zapowiadane tylko raz.
+* Soundscape informuje, gdy droga kończy się bramą, przez którą nie można przejść.
+* Ścieżki w okolicy stacji są lepiej opisywane, na przykład *Ścieżka do Peron*, a ciągi
+  pieszo-rowerowe, takie jak ścieżki holownicze wzdłuż kanałów, są zapowiadane, gdy na nie
+  wchodzisz, zamiast być traktowane jak chodnik przy drodze.
+* *Moja lokalizacja* nie milknie już przy słabym połączeniu z siecią.
+* Naprawiono problem z pobieraniem map offline.
+
+Niektóre rzeczy działają nieco inaczej. Soundscape może teraz korzystać z krokomierza w telefonie,
+aby rozpoznać, kiedy idziesz, dzięki czemu szybciej zauważa, że wysiadłeś z pojazdu lub się
+zatrzymałeś; przy pierwszym otwarciu tej wersji pojawi się prośba o nowe uprawnienie *Aktywność
+fizyczna* (na iPhonie *Ruch i aktywność fizyczna*). Głosy są teraz pogrupowane według języka,
+dotknięcie głosu odtwarza próbkę, a opcja *Automatyczny* używa domyślnego głosu dla twojego języka.
+Pozycja menu *Udostępnij zapis podróży* zniknęła: gdy *Włącz rejestrowanie podróży* jest włączone,
+*Kontakt z pomocą techniczną* pyta, czy dołączyć zapis twojej podróży, który obejmuje teraz zawsze
+ostatnią godzinę.
 
 ## Nowości w wersji 2.0
 
@@ -299,7 +307,7 @@ również zostało wzmocnione na telefonach agresywnie zamykających aplikacje w
 ## Zgłaszanie nam problemów
 
 Jeśli coś jest nie tak, chętnie się o tym dowiemy. Napisz do Help Desku na adres
-<soundscapeAndroid@scottishtecharmy.support> albo zapytaj na Slacku, jeśli jesteś członkiem STA.
+<soundscape@scottishtecharmy.support> albo zapytaj na Slacku, jeśli jesteś członkiem STA.
 
 Jeśli komunikat był błędny albo się nie pojawił, nagranie twojej podróży ogromnie nam pomaga — możemy
 je odtworzyć i zobaczyć dokładnie, na czym Soundscape się opierał. Instrukcje znajdziesz w sekcji
@@ -312,5 +320,6 @@ wydaniu. Soundscape działa teraz również na iPhonie, a obie aplikacje są bud
 wspólnego kodu — te same ekrany, te same sformułowania i te same komunikaty. Nowość taka jak opisane
 wyżej komunikaty podróżne trafia więc do obu naraz, zamiast być pisana dwa razy. Ta wspólna podstawa
 tłumaczy, dlaczego wersja 2.0 zajęła tyle czasu, i to ona powinna sprawić, że przyszłe wydania będą
-pojawiać się szybciej na obu platformach. Aplikacja na iPhone'a jest obecnie dostępna przez TestFlight
-na zaproszenie: zapytaj na Slacku, jeśli jesteś członkiem STA, albo napisz do Help Desku.
+pojawiać się szybciej na obu platformach. Aplikacja na iPhone'a jest teraz w publicznej becie w
+aplikacji TestFlight firmy Apple i każdy może dołączyć: zainstaluj TestFlight z App Store i otwórz
+<https://testflight.apple.com/join/XFb7C5JN> na swoim iPhonie.

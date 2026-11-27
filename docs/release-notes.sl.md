@@ -22,19 +22,28 @@ Opombe za starejše različice so na strani
 
 ## Spremembe od prve produkcijske izdaje 2.0.95
 
-Odpravili smo več težav, prijavljenih v različici 2.0.95, ta izdaja pa tudi naredi zvočna obvestila
-zanesljivejša in naslove natančnejše. Zvočna obvestila med hojo se zdaj začnejo prej, ko izstopite
-iz avtobusa ali avtomobila, Soundscape pa hitreje opazi, da je vaš vlak odpeljal s postaje. Križišča
-so zdaj pravilno opisana, ko hodite po pločniku, ki je na zemljevidu vrisan ločeno od ceste. Od
-različice 2.0.99 so zvočna obvestila o križiščih jasnejša in natančnejša, Soundscape pa vam zdaj
-pove, ko se pot konča pri vratih, skozi katera ne morete. Odpravili smo tudi težavo, da je *Moja
-lokacija* ob šibki omrežni povezavi molčala, in težavo pri prenosu zemljevidov brez povezave.
-Soundscape lahko zdaj s števcem korakov v telefonu prepozna, kdaj hodite, zato prej opazi, da ste
-izstopili iz vozila ali se ustavili, ob prvem odprtju te različice pa boste naprošeni za novo
-dovoljenje *Telesna dejavnost* (v iPhonu *Gibanje in telesna pripravljenost*).
-Izbira glasu za pretvorbo besedila v govor je videti nekoliko drugače. Glasovi so zdaj razvrščeni po
-jezikih, dotik glasu predvaja vzorec, z možnostjo *Samodejno* pa se uporabi privzeti glas za vaš
-jezik.
+Odpravili smo več težav, prijavljenih od različice 2.0.95, zvočna obvestila pa so zanesljivejša in
+naslovi natančnejši:
+
+* Zvočna obvestila med hojo se začnejo prej, ko izstopite iz avtobusa ali avtomobila, Soundscape pa
+  hitreje opazi, da je vaš vlak odpeljal s postaje.
+* Zvočna obvestila o križiščih so jasnejša in natančnejša, tudi ko hodite po pločniku, ki je na
+  zemljevidu vrisan ločeno od ceste. Dve križišči nekaj metrov narazen, ki vodita na isto mesto, sta
+  zdaj napovedani le enkrat.
+* Soundscape vam pove, ko se pot konča pri vratih, skozi katera ne morete.
+* Poti okoli postaj so bolje opisane, na primer *Pot do Peron*, skupne poti za pešce in kolesarje,
+  kot so vlečne poti ob kanalih, pa so napovedane, ko stopite nanje, namesto da bi jih obravnavali
+  kot pločnik ob cesti.
+* *Moja lokacija* ob šibki omrežni povezavi ne molči več.
+* Odpravljena je težava pri prenosu zemljevidov brez povezave.
+
+Nekatere stvari delujejo nekoliko drugače. Soundscape lahko zdaj s števcem korakov v telefonu
+prepozna, kdaj hodite, zato prej opazi, da ste izstopili iz vozila ali se ustavili; ob prvem odprtju
+te različice boste naprošeni za novo dovoljenje *Telesna dejavnost* (v iPhonu *Gibanje in telesna
+pripravljenost*). Glasovi so zdaj razvrščeni po jezikih, dotik glasu predvaja vzorec, z možnostjo
+*Samodejno* pa se uporabi privzeti glas za vaš jezik. Menijske možnosti *Deli posnetek poti* ni več:
+ko je vklopljeno *Omogoči snemanje poti*, vas *Stik s podporo* vpraša, ali želite priložiti posneto
+pot, ki zdaj vedno zajema zadnjo uro.
 
 ## Novosti v različici 2.0
 
@@ -290,7 +299,7 @@ utrjeno na telefonih, ki agresivno zapirajo aplikacije v ozadju.
 ## Kako nam sporočite težave
 
 Če kaj ni v redu, bi radi izvedeli. Pišite na Help Desk na
-<soundscapeAndroid@scottishtecharmy.support> ali vprašajte na Slacku, če ste član STA.
+<soundscape@scottishtecharmy.support> ali vprašajte na Slacku, če ste član STA.
 
 Če je bilo obvestilo napačno ali ga sploh ni bilo, nam posnetek vaše poti izjemno pomaga — lahko ga
 predvajamo znova in natančno vidimo, s čim je Soundscape delal. Navodila so v razdelku
@@ -299,9 +308,10 @@ predvajamo znova in natančno vidimo, s čim je Soundscape delal. Navodila so v 
 ## Opomba o iPhonu
 
 Vse zgoraj navedeno se nanaša na aplikacijo za Android, a velja vedeti, kam je šel preostanek dela v
-tej izdaji. Soundscape zdaj teče tudi na iPhonu, obe aplikaciji pa sta zgrajeni iz iste skupne kode —
-isti zasloni, iste ubeseditve in ista obvestila. Novost, kot so zgornja potovalna obvestila, tako
+tej izdaji. Soundscape zdaj teče tudi na iPhonu, obe aplikaciji pa sta zgrajeni iz iste skupne kode
+— isti zasloni, iste ubeseditve in ista obvestila. Novost, kot so zgornja potovalna obvestila, tako
 pride na obe hkrati, namesto da bi bila napisana dvakrat. Ta skupna osnova je razlog, zakaj je 2.0
 trajala tako dolgo, in prav ta naj bi poskrbela, da bodo prihodnje izdaje hitreje prišle na obe
-platformi. Aplikacija za iPhone je trenutno na voljo prek TestFlighta na povabilo: vprašajte na
-Slacku, če ste član STA, ali pišite na Help Desk.
+platformi. Aplikacija za iPhone je zdaj v javni beta različici prek Applove aplikacije TestFlight in
+pridruži se lahko vsak: namestite TestFlight iz trgovine App Store in v iPhonu odprite
+<https://testflight.apple.com/join/XFb7C5JN>.

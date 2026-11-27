@@ -22,21 +22,29 @@ As notas de versões anteriores estão na página
 
 ## Mudanças desde a primeira versão de produção 2.0.95
 
-Corrigimos vários problemas relatados na 2.0.95, e esta versão também torna as notificações mais
-confiáveis e os endereços mais precisos. As notificações durante a caminhada agora começam mais cedo
-depois que você desce do ônibus ou do carro, e o Soundscape percebe mais rápido que o seu trem saiu
-da estação. Os cruzamentos agora são descritos corretamente quando você caminha por uma calçada
-mapeada separadamente da rua. Desde a 2.0.99, as notificações de cruzamentos estão mais claras e
-precisas, e o Soundscape agora avisa quando uma via termina em um portão pelo qual você não pode
-passar. Também corrigimos o *Minha Localização*, que ficava em silêncio com conexão de rede fraca, e
-um problema ao baixar mapas offline.
-O Soundscape agora pode usar o contador de passos do seu celular para saber quando você está
-andando, então percebe mais cedo que você desceu de um veículo ou parou, e ao abrir esta versão pela
-primeira vez você verá o pedido de uma nova permissão, *Atividade física* (*Movimento e Preparo
-Físico* no iPhone).
-A escolha da voz de texto para fala tem uma interface um pouco diferente. Agora as vozes são
-agrupadas por idioma, tocar em uma reproduz uma amostra e escolher *Auto* usa a voz padrão do seu
-idioma.
+Corrigimos vários problemas relatados desde a 2.0.95, e as notificações estão mais confiáveis e os
+endereços mais precisos:
+
+* As notificações durante a caminhada começam mais cedo depois que você desce do ônibus ou do carro,
+  e o Soundscape percebe mais rápido que o seu trem saiu da estação.
+* As notificações de cruzamentos estão mais claras e precisas, inclusive quando você caminha por uma
+  calçada mapeada separadamente da rua. Dois cruzamentos a poucos metros um do outro que levam ao
+  mesmo lugar agora são anunciados apenas uma vez.
+* O Soundscape avisa quando uma via termina em um portão pelo qual você não pode passar.
+* Os caminhos ao redor das estações são descritos melhor, por exemplo *Caminho para a plataforma*, e
+  os caminhos compartilhados, como as trilhas à beira de canais, são anunciados quando você entra
+  neles, em vez de serem tratados como a calçada de uma rua.
+* O *Minha Localização* não fica mais em silêncio com conexão de rede fraca.
+* Foi corrigido um problema ao baixar mapas offline.
+
+Algumas coisas funcionam de um jeito um pouco diferente. O Soundscape agora pode usar o contador de
+passos do seu celular para saber quando você está andando, então percebe mais cedo que você desceu
+de um veículo ou parou; ao abrir esta versão pela primeira vez, você verá o pedido de uma nova
+permissão, *Atividade física* (*Movimento e Preparo Físico* no iPhone). Agora as vozes são agrupadas
+por idioma, tocar em uma reproduz uma amostra e escolher *Auto* usa a voz padrão do seu idioma. O
+item de menu *Compartilhar a gravação de viagens* foi removido: com *Habilitar a gravação de
+viagens* ativado, *Contatar o suporte* pergunta se você quer incluir o seu trajeto gravado, que
+agora sempre cobre a última hora.
 
 ## Novidades da versão 2.0
 
@@ -304,7 +312,7 @@ aplicativos em segundo plano.
 ## Como nos informar de problemas
 
 Se algo não estiver certo, gostaríamos de saber. Escreva para o Help Desk em
-<soundscapeAndroid@scottishtecharmy.support>, ou pergunte no Slack se você for membro da STA.
+<soundscape@scottishtecharmy.support>, ou pergunte no Slack se você for membro da STA.
 
 Se um aviso saiu errado ou não aconteceu, uma gravação da sua viagem nos ajuda enormemente: podemos
 reproduzi-la e ver exatamente com quais dados o Soundscape estava trabalhando. As instruções estão
@@ -319,5 +327,5 @@ do mesmo código compartilhado: as mesmas telas, os mesmos textos e os mesmos av
 novidade como os avisos de viagem descritos acima chega aos dois ao mesmo tempo, em vez de ser
 escrita duas vezes. Essa base comum explica por que a versão 2.0 demorou o que demorou, e é o que
 deve fazer as próximas versões chegarem mais rápido às duas plataformas. O aplicativo para iPhone
-está disponível no momento pelo TestFlight mediante convite: pergunte no Slack se você for membro da
-STA, ou escreva para o Help Desk.
+agora está em beta pública pelo app TestFlight da Apple, e qualquer pessoa pode participar: instale
+o TestFlight pela App Store e abra <https://testflight.apple.com/join/XFb7C5JN> no seu iPhone.

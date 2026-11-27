@@ -20,13 +20,33 @@ Soundscape ایک مفت، کھلے مآخذ والی ایپ ہے جو تھری 
 
 فون جیب یا تھیلے میں ہو تب بھی ایپ پس منظر میں کام کرتی رہتی ہے — اسے ہاتھ میں پکڑنے یا اسکرین دیکھنے کی ضرورت نہیں۔ یہ مکمل طور پر مفت ہے اور اس میں کوئی اشتہار نہیں، اور یہ ڈاؤن لوڈ کیے گئے نقشہ علاقوں کی مدد سے آف لائن بھی کام کر سکتی ہے۔ مسائل تلاش کرنے اور انہیں درست کرنے کے لیے ایپ استعمال کے اعداد و شمار اور کریش رپورٹس بھیجتی ہے — [پرائیویسی پالیسی]({{ "/privacy-policy.html" | relative_url }}) میں بالکل واضح کیا گیا ہے کہ کیا جمع کیا جاتا ہے۔
 
-Soundscape کو ابتدا میں [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) نے iOS پر تیار کیا تھا اور 2022 میں کھلے مآخذ ہونے سے پہلے یہ بڑے پیمانے پر استعمال ہوتی رہی۔ [Scottish Tech Army](https://www.scottishtecharmy.org) نے اسے iOS پر دستیاب رکھا اور ساتھ ہی اسے کھلے مآخذ والی اینڈرائیڈ ایپ کے طور پر نئے سرے سے لکھا۔
+Soundscape کو ابتدا میں [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) نے iOS پر تیار کیا تھا اور 2022 میں کھلے مآخذ ہونے سے پہلے یہ بڑے پیمانے پر استعمال ہوتی رہی۔ [Scottish Tech Army](https://www.scottishtecharmy.org) نے اسے iOS پر دستیاب رکھا اور اسے Android اور iOS دونوں کے لیے ایک نئی کھلے مآخذ والی ایپ کے طور پر نئے سرے سے لکھا ہے، جن کا کوڈ ایک ہی ہے۔
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play سے Soundscape حاصل کریں" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store سے Soundscape ڈاؤن لوڈ کریں" height=80></a>
+-->
+
+## عوامی بیٹا
+نئی خصوصیات پہلے بیٹا ریلیز میں آتی ہیں، اور کوئی بھی ان میں شامل ہو سکتا ہے۔
+
+### iOS
+App Store پر موجود iOS ایپ ابھی تک پرانی ایپ ہے جو Microsoft کی ایپ پر مبنی ہے۔ Soundscape کی نئی iOS ریلیز، جو Android ایپ والے کوڈ سے ہی بنی ہے، صرف Apple کی TestFlight ایپ کے ذریعے عوامی بیٹا کے طور پر دستیاب ہے۔ یہ موجودہ iOS ایپ کی جگہ لیتی ہے اور آپ کے محفوظ کردہ مارکر اور روٹس برقرار رکھتی ہے - کیا بدلا ہے، یہ جاننے کے لیے [پرانی iOS ایپ سے منتقلی]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (انگریزی میں) دیکھیں۔ شامل ہونے کے لیے:
+
+1. اپنے iPhone پر App Store سے [TestFlight](https://apps.apple.com/app/testflight/id899247664) انسٹال کریں۔
+2. اسی iPhone پر لنک <https://testflight.apple.com/join/XFb7C5JN> کھولیں۔
+3. TestFlight کھلتی ہے اور Soundscape بیٹا انسٹال کرنے کی پیشکش کرتی ہے۔ دعوت قبول کریں اور پھر ایپ انسٹال کریں۔
+
+### Android
+1. اپنے فون پر استعمال ہونے والے Google اکاؤنٹ میں سائن ان رہتے ہوئے <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape> کھولیں، اور ٹیسٹر کے طور پر شامل ہو جائیں۔
+2. Soundscape کو معمول کے مطابق [Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) سے انسٹال یا اپ ڈیٹ کریں۔ بیٹا پیش ہونے میں چند منٹ لگ سکتے ہیں، اس لیے اگر آپ کو ابھی بھی جاری شدہ ورژن نظر آئے تو تھوڑا انتظار کریں اور دوبارہ دیکھیں۔
+
+اس کے بعد بیٹا اپ ڈیٹس کسی بھی دوسری اپ ڈیٹ کی طرح Play Store کے ذریعے آتی ہیں۔ ٹیسٹنگ بند کرنے کے لیے اسی لنک پر واپس جائیں اور پروگرام چھوڑ دیں۔
+
+براہِ کرم کسی بھی بیٹا میں ملنے والا کوئی بھی مسئلہ نیچے دیے گئے معاونت کے پتے پر بھیجیں۔
 
 ## Soundscape کی معاونت
-ای میل پتہ <soundscapeAndroid@scottishtecharmy.support> سیدھا ہمارے ہیلپ ڈیسک نظام سے جا ملتا ہے۔ براہِ کرم کوئی بھی رائے بھیجیں، خواہ وہ کسی خصوصیت کی درخواست ہو یا خرابی کی اطلاع۔ آپ کو جواب میں خودکار ای میل موصول ہوگی، ہمیں اطلاع مل جائے گی کہ کوئی نیا ٹکٹ آیا ہے، اور ہم جلد از جلد جواب دینے کی کوشش کریں گے۔
+ای میل پتہ <soundscape@scottishtecharmy.support> سیدھا ہمارے ہیلپ ڈیسک نظام سے جا ملتا ہے۔ براہِ کرم کوئی بھی رائے بھیجیں، خواہ وہ کسی خصوصیت کی درخواست ہو یا خرابی کی اطلاع۔ آپ کو جواب میں خودکار ای میل موصول ہوگی، ہمیں اطلاع مل جائے گی کہ کوئی نیا ٹکٹ آیا ہے، اور ہم جلد از جلد جواب دینے کی کوشش کریں گے۔
 
 ## Soundscape کیسے استعمال کریں
 [Soundscape کیسے استعمال کریں]({{ "/users/user.html" | relative_url }})

@@ -22,18 +22,27 @@ Daha eski sürümlerin notları
 
 ## İlk kararlı sürüm 2.0.95'ten bu yana değişiklikler
 
-2.0.95'te bildirilen birkaç sorunu düzelttik; bu sürüm ayrıca anonsları daha güvenilir, adresleri de
-daha doğru hale getiriyor. Yürüyüş anonsları artık otobüsten veya arabadan indikten sonra daha erken
-başlıyor ve Soundscape treninizin istasyondan ayrıldığını daha çabuk fark ediyor. Yoldan ayrı olarak
-haritalanmış bir kaldırımda yürürken kavşaklar artık doğru şekilde tarif ediliyor. 2.0.99'dan bu
-yana kavşak anonsları daha anlaşılır ve daha doğru; Soundscape artık bir yol geçemeyeceğiniz bir
-kapıda sona erdiğinde bunu söylüyor. Ayrıca zayıf ağ bağlantısında *Konumum* özelliğinin sessiz
-kalmasını ve çevrimdışı harita indirmeyle ilgili bir sorunu düzelttik.
-Soundscape artık yürüdüğünüzü anlamak için telefonunuzun adım sayarını kullanabiliyor; böylece bir
-araçtan indiğinizi ya da durduğunuzu daha erken fark ediyor. Bu sürümü ilk açtığınızda sizden yeni
-bir izin istenecek: *Fiziksel aktivite* (iPhone’da *Hareket ve Kondisyon*).
-Metin okuma sesi seçme ekranı biraz değişti. Sesler artık dile göre gruplandırılıyor, bir sese
-dokunmak örneğini çalıyor ve *Otomatik* seçeneği dilinizin varsayılan sesini kullanıyor.
+2.0.95'ten bu yana bildirilen birkaç sorunu düzelttik; anonslar daha güvenilir, adresler de daha
+doğru:
+
+* Yürüyüş anonsları otobüsten veya arabadan indikten sonra daha erken başlıyor ve Soundscape
+  treninizin istasyondan ayrıldığını daha çabuk fark ediyor.
+* Kavşak anonsları daha anlaşılır ve daha doğru; yoldan ayrı olarak haritalanmış bir kaldırımda
+  yürürken de. Birkaç metre arayla aynı yere çıkan iki kavşak artık yalnızca bir kez anons ediliyor.
+* Soundscape, bir yol geçemeyeceğiniz bir kapıda sona erdiğinde bunu söylüyor.
+* İstasyonların çevresindeki patikalar daha iyi tarif ediliyor, örneğin *Patikadan Perona*; kanal
+  kenarındaki yürüyüş yolları gibi ortak yaya ve bisiklet yolları da bir yolun kaldırımı gibi ele
+  alınmak yerine, üzerlerine çıktığınızda anons ediliyor.
+* *Konumum* artık zayıf ağ bağlantısında sessiz kalmıyor.
+* Çevrimdışı harita indirmeyle ilgili bir sorun düzeltildi.
+
+Bazı şeyler biraz farklı çalışıyor. Soundscape artık yürüdüğünüzü anlamak için telefonunuzun adım
+sayarını kullanabiliyor; böylece bir araçtan indiğinizi ya da durduğunuzu daha erken fark ediyor. Bu
+sürümü ilk açtığınızda sizden yeni bir izin istenecek: *Fiziksel aktivite* (iPhone’da *Hareket ve
+Kondisyon*). Sesler artık dile göre gruplandırılıyor, bir sese dokunmak örneğini çalıyor ve
+*Otomatik* seçeneği dilinizin varsayılan sesini kullanıyor. *Seyahat kaydını paylaş* menü öğesi
+kaldırıldı: *Seyahat kaydını etkinleştir* açıkken *Destek ile iletişime geç*, kaydedilen
+yolculuğunuzun eklenip eklenmeyeceğini soruyor; bu kayıt artık her zaman son bir saati kapsıyor.
 
 ## 2.0'daki yenilikler
 
@@ -295,7 +304,7 @@ daha sağlam hale getirildi.
 ## Sorunları bize nasıl bildirirsiniz
 
 Bir şey yolunda değilse bunu duymak isteriz. Help Desk'e
-<soundscapeAndroid@scottishtecharmy.support> adresinden yazın ya da STA üyesiyseniz Slack'te sorun.
+<soundscape@scottishtecharmy.support> adresinden yazın ya da STA üyesiyseniz Slack'te sorun.
 
 Bir bildirim yanlışsa veya hiç gelmediyse, yolculuğunuzun bir kaydı bize çok yardımcı olur — kaydı
 yeniden oynatıp Soundscape'in tam olarak neye dayandığını görebiliriz. Yönergeler şurada:
@@ -303,10 +312,11 @@ yeniden oynatıp Soundscape'in tam olarak neye dayandığını görebiliriz. Yö
 
 ## iPhone hakkında bir not
 
-Yukarıdakilerin tümü Android uygulamasıyla ilgili; ancak bu sürümdeki çalışmanın geri kalanının nereye
-gittiğini bilmekte yarar var. Soundscape artık iPhone'da da çalışıyor ve her iki uygulama da aynı ortak
-koddan derleniyor — aynı ekranlar, aynı ifadeler ve aynı bildirimler. Yukarıdaki yolculuk bildirimleri
-gibi bir yenilik böylece iki kez yazılmak yerine ikisine birden geliyor. Bu ortak temel, 2.0'ın neden
-bu kadar uzun sürdüğünü açıklıyor ve gelecekteki sürümlerin her iki platforma da daha hızlı ulaşmasını
-sağlamalı. iPhone uygulaması şu anda davetle TestFlight üzerinden edinilebiliyor: STA üyesiyseniz
-Slack'te sorun ya da Help Desk'e yazın.
+Yukarıdakilerin tümü Android uygulamasıyla ilgili; ancak bu sürümdeki çalışmanın geri kalanının
+nereye gittiğini bilmekte yarar var. Soundscape artık iPhone'da da çalışıyor ve her iki uygulama da
+aynı ortak koddan derleniyor — aynı ekranlar, aynı ifadeler ve aynı bildirimler. Yukarıdaki yolculuk
+bildirimleri gibi bir yenilik böylece iki kez yazılmak yerine ikisine birden geliyor. Bu ortak
+temel, 2.0'ın neden bu kadar uzun sürdüğünü açıklıyor ve gelecekteki sürümlerin her iki platforma da
+daha hızlı ulaşmasını sağlamalı. iPhone uygulaması artık Apple'ın TestFlight uygulaması üzerinden
+herkese açık beta olarak sunuluyor ve isteyen herkes katılabilir: TestFlight'ı App Store'dan
+yükleyin ve iPhone'unuzda <https://testflight.apple.com/join/XFb7C5JN> adresini açın.

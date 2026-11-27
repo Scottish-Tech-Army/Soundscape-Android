@@ -22,21 +22,30 @@ Hinweise zu älteren Versionen finden Sie auf der Seite
 
 ## Änderungen seit der ersten Produktionsversion 2.0.95
 
-Wir haben mehrere Probleme behoben, die in 2.0.95 gemeldet wurden, und diese Version macht außerdem
-die Ansagen zuverlässiger und die Adressen genauer. Ansagen beim Gehen beginnen jetzt früher,
-nachdem Sie aus einem Bus oder Auto ausgestiegen sind, und Soundscape bemerkt schneller, dass Ihr
-Zug aus dem Bahnhof ausgefahren ist. Kreuzungen werden jetzt richtig beschrieben, wenn Sie auf einem
-Gehweg gehen, der getrennt von der Straße kartiert ist. Seit 2.0.99 sind die Ansagen an Kreuzungen
-klarer und genauer, und Soundscape sagt Ihnen jetzt, wenn ein Weg an einem Tor endet, durch das Sie
-nicht hindurchkommen. Außerdem haben wir behoben, dass *Mein Standort* bei schlechter Netzverbindung
-stumm blieb, sowie ein Problem beim Herunterladen von Offline-Karten.
-Soundscape kann jetzt den Schrittzähler Ihres Telefons nutzen, um zu erkennen, wann Sie gehen, und
-bemerkt dadurch früher, dass Sie aus einem Fahrzeug ausgestiegen oder stehen geblieben sind. Beim
-ersten Öffnen dieser Version werden Sie um eine neue Berechtigung gebeten: *Körperliche Aktivität*
-(auf dem iPhone *Bewegung und Fitness*).
-Die Auswahl der Sprachausgabe-Stimme sieht etwas anders aus. Die Stimmen sind jetzt nach Sprache
-gruppiert, ein Tippen auf eine Stimme spielt eine Hörprobe ab, und mit *Automatisch* wird die
-Standardstimme für Ihre Sprache verwendet.
+Wir haben mehrere Probleme behoben, die seit 2.0.95 gemeldet wurden. Die Ansagen sind zuverlässiger
+und die Adressen genauer:
+
+* Ansagen beim Gehen beginnen früher, nachdem Sie aus einem Bus oder Auto ausgestiegen sind, und
+  Soundscape bemerkt schneller, dass Ihr Zug aus dem Bahnhof ausgefahren ist.
+* Die Ansagen an Kreuzungen sind klarer und genauer, auch wenn Sie auf einem Gehweg gehen, der
+  getrennt von der Straße kartiert ist. Zwei Kreuzungen wenige Meter voneinander, die zum selben
+  Ziel führen, werden jetzt nur noch einmal angesagt.
+* Soundscape sagt Ihnen, wenn ein Weg an einem Tor endet, durch das Sie nicht hindurchkommen.
+* Wege rund um Bahnhöfe werden besser beschrieben, zum Beispiel *Pfad nach Bahnsteig*, und
+  gemeinsame Geh- und Radwege wie Treidelpfade an Kanälen werden angesagt, wenn Sie auf sie
+  gelangen, statt als Gehweg einer Straße behandelt zu werden.
+* *Mein Standort* bleibt bei schlechter Netzverbindung nicht mehr stumm.
+* Ein Problem beim Herunterladen von Offline-Karten wurde behoben.
+
+Manches funktioniert etwas anders. Soundscape kann jetzt den Schrittzähler Ihres Telefons nutzen, um
+zu erkennen, wann Sie gehen, und bemerkt dadurch früher, dass Sie aus einem Fahrzeug ausgestiegen
+oder stehen geblieben sind; beim ersten Öffnen dieser Version werden Sie um eine neue Berechtigung
+gebeten: *Körperliche Aktivität* (auf dem iPhone *Bewegung und Fitness*). Die Stimmen sind jetzt
+nach Sprache gruppiert, ein Tippen auf eine Stimme spielt eine Hörprobe ab, und mit *Automatisch*
+wird die Standardstimme für Ihre Sprache verwendet. Der Menüpunkt *Reiseaufzeichnung teilen* ist
+entfallen: Wenn *Aufzeichnung von Reisen aktivieren* eingeschaltet ist, fragt *Support
+kontaktieren*, ob Ihre aufgezeichnete Reise mitgeschickt werden soll. Die Aufzeichnung umfasst jetzt
+immer die letzte Stunde.
 
 ## Was ist neu in 2.0
 
@@ -320,7 +329,7 @@ Hintergrund-Apps aggressiv beenden.
 ## Probleme melden
 
 Wenn etwas nicht stimmt, würden wir gern davon erfahren. Schreiben Sie an den Help Desk unter
-<soundscapeAndroid@scottishtecharmy.support> oder fragen Sie auf Slack, wenn Sie STA-Mitglied sind.
+<soundscape@scottishtecharmy.support> oder fragen Sie auf Slack, wenn Sie STA-Mitglied sind.
 
 Wenn eine Ansage falsch war oder ausblieb, hilft uns eine Aufzeichnung Ihrer Fahrt außerordentlich –
 wir können sie erneut abspielen und genau sehen, womit Soundscape gearbeitet hat. Eine Anleitung
@@ -335,5 +344,6 @@ demselben gemeinsamen Code erstellt – dieselben Bildschirme, dieselben Formuli
 Ansagen. Eine neue Funktion wie die oben beschriebenen Fahrtansagen erscheint dadurch auf beiden
 zugleich, statt zweimal geschrieben zu werden. Diese gemeinsame Grundlage ist der Grund, warum 2.0
 so lange gedauert hat, und sie sollte künftige Versionen auf beiden Plattformen schneller verfügbar
-machen. Die iPhone-App ist derzeit über TestFlight auf Einladung erhältlich: Fragen Sie auf Slack,
-wenn Sie STA-Mitglied sind, oder schreiben Sie an den Help Desk.
+machen. Die iPhone-App ist jetzt als öffentliche Beta über Apples TestFlight-App erhältlich, und
+jeder kann teilnehmen: Installieren Sie TestFlight aus dem App Store und öffnen Sie auf Ihrem iPhone
+<https://testflight.apple.com/join/XFb7C5JN>.

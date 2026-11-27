@@ -20,13 +20,33 @@ Soundscape ఒక ఉచిత, ఓపెన్ సోర్స్ యాప్.
 
 ఫోన్ జేబులో లేదా సంచిలో ఉన్నప్పుడూ యాప్ నేపథ్యంలో పనిచేస్తూనే ఉంటుంది — దాన్ని చేతిలో పట్టుకోవలసిన లేదా తెరవైపు చూడవలసిన అవసరం లేదు. ఇది పూర్తిగా ఉచితం, ప్రకటనలు లేవు, మరియు డౌన్‌లోడ్ చేసిన మ్యాప్ ప్రాంతాలతో ఇది ఆఫ్‌లైన్‌లోనూ పనిచేయగలదు. సమస్యలను కనుగొని సరిచేసేందుకు వీలుగా యాప్ వినియోగ గణాంకాలను, క్రాష్ నివేదికలను పంపుతుంది — ఏమి సేకరిస్తారో [గోప్యతా విధానం]({{ "/privacy-policy.html" | relative_url }}) స్పష్టంగా వివరిస్తుంది.
 
-Soundscape ను మొదట iOS లో [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) అభివృద్ధి చేసింది; 2022లో ఓపెన్ సోర్స్ కాకముందు ఇది విస్తృతంగా వాడబడేది. [Scottish Tech Army](https://www.scottishtecharmy.org) దీన్ని iOS లో అందుబాటులో ఉంచింది, అలాగే ఓపెన్ సోర్స్ Android యాప్‌గా కొత్తగా రాసింది.
+Soundscape ను మొదట iOS లో [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) అభివృద్ధి చేసింది; 2022లో ఓపెన్ సోర్స్ కాకముందు ఇది విస్తృతంగా వాడబడేది. [Scottish Tech Army](https://www.scottishtecharmy.org) దీన్ని iOS లో అందుబాటులో ఉంచింది, అలాగే Android, iOS రెండింటికీ ఒకే కోడ్‌ను పంచుకునే కొత్త ఓపెన్ సోర్స్ యాప్‌గా కొత్తగా రాసింది.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Playలో Soundscape పొందండి" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store నుండి Soundscape డౌన్‌లోడ్ చేయండి" height=80></a>
+-->
+
+## పబ్లిక్ బీటాలు
+కొత్త సౌకర్యాలు ముందుగా బీటా విడుదలల్లో వస్తాయి, ఎవరైనా వాటిలో చేరవచ్చు.
+
+### iOS
+App Store లోని iOS యాప్ ఇప్పటికీ Microsoft యాప్ ఆధారంగా ఉన్న పాత యాప్. Android యాప్ కోడ్ నుండే నిర్మించిన Soundscape కొత్త iOS విడుదల Apple యొక్క TestFlight యాప్ ద్వారా పబ్లిక్ బీటాగా మాత్రమే అందుబాటులో ఉంది. ఇది ప్రస్తుత iOS యాప్ స్థానంలో వస్తుంది, మీరు సేవ్ చేసిన మార్కర్‌లు, మార్గాలను అలాగే ఉంచుతుంది - ఏమి మారిందో తెలుసుకోవడానికి [పాత iOS యాప్ నుండి అప్‌గ్రేడ్ చేయడం]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (ఆంగ్లంలో) చూడండి. చేరడానికి:
+
+1. మీ iPhone‌లో App Store నుండి [TestFlight](https://apps.apple.com/app/testflight/id899247664) ను ఇన్‌స్టాల్ చేయండి.
+2. అదే iPhone‌లో <https://testflight.apple.com/join/XFb7C5JN> లింక్‌ను తెరవండి.
+3. TestFlight తెరుచుకుని Soundscape బీటాను ఇన్‌స్టాల్ చేయమని అడుగుతుంది. ఆహ్వానాన్ని అంగీకరించి, ఆపై యాప్‌ను ఇన్‌స్టాల్ చేయండి.
+
+### Android
+1. మీ ఫోన్‌లో వాడే Google ఖాతాతో సైన్ ఇన్ అయి <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape> ను తెరిచి, టెస్టర్‌గా నమోదు చేసుకోండి.
+2. ఎప్పటిలాగే [Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) నుండి Soundscape ను ఇన్‌స్టాల్ లేదా అప్‌డేట్ చేయండి. బీటా అందుబాటులోకి రావడానికి కొన్ని నిమిషాలు పట్టవచ్చు, కాబట్టి ఇంకా విడుదలైన వెర్షనే కనిపిస్తే కొంచెం ఆగి మళ్లీ చూడండి.
+
+ఆ తర్వాత బీటా అప్‌డేట్‌లు ఇతర అప్‌డేట్‌ల లాగానే Play Store ద్వారా వస్తాయి. టెస్టింగ్ ఆపడానికి అదే లింక్‌కు తిరిగి వెళ్లి ప్రోగ్రామ్ నుండి వైదొలగండి.
+
+ఏ బీటాలోనైనా మీకు కనిపించే సమస్యలను దయచేసి కింది సపోర్ట్ చిరునామాకు పంపండి.
 
 ## Soundscape మద్దతు
-<soundscapeAndroid@scottishtecharmy.support> ఈమెయిల్ చిరునామా నేరుగా మా సహాయ కేంద్ర వ్యవస్థకు కలుపుతుంది. ఫీచర్ కోరికైనా, లోపం నివేదికైనా — మీ అభిప్రాయాన్ని పంపండి. బదులుగా మీకు స్వయంచాలక ఈమెయిల్ వస్తుంది, కొత్త టికెట్ వచ్చిందని మాకు సూచన అందుతుంది, మేము వీలైనంత త్వరగా సమాధానం ఇవ్వడానికి ప్రయత్నిస్తాము.
+<soundscape@scottishtecharmy.support> ఈమెయిల్ చిరునామా నేరుగా మా సహాయ కేంద్ర వ్యవస్థకు కలుపుతుంది. ఫీచర్ కోరికైనా, లోపం నివేదికైనా — మీ అభిప్రాయాన్ని పంపండి. బదులుగా మీకు స్వయంచాలక ఈమెయిల్ వస్తుంది, కొత్త టికెట్ వచ్చిందని మాకు సూచన అందుతుంది, మేము వీలైనంత త్వరగా సమాధానం ఇవ్వడానికి ప్రయత్నిస్తాము.
 
 ## Soundscape ఎలా ఉపయోగించాలి
 [Soundscape ఎలా ఉపయోగించాలి]({{ "/users/user.html" | relative_url }})

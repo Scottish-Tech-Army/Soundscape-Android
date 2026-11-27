@@ -20,13 +20,33 @@ Zamiast podawać wskazówki zakręt po zakręcie, Soundscape działa jak latarni
 
 Aplikacja działa nadal w tle, gdy telefon jest w kieszeni lub torbie - nie trzeba go trzymać ani patrzeć na ekran. Jest całkowicie darmowa i pozbawiona reklam, a sama aplikacja może działać offline przy użyciu pobranych regionów mapy. Aplikacja wysyła jednak statystyki użycia i raporty o awariach, abyśmy mogli znajdować i naprawiać problemy - [polityka prywatności]({{ "/privacy-policy.html" | relative_url }}) dokładnie wyjaśnia, co jest zbierane.
 
-Soundscape zostało pierwotnie opracowane na iOS przez [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) i było szeroko używane, zanim w 2022 roku zostało udostępnione jako oprogramowanie open source. [Scottish Tech Army](https://www.scottishtecharmy.org) utrzymał jego dostępność na iOS, a także przepisał je jako aplikację open source na Androida.
+Soundscape zostało pierwotnie opracowane na iOS przez [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) i było szeroko używane, zanim w 2022 roku zostało udostępnione jako oprogramowanie open source. [Scottish Tech Army](https://www.scottishtecharmy.org) utrzymał jego dostępność na iOS i przepisał je jako nową aplikację open source na Androida i iOS, które korzystają z tego samego kodu.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Pobierz Soundscape z Google Play" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Pobierz Soundscape z App Store" height=80></a>
+-->
+
+## Publiczne wersje beta
+Nowe funkcje trafiają najpierw do wersji beta, a dołączyć może każdy.
+
+### iOS
+Aplikacja na iOS w App Store to wciąż starsza aplikacja oparta na aplikacji Microsoftu. Nowa wersja Soundscape na iOS, zbudowana z tego samego kodu co aplikacja na Androida, jest dostępna tylko jako publiczna beta w aplikacji TestFlight firmy Apple. Zastępuje obecną aplikację na iOS i zachowuje zapisane znaczniki i trasy – co się zmieniło, opisuje strona [przejście ze starej aplikacji na iOS]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (po angielsku). Aby dołączyć:
+
+1. Zainstaluj [TestFlight](https://apps.apple.com/app/testflight/id899247664) z App Store na swoim iPhonie.
+2. Na tym samym iPhonie otwórz link <https://testflight.apple.com/join/XFb7C5JN>.
+3. Otworzy się TestFlight z propozycją instalacji wersji beta Soundscape. Zaakceptuj zaproszenie i zainstaluj aplikację.
+
+### Android
+1. Otwórz <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape>, będąc zalogowanym na konto Google używane w telefonie, i zapisz się jako tester.
+2. Zainstaluj lub zaktualizuj Soundscape ze [Sklepu Play](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) jak zwykle. Udostępnienie wersji beta może potrwać kilka minut, więc jeśli nadal widzisz wersję opublikowaną, odczekaj chwilę i sprawdź ponownie.
+
+Aktualizacje beta przychodzą potem przez Sklep Play jak każda inna aktualizacja. Aby przestać testować, wróć pod ten sam link i opuść program.
+
+Problemy znalezione w którejkolwiek wersji beta prosimy zgłaszać na podany niżej adres pomocy.
 
 ## Pomoc techniczna Soundscape
-Adres e-mail <soundscapeAndroid@scottishtecharmy.support> prowadzi prosto do naszego systemu pomocy technicznej. Prześlij wszelkie opinie, jakie masz, niezależnie od tego, czy jest to prośba o nową funkcję, czy zgłoszenie błędu. Otrzymasz automatyczną odpowiedź e-mail, a my dostaniemy powiadomienie, że pojawiło się nowe zgłoszenie do obejrzenia, i postaramy się odpowiedzieć na nie tak szybko, jak to możliwe.
+Adres e-mail <soundscape@scottishtecharmy.support> prowadzi prosto do naszego systemu pomocy technicznej. Prześlij wszelkie opinie, jakie masz, niezależnie od tego, czy jest to prośba o nową funkcję, czy zgłoszenie błędu. Otrzymasz automatyczną odpowiedź e-mail, a my dostaniemy powiadomienie, że pojawiło się nowe zgłoszenie do obejrzenia, i postaramy się odpowiedzieć na nie tak szybko, jak to możliwe.
 
 ## Jak korzystać z Soundscape
 [Jak korzystać z Soundscape]({{ "/users/user.html" | relative_url }})

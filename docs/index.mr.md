@@ -20,13 +20,33 @@ Soundscape हे मोफत, खुल्या स्रोताचे अ�
 
 फोन खिशात किंवा पिशवीत असतानाही अ‍ॅप पार्श्वभूमीत चालू राहते — तो हातात धरण्याची किंवा पडद्याकडे पाहण्याची गरज नाही. हे पूर्णपणे मोफत आहे आणि त्यात जाहिराती नाहीत, आणि ते डाउनलोड केलेल्या नकाशा प्रदेशांच्या साहाय्याने ऑफलाइनही चालू शकते. समस्या शोधून त्या दुरुस्त करता याव्यात म्हणून अ‍ॅप वापराची आकडेवारी आणि क्रॅश अहवाल पाठवते — नेमके काय गोळा केले जाते हे [गोपनीयता धोरणा]({{ "/privacy-policy.html" | relative_url }})मध्ये स्पष्ट केले आहे.
 
-Soundscape मूळतः iOS वर [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) ने विकसित केले होते आणि २०२२ मध्ये ते खुल्या स्रोताचे होण्यापूर्वी त्याचा व्यापक वापर होत असे. [Scottish Tech Army](https://www.scottishtecharmy.org) ने ते iOS वर उपलब्ध ठेवले आहे आणि त्याचबरोबर खुल्या स्रोताचे अँड्रॉइड अ‍ॅप म्हणून नव्याने लिहिले आहे.
+Soundscape मूळतः iOS वर [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) ने विकसित केले होते आणि २०२२ मध्ये ते खुल्या स्रोताचे होण्यापूर्वी त्याचा व्यापक वापर होत असे. [Scottish Tech Army](https://www.scottishtecharmy.org) ने ते iOS वर उपलब्ध ठेवले आहे आणि Android व iOS दोन्हींसाठी एकाच कोडवर चालणारे नवे खुल्या स्रोताचे अ‍ॅप म्हणून ते नव्याने लिहिले आहे.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play वर Soundscape मिळवा" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store वरून Soundscape डाउनलोड करा" height=80></a>
+-->
+
+## सार्वजनिक बीटा
+नवी वैशिष्ट्ये आधी बीटा प्रकाशनांमध्ये येतात, आणि कोणीही त्यात सामील होऊ शकते.
+
+### iOS
+App Store वरील iOS अ‍ॅप अजूनही Microsoft च्या अ‍ॅपवर आधारित जुने अ‍ॅप आहे. Android अ‍ॅपच्याच कोडपासून बनलेले Soundscape चे नवे iOS प्रकाशन फक्त Apple च्या TestFlight अ‍ॅपद्वारे सार्वजनिक बीटा म्हणून उपलब्ध आहे. ते सध्याच्या iOS अ‍ॅपची जागा घेते आणि तुमचे जतन केलेले मार्कर आणि मार्ग कायम ठेवते - काय बदलले आहे हे जाणून घेण्यासाठी [जुन्या iOS अ‍ॅपवरून अपग्रेड करणे]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (इंग्रजीत) पहा. सामील होण्यासाठी:
+
+1. तुमच्या iPhone वर App Store मधून [TestFlight](https://apps.apple.com/app/testflight/id899247664) इंस्टॉल करा.
+2. त्याच iPhone वर <https://testflight.apple.com/join/XFb7C5JN> ही लिंक उघडा.
+3. TestFlight उघडते आणि Soundscape बीटा इंस्टॉल करण्याचा पर्याय देते. आमंत्रण स्वीकारा आणि मग अ‍ॅप इंस्टॉल करा.
+
+### Android
+1. तुमच्या फोनवर वापरल्या जाणाऱ्या Google खात्यात साइन इन असताना <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape> उघडा, आणि टेस्टर म्हणून नोंदणी करा.
+2. नेहमीप्रमाणे [Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) मधून Soundscape इंस्टॉल किंवा अपडेट करा. बीटा उपलब्ध होण्यास काही मिनिटे लागू शकतात, त्यामुळे तुम्हाला अजूनही प्रकाशित आवृत्ती दिसत असेल तर थोडा वेळ थांबा आणि पुन्हा पाहा.
+
+त्यानंतर बीटा अपडेट इतर कोणत्याही अपडेटप्रमाणे Play Store मधून येतात. चाचणी थांबवण्यासाठी त्याच लिंकवर परत जा आणि कार्यक्रम सोडा.
+
+कोणत्याही बीटामध्ये आढळलेली कोणतीही समस्या कृपया खालील सहाय्य पत्त्यावर पाठवा.
 
 ## Soundscape ची मदत
-<soundscapeAndroid@scottishtecharmy.support> हा ईमेल पत्ता थेट आमच्या मदत यंत्रणेशी जोडलेला आहे. कृपया तुमचा कोणताही अभिप्राय पाठवा, मग ती नव्या सुविधेची मागणी असो किंवा दोषाची नोंद. उत्तरादाखल तुम्हाला स्वयंचलित ईमेल मिळेल, आम्हाला नवी नोंद आल्याची सूचना मिळेल आणि आम्ही शक्य तितक्या लवकर उत्तर देण्याचा प्रयत्न करू.
+<soundscape@scottishtecharmy.support> हा ईमेल पत्ता थेट आमच्या मदत यंत्रणेशी जोडलेला आहे. कृपया तुमचा कोणताही अभिप्राय पाठवा, मग ती नव्या सुविधेची मागणी असो किंवा दोषाची नोंद. उत्तरादाखल तुम्हाला स्वयंचलित ईमेल मिळेल, आम्हाला नवी नोंद आल्याची सूचना मिळेल आणि आम्ही शक्य तितक्या लवकर उत्तर देण्याचा प्रयत्न करू.
 
 ## Soundscape कसे वापरावे
 [Soundscape कसे वापरावे]({{ "/users/user.html" | relative_url }})

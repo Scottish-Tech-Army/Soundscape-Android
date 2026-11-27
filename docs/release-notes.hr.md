@@ -22,19 +22,28 @@ Bilješke za starija izdanja nalaze se na stranici
 
 ## Promjene od prvog produkcijskog izdanja 2.0.95
 
-Ispravili smo nekoliko problema prijavljenih u verziji 2.0.95, a ovo izdanje ujedno čini najave
-pouzdanijima i adrese točnijima. Najave tijekom hodanja sada počinju ranije nakon što izađete iz
-autobusa ili automobila, a Soundscape brže primijeti da je vaš vlak krenuo sa stanice. Raskrižja se
-sada ispravno opisuju kada hodate po nogostupu koji je na karti ucrtan odvojeno od ceste. Od verzije
-2.0.99 najave raskrižja jasnije su i točnije, a Soundscape vam sada kaže kada put završava kod vrata
-kroz koja ne možete proći. Ispravili smo i to da je *Moja lokacija* šutjela pri slaboj mrežnoj vezi
-te problem s preuzimanjem izvanmrežnih karata.
-Soundscape sada može koristiti brojač koraka na vašem telefonu kako bi prepoznao kada hodate, pa
-ranije primjećuje da ste izašli iz vozila ili stali, a kada prvi put otvorite ovu verziju, zatražit
-će se od vas nova dozvola *Tjelesna aktivnost* (na iPhoneu *Kretanje i fitness*).
-Odabir glasa za pretvaranje teksta u govor izgleda malo drukčije. Glasovi su sada grupirani po
-jeziku, dodirom glasa reproducira se primjer, a odabirom opcije *Automatski* koristi se zadani glas
-za vaš jezik.
+Ispravili smo nekoliko problema prijavljenih od verzije 2.0.95, a najave su pouzdanije i adrese
+točnije:
+
+* Najave tijekom hodanja počinju ranije nakon što izađete iz autobusa ili automobila, a Soundscape
+  brže primijeti da je vaš vlak krenuo sa stanice.
+* Najave raskrižja jasnije su i točnije, i kada hodate po nogostupu koji je na karti ucrtan odvojeno
+  od ceste. Dva raskrižja nekoliko metara jedno od drugog koja vode na isto mjesto sada se
+  najavljuju samo jednom.
+* Soundscape vam kaže kada put završava kod vrata kroz koja ne možete proći.
+* Staze oko stanica bolje su opisane, na primjer *Staza do Peron*, a zajedničke
+  pješačko-biciklističke staze, poput staza uz kanale, najavljuju se kada stupite na njih, umjesto
+  da se tretiraju kao nogostup uz cestu.
+* *Moja lokacija* više ne šuti pri slaboj mrežnoj vezi.
+* Ispravljen je problem s preuzimanjem izvanmrežnih karata.
+
+Neke stvari rade malo drukčije. Soundscape sada može koristiti brojač koraka na vašem telefonu kako
+bi prepoznao kada hodate, pa ranije primjećuje da ste izašli iz vozila ili stali; kada prvi put
+otvorite ovu verziju, zatražit će se od vas nova dozvola *Tjelesna aktivnost* (na iPhoneu *Kretanje
+i fitness*). Glasovi su sada grupirani po jeziku, dodirom glasa reproducira se primjer, a odabirom
+opcije *Automatski* koristi se zadani glas za vaš jezik. Stavka izbornika *Podijeli snimku
+putovanja* više ne postoji: kada je uključeno *Omogući snimanje putovanja*, *Kontaktiraj podršku*
+pita želite li priložiti snimljeno putovanje, koje sada uvijek obuhvaća posljednji sat.
 
 ## Novosti u verziji 2.0
 
@@ -289,7 +298,7 @@ učvršćeno na telefonima koji agresivno zatvaraju pozadinske aplikacije.
 ## Kako nam prijaviti probleme
 
 Ako nešto nije u redu, rado ćemo čuti. Pišite Help Desku na
-<soundscapeAndroid@scottishtecharmy.support> ili pitajte na Slacku ako ste član STA-a.
+<soundscape@scottishtecharmy.support> ili pitajte na Slacku ako ste član STA-a.
 
 Ako je obavijest bila pogrešna ili je izostala, snimka vašeg putovanja iznimno nam pomaže — možemo je
 reproducirati i vidjeti točno s čime je Soundscape radio. Upute se nalaze u odjeljku
@@ -297,10 +306,11 @@ reproducirati i vidjeti točno s čime je Soundscape radio. Upute se nalaze u od
 
 ## Napomena o iPhoneu
 
-Sve gore navedeno odnosi se na Android aplikaciju, ali vrijedi znati kamo je otišao ostatak rada u ovom
-izdanju. Soundscape sada radi i na iPhoneu, a obje se aplikacije grade iz istog zajedničkog koda —
-isti zasloni, iste formulacije i iste obavijesti. Novost poput gornjih putnih obavijesti tako stiže na
-obje odjednom umjesto da se piše dvaput. Ta zajednička osnova razlog je zašto je 2.0 trajala tako dugo
-i ona bi trebala učiniti da buduća izdanja brže stižu na obje platforme. Aplikacija za iPhone
-trenutačno je dostupna putem TestFlighta uz poziv: pitajte na Slacku ako ste član STA-a ili pišite Help
-Desku.
+Sve gore navedeno odnosi se na Android aplikaciju, ali vrijedi znati kamo je otišao ostatak rada u
+ovom izdanju. Soundscape sada radi i na iPhoneu, a obje se aplikacije grade iz istog zajedničkog
+koda — isti zasloni, iste formulacije i iste obavijesti. Novost poput gornjih putnih obavijesti tako
+stiže na obje odjednom umjesto da se piše dvaput. Ta zajednička osnova razlog je zašto je 2.0
+trajala tako dugo i ona bi trebala učiniti da buduća izdanja brže stižu na obje platforme.
+Aplikacija za iPhone sada je u javnoj beta verziji putem Appleove aplikacije TestFlight i svatko joj
+se može pridružiti: instalirajte TestFlight iz App Storea i na iPhoneu otvorite
+<https://testflight.apple.com/join/XFb7C5JN>.

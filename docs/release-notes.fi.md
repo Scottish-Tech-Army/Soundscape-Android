@@ -22,18 +22,28 @@ Vanhempien versioiden tiedot löytyvät sivulta
 
 ## Muutokset ensimmäisen tuotantoversion 2.0.95 jälkeen
 
-Korjasimme useita versiossa 2.0.95 raportoituja ongelmia, ja tämä versio tekee myös ilmoituksista
-luotettavampia ja osoitteista tarkempia. Kävelyn ilmoitukset alkavat nyt aiemmin, kun nouset
-bussista tai autosta, ja Soundscape huomaa nopeammin, että junasi on lähtenyt asemalta. Risteykset
-kuvataan nyt oikein, kun kävelet jalkakäytävällä, joka on kartoitettu erikseen tiestä. Versiosta
-2.0.99 alkaen risteysten ilmoitukset ovat selkeämpiä ja tarkempia, ja Soundscape kertoo nyt, kun tie
-päättyy porttiin, josta et pääse läpi. Korjasimme myös vian, jonka vuoksi *Oma sijaintini* jäi
-hiljaiseksi heikolla verkkoyhteydellä, sekä ongelman offline-karttojen lataamisessa.
-Soundscape voi nyt käyttää puhelimesi askelmittaria tunnistaakseen, milloin kävelet, joten se huomaa
-aiemmin, että olet noussut ajoneuvosta tai pysähtynyt, ja kun avaat tämän version ensimmäisen
-kerran, sinulta pyydetään uutta *Fyysinen aktiivisuus* -lupaa (iPhonessa *Liike ja kuntoilu*).
-Puhesynteesin äänen valinta näyttää hieman erilaiselta. Äänet on nyt ryhmitelty kielen mukaan, ääntä
-napauttamalla kuulet näytteen, ja *Automaattinen* käyttää kielesi oletusääntä.
+Korjasimme useita version 2.0.95 jälkeen raportoituja ongelmia, ja ilmoitukset ovat luotettavampia
+ja osoitteet tarkempia:
+
+* Kävelyn ilmoitukset alkavat aiemmin, kun nouset bussista tai autosta, ja Soundscape huomaa
+  nopeammin, että junasi on lähtenyt asemalta.
+* Risteysten ilmoitukset ovat selkeämpiä ja tarkempia, myös kun kävelet jalkakäytävällä, joka on
+  kartoitettu erikseen tiestä. Kahdesta muutaman metrin päässä toisistaan olevasta risteyksestä,
+  jotka johtavat samaan paikkaan, ilmoitetaan nyt vain kerran.
+* Soundscape kertoo, kun tie päättyy porttiin, josta et pääse läpi.
+* Polut asemien ympärillä kuvataan paremmin, esimerkiksi *Polku kohteeseen Asemalaituri*, ja
+  yhteiskäyttöiset jalankulku- ja pyörätiet, kuten kanavien varren hinauspolut, ilmoitetaan, kun
+  tulet niille, eikä niitä enää käsitellä tien jalkakäytävänä.
+* *Oma sijaintini* ei enää jää hiljaiseksi heikolla verkkoyhteydellä.
+* Offline-karttojen lataamisen ongelma on korjattu.
+
+Jotkin asiat toimivat hieman eri tavalla. Soundscape voi nyt käyttää puhelimesi askelmittaria
+tunnistaakseen, milloin kävelet, joten se huomaa aiemmin, että olet noussut ajoneuvosta tai
+pysähtynyt; kun avaat tämän version ensimmäisen kerran, sinulta pyydetään uutta *Fyysinen
+aktiivisuus* -lupaa (iPhonessa *Liike ja kuntoilu*). Äänet on nyt ryhmitelty kielen mukaan, ääntä
+napauttamalla kuulet näytteen, ja *Automaattinen* käyttää kielesi oletusääntä. Valikon kohta *Jaa
+matkan tallenne* on poistettu: kun *Ota matkojen tallennus käyttöön* on päällä, *Ota yhteyttä
+tukeen* kysyy, liitetäänkö tallennettu matkasi mukaan, ja tallenne kattaa nyt aina viimeisen tunnin.
 
 ## Uutta versiossa 2.0
 
@@ -298,7 +308,7 @@ käyttäytymistä on tehty kestävämmäksi puhelimissa, jotka sulkevat taustaso
 ## Ongelmista kertominen
 
 Jos jokin ei ole kohdallaan, kuulisimme siitä mielellämme. Kirjoita Help Deskiin osoitteeseen
-<soundscapeAndroid@scottishtecharmy.support> tai kysy Slackissa, jos olet STA:n jäsen.
+<soundscape@scottishtecharmy.support> tai kysy Slackissa, jos olet STA:n jäsen.
 
 Jos kuulutus oli väärä tai jäi tulematta, matkasi tallenne auttaa meitä valtavasti — voimme toistaa
 sen ja nähdä tarkalleen, mihin Soundscape perusti toimintansa. Ohjeet löytyvät kohdasta
@@ -308,8 +318,9 @@ sen ja nähdä tarkalleen, mihin Soundscape perusti toimintansa. Ohjeet löytyv�
 
 Kaikki edellä sanottu koskee Android-sovellusta, mutta on hyödyllistä tietää, mihin loput tämän
 julkaisun työstä meni. Soundscape toimii nyt myös iPhonessa, ja molemmat sovellukset rakennetaan
-samasta jaetusta koodista — samat näytöt, samat sanamuodot ja samat kuulutukset. Uusi ominaisuus kuten
-yllä kuvatut matkakuulutukset saapuu näin molempiin yhtä aikaa sen sijaan että se kirjoitettaisiin
-kahdesti. Tämä yhteinen perusta selittää, miksi 2.0 kesti niin kauan, ja sen pitäisi saada tulevat
-julkaisut ilmestymään nopeammin molemmille alustoille. iPhone-sovellus on tällä hetkellä saatavilla
-TestFlightin kautta kutsulla: kysy Slackissa, jos olet STA:n jäsen, tai kirjoita Help Deskiin.
+samasta jaetusta koodista — samat näytöt, samat sanamuodot ja samat kuulutukset. Uusi ominaisuus
+kuten yllä kuvatut matkakuulutukset saapuu näin molempiin yhtä aikaa sen sijaan että se
+kirjoitettaisiin kahdesti. Tämä yhteinen perusta selittää, miksi 2.0 kesti niin kauan, ja sen
+pitäisi saada tulevat julkaisut ilmestymään nopeammin molemmille alustoille. iPhone-sovellus on nyt
+julkisessa beetassa Applen TestFlight-sovelluksen kautta, ja kuka tahansa voi liittyä: asenna
+TestFlight App Storesta ja avaa <https://testflight.apple.com/join/XFb7C5JN> iPhonellasi.

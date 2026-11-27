@@ -22,20 +22,29 @@ A korábbi verziók megjegyzései a
 
 ## Változások az első éles kiadás, a 2.0.95 óta
 
-Kijavítottunk több, a 2.0.95-ben jelentett hibát, és ez a kiadás a bemondásokat is megbízhatóbbá, a
-címeket pedig pontosabbá teszi. A gyalogos bemondások most hamarabb elindulnak, miután leszállt a
-buszról vagy kiszállt az autóból, és a Soundscape gyorsabban észreveszi, ha a vonata kigördült az
-állomásról. A kereszteződések leírása most már helyes, amikor olyan járdán halad, amely az úttól
-külön van feltérképezve. A 2.0.99 óta a kereszteződések bemondásai érthetőbbek és pontosabbak, és a
-Soundscape most szól, ha egy út olyan kapunál ér véget, amelyen nem lehet átjutni. Kijavítottuk azt
-is, hogy a *Saját helyzetem* gyenge hálózati kapcsolatnál néma maradt, valamint egy hibát az offline
-térképek letöltésében.
-A Soundscape mostantól a telefonja lépésszámlálóját is használhatja annak felismerésére, hogy mikor
-sétál, így hamarabb észreveszi, ha kiszállt egy járműből vagy megállt, és amikor először megnyitja
-ezt a verziót, egy új, *Fizikai aktivitás* engedélyt kér Öntől (iPhone-on *Mozgás és fittség*).
-A szövegfelolvasó hang kiválasztása kissé másképp néz ki. A hangok mostantól nyelv szerint vannak
-csoportosítva, egy hangra koppintva meghallgathat egy mintát, az *Automatikus* választásával pedig
-az Ön nyelvének alapértelmezett hangja szól.
+Kijavítottunk több, a 2.0.95 óta jelentett hibát, és a bemondások megbízhatóbbak, a címek pedig
+pontosabbak lettek:
+
+* A gyalogos bemondások hamarabb elindulnak, miután leszállt a buszról vagy kiszállt az autóból, és
+  a Soundscape gyorsabban észreveszi, ha a vonata kigördült az állomásról.
+* A kereszteződések bemondásai érthetőbbek és pontosabbak, akkor is, ha olyan járdán halad, amely az
+  úttól külön van feltérképezve. Két, egymástól néhány méterre lévő kereszteződést, amelyek ugyanoda
+  vezetnek, most csak egyszer mond be.
+* A Soundscape szól, ha egy út olyan kapunál ér véget, amelyen nem lehet átjutni.
+* Az állomások körüli ösvények leírása jobb lett, például *Ösvény a peron felé*, a közös gyalog- és
+  kerékpárutakat pedig, mint a csatornák menti vontatóutakat, bemondja, amikor rájuk lép, ahelyett
+  hogy egy út járdájaként kezelné őket.
+* A *Saját helyzetem* már nem marad néma gyenge hálózati kapcsolatnál.
+* Kijavítottunk egy hibát az offline térképek letöltésében.
+
+Néhány dolog kicsit másképp működik. A Soundscape mostantól a telefonja lépésszámlálóját is
+használhatja annak felismerésére, hogy mikor sétál, így hamarabb észreveszi, ha kiszállt egy
+járműből vagy megállt; amikor először megnyitja ezt a verziót, egy új, *Fizikai aktivitás* engedélyt
+kér Öntől (iPhone-on *Mozgás és fittség*). A hangok mostantól nyelv szerint vannak csoportosítva,
+egy hangra koppintva meghallgathat egy mintát, az *Automatikus* választásával pedig az Ön nyelvének
+alapértelmezett hangja szól. Az *Utazás felvételének megosztása* menüpont megszűnt: ha az *Utazás
+rögzítésének engedélyezése* be van kapcsolva, a *Kapcsolatfelvétel az ügyfélszolgálattal*
+megkérdezi, csatolja-e a rögzített útját, amely mostantól mindig az utolsó órát fedi le.
 
 ## Újdonságok a 2.0-ban
 
@@ -304,7 +313,7 @@ telefonokon, amelyek agresszíven zárják be a háttéralkalmazásokat.
 ## Hogyan jelezze a problémákat
 
 Ha valami nem stimmel, szívesen hallunk róla. Írjon a Help Desknek a
-<soundscapeAndroid@scottishtecharmy.support> címre, vagy kérdezzen a Slacken, ha STA-tag.
+<soundscape@scottishtecharmy.support> címre, vagy kérdezzen a Slacken, ha STA-tag.
 
 Ha egy bemondás hibás volt vagy elmaradt, az útjáról készült felvétel óriási segítség — le tudjuk
 játszani, és pontosan látjuk, mivel dolgozott a Soundscape. Az útmutató a
@@ -319,5 +328,6 @@ kódból épül — ugyanazok a képernyők, ugyanazok a megfogalmazások és ug
 újdonság, mint a fenti utazási bemondások, így egyszerre érkezik mindkettőre, ahelyett hogy kétszer
 kellene megírni. Ez a közös alap a magyarázata annak, miért tartott ilyen sokáig a 2.0, és ennek
 köszönhetően a jövőbeli kiadásoknak gyorsabban kell megérkezniük mindkét platformra. Az iPhone-os
-alkalmazás jelenleg TestFlighten keresztül, meghívásos alapon érhető el: kérdezzen a Slacken, ha
-STA-tag, vagy írjon a Help Desknek.
+alkalmazás mostantól nyilvános bétában érhető el az Apple TestFlight alkalmazásán keresztül, és
+bárki csatlakozhat: telepítse a TestFlightot az App Store-ból, majd nyissa meg iPhone-ján a
+<https://testflight.apple.com/join/XFb7C5JN> címet.

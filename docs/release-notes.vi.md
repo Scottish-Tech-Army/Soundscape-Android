@@ -22,19 +22,28 @@ Ghi chú của các phiên bản cũ hơn nằm ở trang
 
 ## Thay đổi kể từ bản phát hành chính thức đầu tiên 2.0.95
 
-Chúng tôi đã sửa một số lỗi được báo cáo trong bản 2.0.95, và bản phát hành này cũng giúp các thông
-báo đáng tin cậy hơn và địa chỉ chính xác hơn. Thông báo khi đi bộ giờ bắt đầu sớm hơn sau khi bạn
-xuống xe buýt hoặc ô tô, và Soundscape nhận ra nhanh hơn khi tàu của bạn đã rời ga. Giao lộ giờ được
-mô tả chính xác khi bạn đi bộ trên vỉa hè được vẽ trên bản đồ tách biệt với đường. Từ bản 2.0.99,
-thông báo về giao lộ rõ ràng và chính xác hơn, và Soundscape giờ sẽ cho bạn biết khi một con đường
-kết thúc ở một cổng mà bạn không thể đi qua. Chúng tôi cũng đã sửa lỗi *Vị trí của tôi* im lặng khi
-kết nối mạng yếu, và một lỗi khi tải bản đồ ngoại tuyến.
-Giờ đây Soundscape có thể dùng bộ đếm bước của điện thoại để biết khi nào bạn đang đi bộ, nhờ đó
-nhận ra sớm hơn rằng bạn đã xuống xe hoặc dừng lại, và khi mở phiên bản này lần đầu, bạn sẽ được yêu
-cầu cấp quyền mới *Hoạt động thể chất* (*Chuyển động và Thể dục* trên iPhone).
-Việc chọn giọng đọc chuyển văn bản thành giọng nói có giao diện hơi khác. Các giọng đọc giờ được
-nhóm theo ngôn ngữ, chạm vào một giọng sẽ phát mẫu, và chọn *Tự động* sẽ dùng giọng mặc định cho
-ngôn ngữ của bạn.
+Chúng tôi đã sửa một số lỗi được báo cáo kể từ bản 2.0.95, và các thông báo giờ đáng tin cậy hơn,
+địa chỉ chính xác hơn:
+
+* Thông báo khi đi bộ bắt đầu sớm hơn sau khi bạn xuống xe buýt hoặc ô tô, và Soundscape nhận ra
+  nhanh hơn khi tàu của bạn đã rời ga.
+* Thông báo về giao lộ rõ ràng và chính xác hơn, kể cả khi bạn đi bộ trên vỉa hè được vẽ trên bản đồ
+  tách biệt với đường. Hai giao lộ cách nhau vài mét cùng dẫn đến một nơi giờ chỉ được thông báo một
+  lần.
+* Soundscape cho bạn biết khi một con đường kết thúc ở một cổng mà bạn không thể đi qua.
+* Các lối đi quanh nhà ga được mô tả tốt hơn, ví dụ *Lối đi đến Sân ga*, và các lối đi chung cho
+  người đi bộ và xe đạp, chẳng hạn đường dọc kênh, được thông báo khi bạn đi vào thay vì bị coi là
+  vỉa hè của một con đường.
+* *Vị trí của tôi* không còn im lặng khi kết nối mạng yếu.
+* Đã sửa một lỗi khi tải bản đồ ngoại tuyến.
+
+Một số thứ hoạt động hơi khác. Giờ đây Soundscape có thể dùng bộ đếm bước của điện thoại để biết khi
+nào bạn đang đi bộ, nhờ đó nhận ra sớm hơn rằng bạn đã xuống xe hoặc dừng lại; khi mở phiên bản này
+lần đầu, bạn sẽ được yêu cầu cấp quyền mới *Hoạt động thể chất* (*Chuyển động và Thể dục* trên
+iPhone). Các giọng đọc giờ được nhóm theo ngôn ngữ, chạm vào một giọng sẽ phát mẫu, và chọn *Tự
+động* sẽ dùng giọng mặc định cho ngôn ngữ của bạn. Mục menu *Chia sẻ bản ghi hành trình* đã bị bỏ:
+khi *Bật ghi lại hành trình di chuyển* đang bật, *Liên hệ hỗ trợ* sẽ hỏi có đính kèm hành trình đã
+ghi của bạn không, và bản ghi này giờ luôn bao gồm một giờ gần nhất.
 
 ## Có gì mới trong 2.0
 
@@ -294,7 +303,7 @@ nền một cách quyết liệt.
 ## Cách báo cho chúng tôi về sự cố
 
 Nếu có gì đó không ổn, chúng tôi rất muốn biết. Hãy gửi thư tới Help Desk tại
-<soundscapeAndroid@scottishtecharmy.support>, hoặc hỏi trên Slack nếu bạn là thành viên STA.
+<soundscape@scottishtecharmy.support>, hoặc hỏi trên Slack nếu bạn là thành viên STA.
 
 Nếu một thông báo bị sai hoặc không xuất hiện, một bản ghi hành trình của bạn giúp chúng tôi rất
 nhiều — chúng tôi có thể phát lại và thấy chính xác Soundscape đã dựa trên dữ liệu nào. Hướng dẫn nằm
@@ -303,10 +312,11 @@ nhiều — chúng tôi có thể phát lại và thấy chính xác Soundscape 
 
 ## Đôi lời về iPhone
 
-Tất cả những điều trên là về ứng dụng Android, nhưng cũng đáng biết phần công sức còn lại của bản phát
-hành này đã đi đâu. Soundscape giờ chạy cả trên iPhone, và cả hai ứng dụng đều được xây từ cùng một mã
-nguồn dùng chung — cùng màn hình, cùng cách diễn đạt và cùng thông báo. Nhờ vậy một tính năng mới như
-các thông báo hành trình ở trên đến với cả hai cùng lúc thay vì phải viết hai lần. Chính nền tảng chung
-đó giải thích vì sao 2.0 mất nhiều thời gian đến thế, và cũng chính nó sẽ giúp các bản phát hành sau
-tới cả hai nền tảng nhanh hơn. Ứng dụng iPhone hiện có qua TestFlight theo lời mời: hãy hỏi trên Slack
-nếu bạn là thành viên STA, hoặc gửi thư tới Help Desk.
+Tất cả những điều trên là về ứng dụng Android, nhưng cũng đáng biết phần công sức còn lại của bản
+phát hành này đã đi đâu. Soundscape giờ chạy cả trên iPhone, và cả hai ứng dụng đều được xây từ cùng
+một mã nguồn dùng chung — cùng màn hình, cùng cách diễn đạt và cùng thông báo. Nhờ vậy một tính năng
+mới như các thông báo hành trình ở trên đến với cả hai cùng lúc thay vì phải viết hai lần. Chính nền
+tảng chung đó giải thích vì sao 2.0 mất nhiều thời gian đến thế, và cũng chính nó sẽ giúp các bản
+phát hành sau tới cả hai nền tảng nhanh hơn. Ứng dụng iPhone giờ đã có bản beta công khai qua ứng
+dụng TestFlight của Apple, và ai cũng có thể tham gia: cài TestFlight từ App Store rồi mở
+<https://testflight.apple.com/join/XFb7C5JN> trên iPhone của bạn.

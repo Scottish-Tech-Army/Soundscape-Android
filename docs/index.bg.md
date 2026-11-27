@@ -20,13 +20,33 @@ Soundscape е безплатно приложение с отворен код, 
 
 Приложението продължава да работи във фонов режим, докато телефонът е в джоба или чантата – не е нужно да го държите или да гледате екрана. То е напълно безплатно и без реклами, а самото приложение може да работи офлайн с изтеглени картови региони. Приложението изпраща статистика за използването и доклади за сривове, за да можем да откриваме и отстраняваме проблеми – [политиката за поверителност]({{ "/privacy-policy.html" | relative_url }}) обяснява точно какво се събира.
 
-Soundscape първоначално е разработено за iOS от [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) и е било широко използвано, преди през 2022 г. да стане с отворен код. [Scottish Tech Army](https://www.scottishtecharmy.org) го поддържа достъпно на iOS и освен това го пренаписа като приложение за Android с отворен код.
+Soundscape първоначално е разработено за iOS от [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) и е било широко използвано, преди през 2022 г. да стане с отворен код. [Scottish Tech Army](https://www.scottishtecharmy.org) го поддържа достъпно на iOS и го пренаписа като ново приложение с отворен код за Android и iOS, които споделят един и същ код.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Изтеглете Soundscape от Google Play" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Изтеглете Soundscape от App Store" height=80></a>
+-->
+
+## Публични бета версии
+Новите функции се появяват първо в бета версиите и всеки може да се включи.
+
+### iOS
+Приложението за iOS в App Store все още е по-старото приложение, базирано на това на Microsoft. Новата версия на Soundscape за iOS, изградена от същия код като приложението за Android, се предлага само като публична бета версия чрез приложението TestFlight на Apple. Тя заменя сегашното приложение за iOS и запазва запазените ви маркери и маршрути – вижте [преминаване от старото приложение за iOS]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (на английски), за да разберете какво се е променило. За да се включите:
+
+1. Инсталирайте [TestFlight](https://apps.apple.com/app/testflight/id899247664) от App Store на своя iPhone.
+2. На същия iPhone отворете връзката <https://testflight.apple.com/join/XFb7C5JN>.
+3. TestFlight се отваря и предлага да инсталира бета версията на Soundscape. Приемете поканата и инсталирайте приложението.
+
+### Android
+1. Отворете <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape>, влезли с профила в Google, който се използва на телефона ви, и се запишете като тестер.
+2. Инсталирайте или актуализирайте Soundscape от [Google Play](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) както обикновено. Може да минат няколко минути, преди бета версията да бъде предложена, така че ако все още виждате публикуваната версия, изчакайте малко и проверете отново.
+
+След това бета актуализациите идват през Google Play като всяка друга актуализация. За да спрете да тествате, върнете се на същата връзка и напуснете програмата.
+
+Моля, изпращайте всички проблеми, които откриете в която и да е от бета версиите, на адреса за поддръжка по-долу.
 
 ## Поддръжка за Soundscape
-Имейл адресът <soundscapeAndroid@scottishtecharmy.support> води директно към нашата система за поддръжка. Изпратете ни всякаква обратна връзка, било то желание за нова функция или съобщение за грешка. Ще получите автоматичен отговор по имейл, до нас ще стигне известие, че има нов казус, и ще се опитаме да отговорим възможно най-бързо.
+Имейл адресът <soundscape@scottishtecharmy.support> води директно към нашата система за поддръжка. Изпратете ни всякаква обратна връзка, било то желание за нова функция или съобщение за грешка. Ще получите автоматичен отговор по имейл, до нас ще стигне известие, че има нов казус, и ще се опитаме да отговорим възможно най-бързо.
 
 ## Как да използвате Soundscape
 [Как да използвате Soundscape]({{ "/users/user.html" | relative_url }})

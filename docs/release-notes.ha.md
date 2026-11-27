@@ -23,20 +23,28 @@ Bayanan sigogin da suka gabata suna shafin
 
 ## Canje-canje tun bayan sakin farko na 2.0.95
 
-Mun gyara matsaloli da dama da aka ba da rahotonsu a 2.0.95, kuma wannan sabon saki yana sa sanarwa
-ta fi dogaro, adireshi kuma su fi daidai. Sanarwar tafiya a kafa yanzu tana farawa da wuri bayan ka
-sauka daga bas ko mota, kuma Soundscape yana gane da sauri cewa jirgin kasanka ya bar tasha. Yanzu
-ana bayyana mahaɗar hanya daidai lokacin da kake tafiya a kan hanyar kafa da aka zana a taswira
-daban da titin mota. Tun daga 2.0.99, sanarwar mahaɗar hanya ta fi bayyana kuma ta fi daidai, kuma
-Soundscape yanzu yana gaya maka lokacin da hanya ta ƙare a ƙofar shinge da ba za ka iya wucewa ba.
-Mun kuma gyara matsalar da *Wurina* ke yin shiru idan haɗin intanet ba shi da ƙarfi, da wata matsala
-wajen sauke taswirori don amfani ba tare da intanet ba.
-Yanzu Soundscape na iya amfani da ma’aunin matakai na wayarka don sanin lokacin da kake tafiya da
-ƙafa, don haka zai lura da wuri cewa ka sauka daga abin hawa ko ka tsaya, kuma za a nemi sabon izini
-na *Motsa jiki* (*Motsi da Lafiyar Jiki* a iPhone) lokacin da ka fara buɗe wannan sigar.
-Zaɓen muryar mayar da rubutu zuwa magana yana da ɗan bambanci a yanzu. Yanzu an haɗa muryoyi bisa
-harshe, taɓa ɗaya yana kunna samfurinta, kuma zaɓen *Atomatik* zai yi amfani da muryar asali ta
-harshenka.
+Mun gyara matsaloli da dama da aka ba da rahotonsu tun daga 2.0.95, kuma sanarwa ta fi dogaro,
+adireshi kuma sun fi daidai:
+
+* Sanarwar tafiya a kafa tana farawa da wuri bayan ka sauka daga bas ko mota, kuma Soundscape yana
+  gane da sauri cewa jirgin kasanka ya bar tasha.
+* Sanarwar mahaɗar hanya ta fi bayyana kuma ta fi daidai, har ma lokacin da kake tafiya a kan hanyar
+  kafa da aka zana a taswira daban da titin mota. Mahaɗa biyu da ke da nisan mita kaɗan kuma suke
+  kai wa wuri ɗaya yanzu ana sanar da su sau ɗaya kawai.
+* Soundscape yana gaya maka lokacin da hanya ta ƙare a ƙofar shinge da ba za ka iya wucewa ba.
+* Ana bayyana ƙananan hanyoyi a kusa da tashoshi da kyau, misali *Ƙaramar Hanya zuwa Dandali*, kuma
+  hanyoyin da masu tafiya a ƙafa da masu keke ke amfani da su tare, kamar hanyoyin gefen magudanar
+  ruwa, ana sanar da su lokacin da ka shiga su maimakon a ɗauke su a matsayin gefen titi.
+* *Wurina* ba ya ƙara yin shiru idan haɗin intanet ba shi da ƙarfi.
+* An gyara wata matsala wajen sauke taswirori don amfani ba tare da intanet ba.
+
+Wasu abubuwa suna aiki da ɗan bambanci. Yanzu Soundscape na iya amfani da ma’aunin matakai na
+wayarka don sanin lokacin da kake tafiya da ƙafa, don haka zai lura da wuri cewa ka sauka daga abin
+hawa ko ka tsaya; za a nemi sabon izini na *Motsa jiki* (*Motsi da Lafiyar Jiki* a iPhone) lokacin
+da ka fara buɗe wannan sigar. Yanzu an haɗa muryoyi bisa harshe, taɓa ɗaya yana kunna samfurinta,
+kuma zaɓen *Atomatik* yana amfani da muryar asali ta harshenka. An cire abin menu *Raba rikodin
+tafiya*: idan *Kunna rikodin tafiya* yana kunne, *Tuntuɓi Tallafi* zai tambaye ka ko a haɗa
+tafiyarka da aka rikodi, wanda yanzu koyaushe yana ƙunshe da sa’a ɗaya ta ƙarshe.
 
 ## Sabbin abubuwa a 2.0
 
@@ -298,7 +306,7 @@ wayoyin da ke rufe manhajojin baya cikin tsauri.
 ## Yadda za ka sanar da mu matsaloli
 
 Idan wani abu bai yi daidai ba, muna son mu ji. Aika sako zuwa Help Desk a
-<soundscapeAndroid@scottishtecharmy.support>, ko ka tambaya a Slack idan kai memba ne na STA.
+<soundscape@scottishtecharmy.support>, ko ka tambaya a Slack idan kai memba ne na STA.
 
 Idan sanarwa ba ta yi daidai ba ko ba ta faru ba ko kadan, rikodin tafiyarka yana taimaka mana
 matuka — za mu iya sake kunna shi mu ga daidai abin da Soundscape ke aiki da shi. Umarnin suna a
@@ -307,9 +315,10 @@ matuka — za mu iya sake kunna shi mu ga daidai abin da Soundscape ke aiki da s
 ## Bayani kan iPhone
 
 Duk abin da ke sama ya shafi manhajar Android ne, amma yana da kyau a san inda sauran aikin wannan
-sakin ya tafi. Yanzu Soundscape yana aiki a iPhone ma, kuma ana gina manhajojin biyu daga lamba
-daya da ake rabawa — fuskoki daya, kalmomi daya, da sanarwa daya. Don haka sabon abu kamar sanarwar
+sakin ya tafi. Yanzu Soundscape yana aiki a iPhone ma, kuma ana gina manhajojin biyu daga lamba daya
+da ake rabawa — fuskoki daya, kalmomi daya, da sanarwa daya. Don haka sabon abu kamar sanarwar
 tafiya da ke sama yana isa ga dukansu a lokaci daya maimakon a rubuta shi sau biyu. Wannan harsashi
 daya shi ne dalilin da ya sa 2.0 ya dauki tsawon lokaci haka, kuma shi ne zai sa sakin nan gaba ya
-isa cikin sauri ga dandamali biyun. A halin yanzu ana samun manhajar iPhone ta TestFlight ta hanyar
-gayyata: ka tambaya a Slack idan kai memba ne na STA, ko ka aika sako zuwa Help Desk.
+isa cikin sauri ga dandamali biyun. Yanzu manhajar iPhone tana cikin beta ta jama’a ta manhajar
+TestFlight ta Apple, kuma kowa zai iya shiga: ka saka TestFlight daga App Store, sannan ka buɗe
+<https://testflight.apple.com/join/XFb7C5JN> a iPhone ɗinka.

@@ -20,13 +20,33 @@ Soundscape — это бесплатное приложение с открыт�
 
 Приложение продолжает работать в фоновом режиме, когда телефон лежит в кармане или сумке, — не нужно держать его в руке или смотреть на экран. Оно полностью бесплатно и без рекламы, а само приложение может работать автономно с помощью загруженных регионов карты. Приложение отправляет статистику использования и отчёты о сбоях, чтобы мы могли находить и устранять проблемы, — [политика конфиденциальности]({{ "/privacy-policy.html" | relative_url }}) подробно описывает, что именно собирается.
 
-Изначально Soundscape был разработан для iOS компанией [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) и широко использовался до того, как в 2022 году его исходный код был открыт. [Scottish Tech Army](https://www.scottishtecharmy.org) сохранила его доступность на iOS, а также переписала его как приложение с открытым исходным кодом для Android.
+Изначально Soundscape был разработан для iOS компанией [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) и широко использовался до того, как в 2022 году его исходный код был открыт. [Scottish Tech Army](https://www.scottishtecharmy.org) сохранила его доступность на iOS и переписала его как новое приложение с открытым исходным кодом для Android и iOS, у которых общий код.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Скачать Soundscape в Google Play" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Загрузить Soundscape в App Store" height=80></a>
+-->
+
+## Открытые бета-версии
+Новые функции сначала появляются в бета-версиях, и присоединиться может любой.
+
+### iOS
+Приложение для iOS в App Store — это пока прежнее приложение, основанное на приложении Microsoft. Новая версия Soundscape для iOS, созданная из того же кода, что и приложение для Android, доступна только как открытая бета-версия через приложение TestFlight от Apple. Она заменяет текущее приложение для iOS и сохраняет ваши метки и маршруты — что изменилось, описано на странице [переход со старого приложения для iOS]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (на английском). Как присоединиться:
+
+1. Установите [TestFlight](https://apps.apple.com/app/testflight/id899247664) из App Store на свой iPhone.
+2. На том же iPhone откройте ссылку <https://testflight.apple.com/join/XFb7C5JN>.
+3. Откроется TestFlight с предложением установить бета-версию Soundscape. Примите приглашение и установите приложение.
+
+### Android
+1. Откройте <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape>, войдя в аккаунт Google, который используется на вашем телефоне, и запишитесь в тестировщики.
+2. Установите или обновите Soundscape из [Google Play](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) как обычно. Бета-версия может появиться не сразу, а через несколько минут, так что если вы всё ещё видите опубликованную версию, подождите немного и проверьте снова.
+
+После этого бета-обновления приходят через Google Play, как и любые другие обновления. Чтобы прекратить тестирование, вернитесь по той же ссылке и выйдите из программы.
+
+Пожалуйста, присылайте обо всех проблемах в любой из бета-версий на адрес поддержки ниже.
 
 ## Поддержка Soundscape
-Адрес электронной почты <soundscapeAndroid@scottishtecharmy.support> ведёт напрямую в нашу систему службы поддержки. Пожалуйста, присылайте любые отзывы, будь то запрос новой функции или сообщение об ошибке. Вы получите автоматический ответ по электронной почте, а мы получим уведомление о новой заявке и постараемся ответить на неё как можно быстрее.
+Адрес электронной почты <soundscape@scottishtecharmy.support> ведёт напрямую в нашу систему службы поддержки. Пожалуйста, присылайте любые отзывы, будь то запрос новой функции или сообщение об ошибке. Вы получите автоматический ответ по электронной почте, а мы получим уведомление о новой заявке и постараемся ответить на неё как можно быстрее.
 
 ## Как пользоваться Soundscape
 [Как пользоваться Soundscape]({{ "/users/user.html" | relative_url }})

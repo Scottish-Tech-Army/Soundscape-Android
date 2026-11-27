@@ -23,21 +23,29 @@ Catatan untuk versi lama ada di halaman
 
 ## Perubahan sejak rilis produksi pertama 2.0.95
 
-Kami telah memperbaiki beberapa masalah yang dilaporkan di 2.0.95, dan rilis ini juga membuat
-pemberitahuan lebih andal serta alamat lebih akurat. Pemberitahuan saat berjalan kaki kini dimulai
-lebih cepat setelah Anda turun dari bus atau mobil, dan Soundscape lebih cepat menyadari bahwa
-kereta Anda telah meninggalkan stasiun. Persimpangan kini dijelaskan dengan benar saat Anda berjalan
-di trotoar yang dipetakan terpisah dari jalan. Sejak 2.0.99, pemberitahuan persimpangan lebih jelas
-dan akurat, dan Soundscape kini memberi tahu Anda saat sebuah jalan berakhir di gerbang yang tidak
-bisa Anda lewati. Kami juga memperbaiki *Lokasi Saya* yang diam saat koneksi jaringan lemah, serta
-masalah saat mengunduh peta offline.
-Soundscape kini dapat menggunakan penghitung langkah di ponsel Anda untuk mengetahui kapan Anda
-berjalan, sehingga lebih cepat menyadari bahwa Anda turun dari kendaraan atau berhenti, dan saat
-pertama kali membuka versi ini, Anda akan diminta izin baru *Aktivitas fisik* (*Gerakan dan
-Kebugaran* di iPhone).
-Pemilihan suara teks ke ucapan kini tampil sedikit berbeda. Suara sekarang dikelompokkan menurut
-bahasa, mengetuk salah satunya memutar contoh, dan memilih *Otomatis* akan memakai suara bawaan
-untuk bahasa Anda.
+Kami telah memperbaiki beberapa masalah yang dilaporkan sejak 2.0.95, dan pemberitahuan kini lebih
+andal serta alamat lebih akurat:
+
+* Pemberitahuan saat berjalan kaki dimulai lebih cepat setelah Anda turun dari bus atau mobil, dan
+  Soundscape lebih cepat menyadari bahwa kereta Anda telah meninggalkan stasiun.
+* Pemberitahuan persimpangan lebih jelas dan akurat, termasuk saat Anda berjalan di trotoar yang
+  dipetakan terpisah dari jalan. Dua persimpangan berjarak beberapa meter yang menuju ke tempat yang
+  sama kini hanya diumumkan sekali.
+* Soundscape memberi tahu Anda saat sebuah jalan berakhir di gerbang yang tidak bisa Anda lewati.
+* Jalur di sekitar stasiun dijelaskan lebih baik, misalnya *Jalur ke Peron*, dan jalur bersama untuk
+  pejalan kaki dan sepeda, seperti jalur di tepi kanal, diumumkan saat Anda memasukinya alih-alih
+  dianggap sebagai trotoar sebuah jalan.
+* *Lokasi Saya* tidak lagi diam saat koneksi jaringan lemah.
+* Masalah saat mengunduh peta offline telah diperbaiki.
+
+Beberapa hal kini bekerja sedikit berbeda. Soundscape kini dapat menggunakan penghitung langkah di
+ponsel Anda untuk mengetahui kapan Anda berjalan, sehingga lebih cepat menyadari bahwa Anda turun
+dari kendaraan atau berhenti; saat pertama kali membuka versi ini, Anda akan diminta izin baru
+*Aktivitas fisik* (*Gerakan dan Kebugaran* di iPhone). Suara sekarang dikelompokkan menurut bahasa,
+mengetuk salah satunya memutar contoh, dan memilih *Otomatis* memakai suara bawaan untuk bahasa
+Anda. Item menu *Bagikan rekaman perjalanan* telah dihapus: saat *Aktifkan perekaman perjalanan*
+menyala, *Hubungi Dukungan* menanyakan apakah perjalanan yang terekam akan disertakan, dan rekaman
+itu kini selalu mencakup satu jam terakhir.
 
 ## Yang baru di 2.0
 
@@ -304,7 +312,7 @@ yang menutup aplikasi latar secara agresif.
 ## Cara memberi tahu kami tentang masalah
 
 Jika ada yang tidak beres, kami ingin mendengarnya. Kirim surel ke Help Desk di
-<soundscapeAndroid@scottishtecharmy.support>, atau bertanyalah di Slack jika Anda anggota STA.
+<soundscape@scottishtecharmy.support>, atau bertanyalah di Slack jika Anda anggota STA.
 
 Jika sebuah pengumuman keliru atau tidak muncul sama sekali, rekaman perjalanan Anda sangat membantu
 kami — kami dapat memutarnya ulang dan melihat persis data apa yang dipakai Soundscape. Petunjuknya
@@ -313,11 +321,12 @@ ada di
 
 ## Catatan tentang iPhone
 
-Semua hal di atas adalah tentang aplikasi Android, tetapi ada baiknya mengetahui ke mana sisa pekerjaan
-rilis ini pergi. Soundscape kini juga berjalan di iPhone, dan kedua aplikasi dibangun dari kode bersama
-yang sama — layar yang sama, kata-kata yang sama, dan pengumuman yang sama. Fitur baru seperti
-pengumuman perjalanan di atas dengan demikian tiba di keduanya sekaligus alih-alih ditulis dua kali.
-Fondasi bersama itulah yang menjelaskan mengapa 2.0 memakan waktu selama ini, dan itu pula yang
-seharusnya membuat rilis mendatang tiba lebih cepat di kedua platform. Aplikasi iPhone saat ini
-tersedia melalui TestFlight dengan undangan: bertanyalah di Slack jika Anda anggota STA, atau kirim
-surel ke Help Desk.
+Semua hal di atas adalah tentang aplikasi Android, tetapi ada baiknya mengetahui ke mana sisa
+pekerjaan rilis ini pergi. Soundscape kini juga berjalan di iPhone, dan kedua aplikasi dibangun dari
+kode bersama yang sama — layar yang sama, kata-kata yang sama, dan pengumuman yang sama. Fitur baru
+seperti pengumuman perjalanan di atas dengan demikian tiba di keduanya sekaligus alih-alih ditulis
+dua kali. Fondasi bersama itulah yang menjelaskan mengapa 2.0 memakan waktu selama ini, dan itu pula
+yang seharusnya membuat rilis mendatang tiba lebih cepat di kedua platform. Aplikasi iPhone kini
+tersedia dalam beta publik melalui aplikasi TestFlight dari Apple, dan siapa pun bisa bergabung:
+pasang TestFlight dari App Store, lalu buka <https://testflight.apple.com/join/XFb7C5JN> di iPhone
+Anda.

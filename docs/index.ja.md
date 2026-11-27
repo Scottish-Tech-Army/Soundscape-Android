@@ -20,13 +20,33 @@ Soundscape は、ターン・バイ・ターンの道案内をするのではな
 
 スマートフォンをポケットやバッグに入れていても、アプリはバックグラウンドで動作し続けます。画面を持ったり見たりする必要はありません。完全に無料で広告もなく、ダウンロードした地図リージョンを使えばオフラインでも動作します。ただし、問題を見つけて修正できるように、アプリは利用状況の統計とクラッシュレポートを送信します。何が収集されるかは[プライバシーポリシー]({{ "/privacy-policy.html" | relative_url }})で詳しく説明しています。
 
-Soundscape はもともと [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) によって iOS 向けに開発され、2022 年にオープンソース化される前から広く利用されていました。[Scottish Tech Army](https://www.scottishtecharmy.org) は、iOS での提供を継続するとともに、オープンソースの Android アプリとして書き直しました。
+Soundscape はもともと [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) によって iOS 向けに開発され、2022 年にオープンソース化される前から広く利用されていました。[Scottish Tech Army](https://www.scottishtecharmy.org) は、iOS での提供を継続するとともに、Android と iOS の両方で同じコードを共有する新しいオープンソースアプリとして書き直しました。
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play で Soundscape を入手" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store から Soundscape をダウンロード" height=80></a>
+-->
+
+## 公開ベータ
+新機能はまずベータ版で提供され、どなたでも参加できます。
+
+### iOS
+App Store の iOS アプリは、現在もまだ Microsoft のアプリをもとにした以前のアプリです。Android アプリと同じコードから作られた Soundscape の新しい iOS 版は、Apple の TestFlight アプリによる公開ベータとしてのみ提供されています。既存の iOS アプリを置き換え、保存したマーカーとルートはそのまま引き継がれます。変更点については [以前の iOS アプリからのアップグレード]({{ "/ios-upgrade-from-legacy.html" | relative_url }})（英語）をご覧ください。参加方法:
+
+1. iPhone に App Store から [TestFlight](https://apps.apple.com/app/testflight/id899247664) をインストールします。
+2. 同じ iPhone でリンク <https://testflight.apple.com/join/XFb7C5JN> を開きます。
+3. TestFlight が開き、Soundscape ベータのインストールを案内します。招待を受け入れてから、アプリをインストールします。
+
+### Android
+1. スマートフォンで使っている Google アカウントにログインした状態で <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape> を開き、テスターとして登録します。
+2. いつもどおり [Play ストア](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) から Soundscape をインストールまたは更新します。ベータが表示されるまで数分かかることがあるので、まだ公開版が表示される場合は、しばらく待ってから確認し直してください。
+
+その後、ベータの更新はほかのアップデートと同じように Play ストアから届きます。テストをやめるには、同じリンクに戻ってプログラムから退出してください。
+
+どちらのベータで見つかった問題も、下記のサポートアドレスまでお知らせください。
 
 ## Soundscape のサポート
-メール アドレス <soundscapeAndroid@scottishtecharmy.support> は、当社のヘルプデスク システムに直接つながっています。機能の要望でもバグの報告でも、どのようなフィードバックでもお寄せください。自動返信メールが届き、当社には新しいチケットがあることが通知されますので、できるだけ早く対応するよう努めます。
+メール アドレス <soundscape@scottishtecharmy.support> は、当社のヘルプデスク システムに直接つながっています。機能の要望でもバグの報告でも、どのようなフィードバックでもお寄せください。自動返信メールが届き、当社には新しいチケットがあることが通知されますので、できるだけ早く対応するよう努めます。
 
 ## Soundscape の使い方
 [Soundscape の使い方]({{ "/users/user.html" | relative_url }})
