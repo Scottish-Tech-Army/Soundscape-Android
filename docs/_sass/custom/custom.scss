@@ -139,7 +139,12 @@ input:focus-visible {
 
   ul {
     position: absolute;
-    inset-inline-end: 0;
+    // On phones the switcher sits at the start of the opened menu, so the list
+    // opens towards the end; from md up it sits at the end of the header and
+    // opens back towards the start. Hanging it off the wrong edge pushed most
+    // of the list off-screen on phones.
+    inset-inline-start: 0;
+    max-width: calc(100vw - 2rem);
     z-index: 100;
     min-width: 14rem;
     max-height: 70vh;
@@ -151,6 +156,11 @@ input:focus-visible {
     border: $border $border-color;
     border-radius: $border-radius;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    @include mq(md) {
+      inset-inline-start: auto;
+      inset-inline-end: 0;
+    }
   }
 
   li {

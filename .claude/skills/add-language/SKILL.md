@@ -140,7 +140,13 @@ them in sync with each other):
    `parentLabels` (the value must exactly match the `title:` you write in
    the next step — `parentLabels` is what nests the generated help pages
    under the right nav section for that language).
-5. `docs/_config.yml` — add the web code to the `languages:` array.
+5. `docs/_config.yml` — add the web code to the `languages:` array. Also
+   give the docs site chrome its text, keyed by the web code: the language's
+   own name in `docs/_data/languages.yml` (without it the language picker
+   shows the bare code, e.g. "lt"), and in `docs/_data/ui_strings.yml` the
+   `search` placeholder, the `aux_links` GitHub label and an `a11y` block
+   (skip, menu, breadcrumb, language, no_results, results), translated like
+   their neighbours. Any of these left out falls back to English.
 6. `docs/users/user.<web code>.md` — new file, translating
    `docs/users/user.md` (title + two short sentences — small enough to
    translate directly, don't skip it). Match the front matter shape of an
