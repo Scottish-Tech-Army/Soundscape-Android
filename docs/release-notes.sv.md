@@ -22,19 +22,28 @@ Information om äldre versioner finns på sidan
 
 ## Ändringar sedan den första produktionsversionen 2.0.95
 
-Vi har åtgärdat flera problem som rapporterades i 2.0.95, och den här versionen gör också
-informationsljuden mer tillförlitliga och adresserna mer exakta. Informationsljud när du går börjar
-nu tidigare efter att du har klivit av bussen eller ur bilen, och Soundscape märker snabbare att
-ditt tåg har lämnat stationen. Vägkorsningar beskrivs nu korrekt när du går på en trottoar som är
-kartlagd separat från vägen. Sedan 2.0.99 är informationsljuden om vägkorsningar tydligare och mer
-exakta, och Soundscape säger nu till när en väg slutar vid en grind som du inte kommer igenom. Vi
-har också åtgärdat att *Min plats* var tyst vid dålig nätverksanslutning, och ett problem med att
-ladda ned offlinekartor.
-Soundscape kan nu använda telefonens stegräknare för att veta när du går, så att den tidigare märker
-att du har klivit ur ett fordon eller stannat, och du blir ombedd att ge en ny behörighet, *Fysisk
-aktivitet* (*Rörelse och fitness* på iPhone), första gången du öppnar den här versionen.
-Valet av röst för text till tal ser lite annorlunda ut. Rösterna är nu grupperade efter språk, ett
-tryck på en röst spelar upp ett prov, och väljer du *Auto* används standardrösten för ditt språk.
+Vi har åtgärdat flera problem som har rapporterats sedan 2.0.95, och informationsljuden är mer
+tillförlitliga och adresserna mer exakta:
+
+* Informationsljud när du går börjar tidigare efter att du har klivit av bussen eller ur bilen, och
+  Soundscape märker snabbare att ditt tåg har lämnat stationen.
+* Informationsljuden om vägkorsningar är tydligare och mer exakta, även när du går på en trottoar
+  som är kartlagd separat från vägen. Två vägkorsningar några meter från varandra som leder till
+  samma ställe nämns nu bara en gång.
+* Soundscape säger till när en väg slutar vid en grind som du inte kommer igenom.
+* Stigar runt stationer beskrivs bättre, till exempel *Stig till Perrong*, och gemensamma gång- och
+  cykelvägar, som dragvägar längs kanaler, nämns när du kommer in på dem i stället för att behandlas
+  som en vägs trottoar.
+* *Min plats* är inte längre tyst vid dålig nätverksanslutning.
+* Ett problem med att ladda ned offlinekartor har åtgärdats.
+
+Vissa saker fungerar lite annorlunda. Soundscape kan nu använda telefonens stegräknare för att veta
+när du går, så att den tidigare märker att du har klivit ur ett fordon eller stannat; du blir ombedd
+att ge en ny behörighet, *Fysisk aktivitet* (*Rörelse och fitness* på iPhone), första gången du
+öppnar den här versionen. Rösterna är nu grupperade efter språk, ett tryck på en röst spelar upp ett
+prov, och väljer du *Auto* används standardrösten för ditt språk. Menyalternativet *Dela inspelning
+av resor* har tagits bort: när *Aktivera inspelning av resor* är på frågar *Kontakta supporten* om
+din inspelade resa ska skickas med, och inspelningen täcker nu alltid den senaste timmen.
 
 ## Nyheter i 2.0
 
@@ -297,7 +306,7 @@ robust på telefoner som aggressivt stänger bakgrundsappar.
 ## Att berätta för oss om problem
 
 Om något inte stämmer vill vi gärna veta det. Skriv till Help Desk på
-<soundscapeAndroid@scottishtecharmy.support>, eller fråga på Slack om du är STA-medlem.
+<soundscape@scottishtecharmy.support>, eller fråga på Slack om du är STA-medlem.
 
 Om ett meddelande blev fel eller uteblev hjälper en inspelning av din resa oss enormt — vi kan spela
 upp den igen och se exakt vad Soundscape utgick från. Anvisningar finns under
@@ -308,7 +317,8 @@ upp den igen och se exakt vad Soundscape utgick från. Anvisningar finns under
 Allt ovanstående gäller Android-appen, men det är värt att veta vart resten av arbetet i den här
 versionen tog vägen. Soundscape körs nu även på iPhone, och båda apparna byggs från samma delade kod
 — samma skärmar, samma formuleringar och samma meddelanden. En nyhet som resemeddelandena ovan når
-därför båda samtidigt i stället för att skrivas två gånger. Den gemensamma grunden är skälet till att
-2.0 tog så lång tid, och det är den som bör göra att framtida versioner kommer snabbare på båda
-plattformarna. iPhone-appen är för närvarande tillgänglig via TestFlight efter inbjudan: fråga på
-Slack om du är STA-medlem, eller skriv till Help Desk.
+därför båda samtidigt i stället för att skrivas två gånger. Den gemensamma grunden är skälet till
+att 2.0 tog så lång tid, och det är den som bör göra att framtida versioner kommer snabbare på båda
+plattformarna. iPhone-appen finns nu som offentlig beta via Apples TestFlight-app, och vem som helst
+kan gå med: installera TestFlight från App Store och öppna
+<https://testflight.apple.com/join/XFb7C5JN> på din iPhone.

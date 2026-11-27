@@ -22,21 +22,28 @@ Noter til ældre versioner findes på siden
 
 ## Ændringer siden den første produktionsudgave 2.0.95
 
-Vi har rettet flere problemer, som blev rapporteret i 2.0.95, og denne udgave gør også lydbeskederne
-mere pålidelige og adresserne mere præcise. Lydbeskeder, mens du går, starter nu hurtigere, når du
-står af bussen eller ud af bilen, og Soundscape opdager hurtigere, når dit tog er kørt fra
-stationen. Vejkryds beskrives nu korrekt, når du går på et fortov, der er kortlagt separat fra
-vejen. Siden 2.0.99 er lydbeskeder om vejkryds tydeligere og mere præcise, og Soundscape fortæller
-dig nu, når en vej ender ved en port, du ikke kan komme igennem. Vi har også rettet, at *Min
-placering* forblev tavs ved en dårlig netværksforbindelse, og et problem med at downloade
-offlinekort.
-Soundscape kan nu bruge din telefons skridttæller til at registrere, hvornår du går, så den
-hurtigere opdager, at du er steget ud af et køretøj eller er stoppet, og du bliver bedt om en ny
-tilladelse, *Fysisk aktivitet* (*Motion & fitness* på iPhone), når du åbner denne version første
-gang.
-Valget af tekst til tale-stemme ser lidt anderledes ud. Stemmerne er nu grupperet efter sprog, et
-tryk på en stemme afspiller en prøve, og vælger du *Automatisk*, bruges standardstemmen for dit
-sprog.
+Vi har rettet flere problemer, som er blevet rapporteret siden 2.0.95, og lydbeskederne er mere
+pålidelige og adresserne mere præcise:
+
+* Lydbeskeder, mens du går, starter hurtigere, når du står af bussen eller ud af bilen, og
+  Soundscape opdager hurtigere, når dit tog er kørt fra stationen.
+* Lydbeskeder om vejkryds er tydeligere og mere præcise, også når du går på et fortov, der er
+  kortlagt separat fra vejen. To vejkryds få meter fra hinanden, der fører til samme sted, bliver nu
+  kun nævnt én gang.
+* Soundscape fortæller dig, når en vej ender ved en port, du ikke kan komme igennem.
+* Stier omkring stationer beskrives bedre, for eksempel *Sti til Perron*, og fælles stier for gående
+  og cyklister, såsom trækstier langs kanaler, bliver nævnt, når du kommer ind på dem, i stedet for
+  at blive behandlet som en vejs fortov.
+* *Min placering* forbliver ikke længere tavs ved en dårlig netværksforbindelse.
+* Et problem med at downloade offlinekort er rettet.
+
+Nogle ting fungerer lidt anderledes. Soundscape kan nu bruge din telefons skridttæller til at
+registrere, hvornår du går, så den hurtigere opdager, at du er steget ud af et køretøj eller er
+stoppet; du bliver bedt om en ny tilladelse, *Fysisk aktivitet* (*Motion & fitness* på iPhone), når
+du åbner denne version første gang. Stemmerne er nu grupperet efter sprog, et tryk på en stemme
+afspiller en prøve, og vælger du *Automatisk*, bruges standardstemmen for dit sprog. Menupunktet
+*Del optagelse af rejse* er fjernet: når *Aktivér optagelse af rejser* er slået til, spørger
+*Kontakt support*, om din optagede rejse skal med, og optagelsen dækker nu altid den seneste time.
 
 ## Nyt i 2.0
 
@@ -294,7 +301,7 @@ robust på telefoner, der aggressivt lukker baggrundsapps.
 ## Sådan fortæller du os om problemer
 
 Er der noget galt, hører vi gerne om det. Skriv til Help Desk på
-<soundscapeAndroid@scottishtecharmy.support>, eller spørg på Slack, hvis du er STA-medlem.
+<soundscape@scottishtecharmy.support>, eller spørg på Slack, hvis du er STA-medlem.
 
 Var en melding forkert eller udeblev den, hjælper en optagelse af din tur os enormt — vi kan afspille
 den igen og se præcis, hvad Soundscape arbejdede ud fra. Vejledning findes under
@@ -307,6 +314,6 @@ udgivelse er gået hen. Soundscape kører nu også på iPhone, og begge apps byg
 fælles kode — de samme skærme, de samme formuleringer og de samme meldinger. En ny funktion som
 rejsemeldingerne ovenfor kommer derfor til begge på én gang i stedet for at blive skrevet to gange.
 Det fælles fundament er grunden til, at 2.0 tog så lang tid, og det er også det, der skulle få
-fremtidige udgivelser til at komme hurtigere på begge platforme. iPhone-appen er i øjeblikket
-tilgængelig via TestFlight efter invitation: spørg på Slack, hvis du er STA-medlem, eller skriv til
-Help Desk.
+fremtidige udgivelser til at komme hurtigere på begge platforme. iPhone-appen er nu i offentlig beta
+via Apples TestFlight-app, og alle kan være med: installer TestFlight fra App Store, og åbn
+<https://testflight.apple.com/join/XFb7C5JN> på din iPhone.

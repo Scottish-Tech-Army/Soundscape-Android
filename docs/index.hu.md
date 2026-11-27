@@ -20,13 +20,33 @@ Ahelyett, hogy fordulónkénti útbaigazítást adna, a Soundscape úgy működi
 
 Az alkalmazás a háttérben is tovább működik, amikor a telefon zsebben vagy táskában van – nem kell kézben tartani vagy a képernyőt nézni. Teljesen ingyenes és reklámmentes, és letöltött térképrégiókkal offline is működik. Az alkalmazás használati statisztikákat és összeomlási jelentéseket küld, hogy megtalálhassuk és kijavíthassuk a hibákat – az [adatvédelmi tájékoztató]({{ "/privacy-policy.html" | relative_url }}) pontosan leírja, mit gyűjtünk.
 
-A Soundscape-et eredetileg iOS-re a [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) fejlesztette, és széles körben használták, mielőtt 2022-ben nyílt forráskódúvá vált. A [Scottish Tech Army](https://www.scottishtecharmy.org) fenntartotta az elérhetőségét iOS-en, és nyílt forráskódú Android-alkalmazásként is újraírta.
+A Soundscape-et eredetileg iOS-re a [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) fejlesztette, és széles körben használták, mielőtt 2022-ben nyílt forráskódúvá vált. A [Scottish Tech Army](https://www.scottishtecharmy.org) fenntartotta az elérhetőségét iOS-en, és új, nyílt forráskódú alkalmazásként írta újra Androidra és iOS-re, amelyek közös kódot használnak.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Soundscape letöltése a Google Playről" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Soundscape letöltése az App Store-ból" height=80></a>
+-->
+
+## Nyilvános béták
+Az új funkciók először a béta kiadásokban jelennek meg, és bárki csatlakozhat.
+
+### iOS
+Az App Store-ban lévő iOS-alkalmazás még a régebbi, a Microsoft alkalmazásán alapuló alkalmazás. A Soundscape új iOS-es kiadása, amely ugyanabból a kódból készül, mint az androidos alkalmazás, csak nyilvános bétaként érhető el az Apple TestFlight alkalmazásán keresztül. Ez felváltja a meglévő iOS-alkalmazást, és megtartja a mentett jelölőket és útvonalakat – hogy mi változott, azt a [váltás a régi iOS-alkalmazásról]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) oldal (angolul) írja le. A csatlakozás módja:
+
+1. Telepítse iPhone-jára az App Store-ból a [TestFlight](https://apps.apple.com/app/testflight/id899247664) alkalmazást.
+2. Ugyanazon az iPhone-on nyissa meg a <https://testflight.apple.com/join/XFb7C5JN> hivatkozást.
+3. Megnyílik a TestFlight, és felajánlja a Soundscape béta telepítését. Fogadja el a meghívást, majd telepítse az alkalmazást.
+
+### Android
+1. Nyissa meg a <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape> oldalt a telefonján használt Google-fiókkal bejelentkezve, és jelentkezzen tesztelőnek.
+2. Telepítse vagy frissítse a Soundscape-et a [Play Áruházból](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) a szokásos módon. Eltarthat néhány percig, mire a béta megjelenik, ezért ha még mindig a kiadott verziót látja, várjon egy kicsit, és nézze meg újra.
+
+Ezután a béta frissítések ugyanúgy a Play Áruházon keresztül érkeznek, mint bármely más frissítés. A tesztelés befejezéséhez térjen vissza ugyanarra a hivatkozásra, és lépjen ki a programból.
+
+Kérjük, a bármelyik bétában talált problémákat küldje el az alábbi ügyfélszolgálati címre.
 
 ## Soundscape támogatás
-A <soundscapeAndroid@scottishtecharmy.support> e-mail-cím közvetlenül az ügyfélszolgálati rendszerünkbe vezet. Kérjük, küldjön bármilyen visszajelzést, legyen az funkciókérés vagy hibajelentés. Automatikus e-mailt kap válaszul, minket pedig értesítünk, hogy új jegy érkezett, és igyekszünk a lehető leggyorsabban válaszolni.
+A <soundscape@scottishtecharmy.support> e-mail-cím közvetlenül az ügyfélszolgálati rendszerünkbe vezet. Kérjük, küldjön bármilyen visszajelzést, legyen az funkciókérés vagy hibajelentés. Automatikus e-mailt kap válaszul, minket pedig értesítünk, hogy új jegy érkezett, és igyekszünk a lehető leggyorsabban válaszolni.
 
 ## A Soundscape használata
 [A Soundscape használata]({{ "/users/user.html" | relative_url }})

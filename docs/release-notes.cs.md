@@ -22,18 +22,28 @@ Poznámky ke starším verzím najdete na stránce
 
 ## Změny od prvního produkčního vydání 2.0.95
 
-Opravili jsme několik problémů nahlášených ve verzi 2.0.95 a toto vydání navíc zvyšuje spolehlivost
-hlášení a přesnost adres. Hlášení při chůzi teď začínají dříve, když vystoupíte z autobusu nebo z
-auta, a Soundscape rychleji pozná, že váš vlak odjel ze stanice. Křižovatky se teď popisují správně,
-když jdete po chodníku, který je v mapě zakreslen odděleně od silnice. Od verze 2.0.99 jsou hlášení
-křižovatek srozumitelnější a přesnější a Soundscape vám teď řekne, když cesta končí u brány, kterou
-nelze projít. Opravili jsme také to, že *Moje poloha* při slabém připojení k síti mlčela, a problém
-se stahováním offline map.
-Soundscape teď může pomocí krokoměru ve vašem telefonu poznat, kdy jdete pěšky, takže dříve zjistí,
-že jste vystoupili z vozidla nebo se zastavili, a při prvním otevření této verze budete požádáni o
-nové oprávnění *Fyzická aktivita* (na iPhonu *Pohyb a kondice*).
-Výběr hlasu pro převod textu na řeč vypadá trochu jinak. Hlasy jsou nyní seskupené podle jazyka,
-klepnutím na hlas přehrajete ukázku a volba *Automaticky* použije výchozí hlas pro váš jazyk.
+Opravili jsme několik problémů nahlášených od verze 2.0.95 a hlášení jsou spolehlivější a adresy
+přesnější:
+
+* Hlášení při chůzi začínají dříve, když vystoupíte z autobusu nebo z auta, a Soundscape rychleji
+  pozná, že váš vlak odjel ze stanice.
+* Hlášení křižovatek jsou srozumitelnější a přesnější, i když jdete po chodníku, který je v mapě
+  zakreslen odděleně od silnice. Dvě křižovatky pár metrů od sebe, které vedou na stejné místo, se
+  teď ohlásí jen jednou.
+* Soundscape vám řekne, když cesta končí u brány, kterou nelze projít.
+* Cesty kolem nádraží se popisují lépe, například *Cesta do Nástupiště*, a společné stezky pro
+  chodce a cyklisty, třeba vlečné stezky podél kanálů, se ohlásí, když na ně vstoupíte, místo aby se
+  braly jako chodník u silnice.
+* *Moje poloha* už při slabém připojení k síti nemlčí.
+* Opravili jsme problém se stahováním offline map.
+
+Některé věci fungují trochu jinak. Soundscape teď může pomocí krokoměru ve vašem telefonu poznat,
+kdy jdete pěšky, takže dříve zjistí, že jste vystoupili z vozidla nebo se zastavili; při prvním
+otevření této verze budete požádáni o nové oprávnění *Fyzická aktivita* (na iPhonu *Pohyb a
+kondice*). Hlasy jsou nyní seskupené podle jazyka, klepnutím na hlas přehrajete ukázku a volba
+*Automaticky* použije výchozí hlas pro váš jazyk. Položka nabídky *Sdílet záznam cesty* zmizela:
+když je zapnuto *Povolit záznam cesty*, *Kontaktovat podporu* se zeptá, zda připojit vaši
+zaznamenanou cestu, která teď vždy pokrývá poslední hodinu.
 
 ## Novinky ve verzi 2.0
 
@@ -286,7 +296,7 @@ které agresivně ukončují aplikace na pozadí.
 ## Jak nám nahlásit problém
 
 Pokud něco není v pořádku, rádi se to dozvíme. Napište na Help Desk na adresu
-<soundscapeAndroid@scottishtecharmy.support> nebo se zeptejte na Slacku, jste-li členem STA.
+<soundscape@scottishtecharmy.support> nebo se zeptejte na Slacku, jste-li členem STA.
 
 Pokud bylo hlášení chybné nebo nepřišlo, záznam vaší cesty nám nesmírně pomůže — můžeme jej přehrát a
 přesně vidět, z čeho Soundscape vycházel. Pokyny najdete v části
@@ -299,5 +309,6 @@ vydání. Soundscape nyní běží i na iPhonu a obě aplikace jsou sestaveny ze
 stejné obrazovky, stejné formulace a stejná hlášení. Novinka jako výše popsaná cestovní hlášení se
 tak dostane do obou naráz, místo aby byla psána dvakrát. Tento společný základ je důvodem, proč
 verze 2.0 trvala tak dlouho, a měl by zajistit, aby budoucí vydání přicházela rychleji na obě
-platformy. Aplikace pro iPhone je momentálně dostupná přes TestFlight na pozvání: zeptejte se na
-Slacku, jste-li členem STA, nebo napište na Help Desk.
+platformy. Aplikace pro iPhone je teď ve veřejné betě přes aplikaci TestFlight od Applu a připojit
+se může kdokoli: nainstalujte si TestFlight z App Storu a na iPhonu otevřete
+<https://testflight.apple.com/join/XFb7C5JN>.

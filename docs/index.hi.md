@@ -20,13 +20,33 @@ Soundscape एक मुफ़्त, ओपन-सोर्स ऐप है �
 
 जब फ़ोन जेब या बैग में हो तब ऐप बैकग्राउंड में काम करता रहता है - स्क्रीन को पकड़ने या देखने की कोई ज़रूरत नहीं। यह पूरी तरह मुफ़्त है और इसमें कोई विज्ञापन नहीं है, और यह डाउनलोड किए गए मानचित्र क्षेत्रों का उपयोग करके ऑफ़लाइन काम कर सकता है। समस्याओं को खोजने और ठीक करने के लिए ऐप उपयोग संबंधी आँकड़े और क्रैश रिपोर्ट भेजता है - [गोपनीयता नीति]({{ "/privacy-policy.html" | relative_url }}) में ठीक-ठीक बताया गया है कि क्या एकत्र किया जाता है।
 
-Soundscape मूल रूप से [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) द्वारा iOS पर विकसित किया गया था और 2022 में ओपन सोर्स किए जाने से पहले व्यापक रूप से उपयोग किया जाता था। [Scottish Tech Army](https://www.scottishtecharmy.org) ने इसे iOS पर उपलब्ध रखा है और इसे एक ओपन-सोर्स Android ऐप के रूप में फिर से लिखा भी है।
+Soundscape मूल रूप से [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) द्वारा iOS पर विकसित किया गया था और 2022 में ओपन सोर्स किए जाने से पहले व्यापक रूप से उपयोग किया जाता था। [Scottish Tech Army](https://www.scottishtecharmy.org) ने इसे iOS पर उपलब्ध रखा है और इसे Android और iOS दोनों के लिए एक नए ओपन-सोर्स ऐप के रूप में फिर से लिखा है, जिनका कोड एक ही है।
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play पर Soundscape पाएँ" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store से Soundscape डाउनलोड करें" height=80></a>
+-->
+
+## सार्वजनिक बीटा
+नई सुविधाएँ सबसे पहले बीटा रिलीज़ में आती हैं, और कोई भी उनमें शामिल हो सकता है।
+
+### iOS
+App Store पर मौजूद iOS ऐप अभी भी Microsoft के ऐप पर आधारित पुराना ऐप है। Soundscape की नई iOS रिलीज़, जो Android ऐप वाले कोड से ही बनी है, केवल Apple के TestFlight ऐप के ज़रिए सार्वजनिक बीटा के रूप में उपलब्ध है। यह मौजूदा iOS ऐप की जगह लेती है और आपके सहेजे गए मार्कर और रूट बनाए रखती है - क्या बदला है, यह जानने के लिए [पुराने iOS ऐप से अपग्रेड करना]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (अंग्रेज़ी में) देखें। शामिल होने के लिए:
+
+1. अपने iPhone पर App Store से [TestFlight](https://apps.apple.com/app/testflight/id899247664) इंस्टॉल करें।
+2. उसी iPhone पर लिंक <https://testflight.apple.com/join/XFb7C5JN> खोलें।
+3. TestFlight खुलता है और Soundscape बीटा इंस्टॉल करने का विकल्प देता है। आमंत्रण स्वीकार करें और फिर ऐप इंस्टॉल करें।
+
+### Android
+1. अपने फ़ोन पर इस्तेमाल होने वाले Google खाते में साइन इन रहते हुए <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape> खोलें, और टेस्टर के रूप में जुड़ें।
+2. Soundscape को हमेशा की तरह [Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) से इंस्टॉल या अपडेट करें। बीटा उपलब्ध होने में कुछ मिनट लग सकते हैं, इसलिए अगर आपको अब भी जारी किया गया संस्करण दिखे, तो थोड़ी देर रुककर फिर से देखें।
+
+इसके बाद बीटा अपडेट किसी भी दूसरे अपडेट की तरह Play Store से आते हैं। टेस्टिंग बंद करने के लिए उसी लिंक पर वापस जाएँ और प्रोग्राम छोड़ दें।
+
+किसी भी बीटा में मिली कोई भी समस्या कृपया नीचे दिए गए सहायता पते पर भेजें।
 
 ## Soundscape सहायता
-ईमेल पता <soundscapeAndroid@scottishtecharmy.support> सीधे हमारे हेल्प डेस्क सिस्टम से जुड़ता है। कृपया आपके पास जो भी प्रतिक्रिया हो वह भेजें, चाहे वह कोई फ़ीचर अनुरोध हो या बग रिपोर्ट। आपको प्रतिक्रिया में एक स्वचालित ईमेल मिलेगा और हमें सूचित किया जाएगा कि देखने के लिए एक नया टिकट है और हम यथासंभव जल्दी उत्तर देने का प्रयास करेंगे।
+ईमेल पता <soundscape@scottishtecharmy.support> सीधे हमारे हेल्प डेस्क सिस्टम से जुड़ता है। कृपया आपके पास जो भी प्रतिक्रिया हो वह भेजें, चाहे वह कोई फ़ीचर अनुरोध हो या बग रिपोर्ट। आपको प्रतिक्रिया में एक स्वचालित ईमेल मिलेगा और हमें सूचित किया जाएगा कि देखने के लिए एक नया टिकट है और हम यथासंभव जल्दी उत्तर देने का प्रयास करेंगे।
 
 ## Soundscape का उपयोग कैसे करें
 [Soundscape का उपयोग कैसे करें]({{ "/users/user.html" | relative_url }})

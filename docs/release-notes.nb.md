@@ -22,19 +22,29 @@ Merknader for eldre versjoner finnes på siden
 
 ## Endringer siden den første produksjonsutgaven 2.0.95
 
-Vi har rettet flere problemer som ble rapportert i 2.0.95, og denne utgaven gjør også meldingene mer
-pålitelige og adressene mer nøyaktige. Meldinger når du går, starter nå tidligere etter at du har
-gått av bussen eller ut av bilen, og Soundscape merker raskere at toget ditt har kjørt fra
-stasjonen. Veikryss beskrives nå riktig når du går på et fortau som er kartlagt separat fra veien.
-Siden 2.0.99 er meldinger om veikryss tydeligere og mer nøyaktige, og Soundscape sier nå fra når en
-vei ender ved en port du ikke kommer gjennom. Vi har også rettet at *Min posisjon* var stille ved
-dårlig nettverkstilkobling, og et problem med nedlasting av frakoblede kart.
-Soundscape kan nå bruke skritttelleren på telefonen for å vite når du går, slik at den raskere
-merker at du har gått ut av et kjøretøy eller har stoppet, og du blir bedt om en ny tillatelse,
-*Fysisk aktivitet* (*Bevegelse og aktivitet* på iPhone), første gang du åpner denne versjonen.
-Valget av tekst-til-tale-stemme ser litt annerledes ut. Stemmene er nå gruppert etter språk, et
-trykk på en stemme spiller av en prøve, og velger du *Automatisk*, brukes standardstemmen for
-språket ditt.
+Vi har rettet flere problemer som er rapportert siden 2.0.95, og meldingene er mer pålitelige og
+adressene mer nøyaktige:
+
+* Meldinger når du går, starter tidligere etter at du har gått av bussen eller ut av bilen, og
+  Soundscape merker raskere at toget ditt har kjørt fra stasjonen.
+* Meldinger om veikryss er tydeligere og mer nøyaktige, også når du går på et fortau som er kartlagt
+  separat fra veien. To veikryss noen få meter fra hverandre som fører til samme sted, meldes nå
+  bare én gang.
+* Soundscape sier fra når en vei ender ved en port du ikke kommer gjennom.
+* Stier rundt stasjoner beskrives bedre, for eksempel *Sti til Perrong*, og felles gang- og
+  sykkelveier, som slepestier langs kanaler, meldes når du kommer inn på dem, i stedet for å bli
+  behandlet som fortauet til en vei.
+* *Min posisjon* er ikke lenger stille ved dårlig nettverkstilkobling.
+* Et problem med nedlasting av frakoblede kart er rettet.
+
+Noen ting fungerer litt annerledes. Soundscape kan nå bruke skritttelleren på telefonen for å vite
+når du går, slik at den raskere merker at du har gått ut av et kjøretøy eller har stoppet; du blir
+bedt om en ny tillatelse, *Fysisk aktivitet* (*Bevegelse og aktivitet* på iPhone), første gang du
+åpner denne versjonen. Stemmene er nå gruppert etter språk, et trykk på en stemme spiller av en
+prøve, og velger du *Automatisk*, brukes standardstemmen for språket ditt. Menyvalget *Del
+reiseregistrering* er fjernet: når *Aktiver registrering av reiser* er slått på, spør *Kontakt
+brukerstøtte* om den registrerte reisen din skal tas med, og registreringen dekker nå alltid den
+siste timen.
 
 ## Nytt i 2.0
 
@@ -294,7 +304,7 @@ robust på telefoner som aggressivt lukker apper i bakgrunnen.
 ## Å melde fra om problemer
 
 Er det noe som ikke stemmer, vil vi gjerne høre om det. Skriv til Help Desk på
-<soundscapeAndroid@scottishtecharmy.support>, eller spør på Slack hvis du er STA-medlem.
+<soundscape@scottishtecharmy.support>, eller spør på Slack hvis du er STA-medlem.
 
 Var en melding feil eller uteble den, hjelper et opptak av reisen din oss enormt — vi kan spille det
 av på nytt og se nøyaktig hva Soundscape jobbet ut fra. Veiledning finnes under
@@ -303,9 +313,10 @@ av på nytt og se nøyaktig hva Soundscape jobbet ut fra. Veiledning finnes unde
 ## En merknad om iPhone
 
 Alt ovenfor handler om Android-appen, men det er verdt å vite hvor resten av arbeidet i denne
-utgivelsen tok veien. Soundscape kjører nå også på iPhone, og begge appene bygges fra den samme delte
-koden — de samme skjermene, de samme formuleringene og de samme meldingene. En nyhet som
-reisemeldingene ovenfor kommer derfor til begge samtidig i stedet for å skrives to ganger. Det felles
-grunnlaget er grunnen til at 2.0 tok så lang tid, og det er også det som bør gjøre at framtidige
-utgivelser kommer raskere på begge plattformene. iPhone-appen er for tiden tilgjengelig via
-TestFlight etter invitasjon: spør på Slack hvis du er STA-medlem, eller skriv til Help Desk.
+utgivelsen tok veien. Soundscape kjører nå også på iPhone, og begge appene bygges fra den samme
+delte koden — de samme skjermene, de samme formuleringene og de samme meldingene. En nyhet som
+reisemeldingene ovenfor kommer derfor til begge samtidig i stedet for å skrives to ganger. Det
+felles grunnlaget er grunnen til at 2.0 tok så lang tid, og det er også det som bør gjøre at
+framtidige utgivelser kommer raskere på begge plattformene. iPhone-appen er nå i offentlig beta via
+Apples TestFlight-app, og alle kan bli med: installer TestFlight fra App Store, og åpne
+<https://testflight.apple.com/join/XFb7C5JN> på iPhonen din.

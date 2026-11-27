@@ -20,13 +20,33 @@ Soundscape este o aplicație gratuită, open-source, care folosește audio spaț
 
 Aplicația continuă să funcționeze în fundal când telefonul este în buzunar sau în geantă - nu este nevoie să ții telefonul în mână sau să te uiți la ecran. Este complet gratuită și fără reclame, iar aplicația poate funcționa offline folosind regiunile de hartă descărcate. Aplicația trimite însă statistici de utilizare și rapoarte de eroare pentru ca noi să putem găsi și remedia problemele - [politica de confidențialitate]({{ "/privacy-policy.html" | relative_url }}) explică exact ce se colectează.
 
-Soundscape a fost dezvoltat inițial pe iOS de [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) și a fost utilizat pe scară largă înainte de a deveni open source în 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) l-a menținut disponibil pe iOS și l-a rescris și ca aplicație Android open-source.
+Soundscape a fost dezvoltat inițial pe iOS de [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) și a fost utilizat pe scară largă înainte de a deveni open source în 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) l-a menținut disponibil pe iOS și l-a rescris ca aplicație open-source nouă pentru Android și iOS, cele două având același cod.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Descarcă Soundscape de pe Google Play" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Descarcă Soundscape din App Store" height=80></a>
+-->
+
+## Versiuni beta publice
+Funcțiile noi apar mai întâi în versiunile beta și oricine se poate înscrie.
+
+### iOS
+Aplicația iOS din App Store este încă vechea aplicație bazată pe cea de la Microsoft. Noua versiune iOS a Soundscape, construită din același cod ca aplicația Android, este disponibilă doar ca beta publică prin aplicația TestFlight de la Apple. Ea înlocuiește aplicația iOS existentă și păstrează marcajele și traseele salvate – consultați [trecerea de la vechea aplicație iOS]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (în engleză) pentru a afla ce s-a schimbat. Pentru a vă înscrie:
+
+1. Instalați [TestFlight](https://apps.apple.com/app/testflight/id899247664) din App Store pe iPhone.
+2. Pe același iPhone, deschideți linkul <https://testflight.apple.com/join/XFb7C5JN>.
+3. TestFlight se deschide și oferă instalarea versiunii beta Soundscape. Acceptați invitația, apoi instalați aplicația.
+
+### Android
+1. Deschideți <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape>, conectat la contul Google folosit pe telefon, și înscrieți-vă ca tester.
+2. Instalați sau actualizați Soundscape din [Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) ca de obicei. Poate dura câteva minute până când versiunea beta este oferită, așa că, dacă vedeți încă versiunea publicată, așteptați puțin și verificați din nou.
+
+Actualizările beta sosesc apoi prin Play Store ca orice altă actualizare. Pentru a renunța la testare, reveniți la același link și părăsiți programul.
+
+Vă rugăm să trimiteți orice problemă găsită în oricare dintre versiunile beta la adresa de asistență de mai jos.
 
 ## Asistență Soundscape
-Adresa de e-mail <soundscapeAndroid@scottishtecharmy.support> face legătura directă cu sistemul nostru de asistență. Te rugăm să ne trimiți orice feedback ai, fie că este o cerere de funcționalitate sau un raport de eroare. Vei primi un e-mail automat ca răspuns, iar noi vom fi notificați că există un nou tichet de analizat și vom încerca să răspundem cât mai repede posibil.
+Adresa de e-mail <soundscape@scottishtecharmy.support> face legătura directă cu sistemul nostru de asistență. Te rugăm să ne trimiți orice feedback ai, fie că este o cerere de funcționalitate sau un raport de eroare. Vei primi un e-mail automat ca răspuns, iar noi vom fi notificați că există un nou tichet de analizat și vom încerca să răspundem cât mai repede posibil.
 
 ## Cum se folosește Soundscape
 [Cum se folosește Soundscape]({{ "/users/user.html" | relative_url }})

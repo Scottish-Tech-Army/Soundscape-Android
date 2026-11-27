@@ -20,13 +20,33 @@ I stället för att ge väganvisningar steg för steg fungerar Soundscape som en
 
 Appen fortsätter att fungera i bakgrunden när telefonen ligger i en ficka eller väska - du behöver inte hålla i eller titta på en skärm. Den är helt kostnadsfri och utan annonser, och den kan fungera offline med hjälp av nedladdade kartregioner. Appen skickar dock användningsstatistik och kraschrapporter så att vi kan hitta och åtgärda problem - [integritetspolicyn]({{ "/privacy-policy.html" | relative_url }}) förklarar exakt vad som samlas in.
 
-Soundscape utvecklades ursprungligen på iOS av [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) och användes flitigt innan källkoden gjordes öppen 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) har hållit den tillgänglig på iOS och även skrivit om den som en Android-app med öppen källkod.
+Soundscape utvecklades ursprungligen på iOS av [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) och användes flitigt innan källkoden gjordes öppen 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) har hållit den tillgänglig på iOS och skrivit om den som en ny app med öppen källkod för både Android och iOS, som delar samma kod.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Hämta Soundscape på Google Play" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Hämta Soundscape i App Store" height=80></a>
+-->
+
+## Offentliga betaversioner
+Nya funktioner kommer först i betaversionerna, och vem som helst kan gå med.
+
+### iOS
+iOS-appen i App Store är fortfarande den äldre appen som bygger på Microsofts. Den nya iOS-versionen av Soundscape, som bygger på samma kod som Android-appen, finns bara som offentlig beta via Apples TestFlight-app. Den ersätter den nuvarande iOS-appen och behåller dina sparade markörer och rutter – se [uppgradering från den gamla iOS-appen]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (på engelska) för vad som har ändrats. Så här går du med:
+
+1. Installera [TestFlight](https://apps.apple.com/app/testflight/id899247664) från App Store på din iPhone.
+2. Öppna länken <https://testflight.apple.com/join/XFb7C5JN> på samma iPhone.
+3. TestFlight öppnas och erbjuder att installera Soundscape-betan. Godkänn inbjudan och installera appen.
+
+### Android
+1. Öppna <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape>, inloggad med det Google-konto som används på telefonen, och anmäl dig som testare.
+2. Installera eller uppdatera Soundscape från [Play Butik](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) som vanligt. Det kan ta några minuter innan betan erbjuds, så om du fortfarande ser den publicerade versionen, vänta en stund och titta igen.
+
+Betauppdateringar kommer sedan via Play Butik som alla andra uppdateringar. Vill du sluta testa går du tillbaka till samma länk och lämnar programmet.
+
+Skicka gärna problem du hittar i någon av betaversionerna till supportadressen nedan.
 
 ## Soundscape-support
-E-postadressen <soundscapeAndroid@scottishtecharmy.support> går direkt till vårt supportsystem. Skicka gärna in all återkoppling du har, oavsett om det är en funktionsönskan eller en felrapport. Du får ett automatiskt e-postmeddelande som svar och vi får en avisering om att det finns ett nytt ärende att titta på, och vi försöker besvara det så snabbt som möjligt.
+E-postadressen <soundscape@scottishtecharmy.support> går direkt till vårt supportsystem. Skicka gärna in all återkoppling du har, oavsett om det är en funktionsönskan eller en felrapport. Du får ett automatiskt e-postmeddelande som svar och vi får en avisering om att det finns ett nytt ärende att titta på, och vi försöker besvara det så snabbt som möjligt.
 
 ## Hur du använder Soundscape
 [Hur du använder Soundscape]({{ "/users/user.html" | relative_url }})

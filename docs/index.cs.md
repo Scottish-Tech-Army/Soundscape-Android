@@ -20,13 +20,33 @@ Místo pokynů zatáčku po zatáčce působí Soundscape jako maják pro uši. 
 
 Aplikace funguje dál na pozadí, i když máte telefon v kapse nebo v tašce – není nutné jej držet ani se dívat na displej. Je zcela zdarma a bez reklam a může fungovat offline pomocí stažených oblastí map. Aplikace však odesílá statistiky používání a hlášení o pádech, abychom mohli nacházet a opravovat problémy – [zásady ochrany osobních údajů]({{ "/privacy-policy.html" | relative_url }}) přesně popisují, co se sbírá.
 
-Soundscape původně vyvinula pro iOS společnost [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) a byla široce používaná, než byla v roce 2022 uvolněna jako otevřený software. [Scottish Tech Army](https://www.scottishtecharmy.org) ji udržuje dostupnou na iOS a zároveň ji přepsala jako open-source aplikaci pro Android.
+Soundscape původně vyvinula pro iOS společnost [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) a byla široce používaná, než byla v roce 2022 uvolněna jako otevřený software. [Scottish Tech Army](https://www.scottishtecharmy.org) ji udržuje dostupnou na iOS a přepsala ji jako novou open-source aplikaci pro Android i iOS, které sdílejí stejný kód.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Stáhněte si Soundscape na Google Play" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Stáhněte si Soundscape z App Store" height=80></a>
+-->
+
+## Veřejné betaverze
+Nové funkce se nejdřív objevují v betaverzích a připojit se může kdokoli.
+
+### iOS
+Aplikace pro iOS v App Storu je stále starší aplikace založená na aplikaci Microsoftu. Nová verze Soundscape pro iOS, postavená ze stejného kódu jako aplikace pro Android, je dostupná jen jako veřejná betaverze přes aplikaci TestFlight od Applu. Nahrazuje stávající aplikaci pro iOS a zachová vaše uložené značky a trasy – co se změnilo, najdete na stránce [přechod ze staré aplikace pro iOS]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (v angličtině). Jak se připojit:
+
+1. Nainstalujte si na iPhone z App Storu [TestFlight](https://apps.apple.com/app/testflight/id899247664).
+2. Na stejném iPhonu otevřete odkaz <https://testflight.apple.com/join/XFb7C5JN>.
+3. Otevře se TestFlight a nabídne instalaci betaverze Soundscape. Přijměte pozvánku a aplikaci nainstalujte.
+
+### Android
+1. Otevřete <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape>, přihlášeni k účtu Google, který používáte v telefonu, a přihlaste se jako tester.
+2. Nainstalujte nebo aktualizujte Soundscape z [Obchodu Play](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) jako obvykle. Než se betaverze nabídne, může to pár minut trvat, takže pokud stále vidíte vydanou verzi, chvíli počkejte a podívejte se znovu.
+
+Aktualizace betaverze pak přicházejí přes Obchod Play jako každá jiná aktualizace. Chcete-li testování ukončit, vraťte se na stejný odkaz a z programu odejděte.
+
+Problémy, které v kterékoli z betaverzí najdete, prosím posílejte na adresu podpory níže.
 
 ## Podpora Soundscape
-E-mailová adresa <soundscapeAndroid@scottishtecharmy.support> vede přímo do našeho systému podpory. Pošlete nám jakoukoli zpětnou vazbu, ať už jde o návrh funkce, nebo hlášení chyby. Obdržíte automatickou odpověď e-mailem, nám přijde upozornění, že je tu nový tiket, a pokusíme se jej vyřídit co nejrychleji.
+E-mailová adresa <soundscape@scottishtecharmy.support> vede přímo do našeho systému podpory. Pošlete nám jakoukoli zpětnou vazbu, ať už jde o návrh funkce, nebo hlášení chyby. Obdržíte automatickou odpověď e-mailem, nám přijde upozornění, že je tu nový tiket, a pokusíme se jej vyřídit co nejrychleji.
 
 ## Jak Soundscape používat
 [Jak Soundscape používat]({{ "/users/user.html" | relative_url }})

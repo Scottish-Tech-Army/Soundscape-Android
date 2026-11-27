@@ -22,21 +22,29 @@ Notele pentru versiunile mai vechi se află pe pagina
 
 ## Modificări de la prima versiune de producție 2.0.95
 
-Am remediat mai multe probleme raportate în 2.0.95, iar această versiune face și anunțurile mai
-fiabile, și adresele mai precise. Anunțurile la mersul pe jos încep acum mai devreme după ce
-coborâți din autobuz sau din mașină, iar Soundscape observă mai repede că trenul dumneavoastră a
-plecat din gară. Intersecțiile sunt acum descrise corect atunci când mergeți pe un trotuar
-cartografiat separat de drum. Începând cu 2.0.99, anunțurile despre intersecții sunt mai clare și
-mai precise, iar Soundscape vă spune acum când un drum se termină la o poartă prin care nu puteți
-trece. Am remediat și faptul că *Locația mea* rămânea tăcută la o conexiune slabă la rețea, precum
-și o problemă la descărcarea hărților offline.
-Soundscape poate folosi acum contorul de pași al telefonului pentru a ști când mergeți pe jos, așa
-că observă mai repede că ați coborât dintr-un vehicul sau v-ați oprit, iar când deschideți această
-versiune prima dată, vi se va cere o nouă permisiune, *Activitate fizică* (*Mișcare și fitness* pe
-iPhone).
-Alegerea vocii pentru transformarea textului în vorbire arată puțin diferit. Vocile sunt acum
-grupate după limbă, atingerea uneia redă o mostră, iar alegerea *Automat* folosește vocea implicită
-pentru limba dvs.
+Am remediat mai multe probleme raportate de la 2.0.95 încoace, iar anunțurile sunt mai fiabile și
+adresele mai precise:
+
+* Anunțurile la mersul pe jos încep mai devreme după ce coborâți din autobuz sau din mașină, iar
+  Soundscape observă mai repede că trenul dumneavoastră a plecat din gară.
+* Anunțurile despre intersecții sunt mai clare și mai precise, inclusiv atunci când mergeți pe un
+  trotuar cartografiat separat de drum. Două intersecții aflate la câțiva metri una de alta, care
+  duc în același loc, sunt acum anunțate o singură dată.
+* Soundscape vă spune când un drum se termină la o poartă prin care nu puteți trece.
+* Cărările din jurul gărilor sunt descrise mai bine, de exemplu *Cărare spre Peron*, iar căile
+  comune pentru pietoni și bicicliști, cum ar fi drumurile de halaj de pe malul canalelor, sunt
+  anunțate când intrați pe ele, în loc să fie tratate ca trotuarul unui drum.
+* *Locația mea* nu mai rămâne tăcută la o conexiune slabă la rețea.
+* A fost remediată o problemă la descărcarea hărților offline.
+
+Unele lucruri funcționează puțin diferit. Soundscape poate folosi acum contorul de pași al
+telefonului pentru a ști când mergeți pe jos, așa că observă mai repede că ați coborât dintr-un
+vehicul sau v-ați oprit; când deschideți această versiune prima dată, vi se va cere o nouă
+permisiune, *Activitate fizică* (*Mișcare și fitness* pe iPhone). Vocile sunt acum grupate după
+limbă, atingerea uneia redă o mostră, iar alegerea *Automat* folosește vocea implicită pentru limba
+dvs. Elementul de meniu *Partajează înregistrarea deplasării* a dispărut: cu *Activează
+înregistrarea deplasării* pornit, *Contactează asistența* vă întreabă dacă doriți să includeți
+deplasarea înregistrată, care acoperă acum întotdeauna ultima oră.
 
 ## Noutăți în 2.0
 
@@ -303,7 +311,7 @@ aplicațiile din fundal.
 ## Cum ne semnalați problemele
 
 Dacă ceva nu este în regulă, ne-ar plăcea să aflăm. Scrieți la Help Desk la
-<soundscapeAndroid@scottishtecharmy.support> sau întrebați pe Slack dacă sunteți membru STA.
+<soundscape@scottishtecharmy.support> sau întrebați pe Slack dacă sunteți membru STA.
 
 Dacă un anunț a fost greșit sau nu s-a produs, o înregistrare a călătoriei ne ajută enorm — o putem
 reda și vedea exact cu ce date lucra Soundscape. Instrucțiunile se află la
@@ -314,7 +322,8 @@ reda și vedea exact cu ce date lucra Soundscape. Instrucțiunile se află la
 Tot ce s-a spus mai sus privește aplicația Android, dar merită știut unde a mers restul muncii din
 această versiune. Soundscape rulează acum și pe iPhone, iar ambele aplicații sunt construite din
 același cod comun — aceleași ecrane, aceleași formulări și aceleași anunțuri. O noutate precum
-anunțurile de călătorie de mai sus ajunge astfel la amândouă deodată, în loc să fie scrisă de două ori.
-Această bază comună explică de ce 2.0 a durat atât de mult și ar trebui să facă viitoarele versiuni să
-ajungă mai repede pe ambele platforme. Aplicația pentru iPhone este în prezent disponibilă prin
-TestFlight, pe bază de invitație: întrebați pe Slack dacă sunteți membru STA sau scrieți la Help Desk.
+anunțurile de călătorie de mai sus ajunge astfel la amândouă deodată, în loc să fie scrisă de două
+ori. Această bază comună explică de ce 2.0 a durat atât de mult și ar trebui să facă viitoarele
+versiuni să ajungă mai repede pe ambele platforme. Aplicația pentru iPhone este acum în beta publică
+prin aplicația TestFlight de la Apple și oricine se poate înscrie: instalați TestFlight din App
+Store și deschideți <https://testflight.apple.com/join/XFb7C5JN> pe iPhone.

@@ -20,18 +20,28 @@ Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release
 
 ## Changes since initial production release 2.0.95
 
-We've fixed several problems that were reported in 2.0.95, and this release also makes callouts
-more dependable and addresses more accurate. Walking callouts now start sooner after you get off a
-bus or out of a car, and Soundscape is quicker to notice when your train has pulled out of a
-station. Intersections are now described correctly when you're walking on a pavement that's mapped
-separately from the road. Since 2.0.99, intersection callouts are clearer and more accurate, and
-Soundscape now tells you when a road ends at a gate you can't get through. We've also fixed *My
-Location* going silent on a poor network connection, and a problem with downloading offline maps.
-Soundscape can now use your phone's step counter to tell when you're walking, so it notices sooner
-that you've got out of a vehicle or stopped, and you'll be asked for a new *Physical activity*
-permission (*Motion & Fitness* on iPhone) when you first open this version.
-Choosing a text to speech voice has a slightly different UI. Voices are now grouped by language,
-tapping one plays a sample, and choosing *Auto* will use the default voice for your language.
+We've fixed several problems that were reported since 2.0.95, with callouts being more dependable
+and addresses more accurate:
+
+* Walking callouts start sooner after you get off a bus or out of a car, and Soundscape is quicker
+  to notice when your train has pulled out of a station.
+* Intersection callouts are clearer and more accurate, including when you're walking on a pavement
+  that's mapped separately from the road. Two junctions a few metres apart that lead to the same
+  place are now called out only once.
+* Soundscape tells you when a road ends at a gate you can't get through.
+* Paths are described better around stations, for example *Path to Platform*, and shared-use paths
+  such as canal towpaths are announced when you join them instead of being treated as a road's
+  pavement.
+* *My Location* no longer goes silent on a poor network connection.
+* A problem with downloading offline maps has been fixed.
+
+Some things work a little differently. Soundscape can now use your phone's step counter to tell when
+you're walking, so it notices sooner that you've got out of a vehicle or stopped; you'll be asked
+for a new *Physical activity* permission (*Motion & Fitness* on iPhone) when you first open this
+version. Voices are now grouped by language, tapping one plays a sample, and choosing *Auto* uses
+the default voice for your language. The *Share recording of travel* menu item has gone: with
+*Enable recording of travel* turned on, *Contact support* asks whether to include your recorded
+journey, which now always covers the last hour.
 
 ## What's new in 2.0
 
@@ -295,7 +305,7 @@ more robust on phones that aggressively shut background apps down.
 ## Telling us about problems
 
 If something isn't right, we'd like to hear about it. Email the Help Desk at
-<soundscapeAndroid@scottishtecharmy.support>, or ask on Slack if you're an STA member.
+<soundscape@scottishtecharmy.support>, or ask on Slack if you're an STA member.
 
 If a callout was wrong or didn't happen, a recording of your journey helps us enormously - we can
 replay it and see exactly what Soundscape was working from. There are instructions for that under
@@ -308,5 +318,5 @@ release went. Soundscape now runs on iPhone too, and both apps are built from th
 the same screens, the same wording, and the same callouts, so a new feature like the travel callouts
 above arrives on both at once instead of being written twice. That shared foundation is why 2.0 took
 as long as it did, and it's what should make future releases arrive more quickly on both. The iPhone
-app is currently available through TestFlight by invitation: ask on Slack if you're an STA member,
-or email the Help Desk.
+app is now in a public beta through Apple's TestFlight app, and anyone can join: install TestFlight
+from the App Store, then open <https://testflight.apple.com/join/XFb7C5JN> on your iPhone.

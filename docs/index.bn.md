@@ -20,13 +20,33 @@ Soundscape একটি বিনামূল্যের, উন্মুক্
 
 ফোন পকেটে বা ব্যাগে থাকলেও অ্যাপটি পটভূমিতে কাজ করে যায় — হাতে ধরে রাখার বা পর্দার দিকে তাকানোর দরকার নেই। এটি সম্পূর্ণ বিনামূল্যের এবং এতে কোনো বিজ্ঞাপন নেই, আর এটি ডাউনলোড করা মানচিত্র অঞ্চল ব্যবহার করে অফলাইনেও চলতে পারে। সমস্যা খুঁজে বের করে ঠিক করার জন্য অ্যাপটি ব্যবহারের পরিসংখ্যান ও ক্র্যাশ রিপোর্ট পাঠায় — ঠিক কী কী সংগ্রহ করা হয় তা [গোপনীয়তা নীতি]({{ "/privacy-policy.html" | relative_url }})-তে ব্যাখ্যা করা আছে।
 
-Soundscape প্রথমে iOS-এ তৈরি করেছিল [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/), এবং ২০২২ সালে উন্মুক্ত উৎস হওয়ার আগে এটি ব্যাপকভাবে ব্যবহৃত হতো। [Scottish Tech Army](https://www.scottishtecharmy.org) এটিকে iOS-এ সচল রেখেছে এবং পাশাপাশি উন্মুক্ত উৎসের অ্যান্ড্রয়েড অ্যাপ হিসেবে নতুন করে লিখেছে।
+Soundscape প্রথমে iOS-এ তৈরি করেছিল [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/), এবং ২০২২ সালে উন্মুক্ত উৎস হওয়ার আগে এটি ব্যাপকভাবে ব্যবহৃত হতো। [Scottish Tech Army](https://www.scottishtecharmy.org) এটিকে iOS-এ সচল রেখেছে এবং Android ও iOS দুটির জন্যই একই কোডে চলা নতুন উন্মুক্ত উৎসের অ্যাপ হিসেবে নতুন করে লিখেছে।
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Google Play থেকে Soundscape নিন" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="App Store থেকে Soundscape ডাউনলোড করুন" height=80></a>
+-->
+
+## পাবলিক বিটা
+নতুন বৈশিষ্ট্যগুলো আগে বিটা রিলিজে আসে, এবং যে কেউ তাতে যোগ দিতে পারেন।
+
+### iOS
+App Store-এর iOS অ্যাপটি এখনও Microsoft-এর অ্যাপভিত্তিক পুরোনো অ্যাপ। Soundscape-এর নতুন iOS রিলিজ, যা Android অ্যাপের একই কোড থেকে তৈরি, শুধু Apple-এর TestFlight অ্যাপের মাধ্যমে পাবলিক বিটা হিসেবে পাওয়া যায়। এটি বর্তমান iOS অ্যাপের জায়গা নেয় এবং আপনার সংরক্ষিত মার্কার ও রুট রেখে দেয় - কী বদলেছে তা জানতে [পুরোনো iOS অ্যাপ থেকে আপগ্রেড করা]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (ইংরেজিতে) দেখুন। যোগ দিতে:
+
+1. আপনার iPhone-এ App Store থেকে [TestFlight](https://apps.apple.com/app/testflight/id899247664) ইনস্টল করুন।
+2. একই iPhone-এ <https://testflight.apple.com/join/XFb7C5JN> লিংকটি খুলুন।
+3. TestFlight খুলবে এবং Soundscape বিটা ইনস্টল করার প্রস্তাব দেবে। আমন্ত্রণ গ্রহণ করুন, তারপর অ্যাপটি ইনস্টল করুন।
+
+### Android
+1. আপনার ফোনে ব্যবহৃত Google অ্যাকাউন্টে সাইন ইন থাকা অবস্থায় <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape> খুলুন, এবং টেস্টার হিসেবে যোগ দিন।
+2. বরাবরের মতো [Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) থেকে Soundscape ইনস্টল বা আপডেট করুন। বিটা দেখাতে কয়েক মিনিট লাগতে পারে, তাই এখনও প্রকাশিত সংস্করণটি দেখলে কিছুক্ষণ অপেক্ষা করে আবার দেখুন।
+
+এরপর বিটা আপডেট অন্য যেকোনো আপডেটের মতোই Play Store থেকে আসে। পরীক্ষা বন্ধ করতে একই লিংকে ফিরে গিয়ে প্রোগ্রাম ছেড়ে দিন।
+
+যেকোনো বিটায় কোনো সমস্যা পেলে অনুগ্রহ করে নিচের সহায়তা ঠিকানায় পাঠান।
 
 ## Soundscape সহায়তা
-<soundscapeAndroid@scottishtecharmy.support> ইমেল ঠিকানাটি সরাসরি আমাদের হেল্প ডেস্ক ব্যবস্থায় যুক্ত। আপনার যেকোনো মতামত পাঠান, তা বৈশিষ্ট্যের অনুরোধ হোক বা ত্রুটির প্রতিবেদন। উত্তরে আপনি একটি স্বয়ংক্রিয় ইমেল পাবেন, আমাদের কাছে বার্তা যাবে যে নতুন একটি টিকিট এসেছে, আর আমরা যত দ্রুত সম্ভব উত্তর দেওয়ার চেষ্টা করব।
+<soundscape@scottishtecharmy.support> ইমেল ঠিকানাটি সরাসরি আমাদের হেল্প ডেস্ক ব্যবস্থায় যুক্ত। আপনার যেকোনো মতামত পাঠান, তা বৈশিষ্ট্যের অনুরোধ হোক বা ত্রুটির প্রতিবেদন। উত্তরে আপনি একটি স্বয়ংক্রিয় ইমেল পাবেন, আমাদের কাছে বার্তা যাবে যে নতুন একটি টিকিট এসেছে, আর আমরা যত দ্রুত সম্ভব উত্তর দেওয়ার চেষ্টা করব।
 
 ## Soundscape কীভাবে ব্যবহার করবেন
 [Soundscape কীভাবে ব্যবহার করবেন]({{ "/users/user.html" | relative_url }})

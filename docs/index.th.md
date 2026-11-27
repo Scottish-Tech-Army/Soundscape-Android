@@ -20,13 +20,33 @@ Soundscape เป็นแอปฟรีแบบโอเพนซอร์ส
 
 แอปยังทำงานต่อในเบื้องหลังเมื่อโทรศัพท์อยู่ในกระเป๋าเสื้อหรือกระเป๋าถือ ไม่ต้องถือไว้หรือมองหน้าจอ แอปนี้ฟรีทั้งหมดและไม่มีโฆษณา และสามารถทำงานแบบออฟไลน์โดยใช้พื้นที่แผนที่ที่ดาวน์โหลดไว้ แต่แอปจะส่งสถิติการใช้งานและรายงานข้อขัดข้องเพื่อให้เราค้นหาและแก้ไขปัญหาได้ โดย[นโยบายความเป็นส่วนตัว]({{ "/privacy-policy.html" | relative_url }})อธิบายไว้อย่างชัดเจนว่าเก็บข้อมูลอะไรบ้าง
 
-Soundscape พัฒนาขึ้นครั้งแรกบน iOS โดย [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) และมีผู้ใช้อย่างกว้างขวางก่อนจะเปิดเป็นโอเพนซอร์สในปี 2022 [Scottish Tech Army](https://www.scottishtecharmy.org) ได้ดูแลให้ยังคงใช้งานได้บน iOS และยังเขียนขึ้นใหม่เป็นแอป Android แบบโอเพนซอร์สด้วย
+Soundscape พัฒนาขึ้นครั้งแรกบน iOS โดย [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) และมีผู้ใช้อย่างกว้างขวางก่อนจะเปิดเป็นโอเพนซอร์สในปี 2022 [Scottish Tech Army](https://www.scottishtecharmy.org) ได้ดูแลให้ยังคงใช้งานได้บน iOS และเขียนขึ้นใหม่เป็นแอปโอเพนซอร์สตัวใหม่สำหรับทั้ง Android และ iOS ซึ่งใช้โค้ดชุดเดียวกัน
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="ดาวน์โหลด Soundscape บน Google Play" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="ดาวน์โหลด Soundscape บน App Store" height=80></a>
+-->
+
+## รุ่นเบต้าสาธารณะ
+คุณสมบัติใหม่จะมาถึงรุ่นเบต้าก่อน และทุกคนเข้าร่วมได้
+
+### iOS
+แอป iOS ใน App Store ยังเป็นแอปรุ่นเก่าที่สร้างจากแอปของ Microsoft ส่วน Soundscape รุ่นใหม่สำหรับ iOS ซึ่งสร้างจากโค้ดเดียวกับแอป Android มีให้ใช้เฉพาะในรุ่นเบต้าสาธารณะผ่านแอป TestFlight ของ Apple เท่านั้น แอปนี้จะแทนที่แอป iOS เดิมและเก็บหมุดและเส้นทางที่คุณบันทึกไว้ - ดู [การอัปเกรดจากแอป iOS รุ่นเดิม]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (ภาษาอังกฤษ) เพื่อดูว่ามีอะไรเปลี่ยนไปบ้าง วิธีเข้าร่วม:
+
+1. ติดตั้ง [TestFlight](https://apps.apple.com/app/testflight/id899247664) จาก App Store บน iPhone ของคุณ
+2. บน iPhone เครื่องเดียวกัน เปิดลิงก์ <https://testflight.apple.com/join/XFb7C5JN>
+3. TestFlight จะเปิดขึ้นและเสนอให้ติดตั้ง Soundscape รุ่นเบต้า ตอบรับคำเชิญ แล้วติดตั้งแอป
+
+### Android
+1. เปิด <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape> โดยลงชื่อเข้าใช้บัญชี Google ที่ใช้ในโทรศัพท์ของคุณ แล้วสมัครเป็นผู้ทดสอบ
+2. ติดตั้งหรืออัปเดต Soundscape จาก [Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) ตามปกติ อาจใช้เวลาสักครู่กว่ารุ่นเบต้าจะปรากฏ หากยังเห็นรุ่นที่เผยแพร่อยู่ ให้รอสักพักแล้วตรวจดูอีกครั้ง
+
+หลังจากนั้นการอัปเดตรุ่นเบต้าจะมาทาง Play Store เหมือนการอัปเดตอื่น ๆ หากต้องการเลิกทดสอบ ให้กลับไปที่ลิงก์เดิมแล้วออกจากโปรแกรม
+
+โปรดส่งปัญหาที่คุณพบในรุ่นเบต้าใดก็ตามไปยังที่อยู่ฝ่ายสนับสนุนด้านล่าง
 
 ## การสนับสนุน Soundscape
-ที่อยู่อีเมล <soundscapeAndroid@scottishtecharmy.support> เชื่อมตรงเข้าสู่ระบบศูนย์ช่วยเหลือของเรา กรุณาส่งความคิดเห็นใด ๆ เข้ามา ไม่ว่าจะเป็นคำขอฟีเจอร์หรือการรายงานข้อบกพร่อง คุณจะได้รับอีเมลตอบกลับอัตโนมัติ ส่วนเราจะได้รับแจ้งว่ามีเรื่องใหม่เข้ามา และเราจะพยายามตอบให้เร็วที่สุด
+ที่อยู่อีเมล <soundscape@scottishtecharmy.support> เชื่อมตรงเข้าสู่ระบบศูนย์ช่วยเหลือของเรา กรุณาส่งความคิดเห็นใด ๆ เข้ามา ไม่ว่าจะเป็นคำขอฟีเจอร์หรือการรายงานข้อบกพร่อง คุณจะได้รับอีเมลตอบกลับอัตโนมัติ ส่วนเราจะได้รับแจ้งว่ามีเรื่องใหม่เข้ามา และเราจะพยายามตอบให้เร็วที่สุด
 
 ## วิธีใช้ Soundscape
 [วิธีใช้ Soundscape]({{ "/users/user.html" | relative_url }})

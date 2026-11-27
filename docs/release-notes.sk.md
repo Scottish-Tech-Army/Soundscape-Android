@@ -22,18 +22,28 @@ Poznámky k starším verziám nájdete na stránke
 
 ## Zmeny od prvého produkčného vydania 2.0.95
 
-Opravili sme niekoľko problémov nahlásených vo verzii 2.0.95 a toto vydanie navyše robí hlásenia
-spoľahlivejšími a adresy presnejšími. Hlásenia pri chôdzi sa teraz začínajú skôr, keď vystúpite z
-autobusu alebo z auta, a Soundscape rýchlejšie zistí, že váš vlak odišiel zo stanice. Križovatky sa
-teraz opisujú správne, keď idete po chodníku, ktorý je v mape zakreslený oddelene od cesty. Od
-verzie 2.0.99 sú hlásenia križovatiek zrozumiteľnejšie a presnejšie a Soundscape vám teraz povie,
-keď cesta končí pri bráne, cez ktorú sa nedá prejsť. Opravili sme aj to, že *Moja poloha* pri slabom
-pripojení k sieti mlčala, a problém so sťahovaním offline máp.
-Soundscape teraz môže pomocou krokomeru v telefóne rozpoznať, kedy kráčate, takže skôr zistí, že ste
-vystúpili z vozidla alebo sa zastavili, a pri prvom otvorení tejto verzie budete požiadaní o nové
-povolenie *Fyzická aktivita* (na iPhone *Pohyb a fitness*).
-Výber hlasu na prevod textu na reč vyzerá trochu inak. Hlasy sú teraz zoskupené podľa jazyka,
-ťuknutím na hlas prehráte ukážku a voľba *Automaticky* použije predvolený hlas pre váš jazyk.
+Opravili sme niekoľko problémov nahlásených od verzie 2.0.95 a hlásenia sú spoľahlivejšie a adresy
+presnejšie:
+
+* Hlásenia pri chôdzi sa začínajú skôr, keď vystúpite z autobusu alebo z auta, a Soundscape
+  rýchlejšie zistí, že váš vlak odišiel zo stanice.
+* Hlásenia križovatiek sú zrozumiteľnejšie a presnejšie, aj keď idete po chodníku, ktorý je v mape
+  zakreslený oddelene od cesty. Dve križovatky pár metrov od seba, ktoré vedú na rovnaké miesto, sa
+  teraz ohlásia iba raz.
+* Soundscape vám povie, keď cesta končí pri bráne, cez ktorú sa nedá prejsť.
+* Cestičky okolo staníc sa opisujú lepšie, napríklad *Cestička do Nástupište*, a spoločné cestičky
+  pre chodcov a cyklistov, napríklad vlečné chodníky pozdĺž kanálov, sa ohlásia, keď na ne vstúpite,
+  namiesto toho, aby sa brali ako chodník pri ceste.
+* *Moja poloha* už pri slabom pripojení k sieti nemlčí.
+* Opravili sme problém so sťahovaním offline máp.
+
+Niektoré veci fungujú trochu inak. Soundscape teraz môže pomocou krokomeru v telefóne rozpoznať,
+kedy kráčate, takže skôr zistí, že ste vystúpili z vozidla alebo sa zastavili; pri prvom otvorení
+tejto verzie budete požiadaní o nové povolenie *Fyzická aktivita* (na iPhone *Pohyb a fitness*).
+Hlasy sú teraz zoskupené podľa jazyka, ťuknutím na hlas prehráte ukážku a voľba *Automaticky*
+použije predvolený hlas pre váš jazyk. Položka ponuky *Zdieľať záznam cesty* zmizla: keď je zapnuté
+*Povoliť nahrávanie cesty*, *Kontaktovať podporu* sa opýta, či pripojiť vašu zaznamenanú cestu,
+ktorá teraz vždy pokrýva poslednú hodinu.
 
 ## Novinky vo verzii 2.0
 
@@ -291,7 +301,7 @@ ktoré agresívne ukončujú aplikácie na pozadí.
 ## Ako nám nahlásiť problém
 
 Ak niečo nie je v poriadku, radi sa to dozvieme. Napíšte na Help Desk na adresu
-<soundscapeAndroid@scottishtecharmy.support> alebo sa opýtajte na Slacku, ak ste členom STA.
+<soundscape@scottishtecharmy.support> alebo sa opýtajte na Slacku, ak ste členom STA.
 
 Ak bolo hlásenie chybné alebo neprišlo, záznam vašej cesty nám nesmierne pomôže — môžeme ho prehrať a
 presne vidieť, z čoho Soundscape vychádzal. Pokyny nájdete v časti
@@ -304,5 +314,6 @@ tomto vydaní. Soundscape teraz beží aj na iPhone a obe aplikácie sú zostave
 kódu — rovnaké obrazovky, rovnaké formulácie a rovnaké hlásenia. Novinka ako vyššie opísané cestovné
 hlásenia sa tak dostane do oboch naraz, namiesto toho, aby sa písala dvakrát. Tento spoločný základ
 je dôvodom, prečo verzia 2.0 trvala tak dlho, a mal by zabezpečiť, aby budúce vydania prichádzali
-rýchlejšie na obe platformy. Aplikácia pre iPhone je momentálne dostupná cez TestFlight na pozvanie:
-opýtajte sa na Slacku, ak ste členom STA, alebo napíšte na Help Desk.
+rýchlejšie na obe platformy. Aplikácia pre iPhone je teraz vo verejnej beta verzii cez aplikáciu
+TestFlight od Apple a pripojiť sa môže ktokoľvek: nainštalujte si TestFlight z App Store a na iPhone
+otvorte <https://testflight.apple.com/join/XFb7C5JN>.

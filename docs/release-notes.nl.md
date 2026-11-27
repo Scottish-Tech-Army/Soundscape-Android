@@ -23,21 +23,29 @@ Opmerkingen bij oudere versies staan op de pagina
 
 ## Wijzigingen sinds de eerste productieversie 2.0.95
 
-We hebben verschillende problemen opgelost die in 2.0.95 werden gemeld, en deze versie maakt de
-aankondigingen ook betrouwbaarder en de adressen nauwkeuriger. Aankondigingen tijdens het lopen
-beginnen nu eerder nadat u uit de bus of auto bent gestapt, en Soundscape merkt sneller dat uw trein
-het station heeft verlaten. Kruispunten worden nu juist beschreven wanneer u op een stoep loopt die
-los van de weg in kaart is gebracht. Sinds 2.0.99 zijn de aankondigingen van kruispunten duidelijker
-en nauwkeuriger, en Soundscape meldt nu wanneer een weg eindigt bij een hek waar u niet door kunt.
-We hebben ook opgelost dat *Mijn locatie* stil bleef bij een slechte netwerkverbinding, en een
-probleem met het downloaden van offline kaarten.
-Soundscape kan nu de stappenteller van uw telefoon gebruiken om te weten wanneer u loopt, zodat het
-eerder merkt dat u uit een voertuig bent gestapt of bent blijven staan, en de eerste keer dat u deze
-versie opent, wordt u om een nieuwe toestemming gevraagd: *Fysieke activiteit* (*Beweging en
-conditie* op iPhone).
-Het kiezen van een tekst-naar-spraakstem ziet er iets anders uit. Stemmen zijn nu gegroepeerd per
-taal, tikken op een stem speelt een voorbeeld af, en met *Automatisch* wordt de standaardstem voor
-uw taal gebruikt.
+We hebben verschillende problemen opgelost die sinds 2.0.95 zijn gemeld, en de aankondigingen zijn
+betrouwbaarder en de adressen nauwkeuriger:
+
+* Aankondigingen tijdens het lopen beginnen eerder nadat u uit de bus of auto bent gestapt, en
+  Soundscape merkt sneller dat uw trein het station heeft verlaten.
+* De aankondigingen van kruispunten zijn duidelijker en nauwkeuriger, ook wanneer u op een stoep
+  loopt die los van de weg in kaart is gebracht. Twee kruispunten op een paar meter van elkaar die
+  naar dezelfde plek leiden, worden nu maar één keer aangekondigd.
+* Soundscape meldt wanneer een weg eindigt bij een hek waar u niet door kunt.
+* Paden rond stations worden beter beschreven, bijvoorbeeld *Pad naar Perron*, en gedeelde fiets- en
+  voetpaden, zoals jaagpaden langs kanalen, worden aangekondigd wanneer u erop komt, in plaats van
+  als stoep van een weg te worden behandeld.
+* *Mijn locatie* blijft niet meer stil bij een slechte netwerkverbinding.
+* Een probleem met het downloaden van offline kaarten is opgelost.
+
+Sommige dingen werken iets anders. Soundscape kan nu de stappenteller van uw telefoon gebruiken om
+te weten wanneer u loopt, zodat het eerder merkt dat u uit een voertuig bent gestapt of bent blijven
+staan; de eerste keer dat u deze versie opent, wordt u om een nieuwe toestemming gevraagd: *Fysieke
+activiteit* (*Beweging en conditie* op iPhone). Stemmen zijn nu gegroepeerd per taal, tikken op een
+stem speelt een voorbeeld af, en met *Automatisch* wordt de standaardstem voor uw taal gebruikt. Het
+menu-item *Reisopname delen* is verdwenen: als *Reisregistratie inschakelen* aanstaat, vraagt
+*Contact opnemen met ondersteuning* of uw opgenomen reis moet worden meegestuurd. Die opname beslaat
+nu altijd het laatste uur.
 
 ## Nieuw in 2.0
 
@@ -306,7 +314,7 @@ en opstarten is robuuster gemaakt op telefoons die achtergrond-apps agressief af
 ## Problemen aan ons melden
 
 Klopt er iets niet, dan horen we dat graag. Mail de Help Desk op
-<soundscapeAndroid@scottishtecharmy.support>, of vraag het op Slack als u STA-lid bent.
+<soundscape@scottishtecharmy.support>, of vraag het op Slack als u STA-lid bent.
 
 Was een melding onjuist of bleef die uit, dan helpt een opname van uw reis ons enorm: we kunnen die
 opnieuw afspelen en precies zien waarmee Soundscape werkte. Instructies vindt u onder
@@ -319,6 +327,6 @@ in deze release naartoe ging. Soundscape draait nu ook op de iPhone, en beide ap
 vanuit dezelfde gedeelde code: dezelfde schermen, dezelfde formuleringen en dezelfde meldingen. Een
 nieuwe functie zoals de reismeldingen hierboven verschijnt daardoor op allebei tegelijk in plaats
 van twee keer geschreven te worden. Die gedeelde basis verklaart waarom 2.0 zo lang duurde, en zou
-toekomstige releases op beide platforms sneller beschikbaar moeten maken. De iPhone-app is momenteel
-op uitnodiging beschikbaar via TestFlight: vraag het op Slack als u STA-lid bent, of mail de Help
-Desk.
+toekomstige releases op beide platforms sneller beschikbaar moeten maken. De iPhone-app is nu als
+openbare bèta beschikbaar via Apples TestFlight-app, en iedereen kan meedoen: installeer TestFlight
+uit de App Store en open <https://testflight.apple.com/join/XFb7C5JN> op uw iPhone.

@@ -22,20 +22,29 @@ Les notes de versions anteriors són a la pàgina
 
 ## Canvis des de la primera versió de producció 2.0.95
 
-Hem corregit diversos problemes que se'ns van comunicar a la 2.0.95, i aquesta versió també fa que
-els avisos siguin més fiables i les adreces més precises. Els avisos mentre camineu ara comencen
-abans quan baixeu de l'autobús o del cotxe, i Soundscape detecta més ràpidament que el vostre tren
-ha sortit de l'estació. Les cruïlles ara es descriuen correctament quan camineu per una vorera
-cartografiada per separat de la carretera. Des de la 2.0.99, els avisos de cruïlles són més clars i
-precisos, i Soundscape ara us avisa quan una via acaba en una porta que no podeu travessar. També
-hem corregit que *La meva ubicació* es quedés en silenci amb una connexió de xarxa feble, i un
-problema en baixar mapes fora de línia.
-Ara Soundscape pot fer servir el comptador de passos del telèfon per saber quan camineu, de manera
-que s’adona abans que heu baixat d’un vehicle o us heu aturat, i quan obriu aquesta versió per
-primer cop se us demanarà un permís nou, *Activitat física* (*Moviment i fitness* a l’iPhone).
-L'elecció de la veu de text a parla té una interfície una mica diferent. Ara les veus s'agrupen per
-idioma, si en toqueu una se'n reprodueix una mostra, i si trieu *Automàtic* s'utilitzarà la veu
-predeterminada del vostre idioma.
+Hem corregit diversos problemes que se'ns han comunicat des de la 2.0.95, i els avisos són més
+fiables i les adreces més precises:
+
+* Els avisos mentre camineu comencen abans quan baixeu de l'autobús o del cotxe, i Soundscape
+  detecta més ràpidament que el vostre tren ha sortit de l'estació.
+* Els avisos de cruïlles són més clars i precisos, també quan camineu per una vorera cartografiada
+  per separat de la carretera. Dues cruïlles a pocs metres que porten al mateix lloc ara s'anuncien
+  només una vegada.
+* Soundscape us avisa quan una via acaba en una porta que no podeu travessar.
+* Els camins al voltant de les estacions es descriuen millor, per exemple *Camí a Andana*, i els
+  camins compartits, com els camins de sirga al costat dels canals, s'anuncien quan hi entreu en
+  lloc de tractar-se com la vorera d'una carretera.
+* *La meva ubicació* ja no es queda en silenci amb una connexió de xarxa feble.
+* S'ha corregit un problema en baixar mapes fora de línia.
+
+Algunes coses funcionen una mica diferent. Ara Soundscape pot fer servir el comptador de passos del
+telèfon per saber quan camineu, de manera que s’adona abans que heu baixat d’un vehicle o us heu
+aturat; quan obriu aquesta versió per primer cop se us demanarà un permís nou, *Activitat física*
+(*Moviment i fitness* a l’iPhone). Ara les veus s'agrupen per idioma, si en toqueu una se'n
+reprodueix una mostra, i si trieu *Automàtic* s'utilitza la veu predeterminada del vostre idioma.
+L'opció de menú *Comparteix l'enregistrament del trajecte* ha desaparegut: amb *Activa
+l'enregistrament de trajectes* activat, *Contacta amb el suport* us pregunta si voleu incloure el
+trajecte enregistrat, que ara sempre cobreix l'última hora.
 
 ## Novetats de la 2.0
 
@@ -301,7 +310,7 @@ aplicacions en segon pla.
 ## Com informar-nos de problemes
 
 Si alguna cosa no va bé, ens agradaria saber-ho. Escriviu al Help Desk a
-<soundscapeAndroid@scottishtecharmy.support>, o pregunteu al Slack si sou membre de l'STA.
+<soundscape@scottishtecharmy.support>, o pregunteu al Slack si sou membre de l'STA.
 
 Si un avís va ser incorrecte o no es va produir, un enregistrament del vostre trajecte ens ajuda
 moltíssim: el podem reproduir i veure exactament amb què treballava Soundscape. Trobareu les
@@ -310,11 +319,12 @@ instruccions a
 
 ## Una nota sobre l'iPhone
 
-Tot això de dalt fa referència a l'aplicació d'Android, però val la pena saber on ha anat la resta de
-la feina d'aquesta versió. Soundscape ara també funciona a l'iPhone, i totes dues aplicacions es
-construeixen a partir del mateix codi compartit: les mateixes pantalles, les mateixes expressions i els
-mateixos avisos. Així, una novetat com els avisos de trajecte de més amunt arriba a totes dues alhora
-en comptes d'escriure's dues vegades. Aquesta base comuna explica per què la 2.0 ha trigat tant, i és
-el que hauria de fer que les properes versions arribin més de pressa a totes dues plataformes.
-L'aplicació per a iPhone està disponible ara mateix a través de TestFlight per invitació: pregunteu al
-Slack si sou membre de l'STA, o escriviu al Help Desk.
+Tot això de dalt fa referència a l'aplicació d'Android, però val la pena saber on ha anat la resta
+de la feina d'aquesta versió. Soundscape ara també funciona a l'iPhone, i totes dues aplicacions es
+construeixen a partir del mateix codi compartit: les mateixes pantalles, les mateixes expressions i
+els mateixos avisos. Així, una novetat com els avisos de trajecte de més amunt arriba a totes dues
+alhora en comptes d'escriure's dues vegades. Aquesta base comuna explica per què la 2.0 ha trigat
+tant, i és el que hauria de fer que les properes versions arribin més de pressa a totes dues
+plataformes. L'aplicació per a iPhone ara és en beta pública a través de l'aplicació TestFlight
+d'Apple, i tothom s'hi pot afegir: instal·leu TestFlight des de l'App Store i obriu
+<https://testflight.apple.com/join/XFb7C5JN> a l'iPhone.

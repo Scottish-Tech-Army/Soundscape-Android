@@ -20,13 +20,33 @@ Soundscape 不会提供逐步转向的导航指引，而是像一座为耳朵服
 
 当手机放在口袋或包里时，应用会在后台继续工作——无需手持或盯着屏幕。它完全免费，没有广告，并且可以使用已下载的地图区域离线工作。不过，为了帮助我们发现并修复问题，应用会发送使用统计和崩溃报告——[隐私政策]({{ "/privacy-policy.html" | relative_url }})详细说明了具体收集哪些内容。
 
-Soundscape 最初由 [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) 在 iOS 上开发，并在 2022 年开源之前得到了广泛使用。[Scottish Tech Army](https://www.scottishtecharmy.org) 一直在 iOS 上保持其可用性，并将其重新编写为一款开源 Android 应用。
+Soundscape 最初由 [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) 在 iOS 上开发，并在 2022 年开源之前得到了广泛使用。[Scottish Tech Army](https://www.scottishtecharmy.org) 一直在 iOS 上保持其可用性，并将其重新编写为一款同时支持 Android 和 iOS、两者共用同一套代码的全新开源应用。
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="在 Google Play 上获取 Soundscape" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="在 App Store 下载 Soundscape" height=80></a>
+-->
+
+## 公开测试版
+新功能会先在测试版中推出，任何人都可以加入。
+
+### iOS
+App Store 上的 iOS 应用仍是基于 Microsoft 应用的旧版应用。新的 Soundscape iOS 版与 Android 应用使用同一套代码构建，目前只能通过 Apple 的 TestFlight 应用以公开测试版的形式获取。它会取代现有的 iOS 应用，并保留你已保存的标记和路线——有哪些变化，请参阅 [从旧版 iOS 应用升级]({{ "/ios-upgrade-from-legacy.html" | relative_url }})（英文）。加入方法：
+
+1. 在 iPhone 上从 App Store 安装 [TestFlight](https://apps.apple.com/app/testflight/id899247664)。
+2. 在同一部 iPhone 上打开链接 <https://testflight.apple.com/join/XFb7C5JN>。
+3. TestFlight 会打开并提示安装 Soundscape 测试版。接受邀请，然后安装应用。
+
+### Android
+1. 登录你手机上使用的 Google 账号后打开 <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape>，并报名成为测试人员。
+2. 像平时一样从 [Play 商店](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) 安装或更新 Soundscape。测试版可能要过几分钟才会出现，如果你看到的仍是正式版，请稍等片刻再查看。
+
+之后，测试版更新会像其他更新一样通过 Play 商店推送。如需停止测试，请回到同一链接并退出该计划。
+
+无论在哪个测试版中发现问题，都请发送到下方的支持邮箱。
 
 ## Soundscape 支持
-电子邮件地址 <soundscapeAndroid@scottishtecharmy.support> 直接连接到我们的帮助台系统。无论是功能请求还是错误报告，请随时发送您的任何反馈。您将收到一封自动回复邮件，同时我们会收到有新工单需要查看的提醒，我们将尽快予以回复。
+电子邮件地址 <soundscape@scottishtecharmy.support> 直接连接到我们的帮助台系统。无论是功能请求还是错误报告，请随时发送您的任何反馈。您将收到一封自动回复邮件，同时我们会收到有新工单需要查看的提醒，我们将尽快予以回复。
 
 ## 如何使用 Soundscape
 [如何使用 Soundscape]({{ "/users/user.html" | relative_url }})

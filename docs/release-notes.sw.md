@@ -22,20 +22,28 @@ Maelezo ya matoleo ya zamani yako kwenye ukurasa wa
 
 ## Mabadiliko tangu toleo la kwanza rasmi 2.0.95
 
-Tumerekebisha matatizo kadhaa yaliyoripotiwa katika 2.0.95, na toleo hili pia linafanya matangazo
-yategemewe zaidi na anwani ziwe sahihi zaidi. Matangazo ya kutembea kwa miguu sasa huanza mapema
-zaidi baada ya kushuka kutoka kwenye basi au gari, na Soundscape hutambua haraka zaidi kwamba treni
-yako imeondoka kituoni. Makutano sasa yanaelezwa ipasavyo unapotembea kwenye njia ya miguu
-iliyochorwa kwenye ramani kando na barabara. Tangu 2.0.99, matangazo ya makutano ni wazi zaidi na
-sahihi zaidi, na Soundscape sasa hukuambia barabara inapoishia kwenye lango ambalo huwezi kupita.
-Pia tumerekebisha tatizo la *Mahali Nilipo* kukaa kimya muunganisho wa mtandao ukiwa dhaifu, na
-tatizo la kupakua ramani za nje ya mtandao.
-Sasa Soundscape inaweza kutumia kihesabu hatua cha simu yako kujua unapotembea, hivyo inatambua
-mapema kwamba umeshuka kwenye gari au umesimama, na utaombwa ruhusa mpya ya *Shughuli za kimwili*
-(*Mwendo na Afya ya Mwili* kwenye iPhone) unapofungua toleo hili kwa mara ya kwanza.
-Kuchagua sauti ya kubadilisha maandishi kuwa sauti kuna mwonekano tofauti kidogo. Sauti sasa
-zimepangwa kwa lugha, kugusa moja hucheza sampuli yake, na kuchagua *Kiotomatiki* kutatumia sauti
-chaguomsingi ya lugha yako.
+Tumerekebisha matatizo kadhaa yaliyoripotiwa tangu 2.0.95, na matangazo sasa yanategemewa zaidi na
+anwani ni sahihi zaidi:
+
+* Matangazo ya kutembea kwa miguu huanza mapema zaidi baada ya kushuka kutoka kwenye basi au gari,
+  na Soundscape hutambua haraka zaidi kwamba treni yako imeondoka kituoni.
+* Matangazo ya makutano ni wazi zaidi na sahihi zaidi, hata unapotembea kwenye njia ya miguu
+  iliyochorwa kwenye ramani kando na barabara. Makutano mawili yaliyo umbali wa mita chache
+  yanayoelekea mahali pamoja sasa yanatangazwa mara moja tu.
+* Soundscape hukuambia barabara inapoishia kwenye lango ambalo huwezi kupita.
+* Vijia vilivyo karibu na vituo vinaelezwa vizuri zaidi, kwa mfano *Kijia hadi Jukwaa*, na njia
+  zinazoshirikiwa na watembea kwa miguu na baiskeli, kama njia za kando ya mifereji, zinatangazwa
+  unapoziingia badala ya kuchukuliwa kama njia ya miguu ya barabara.
+* *Mahali Nilipo* haikai kimya tena muunganisho wa mtandao ukiwa dhaifu.
+* Tatizo la kupakua ramani za nje ya mtandao limerekebishwa.
+
+Baadhi ya mambo hufanya kazi kwa njia tofauti kidogo. Sasa Soundscape inaweza kutumia kihesabu hatua
+cha simu yako kujua unapotembea, hivyo inatambua mapema kwamba umeshuka kwenye gari au umesimama;
+utaombwa ruhusa mpya ya *Shughuli za kimwili* (*Mwendo na Afya ya Mwili* kwenye iPhone) unapofungua
+toleo hili kwa mara ya kwanza. Sauti sasa zimepangwa kwa lugha, kugusa moja hucheza sampuli yake, na
+kuchagua *Kiotomatiki* hutumia sauti chaguomsingi ya lugha yako. Kipengee cha menyu *Shiriki rekodi
+ya safari* kimeondolewa: *Wezesha kurekodi safari* ikiwa imewashwa, *Wasiliana na Usaidizi* huuliza
+kama ujumuishe safari yako iliyorekodiwa, ambayo sasa daima inahusu saa moja iliyopita.
 
 ## Mapya katika 2.0
 
@@ -298,7 +306,7 @@ mandharinyuma kwa nguvu.
 ## Jinsi ya kutuarifu kuhusu matatizo
 
 Kama kuna jambo lisilo sawa, tungependa kulijua. Andika kwa Help Desk kwa
-<soundscapeAndroid@scottishtecharmy.support>, au uliza kwenye Slack kama wewe ni mwanachama wa STA.
+<soundscape@scottishtecharmy.support>, au uliza kwenye Slack kama wewe ni mwanachama wa STA.
 
 Kama tangazo lilikosea au halikutokea kabisa, rekodi ya safari yako hutusaidia sana — tunaweza
 kuicheza tena na kuona hasa Soundscape ilikuwa ikitumia nini. Maelekezo yako kwenye
@@ -307,10 +315,11 @@ kuicheza tena na kuona hasa Soundscape ilikuwa ikitumia nini. Maelekezo yako kwe
 ## Kidokezo kuhusu iPhone
 
 Yote yaliyo hapo juu yanahusu programu ya Android, lakini ni vyema kujua sehemu nyingine ya kazi ya
-toleo hili ilikoenda. Sasa Soundscape hufanya kazi kwenye iPhone pia, na programu zote mbili hujengwa
-kutoka msimbo mmoja unaoshirikiwa — skrini zilezile, maneno yaleyale na matangazo yaleyale. Hivyo
-kipengele kipya kama matangazo ya safari yaliyotajwa hapo juu hufika kwenye zote mbili kwa wakati mmoja
-badala ya kuandikwa mara mbili. Msingi huo wa pamoja ndio unaoeleza kwa nini 2.0 ilichukua muda mrefu
-hivyo, na ndio utakaofanya matoleo yajayo yafike haraka zaidi kwenye majukwaa yote mawili. Programu ya
-iPhone kwa sasa inapatikana kupitia TestFlight kwa mwaliko: uliza kwenye Slack kama wewe ni mwanachama
-wa STA, au andika kwa Help Desk.
+toleo hili ilikoenda. Sasa Soundscape hufanya kazi kwenye iPhone pia, na programu zote mbili
+hujengwa kutoka msimbo mmoja unaoshirikiwa — skrini zilezile, maneno yaleyale na matangazo yaleyale.
+Hivyo kipengele kipya kama matangazo ya safari yaliyotajwa hapo juu hufika kwenye zote mbili kwa
+wakati mmoja badala ya kuandikwa mara mbili. Msingi huo wa pamoja ndio unaoeleza kwa nini 2.0
+ilichukua muda mrefu hivyo, na ndio utakaofanya matoleo yajayo yafike haraka zaidi kwenye majukwaa
+yote mawili. Programu ya iPhone sasa iko kwenye beta ya umma kupitia programu ya TestFlight ya
+Apple, na mtu yeyote anaweza kujiunga: sakinisha TestFlight kutoka App Store, kisha ufungue
+<https://testflight.apple.com/join/XFb7C5JN> kwenye iPhone yako.

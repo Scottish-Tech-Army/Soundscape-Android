@@ -22,22 +22,30 @@ Les notes des versions précédentes se trouvent sur la page
 
 ## Changements depuis la première version de production 2.0.95
 
-Nous avons corrigé plusieurs problèmes signalés dans la 2.0.95, et cette nouvelle version rend aussi
-les annonces plus fiables et les adresses plus précises. Les annonces à pied commencent désormais
-plus tôt après votre descente du bus ou de la voiture, et Soundscape remarque plus vite que votre
-train a quitté la gare. Les intersections sont maintenant décrites correctement lorsque vous marchez
-sur un trottoir cartographié séparément de la rue. Depuis la 2.0.99, les annonces d’intersections
-sont plus claires et plus précises, et Soundscape vous signale désormais quand une voie se termine à
-une barrière que vous ne pouvez pas franchir. Nous avons aussi corrigé le silence de *Mon
-emplacement* en cas de mauvaise connexion réseau, ainsi qu’un problème de téléchargement des cartes
-hors ligne.
-Soundscape peut désormais utiliser le podomètre de votre téléphone pour savoir quand vous marchez :
-il remarque ainsi plus tôt que vous êtes descendu d’un véhicule ou que vous vous êtes arrêté, et une
-nouvelle autorisation, *Activité physique* (*Mouvement et forme physique* sur iPhone), vous sera
-demandée à la première ouverture de cette version.
-Le choix de la voix de synthèse vocale se présente un peu différemment. Les voix sont désormais
-regroupées par langue, toucher une voix en fait entendre un extrait, et choisir *Automatique*
-utilise la voix par défaut de votre langue.
+Nous avons corrigé plusieurs problèmes signalés depuis la 2.0.95 : les annonces sont plus fiables et
+les adresses plus précises.
+
+* Les annonces à pied commencent plus tôt après votre descente du bus ou de la voiture, et
+  Soundscape remarque plus vite que votre train a quitté la gare.
+* Les annonces d’intersections sont plus claires et plus précises, y compris lorsque vous marchez
+  sur un trottoir cartographié séparément de la rue. Deux intersections distantes de quelques mètres
+  qui mènent au même endroit ne sont plus annoncées qu’une seule fois.
+* Soundscape vous signale quand une voie se termine à une barrière que vous ne pouvez pas franchir.
+* Les chemins autour des gares sont mieux décrits, par exemple *Chemin menant au quai*, et les voies
+  partagées, comme les chemins de halage le long des canaux, sont annoncées quand vous les rejoignez
+  au lieu d’être traitées comme le trottoir d’une route.
+* *Mon emplacement* ne reste plus silencieux en cas de mauvaise connexion réseau.
+* Un problème de téléchargement des cartes hors ligne a été corrigé.
+
+Certaines choses fonctionnent un peu différemment. Soundscape peut désormais utiliser le podomètre
+de votre téléphone pour savoir quand vous marchez : il remarque ainsi plus tôt que vous êtes
+descendu d’un véhicule ou que vous vous êtes arrêté, et une nouvelle autorisation, *Activité
+physique* (*Mouvement et forme physique* sur iPhone), vous sera demandée à la première ouverture de
+cette version. Les voix sont désormais regroupées par langue, toucher une voix en fait entendre un
+extrait, et choisir *Automatique* utilise la voix par défaut de votre langue. L’élément de menu
+*Partager l’enregistrement du voyage* a disparu : lorsque *Activer l’enregistrement des voyages* est
+activé, *Contacter le support* vous demande s’il faut joindre votre trajet enregistré, qui couvre
+désormais toujours la dernière heure.
 
 ## Nouveautés de la version 2.0
 
@@ -328,7 +336,7 @@ automatiquement via le Play Store. Le comportement au démarrage et vis-à-vis d
 ## Nous signaler un problème
 
 Si quelque chose ne va pas, nous aimerions le savoir. Écrivez au Help Desk à l'adresse
-<soundscapeAndroid@scottishtecharmy.support>, ou demandez sur Slack si vous êtes membre de la STA.
+<soundscape@scottishtecharmy.support>, ou demandez sur Slack si vous êtes membre de la STA.
 
 Si une annonce était erronée ou n'a pas eu lieu, un enregistrement de votre trajet nous aide
 énormément : nous pouvons le rejouer et voir exactement sur quoi Soundscape s'appuyait. Les
@@ -343,6 +351,6 @@ applications sont construites à partir du même code partagé : mêmes écrans,
 mêmes annonces. Une nouveauté comme les annonces de trajet décrites plus haut arrive donc sur les
 deux à la fois, au lieu d'être écrite deux fois. C'est cette base commune qui explique la durée de
 développement de la version 2.0, et c'est elle qui devrait permettre aux prochaines versions
-d'arriver plus vite sur les deux plateformes. L'application iPhone est actuellement disponible via
-TestFlight sur invitation : demandez sur Slack si vous êtes membre de la STA, ou écrivez au Help
-Desk.
+d'arriver plus vite sur les deux plateformes. L'application iPhone est désormais en bêta publique
+via l’application TestFlight d’Apple, et tout le monde peut y participer : installez TestFlight
+depuis l’App Store, puis ouvrez <https://testflight.apple.com/join/XFb7C5JN> sur votre iPhone.

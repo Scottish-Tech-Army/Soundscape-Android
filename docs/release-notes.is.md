@@ -22,20 +22,29 @@ Nótur fyrir eldri útgáfur eru á síðunni
 
 ## Breytingar frá fyrstu almennu útgáfunni 2.0.95
 
-Við höfum lagað nokkur vandamál sem tilkynnt var um í 2.0.95, og þessi útgáfa gerir einnig
-tilkynningar áreiðanlegri og heimilisföng nákvæmari. Tilkynningar á göngu byrja nú fyrr eftir að þú
-ferð út úr strætó eða bíl, og Soundscape tekur fyrr eftir því þegar lestin þín er farin af stöðinni.
-Gatnamótum er nú lýst rétt þegar þú gengur á gangstétt sem er kortlögð sér frá götunni. Frá útgáfu
-2.0.99 eru tilkynningar um gatnamót skýrari og nákvæmari, og Soundscape lætur þig nú vita þegar
-vegur endar við hlið sem þú kemst ekki í gegnum. Við lagfærðum líka að *Mín staðsetning* þagði þegar
-nettenging var léleg, og vandamál við niðurhal ónettengdra korta.
-Soundscape getur nú notað skrefateljara símans til að greina hvenær þú ert að ganga, svo það tekur
-fyrr eftir því að þú ert kominn út úr ökutæki eða hefur stoppað, og þegar þú opnar þessa útgáfu í
-fyrsta sinn verður þú beðinn um nýtt leyfi, *Líkamleg hreyfing* (*Hreyfing og líkamlegt ástand* á
-iPhone).
-Val á talgervilsrödd lítur aðeins öðruvísi út. Raddirnar eru nú flokkaðar eftir tungumáli, ef þú
-ýtir á rödd heyrirðu sýnishorn og ef þú velur *Sjálfvirkt* er sjálfgefin rödd tungumálsins þíns
-notuð.
+Við höfum lagað nokkur vandamál sem tilkynnt hefur verið um frá útgáfu 2.0.95, og tilkynningar eru
+áreiðanlegri og heimilisföng nákvæmari:
+
+* Tilkynningar á göngu byrja fyrr eftir að þú ferð út úr strætó eða bíl, og Soundscape tekur fyrr
+  eftir því þegar lestin þín er farin af stöðinni.
+* Tilkynningar um gatnamót eru skýrari og nákvæmari, líka þegar þú gengur á gangstétt sem er
+  kortlögð sér frá götunni. Tvenn gatnamót með fárra metra millibili sem liggja á sama stað eru nú
+  aðeins tilkynnt einu sinni.
+* Soundscape lætur þig vita þegar vegur endar við hlið sem þú kemst ekki í gegnum.
+* Stígum í kringum stöðvar er lýst betur, til dæmis *Stígur til Pallur*, og sameiginlegir göngu- og
+  hjólastígar, eins og dráttarstígar meðfram skurðum, eru tilkynntir þegar þú kemur inn á þá í stað
+  þess að vera meðhöndlaðir sem gangstétt vegar.
+* *Mín staðsetning* þagnar ekki lengur þegar nettenging er léleg.
+* Vandamál við niðurhal ónettengdra korta hefur verið lagað.
+
+Sumt virkar aðeins öðruvísi. Soundscape getur nú notað skrefateljara símans til að greina hvenær þú
+ert að ganga, svo það tekur fyrr eftir því að þú ert kominn út úr ökutæki eða hefur stoppað; þegar
+þú opnar þessa útgáfu í fyrsta sinn verður þú beðinn um nýtt leyfi, *Líkamleg hreyfing* (*Hreyfing
+og líkamlegt ástand* á iPhone). Raddirnar eru nú flokkaðar eftir tungumáli, ef þú ýtir á rödd
+heyrirðu sýnishorn og ef þú velur *Sjálfvirkt* er sjálfgefin rödd tungumálsins þíns notuð.
+Valmyndaratriðið *Deila ferðaupptöku* er horfið: þegar kveikt er á *Virkja skráningu ferða* spyr
+*Hafa samband við þjónustuver* hvort þú viljir láta skráðu ferðina fylgja með, og hún nær nú alltaf
+yfir síðustu klukkustundina.
 
 ## Nýtt í 2.0
 
@@ -289,7 +298,7 @@ símum sem loka bakgrunnsforritum af hörku.
 ## Hvernig þú lætur okkur vita af vandamálum
 
 Ef eitthvað er ekki í lagi viljum við gjarnan heyra af því. Sendu tölvupóst á Help Desk á
-<soundscapeAndroid@scottishtecharmy.support>, eða spurðu á Slack ef þú ert félagi í STA.
+<soundscape@scottishtecharmy.support>, eða spurðu á Slack ef þú ert félagi í STA.
 
 Ef tilkynning var röng eða kom alls ekki hjálpar upptaka af ferðinni þinni okkur gríðarlega — við
 getum spilað hana aftur og séð nákvæmlega hvað Soundscape studdist við. Leiðbeiningar eru í
@@ -297,10 +306,11 @@ getum spilað hana aftur og séð nákvæmlega hvað Soundscape studdist við. L
 
 ## Athugasemd um iPhone
 
-Allt hér að ofan snýr að Android-forritinu, en það er gagnlegt að vita hvert afgangurinn af vinnunni í
-þessari útgáfu fór. Soundscape keyrir nú einnig á iPhone og bæði forritin eru byggð úr sama sameiginlega
-kóðanum — sömu skjáir, sama orðalag og sömu tilkynningar. Nýjung eins og ferðatilkynningarnar hér að
-ofan berst því til beggja í einu í stað þess að vera skrifuð tvisvar. Þessi sameiginlegi grunnur skýrir
-hvers vegna 2.0 tók svona langan tíma og það er hann sem ætti að láta framtíðarútgáfur berast hraðar á
-báða vettvanga. iPhone-forritið er sem stendur fáanlegt í gegnum TestFlight með boði: spurðu á Slack ef
-þú ert félagi í STA, eða sendu tölvupóst á Help Desk.
+Allt hér að ofan snýr að Android-forritinu, en það er gagnlegt að vita hvert afgangurinn af vinnunni
+í þessari útgáfu fór. Soundscape keyrir nú einnig á iPhone og bæði forritin eru byggð úr sama
+sameiginlega kóðanum — sömu skjáir, sama orðalag og sömu tilkynningar. Nýjung eins og
+ferðatilkynningarnar hér að ofan berst því til beggja í einu í stað þess að vera skrifuð tvisvar.
+Þessi sameiginlegi grunnur skýrir hvers vegna 2.0 tók svona langan tíma og það er hann sem ætti að
+láta framtíðarútgáfur berast hraðar á báða vettvanga. iPhone-forritið er nú í opinni beta-útgáfu í
+gegnum TestFlight-forrit Apple og allir geta tekið þátt: settu upp TestFlight úr App Store og opnaðu
+<https://testflight.apple.com/join/XFb7C5JN> á iPhone-símanum þínum.

@@ -22,18 +22,28 @@ Vanemate versioonide märkmed on lehel
 
 ## Muudatused pärast esimest tootmisversiooni 2.0.95
 
-Parandasime mitu versioonis 2.0.95 teatatud probleemi ning see versioon muudab ka häälteated
-usaldusväärsemaks ja aadressid täpsemaks. Kõndimise häälteated algavad nüüd varem, kui oled bussist
-või autost väljunud, ja Soundscape märkab kiiremini, et sinu rong on jaamast lahkunud. Ristmikke
-kirjeldatakse nüüd õigesti, kui kõnnid kõnniteel, mis on kaardile kantud teest eraldi. Alates
-versioonist 2.0.99 on ristmike häälteated selgemad ja täpsemad ning Soundscape ütleb nüüd, kui tee
-lõpeb väravaga, millest sa läbi ei pääse. Parandasime ka vea, mille tõttu *Minu asukoht* jäi nõrga
-võrguühenduse korral vait, ning probleemi võrguühenduseta kaartide allalaadimisel.
-Soundscape saab nüüd kasutada su telefoni sammuloendurit, et teada, millal sa kõnnid, nii et ta
-märkab varem, et oled sõidukist väljunud või peatunud, ja selle versiooni esmakordsel avamisel
-küsitakse sinult uut luba *Kehaline aktiivsus* (iPhone’is *Liikumine ja vormisolek*).
-Kõnesünteesi hääle valimine näeb nüüd veidi teistsugune välja. Hääled on rühmitatud keele järgi,
-häälel toksamine esitab näidise ja valik *Automaatne* kasutab sinu keele vaikehäält.
+Parandasime mitu pärast versiooni 2.0.95 teatatud probleemi ning häälteated on usaldusväärsemad ja
+aadressid täpsemad:
+
+* Kõndimise häälteated algavad varem, kui oled bussist või autost väljunud, ja Soundscape märkab
+  kiiremini, et sinu rong on jaamast lahkunud.
+* Ristmike häälteated on selgemad ja täpsemad, ka siis, kui kõnnid kõnniteel, mis on kaardile kantud
+  teest eraldi. Kahest mõne meetri kaugusel asuvast ristmikust, mis viivad samasse kohta, teatatakse
+  nüüd ainult üks kord.
+* Soundscape ütleb, kui tee lõpeb väravaga, millest sa läbi ei pääse.
+* Jaamade ümbruse radu kirjeldatakse paremini, näiteks *Rada kuni Peron*, ja jalakäijate ja
+  jalgratturite ühisteedest, nagu kanalite äärsed vedamisrajad, teatatakse, kui neile jõuad, selle
+  asemel et käsitleda neid tee kõnniteena.
+* *Minu asukoht* ei jää enam nõrga võrguühenduse korral vait.
+* Parandatud on probleem võrguühenduseta kaartide allalaadimisel.
+
+Mõni asi toimib veidi teisiti. Soundscape saab nüüd kasutada su telefoni sammuloendurit, et teada,
+millal sa kõnnid, nii et ta märkab varem, et oled sõidukist väljunud või peatunud; selle versiooni
+esmakordsel avamisel küsitakse sinult uut luba *Kehaline aktiivsus* (iPhone’is *Liikumine ja
+vormisolek*). Hääled on nüüd rühmitatud keele järgi, häälel toksamine esitab näidise ja valik
+*Automaatne* kasutab sinu keele vaikehäält. Menüüvalik *Jaga reisi salvestust* on kadunud: kui *Luba
+reisi salvestamine* on sisse lülitatud, küsib *Võta ühendust toega*, kas lisada sinu salvestatud
+teekond, mis hõlmab nüüd alati viimast tundi.
 
 ## Mis on uut versioonis 2.0
 
@@ -291,7 +301,7 @@ muudetud töökindlamaks telefonides, mis sulgevad taustarakendusi agressiivselt
 ## Kuidas meile probleemidest teatada
 
 Kui midagi pole korras, tahaksime sellest kuulda. Kirjuta Help Deskile aadressil
-<soundscapeAndroid@scottishtecharmy.support> või küsi Slackis, kui oled STA liige.
+<soundscape@scottishtecharmy.support> või küsi Slackis, kui oled STA liige.
 
 Kui teade oli vale või jäi üldse tulemata, aitab sinu teekonna salvestus meid tohutult — saame selle
 uuesti läbi mängida ja näha täpselt, millele Soundscape tugines. Juhised on jaotises
@@ -304,5 +314,6 @@ töö. Soundscape töötab nüüd ka iPhone'is ja mõlemad rakendused ehitatakse
 samad ekraanid, sama sõnastus ja samad teated. Nii jõuab uuendus, nagu ülalkirjeldatud sõiduteated,
 mõlemasse korraga, selle asemel et seda kaks korda kirjutada. See ühine alus selgitab, miks 2.0 nii
 kaua aega võttis, ja just see peaks tooma tulevased väljalasked mõlemale platvormile kiiremini.
-iPhone'i rakendus on praegu saadaval TestFlighti kaudu kutsega: küsi Slackis, kui oled STA liige, või
-kirjuta Help Deskile.
+iPhone'i rakendus on nüüd avalikus beetaversioonis Apple'i TestFlighti rakenduse kaudu ja liituda
+saab igaüks: paigalda TestFlight App Store'ist ja ava oma iPhone'is
+<https://testflight.apple.com/join/XFb7C5JN>.

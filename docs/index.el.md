@@ -20,13 +20,33 @@ machine-translated: true
 
 Η εφαρμογή συνεχίζει να λειτουργεί στο παρασκήνιο όταν το τηλέφωνο βρίσκεται σε τσέπη ή τσάντα - δεν χρειάζεται να το κρατάτε ή να κοιτάτε την οθόνη. Είναι εντελώς δωρεάν και χωρίς διαφημίσεις, και μπορεί να λειτουργεί εκτός σύνδεσης χρησιμοποιώντας περιοχές χάρτη που έχουν ληφθεί. Η εφαρμογή στέλνει στατιστικά χρήσης και αναφορές σφαλμάτων ώστε να εντοπίζουμε και να διορθώνουμε προβλήματα - η [πολιτική απορρήτου]({{ "/privacy-policy.html" | relative_url }}) εξηγεί ακριβώς τι συλλέγεται.
 
-Το Soundscape αναπτύχθηκε αρχικά σε iOS από τη [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) και χρησιμοποιήθηκε ευρέως πριν γίνει ανοιχτού κώδικα το 2022. Ο [Scottish Tech Army](https://www.scottishtecharmy.org) το έχει διατηρήσει διαθέσιμο σε iOS και το έχει επίσης ξαναγράψει ως εφαρμογή ανοιχτού κώδικα για Android.
+Το Soundscape αναπτύχθηκε αρχικά σε iOS από τη [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) και χρησιμοποιήθηκε ευρέως πριν γίνει ανοιχτού κώδικα το 2022. Ο [Scottish Tech Army](https://www.scottishtecharmy.org) το έχει διατηρήσει διαθέσιμο σε iOS και το έχει ξαναγράψει ως νέα εφαρμογή ανοιχτού κώδικα για Android και iOS, που μοιράζονται τον ίδιο κώδικα.
 
 <a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Αποκτήστε το Soundscape στο Google Play" height=80></a>
+<!-- App Store badge for the legacy iOS app, hidden while everyone is pointed at the iOS public beta:
 <a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Κατεβάστε το Soundscape από το App Store" height=80></a>
+-->
+
+## Δημόσιες εκδόσεις beta
+Οι νέες λειτουργίες έρχονται πρώτα στις εκδόσεις beta, και μπορεί να συμμετάσχει οποιοσδήποτε.
+
+### iOS
+Η εφαρμογή iOS στο App Store είναι ακόμη η παλαιότερη εφαρμογή που βασίζεται σε εκείνη της Microsoft. Η νέα έκδοση του Soundscape για iOS, φτιαγμένη από τον ίδιο κώδικα με την εφαρμογή Android, διατίθεται μόνο ως δημόσια beta μέσω της εφαρμογής TestFlight της Apple. Αντικαθιστά την υπάρχουσα εφαρμογή iOS και διατηρεί τους αποθηκευμένους δείκτες και τις διαδρομές σας – δείτε [τη μετάβαση από την παλιά εφαρμογή iOS]({{ "/ios-upgrade-from-legacy.html" | relative_url }}) (στα αγγλικά) για το τι έχει αλλάξει. Για να συμμετάσχετε:
+
+1. Εγκαταστήστε το [TestFlight](https://apps.apple.com/app/testflight/id899247664) από το App Store στο iPhone σας.
+2. Στο ίδιο iPhone, ανοίξτε τον σύνδεσμο <https://testflight.apple.com/join/XFb7C5JN>.
+3. Το TestFlight ανοίγει και προσφέρεται να εγκαταστήσει την beta του Soundscape. Αποδεχτείτε την πρόσκληση και εγκαταστήστε την εφαρμογή.
+
+### Android
+1. Ανοίξτε το <https://play.google.com/apps/testing/org.scottishtecharmy.soundscape>, συνδεδεμένοι με τον λογαριασμό Google που χρησιμοποιείται στο τηλέφωνό σας, και εγγραφείτε ως δοκιμαστής.
+2. Εγκαταστήστε ή ενημερώστε το Soundscape από το [Play Store](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) όπως συνήθως. Μπορεί να χρειαστούν λίγα λεπτά μέχρι να προσφερθεί η beta, οπότε αν βλέπετε ακόμη την κυκλοφορημένη έκδοση, περιμένετε λίγο και ελέγξτε ξανά.
+
+Οι ενημερώσεις beta έρχονται στη συνέχεια μέσω του Play Store όπως κάθε άλλη ενημέρωση. Για να σταματήσετε τις δοκιμές, επιστρέψτε στον ίδιο σύνδεσμο και αποχωρήστε από το πρόγραμμα.
+
+Στείλτε μας όποιο πρόβλημα βρείτε σε οποιαδήποτε από τις δύο εκδόσεις beta στη διεύθυνση υποστήριξης παρακάτω.
 
 ## Υποστήριξη Soundscape
-Η διεύθυνση email <soundscapeAndroid@scottishtecharmy.support> οδηγεί απευθείας στο σύστημα υποστήριξής μας. Στείλτε μας οποιοδήποτε σχόλιο έχετε, είτε πρόκειται για αίτημα λειτουργίας είτε για αναφορά σφάλματος. Θα λάβετε ένα αυτοματοποιημένο email ως απάντηση και εμείς θα ειδοποιηθούμε ότι υπάρχει ένα νέο αίτημα προς εξέταση και θα προσπαθήσουμε να το απαντήσουμε όσο το δυνατόν πιο γρήγορα.
+Η διεύθυνση email <soundscape@scottishtecharmy.support> οδηγεί απευθείας στο σύστημα υποστήριξής μας. Στείλτε μας οποιοδήποτε σχόλιο έχετε, είτε πρόκειται για αίτημα λειτουργίας είτε για αναφορά σφάλματος. Θα λάβετε ένα αυτοματοποιημένο email ως απάντηση και εμείς θα ειδοποιηθούμε ότι υπάρχει ένα νέο αίτημα προς εξέταση και θα προσπαθήσουμε να το απαντήσουμε όσο το δυνατόν πιο γρήγορα.
 
 ## Πώς να χρησιμοποιήσετε το Soundscape
 [Πώς να χρησιμοποιήσετε το Soundscape]({{ "/users/user.html" | relative_url }})
