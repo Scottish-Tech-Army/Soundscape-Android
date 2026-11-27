@@ -34,7 +34,7 @@ private val traditionalChineseRegions = setOf("TW", "HK", "MO")
 // The app's languages which are written in the Latin alphabet - see supportedLanguages. Serbian is
 // offered in Cyrillic, so isn't one of them.
 private val latinScriptLanguages = setOf(
-    "ca", "cs", "da", "de", "en", "es", "et", "fi", "fr", "ha", "hr", "hu", "id", "is", "it", "nb",
+    "ca", "cs", "da", "de", "en", "es", "et", "fi", "fr", "ha", "hr", "hu", "id", "is", "it", "lt", "nb",
     "nl", "pl", "pt", "ro", "sk", "sl", "sv", "sw", "tr", "vi"
 )
 
