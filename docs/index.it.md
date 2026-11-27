@@ -46,7 +46,7 @@ Gli aggiornamenti beta arrivano poi dal Play Store come qualsiasi altro aggiorna
 Invia qualsiasi problema riscontrato con l'una o l'altra beta all'indirizzo di assistenza qui sotto.
 
 ## Supporto Soundscape
-L'indirizzo email <soundscape@scottishtecharmy.support> si collega direttamente al nostro sistema di help desk. Inviaci qualsiasi feedback tu abbia, che si tratti di una richiesta di funzionalità o di una segnalazione di bug. Riceverai un'email automatica in risposta e a noi arriverà una notifica che c'è un nuovo ticket da esaminare e cercheremo di rispondere il più rapidamente possibile.
+L'indirizzo email <{{ site.support_email }}> si collega direttamente al nostro sistema di help desk. Inviaci qualsiasi feedback tu abbia, che si tratti di una richiesta di funzionalità o di una segnalazione di bug. Riceverai un'email automatica in risposta e a noi arriverà una notifica che c'è un nuovo ticket da esaminare e cercheremo di rispondere il più rapidamente possibile.
 
 ## Come usare Soundscape
 [Come usare Soundscape]({{ "/users/user.html" | relative_url }})

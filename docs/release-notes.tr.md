@@ -304,7 +304,7 @@ daha sağlam hale getirildi.
 ## Sorunları bize nasıl bildirirsiniz
 
 Bir şey yolunda değilse bunu duymak isteriz. Help Desk'e
-<soundscape@scottishtecharmy.support> adresinden yazın ya da STA üyesiyseniz Slack'te sorun.
+<{{ site.support_email }}> adresinden yazın ya da STA üyesiyseniz Slack'te sorun.
 
 Bir bildirim yanlışsa veya hiç gelmediyse, yolculuğunuzun bir kaydı bize çok yardımcı olur — kaydı
 yeniden oynatıp Soundscape'in tam olarak neye dayandığını görebiliriz. Yönergeler şurada:

@@ -9,7 +9,7 @@ content_lang: tr
 
 # Soundscape Türkçe çevirisi — birkaç soru
 
-> Yanıtlarınızı **soundscape@scottishtecharmy.support** adresine e-postayla gönderin ve konu satırında dili belirtin.
+> Yanıtlarınızı **{{ site.support_email }}** adresine e-postayla gönderin ve konu satırında dili belirtin.
 
 
 *Turkish translation — questions for native-speaker reviewers. English

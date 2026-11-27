@@ -46,7 +46,7 @@ Aktualizácie beta verzie potom prichádzajú cez Obchod Play ako každá iná a
 Problémy, ktoré nájdete v ktorejkoľvek beta verzii, prosím posielajte na adresu podpory nižšie.
 
 ## Podpora Soundscape
-E-mailová adresa <soundscape@scottishtecharmy.support> vedie priamo do nášho systému podpory. Pošlite nám akúkoľvek spätnú väzbu, či už ide o návrh funkcie, alebo hlásenie chyby. Dostanete automatickú odpoveď e-mailom, nám príde upozornenie, že je tu nový tiket, a pokúsime sa ho vybaviť čo najrýchlejšie.
+E-mailová adresa <{{ site.support_email }}> vedie priamo do nášho systému podpory. Pošlite nám akúkoľvek spätnú väzbu, či už ide o návrh funkcie, alebo hlásenie chyby. Dostanete automatickú odpoveď e-mailom, nám príde upozornenie, že je tu nový tiket, a pokúsime sa ho vybaviť čo najrýchlejšie.
 
 ## Ako Soundscape používať
 [Ako Soundscape používať]({{ "/users/user.html" | relative_url }})

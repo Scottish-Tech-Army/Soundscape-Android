@@ -22,7 +22,7 @@ about the words and phrases that come up most often. It takes about ten
 minutes. You don't need to answer every question, and "that's fine" is a
 genuinely useful answer.
 
-**Send your answers by email to soundscape@scottishtecharmy.support**,
+**Send your answers by email to {{ site.support_email }}**,
 with the language in the subject line.
 
 Before you start, we suggest reading the
@@ -89,7 +89,7 @@ same address and we'll help you get set up.
 ## Spotted something else?
 
 If a phrase sounds wrong when you hear it, email it to
-soundscape@scottishtecharmy.support. Tell us what Soundscape said, what you'd
+{{ site.support_email }}. Tell us what Soundscape said, what you'd
 expect it to say, and where you heard it. Nothing more formal is needed.
 
 You can also browse every translation on

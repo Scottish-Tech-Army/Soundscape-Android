@@ -264,7 +264,7 @@ Soundscape가 사람처럼 장소를 설명하도록 많은 작업이 이루어�
 ## 문제를 알려 주는 방법
 
 무언가 잘못되었다면 알려 주시면 좋겠습니다. Help Desk
-(<soundscape@scottishtecharmy.support>)로 메일을 보내 주시거나, STA 회원이라면 Slack에서
+(<{{ site.support_email }}>)로 메일을 보내 주시거나, STA 회원이라면 Slack에서
 문의해 주세요.
 
 안내가 잘못되었거나 아예 나오지 않았다면, 이동 기록이 저희에게 큰 도움이 됩니다. 기록을 다시 재생해

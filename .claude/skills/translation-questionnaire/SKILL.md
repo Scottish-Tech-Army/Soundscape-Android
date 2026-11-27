@@ -55,7 +55,7 @@ different, unpublished format; this skill doesn't cover it.
   so each sheet is built once, unprefixed. A new sheet also needs a line in
   `docs/help-translate.md`'s list, sorted by English name.
 - **H1 and contact line** in the page's language, directly under it:
-  `> <Send your answers by email to> **soundscape@scottishtecharmy.support** <…language in the subject>.`
+  `> <Send your answers by email to> **{{ site.support_email }}** <…language in the subject>.`
   When editing an existing sheet, keep both unchanged.
 - **Arabic, Persian, Urdu:** wrap everything after the front matter in
   `<div dir="rtl" markdown="1">` … `</div>`, with blank lines inside.

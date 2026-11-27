@@ -9,7 +9,7 @@ content_lang: da
 
 # Dansk oversættelse af Soundscape — et par spørgsmål
 
-> Send dine svar på e-mail til **soundscape@scottishtecharmy.support**, og skriv sproget i emnefeltet.
+> Send dine svar på e-mail til **{{ site.support_email }}**, og skriv sproget i emnefeltet.
 
 
 *Danish translation — questions for native-speaker reviewers. English glosses

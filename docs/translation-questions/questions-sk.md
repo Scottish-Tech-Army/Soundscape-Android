@@ -9,7 +9,7 @@ content_lang: sk
 
 # Slovenský preklad Soundscape — niekoľko otázok
 
-> Odpovede pošlite e-mailom na **soundscape@scottishtecharmy.support** a do predmetu uveďte jazyk.
+> Odpovede pošlite e-mailom na **{{ site.support_email }}** a do predmetu uveďte jazyk.
 
 
 *Slovak translation — questions for native-speaker reviewers. English glosses

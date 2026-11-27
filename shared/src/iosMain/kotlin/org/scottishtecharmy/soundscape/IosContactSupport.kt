@@ -49,8 +49,6 @@ import platform.UIKit.UIBackgroundRefreshStatus
 import platform.UIKit.UIDevice
 import platform.darwin.NSObject
 
-private const val SUPPORT_RECIPIENT = "soundscape@scottishtecharmy.support"
-
 private val logger = AppLog.tag("IosContactSupport")
 
 @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
@@ -66,7 +64,7 @@ internal fun presentContactSupport(service: IosSoundscapeService, includeRecordi
     if (MFMailComposeViewController.canSendMail()) {
         val composer = MFMailComposeViewController()
         composer.setSubject(subject)
-        composer.setToRecipients(listOf(SUPPORT_RECIPIENT))
+        composer.setToRecipients(listOf(SUPPORT_EMAIL))
         // Attaching the support log buffer is only possible via this in-app composer -
         // the mailto: fallback below has no attachment mechanism.
         val logData = NSString.create(string = SupportLogBuffer.dumpAsText())
@@ -93,7 +91,7 @@ internal fun presentContactSupport(service: IosSoundscapeService, includeRecordi
         if (includeRecording) logger.w { "No mail account set up: travel recording not sent" }
         val urlString = buildString {
             append("mailto:")
-            append(SUPPORT_RECIPIENT)
+            append(SUPPORT_EMAIL)
             append("?subject=")
             append(supportUrlEncode(subject))
             append("&body=")

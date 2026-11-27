@@ -9,7 +9,7 @@ content_lang: sw
 
 # Tafsiri ya Kiswahili ya Soundscape — maswali machache
 
-> Tuma majibu yako kwa barua pepe kwenda **soundscape@scottishtecharmy.support**, na utaje lugha kwenye kichwa cha barua.
+> Tuma majibu yako kwa barua pepe kwenda **{{ site.support_email }}**, na utaje lugha kwenye kichwa cha barua.
 
 
 *Swahili translation — questions for native-speaker reviewers. This sheet is

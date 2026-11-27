@@ -9,7 +9,7 @@ content_lang: fr-CA
 
 # Traduction québécoise de Soundscape — quelques questions
 
-> Envoyez vos réponses par courriel à **soundscape@scottishtecharmy.support**, en indiquant la langue dans l’objet.
+> Envoyez vos réponses par courriel à **{{ site.support_email }}**, en indiquant la langue dans l’objet.
 
 
 *Canadian French translation — questions for native-speaker reviewers.

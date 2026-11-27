@@ -9,7 +9,7 @@ content_lang: nl
 
 # Nederlandse vertaling van Soundscape — een paar vragen
 
-> Stuur uw antwoorden per e-mail naar **soundscape@scottishtecharmy.support** en vermeld de taal in de onderwerpregel.
+> Stuur uw antwoorden per e-mail naar **{{ site.support_email }}** en vermeld de taal in de onderwerpregel.
 
 
 *Dutch translation, round 2 — questions for native-speaker reviewers. English

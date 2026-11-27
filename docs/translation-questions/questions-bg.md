@@ -9,7 +9,7 @@ content_lang: bg
 
 # Българският превод на Soundscape — няколко въпроса
 
-> Изпратете отговорите си по имейл на **soundscape@scottishtecharmy.support** и посочете езика в темата на писмото.
+> Изпратете отговорите си по имейл на **{{ site.support_email }}** и посочете езика в темата на писмото.
 
 
 *Bulgarian translation — questions for native-speaker reviewers. English

@@ -46,7 +46,7 @@ Setelah itu, pembaruan beta datang melalui Play Store seperti pembaruan lainnya.
 Silakan kirim masalah apa pun yang Anda temukan di salah satu beta ke alamat dukungan di bawah.
 
 ## Dukungan Soundscape
-Alamat surel <soundscape@scottishtecharmy.support> terhubung langsung ke sistem meja bantuan kami. Silakan kirimkan masukan apa pun, baik permintaan fitur maupun laporan bug. Anda akan menerima balasan surel otomatis, kami akan mendapat pemberitahuan bahwa ada tiket baru, dan kami akan berusaha menjawabnya secepat mungkin.
+Alamat surel <{{ site.support_email }}> terhubung langsung ke sistem meja bantuan kami. Silakan kirimkan masukan apa pun, baik permintaan fitur maupun laporan bug. Anda akan menerima balasan surel otomatis, kami akan mendapat pemberitahuan bahwa ada tiket baru, dan kami akan berusaha menjawabnya secepat mungkin.
 
 ## Cara menggunakan Soundscape
 [Cara menggunakan Soundscape]({{ "/users/user.html" | relative_url }})

@@ -46,7 +46,7 @@ Sau đó, các bản cập nhật beta sẽ đến qua Play Store như mọi b�
 Vui lòng gửi mọi sự cố bạn gặp ở bất kỳ bản beta nào tới địa chỉ hỗ trợ bên dưới.
 
 ## Hỗ trợ Soundscape
-Địa chỉ email <soundscape@scottishtecharmy.support> dẫn thẳng vào hệ thống hỗ trợ của chúng tôi. Hãy gửi cho chúng tôi mọi phản hồi, dù là đề xuất tính năng hay báo lỗi. Bạn sẽ nhận được email trả lời tự động, còn chúng tôi sẽ được báo là có phiếu yêu cầu mới và sẽ cố gắng trả lời sớm nhất có thể.
+Địa chỉ email <{{ site.support_email }}> dẫn thẳng vào hệ thống hỗ trợ của chúng tôi. Hãy gửi cho chúng tôi mọi phản hồi, dù là đề xuất tính năng hay báo lỗi. Bạn sẽ nhận được email trả lời tự động, còn chúng tôi sẽ được báo là có phiếu yêu cầu mới và sẽ cố gắng trả lời sớm nhất có thể.
 
 ## Cách dùng Soundscape
 [Cách dùng Soundscape]({{ "/users/user.html" | relative_url }})

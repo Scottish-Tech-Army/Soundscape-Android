@@ -9,7 +9,7 @@ content_lang: pa
 
 # Soundscape ਦਾ ਪੰਜਾਬੀ ਅਨੁਵਾਦ — ਕੁਝ ਸਵਾਲ
 
-> ਆਪਣੇ ਜਵਾਬ **soundscape@scottishtecharmy.support** 'ਤੇ ਈਮੇਲ ਕਰੋ, ਅਤੇ ਵਿਸ਼ੇ ਵਿੱਚ ਭਾਸ਼ਾ ਦਾ ਨਾਮ ਲਿਖੋ।
+> ਆਪਣੇ ਜਵਾਬ **{{ site.support_email }}** 'ਤੇ ਈਮੇਲ ਕਰੋ, ਅਤੇ ਵਿਸ਼ੇ ਵਿੱਚ ਭਾਸ਼ਾ ਦਾ ਨਾਮ ਲਿਖੋ।
 
 
 *Punjabi (Gurmukhi) translation — questions for native-speaker reviewers. English

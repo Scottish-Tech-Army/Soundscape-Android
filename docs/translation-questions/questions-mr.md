@@ -9,7 +9,7 @@ content_lang: mr
 
 # Soundscape चे मराठी भाषांतर — काही प्रश्न
 
-> तुमची उत्तरे **soundscape@scottishtecharmy.support** वर ईमेल करा, आणि विषयात भाषेचे नाव लिहा.
+> तुमची उत्तरे **{{ site.support_email }}** वर ईमेल करा, आणि विषयात भाषेचे नाव लिहा.
 
 
 *Marathi translation — questions for native-speaker reviewers. English

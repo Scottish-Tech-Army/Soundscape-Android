@@ -301,7 +301,7 @@ muudetud töökindlamaks telefonides, mis sulgevad taustarakendusi agressiivselt
 ## Kuidas meile probleemidest teatada
 
 Kui midagi pole korras, tahaksime sellest kuulda. Kirjuta Help Deskile aadressil
-<soundscape@scottishtecharmy.support> või küsi Slackis, kui oled STA liige.
+<{{ site.support_email }}> või küsi Slackis, kui oled STA liige.
 
 Kui teade oli vale või jäi üldse tulemata, aitab sinu teekonna salvestus meid tohutult — saame selle
 uuesti läbi mängida ja näha täpselt, millele Soundscape tugines. Juhised on jaotises

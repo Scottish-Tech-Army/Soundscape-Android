@@ -46,7 +46,7 @@ Baada ya hapo masasisho ya beta hufika kupitia Play Store kama sasisho lingine l
 Tafadhali tuma matatizo yoyote unayopata kwenye beta yoyote kwa anwani ya usaidizi hapa chini.
 
 ## Msaada wa Soundscape
-Anwani ya barua pepe <soundscape@scottishtecharmy.support> huunganisha moja kwa moja na mfumo wetu wa msaada. Tafadhali tutumie maoni yoyote, iwe ni ombi la kipengele au ripoti ya hitilafu. Utapokea barua pepe ya kiotomatiki kama jibu, sisi tutaarifiwa kuwa kuna ombi jipya, na tutajaribu kulijibu haraka iwezekanavyo.
+Anwani ya barua pepe <{{ site.support_email }}> huunganisha moja kwa moja na mfumo wetu wa msaada. Tafadhali tutumie maoni yoyote, iwe ni ombi la kipengele au ripoti ya hitilafu. Utapokea barua pepe ya kiotomatiki kama jibu, sisi tutaarifiwa kuwa kuna ombi jipya, na tutajaribu kulijibu haraka iwezekanavyo.
 
 ## Jinsi ya kutumia Soundscape
 [Jinsi ya kutumia Soundscape]({{ "/users/user.html" | relative_url }})

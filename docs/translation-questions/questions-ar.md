@@ -11,7 +11,7 @@ content_lang: ar
 
 # الترجمة العربية لتطبيق Soundscape — بعض الأسئلة
 
-> أرسل إجاباتك بالبريد الإلكتروني إلى **soundscape@scottishtecharmy.support**، واذكر اللغة في سطر الموضوع.
+> أرسل إجاباتك بالبريد الإلكتروني إلى **{{ site.support_email }}**، واذكر اللغة في سطر الموضوع.
 
 
 *Arabic translation — questions for native-speaker reviewers. English glosses

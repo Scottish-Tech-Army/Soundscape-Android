@@ -9,7 +9,7 @@ content_lang: el
 
 # Η ελληνική μετάφραση του Soundscape — μερικές ερωτήσεις
 
-> Στείλτε τις απαντήσεις σας με email στο **soundscape@scottishtecharmy.support** και αναφέρετε τη γλώσσα στο θέμα.
+> Στείλτε τις απαντήσεις σας με email στο **{{ site.support_email }}** και αναφέρετε τη γλώσσα στο θέμα.
 
 
 *Greek translation — questions for native-speaker reviewers. English glosses

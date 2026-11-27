@@ -9,7 +9,7 @@ content_lang: cs
 
 # Český překlad Soundscape — několik otázek
 
-> Odpovědi pošlete e-mailem na **soundscape@scottishtecharmy.support** a do předmětu uveďte jazyk.
+> Odpovědi pošlete e-mailem na **{{ site.support_email }}** a do předmětu uveďte jazyk.
 
 
 *Czech translation — questions for native-speaker reviewers. English glosses

@@ -9,7 +9,7 @@ content_lang: sr
 
 # Српски превод Soundscape-а — неколико питања
 
-> Пошаљите одговоре имејлом на **soundscape@scottishtecharmy.support** и у наслову наведите језик.
+> Пошаљите одговоре имејлом на **{{ site.support_email }}** и у наслову наведите језик.
 
 
 *Serbian translation — questions for native-speaker reviewers. English

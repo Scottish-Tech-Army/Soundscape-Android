@@ -44,7 +44,7 @@ Beta updates then arrive through the Play Store like any other update. To stop t
 Please send any problems you find with either beta to the support address below.
 
 ## Soundscape support
-The email address <soundscape@scottishtecharmy.support> links straight into our help desk system. Please send in any feedback you have, whether it's a feature request or a bug report. You'll receive an automated email in response and we'll get pinged that there's a new ticket to look at and we'll try and answer it as quickly as possible.
+The email address <{{ site.support_email }}> links straight into our help desk system. Please send in any feedback you have, whether it's a feature request or a bug report. You'll receive an automated email in response and we'll get pinged that there's a new ticket to look at and we'll try and answer it as quickly as possible.
 
 ## How to use Soundscape
 [How to use Soundscape]({{ "/users/user.html" | relative_url }})

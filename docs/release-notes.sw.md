@@ -306,7 +306,7 @@ mandharinyuma kwa nguvu.
 ## Jinsi ya kutuarifu kuhusu matatizo
 
 Kama kuna jambo lisilo sawa, tungependa kulijua. Andika kwa Help Desk kwa
-<soundscape@scottishtecharmy.support>, au uliza kwenye Slack kama wewe ni mwanachama wa STA.
+<{{ site.support_email }}>, au uliza kwenye Slack kama wewe ni mwanachama wa STA.
 
 Kama tangazo lilikosea au halikutokea kabisa, rekodi ya safari yako hutusaidia sana — tunaweza
 kuicheza tena na kuona hasa Soundscape ilikuwa ikitumia nini. Maelekezo yako kwenye

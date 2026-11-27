@@ -46,7 +46,7 @@ Betaoppdateringer kommer deretter via Play Butikk som alle andre oppdateringer. 
 Send gjerne problemer du finner i en av betaversjonene til støtteadressen nedenfor.
 
 ## Soundscape-støtte
-E-postadressen <soundscape@scottishtecharmy.support> kobler deg direkte inn i vårt brukerstøttesystem. Send oss gjerne all tilbakemelding du har, enten det er et ønske om en funksjon eller en feilrapport. Du får et automatisk e-postsvar tilbake, og vi blir varslet om at det er en ny sak å se på, og vi forsøker å svare så raskt som mulig.
+E-postadressen <{{ site.support_email }}> kobler deg direkte inn i vårt brukerstøttesystem. Send oss gjerne all tilbakemelding du har, enten det er et ønske om en funksjon eller en feilrapport. Du får et automatisk e-postsvar tilbake, og vi blir varslet om at det er en ny sak å se på, og vi forsøker å svare så raskt som mulig.
 
 ## Slik bruker du Soundscape
 [Slik bruker du Soundscape]({{ "/users/user.html" | relative_url }})

@@ -11,7 +11,7 @@ The Android and iOS apps are now built from a single shared codebase, so the UI 
 described here apply to both unless a section specifically calls out a difference between them.
 
 **Reporting problems:** if you're an STA member you can ping us on Slack. Otherwise please send all
-feedback to the Help Desk at <soundscape@scottishtecharmy.support>.
+feedback to the Help Desk at <{{ site.support_email }}>.
 
 ## Requirements
 

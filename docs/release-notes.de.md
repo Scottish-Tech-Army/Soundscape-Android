@@ -329,7 +329,7 @@ Hintergrund-Apps aggressiv beenden.
 ## Probleme melden
 
 Wenn etwas nicht stimmt, würden wir gern davon erfahren. Schreiben Sie an den Help Desk unter
-<soundscape@scottishtecharmy.support> oder fragen Sie auf Slack, wenn Sie STA-Mitglied sind.
+<{{ site.support_email }}> oder fragen Sie auf Slack, wenn Sie STA-Mitglied sind.
 
 Wenn eine Ansage falsch war oder ausblieb, hilft uns eine Aufzeichnung Ihrer Fahrt außerordentlich –
 wir können sie erneut abspielen und genau sehen, womit Soundscape gearbeitet hat. Eine Anleitung

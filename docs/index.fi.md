@@ -46,7 +46,7 @@ Beetapäivitykset tulevat sen jälkeen Play Kaupan kautta kuten mitkä tahansa m
 Lähetä kummassakin beetassa havaitsemasi ongelmat alla olevaan tukiosoitteeseen.
 
 ## Soundscapen tuki
-Sähköpostiosoite <soundscape@scottishtecharmy.support> johtaa suoraan tukijärjestelmäämme. Lähetä meille mitä tahansa palautetta, oli kyseessä sitten ominaisuuspyyntö tai virheraportti. Saat vastauksena automaattisen sähköpostin, ja meille tulee ilmoitus uudesta käsiteltävästä tiketistä, jonka yritämme vastata mahdollisimman nopeasti.
+Sähköpostiosoite <{{ site.support_email }}> johtaa suoraan tukijärjestelmäämme. Lähetä meille mitä tahansa palautetta, oli kyseessä sitten ominaisuuspyyntö tai virheraportti. Saat vastauksena automaattisen sähköpostin, ja meille tulee ilmoitus uudesta käsiteltävästä tiketistä, jonka yritämme vastata mahdollisimman nopeasti.
 
 ## Kuinka Soundscapea käytetään
 [Kuinka Soundscapea käytetään]({{ "/users/user.html" | relative_url }})

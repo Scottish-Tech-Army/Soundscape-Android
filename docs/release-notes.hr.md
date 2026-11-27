@@ -298,7 +298,7 @@ učvršćeno na telefonima koji agresivno zatvaraju pozadinske aplikacije.
 ## Kako nam prijaviti probleme
 
 Ako nešto nije u redu, rado ćemo čuti. Pišite Help Desku na
-<soundscape@scottishtecharmy.support> ili pitajte na Slacku ako ste član STA-a.
+<{{ site.support_email }}> ili pitajte na Slacku ako ste član STA-a.
 
 Ako je obavijest bila pogrešna ili je izostala, snimka vašeg putovanja iznimno nam pomaže — možemo je
 reproducirati i vidjeti točno s čime je Soundscape radio. Upute se nalaze u odjeljku

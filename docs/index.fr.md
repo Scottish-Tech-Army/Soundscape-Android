@@ -46,7 +46,7 @@ Les mises à jour bêta arrivent ensuite par le Play Store comme toute autre mis
 Merci d’envoyer tout problème rencontré avec l’une ou l’autre bêta à l’adresse d’assistance ci-dessous.
 
 ## Assistance Soundscape
-L'adresse e-mail <soundscape@scottishtecharmy.support> mène directement à notre système d'assistance. N'hésitez pas à nous envoyer vos commentaires, qu'il s'agisse d'une demande de fonctionnalité ou d'un rapport de bug. Vous recevrez un e-mail automatique en réponse, et nous serons avertis qu'un nouveau ticket attend d'être examiné, et nous essaierons d'y répondre aussi rapidement que possible.
+L'adresse e-mail <{{ site.support_email }}> mène directement à notre système d'assistance. N'hésitez pas à nous envoyer vos commentaires, qu'il s'agisse d'une demande de fonctionnalité ou d'un rapport de bug. Vous recevrez un e-mail automatique en réponse, et nous serons avertis qu'un nouveau ticket attend d'être examiné, et nous essaierons d'y répondre aussi rapidement que possible.
 
 ## Comment utiliser Soundscape
 [Comment utiliser Soundscape]({{ "/users/user.html" | relative_url }})

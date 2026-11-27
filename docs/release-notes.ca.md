@@ -310,7 +310,7 @@ aplicacions en segon pla.
 ## Com informar-nos de problemes
 
 Si alguna cosa no va bé, ens agradaria saber-ho. Escriviu al Help Desk a
-<soundscape@scottishtecharmy.support>, o pregunteu al Slack si sou membre de l'STA.
+<{{ site.support_email }}>, o pregunteu al Slack si sou membre de l'STA.
 
 Si un avís va ser incorrecte o no es va produir, un enregistrament del vostre trajecte ens ajuda
 moltíssim: el podem reproduir i veure exactament amb què treballava Soundscape. Trobareu les

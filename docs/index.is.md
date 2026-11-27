@@ -46,7 +46,7 @@ Beta-uppfærslur berast síðan í gegnum Play Store eins og hverjar aðrar uppf
 Vinsamlegast sendu vandamál sem þú finnur í hvorri beta-útgáfunni sem er á þjónustunetfangið hér fyrir neðan.
 
 ## Aðstoð við Soundscape
-Netfangið <soundscape@scottishtecharmy.support> tengist beint inn í aðstoðarkerfið okkar. Vinsamlegast sendu inn allar athugasemdir sem þú hefur, hvort sem það er ósk um eiginleika eða villutilkynning. Þú færð sjálfvirkan tölvupóst til baka og við fáum tilkynningu um að það sé nýtt mál til að skoða og við reynum að svara því eins fljótt og auðið er.
+Netfangið <{{ site.support_email }}> tengist beint inn í aðstoðarkerfið okkar. Vinsamlegast sendu inn allar athugasemdir sem þú hefur, hvort sem það er ósk um eiginleika eða villutilkynning. Þú færð sjálfvirkan tölvupóst til baka og við fáum tilkynningu um að það sé nýtt mál til að skoða og við reynum að svara því eins fljótt og auðið er.
 
 ## Hvernig á að nota Soundscape
 [Hvernig á að nota Soundscape]({{ "/users/user.html" | relative_url }})

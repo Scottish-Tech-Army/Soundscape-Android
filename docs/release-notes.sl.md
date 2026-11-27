@@ -299,7 +299,7 @@ utrjeno na telefonih, ki agresivno zapirajo aplikacije v ozadju.
 ## Kako nam sporočite težave
 
 Če kaj ni v redu, bi radi izvedeli. Pišite na Help Desk na
-<soundscape@scottishtecharmy.support> ali vprašajte na Slacku, če ste član STA.
+<{{ site.support_email }}> ali vprašajte na Slacku, če ste član STA.
 
 Če je bilo obvestilo napačno ali ga sploh ni bilo, nam posnetek vaše poti izjemno pomaga — lahko ga
 predvajamo znova in natančno vidimo, s čim je Soundscape delal. Navodila so v razdelku
