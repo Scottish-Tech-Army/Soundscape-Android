@@ -11,7 +11,7 @@ content_lang: ur
 
 # Soundscape کا اردو ترجمہ — چند سوالات
 
-> اپنے جوابات **soundscapeAndroid@scottishtecharmy.support** پر ای میل کریں، اور موضوع میں زبان کا نام لکھیں۔
+> اپنے جوابات **soundscape@scottishtecharmy.support** پر ای میل کریں، اور موضوع میں زبان کا نام لکھیں۔
 
 
 *Urdu translation — questions for native-speaker reviewers. English glosses

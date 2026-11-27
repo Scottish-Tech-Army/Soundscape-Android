@@ -9,7 +9,7 @@ content_lang: hi
 
 # Soundscape का हिंदी अनुवाद — कुछ सवाल
 
-> अपने जवाब **soundscapeAndroid@scottishtecharmy.support** पर ईमेल करें, और विषय में भाषा का नाम लिखें।
+> अपने जवाब **soundscape@scottishtecharmy.support** पर ईमेल करें, और विषय में भाषा का नाम लिखें।
 
 
 *Hindi translation — questions for native-speaker reviewers. English glosses

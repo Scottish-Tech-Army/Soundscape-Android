@@ -9,7 +9,7 @@ content_lang: en-GB
 
 # Soundscape in UK English — a few questions
 
-> Email your answers to **soundscapeAndroid@scottishtecharmy.support**, with the language in the subject line.
+> Email your answers to **soundscape@scottishtecharmy.support**, with the language in the subject line.
 
 
 Hello, and thanks for taking a look.

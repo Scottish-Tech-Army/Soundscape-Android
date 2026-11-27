@@ -9,7 +9,7 @@ content_lang: fr
 
 # Traduction française de Soundscape — quelques questions
 
-> Envoyez vos réponses par e-mail à **soundscapeAndroid@scottishtecharmy.support**, en indiquant la langue dans l’objet.
+> Envoyez vos réponses par e-mail à **soundscape@scottishtecharmy.support**, en indiquant la langue dans l’objet.
 
 
 *French translation, round 5 — questions for native-speaker reviewers. English

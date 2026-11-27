@@ -9,7 +9,7 @@ content_lang: uk
 
 # Український переклад Soundscape — ще кілька запитань
 
-> Надішліть свої відповіді електронною поштою на **soundscapeAndroid@scottishtecharmy.support** і вкажіть мову в темі листа.
+> Надішліть свої відповіді електронною поштою на **soundscape@scottishtecharmy.support** і вкажіть мову в темі листа.
 
 
 *Ukrainian translation — follow-up questions for the native reviewer.

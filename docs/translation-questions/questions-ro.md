@@ -9,7 +9,7 @@ content_lang: ro
 
 # Traducerea în română a Soundscape — câteva întrebări
 
-> Trimiteți răspunsurile prin e-mail la **soundscapeAndroid@scottishtecharmy.support** și menționați limba în subiect.
+> Trimiteți răspunsurile prin e-mail la **soundscape@scottishtecharmy.support** și menționați limba în subiect.
 
 
 *Romanian translation — questions for native-speaker reviewers. English

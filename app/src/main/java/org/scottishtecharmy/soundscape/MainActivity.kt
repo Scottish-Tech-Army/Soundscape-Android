@@ -935,7 +935,7 @@ class MainActivity : AppCompatActivity() {
         val unknownOsmKeys = ResourceMapper.getUnfoundKeys()
         unknownOsmKeys.forEach { report.append(reportLine("Untranslated OSM key", it)) }
 
-        val supportEmail = "soundscapeAndroid@scottishtecharmy.support"
+        val supportEmail = "soundscape@scottishtecharmy.support"
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "message/rfc822"
             putExtra(Intent.EXTRA_EMAIL, arrayOf(supportEmail))

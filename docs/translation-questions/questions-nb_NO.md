@@ -9,7 +9,7 @@ content_lang: nb
 
 # Norsk oversettelse av Soundscape — noen spørsmål
 
-> Send svarene dine på e-post til **soundscapeAndroid@scottishtecharmy.support**, og skriv språket i emnefeltet.
+> Send svarene dine på e-post til **soundscape@scottishtecharmy.support**, og skriv språket i emnefeltet.
 
 
 *Norwegian Bokmål translation — questions for native-speaker reviewers.

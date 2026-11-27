@@ -9,7 +9,7 @@ content_lang: pl
 
 # Tłumaczenie na polski — prośba o opinię
 
-> Odpowiedzi wyślij e-mailem na adres **soundscapeAndroid@scottishtecharmy.support**, podając język w temacie wiadomości.
+> Odpowiedzi wyślij e-mailem na adres **soundscape@scottishtecharmy.support**, podając język w temacie wiadomości.
 
 
 *Polish translation, round 3 — questions for native-speaker reviewers. English

@@ -9,7 +9,7 @@ content_lang: sl
 
 # Slovenski prevod Soundscapa — nekaj vprašanj
 
-> Odgovore pošljite po e-pošti na **soundscapeAndroid@scottishtecharmy.support** in v zadevi navedite jezik.
+> Odgovore pošljite po e-pošti na **soundscape@scottishtecharmy.support** in v zadevi navedite jezik.
 
 
 *Slovenian translation — questions for native-speaker reviewers. English

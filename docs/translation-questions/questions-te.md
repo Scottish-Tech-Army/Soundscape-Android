@@ -9,7 +9,7 @@ content_lang: te
 
 # Soundscape తెలుగు అనువాదం — కొన్ని ప్రశ్నలు
 
-> మీ జవాబులను **soundscapeAndroid@scottishtecharmy.support** కు ఈమెయిల్ చేయండి, సబ్జెక్ట్‌లో భాష పేరు రాయండి.
+> మీ జవాబులను **soundscape@scottishtecharmy.support** కు ఈమెయిల్ చేయండి, సబ్జెక్ట్‌లో భాష పేరు రాయండి.
 
 
 *Telugu translation — questions for native-speaker reviewers. English glosses

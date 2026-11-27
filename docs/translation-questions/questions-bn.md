@@ -9,7 +9,7 @@ content_lang: bn
 
 # Soundscape-এর বাংলা অনুবাদ — কয়েকটি প্রশ্ন
 
-> আপনার উত্তর ইমেলে **soundscapeAndroid@scottishtecharmy.support** ঠিকানায় পাঠান, এবং বিষয়ের ঘরে ভাষার নাম লিখুন।
+> আপনার উত্তর ইমেলে **soundscape@scottishtecharmy.support** ঠিকানায় পাঠান, এবং বিষয়ের ঘরে ভাষার নাম লিখুন।
 
 
 *Bengali translation — questions for native-speaker reviewers. English

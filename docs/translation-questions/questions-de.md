@@ -9,7 +9,7 @@ content_lang: de
 
 # Deutsche Übersetzung von Soundscape — ein paar Fragen
 
-> Senden Sie Ihre Antworten per E-Mail an **soundscapeAndroid@scottishtecharmy.support** und nennen Sie die Sprache im Betreff.
+> Senden Sie Ihre Antworten per E-Mail an **soundscape@scottishtecharmy.support** und nennen Sie die Sprache im Betreff.
 
 
 *German translation — questions for native-speaker reviewers. English glosses
