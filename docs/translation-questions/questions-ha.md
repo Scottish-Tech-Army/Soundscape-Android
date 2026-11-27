@@ -9,7 +9,7 @@ content_lang: ha
 
 # Fassarar Soundscape zuwa Hausa — wasu tambayoyi
 
-> Ku aika amsoshinku ta imel zuwa **soundscapeAndroid@scottishtecharmy.support**, kuma ku rubuta harshen a cikin taken imel ɗin.
+> Ku aika amsoshinku ta imel zuwa **soundscape@scottishtecharmy.support**, kuma ku rubuta harshen a cikin taken imel ɗin.
 
 
 *Hausa translation — questions for native-speaker reviewers. This sheet is

@@ -9,7 +9,7 @@ content_lang: ja
 
 # Soundscape 日本語訳についてのご質問
 
-> 回答は **soundscapeAndroid@scottishtecharmy.support** 宛てにメールでお送りください。件名に言語名を入れてください。
+> 回答は **soundscape@scottishtecharmy.support** 宛てにメールでお送りください。件名に言語名を入れてください。
 
 
 *Japanese translation — questions for native-speaker reviewers. English

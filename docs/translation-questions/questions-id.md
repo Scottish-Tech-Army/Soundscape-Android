@@ -9,7 +9,7 @@ content_lang: id
 
 # Terjemahan Bahasa Indonesia Soundscape — beberapa pertanyaan
 
-> Kirim jawaban Anda melalui email ke **soundscapeAndroid@scottishtecharmy.support**, dan sebutkan bahasanya di baris subjek.
+> Kirim jawaban Anda melalui email ke **soundscape@scottishtecharmy.support**, dan sebutkan bahasanya di baris subjek.
 
 
 *Indonesian translation — questions for native-speaker reviewers. English

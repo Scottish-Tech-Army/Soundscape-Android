@@ -9,7 +9,7 @@ content_lang: ru
 
 # Русский перевод Soundscape — несколько вопросов
 
-> Отправьте ответы по электронной почте на **soundscapeAndroid@scottishtecharmy.support** и укажите язык в теме письма.
+> Отправьте ответы по электронной почте на **soundscape@scottishtecharmy.support** и укажите язык в теме письма.
 
 
 *Russian translation — questions for native-speaker reviewers. English

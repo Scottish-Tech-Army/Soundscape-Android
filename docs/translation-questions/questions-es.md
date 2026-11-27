@@ -9,7 +9,7 @@ content_lang: es
 
 # Traducción al español de Soundscape — lo que hemos decidido
 
-> Envía tus respuestas por correo a **soundscapeAndroid@scottishtecharmy.support** e indica el idioma en el asunto.
+> Envía tus respuestas por correo a **soundscape@scottishtecharmy.support** e indica el idioma en el asunto.
 
 *Spanish translation — decisions made with native-speaker reviewers.*
 

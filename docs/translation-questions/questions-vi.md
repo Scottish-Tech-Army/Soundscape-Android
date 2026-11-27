@@ -9,7 +9,7 @@ content_lang: vi
 
 # Bản dịch tiếng Việt của Soundscape — vài câu hỏi
 
-> Gửi câu trả lời qua email tới **soundscapeAndroid@scottishtecharmy.support** và ghi tên ngôn ngữ trong tiêu đề.
+> Gửi câu trả lời qua email tới **soundscape@scottishtecharmy.support** và ghi tên ngôn ngữ trong tiêu đề.
 
 
 *Vietnamese translation — questions for native-speaker reviewers. English

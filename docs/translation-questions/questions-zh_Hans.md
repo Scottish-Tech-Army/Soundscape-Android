@@ -9,7 +9,7 @@ content_lang: zh-CN
 
 # Soundscape 简体中文翻译 — 几个问题
 
-> 请将您的回答通过电子邮件发送至 **soundscapeAndroid@scottishtecharmy.support**，并在主题中注明语言。
+> 请将您的回答通过电子邮件发送至 **soundscape@scottishtecharmy.support**，并在主题中注明语言。
 
 
 *Simplified Chinese translation — questions for native-speaker reviewers.

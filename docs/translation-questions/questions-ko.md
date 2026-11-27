@@ -9,7 +9,7 @@ content_lang: ko
 
 # Soundscape 한국어 번역 — 몇 가지 질문
 
-> 답변은 **soundscapeAndroid@scottishtecharmy.support**로 이메일을 보내 주세요. 제목에 언어를 적어 주세요.
+> 답변은 **soundscape@scottishtecharmy.support**로 이메일을 보내 주세요. 제목에 언어를 적어 주세요.
 
 
 *Korean translation — questions for native-speaker reviewers. English glosses

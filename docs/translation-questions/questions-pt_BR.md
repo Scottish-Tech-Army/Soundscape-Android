@@ -9,7 +9,7 @@ content_lang: pt-BR
 
 # Tradução do Soundscape para o português do Brasil — algumas perguntas
 
-> Envie suas respostas por e-mail para **soundscapeAndroid@scottishtecharmy.support**, indicando o idioma no assunto.
+> Envie suas respostas por e-mail para **soundscape@scottishtecharmy.support**, indicando o idioma no assunto.
 
 
 *Brazilian Portuguese translation — questions for native-speaker reviewers.

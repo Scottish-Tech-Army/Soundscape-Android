@@ -4,7 +4,7 @@ added 2026-09-23 is kept here, unpublished, alongside the full-corpus pack. -->
 
 # Tłumaczenie na polski — prośba o opinię
 
-> Odpowiedzi wyślij e-mailem na adres **soundscapeAndroid@scottishtecharmy.support**, podając język w temacie wiadomości.
+> Odpowiedzi wyślij e-mailem na adres **soundscape@scottishtecharmy.support**, podając język w temacie wiadomości.
 
 
 *Polish translation — request for review*
