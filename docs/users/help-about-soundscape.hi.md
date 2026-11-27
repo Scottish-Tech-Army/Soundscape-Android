@@ -14,7 +14,7 @@ Soundscape नवीन ऑडियो-आधारित तकनीक क�
 
 Soundscape इन शानदार तृतीय‑पक्ष लाइब्रेरी और डेटा पर निर्भर है। उनके लाइसेंस देखने के लिए लिंक पर क्लिक करें:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) Soundscape में उपयोग होने वाले मैपिंग और ऑडियो के सभी भू‑आंकिक (geo) डेटा प्रदान करते हैं।
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) Soundscape में उपयोग होने वाले मैपिंग और ऑडियो के सभी भौगोलिक डेटा प्रदान करते हैं।
 
 [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) का उपयोग उन मैपिंग टाइल्स को उत्पन्न करने के लिए किया जाता है जिनका हम उपयोग करते हैं।
 
