@@ -273,6 +273,13 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
     device = "id:small_phone"
 )
 @Preview(
+    name = "lt",
+    locale = "lt",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
     name = "mr",
     locale = "mr",
     group = "Language",
@@ -605,6 +612,13 @@ const val TALL_DEVICE = "spec:width=360dp,height=2000dp,dpi=320"
 @Preview(
     name = "ko",
     locale = "ko",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "lt",
+    locale = "lt",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
