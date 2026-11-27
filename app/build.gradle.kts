@@ -206,6 +206,7 @@ android {
             "it",
             "ja",
             "ko",
+            "lt",
             "mr",
             "nb",
             "nl",

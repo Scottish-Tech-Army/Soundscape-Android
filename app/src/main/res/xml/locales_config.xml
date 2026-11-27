@@ -24,6 +24,7 @@
     <locale android:name="it" /> <!-- Italian -->
     <locale android:name="ja" /> <!-- Japanese -->
     <locale android:name="ko" /> <!-- Korean -->
+    <locale android:name="lt" /> <!-- Lithuanian -->
     <locale android:name="mr" /> <!-- Marathi -->
     <locale android:name="nb" /> <!-- Norwegian -->
     <locale android:name="nl" /> <!-- Dutch -->

@@ -37,6 +37,7 @@ val supportedLanguages: List<Language> = listOf(
     Language("Italiano", "it", "IT"),
     Language("日本語", "ja", "JP"),
     Language("한국어", "ko", "KR"),
+    Language("Lietuvių", "lt", "LT"),
     Language("मराठी", "mr", "IN"),
     Language("Norsk", "nb", "NO"),
     Language("Nederlands", "nl", "NL"),

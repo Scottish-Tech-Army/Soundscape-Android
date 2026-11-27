@@ -25,7 +25,7 @@ plugins:
 # qualifiers (zh-rCN, fr-rCA, pt-rBR, en-rGB) to these. Source of truth for the
 # supported set: app/build.gradle.kts resourceConfigurations.
 languages: ["en", "ar", "bg", "bn", "ca", "cs", "da", "de", "el", "en-GB", "es", "et", "fa", "fi", "fr", "fr-CA",
-            "ha", "hi", "hr", "hu", "id", "is", "it", "ja", "ko", "mr", "nb", "nl", "pa", "pl", "pt", "pt-BR",
+            "ha", "hi", "hr", "hu", "id", "is", "it", "ja", "ko", "lt", "mr", "nb", "nl", "pa", "pl", "pt", "pt-BR",
             "ro", "ru", "sk", "sl", "sr", "sv", "sw", "ta", "te", "th", "tr", "uk", "ur", "vi", "zh-CN"]
 default_lang: "en"
 # Untranslated pages fall back to the default_lang version under every /<lang>/ URL.
