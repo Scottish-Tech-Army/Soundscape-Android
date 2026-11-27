@@ -9,7 +9,7 @@ content_lang: th
 
 # คำแปลภาษาไทยของ Soundscape — คำถามบางข้อ
 
-> ส่งคำตอบทางอีเมลไปที่ **soundscape@scottishtecharmy.support** และระบุภาษาในหัวเรื่อง
+> ส่งคำตอบทางอีเมลไปที่ **{{ site.support_email }}** และระบุภาษาในหัวเรื่อง
 
 
 *Thai translation — questions for native-speaker reviewers. English glosses

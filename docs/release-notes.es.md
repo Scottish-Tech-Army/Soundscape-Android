@@ -322,7 +322,7 @@ cierran de forma agresiva las aplicaciones en segundo plano.
 ## Cómo informarnos de un problema
 
 Si algo no va bien, nos gustaría saberlo. Escribe al Help Desk a
-<soundscape@scottishtecharmy.support>, o pregunta en Slack si eres miembro de la STA.
+<{{ site.support_email }}>, o pregunta en Slack si eres miembro de la STA.
 
 Si un aviso fue incorrecto o no se produjo, una grabación de tu trayecto nos ayuda enormemente:
 podemos reproducirla y ver exactamente con qué información contaba Soundscape. Tienes las

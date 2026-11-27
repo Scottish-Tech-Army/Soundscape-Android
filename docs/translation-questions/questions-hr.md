@@ -9,7 +9,7 @@ content_lang: hr
 
 # Hrvatski prijevod Soundscapea — nekoliko pitanja
 
-> Pošaljite odgovore e-poštom na **soundscape@scottishtecharmy.support** i u predmetu navedite jezik.
+> Pošaljite odgovore e-poštom na **{{ site.support_email }}** i u predmetu navedite jezik.
 
 
 *Croatian translation — questions for native-speaker reviewers. English

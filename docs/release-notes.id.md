@@ -312,7 +312,7 @@ yang menutup aplikasi latar secara agresif.
 ## Cara memberi tahu kami tentang masalah
 
 Jika ada yang tidak beres, kami ingin mendengarnya. Kirim surel ke Help Desk di
-<soundscape@scottishtecharmy.support>, atau bertanyalah di Slack jika Anda anggota STA.
+<{{ site.support_email }}>, atau bertanyalah di Slack jika Anda anggota STA.
 
 Jika sebuah pengumuman keliru atau tidak muncul sama sekali, rekaman perjalanan Anda sangat membantu
 kami — kami dapat memutarnya ulang dan melihat persis data apa yang dipakai Soundscape. Petunjuknya

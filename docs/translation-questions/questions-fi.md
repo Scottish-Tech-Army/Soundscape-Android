@@ -9,7 +9,7 @@ content_lang: fi
 
 # Soundscapen suomennos — muutama kysymys
 
-> Lähetä vastauksesi sähköpostilla osoitteeseen **soundscape@scottishtecharmy.support** ja mainitse kieli otsikossa.
+> Lähetä vastauksesi sähköpostilla osoitteeseen **{{ site.support_email }}** ja mainitse kieli otsikossa.
 
 
 *Finnish translation — questions for native-speaker reviewers. English

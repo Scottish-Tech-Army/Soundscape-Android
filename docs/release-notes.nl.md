@@ -314,7 +314,7 @@ en opstarten is robuuster gemaakt op telefoons die achtergrond-apps agressief af
 ## Problemen aan ons melden
 
 Klopt er iets niet, dan horen we dat graag. Mail de Help Desk op
-<soundscape@scottishtecharmy.support>, of vraag het op Slack als u STA-lid bent.
+<{{ site.support_email }}>, of vraag het op Slack als u STA-lid bent.
 
 Was een melding onjuist of bleef die uit, dan helpt een opname van uw reis ons enorm: we kunnen die
 opnieuw afspelen en precies zien waarmee Soundscape werkte. Instructies vindt u onder

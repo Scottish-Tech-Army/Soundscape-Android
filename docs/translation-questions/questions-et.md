@@ -9,7 +9,7 @@ content_lang: et
 
 # Soundscape'i eestikeelne tõlge — mõned küsimused
 
-> Saatke oma vastused e-postiga aadressile **soundscape@scottishtecharmy.support** ja märkige teemareale keel.
+> Saatke oma vastused e-postiga aadressile **{{ site.support_email }}** ja märkige teemareale keel.
 
 
 *Estonian translation — questions for native-speaker reviewers. English

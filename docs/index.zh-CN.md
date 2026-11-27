@@ -46,7 +46,7 @@ App Store 上的 iOS 应用仍是基于 Microsoft 应用的旧版应用。新的
 无论在哪个测试版中发现问题，都请发送到下方的支持邮箱。
 
 ## Soundscape 支持
-电子邮件地址 <soundscape@scottishtecharmy.support> 直接连接到我们的帮助台系统。无论是功能请求还是错误报告，请随时发送您的任何反馈。您将收到一封自动回复邮件，同时我们会收到有新工单需要查看的提醒，我们将尽快予以回复。
+电子邮件地址 <{{ site.support_email }}> 直接连接到我们的帮助台系统。无论是功能请求还是错误报告，请随时发送您的任何反馈。您将收到一封自动回复邮件，同时我们会收到有新工单需要查看的提醒，我们将尽快予以回复。
 
 ## 如何使用 Soundscape
 [如何使用 Soundscape]({{ "/users/user.html" | relative_url }})

@@ -46,7 +46,7 @@ Daga nan sabuntawar beta za su riƙa zuwa ta Play Store kamar kowace sabuntawa. 
 Don Allah ka aika duk wata matsala da ka samu a kowace beta zuwa adireshin tallafi da ke ƙasa.
 
 ## Tallafin Soundscape
-Adireshin imel <soundscape@scottishtecharmy.support> yana kaiwa kai tsaye zuwa tsarin tallafinmu. Da fatan ka aiko mana da duk wani ra'ayi, ko bukatar sabon fasali ne ko rahoton kuskure. Za ka samu imel na atomatik a matsayin amsa, mu kuma za a sanar da mu cewa akwai sabon buƙata, kuma za mu yi kokarin amsawa da wuri-wuri.
+Adireshin imel <{{ site.support_email }}> yana kaiwa kai tsaye zuwa tsarin tallafinmu. Da fatan ka aiko mana da duk wani ra'ayi, ko bukatar sabon fasali ne ko rahoton kuskure. Za ka samu imel na atomatik a matsayin amsa, mu kuma za a sanar da mu cewa akwai sabon buƙata, kuma za mu yi kokarin amsawa da wuri-wuri.
 
 ## Yadda ake amfani da Soundscape
 [Yadda ake amfani da Soundscape]({{ "/users/user.html" | relative_url }})

@@ -5,6 +5,10 @@ theme: just-the-docs
 url: https://scottish-tech-army.github.io
 baseurl: /Soundscape-Android
 
+# Help desk address used by the pages as {{ site.support_email }}. The apps have their own
+# copy, SUPPORT_EMAIL in shared/.../SupportEmail.kt; SupportEmailTest checks they match.
+support_email: soundscape@scottishtecharmy.support
+
 aux_links:
   Soundscape on GitHub: https://github.com/Scottish-Tech-Army/Soundscape-Android
 

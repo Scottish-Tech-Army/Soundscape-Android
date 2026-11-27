@@ -312,7 +312,7 @@ aplicativos em segundo plano.
 ## Como nos informar de problemas
 
 Se algo não estiver certo, gostaríamos de saber. Escreva para o Help Desk em
-<soundscape@scottishtecharmy.support>, ou pergunte no Slack se você for membro da STA.
+<{{ site.support_email }}>, ou pergunte no Slack se você for membro da STA.
 
 Se um aviso saiu errado ou não aconteceu, uma gravação da sua viagem nos ajuda enormemente: podemos
 reproduzi-la e ver exatamente com quais dados o Soundscape estava trabalhando. As instruções estão

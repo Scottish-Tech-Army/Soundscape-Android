@@ -9,7 +9,7 @@ content_lang: it
 
 # Traduzione italiana di Soundscape — alcune domande
 
-> Invia le tue risposte via email a **soundscape@scottishtecharmy.support**, indicando la lingua nell’oggetto.
+> Invia le tue risposte via email a **{{ site.support_email }}**, indicando la lingua nell’oggetto.
 
 
 *Italian translation — questions for native-speaker reviewers. English

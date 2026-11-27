@@ -304,7 +304,7 @@ robust på telefoner som aggressivt lukker apper i bakgrunnen.
 ## Å melde fra om problemer
 
 Er det noe som ikke stemmer, vil vi gjerne høre om det. Skriv til Help Desk på
-<soundscape@scottishtecharmy.support>, eller spør på Slack hvis du er STA-medlem.
+<{{ site.support_email }}>, eller spør på Slack hvis du er STA-medlem.
 
 Var en melding feil eller uteble den, hjelper et opptak av reisen din oss enormt — vi kan spille det
 av på nytt og se nøyaktig hva Soundscape jobbet ut fra. Veiledning finnes under

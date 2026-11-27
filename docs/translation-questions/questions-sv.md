@@ -9,7 +9,7 @@ content_lang: sv
 
 # Svensk översättning av Soundscape — några frågor
 
-> Skicka dina svar via e-post till **soundscape@scottishtecharmy.support** och ange språket i ämnesraden.
+> Skicka dina svar via e-post till **{{ site.support_email }}** och ange språket i ämnesraden.
 
 
 *Swedish translation — questions for native-speaker reviewers. English

@@ -336,7 +336,7 @@ automatiquement via le Play Store. Le comportement au démarrage et vis-à-vis d
 ## Nous signaler un problème
 
 Si quelque chose ne va pas, nous aimerions le savoir. Écrivez au Help Desk à l'adresse
-<soundscape@scottishtecharmy.support>, ou demandez sur Slack si vous êtes membre de la STA.
+<{{ site.support_email }}>, ou demandez sur Slack si vous êtes membre de la STA.
 
 Si une annonce était erronée ou n'a pas eu lieu, un enregistrement de votre trajet nous aide
 énormément : nous pouvons le rejouer et voir exactement sur quoi Soundscape s'appuyait. Les

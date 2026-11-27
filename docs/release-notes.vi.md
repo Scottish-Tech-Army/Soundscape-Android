@@ -303,7 +303,7 @@ nền một cách quyết liệt.
 ## Cách báo cho chúng tôi về sự cố
 
 Nếu có gì đó không ổn, chúng tôi rất muốn biết. Hãy gửi thư tới Help Desk tại
-<soundscape@scottishtecharmy.support>, hoặc hỏi trên Slack nếu bạn là thành viên STA.
+<{{ site.support_email }}>, hoặc hỏi trên Slack nếu bạn là thành viên STA.
 
 Nếu một thông báo bị sai hoặc không xuất hiện, một bản ghi hành trình của bạn giúp chúng tôi rất
 nhiều — chúng tôi có thể phát lại và thấy chính xác Soundscape đã dựa trên dữ liệu nào. Hướng dẫn nằm

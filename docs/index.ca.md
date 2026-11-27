@@ -46,7 +46,7 @@ A partir d'aleshores, les actualitzacions beta arriben per la Play Store com qua
 Envieu qualsevol problema que trobeu en qualsevol de les dues betes a l'adreça de suport que hi ha més avall.
 
 ## Suport de Soundscape
-L'adreça de correu <soundscape@scottishtecharmy.support> connecta directament amb el nostre sistema d'assistència. Envieu-nos qualsevol comentari, tant si és una petició de funcionalitat com un informe d'error. Rebreu un correu automàtic de resposta, a nosaltres ens arribarà l'avís que hi ha un tiquet nou i mirarem de respondre'l al més aviat possible.
+L'adreça de correu <{{ site.support_email }}> connecta directament amb el nostre sistema d'assistència. Envieu-nos qualsevol comentari, tant si és una petició de funcionalitat com un informe d'error. Rebreu un correu automàtic de resposta, a nosaltres ens arribarà l'avís que hi ha un tiquet nou i mirarem de respondre'l al més aviat possible.
 
 ## Com fer servir Soundscape
 [Com fer servir Soundscape]({{ "/users/user.html" | relative_url }})

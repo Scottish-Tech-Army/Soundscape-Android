@@ -9,7 +9,7 @@ content_lang: is
 
 # Íslensk þýðing Soundscape — nokkrar spurningar
 
-> Sendu svörin þín í tölvupósti á **soundscape@scottishtecharmy.support** og nefndu tungumálið í efnislínunni.
+> Sendu svörin þín í tölvupósti á **{{ site.support_email }}** og nefndu tungumálið í efnislínunni.
 
 
 *Icelandic translation — questions for native-speaker reviewers. English

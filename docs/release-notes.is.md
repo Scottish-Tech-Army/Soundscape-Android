@@ -298,7 +298,7 @@ símum sem loka bakgrunnsforritum af hörku.
 ## Hvernig þú lætur okkur vita af vandamálum
 
 Ef eitthvað er ekki í lagi viljum við gjarnan heyra af því. Sendu tölvupóst á Help Desk á
-<soundscape@scottishtecharmy.support>, eða spurðu á Slack ef þú ert félagi í STA.
+<{{ site.support_email }}>, eða spurðu á Slack ef þú ert félagi í STA.
 
 Ef tilkynning var röng eða kom alls ekki hjálpar upptaka af ferðinni þinni okkur gríðarlega — við
 getum spilað hana aftur og séð nákvæmlega hvað Soundscape studdist við. Leiðbeiningar eru í

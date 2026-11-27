@@ -261,7 +261,7 @@ Soundscape が人間と同じように場所を説明するよう、多くの作
 ## 問題のご連絡方法
 
 うまくいかないことがあれば、ぜひお知らせください。Help Desk
-（<soundscape@scottishtecharmy.support>）までメールいただくか、STA 会員の方は Slack でお尋ね
+（<{{ site.support_email }}>）までメールいただくか、STA 会員の方は Slack でお尋ね
 ください。
 
 アナウンスが誤っていた、あるいはまったく出なかった場合、移動の記録があると大いに助かります。記録を

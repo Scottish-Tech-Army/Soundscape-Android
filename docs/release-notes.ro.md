@@ -311,7 +311,7 @@ aplicațiile din fundal.
 ## Cum ne semnalați problemele
 
 Dacă ceva nu este în regulă, ne-ar plăcea să aflăm. Scrieți la Help Desk la
-<soundscape@scottishtecharmy.support> sau întrebați pe Slack dacă sunteți membru STA.
+<{{ site.support_email }}> sau întrebați pe Slack dacă sunteți membru STA.
 
 Dacă un anunț a fost greșit sau nu s-a produs, o înregistrare a călătoriei ne ajută enorm — o putem
 reda și vedea exact cu ce date lucra Soundscape. Instrucțiunile se află la

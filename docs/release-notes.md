@@ -303,7 +303,7 @@ more robust on phones that aggressively shut background apps down.
 ## Telling us about problems
 
 If something isn't right, we'd like to hear about it. Email the Help Desk at
-<soundscape@scottishtecharmy.support>, or ask on Slack if you're an STA member.
+<{{ site.support_email }}>, or ask on Slack if you're an STA member.
 
 If a callout was wrong or didn't happen, a recording of your journey helps us enormously - we can
 replay it and see exactly what Soundscape was working from. There are instructions for that under

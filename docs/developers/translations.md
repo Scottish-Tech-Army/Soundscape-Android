@@ -9,7 +9,7 @@ has_toc: false
 
 We aim to support as many languages as possible. Soundscape is translated into 45 languages, and the translations live in this repository: `shared/src/commonMain/composeResources/values-<lang>/strings.xml`, alongside the English source in `values/strings.xml`. **The repository is the source of truth.**
 
-Native speakers help mainly through the [per-language questionnaires]({{ "/help-translate/" | relative_url }}) and by email to soundscape@scottishtecharmy.support. [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) mirrors the repository so that anyone can browse the translations and leave suggestions there, but it no longer writes to the repository.
+Native speakers help mainly through the [per-language questionnaires]({{ "/help-translate/" | relative_url }}) and by email to {{ site.support_email }}. [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) mirrors the repository so that anyone can browse the translations and leave suggestions there, but it no longer writes to the repository.
 
 A guide to key Soundscape terminology can be found in the [translation terminology guide]({% link developers/translation-terminology.md %}).
 

@@ -306,7 +306,7 @@ wayoyin da ke rufe manhajojin baya cikin tsauri.
 ## Yadda za ka sanar da mu matsaloli
 
 Idan wani abu bai yi daidai ba, muna son mu ji. Aika sako zuwa Help Desk a
-<soundscape@scottishtecharmy.support>, ko ka tambaya a Slack idan kai memba ne na STA.
+<{{ site.support_email }}>, ko ka tambaya a Slack idan kai memba ne na STA.
 
 Idan sanarwa ba ta yi daidai ba ko ba ta faru ba ko kadan, rikodin tafiyarka yana taimaka mana
 matuka — za mu iya sake kunna shi mu ga daidai abin da Soundscape ke aiki da shi. Umarnin suna a

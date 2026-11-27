@@ -46,7 +46,7 @@ Aktualizacje beta przychodzą potem przez Sklep Play jak każda inna aktualizacj
 Problemy znalezione w którejkolwiek wersji beta prosimy zgłaszać na podany niżej adres pomocy.
 
 ## Pomoc techniczna Soundscape
-Adres e-mail <soundscape@scottishtecharmy.support> prowadzi prosto do naszego systemu pomocy technicznej. Prześlij wszelkie opinie, jakie masz, niezależnie od tego, czy jest to prośba o nową funkcję, czy zgłoszenie błędu. Otrzymasz automatyczną odpowiedź e-mail, a my dostaniemy powiadomienie, że pojawiło się nowe zgłoszenie do obejrzenia, i postaramy się odpowiedzieć na nie tak szybko, jak to możliwe.
+Adres e-mail <{{ site.support_email }}> prowadzi prosto do naszego systemu pomocy technicznej. Prześlij wszelkie opinie, jakie masz, niezależnie od tego, czy jest to prośba o nową funkcję, czy zgłoszenie błędu. Otrzymasz automatyczną odpowiedź e-mail, a my dostaniemy powiadomienie, że pojawiło się nowe zgłoszenie do obejrzenia, i postaramy się odpowiedzieć na nie tak szybko, jak to możliwe.
 
 ## Jak korzystać z Soundscape
 [Jak korzystać z Soundscape]({{ "/users/user.html" | relative_url }})

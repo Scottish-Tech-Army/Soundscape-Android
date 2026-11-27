@@ -313,7 +313,7 @@ telefonokon, amelyek agresszíven zárják be a háttéralkalmazásokat.
 ## Hogyan jelezze a problémákat
 
 Ha valami nem stimmel, szívesen hallunk róla. Írjon a Help Desknek a
-<soundscape@scottishtecharmy.support> címre, vagy kérdezzen a Slacken, ha STA-tag.
+<{{ site.support_email }}> címre, vagy kérdezzen a Slacken, ha STA-tag.
 
 Ha egy bemondás hibás volt vagy elmaradt, az útjáról készült felvétel óriási segítség — le tudjuk
 játszani, és pontosan látjuk, mivel dolgozott a Soundscape. Az útmutató a

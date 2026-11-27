@@ -307,7 +307,7 @@ również zostało wzmocnione na telefonach agresywnie zamykających aplikacje w
 ## Zgłaszanie nam problemów
 
 Jeśli coś jest nie tak, chętnie się o tym dowiemy. Napisz do Help Desku na adres
-<soundscape@scottishtecharmy.support> albo zapytaj na Slacku, jeśli jesteś członkiem STA.
+<{{ site.support_email }}> albo zapytaj na Slacku, jeśli jesteś członkiem STA.
 
 Jeśli komunikat był błędny albo się nie pojawił, nagranie twojej podróży ogromnie nam pomaga — możemy
 je odtworzyć i zobaczyć dokładnie, na czym Soundscape się opierał. Instrukcje znajdziesz w sekcji

@@ -11,7 +11,7 @@ content_lang: fa
 
 # ترجمه‌ی فارسی Soundscape — چند پرسش
 
-> پاسخ‌های خود را به **soundscape@scottishtecharmy.support** ایمیل کنید و زبان را در موضوع ایمیل بنویسید.
+> پاسخ‌های خود را به **{{ site.support_email }}** ایمیل کنید و زبان را در موضوع ایمیل بنویسید.
 
 
 *Persian translation — questions for native-speaker reviewers. English

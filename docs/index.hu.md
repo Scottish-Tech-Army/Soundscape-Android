@@ -46,7 +46,7 @@ Ezután a béta frissítések ugyanúgy a Play Áruházon keresztül érkeznek, 
 Kérjük, a bármelyik bétában talált problémákat küldje el az alábbi ügyfélszolgálati címre.
 
 ## Soundscape támogatás
-A <soundscape@scottishtecharmy.support> e-mail-cím közvetlenül az ügyfélszolgálati rendszerünkbe vezet. Kérjük, küldjön bármilyen visszajelzést, legyen az funkciókérés vagy hibajelentés. Automatikus e-mailt kap válaszul, minket pedig értesítünk, hogy új jegy érkezett, és igyekszünk a lehető leggyorsabban válaszolni.
+A <{{ site.support_email }}> e-mail-cím közvetlenül az ügyfélszolgálati rendszerünkbe vezet. Kérjük, küldjön bármilyen visszajelzést, legyen az funkciókérés vagy hibajelentés. Automatikus e-mailt kap válaszul, minket pedig értesítünk, hogy új jegy érkezett, és igyekszünk a lehető leggyorsabban válaszolni.
 
 ## A Soundscape használata
 [A Soundscape használata]({{ "/users/user.html" | relative_url }})

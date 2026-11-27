@@ -301,7 +301,7 @@ ktoré agresívne ukončujú aplikácie na pozadí.
 ## Ako nám nahlásiť problém
 
 Ak niečo nie je v poriadku, radi sa to dozvieme. Napíšte na Help Desk na adresu
-<soundscape@scottishtecharmy.support> alebo sa opýtajte na Slacku, ak ste členom STA.
+<{{ site.support_email }}> alebo sa opýtajte na Slacku, ak ste členom STA.
 
 Ak bolo hlásenie chybné alebo neprišlo, záznam vašej cesty nám nesmierne pomôže — môžeme ho prehrať a
 presne vidieť, z čoho Soundscape vychádzal. Pokyny nájdete v časti

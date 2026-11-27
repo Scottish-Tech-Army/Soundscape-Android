@@ -46,7 +46,7 @@ Beta güncellemeleri bundan sonra diğer tüm güncellemeler gibi Play Store üz
 Betalardan herhangi birinde bulduğunuz sorunları lütfen aşağıdaki destek adresine gönderin.
 
 ## Soundscape desteği
-<soundscape@scottishtecharmy.support> e-posta adresi doğrudan yardım masası sistemimize bağlanır. Bir özellik talebi veya bir hata bildirimi olsun, sahip olduğunuz her türlü geri bildirimi lütfen bize gönderin. Yanıt olarak otomatik bir e-posta alacaksınız ve bize bakılması gereken yeni bir bilet olduğu bildirilecek; bunu mümkün olduğunca hızlı yanıtlamaya çalışacağız.
+<{{ site.support_email }}> e-posta adresi doğrudan yardım masası sistemimize bağlanır. Bir özellik talebi veya bir hata bildirimi olsun, sahip olduğunuz her türlü geri bildirimi lütfen bize gönderin. Yanıt olarak otomatik bir e-posta alacaksınız ve bize bakılması gereken yeni bir bilet olduğu bildirilecek; bunu mümkün olduğunca hızlı yanıtlamaya çalışacağız.
 
 ## Soundscape nasıl kullanılır
 [Soundscape nasıl kullanılır]({{ "/users/user.html" | relative_url }})

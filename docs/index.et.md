@@ -46,7 +46,7 @@ Beetauuendused tulevad seejärel Play poe kaudu nagu kõik teised uuendused. Tes
 Palun saada kummaski beetaversioonis leitud probleemid allolevale toe aadressile.
 
 ## Soundscape'i tugi
-E-posti aadress <soundscape@scottishtecharmy.support> viib otse meie kasutajatoe süsteemi. Palun saada meile igasugust tagasisidet, olgu see funktsioonisoov või veateade. Saad vastuseks automaatse e-kirja, meile tuleb teade, et on uus pilet, ja püüame sellele võimalikult kiiresti vastata.
+E-posti aadress <{{ site.support_email }}> viib otse meie kasutajatoe süsteemi. Palun saada meile igasugust tagasisidet, olgu see funktsioonisoov või veateade. Saad vastuseks automaatse e-kirja, meile tuleb teade, et on uus pilet, ja püüame sellele võimalikult kiiresti vastata.
 
 ## Kuidas Soundscape'i kasutada
 [Kuidas Soundscape'i kasutada]({{ "/users/user.html" | relative_url }})

@@ -9,7 +9,7 @@ content_lang: ca
 
 # Traducció catalana de Soundscape — unes quantes preguntes
 
-> Envia les teves respostes per correu a **soundscape@scottishtecharmy.support** i indica la llengua a l'assumpte.
+> Envia les teves respostes per correu a **{{ site.support_email }}** i indica la llengua a l'assumpte.
 
 
 *Catalan translation — questions for native-speaker reviewers. English

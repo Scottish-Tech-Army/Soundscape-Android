@@ -308,7 +308,7 @@ käyttäytymistä on tehty kestävämmäksi puhelimissa, jotka sulkevat taustaso
 ## Ongelmista kertominen
 
 Jos jokin ei ole kohdallaan, kuulisimme siitä mielellämme. Kirjoita Help Deskiin osoitteeseen
-<soundscape@scottishtecharmy.support> tai kysy Slackissa, jos olet STA:n jäsen.
+<{{ site.support_email }}> tai kysy Slackissa, jos olet STA:n jäsen.
 
 Jos kuulutus oli väärä tai jäi tulematta, matkasi tallenne auttaa meitä valtavasti — voimme toistaa
 sen ja nähdä tarkalleen, mihin Soundscape perusti toimintansa. Ohjeet löytyvät kohdasta

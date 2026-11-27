@@ -323,7 +323,7 @@ robusto sui telefoni che chiudono in modo aggressivo le app in background.
 ## Segnalarci un problema
 
 Se qualcosa non va, ci farebbe piacere saperlo. Scrivi all'Help Desk all'indirizzo
-<soundscape@scottishtecharmy.support>, oppure chiedi su Slack se sei membro della STA.
+<{{ site.support_email }}>, oppure chiedi su Slack se sei membro della STA.
 
 Se un annuncio è stato sbagliato o non è arrivato, una registrazione del tuo viaggio ci aiuta
 moltissimo: possiamo riprodurla e vedere esattamente su quali dati stava lavorando Soundscape. Le

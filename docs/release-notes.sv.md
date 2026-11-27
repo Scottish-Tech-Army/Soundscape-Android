@@ -306,7 +306,7 @@ robust på telefoner som aggressivt stänger bakgrundsappar.
 ## Att berätta för oss om problem
 
 Om något inte stämmer vill vi gärna veta det. Skriv till Help Desk på
-<soundscape@scottishtecharmy.support>, eller fråga på Slack om du är STA-medlem.
+<{{ site.support_email }}>, eller fråga på Slack om du är STA-medlem.
 
 Om ett meddelande blev fel eller uteblev hjälper en inspelning av din resa oss enormt — vi kan spela
 upp den igen och se exakt vad Soundscape utgick från. Anvisningar finns under

@@ -9,7 +9,7 @@ content_lang: ta
 
 # Soundscape தமிழ் மொழிபெயர்ப்பு — சில கேள்விகள்
 
-> உங்கள் பதில்களை **soundscape@scottishtecharmy.support** என்ற முகவரிக்கு மின்னஞ்சல் செய்யுங்கள்; தலைப்பில் மொழியைக் குறிப்பிடுங்கள்.
+> உங்கள் பதில்களை **{{ site.support_email }}** என்ற முகவரிக்கு மின்னஞ்சல் செய்யுங்கள்; தலைப்பில் மொழியைக் குறிப்பிடுங்கள்.
 
 
 *Tamil translation — questions for native-speaker reviewers. English glosses

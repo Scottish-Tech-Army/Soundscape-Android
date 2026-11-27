@@ -230,7 +230,7 @@ Soundscape 也有实用的内容可讲，而不再只是步行时才有。此外
 ## 如何向我们反馈问题
 
 如果有什么不对劲，我们很想知道。请发邮件至 Help Desk
-（<soundscape@scottishtecharmy.support>），或者如果你是 STA 成员，可以在 Slack 上询问。
+（<{{ site.support_email }}>），或者如果你是 STA 成员，可以在 Slack 上询问。
 
 如果某次播报有误或根本没有出现，一份行程记录对我们帮助极大——我们可以回放它，准确看到 Soundscape 当时
 依据的是什么。相关说明见

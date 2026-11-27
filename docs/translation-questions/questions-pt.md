@@ -9,7 +9,7 @@ content_lang: pt
 
 # Tradução portuguesa do Soundscape — algumas perguntas
 
-> Envie as suas respostas por e-mail para **soundscape@scottishtecharmy.support**, indicando a língua no assunto.
+> Envie as suas respostas por e-mail para **{{ site.support_email }}**, indicando a língua no assunto.
 
 
 *European Portuguese translation — questions for native-speaker reviewers.

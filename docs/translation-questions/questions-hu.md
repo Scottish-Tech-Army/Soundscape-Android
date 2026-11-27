@@ -9,7 +9,7 @@ content_lang: hu
 
 # A Soundscape magyar fordítása — néhány kérdés
 
-> Küldje el a válaszait e-mailben a **soundscape@scottishtecharmy.support** címre, és a tárgyban adja meg a nyelvet.
+> Küldje el a válaszait e-mailben a **{{ site.support_email }}** címre, és a tárgyban adja meg a nyelvet.
 
 
 *Hungarian translation — questions for native-speaker reviewers. English
