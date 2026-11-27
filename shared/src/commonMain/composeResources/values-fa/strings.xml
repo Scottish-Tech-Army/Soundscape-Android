@@ -13,7 +13,7 @@
     <string name="settings_units_metric">متر و کیلومتر</string>
     <string name="voice_settings_speaking_rate">سرعت گفتار</string>
     <string name="voice_engine">موتور تبدیل متن به گفتار</string>
-    <string name="voice_voices">صدای موتور صوتی</string>
+    <string name="voice_voices">صداها</string>
     <string name="voice_other_voices">صداهای دیگر</string>
     <string name="beacon_settings_style">سبک‌های جهت‌نمای صوتی</string>
     <string name="beacon_styles_current">جدید</string>
@@ -328,7 +328,7 @@
     <string name="help_text_remote_control_audio_menu">منوی صوتی با همان سه دکمه کارهای بیشتری در اختیارتان می‌گذارد. ساند‌اسکیپ هر گزینه را با صدای بلند می‌خواند.\n\n*بعدی* به گزینه‌ی بعدی می‌رود. بعد از آخرین گزینه به اولین گزینه برمی‌گردد.\n\n*پخش/مکث* گزینه‌ای را که همین حالا شنیدید انتخاب می‌کند.\n\n*قبلی* مانند *حالت اصلی*، *جزئیات اعلان‌ها* را تغییر می‌دهد.\n\nمنو با چهار گروه شروع می‌شود: *آشنایی با محیط*، *کنترل مسیر*، *شروع مسیر* و *فعال‌سازی جهت‌نمای صوتی*. یک گروه را انتخاب کنید تا کارهای آن را بشنوید. *آشنایی با محیط* و *کنترل مسیر* با *منوی اصلی* تمام می‌شوند که شما را به چهار گروه برمی‌گرداند.</string>
     <string name="help_text_markers_content_1">نشانه مکانی است که ذخیره کرده‌اید. می‌تواند هر جایی باشد که برایتان مهم است: خانه‌تان، یک ایستگاه اتوبوس، ورودی یک ساختمان یا یک گذرگاه عابر پیاده.</string>
     <string name="help_text_markers_content_2">ساند‌اسکیپ نشانه‌های شما را هنگام عبور از کنارشان اعلام می‌کند. می‌توانید روی یک نشانه جهت‌نمای صوتی تنظیم کنید، آن را به یک مسیر اضافه کنید یا با دکمه‌ی *نشانه‌های نزدیک* نزدیک‌ترین‌ها را بشنوید.</string>
-    <string name="help_text_creating_markers_content_1">1. در صفحه‌ی اصلی *نشانه‌ها* و سپس *جدید* را انتخاب کنید.\n\n2. *موقعیت مکانی فعلی* یا مکانی از *مکان‌های نزدیک* را انتخاب کنید.\n\n3. اگر می‌خواهید نام را تغییر دهید و یادداشت اضافه کنید. ساند‌اسکیپ یادداشت‌ها را همراه با نشانه می‌خواند.\n\n4. *تمام* را انتخاب کنید.</string>
+    <string name="help_text_creating_markers_content_1">1. در صفحه‌ی اصلی *نشانه‌ها* و سپس *جدید* را انتخاب کنید.\n\n2. *موقعیت مکانی فعلی* یا مکانی از *مکان‌های نزدیک* را انتخاب کنید.\n\n3. اگر می‌خواهید، نام را تغییر دهید و یادداشت اضافه کنید. ساند‌اسکیپ یادداشت‌ها را همراه با نشانه می‌خواند.\n\n4. *تمام* را انتخاب کنید.</string>
     <string name="help_text_creating_markers_content_2">هر مکانی را که پیدا می‌کنید هم می‌توانید ذخیره کنید. *جزئیات موقعیت مکانی* آن را باز کنید و *نشانه‌گذاری و ذخیره* را انتخاب کنید.</string>
     <string name="help_text_customizing_markers_content_1">نشانه را در صفحه‌ی *نشانه‌ها* انتخاب کنید و سپس *ویرایش نشانه* را انتخاب کنید. می‌توانید نام، یادداشت‌ها و موقعیت آن را تغییر دهید یا *حذف نشانه* را انتخاب کنید. با حذف یک نشانه، آن نشانه از مسیرهای شما هم برداشته می‌شود.</string>
     <string name="help_text_routes_content_what">مسیر فهرستی از موقعیت‌های مکانی است که نقطه‌ی بین‌راهی نام دارند و به‌ترتیب به آن‌ها می‌روید. ساند‌اسکیپ روی اولین نقطه‌ی بین‌راهی یک جهت‌نما تنظیم می‌کند. وقتی می‌رسید، به شما خبر می‌دهد و جهت‌نما را به نقطه‌ی بعدی می‌برد.</string>
@@ -593,9 +593,9 @@
     <string name="new_version_info_text">اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_completed">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_details">
-این یک نسخهٔ بتای مهم از Soundscape است که بهبودها و تغییرات زیادی دارد.
+این یک نسخهٔ بتای مهم از ساند‌اسکیپ است که بهبودها و تغییرات زیادی دارد.
 
-اگر دیگر نمی‌خواهید در نسخهٔ بتا شرکت کنید، می‌توانید به صفحهٔ Soundscape در Play Store بروید؛ در آنجا گزینه‌ای برای پایان دادن به مشارکت خود پیدا می‌کنید.
+اگر دیگر نمی‌خواهید در نسخهٔ بتا شرکت کنید، می‌توانید به صفحهٔ ساند‌اسکیپ در Play Store بروید؛ در آنجا گزینه‌ای برای پایان دادن به مشارکت خود پیدا می‌کنید.
 
 با زدن دکمهٔ «یادداشت‌های کامل نسخه» در پایین، به صفحهٔ وبی می‌روید که یادداشت‌های کامل نسخه در آن است. خواندن آن‌ها واقعاً ارزشش را دارد، چون ویژگی‌های جدید زیادی وجود دارد.
 
@@ -613,7 +613,7 @@
     <string name="osm_school">مدرسه</string>
     <string name="osm_roof">بام</string>
     <string name="osm_convenience">فروشگاه محلی</string>
-    <string name="osm_lift_gate">دروازه بالابر</string>
+    <string name="osm_lift_gate">راه‌بند</string>
     <string name="osm_toilets">توالت</string>
     <string name="osm_parking">پارکینگ</string>
     <string name="osm_taxi">ایستگاه تاکسی</string>
@@ -626,11 +626,11 @@
     <string name="osm_information">اطلاعات</string>
     <string name="osm_fire_extinguisher">کپسول آتش‌نشانی</string>
     <string name="osm_defibrillator">دفیبریلاتور</string>
-    <string name="osm_guide">راهنمای مسیر</string>
+    <string name="osm_guide">تابلوی راهنما</string>
     <string name="osm_water">آب</string>
     <string name="osm_fire_hose">شلنگ آتش‌نشانی</string>
     <string name="osm_fire_flapper">ابزار دستی برای خفه کردن آتش</string>
-    <string name="osm_information_point">پایگاه اطلاعات</string>
+    <string name="osm_information_point">باجهٔ اطلاعات</string>
     <string name="osm_wetland">تالاب</string>
     <string name="osm_mud">گل‌ولای</string>
     <string name="osm_access_point">نقطه دسترسی</string>
@@ -644,7 +644,7 @@
     <string name="osm_bird_hide">پناهگاه پرنده‌نگری</string>
     <string name="osm_transformer_tower">برج ترانسفورماتور</string>
     <string name="osm_generic_object">شیء عمومی</string>
-    <string name="osm_signal">علائم راهنمایی</string>
+    <string name="osm_signal">سیگنال</string>
     <string name="osm_rock">سنگ</string>
     <string name="osm_kiln">کوره</string>
     <string name="osm_crane">جرثقیل</string>
@@ -692,7 +692,7 @@
     <string name="osm_vacuum_cleaner">فروشگاه جاروبرقی</string>
     <string name="osm_mobile_phone">فروشگاه موبایل</string>
     <string name="osm_carpet">فروشگاه فرش</string>
-    <string name="osm_trade">فروشگاه تجاری</string>
+    <string name="osm_trade">فروشگاه مصالح ساختمانی</string>
     <string name="osm_garden_centre">مرکز باغبانی</string>
     <string name="osm_florist">گل‌فروشی</string>
     <string name="osm_fireplace">شومینه</string>
@@ -736,7 +736,7 @@
     <string name="osm_biergarten">باغ آبجو</string>
     <string name="osm_running">مسیر دویدن</string>
     <string name="osm_glaziery">شیشه‌فروشی</string>
-    <string name="osm_garages">گاراژها</string>
+    <string name="osm_garages">گاراژهای پارک خودرو</string>
     <string name="osm_retail">فروشگاه خرده‌فروشی</string>
     <string name="osm_hotel">هتل</string>
     <string name="osm_camp_site">محل کمپ</string>
@@ -861,7 +861,7 @@
     <string name="osm_sleeping_pods">کپسول خواب</string>
     <string name="osm_motel">موتل (مسافرخانه کنار جاده)</string>
     <string name="osm_guest_house">مهمان‌خانه</string>
-    <string name="osm_wrestling">کشتی</string>
+    <string name="osm_wrestling">کشتی‌گیری</string>
     <string name="osm_toboggan">مسیر سورتمه‌سواری</string>
     <string name="osm_skiing">پیست اسکی</string>
     <string name="osm_rc_car">ماشین کنترلی</string>
@@ -889,7 +889,7 @@
     <string name="osm_cheese">فروشگاه پنیر</string>
     <string name="osm_bakery">نانوایی و قنادی</string>
     <string name="osm_telecommunication">فروشگاه مخابرات و تلفن</string>
-    <string name="osm_tax">اداره مالیات</string>
+    <string name="osm_tax">دفتر مشاوره مالیاتی</string>
     <string name="osm_real_estate_agent">مشاور املاک</string>
     <string name="osm_notary">دفتر اسناد رسمی</string>
     <string name="osm_ngo">دفتر سازمان غیردولتی (NGO)</string>
@@ -914,7 +914,7 @@
     <string name="osm_distillery">کارخانه تقطیر</string>
     <string name="osm_carpet_layer">نصاب فرش</string>
     <string name="osm_beekeeper">زنبوردار</string>
-    <string name="osm_public">تأسیسات عمومی</string>
+    <string name="osm_public">مکان عمومی</string>
     <string name="osm_dormitory">خوابگاه</string>
     <string name="osm_apartments">آپارتمان‌ها</string>
     <string name="osm_internet_cafe">کافه اینترنت</string>
@@ -943,7 +943,7 @@
     <string name="osm_gaelic_games">بازی‌های گِلیک</string>
     <string name="osm_diving">غواصی</string>
     <string name="osm_darts">دارت</string>
-    <string name="osm_climbing_adventure">سالن صعود ماجراجویانه</string>
+    <string name="osm_climbing_adventure">مجموعهٔ صعود ماجراجویانه</string>
     <string name="osm_basketball">زمین بسکتبال</string>
     <string name="osm_bandy">زمین بَندی (ورزش روی یخ)</string>
     <string name="osm_australian_football">زمین فوتبال استرالیایی</string>
@@ -967,7 +967,7 @@
     <string name="osm_doityourself">فروشگاه ابزار و لوازم تعمیرات خانگی</string>
     <string name="osm_bathroom_furnishing">فروشگاه لوازم سرویس بهداشتی</string>
     <string name="osm_medical_supply">فروشگاه تجهیزات پزشکی</string>
-    <string name="osm_variety_store">فروشگاه همه‌چیزفروش</string>
+    <string name="osm_variety_store">فروشگاه اجناس متنوع</string>
     <string name="osm_second_hand">فروشگاه کالای دست‌دوم</string>
     <string name="osm_charity">فروشگاه خیریه</string>
     <string name="osm_fashion">فروشگاه مد</string>
@@ -996,7 +996,7 @@
     <string name="osm_defined">تعریف‌شده</string>
     <string name="osm_sauna">سونا</string>
     <string name="osm_gym">باشگاه ورزشی</string>
-    <string name="osm_crematorium">کرماتوریوم</string>
+    <string name="osm_crematorium">مرده‌سوزخانه</string>
     <string name="osm_gambling">قمارخانه</string>
     <string name="osm_music_school">مدرسه موسیقی</string>
     <string name="osm_bar">بار</string>
@@ -1013,7 +1013,7 @@
     <string name="osm_swimming">استخر شنا</string>
     <string name="osm_surfing">محل موج‌سواری</string>
     <string name="osm_skating">پیست اسکیت</string>
-    <string name="osm_racquet">تسهیلات ورزش‌های راکتی</string>
+    <string name="osm_racquet">مجموعهٔ ورزش‌های راکتی</string>
     <string name="osm_pelota">زمین پِلوتا (بسک پِلوتا)</string>
     <string name="osm_paragliding">محل پاراگلایدر</string>
     <string name="osm_parachuting">محل چتربازی</string>
@@ -1064,7 +1064,7 @@
     <string name="osm_sailmaker">سازنده بادبان</string>
     <string name="osm_photographic_laboratory">آزمایشگاه عکاسی</string>
     <string name="osm_photographer">عکاس</string>
-    <string name="osm_insulation">عایق</string>
+    <string name="osm_insulation">عایق‌کاری</string>
     <string name="osm_electrician">برق‌کار</string>
     <string name="osm_dressmaker">خیاط</string>
     <string name="osm_caterer">خدمات پذیرایی (کترینگ)</string>
@@ -1094,7 +1094,7 @@
     <string name="osm_reservoir">مخزن آب</string>
     <string name="osm_monument">بنای یادبود</string>
     <string name="osm_battlefield">محل نبرد (تاریخی)</string>
-    <string name="osm_planetarium">پلنتاریوم</string>
+    <string name="osm_planetarium">آسمان‌نما</string>
     <string name="osm_social_centre">مرکز اجتماعی</string>
     <string name="osm_prison">زندان</string>
     <string name="osm_courthouse">ساختمان دادگاه</string>
@@ -1211,7 +1211,7 @@
     <string name="osm_aircraft">هواپیما</string>
     <string name="osm_digester">تانک هاضم فاضلاب</string>
     <string name="osm_sally_port">ورودی محافظت‌شده</string>
-    <string name="osm_aerodrome">هواپیماگاه</string>
+    <string name="osm_aerodrome">فرودگاه کوچک</string>
     <string name="osm_shopping_mall">مرکز خرید</string>
     <string name="osm_cinema">سینما</string>
     <string name="osm_rescue_station">ایستگاه نجات</string>
@@ -1232,12 +1232,12 @@
     <string name="osm_chemist">داروخانه</string>
     <string name="osm_checkpoint">ایست بازرسی</string>
     <string name="osm_dog_park">پارک مخصوص سگ‌ها</string>
-    <string name="osm_kissing_gate">دروازهٔ کیسینگ (گذرگاه پیاده؛ مانع عبور دام)</string>
+    <string name="osm_kissing_gate">دروازهٔ عابر پیاده</string>
     <string name="osm_car_rental">اجاره خودرو</string>
     <string name="osm_pedestrianised_area">منطقهٔ عابران پیاده</string>
     <string name="osm_escalator">پله برقی</string>
     <string name="osm_shelter">سرپناه</string>
-    <string name="osm_water_point">نقطهٔ آب (شیر آب عمومی)</string>
+    <string name="osm_water_point">شیر آب عمومی</string>
     <string name="osm_subway_entrance">ورودی مترو</string>
     <string name="osm_cave_entrance">ورودی غار</string>
     <string name="osm_swing_gate">درب لولایی</string>
@@ -1250,7 +1250,7 @@
     <string name="osm_bureau_de_change">صرافی</string>
     <string name="osm_stairs">پله‌ها</string>
     <string name="osm_bicycle_rental">اجاره دوچرخه</string>
-    <string name="osm_hampshire_gate">دروازهٔ همپشر (نوعی دروازهٔ پیاده‌رو بریتانیا)</string>
+    <string name="osm_hampshire_gate">دروازهٔ سیمی</string>
     <string name="osm_full_height_turnstile">گیت گردان تمام‌قد</string>
     <string name="osm_boat_sharing">قایق اشتراکی</string>
     <string name="osm_help_point">نقطهٔ کمک</string>
@@ -1319,7 +1319,7 @@
     <string name="tour_create_marker_done">عالی! هنگام ایجاد نشانه می‌توانید نام آن را ویرایش کرده و یادداشت اضافه کنید. اکنون این کار را انجام دهید و وقتی آماده بودید، روی «تمام» ضربه بزنید.</string>
     <string name="tour_my_location">حالا که نحوه‌ی استفاده از نشانه‌ها را یاد گرفتید، بیایید چند قابلیت دیگر را بررسی کنیم. در پایین صفحه چهار دکمه وجود دارد. هر یک از آنها را امتحان خواهیم کرد. دکمه‌ی سمت راست «موقعیت مکانی من» است. این دکمه موقعیت فعلی شما را توصیف می‌کند. هم‌اکنون روی آن ضربه بزنید.</string>
     <string name="tour_around_me">دکمه‌ی بعدی «اطراف من» است. این گزینه به شما می‌گوید در هر جهت چه چیزهایی در نزدیکی شما قرار دارد. روی «اطراف من» ضربه بزنید.</string>
-    <string name="tour_ahead">دکمه‌ی بعدی «مقابل من» است. این گزینه به شما می‌گوید چه چیزهایی دقیقاً در جلوی شما قرار دارد. روی «مقابل من» ضربه بزنید.</string>
+    <string name="tour_ahead">دکمه‌ی بعدی «مقابل من» است. این گزینه به شما می‌گوید چه چیزهایی در جلوی شما قرار دارد. روی «مقابل من» ضربه بزنید.</string>
     <string name="tour_nearby_markers">دکمه‌ی آخر «نشانه‌های نزدیک» است که مکان‌های ذخیره‌شده در اطراف شما را اعلام می‌کند. برای امتحان، روی «نشانه‌های نزدیک» ضربه بزنید.</string>
     <string name="tour_markers_and_routes">شما اکنون با موفقیت یک نشانه ایجاد کرده‌اید. بیایید یک جهت‌نمای صوتی پخش کنیم تا ما را به آن مکان هدایت کند. روی «نشانه‌ها» ضربه بزنید که درست زیر «مکان‌های نزدیک» قرار دارد.</string>
     <string name="tour_start_beacon">شما اکنون در صفحهٔ نشانه‌ها هستید که همه‌ی نشانه‌های ذخیره‌شده‌ی شما را فهرست می‌کند. یک نشانه را انتخاب کنید و وقتی صفحه‌ی جزئیات موقعیت مکانی ظاهر شد، روی «فعال‌سازی جهت‌نمای صوتی» ضربه بزنید.</string>
@@ -1378,7 +1378,7 @@
     <string name="first_launch_permissions_record_audio">ضبط صدا</string>
     <string name="first_launch_permissions_required_for_voice_control">این مجوز اختیاری است، اما در صورتی که مایل باشید از فرمان‌های صوتی برای کنترل اپلیکیشن استفاده کنید، لازم است</string>
     <string name="first_launch_permissions_physical_activity">فعالیت بدنی</string>
-    <string name="first_launch_permissions_physical_activity_disclosure">الزامی. Soundscape از گام‌شمار تلفن شما استفاده می‌کند تا بفهمد چه زمانی در حال راه رفتن هستید، مثلاً وقتی از وسیلهٔ نقلیه پیاده شده‌اید یا ایستاده‌اید. داده‌های گام‌های شما روی تلفنتان می‌ماند.</string>
+    <string name="first_launch_permissions_physical_activity_disclosure">الزامی. ساند‌اسکیپ از گام‌شمار تلفن شما استفاده می‌کند تا بفهمد چه زمانی در حال راه رفتن هستید، مثلاً وقتی از وسیلهٔ نقلیه پیاده شده‌اید یا ایستاده‌اید. داده‌های گام‌های شما روی تلفنتان می‌ماند.</string>
     <string name="menu_media_controls">کنترل‌های رسانه‌ای</string>
     <string name="settings_section_media_controls">حالت کنترل‌های رسانه‌ای</string>
     <string name="settings_section_media_controls_description">این تنظیم مشخص می‌کند دکمه‌های کنترل رسانه روی هدفون یا کنترل از راه دور شما چگونه کار کنند.</string>
@@ -1419,7 +1419,7 @@
     <string name="voice_cmd_speech_recognition_error_unknown">خطای ناشناخته در تشخیص گفتار.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">تشخیص گفتار روی این گوشی پشتیبانی نمی‌شود.</string>
     <string name="settings_voice_command_listening_prompt">اعلام شروع گوش دادن</string>
-    <string name="settings_voice_command_listening_prompt_description">قبل از شروع تشخیص گفتار، یک پیام شنیداری پخش کنید تا اعلام شود که اپ در حالت گوش دادن قرار دارد.</string>
+    <string name="settings_voice_command_listening_prompt_description">پیش از شروع تشخیص گفتار، پیامی پخش می‌شود تا اعلام کند که اپ در حال گوش دادن است.</string>
     <string name="settings_voice_command_microphone">میکروفون</string>
     <string name="settings_voice_command_microphone_description">میکروفونی را که برای فرمان‌های صوتی استفاده می‌شود انتخاب کنید.</string>
     <string name="battery_optimization_title">مصرف باتری در پس‌زمینه</string>
@@ -1552,10 +1552,10 @@
     <string name="directions_at_junction_inline">در %1$s</string>
     <string name="directions_on_road_and_settlement_since">در %1$s و نزدیک %2$s، %3$s از %4$s</string>
     <string name="directions_towards_settlement">به سمت %1$s، به فاصله %2$s</string>
-    <string name="directions_away_from_settlement">دور از %1$s، %2$s پشت سر شما</string>
+    <string name="directions_away_from_settlement">در حال دور شدن از %1$s، %2$s پشت سر شما</string>
     <string name="directions_near_settlement_inline">نزدیک %1$s</string>
     <string name="directions_close_to_settlement_inline">در نزدیکی %1$s</string>
-    <string name="directions_generic_train">قطار</string>
+    <string name="directions_generic_train">خط راه‌آهن</string>
     <string name="directions_crossing_waterway">عبور از روی %1$s</string>
     <string name="directions_crossing_railway_generic">عبور از روی راه‌آهن</string>
     <string name="directions_going_under_railway">عبور از زیر %1$s</string>
@@ -1641,7 +1641,7 @@
     <string name="callouts_bus_and_tram_stops">ایستگاه‌های اتوبوس و تراموا</string>
     <string name="callouts_bus_and_tram_stops_description">اعلام ایستگاه‌های اتوبوس و تراموا هنگام عبور از کنار آن‌ها</string>
     <string name="directions_approaching_name">به %1$s نزدیک می‌شوید</string>
-    <string name="directions_generic_tram">تراموا</string>
+    <string name="directions_generic_tram">خط تراموا</string>
     <string name="ios_permission_location_when_in_use">ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی و توصیف محیط پیرامون شما به موقعیت مکانی شما نیاز دارد.</string>
     <string name="ios_permission_location_always">ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی حتی زمانی که اپلیکیشن در پس‌زمینه است، به موقعیت مکانی شما نیاز دارد.</string>
     <string name="ios_permission_motion">ساند‌اسکیپ از داده‌های حرکتی استفاده می‌کند تا جهتی را که رو به آن ایستاده‌اید تشخیص دهد، بفهمد چه زمانی در حال راه رفتن هستید و اعلان‌های صوتی را نسبت به محیط پیرامون شما جهت‌دهی کند.</string>
@@ -1717,7 +1717,7 @@
     <string name="search_synonyms_parking">پارکینگ، توقفگاه</string>
     <string name="search_synonyms_hotel">هتل، مسافرخانه، اقامتگاه</string>
     <string name="search_synonyms_park">پارک، بوستان</string>
-    <string name="search_synonyms_playground">زمین بازی، شهربازی، پارک کودک</string>
+    <string name="search_synonyms_playground">زمین بازی، زمین بازی کودکان، پارک کودک</string>
     <string name="search_synonyms_place_of_worship">مسجد، کلیسا، کنیسه، معبد، عبادتگاه</string>
     <string name="search_synonyms_school">مدرسه، دبستان، دبیرستان</string>
     <string name="search_synonyms_cinema">سینما</string>
