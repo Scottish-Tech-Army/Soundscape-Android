@@ -991,7 +991,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="directions_away_from_settlement">menjauh dari %1$s, %2$s di belakang Anda</string>
     <string name="directions_near_settlement_inline">dekat %1$s</string>
     <string name="directions_close_to_settlement_inline">tidak jauh dari %1$s</string>
-    <string name="directions_generic_train">kereta</string>
+    <string name="directions_generic_train">jalur kereta</string>
     <string name="directions_crossing_waterway">Melintas di atas %1$s</string>
     <string name="directions_crossing_railway_generic">Melintas di atas jalur kereta api</string>
     <string name="directions_going_under_railway">Melintas di bawah %1$s</string>
@@ -1624,7 +1624,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="callouts_bus_and_tram_stops">Halte Bus dan Trem</string>
     <string name="callouts_bus_and_tram_stops_description">Umumkan halte bus dan halte trem saat Anda melewatinya</string>
     <string name="directions_approaching_name">Mendekati %1$s</string>
-    <string name="directions_generic_tram">trem</string>
+    <string name="directions_generic_tram">jalur trem</string>
     <string name="ios_permission_location_when_in_use">Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio dan menjelaskan lingkungan sekitar Anda.</string>
     <string name="ios_permission_location_always">Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio bahkan saat aplikasi berjalan di latar belakang.</string>
     <string name="ios_permission_motion">Soundscape menggunakan data gerakan untuk mendeteksi arah hadap Anda, mengetahui kapan Anda berjalan, dan menyesuaikan pemberitahuan audio dengan lingkungan sekitar Anda.</string>

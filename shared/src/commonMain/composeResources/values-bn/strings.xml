@@ -630,7 +630,7 @@
     <string name="directions_away_from_settlement">%1$s থেকে দূরে, %2$s আপনার পেছনে</string>
     <string name="directions_near_settlement_inline">%1$s-এর কাছে</string>
     <string name="directions_close_to_settlement_inline">%1$s-এর নিকটে</string>
-    <string name="directions_generic_train">ট্রেন</string>
+    <string name="directions_generic_train">রেললাইন</string>
     <string name="directions_crossing_waterway">%1$s-এর উপর দিয়ে যাচ্ছে</string>
     <string name="directions_crossing_railway_generic">রেলপথের উপর দিয়ে যাচ্ছে</string>
     <string name="directions_going_under_railway">%1$s-এর নিচ দিয়ে যাচ্ছে</string>
@@ -1640,7 +1640,7 @@
     <string name="callouts_bus_and_tram_stops">বাস ও ট্রাম স্টপ</string>
     <string name="callouts_bus_and_tram_stops_description">পাশ দিয়ে যাওয়ার সময় বাস স্টপ ও ট্রাম স্টপ ঘোষণা করুন</string>
     <string name="directions_approaching_name">%1$s এগিয়ে আসছে</string>
-    <string name="directions_generic_tram">ট্রাম</string>
+    <string name="directions_generic_tram">ট্রামলাইন</string>
     <string name="ios_permission_location_when_in_use">অডিও নেভিগেশন প্রদান করতে এবং আপনার চারপাশের পরিবেশ বর্ণনা করতে Soundscape-এর আপনার অবস্থান প্রয়োজন।</string>
     <string name="ios_permission_location_always">অ্যাপ ব্যাকগ্রাউন্ডে থাকা অবস্থাতেও অডিও নেভিগেশন প্রদান করতে Soundscape-এর আপনার অবস্থান প্রয়োজন।</string>
     <string name="ios_permission_motion">আপনি কোন দিকে মুখ করে আছেন তা শনাক্ত করতে, আপনি কখন হাঁটছেন তা বুঝতে এবং ঘোষণাগুলো আপনার চারপাশের পরিবেশ অনুযায়ী সাজাতে Soundscape গতিবিধি ডেটা ব্যবহার করে।</string>

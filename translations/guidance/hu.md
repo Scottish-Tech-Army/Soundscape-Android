@@ -210,3 +210,5 @@ with overlaps). HU-G3 done in code the same day.
 **2026-10-01 — release notes.** `docs/release-notes.hu.md` moved to «irányjelző hang» and «bemondás» (C26); its sleep passage now quotes *Felébredés távozáskor*.
 
 **2026-10-01 — home-button names.** Home buttons renamed to the names the tour, help and Siri use: «Saját\nhelyzetem», «Körülöttem», «Előttem» (were «Saját helyzet», «Magam körül», «Előre nézve»). The tour told users to tap «Körülöttem». Release notes too (C27).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «vasútvonal» / «villamosvonal», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

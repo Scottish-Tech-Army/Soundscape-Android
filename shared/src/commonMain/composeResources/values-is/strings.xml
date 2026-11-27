@@ -1554,7 +1554,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="directions_away_from_settlement">burt frá %1$s, %2$s fyrir aftan þig</string>
     <string name="directions_near_settlement_inline">nærri %1$s</string>
     <string name="directions_close_to_settlement_inline">nálægt %1$s</string>
-    <string name="directions_generic_train">lest</string>
+    <string name="directions_generic_train">járnbrautinni</string>
     <string name="directions_crossing_waterway">Farið yfir %1$s</string>
     <string name="directions_crossing_railway_generic">Farið yfir járnbrautina</string>
     <string name="directions_going_under_railway">Farið undir %1$s</string>
@@ -1640,7 +1640,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="callouts_bus_and_tram_stops">Strætó- og sporvagnastopp</string>
     <string name="callouts_bus_and_tram_stops_description">Tilkynna stoppistöðvar strætó og sporvagna þegar þú ferð framhjá þeim</string>
     <string name="directions_approaching_name">Nálgast %1$s</string>
-    <string name="directions_generic_tram">sporvagn</string>
+    <string name="directions_generic_tram">sporvagnsleiðinni</string>
     <string name="ios_permission_location_when_in_use">Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn og lýsa umhverfi þínu.</string>
     <string name="ios_permission_location_always">Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn jafnvel þegar forritið er í bakgrunni.</string>
     <string name="ios_permission_motion">Soundscape notar hreyfigögn til að greina í hvaða átt þú snýrð, hvenær þú ert að ganga og staðsetja hljóðtilkynningar miðað við umhverfi þitt.</string>

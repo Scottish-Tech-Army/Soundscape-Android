@@ -108,3 +108,5 @@ Most serious fixed:
 - `confect_name_to_dead_end`: Inherited the JA-G1 «から…へ» defect when C21 built it from confect_name_to + dead end: «小道 から 行き止まり へ» = "from the path to the dead end", with stray spaces around 行き止まり.
 - `confect_name_to_dead_end_via`: Same JA-G1/C21 defect as confect_name_to_dead_end («から 行き止まり へ» = "from X to the dead end").
 Held for a person: `confect_name_to` (reviewer: Candidate); `terms_of_use_message` (legal text).
+
+**2026-11-27 — unnamed train/tram line (C30), left for a speaker.** `directions_generic_train` / `directions_generic_tram` still name the vehicle: «電車 にいます» (on the train) reads naturally; naming the line («線路 にいます») would sound like standing on the tracks. Left as it is.

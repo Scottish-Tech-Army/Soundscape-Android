@@ -571,7 +571,7 @@
     <string name="directions_away_from_settlement">mbali na %1$s, %2$s nyuma yako</string>
     <string name="directions_near_settlement_inline">karibu na %1$s</string>
     <string name="directions_close_to_settlement_inline">si mbali na %1$s</string>
-    <string name="directions_generic_train">treni</string>
+    <string name="directions_generic_train">reli</string>
     <string name="directions_crossing_waterway">Unapita juu ya %1$s</string>
     <string name="directions_crossing_railway_generic">Unapita juu ya reli</string>
     <string name="directions_going_under_railway">Unapita chini ya %1$s</string>
@@ -1640,7 +1640,7 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="callouts_bus_and_tram_stops">Vituo vya Basi na Tramu</string>
     <string name="callouts_bus_and_tram_stops_description">Tangaza vituo vya basi na tramu unapovipita</string>
     <string name="directions_approaching_name">Unakaribia %1$s</string>
-    <string name="directions_generic_tram">tramu</string>
+    <string name="directions_generic_tram">njia ya tramu</string>
     <string name="ios_permission_location_when_in_use">Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti na kueleza mazingira yanayokuzunguka.</string>
     <string name="ios_permission_location_always">Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti hata wakati programu iko chinichini.</string>
     <string name="ios_permission_motion">Soundscape hutumia data ya mwendo kutambua upande uliouelekea, kujua unapotembea, na kupanga matangazo ya sauti kulingana na mazingira yanayokuzunguka.</string>

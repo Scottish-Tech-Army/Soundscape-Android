@@ -143,3 +143,5 @@ Most serious fixed:
 - `osm_lift_gate`: OSM barrier=lift_gate is a boom barrier (arm that swings up), which Dutch calls «slagboom».
 - `osm_sally_port`: «Sallypoort» isn't Dutch;
 Held for a person: `help_config_voices_content_ios` (reviewer: unconfirmed).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «het spoor» / «de tramlijn», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

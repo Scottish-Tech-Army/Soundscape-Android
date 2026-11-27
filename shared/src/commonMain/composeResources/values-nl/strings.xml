@@ -1554,7 +1554,7 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="directions_away_from_settlement">weg van %1$s, %2$s achter u</string>
     <string name="directions_near_settlement_inline">nabij %1$s</string>
     <string name="directions_close_to_settlement_inline">dicht bij %1$s</string>
-    <string name="directions_generic_train">trein</string>
+    <string name="directions_generic_train">het spoor</string>
     <string name="directions_crossing_waterway">Over %1$s heen</string>
     <string name="directions_crossing_railway_generic">Over de spoorlijn heen</string>
     <string name="directions_going_under_railway">Onder %1$s door</string>
@@ -1640,7 +1640,7 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="callouts_bus_and_tram_stops">Bus- en tramhaltes</string>
     <string name="callouts_bus_and_tram_stops_description">Bushaltes en tramhaltes aankondigen wanneer u er langs komt</string>
     <string name="directions_approaching_name">U nadert %1$s</string>
-    <string name="directions_generic_tram">tram</string>
+    <string name="directions_generic_tram">de tramlijn</string>
     <string name="ios_permission_location_when_in_use">Soundscape heeft uw locatie nodig om audio-navigatie te bieden en uw omgeving te beschrijven.</string>
     <string name="ios_permission_location_always">Soundscape heeft uw locatie nodig om audio-navigatie te bieden, zelfs wanneer de app op de achtergrond draait.</string>
     <string name="ios_permission_motion">Soundscape gebruikt bewegingsgegevens om te bepalen welke richting u op kijkt, wanneer u loopt, en om de audio-aankondigingen op uw omgeving af te stemmen.</string>

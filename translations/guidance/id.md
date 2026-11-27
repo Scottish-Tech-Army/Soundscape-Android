@@ -77,3 +77,5 @@ Most serious fixed:
 - `osm_wreck`: A bare 'Bangkai' means a carcass or corpse.
 - `osm_rowing`: 'Dayung' is the oar itself.
 - `osm_farm`: 'Pertanian' is 'agriculture', the activity.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «jalur kereta» / «jalur trem», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

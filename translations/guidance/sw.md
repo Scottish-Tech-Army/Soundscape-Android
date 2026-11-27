@@ -83,3 +83,5 @@ Most serious fixed:
 - `help_text_nearby_markers_when`: 'mahali ulipo alama unazozifahamu' says 'where you are markers you know' (ulipo = where YOU are);
 - `faq_use_with_wayfinding_apps_answer`: 'mahali panapoenda sawa na kile kilichopo' is garbled ('the place where it goes, same as what is in');
 - `first_launch_prompt_message`: 'upande unaoelekea' means 'the direction you are facing', not 'the direction of your destination';
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «reli» / «njia ya tramu», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

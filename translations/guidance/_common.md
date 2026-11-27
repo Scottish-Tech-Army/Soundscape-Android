@@ -656,3 +656,9 @@ The English help and FAQ were rewritten against the code in `67e99c61b` (short s
 
 A review pass must not copy one key's wording into the other to make them "consistent".
 
+## C30 — The unnamed train and tram stand-ins name the line, not the vehicle (2026-11-27)
+
+`directions_generic_train` and `directions_generic_tram` replace the name of a railway or tram line the map data doesn't name, in the road-name slot of «On %1$s», «Traveling north along %1$s», «On %1$s and close to %2$s…». The English comment asked for the vehicle until 2026-09-30 («example: On train»), and the English text never changed, so 38 translations kept a word for the train itself, which most templates can't take («Su treno», «Teel rongis», «На поезд»).
+
+On 2026-11-27 33 languages were changed to name the line, in the form each language's templates need: a definite noun where the template has no article (da «jernbanen», nl «het spoor»), the case the preposition governs (sk «železničnej trati», uk «залізниці», is «járnbrautinni»), or a street word the grammar markers (C18) recognise (es «vía férrea» → «En la vía férrea», fi «rautatie» → «rautatiellä», hu «vasútvonal» → «vasútvonalon», pt «linha férrea» → «Na linha férrea», it «La ferrovia» → «Sulla ferrovia»). Already right before: ar, cs, fa, fr_CA, pl, ta, zh_Hans. en_GB follows the English. Left for a speaker: ru, sr and el, where «On» and «along» need different cases, so a template needs rewording; and ja and ko, where «on the train» reads naturally and naming the line would sound like standing on the tracks.
+

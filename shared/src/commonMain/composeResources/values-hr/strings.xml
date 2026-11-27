@@ -935,7 +935,7 @@
     <string name="directions_away_from_settlement">udaljavanje od %1$s, %2$s iza vas</string>
     <string name="directions_near_settlement_inline">blizu %1$s</string>
     <string name="directions_close_to_settlement_inline">u blizini %1$s</string>
-    <string name="directions_generic_train">vlaku</string>
+    <string name="directions_generic_train">pruzi</string>
     <string name="directions_crossing_waterway">Prolazak iznad %1$s</string>
     <string name="directions_crossing_railway_generic">Prolazak iznad željezničke pruge</string>
     <string name="directions_going_under_railway">Prolazak ispod %1$s</string>
@@ -1656,7 +1656,7 @@ Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, pute
     <string name="callouts_bus_and_tram_stops">Autobusna i tramvajska stajališta</string>
     <string name="callouts_bus_and_tram_stops_description">Najavi autobusna i tramvajska stajališta dok prolazite pored njih</string>
     <string name="directions_approaching_name">Približavanje %1$s</string>
-    <string name="directions_generic_tram">tramvaju</string>
+    <string name="directions_generic_tram">tramvajskoj pruzi</string>
     <string name="ios_permission_location_when_in_use">Soundscapeu je potrebna vaša lokacija kako bi pružao zvučnu navigaciju i opisivao vašu okolinu.</string>
     <string name="ios_permission_location_always">Soundscapeu je potrebna vaša lokacija kako bi pružao zvučnu navigaciju i kada je aplikacija u pozadini.</string>
     <string name="ios_permission_motion">Soundscape koristi podatke o pokretu kako bi otkrio smjer u kojem ste okrenuti, prepoznao kada hodate i uskladio zvučne najave s vašom okolinom.</string>

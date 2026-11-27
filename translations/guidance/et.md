@@ -103,3 +103,5 @@ Most serious fixed:
 - `ui_action_button_my_location_acc_hint`: «kuulata oma praegust asukohta» means 'to listen to your current location';
 
 **2026-10-01 — home-button names.** Nearby Markers button «Lähedal\nmarkerid» → «Lähedal asuvad\nmarkerid» (C27).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «raudtee» / «trammitee», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

@@ -1554,7 +1554,7 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="directions_away_from_settlement">%1$s'{DAn} uzaklaşıyorsunuz, %2$s arkanızda</string>
     <string name="directions_near_settlement_inline">%1$s yakınında</string>
     <string name="directions_close_to_settlement_inline">%1$s'{A} yakın</string>
-    <string name="directions_generic_train">tren</string>
+    <string name="directions_generic_train">demiryolu</string>
     <string name="directions_crossing_waterway">%1$s üzerinden geçiliyor</string>
     <string name="directions_crossing_railway_generic">Demiryolunun üzerinden geçiliyor</string>
     <string name="directions_going_under_railway">%1$s altından geçiliyor</string>
@@ -1640,7 +1640,7 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="callouts_bus_and_tram_stops">Otobüs ve Tramvay Durakları</string>
     <string name="callouts_bus_and_tram_stops_description">Yanlarından geçerken otobüs ve tramvay duraklarını duyur</string>
     <string name="directions_approaching_name">%1$s'{A} yaklaşılıyor</string>
-    <string name="directions_generic_tram">tramvay</string>
+    <string name="directions_generic_tram">tramvay hattı</string>
     <string name="ios_permission_location_when_in_use">Soundscape, sesli gezinme sağlamak ve çevrenizi betimlemek için konumunuza ihtiyaç duyar.</string>
     <string name="ios_permission_location_always">Soundscape, uygulama arka plandayken bile sesli gezinme sağlamak için konumunuza ihtiyaç duyar.</string>
     <string name="ios_permission_motion">Soundscape, baktığınız yönü algılamak, ne zaman yürüdüğünüzü anlamak ve sesli anonsları çevrenize göre yönlendirmek için hareket verilerini kullanır.</string>

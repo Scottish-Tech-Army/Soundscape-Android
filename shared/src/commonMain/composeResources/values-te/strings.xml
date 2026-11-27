@@ -991,7 +991,7 @@
     <string name="directions_away_from_settlement">%1$s నుండి దూరంగా, %2$s మీ వెనుక</string>
     <string name="directions_near_settlement_inline">%1$s సమీపంలో</string>
     <string name="directions_close_to_settlement_inline">%1$sకి దగ్గరలో</string>
-    <string name="directions_generic_train">రైలు</string>
+    <string name="directions_generic_train">రైలు మార్గం</string>
     <string name="directions_crossing_waterway">%1$s పై నుండి వెళుతోంది</string>
     <string name="directions_crossing_railway_generic">రైల్వే పై నుండి వెళుతోంది</string>
     <string name="directions_going_under_railway">%1$s కింద నుండి వెళుతోంది</string>
@@ -1640,7 +1640,7 @@
     <string name="callouts_bus_and_tram_stops">బస్ మరియు ట్రామ్ స్టాప్‌లు</string>
     <string name="callouts_bus_and_tram_stops_description">మీరు దాటిపోతున్నప్పుడు బస్ స్టాప్‌లు మరియు ట్రామ్ స్టాప్‌లను ప్రకటించండి</string>
     <string name="directions_approaching_name">%1$s సమీపిస్తోంది</string>
-    <string name="directions_generic_tram">ట్రామ్</string>
+    <string name="directions_generic_tram">ట్రామ్ మార్గం</string>
     <string name="ios_permission_location_when_in_use">ఆడియో నావిగేషన్ అందించడానికి మరియు మీ పరిసరాలను వివరించడానికి Soundscapeకు మీ లొకేషన్ అవసరం.</string>
     <string name="ios_permission_location_always">యాప్ బ్యాక్‌గ్రౌండ్‌లో ఉన్నప్పుడు కూడా ఆడియో నావిగేషన్ అందించడానికి Soundscapeకు మీ లొకేషన్ అవసరం.</string>
     <string name="ios_permission_motion">మీరు ఏ దిశ వైపు ముఖం పెట్టి ఉన్నారో గుర్తించడానికి, మీరు ఎప్పుడు నడుస్తున్నారో తెలుసుకోవడానికి మరియు కాలౌట్‌లను మీ పరిసరాలకు అనుగుణంగా ఉంచడానికి Soundscape మోషన్ డేటాను ఉపయోగిస్తుంది.</string>

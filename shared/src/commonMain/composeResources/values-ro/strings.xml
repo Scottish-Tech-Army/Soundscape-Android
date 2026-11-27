@@ -1570,7 +1570,7 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="directions_away_from_settlement">îndepărtându-te de %1$s, la %2$s în urma ta</string>
     <string name="directions_near_settlement_inline">lângă %1$s</string>
     <string name="directions_close_to_settlement_inline">aproape de %1$s</string>
-    <string name="directions_generic_train">tren</string>
+    <string name="directions_generic_train">calea ferată</string>
     <string name="directions_crossing_waterway">Trecere peste %1$s</string>
     <string name="directions_crossing_railway_generic">Trecere pe deasupra căii ferate</string>
     <string name="directions_going_under_railway">Trecere pe sub %1$s</string>
@@ -1656,7 +1656,7 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="callouts_bus_and_tram_stops">Stații de autobuz și de tramvai</string>
     <string name="callouts_bus_and_tram_stops_description">Anunță stațiile de autobuz și de tramvai pe măsură ce treci pe lângă ele</string>
     <string name="directions_approaching_name">Apropiere de %1$s</string>
-    <string name="directions_generic_tram">tramvai</string>
+    <string name="directions_generic_tram">linia de tramvai</string>
     <string name="ios_permission_location_when_in_use">Soundscape are nevoie de locația ta pentru a oferi navigare audio și a descrie împrejurimile tale.</string>
     <string name="ios_permission_location_always">Soundscape are nevoie de locația ta pentru a oferi navigare audio chiar și atunci când aplicația este în fundal.</string>
     <string name="ios_permission_motion">Soundscape folosește date de mișcare pentru a detecta direcția în care ești orientat, pentru a ști când mergi pe jos și pentru a orienta anunțurile audio în raport cu împrejurimile tale.</string>

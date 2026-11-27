@@ -1570,7 +1570,7 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="directions_away_from_settlement">lontano {it:da %1$s}, %2$s dietro di te</string>
     <string name="directions_near_settlement_inline">vicino {it:a %1$s}</string>
     <string name="directions_close_to_settlement_inline">vicino {it:a %1$s}</string>
-    <string name="directions_generic_train">treno</string>
+    <string name="directions_generic_train">La ferrovia</string>
     <string name="directions_crossing_waterway">Passaggio sopra %1$s</string>
     <string name="directions_crossing_railway_generic">Passaggio sopra la ferrovia</string>
     <string name="directions_going_under_railway">Passaggio sotto %1$s</string>
@@ -1656,7 +1656,7 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="callouts_bus_and_tram_stops">Fermate di autobus e tram</string>
     <string name="callouts_bus_and_tram_stops_description">Annuncia le fermate di autobus e tram mentre le superi</string>
     <string name="directions_approaching_name">Ti stai avvicinando {it:a %1$s}</string>
-    <string name="directions_generic_tram">tram</string>
+    <string name="directions_generic_tram">La linea del tram</string>
     <string name="ios_permission_location_when_in_use">Soundscape ha bisogno della tua posizione per fornire la navigazione audio e descrivere i tuoi dintorni.</string>
     <string name="ios_permission_location_always">Soundscape ha bisogno della tua posizione per fornire la navigazione audio anche quando l'app è in background.</string>
     <string name="ios_permission_motion">Soundscape utilizza i dati di movimento per rilevare la direzione verso cui sei rivolto, capire quando stai camminando e orientare le notifiche audio rispetto ai tuoi dintorni.</string>

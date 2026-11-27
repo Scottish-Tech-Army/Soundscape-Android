@@ -1570,7 +1570,7 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="directions_away_from_settlement">afastando-se {pt:de %1$s}, %2$s atrás de você</string>
     <string name="directions_near_settlement_inline">próximo {pt:a %1$s}</string>
     <string name="directions_close_to_settlement_inline">perto {pt:de %1$s}</string>
-    <string name="directions_generic_train">trem</string>
+    <string name="directions_generic_train">linha férrea</string>
     <string name="directions_crossing_waterway">Passando por cima {pt:de %1$s}</string>
     <string name="directions_crossing_railway_generic">Passando por cima da ferrovia</string>
     <string name="directions_going_under_railway">Passando por baixo {pt:de %1$s}</string>
@@ -1656,7 +1656,7 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="callouts_bus_and_tram_stops">Pontos de Ônibus e de Bonde</string>
     <string name="callouts_bus_and_tram_stops_description">Anunciar pontos de ônibus e de bonde ao passar por eles</string>
     <string name="directions_approaching_name">Aproximando-se {pt:de %1$s}</string>
-    <string name="directions_generic_tram">bonde</string>
+    <string name="directions_generic_tram">linha do bonde</string>
     <string name="ios_permission_location_when_in_use">O Soundscape precisa da sua localização para fornecer navegação por áudio e descrever seus arredores.</string>
     <string name="ios_permission_location_always">O Soundscape precisa da sua localização para fornecer navegação por áudio mesmo quando o aplicativo está em segundo plano.</string>
     <string name="ios_permission_motion">O Soundscape usa dados de movimento para detectar a direção para a qual você está voltado, saber quando você está andando e orientar as notificações de áudio em relação aos seus arredores.</string>

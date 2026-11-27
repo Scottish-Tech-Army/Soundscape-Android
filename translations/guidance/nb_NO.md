@@ -86,3 +86,5 @@ Most serious fixed:
 - `help_text_nearby_markers_how`: English says "up to four markers";
 - `osm_post_box`: «Postboks» is a P.O. box (rented box at a post office);
 Held for a person: `terms_of_use_service_agreement` (legal text).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «jernbanen» / «trikkelinjen», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

@@ -1242,7 +1242,7 @@
     <string name="directions_away_from_settlement">%1$s पासून दूर, %2$s तुमच्या मागे</string>
     <string name="directions_near_settlement_inline">%1$s जवळ</string>
     <string name="directions_close_to_settlement_inline">%1$s च्या जवळपास</string>
-    <string name="directions_generic_train">ट्रेन</string>
+    <string name="directions_generic_train">रेल्वे मार्ग</string>
     <string name="directions_crossing_waterway">%1$sच्या वरून जात आहे</string>
     <string name="directions_crossing_railway_generic">रेल्वे मार्गाच्या वरून जात आहे</string>
     <string name="directions_going_under_railway">%1$sच्या खालून जात आहे</string>
@@ -1640,7 +1640,7 @@
     <string name="callouts_bus_and_tram_stops">बस आणि ट्राम थांबे</string>
     <string name="callouts_bus_and_tram_stops_description">जवळून जाताना बस थांबे आणि ट्राम थांबे जाहीर करा</string>
     <string name="directions_approaching_name">%1$s जवळ येत आहे</string>
-    <string name="directions_generic_tram">ट्राम</string>
+    <string name="directions_generic_tram">ट्राम मार्ग</string>
     <string name="ios_permission_location_when_in_use">ऑडिओ नेव्हिगेशन देण्यासाठी आणि तुमच्या परिसराचे वर्णन करण्यासाठी Soundscape ला तुमच्या स्थानाची आवश्यकता आहे.</string>
     <string name="ios_permission_location_always">अ‍ॅप पार्श्वभूमीत असतानाही ऑडिओ नेव्हिगेशन देण्यासाठी Soundscape ला तुमच्या स्थानाची आवश्यकता आहे.</string>
     <string name="ios_permission_motion">तुमचे तोंड कोणत्या दिशेला आहे हे ओळखण्यासाठी, तुम्ही कधी चालत आहात हे समजण्यासाठी आणि ध्वनी सूचना तुमच्या परिसरानुसार दिशाबद्ध करण्यासाठी Soundscape गती डेटा वापरते.</string>

@@ -124,3 +124,5 @@ Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
 
 **2026-10-01 — home-button names.** Ahead of Me button «Впереди\nменя» → «Передо\nмной»; help and tour «Отметки рядом» → «Ближайшие отметки» (5 strings) (C27).
+
+**2026-11-27 — unnamed train/tram line (C30), left for a speaker.** `directions_generic_train` / `directions_generic_tram` still name the vehicle: «На %1$s» needs the prepositional («железной дороге») and «вдоль %1$s» the genitive («железной дороги»), so no one word fits; a template needs rewording.

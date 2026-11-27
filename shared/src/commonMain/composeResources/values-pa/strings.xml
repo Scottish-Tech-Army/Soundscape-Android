@@ -257,8 +257,8 @@
     <string name="directions_away_from_settlement">%1$s ਤੋਂ ਦੂਰ, %2$s ਤੁਹਾਡੇ ਪਿੱਛੇ</string>
     <string name="directions_near_settlement_inline">%1$s ਦੇ ਨੇੜੇ</string>
     <string name="directions_close_to_settlement_inline">%1$s ਦੇ ਕੋਲ</string>
-    <string name="directions_generic_train">ਰੇਲਗੱਡੀ</string>
-    <string name="directions_generic_tram">ਟਰਾਮ</string>
+    <string name="directions_generic_train">ਰੇਲ ਲਾਈਨ</string>
+    <string name="directions_generic_tram">ਟਰਾਮ ਲਾਈਨ</string>
     <string name="directions_crossing_waterway">%1$s ਦੇ ਉੱਤੋਂ ਲੰਘਦੇ ਹੋਏ</string>
     <string name="directions_crossing_railway_generic">ਰੇਲਵੇ ਲਾਈਨ ਦੇ ਉੱਤੋਂ ਲੰਘਦੇ ਹੋਏ</string>
     <string name="directions_going_under_railway">%1$s ਦੇ ਹੇਠੋਂ ਲੰਘਦੇ ਹੋਏ</string>

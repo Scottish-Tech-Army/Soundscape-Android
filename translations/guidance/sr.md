@@ -93,3 +93,5 @@ Most serious fixed:
 Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
 - `c85663f73`: `help_text_remote_control_how` now names the real Around Me button, following the English fix.
+
+**2026-11-27 — unnamed train/tram line (C30), left for a speaker.** `directions_generic_train` / `directions_generic_tram` still name the vehicle: «На %1$s» needs the locative («прузи») and «дуж %1$s» the genitive («пруге»), so no one word fits; a template needs rewording.

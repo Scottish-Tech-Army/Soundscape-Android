@@ -112,3 +112,5 @@ Most serious fixed:
 - `confect_name_to_dead_end`: «Sentiero {it:a vicolo cieco}» wraps a common noun in the map-name marker and gives «Sentiero a vicolo cieco» (IT-G1 defect, still unfixed).
 - `confect_name_to_dead_end_via`: Same as confect_name_to_dead_end (IT-G1/C21): «Sentiero a vicolo cieco tramite…» → «Sentiero senza uscita tramite…».
 Held for a person: `confect_name_to` (reviewer: candidate); `first_launch_prompt_title` (reviewer: candidate); `osm_drugstore` (reviewer: Needs a native); `osm_town` (reviewer: Needs a native).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «La ferrovia» / «La linea del tram», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

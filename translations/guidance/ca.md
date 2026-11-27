@@ -89,3 +89,5 @@ Held for a person: `first_launch_welcome_title` (reviewer: open question).
 Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
 - `c85663f73`: `help_text_remote_control_how` now names the real Around Me button, following the English fix.
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «la via del tren» / «la via del tramvia», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.

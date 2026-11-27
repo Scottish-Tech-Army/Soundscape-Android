@@ -813,7 +813,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="directions_away_from_settlement">đang rời xa %1$s, %2$s ở phía sau bạn</string>
     <string name="directions_near_settlement_inline">gần %1$s</string>
     <string name="directions_close_to_settlement_inline">gần %1$s</string>
-    <string name="directions_generic_train">tàu hỏa</string>
+    <string name="directions_generic_train">tuyến đường sắt</string>
     <string name="directions_crossing_waterway">Đi phía trên %1$s</string>
     <string name="directions_crossing_railway_generic">Đi phía trên đường sắt</string>
     <string name="directions_going_under_railway">Đi phía dưới %1$s</string>
@@ -1624,7 +1624,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="callouts_bus_and_tram_stops">Điểm dừng xe buýt và trạm tàu điện</string>
     <string name="callouts_bus_and_tram_stops_description">Thông báo điểm dừng xe buýt và trạm tàu điện khi bạn đi ngang qua</string>
     <string name="directions_approaching_name">Đang đến gần %1$s</string>
-    <string name="directions_generic_tram">tàu điện</string>
+    <string name="directions_generic_tram">tuyến tàu điện</string>
     <string name="ios_permission_location_when_in_use">Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh và mô tả không gian xung quanh bạn.</string>
     <string name="ios_permission_location_always">Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh ngay cả khi ứng dụng chạy nền.</string>
     <string name="ios_permission_motion">Soundscape sử dụng dữ liệu chuyển động để xác định hướng bạn đang quay mặt, biết khi nào bạn đang đi bộ và định hướng các thông báo âm thanh theo không gian xung quanh bạn.</string>

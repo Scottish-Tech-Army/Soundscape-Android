@@ -74,3 +74,5 @@ Most serious fixed:
 - `settings_use_value`: Passed to talkbackHint, so on iOS it becomes «ఉపయోగించు రెండుసార్లు నొక్కండి».
 - `route_detail_action_start_route_disabled_hint`: Despite the _hint key this is shown as visible Text on the add/edit route screen (SharedAddAndEditRouteScreen.kt), not as a TalkBack hint, so the -డానికి fragment ('to ad
 Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text).
+
+**2026-11-27 — unnamed train/tram line (C30), no speaker involved.** `directions_generic_train` / `directions_generic_tram` named the vehicle; now «రైలు మార్గం» / «ట్రామ్ మార్గం», the line, as the English comment asks. Checked against this language's «On %1$s» and «along %1$s» templates (and the grammar markers, where they apply). AI choice, `unconfirmed`.
