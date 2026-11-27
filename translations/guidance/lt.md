@@ -113,6 +113,15 @@ Facing «Veidu į šiaurę», Heading «Einate į šiaurę», Traveling «Važiu
 šiaurę». The `*_bound` directions are lower case («šiaurės kryptimi») because
 they follow a stop name.
 
+### LT-G8 — No slash between alternatives (`agreed`, 2026-11-27)
+
+The Lithuanian voice reads «/» aloud («pasvirasis brūkšnys»), so «Kairė /
+dešinė» is heard as three words of punctuation. Write «ir» or «arba»:
+`settings_relative_directions_left_right` «Kairė ir dešinė», the media button
+«leisti arba pristabdyti». Found by synthesising every spoken string with
+Ingutė and transcribing it back with a Lithuanian recogniser (1588 strings);
+brackets, dashes and «…» are silent and fine.
+
 ### LT-V1 — Speech (`confirmed` by test on 2.0.95, 2026-11-27)
 
 A free neural Lithuanian voice exists as an ordinary Android TTS engine:
