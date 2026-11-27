@@ -7,6 +7,7 @@
 | Last native-speaker input | 2026-11-27: Robertas (Lithuania, GitHub `RobertasTa`) approved the glossary before translation and changed one term (Audio Beacon = «švyturys»), then read the finished text in a three-column review table and changed nothing |
 | Register | Polite plural «jūs» throughout. See LT-R1 |
 | Reporter platform | Android 15, free Lithuanian TTS engine "Ingutė". See LT-V1 |
+| Questions | `docs/translation-questions/questions-lt.md` (Q1…Q5) |
 
 Read with [`_common.md`](_common.md).
 
@@ -163,3 +164,6 @@ enough once the user has heard the beacon. LT-G6 handles the one clash.
   real walk, or tiring? Needs a walk test in Vilnius or Kaunas.
 - **Q3.** The iOS menu names quoted in `help_config_voices_content_ios` follow
   Apple's Lithuanian iOS wording from memory; verify on an iPhone.
+- **Q4.** The unconfirmed place-type words above: settlement names
+  (`osm_city`…`osm_hamlet`), `osm_convenience`, `osm_supermarket`,
+  `osm_townhall`, `osm_pier`.

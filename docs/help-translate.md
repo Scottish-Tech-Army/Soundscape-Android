@@ -63,6 +63,7 @@ same address and we'll help you get set up.
 - [Italiano]({{ "/translation-questions/questions-it/" | relative_url }}) — Italian · [screenshots]({{ page.screenshots }}/screenshots-it.zip)
 - [日本語]({{ "/translation-questions/questions-ja/" | relative_url }}) — Japanese · [screenshots]({{ page.screenshots }}/screenshots-ja.zip)
 - [한국어]({{ "/translation-questions/questions-ko/" | relative_url }}) — Korean · [screenshots]({{ page.screenshots }}/screenshots-ko.zip)
+- [Lietuvių]({{ "/translation-questions/questions-lt/" | relative_url }}) — Lithuanian · [screenshots]({{ page.screenshots }}/screenshots-lt.zip)
 - [मराठी]({{ "/translation-questions/questions-mr/" | relative_url }}) — Marathi · [screenshots]({{ page.screenshots }}/screenshots-mr.zip)
 - [Norsk bokmål]({{ "/translation-questions/questions-nb_NO/" | relative_url }}) — Norwegian Bokmål · [screenshots]({{ page.screenshots }}/screenshots-nb_NO.zip)
 - [فارسی]({{ "/translation-questions/questions-fa/" | relative_url }}) — Persian · [screenshots]({{ page.screenshots }}/screenshots-fa.zip)
