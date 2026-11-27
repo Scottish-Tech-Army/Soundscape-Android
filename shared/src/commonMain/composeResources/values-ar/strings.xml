@@ -41,7 +41,7 @@
     <string name="osm_vacuum_cleaner">متجر مكانس كهربائية</string>
     <string name="osm_mobile_phone">متجر هواتف محمولة</string>
     <string name="osm_carpet">متجر سجاد</string>
-    <string name="osm_trade">متجر تجاري</string>
+    <string name="osm_trade">متجر مواد بناء</string>
     <string name="osm_garden_centre">مركز حدائق</string>
     <string name="osm_florist">محل زهور</string>
     <string name="osm_fireplace">موقد</string>
@@ -75,7 +75,7 @@
     <string name="osm_game_feeding">نقطة تغذية الحيوانات البرية</string>
     <string name="osm_crypt">سرداب</string>
     <string name="osm_animal_shelter">ملجأ حيوانات</string>
-    <string name="osm_animal_boarding">مركز إيواء الحيوانات</string>
+    <string name="osm_animal_boarding">فندق للحيوانات الأليفة</string>
     <string name="osm_blood_donation">مركز التبرع بالدم</string>
     <string name="osm_nursing_home">دار رعاية المسنين</string>
     <string name="osm_dentist">طبيب أسنان</string>
@@ -89,7 +89,7 @@
     <string name="osm_retail">متجر تجزئة</string>
     <string name="osm_hotel">فندق</string>
     <string name="osm_camp_site">موقع تخييم</string>
-    <string name="osm_rugby_league">دوري الرغبي</string>
+    <string name="osm_rugby_league">رغبي الدوري</string>
     <string name="osm_notary">كاتب عدل</string>
     <string name="osm_ngo">مكتب منظمة غير حكومية</string>
     <string name="osm_lawyer">مكتب محاماة</string>
@@ -133,7 +133,7 @@
     <string name="osm_orienteering">منطقة رياضة التوجيه</string>
     <string name="osm_netball">ملعب كرة الشبكة</string>
     <string name="osm_motor">محل سيارات</string>
-    <string name="osm_kitesurfing">منطقة ركوب الأمواج الشراعي</string>
+    <string name="osm_kitesurfing">منطقة ركوب الأمواج بالطائرة الورقية</string>
     <string name="osm_karting">حلبة كارتينغ</string>
     <string name="osm_judo">نادي الجودو</string>
     <string name="osm_horseshoes">ملعب لعبة حدوة الحصان</string>
@@ -142,7 +142,7 @@
     <string name="osm_gaelic_games">الألعاب الغيلية</string>
     <string name="osm_diving">موقع الغوص</string>
     <string name="osm_darts">مكان لعبة السهام</string>
-    <string name="osm_climbing_adventure">تسلق المغامرات</string>
+    <string name="osm_climbing_adventure">مغامرات التسلق</string>
     <string name="osm_basketball">ملعب كرة السلة</string>
     <string name="osm_bandy">ميدان الباندي</string>
     <string name="osm_australian_football">ملعب كرة القدم الأسترالية</string>
@@ -307,7 +307,7 @@
     <string name="osm_curling">الكيرلنغ</string>
     <string name="osm_cricket_nets">شباك تدريب الكريكيت</string>
     <string name="osm_cliff_diving">الغطس من المنحدرات</string>
-    <string name="osm_boules">لعبة البول</string>
+    <string name="osm_boules">لعبة الكرات الحديدية</string>
     <string name="osm_bobsleigh">بوبسلي</string>
     <string name="osm_baseball">البيسبول</string>
     <string name="osm_aikido">الأيكيدو</string>
@@ -432,14 +432,14 @@
     <string name="osm_clockmaker">صانع ساعات</string>
     <string name="osm_carpenter">نجار</string>
     <string name="osm_builder">مقاول بناء</string>
-    <string name="osm_bookbinder">مجلد كتب</string>
+    <string name="osm_bookbinder">ورشة تجليد كتب</string>
     <string name="osm_boatbuilder">صانع قوارب</string>
     <string name="osm_brewery">مصنع جعة</string>
     <string name="osm_blacksmith">حداد</string>
     <string name="osm_basket_maker">صانع سلال</string>
     <string name="osm_greenhouse">دفيئة</string>
     <string name="osm_farm_auxiliary">مبنى مزرعة</string>
-    <string name="osm_civic">مبنى مدني</string>
+    <string name="osm_civic">مبنى عام</string>
     <string name="osm_bungalow">بنغالو</string>
     <string name="osm_detached">منزل منفصل</string>
     <string name="osm_hair_dresser">صالون حلاقة</string>
@@ -608,7 +608,7 @@
     <string name="waypoint_title">نقطة المسار</string>
     <string name="route_not_found">المسار غير موجود</string>
     <string name="universal_links_alert_action_marker">حفظ كعلامة</string>
-    <string name="universal_links_marker_share_message">لقد شاركت معك علامة من Soundscape: %1$s.\n\nللفتح في Soundscape استخدم %2$s.\n\n للفتح في خرائط Google استخدم %3$s.</string>
+    <string name="universal_links_marker_share_message">لقد شاركت معك علامة من Soundscape: «%1$s».\n\nللفتح في Soundscape استخدم %2$s.\n\n للفتح في خرائط Google استخدم %3$s.</string>
     <string name="user_activity_save_marker_title">حفظ العلامة</string>
     <string name="routes_title">المسارات</string>
     <string name="routes_action_deleted">تم حذف المسار</string>
@@ -796,7 +796,7 @@
     <string name="osm_lifeguard_tower">برج الإنقاذ</string>
     <string name="osm_temple">معبد</string>
     <string name="osm_national_park">حديقة وطنية</string>
-    <string name="osm_heliport">مهبط طائرات مروحية</string>
+    <string name="osm_heliport">مطار مروحيات</string>
     <string name="osm_public_park">حديقة عامة</string>
     <string name="osm_department_store">متجر متعدد الأقسام</string>
     <string name="osm_studio">استوديو</string>
@@ -897,7 +897,7 @@
     <string name="directions_away_from_settlement">بعيدًا عن %1$s، على بعد %2$s خلفك</string>
     <string name="directions_near_settlement_inline">بالقرب من %1$s</string>
     <string name="directions_close_to_settlement_inline">قريبًا من %1$s</string>
-    <string name="directions_generic_train">قطار</string>
+    <string name="directions_generic_train">خط السكة الحديدية</string>
     <string name="directions_crossing_waterway">المرور فوق %1$s</string>
     <string name="directions_crossing_railway_generic">المرور فوق السكة الحديدية</string>
     <string name="directions_going_under_railway">المرور تحت %1$s</string>
@@ -921,7 +921,7 @@
     <string name="osm_car_sharing">مشاركة السيارات</string>
     <string name="osm_customer_service">خدمة العملاء</string>
     <string name="osm_watering_place">مسقى للحيوانات</string>
-    <string name="osm_platform">رصيف</string>
+    <string name="osm_platform">رصيف المحطة</string>
     <string name="osm_horse_stile">ممر عبور الخيول</string>
     <string name="osm_bureau_de_change">مكتب صرافة</string>
     <string name="osm_stairs">درج</string>
@@ -1110,14 +1110,14 @@
         <item quantity="many">عند %1$s درجة</item>
         <item quantity="other">عند %1$s درجة</item>
     </plurals>
-    <string name="relative_left_right_direction_ahead">أمام</string>
-    <string name="relative_left_right_direction_ahead_left">أمام يسار</string>
-    <string name="relative_left_right_direction_ahead_right">أمام يمين</string>
+    <string name="relative_left_right_direction_ahead">أمامك</string>
+    <string name="relative_left_right_direction_ahead_left">أمامك إلى اليسار</string>
+    <string name="relative_left_right_direction_ahead_right">أمامك إلى اليمين</string>
     <string name="relative_left_right_direction_left">يسار</string>
     <string name="relative_left_right_direction_right">يمين</string>
-    <string name="relative_left_right_direction_behind_left">خلف يسار</string>
-    <string name="relative_left_right_direction_behind_right">خلف يمين</string>
-    <string name="relative_left_right_direction_behind">خلف</string>
+    <string name="relative_left_right_direction_behind_left">خلفك إلى اليسار</string>
+    <string name="relative_left_right_direction_behind_right">خلفك إلى اليمين</string>
+    <string name="relative_left_right_direction_behind">خلفك</string>
     <string name="loading_indicator_content_description">جارٍ التحميل</string>
     <string name="menu_exit_app">الخروج من Soundscape</string>
     <string name="offline_map_details_update">تحديث الخريطة بدون اتصال</string>
@@ -1704,7 +1704,7 @@
     <string name="callouts_bus_and_tram_stops">محطات الحافلات والترام</string>
     <string name="callouts_bus_and_tram_stops_description">الإعلان عن محطات الحافلات والترام عند المرور بها</string>
     <string name="directions_approaching_name">الاقتراب من %1$s</string>
-    <string name="directions_generic_tram">ترام</string>
+    <string name="directions_generic_tram">خط الترام</string>
     <string name="ios_permission_location_when_in_use">يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي ووصف ما يحيط بك.</string>
     <string name="ios_permission_location_always">يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي حتى عندما يكون التطبيق في الخلفية.</string>
     <string name="ios_permission_motion">يستخدم Soundscape بيانات الحركة لتحديد الاتجاه الذي تواجهه، ومعرفة متى تكون ماشيًا، وتوجيه النداءات الصوتية نحو ما يحيط بك.</string>
